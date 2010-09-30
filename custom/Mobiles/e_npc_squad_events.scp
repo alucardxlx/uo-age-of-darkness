@@ -170,6 +170,9 @@ endif
 IF (<TAG0.NPCAI.RANK> < 0) || (<SRC.TAG0.NPCAI.RANK> < 0) 
 	return 0
 endif
+IF !(<SRC.NPC>) 
+	return 0
+endif
 IF !( <SRC.TAG0.NPCAI.Race> == <TAG0.NPCAI.Race> )
 	return 0
 endif

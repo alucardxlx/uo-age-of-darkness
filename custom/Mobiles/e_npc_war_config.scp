@@ -314,7 +314,7 @@ racef_meer       080000000 //Meer
 
 [FUNCTION SetBasics]
 TAG.NPCAI.ONPC=<NPC>
-IF !(<brain> == brain_vendor) && !(<brain> == brain_healer) && !(<brain> == brain_banker)
+IF !(<NPC> == brain_vendor) && !(<NPC> == brain_healer) && !(<NPC> == brain_banker)
 	NPC=14  //Setting NPC to 14 keeps them from attacking when not wanted
 endif
 EVENTS +e_npc_wars

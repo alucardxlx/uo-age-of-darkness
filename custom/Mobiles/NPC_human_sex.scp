@@ -7,7 +7,7 @@ DAM=15,30
 ARMOR=40
 
 CAN=MT_WALK|MT_EQUIP|MT_FEMALE
-DESIRES=i_gold,e_notoriety,c_man,c_woman
+DESIRES=t_coin,t_note,t_drink,c_man,c_woman
 AVERSIONS=t_TRAP,t_eerie_stuff
 
 TEVENTS=e_stripper
@@ -27,16 +27,6 @@ MAGICRESISTANCE=(100.0)
 TACTICS=(100.0)
 
 NPC=brain_Human
-NEED=t_coin
-NEED=t_note
-NEED=i_bottle_ale
-NEED=i_bottle_wine
-NEED=i_bottle_liquor
-NEED=i_mug_ale
-NEED=i_glass_of_liquor
-NEED=i_glass_of_wine
-NEED=i_jug_cider
-NEED=t_drink
 
 KARMA=(100)
 FAME=(2000)

@@ -841,10 +841,6 @@ ENDIF
 
 ON=@ContextMenuSelect
 OBJ=<SRC.UID>
-if (<obj.lang> == <lang>) || (<cantranslate>)
-ELSE
-	RETURN 1
-ENDIF
 IF ((<ARGN> == 31))
 	GETMARKUP
 	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
@@ -854,7 +850,7 @@ IF ((<ARGN> == 31))
 	FACE
 	RETURN 1
 ENDIF
-IF ((<ARGN> == 32))
+IF ((<ARGN> == 32) && (<src.tag.lang> != <tag.lang>))
 	GETMARKUP
 	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
 		RESTOCK 1
@@ -1097,15 +1093,6 @@ LOCAL.MAXSTAM=(<SRC.DEX>)
 LOCAL.MAXHITS=(<SRC.STR>)
 LOCAL.MAXMANA=(<SRC.INT>)
 SRC.MODMAXWEIGHT=(<SRC.tag0.feat.modmaxweight>*10)
-
-//Just to make sure old elves/humans go to new system during testing remove after a bit
-IF (<ISEMPTY <SRC.TAG.RACE>>) 
-IF (<SRC.BODY> == c_elf_male) || (<SRC.BODY> == c_elf_female)
-	SRC.TAG.RACE = Elf
-ELSEIF (<SRC.BODY> == c_man) || (<SRC.BODY> == c_woman)
-	SRC.TAG.RACE = Human
-ENDIF
-ENDIF
 
 //Adjust for class/level
 IF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Heavy")
