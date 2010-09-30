@@ -1,0 +1,296 @@
+[itemdef 0f78]
+//i_reag_batwing
+defname=i_reag_batwing
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - Necromancy
+description=Batwing
+
+[itemdef 0f79]
+//blackmoor
+defname=i_reag_blackmoor
+type=t_reagent
+pile=1
+value=10
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=blackmoor
+
+[itemdef 0f7a]
+//black pearl
+defname=i_reag_black_pearl
+value=8
+type=t_reagent
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=black pearl
+
+[itemdef 0f7b]
+//blood moss
+defname=i_reag_blood_moss
+type=t_reagent
+value=6
+pile 1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=blood moss
+
+[itemdef 0f7c]
+// bloodspawn
+defname=i_reag_blood_spawn
+type=t_reagent
+value=10
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=bloodspawn
+
+[itemdef 0f7d]
+// Blood
+defname=i_reag_blood_vial
+type=t_reagent
+name=Blood
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - Necromancy
+description=Blood
+
+[itemdef 0f7e]
+// bone
+defname=i_reag_bone
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=bone
+
+[itemdef 0f7f]
+// brimstone
+defname=i_reag_brimstone
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=brimstone
+
+[itemdef 0f80]
+// daemon bone
+defname=i_reag_daemon_bone
+type=t_reagent
+value=10
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=daemon bone
+
+[itemdef 0f81]
+// fertile dirt
+defname=i_reag_fertile_dirt
+type=t_reagent
+value=4
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=fertile dirt
+
+[itemdef 0f82]
+// dragons blood
+// defname2=dragonsblood
+defname=i_reag_dragon_blood
+type=t_reagent
+value=10
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=dragons blood
+
+[itemdef 0f83]
+//executioner's cap
+defname=i_reag_executioners_cap
+type=t_reagent
+value=8
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=executioner's cap
+
+[itemdef 0f84]
+//garlic bulb
+defname=i_reag_garlic
+type=t_reagent
+value=4
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=garlic
+
+[itemdef 0f85]
+//ginseng (root)
+defname=i_reag_ginseng
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=ginseng
+
+[itemdef 0f86]
+//mandrake root
+defname=i_reag_mandrake_root
+type=t_reagent
+value=8
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=mandrake
+
+[itemdef 0f87]
+// eye of newt
+defname=i_reag_eye_of_newt
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=eye of newt
+
+[itemdef 0f88]
+//nightshade
+defname=i_reag_nightshade
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=nightshade
+
+[itemdef 0f89]
+// obsidian
+defname=i_reag_obsidian
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=obsidian
+
+[itemdef 0f8a]
+//pig iron
+defname=i_reag_pig_iron
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - Necromancy
+description=pig iron
+
+[itemdef 0f8b]
+//pumice
+defname=i_reag_pumice
+type=t_reagent
+value=6
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=pumice
+
+[itemdef 0f8c]
+//sulphorous ash
+defname=i_reag_sulfur_ash
+type=t_reagent
+value=6
+pile=1
+weight=.1
+NAME=Sulfurous Ash
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=sulphorous ash
+
+[itemdef 0f8d]
+//spider's silk
+defname=i_reag_spider_silk
+type=t_reagent
+value=4
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - normal
+description=spiders silk
+
+[itemdef 0f8e]
+// Serpent Scale
+defname=i_reag_serpent_scale
+type=t_reagent
+value=4
+pile=1
+weight=.1
+Name=Serpent Scale%s
+
+category=provisions - alchemy & magic
+subsection=reagents - Necromancy
+description=Serpent Scale
+
+[itemdef 0f8f]
+//Grave Dust
+defname=i_reag_volcanic_ash
+type=t_reagent
+value=6
+pile=1
+weight=.1
+Name=volcanic ash
+category=provisions - alchemy & magic
+subsection=reagents - Necromancy
+description=volcanic ash
+
+[itemdef 0f90]
+//dead wood
+defname=i_reag_dead_wood
+type=t_reagent
+value=4
+pile=1
+weight=.1
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=dead wood
+
+[itemdef 0f91]
+// worms heart
+defname=i_reag_worm_heart
+defname2=worm_heart
+type=t_reagent
+value=8
+pile=1
+weight=.1
+name=Worm's Heart%s
+category=provisions - alchemy & magic
+subsection=reagents - pagan
+description=worms heart
+
+
+[eof]

@@ -1,0 +1,98 @@
+// catch name on z coordinates
+// fixing the woodguy karma and elven npcs
+
+[CHARDEF c_mongbat_gold]
+ID=c_mongbat
+NAME=golden mongbat
+SOUND=snd_MONSTER_MNGBAT1
+ICON=i_pet_mongbat
+ANIM=03f8c7f
+DAM=5,11
+ARMOR=15
+RESOURCES=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing //check normal mongbat hides
+CAN=MT_WALK|MT_FLY|MT_RUN|MT_USEHANDS
+FOODTYPE=9 t_meat_raw, t_fruit, t_food, t_booze
+DESIRES=C_MONGBAT,c_mongbat_gold,t_corpse,i_gold,t_scroll,t_potion
+AVERSIONS=r_civilization,c_h_healer,c_h_healer_f
+TAG.SLOTS=4
+///add carnivore event
+tag.beastclass=beast_magic
+
+CATEGORY=Monsters
+SUBSECTION=Miscellaneous
+DESCRIPTION=Golden Mongbat
+
+ON=@Create
+	NPC=brain_animal
+	FAME={200 500}
+	KARMA={-1600 -2999}
+
+	EXP={1600 5600}
+
+	//ALIGNMENT=EVIL
+	STR={56 80}
+	DEX={61 80}
+	INT={46 70}
+
+	givelang 2
+
+	tag.resfire=50
+	tag.poisonres=-25
+	color=44
+	
+	PARRYING={50.0 60.0}
+	MAGICRESISTANCE={45.0 60.0}
+	TACTICS={35.0 50.0}
+	WRESTLING={20.0 35.0}
+	MAGERY={40.0 65.0}
+
+	TAMING=90.3
+
+ON=@NPCRestock
+	ITEM= { i_egg_mongbat_gold 1 0 2 },{1 2}
+	ITEM= { random_LOWER_SCROLL 2 magic_pouch 1 0 1 }
+
+	ITEMNEWBIE=i_spellbook	// knows fire type spells.
+	ADDSPELL=s_magic_arrow
+	ADDSPELL=s_feeblemind
+	ADDSPELL=s_weaken
+	ADDSPELL=s_clumsy
+	ADDSPELL=s_fireball
+	ADDSPELL=s_poison
+	ADDSPELL=s_cure
+	ADDSPELL=s_heal
+
+
+
+//insert code to not attack evil chars
+//tip for drinks
+
+[SPEECH mongbat]
+
+ON=food
+ON=sushi
+	DORAND 2
+		SAY=We don't get much good food up here, give me some!
+		SAY=I like food.... got any?
+	ENDDO
+
+
+ON=bananna
+	SAY=Ooh oh banana! 
+
+on=mongbat
+on=smart
+on=talk*
+	DORAND 2
+		SAY=What! You've never seen a talking mongbat?
+		SAY=Of course I can talk! I'm smarter than the likes of you.
+	ENDDO
+
+
+on=sake
+on=alcohol
+on=booze
+	DORAND 2
+		SAY=I do appreciate a stiff drink. Are you willing to share good sir?
+		SAY=Ooh ooh booze!
+	ENDDO

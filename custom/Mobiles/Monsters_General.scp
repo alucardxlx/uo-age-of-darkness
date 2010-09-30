@@ -1,0 +1,1304 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+
+//// NPC's GENERAL ////
+
+// Leave, X ,Y not working?
+
+[chardef 01e]
+defname=c_harpy
+name="harpy"
+sound=snd_monster_harpy1
+icon=i_pet_harpy
+anim=03f8c7f
+dam=7,11
+armor=20
+moverate=0
+can=mt_walk|mt_fly|mt_female
+resources=2 i_ribs_raw, 30 i_feather
+foodtype=t_meat_raw, t_garbage, t_food
+desires=t_coin, t_gem, t_potion, c_harpy, t_meat_raw, t_garbage, t_food
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tevents=e_swarm
+tag.slots_needed=4
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=19
+TAG.MANUEVER2=5
+TAG.MANUEVER3=17
+tevents=e_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Harpy
+
+on=@create
+     npc=brain_monster
+
+     str={76 95}
+     dex={96 118}
+     int={44 51}
+
+     anatomy={54.6 65.0}
+     parrying={75.0 80.0}
+     magicresistance={54.6 65.0}
+     tactics={75.9 89.4}
+     wrestling={73.1 80.6}
+
+	givelang 1
+
+     fame={ 750 1500 }
+     karma={ -2000 -2500 }
+
+ON=@NpcRestock
+     ITEM={ Filth_pouch 2 Treasure_pouch 2 Treasure_Bag 1 0 2}
+
+
+
+[chardef 01f]
+defname=c_headless
+name="headless one"
+sound=snd_monster_headls1
+icon=i_pet_headless
+anim=078c7f
+dam=6,10
+armor=15
+resources=2 i_ribs_raw
+can=mt_walk|mt_usehands|mt_nonhum
+foodtype=t_meat_raw, t_food, t_fruit
+desires=t_coin, t_gem, t_ore, c_headless, t_meat_raw, t_food, t_fruit
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tevents=e_swarm
+moverate=0
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=3
+TAG.MANUEVER2=5
+TAG.MANUEVER3=6
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Headless One
+
+on=@create
+     npc=brain_monster
+
+     str={49 68}
+     dex={38 59}
+     int={17 30}
+
+     parrying={15.0 25.0}
+     magicresistance={15.1 19.5}
+     tactics={35.1 48.3}
+     wrestling={37.8 58.3}
+
+     fame={100 200}
+     karma={-100 -200}
+
+ON=@NpcRestock
+     ITEM={ Filth_pouch 5 Treasure_pouch 2 0 3 }
+     ITEM={ RANDOM_JEWEL 1 RANDOM_JEWELRY 1 RANDOM_FOOD 3 0 4 }
+
+[chardef 778]
+defname=c_gazer_larva
+name="gazer larva"
+SOUND=snd_monster_gazer1
+ICON=i_pet_swarm
+DAM=6,9
+RESDISPDNID=c_gazer
+RESLEVEL=2
+RESDISPDNHUE=78
+ARMOR=25
+CAN=MT_WALK|MT_FLY|mt_nonhum
+desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, t_corpse
+moverate=0
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=48
+TAG.MANUEVER1=8
+TAG.MANUEVER2=11
+TAG.MANUEVER3=7
+TEVENTS=e_combat_move_intel
+TEVENTS=e_layeggsincorpse
+TAG.NPCAI.LayEggsInCorpse=1
+TAG.NPCAI.InvisibleEggLaying=0
+TAG.NPCAI.LEIC.Amount=1
+TAG.NPCAI.LEIC.TotalQuantity=(-1)
+TAG.NPCAI.LEIC.DieOnHatch=0
+TAG.NPCAI.LEIC.Graphic=010d9
+TAG.NPCAI.LEIC.Color=041c
+TAG.NPCAI.LEIC.Message=laying
+TAG.NPCAI.LEIC.Type1=c_gazer_larva
+TAG.NPCAI.LEIC.Weight1=1
+TAG.NPCAI.LEIC.Type2=c_gazer_larva
+TAG.NPCAI.LEIC.Weight2=1
+TAG.NPCAI.LEIC.Type3=c_gazer_larva
+TAG.NPCAI.LEIC.Weight3=1
+TAG.NPCAI.LEIC.Type4=c_gazer_larva
+TAG.NPCAI.LEIC.Weight4=1
+TAG.NPCAI.LEIC.Type5=c_gazer_larva
+TAG.NPCAI.LEIC.Weight5=1
+TAG.NPCAI.LEIC.GestationTime=90
+
+category=AoD Monsters
+subsection=General
+description=Gazer Larva
+
+on=@create
+     npc=brain_monster
+     fame=2500
+     karma=-2500
+
+     str={97 122}
+     DEX={93 115}
+     int={16 36}
+
+     parrying={40.0 55.0}
+     poisoning={40.0 55.0}
+     magicresistance={70.5 85.0}
+     tactics={52.8 67.0}
+     wrestling={55.7 72.7}
+
+     respoison=12
+
+
+[chardef 016]
+defname=c_gazer
+name="gazer"
+sound=snd_monster_gazer1
+icon=i_pet_gazer
+anim=06007f
+dam=7,12
+armor=36
+moverate=0
+resources=4 i_ribs_raw
+can=MT_WALK|MT_FLY|mt_nonhum
+desires=t_coin, t_gem, c_gazer, c_gazer_larva, t_corpse
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+TAG.MANUEVER1=27
+TAG.MANUEVER2=9
+TAG.MANUEVER3=3
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Gazer
+
+on=@create
+     npc=brain_monster
+     fame={ 4000 5000 }
+     karma={ -4000 -4500 }
+
+	STR={82 105}
+	DEX={93 115}
+	INT={170 205}
+
+	exp={ 3600 6900 }
+
+	PARRYING={55.0 65.0}
+	MAGERY={90.0 100.0}
+	MAGICRESISTANCE={85.0 100.0}
+	TACTICS={80.0 95.0}
+	WRESTLING={75.0 90.0}
+	evaluatingintel={31.5 64.4}
+
+	respoison=12
+	     givelang 15
+
+	EXP={ 8050 11000 } //Level 5
+
+	NPC=brain_monster
+	FAME={600 5000}
+	KARMA={-4000 -4999}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+ON=@NpcRestock
+     ITEM={ Magic_bag 2 Magic_backpack 1 Magic_box 1 0 2}
+
+ON=@DeathCorpse
+          serv.newnpc=c_gazer_larva
+          new.p=<p>
+          new.home=<p>
+          new.homedist=15
+          new.fix
+          new.emote "form as the gazer dies"
+
+[chardef 033]
+defname=c_slime
+name="slime"
+sound=snd_monster_slime1
+icon=i_pet_slime
+anim=060c7f
+can=mt_walk|mt_nonhum
+dam=2,6
+armor=8
+moverate=20
+foodtype=30 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+desires=c_slime,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+TEVENTS=e_Level_up_NPC
+tevents=e_swarm
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=45
+TEVENTS=e_combat_move_intel
+tag.poisondamage=100
+TAG.MANUEVER1=8
+TAG.MANUEVER2=1
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=General
+description=Slime
+
+on=@create
+     npc=brain_monster
+     fame=110
+     karma=-60
+
+     color={2207 2212}
+
+     str={47 58}
+     dex={56 61}
+     int={16 20}
+
+     respoison=80
+
+     parrying={15.0 21.0}
+     magicresistance={15.1 19.9}
+     tactics={47.7 57.8}
+     wrestling={49.2 60.5}
+     poisoning={40.7 59.6}
+
+     taming=33.1
+
+     EVENTS=+e_dividing
+
+[chardef c_acid_slug]
+id=c_rotworm
+name="acid slug"
+sound=snd_monster_slime1
+icon=i_pet_slime
+anim=060c7f
+can=mt_walk|mt_nonhum
+dam=8,10
+armor=20
+moverate=20
+foodtype=t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+desires=c_acid_slug,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_acidic
+tevents=e_swarm
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=23
+TAG.MANUEVER2=1
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=General
+description=Acid Slug
+
+on=@create
+     npc=brain_monster
+     fame={200 500}
+     karma={-100 -200}
+
+     color={ 423 1 428 1 433 1 }
+
+     str={78 95}
+     dex={89 102}
+     int={16 20}
+
+     respoison=80
+     rescold=20
+     resenergy=20
+
+     parrying={15.0 21.0}
+     magicresistance={15.1 19.9}
+     tactics={49.7 64.8}
+     wrestling={49.2 64.5}
+
+     taming=63.1
+
+
+[chardef 05e]
+defname=c_frostooze
+name="frost ooze"
+sound=snd_monster_slime1
+dam=3,7
+armor=8
+resdispid=c_slime
+reslevel=3
+resdisphue=0480
+moverate=20
+can=mt_walk|mt_nonhum
+foodtype=50 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+desires=c_frostooze,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
+TEVENTS=e_Level_up_NPC
+tevents=e_swarm
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=45
+TAG.MANUEVER1=11
+TAG.MANUEVER2=18
+TAG.MANUEVER3=1
+tag.colddamage=100
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Frost Ooze
+
+on=@create
+     npc=brain_monster
+
+     str={57 68}
+     dex={66 71}
+     int={16 20}
+
+     rescold=100
+     respoison=40
+
+     parrying={15.0 21.0}
+     magicresistance={35.9 49.5}
+     tactics={57.7 67.8}
+     wrestling={59.2 70.5}
+
+     fame={100 500}
+     karma={-100 -199}
+
+     taming=53.1
+
+     EVENTS=+e_dividing
+
+[chardef 081]
+defname=c_swamp_tentacles
+name="swamp tentacles"
+icon=i_pet_tentacles_lbr
+sound=snd_monster_corpsr1
+can=mt_nonmover|mt_nonhum
+foodtype=t_meat_raw
+dam=8,10
+armor=28
+moverate=0
+resdispid=c_swamp_tentacles
+TEVENTS=e_Level_up_NPC
+aversions=r_civilization
+tag.slots_needed=4
+tag.override.range=2
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=15
+TAG.MANUEVER2=7
+TAG.MANUEVER3=13
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Swamp Tentacles
+
+on=@create
+     npc=brain_monster
+
+     str={106 130}
+     dex={76 90}
+     int={18 25}
+
+     parrying={55.0 65.0}
+     magicresistance={15.1 19.3}
+     tactics={66.1 79.3}
+     wrestling={68.6 80.9}
+     hiding={51.8 71.3}
+
+     TIMERF 1, NONMOVERNUDGE
+     fame=500
+     karma=-1000
+
+     resenergy=20
+     respoison=30
+     rescold=20
+     
+[FUNCTION NONMOVERNUDGE]
+tryp 0 MOVETO <eval (<P.X>+(<R4>-<R4>))> <Eval (<P.Y>+(<R4>-<R4>))> <P.z> <P.m> //nonmover start randomizer
+UPDATE
+
+//[chardef 66] //vines
+
+[chardef 08]
+defname=c_corpser
+name="corpser"
+sound=snd_monster_corpsr1
+icon=i_pet_corpser
+anim=06147f
+can=mt_nonmover|mt_nonhum
+dam=9,12
+armor=26
+moverate=0
+foodtype=t_meat_raw
+TEVENTS=e_Level_up_NPC
+aversions=r_civilization
+desires=t_meat_raw, t_corpse
+tag.slots_needed=4
+tag.override.range=2
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=48
+TAG.MANUEVER1=9
+TAG.MANUEVER2=13
+TAG.MANUEVER3=15
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Corpser
+
+on=@create
+     npc=brain_monster
+
+     str={78 100}
+     dex={76 85}
+     int={27 30}
+
+     parrying={15.0 25.0}
+     magicresistance={15.4 18.2}
+     tactics={45.1 57.0}
+     wrestling={61.8 71.3}
+     hiding={71.8 81.3}
+
+     resenergy=25
+     respoison=25
+     rescold=25
+
+     TIMERF 1, NONMOVERNUDGE
+     fame=250
+     karma=-750
+
+[chardef 02f]
+defname=c_reaper
+name="reaper"
+sound=snd_monster_reaper1
+icon=i_pet_reaper
+anim=078c7f
+dam=9,13
+armor=30
+moverate=0
+resources=6 i_reag_dead_Wood, 4 i_log
+foodtype=t_meat_raw
+can=mt_nonhum
+TEVENTS=e_Level_up_NPC
+desires=r_foliage,t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_corpse
+tag.slots_needed=6
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=42
+TAG.MANUEVER1=29
+TAG.MANUEVER2=16
+TAG.MANUEVER3=13
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Reaper
+
+on=@create
+     npc=brain_monster
+
+     str={132 161}
+     dex={66 75}
+     int={170 189}
+
+     EXP={ 8050 11000 } //Level 5
+
+     parrying={50.0 60.0}
+     magery={93.2 99.9}
+     magicresistance={93.2 99.9}
+     tactics={46.7 59.0}
+     wrestling={56.3 65.1}
+     evaluatingintel={1.5 34.4}
+     necromancy={93.2 99.9}
+     spiritspeak={1.5 34.4}
+
+     resenergy=25
+     respoison=25
+     rescold=25
+
+     givelang 9
+
+     TAG.RANDCAST=50
+     TAG.QUICKCAST = 50
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_necro_user
+
+     fame=3000
+     karma=-5000
+
+     TIMERF 1, NONMOVERNUDGE
+
+ON=@NpcRestock
+     item={ Magic_bag 4 Magic_box 3 Wooden_Treasure_Chest 1 0 4 }
+     ITEM={ random_scroll 3 Undead_box 1 0 2 }
+
+
+
+[chardef 285]  
+name=reaper elder
+defname=c_reaper_elder
+ICON=020fa 
+DAM=14,18 
+ARMOR=45 
+moverate=0
+resources=9 i_reag_dead_Wood, 6 i_log
+CAN=MT_WALK|MT_RUN|mt_nonhum
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_reaper
+FOODTYPE=55 i_kindling  
+desires=r_foliage,t_coin, t_gem, c_reaper, C_reaper_elder, t_corpse,t_wand
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=7
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
+TAG.MANUEVER1=29
+TAG.MANUEVER2=16
+TAG.MANUEVER3=13
+tevents=e_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Reaper Elder
+
+on=@create
+     str={162 191}
+     dex={76 85}
+     int={220 239}
+
+     EXP={ 520000 640000 } //Level 11
+
+     npc=brain_monster
+
+     parrying={70.0 80.0}
+     magery={95.2 99.9}
+     magicresistance={95.2 99.9}
+     tactics={66.7 77.0}
+     wrestling={76.3 93.1}
+     evaluatingintel={21.5 44.4}
+     necromancy={95.2 99.9}
+     spiritspeak={21.5 44.4}
+
+	givelang 9
+
+     resfire=10
+     resenergy=35
+     respoison=35
+     rescold=35
+
+     fame=6000
+     karma=-6000
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 50
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_necro_user
+
+ON=@NpcRestock
+     ITEM={ random_scroll 2 Undead_backpack 1 0 2 }
+     item={ Magic_box 3 Metal_Treasure_Chest 2 Metal_Treasure_Chest_brass 1 }
+
+
+
+[chardef 04d]
+defname=c_kraken
+name="kraken"
+sound=snd_monster_corpsr1
+icon=i_pet_kraken_lbr
+dam=16,20
+armor=40
+moverate=0
+ANIM=078C7F
+resources=10 t_eerie_stuff
+can=mt_swim|mt_nonhum
+foodtype=t_food_raw, t_fish
+desires=t_food_raw
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+tag.override.range=3
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=48
+TAG.MANUEVER1=13
+TAG.MANUEVER2=7
+TAG.MANUEVER3=29
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Kraken
+
+on=@create
+     npc=brain_monster
+
+     str={236 259}
+     dex={124 144}
+     int={31 36}
+
+     EXP={ 16500 20500 } //Level 6
+
+     parrying={35.0 45.0}
+     magicresistance={45.2 48.5}
+     tactics={79.5 85.8}
+     anatomy={79.5 85.8}
+     wrestling={74.8 86.2}
+
+     rescold=30
+     respoison=30
+
+     fame=5000
+     karma=-5000
+
+[chardef 0ce]
+defname=c_lava_lizard
+name="lava lizard"
+sound=snd_monster_lavalizard1
+icon=i_pet_croc
+dam=7,11
+armor=40
+ANIM=01FFF
+moverate=0
+resources=6 i_ribs_raw, 12 i_hide
+can=mt_walk|mt_fire_immune|mt_run|mt_nonhum
+foodtype=65 t_meat_raw
+desires=c_lava_lizard,t_meat_raw, t_corpse
+TEVENTS=e_Level_up_NPC
+aversions=r_civilization
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+tag.firedamage=50
+TAG.MANUEVER1=4
+TAG.MANUEVER2=9
+TAG.MANUEVER3=29
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Lava Lizard
+
+on=@create
+     npc=brain_monster
+     color=08a
+
+     str={126 150}
+     dex={56 75}
+     int={21 30}
+
+     parrying={58.0 73.0}
+     magicresistance={55.7 69.3}
+     tactics={60.8 80.0}
+     wrestling={65.3 81.8}
+
+     resfire=80
+
+     taming=82.7
+
+     fame={2500 4999}
+     karma={-2500 -4999}
+
+
+[chardef 0315]
+defname=c_zorn
+name="zorn"
+sound=snd_elementl_erthel1
+can=mt_walk|mt_nonhum|mt_ghost|mt_passwalls
+icon=i_pet_quagmire_lbr
+dam=8,13
+armor=30
+moverate=0
+resources=8 i_reag_bone
+foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
+TEVENTS=e_Level_up_NPC
+desires=t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit, c_zorn, c_gazer
+ANIM=0FFC78C7F
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=44
+TAG.MANUEVER1=1
+TAG.MANUEVER2=7
+TAG.MANUEVER3=4
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=Zorn
+
+on=@create
+     npc=brain_monster
+
+     str={176 205}
+     dex={120 145}
+     int={46 65}
+
+     parrying={65.0 75.0}
+     magicresistance={95.0 100.0}
+     mining={55.0 70.0}
+     tactics={55.0 70.0}
+     wrestling={70.0 98.0}
+
+     respoison=25
+
+     EXP={ 4050 5500 } //Level 4
+
+     fame={2000 3500}
+     karma={-3000 -4999}
+     TIMERF 5,f_equip_mine
+
+
+[chardef 07b]
+defname=c_ethereal_warrior
+name="etherial warrior"
+sound=snd_monster_ethereal
+icon=i_pet_warrior_ethereal_lbr
+can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
+dam=15,19
+armor=50
+ANIM=078C7F
+moverate=0
+resources=5 i_ribs_raw
+foodtype=3 t_food, t_fruit
+desires=e_notoriety,t_wand,t_corpse,t_gem,t_coin
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.energydamage=50
+TAG.MANUEVER1=17
+TAG.MANUEVER2=27
+TAG.MANUEVER3=16
+tevents=e_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=ethereal warrior
+
+on=@create
+     name="#names_elf_male"
+     npc=brain_human
+
+     str={114 140}
+     dex={86 120}
+     int={170 195}
+
+     parrying={75.0 90.0}
+     wrestling={88.0 89.8}
+     magicresistance={70.6 78.9}
+     tactics={81.0 88.7}
+     chivalry={89.2 90.0}
+
+	givelang 1
+
+	EXP={ 33500 41900 } //Level 7
+
+     respoison=30
+     resfire=30
+     rescold=30
+     resenergy=30
+
+     fame={2000 2999}
+     karma={4000 4999}
+
+     TAG.RANDCAST=20
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_chivalry_user
+
+
+on=@npcrestock
+     item=i_potion_healgreat
+     item=i_potion_healgreat
+     item=i_potion_healgreat
+
+
+[chardef 175]
+defname=c_ethereal_lord
+name=Ethereal Lord
+sound=snd_monster_ethereal
+icon=i_pet_warrior_ethereal_lbr
+can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
+dam=17,21
+armor=60
+ANIM=078C7F
+moverate=0
+resources=5 i_ribs_raw
+foodtype=3 t_food, t_fruit
+desires=e_notoriety,t_wand,t_corpse,t_gem,t_coin
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=7
+Tag.BeastClass=Beast_Magic
+tag.energydamage=50
+TAG.MANUEVER1=17
+TAG.MANUEVER2=27
+TAG.MANUEVER3=16
+tevents=e_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=ethereal warrior
+
+
+
+on=@create
+     name="#names_elf_male"
+     npc=brain_human
+
+     str={144 165}
+     dex={116 145}
+     int={200 220}
+
+     parrying={85.0 100.0}
+     wrestling={98.0 99.8}
+     magicresistance={90.6 98.9}
+     tactics={91.0 98.7}
+     chivalry={99.2 100.0}
+
+	givelang 1
+
+	EXP={ 1100000 1350000 } //Level 12
+
+     respoison=40
+     resfire=40
+     rescold=40
+     resenergy=40
+
+     fame={5000 5999}
+     karma={6000 6999}
+
+     TAG.RANDCAST=20
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_chivalry_user
+
+
+on=@npcrestock
+     item=i_potion_healgreat
+     item=i_potion_healgreat
+     item=i_potion_healgreat
+
+
+[chardef 0307]
+defname=c_plague_beast
+name="plague beast"
+sound=snd_elementl_erthel1
+icon=i_pet_plague_beast_lbr
+can=mt_walk|mt_usehands|mt_nonhum
+dam=11,15
+armor=35
+moverate=0
+resources=6 i_ribs_raw,
+foodtype=5 t_meat_raw
+desires=c_plague_beast
+aversions=r_civilization
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+//TEVENTS=e_corpse_eater
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+TAG.MANUEVER1=8
+TAG.MANUEVER2=11
+TAG.MANUEVER3=2
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=General
+description=plague beast
+
+on=@create
+     npc=brain_monster
+
+     str={264 282}
+     dex={46 59}
+     int={85 99}
+
+     parrying={85.0 100.0}
+     magicresistance={85.0 95.0}
+     tactics={95.0 100.0}
+     wrestling={95.0 100.0}
+     poisoning={65.0 80.0}
+     necromancy={55.0 69.0}
+     spiritspeak={55.0 69.0}
+
+
+     EXP={ 16500 20500 } //Level 6
+
+     respoison=100
+     rescold=30
+
+     fame={2000 2900}
+     karma={-5000 -5999}
+
+     TAG.RANDCAST=10
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_necro_user
+
+[chardef 030c]
+defname=c_bog_thing
+name="bog thing"
+sound=snd_monster_reaper1
+icon=i_pet_bog_thing_lbr
+dam=8,12
+armor=28
+moverate=0
+resdispid=c_corpser
+reslevel=3
+resdisphue=
+resources=6 i_reag_fertile_dirt, 6 i_reag_dead_wood, 4 i_log
+foodtype=75 t_meat_raw
+can=mt_walk|mt_nonhum
+shelter=r_jungle,r_swamp_rock,r_forests
+desires=r_foliage
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=44
+TAG.MANUEVER1=29
+TAG.MANUEVER2=4
+TAG.MANUEVER3=3
+TEVENTS=e_combat_move_intel
+
+category=monsters
+subsection=misc
+description=bog thing - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={238 265}
+     dex={67 77}
+     int={37 49}
+
+     resfire=15
+     respoison=80
+
+     parrying={55.0 65.0}
+     magicresistance={90.5 94.0}
+     tactics={73.9 79.8}
+     wrestling={71.2 80.6}
+
+     EXP={ 4050 5500 } //Level 4
+
+     fame={2900 4000}
+     karma={-3000 -4999}
+
+
+
+[chardef 0314]
+defname=c_sphinx
+name="sphinx"
+sound=snd_animals_lion1
+icon=i_pet_sphinx_lbr
+can=mt_walk|mt_run|mt_nonhum
+dam=15,19
+armor=50
+moverate=0
+resdispid=c_a_cougar
+reslevel=3
+resdisphue=color_gray_dk
+resources=5 i_ribs_raw
+foodtype=3 t_food, t_fruit
+aversions=r_civilization
+shelter=r_desert,r_caves
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=48
+TAG.MANUEVER1=27
+TAG.MANUEVER2=11
+TAG.MANUEVER3=9
+tevents=e_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+
+TAG.FF_GROUP=2 //Magincia
+TAG.FF_FOE=13 //Minax, Shadowlords and Britannia
+
+category=undiscovered
+subsection=monsters
+description=sphinx - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={105 125}
+     dex={65 85}
+     int={195 215}
+
+	givelang 1
+
+     resfire=18
+     respoison=18
+     resenergy=18
+
+     parrying={70.0 80.0}
+     magicresistance={68.0 80.0}
+     tactics={65.0 75.0}
+     wrestling={75.0 80.0}
+     magery={75.0 80.0}
+     meditation={92.4 99.9}
+     evaluatingintel={91.9 100.0}
+     anatomy={50.4 74.7}
+
+     fame={5000 5999}
+     EXP={ 8050 11000 } //Level 5
+
+     TAG.RANDCAST=10
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+on=@death
+     item={ wooden_treasure_chest 1 treasure_crate_large 1 holy_box 1 }
+
+
+
+
+[CHARDEF 732]
+DEFNAME=c_rotworm
+NAME=rotworm
+DAM=7,11
+ARMOR=12
+CAN=mt_walk|mt_run|mt_nonhum
+MOVERATE=2
+resources=1 i_ribs_raw
+FOODTYPE=30 t_meat_raw,t_garbage,t_blood
+desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
+tag.wrestlingspeed=43
+aversions=r_civilization,e_carnivores3
+TEVENTS=e_Level_up_NPC
+tevents=e_carnivores2
+tevents=e_swarm
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=2
+TAG.MANUEVER2=9
+TAG.MANUEVER3=11
+TEVENTS=e_combat_move_intel
+TEVENTS=e_layeggsincorpse
+TAG.NPCAI.LayEggsInCorpse=1
+TAG.NPCAI.InvisibleEggLaying=0
+TAG.NPCAI.LEIC.Amount=1
+TAG.NPCAI.LEIC.TotalQuantity=(-1)
+TAG.NPCAI.LEIC.DieOnHatch=0
+TAG.NPCAI.LEIC.Graphic=010d9
+TAG.NPCAI.LEIC.Color=041c
+TAG.NPCAI.LEIC.Message=implanting
+TAG.NPCAI.LEIC.Type1=c_rotworm
+TAG.NPCAI.LEIC.Weight1=1
+TAG.NPCAI.LEIC.Type2=c_rotworm
+TAG.NPCAI.LEIC.Weight2=1
+TAG.NPCAI.LEIC.Type3=c_rotworm
+TAG.NPCAI.LEIC.Weight3=1
+TAG.NPCAI.LEIC.Type4=c_rotworm
+TAG.NPCAI.LEIC.Weight4=1
+TAG.NPCAI.LEIC.Type5=c_bloodworm
+TAG.NPCAI.LEIC.Weight5=1
+TAG.NPCAI.LEIC.GestationTime=60
+
+category=AoD Monsters
+subsection=General
+description=Rotworm
+
+ON=@CREATE
+respoison=8
+rescold=8
+resenergy=8
+
+NPC=brain_animal
+
+FAME={ 50 100 }
+KARMA=( -100 -200 }
+
+STR={34 49}
+DEX={49 67}
+INT={10 15}
+
+WRESTLING={45.0 61.5}
+TACTICS={44.0 57.0}
+PARRYING={30.0 40.0}
+ANATOMY={10.0 19.0}
+HIDING={60.0 68.5}
+STEALTH={50.0 57.9}
+
+Taming=49.6
+
+
+
+[CHARDEF 287]
+DEFNAME=c_bloodworm
+NAME=bloodworm
+DAM=10,14
+ARMOR=18
+CAN=mt_walk|mt_run|mt_nonhum
+MOVERATE=2
+resources=3 i_ribs_raw
+FOODTYPE=60 t_meat_raw,t_garbage,t_blood
+desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
+tag.wrestlingspeed=43
+TEVENTS=e_corpse_eater
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tevents=e_carnivores3
+tevents=e_swarm
+tag.slots_needed=3
+tag.override.range=2
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=2
+TAG.MANUEVER2=9
+TAG.MANUEVER3=11
+TEVENTS=e_combat_move_intel
+TEVENTS=e_layeggsincorpse
+TAG.NPCAI.LayEggsInCorpse=1
+TAG.NPCAI.InvisibleEggLaying=0
+TAG.NPCAI.LEIC.Amount=1
+TAG.NPCAI.LEIC.TotalQuantity=(-1)
+TAG.NPCAI.LEIC.DieOnHatch=0
+TAG.NPCAI.LEIC.Graphic=010d9
+TAG.NPCAI.LEIC.Color=041c
+TAG.NPCAI.LEIC.Message=implanting
+TAG.NPCAI.LEIC.Type1=c_rotworm
+TAG.NPCAI.LEIC.Weight1=1
+TAG.NPCAI.LEIC.Type2=c_rotworm
+TAG.NPCAI.LEIC.Weight2=1
+TAG.NPCAI.LEIC.Type3=c_rotworm
+TAG.NPCAI.LEIC.Weight3=1
+TAG.NPCAI.LEIC.Type4=c_rotworm
+TAG.NPCAI.LEIC.Weight4=1
+TAG.NPCAI.LEIC.Type5=c_bloodworm
+TAG.NPCAI.LEIC.Weight5=1
+TAG.NPCAI.LEIC.GestationTime=60
+
+category=AoD Monsters
+subsection=General
+description=Bloodworm
+
+ON=@CREATE
+respoison=12
+rescold=12
+resenergy=12
+
+NPC=brain_animal
+
+FAME={ 1550 1750 }
+KARMA=( -300 -400 }
+EXP={ 2010 3000 } //Level 3
+
+STR={89 104}
+DEX={39 57}
+INT={10 15}
+
+WRESTLING={55.0 71.5}
+TACTICS={54.0 67.0}
+MAGICRESISTANCE={10.0 21.0}
+PARRYING={37.0 49.8}
+ANATOMY={20.0 39.0}
+HIDING={60.0 68.5}
+STEALTH={50.0 57.9}
+
+Taming=69.6
+
+//By OuPMaN (davidcrma) & Curlor
+//Edited by Anarch Cassius
+//npcmine function by MrSugarCube
+//Special Thanks to khaos
+
+[CHARDEF 02ca]
+DEFNAME=c_iron_beetle
+NAME=Iron Beetle
+ICON=i_pet_runebeetle
+RESLEVEL=4
+RESDISPDNHUE=0410
+RESDISPDNID=c_deathwatch_beetle
+CAN=mt_equip|mt_walk|mt_run|mt_usehands
+DAM=15,20
+ARMOR=56
+FOODTYPE=45 t_ore,t_ingot
+TEvents=t_weapon_mace_pick
+CATEGORY=New Monsters
+SUBSECTION=Stygian Abyss
+DESCRIPTION=Iron Beetle
+
+ON=@Create
+NPC=brain_monster
+STR={76 86}
+DEX={66 75}
+INT={36 51}
+
+ResFire={20 30}
+ResCold={20 30}
+ResPoison={20 40}
+ResEnergy={45 55}
+
+WRESTLING={94.0 108.5}
+MINING={94.0 108.5}
+TACTICS={82.6 97.7}
+MAGICRESISTANCE={120.4 129.6}
+ANATOMY={80.4 89.5}
+TAMING=71.1
+
+KARMA=-8500
+FAME=8500
+TIMERF 5,f_equip_mine
+
+ON=@NPCRestock
+ITEM=loot_iron_beetle
+
+[TEMPLATE loot_iron_beetle]
+ITEM=i_shovel
+ITEM=random_jewel,2
+ITEM={i_ore_iron 1 i_ore_copper 1 i_ore_gold 1 i_ore_silver 1 i_ore_verite 1 i_ore_valorite 1 i_ore_bronze 1 i_ore_old_copper 1 i_ore_dull_copper 1 i_ore_shadow 1 i_ore_bloodrock 1 i_ore_blackrock 1 i_ore_mytheril 1 i_ore_rusty 1 i_ore_agapite 1 i_ore_rose 1},5
+//Undamaged Iron Beetle Scale (Item de Quest) (No creado)
+
+[EVENTS e_iron_beetle]
+ON=@ItemStep
+if (<act.type>==t_ore) && (<food> < <maxfood>)
+	color=<act.color>
+	act.dclick
+endif
+
+
+[eof]

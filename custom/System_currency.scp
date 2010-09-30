@@ -1,0 +1,1235 @@
+// Currency System by Anarch Cassius, based on code by Seph and Jevon
+// Version 1.0
+//
+//	Updates this Version:
+//
+//	Vendor commerce affects vendgold; Vendors will not buy items they cannot afford and will track profits from sales
+//	Currency types assigned for better tracking and drop sounds
+//	Buy/sell menu tweaks and improvements
+//	Maximum purchase distance added, and alterable as a def
+//	NPCs now buy and sell from one player at a time to avoid inventory order errors
+//	Total number of currencies used is now adjustable, you can have more than 20 or adjust it down to just a few to save system resources. Menu alterations for 20+ currencies pending.
+//	Currency priorities moved to the currency items themselves
+//
+//	Use this modified f_tithe function when using this in conjunction with my Chivalry scripts.
+//
+//	[FUNCTION f_tithe]
+//	IF (<SRC.CURRENCY> >= <eval <args>>)
+//	    SRC.TITHING=<SRC.TITHING>+<eval <args>>
+//	    SRC.CONSUMECURRENCY <eval <args>>
+//	    SRC.MESSAGE You tithe <args>c.
+//	    SRc.SFX 037
+//	ELSE
+//	 SRC.MESSAGE You do not have enough.
+//	ENDIF
+//
+
+[DEFNAME CURRENCY_SYSTEM]
+vendor_maxdistance 4
+currencies_total 18
+currency_1	i_copper_coin	
+currency_2	i_silver_coin
+currency_3	i_gold_coin
+currency_4	i_platinum_coin
+currency_5	i_copper_bar
+currency_6	i_silver_bar
+currency_7	i_gold_bar
+currency_8	i_platinum_bar
+currency_9	i_obsidian_coin
+currency_10	i_elven_scrip
+currency_11	i_turqoise_tradebit
+currency_12	i_marble_tradebit
+currency_13	i_alabaster_tradebit
+currency_14	i_jade_tradebit
+currency_15	i_Grey_note
+currency_16	i_Guilder
+currency_17	i_Filar	
+currency_18	i_Monetar
+
+[typedef t_note]
+
+[ITEMDEF 01f71]
+DEFNAME=I_money
+
+[ITEMDEF 03194]
+DEFNAME=I_precious_stone
+
+[itemdef 02936]
+TYPE=t_normal
+RESOURCES=4 i_log, 5 i_beads
+SKILLMAKE=TINKERING 50.0
+VALUE=80
+DUPELIST=02937
+DEFname=i_abacus
+
+CATEGORY=Decoration - Miscellaneous
+SUBSECTION=Japanese
+DESCRIPTION=abacus
+
+ON=@dclick
+	src.openpurse
+	return 1
+
+
+[FUNCTION PURSEcurrency]
+TAG.CURRENCYNAME=<serv.itemdef(<def.currency_<EVAL <ARGS>>>).name>
+TAG.CURRENCYITEM=<def.currency_<EVAL <ARGS>>>
+TAG.CURRENCYVALUE=<serv.itemdef(<def.currency_<EVAL <ARGS>>>).value>
+TAG.CURRENCYIDENT=currency_<EVAL <ARGS>>
+FINDLAYER(29).CURRENCY
+VAR.BANKCURRENCY=<VAR.CURRENCY>
+CURRENCY
+DIALOG d_purse
+
+[FUNCTION OPENPURSE]
+TAG.CURRENCYNAME=<serv.itemdef(<def.currency_1>).name>
+TAG.CURRENCYITEM=<def.currency_1>
+TAG.CURRENCYVALUE=(<serv.itemdef(<def.currency_1>.value>
+TAG.CURRENCYIDENT=currency_1
+DIALOG d_purse
+
+[DIALOG d_purse]
+0,0
+PAGE 0
+GUMPPIC 0 0 1000
+PAGE 1
+GUMPPIC 95 270 8515
+dTEXT 100 358 1152 Currency: <CURRENCY>c
+dtEXT 350 358 1152 In Bank: <FINDLAYER(29).CURRENCY>c
+RESIZEPIC 380 115 5170 150 200
+dTEXT 400 135 0 <TAG.CURRENCYNAME>
+dTEXT 400 155 0 Value: <eval <TAG.CURRENCYVALUE>>c
+dTEXT 400 270 0 Total: <eval <RESCOUNT <TAG.CURRENCYITEM>>*<TAG.CURRENCYVALUE>>
+TILEPIC 360 325 5360
+GUMPPIC 410 335 2501
+dTEXT 425 320 1152 Write a Check
+DTEXTENTRY 415 335 105 20 0 0 0
+BUTTON 525 339 2223 2223 1 0 1000
+dTEXT 400 175 0 Priority: <eval <TAG.<TAG.CURRENCYIDENT>PRIOR>>
+BUTTON 485 175 2435 2436 1 0 1001
+BUTTON 485 185 2437 2438 1 0 1002
+BUTTON 494 175 210 210 1 0 1003
+dTEXT 498 176 1152 ?
+
+IF (<RESTEST 1 <def.currency_1>>)
+	BUTTON 95 108 9762 9763 1 0 1004
+	dTEXT 115 105 1152 <RESCOUNT <def.currency_1>> <serv.itemdef(<def.currency_1>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_2>>)
+BUTTON 95 133 9762 9763 1 0 1005
+dTEXT 115 130 1152 <RESCOUNT <def.currency_2>> <serv.itemdef(<def.currency_2>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_3>>)
+BUTTON 95 158 9762 9763 1 0 1006
+dTEXT 115 155 1152 <RESCOUNT <def.currency_3>> <serv.itemdef(<def.currency_3>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_4>>)
+BUTTON 95 183 9762 9763 1 0 1007
+dTEXT 115 180 1152 <RESCOUNT <def.currency_4>> <serv.itemdef(<def.currency_4>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_5>>)
+BUTTON 95 208 9762 9763 1 0 1008
+dteXT 115 205 1152 <RESCOUNT <def.currency_5>> <serv.itemdef(<def.currency_5>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_6>>)
+BUTTON 95 233 9762 9763 1 0 1009
+dTEXT 115 230 1152 <RESCOUNT <def.currency_6>> <serv.itemdef(<def.currency_6>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_7>>)
+BUTTON 95 258 9762 9763 1 0 1010
+dTEXT 115 253 1152 <RESCOUNT <def.currency_7>> <serv.itemdef(<def.currency_7>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_8>>)
+BUTTON 95 283 9762 9763 1 0 1011
+dTEXT 115 280 1152 <RESCOUNT <def.currency_8>> <serv.itemdef(<def.currency_8>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_9>>)
+BUTTON 95 308 9762 9763 1 0 1012
+dTEXT 115 305 1152 <RESCOUNT <def.currency_9>> <serv.itemdef(<def.currency_9>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_10>>)
+BUTTON 95 333 9762 9763 1 0 1013
+dTEXT 115 330 1152 <RESCOUNT <def.currency_10>> <serv.itemdef(<def.currency_10>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_11>>)
+BUTTON 250 108 9762 9763 1 0 1014
+dTEXT 270 105 1152 <RESCOUNT <def.currency_11>> <serv.itemdef(<def.currency_11>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_12>>)
+BUTTON 250 133 9762 9763 1 0 1015
+dTEXT 270 130 1152 <RESCOUNT <def.currency_12>> <serv.itemdef(<def.currency_12>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_13>>)
+BUTTON 250 158 9762 9763 1 0 1016
+dTEXT 270 153 1152 <RESCOUNT <def.currency_13>> <serv.itemdef(<def.currency_13>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_14>>)
+BUTTON 250 183 9762 9763 1 0 1017
+dTEXT 270 180 1152 <RESCOUNT <def.currency_14>> <serv.itemdef(<def.currency_14>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_15>>)
+BUTTON 250 208 9762 9763 1 0 1018
+dTEXT 270 205 1152 <RESCOUNT <def.currency_15>> <serv.itemdef(<def.currency_15>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_16>>)
+BUTTON 250 233 9762 9763 1 0 1019
+dTEXT 270 230 1152 <RESCOUNT <def.currency_16>> <serv.itemdef(<def.currency_16>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_17>>)
+BUTTON 250 258 9762 9763 1 0 1020
+dTEXT 270 253 1152 <RESCOUNT <def.currency_17>> <serv.itemdef(<def.currency_17>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_18>>)
+BUTTON 250 283 9762 9763 1 0 1021
+dTEXT 270 280 1152 <RESCOUNT <def.currency_18>> <serv.itemdef(<def.currency_18>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_19>>)
+BUTTON 250 308 9762 9763 1 0 1022
+dTEXT 270 305 1152 <RESCOUNT <def.currency_19>> <serv.itemdef(<def.currency_19>).name>
+ENDIF
+IF (<RESTEST 1 <def.currency_20>>)
+BUTTON 250 333 9762 9763 1 0 1023
+DTEXT 270 330 1152 <RESCOUNT <def.currency_20>> <serv.itemdef(<def.currency_20>).name>
+ENDIF
+
+[DIALOG d_purse TEXT]
+<VAR.NOTHING>
+
+[DIALOG d_purse BUTTON]
+
+ONBUTTON=1000
+IF	(<eval <ARGTXT[1]>><=<eval <CURRENCY>>)
+		CONSUMECURRENCY=<eval <eval <ARGTXT[1]>>*100>
+		NEWITEM=i_check
+		ACT.BOUNCE
+		ACT.MORE2=<UID>
+		ACT.MORE1=<eval <ARGTXT[1]>>
+		FINDLAYER(29).CURRENCY
+		VAR.BANKCURRENCY=<VAR.CURRENCY>
+		CURRENCY
+		DIALOG d_purse
+		SYSMESSAGE=You write a check for <dval 100 <ARGTXT[1]>>c.
+ELSE
+		FINDLAYER(29).CURRENCY
+		VAR.BANKCURRENCY=<VAR.CURRENCY>
+		CURRENCY
+		DIALOG d_purse
+		SYSMESSAGE=You do not have that much money.
+ENDIF
+
+ONBUTTON=1001
+IF	(<eval <TAG.<TAG.CURRENCYIDENT>PRIOR>><20)
+	TRY	TAG.<TAG.CURRENCYIDENT>PRIOR=<eval <TAG.<TAG.CURRENCYIDENT>PRIOR>+1>
+ELSE
+		SYSMESSAGE=You cannot make that go any higher. 20 is the highest priority level.
+ENDIF
+FINDLAYER(29).CURRENCY
+VAR.BANKCURRENCY=<VAR.CURRENCY>
+CURRENCY
+DIALOG d_purse
+
+ONBUTTON=1002
+IF	(<eval <TAG.<TAG.CURRENCYIDENT>PRIOR>>>1)
+	TRY	TAG.<TAG.CURRENCYIDENT>PRIOR=<eval <TAG.<TAG.CURRENCYIDENT>PRIOR>+(-1)>
+ELSE
+		SYSMESSAGE=You cannot make that go any lower. 1 is the lowest priority level.
+ENDIF
+FINDLAYER(29).CURRENCY
+VAR.BANKCURRENCY=<VAR.CURRENCY>
+CURRENCY
+DIALOG d_purse
+
+ONBUTTON=1003
+FINDLAYER(29).CURRENCY
+VAR.BANKCURRENCY=<VAR.CURRENCY>
+CURRENCY
+DIALOG d_purse
+SYSMESSAGE=The priority number determines which kinds of currency will be used first. The lower the priority number, the sooner it will be used. Two items set up on the same priority level will be taken up in the order listed in the menu.
+SYSMESSAGE=The priority number is also your preference when receiving change. Change will be given in currencies with higher priorities before being given in lower priority currencies.
+
+
+ONBUTTON=1004
+PURSECURRENCY 1
+
+ONBUTTON=1005
+PURSECURRENCY 2
+
+ONBUTTON=1006
+PURSECURRENCY 3
+
+ONBUTTON=1007
+PURSECURRENCY 4
+
+ONBUTTON=1008
+PURSECURRENCY 5
+
+ONBUTTON=1009
+PURSECURRENCY 6
+
+ONBUTTON=1010
+PURSECURRENCY 7
+
+ONBUTTON=1011
+PURSECURRENCY 8
+
+ONBUTTON=1012
+PURSECURRENCY 9
+
+ONBUTTON=1013
+PURSECURRENCY 10
+
+ONBUTTON=1014
+PURSECURRENCY 11
+
+ONBUTTON=1015
+PURSECURRENCY 12
+
+ONBUTTON=1016
+PURSECURRENCY 13
+
+ONBUTTON=1017
+PURSECURRENCY 14
+
+ONBUTTON=1018
+PURSECURRENCY 15
+
+ONBUTTON=1019
+PURSECURRENCY 16
+
+ONBUTTON=1020
+PURSECURRENCY 17
+
+ONBUTTON=1021
+PURSECURRENCY 18
+
+ONBUTTON=1022
+PURSECURRENCY 19
+
+ONBUTTON=1023
+PURSECURRENCY 20
+
+[ITEMDEF i_check]
+ID=014f0
+NAME=check
+TYPE=t_eq_script
+
+ON=@CLICK
+IF	!(0<TAG.WRITTENTO>==0)
+		MESSAGE=a check to: <SRC.UID.<TAG.WRITTENTO>.NAME>
+		MESSAGE=for: <dval 100 <eval <MORE1>>>c
+ELSE
+		MESSAGE=a check for: <dval 100 <eval <MORE1>>>c
+ENDIF
+MESSAGE=signed: <SRC.UID.<hval <MORE2>>.NAME>
+RETURN 1
+
+ON=@DCLICK
+IF	(0<TAG.WRITTENTO>==0)
+		TARGET Select the person to sign this to.
+	RETURN 1
+ELSE
+ENDIF
+
+ON=@TARGON_CHAR
+IF	!(<SRC.UID>==<MORE2>)
+		SRC.SYSMESSAGE=You did not write this check.
+ELSE
+IF	(<SRC.TARG.UID>==<SRC.UID>)
+		SRC.SYSMESSAGE=You have signed this to yourself.
+		TAG.WRITTENTO=<SRC.TARG.UID>
+ELSE
+		SRC.SYSMESSAGE=You sign this to <SRC.TARG.NAME>.
+		TAG.WRITTENTO=<SRC.TARG.UID>
+ENDIF
+ENDIF
+RETURN 1
+
+
+[ITEMDEF i_gold_coin]
+ID=i_gold
+TYPE=t_coin
+VALUE=100
+NAME=Gold Coin%s%
+WEIGHT=0.1
+TAG.PRIOR=7
+
+[ITEMDEF i_copper_coin]
+ID=i_gold
+TYPE=t_coin
+VALUE=1
+NAME=Copper Coin%s%
+WEIGHT=0.1
+TAG.PRIOR=3
+
+ON=@CREATE
+COLOR=06d7
+
+[ITEMDEF i_silver_coin]
+ID=i_gold
+TYPE=t_coin
+VALUE=10
+NAME=Silver Coin%s%
+WEIGHT=0.1
+TAG.PRIOR=5
+
+ON=@CREATE
+COLOR=0380
+
+[ITEMDEF i_platinum_coin]
+ID=i_gold
+TYPE=t_coin
+VALUE=1000
+NAME=Platinum Coin%s%
+WEIGHT=0.1
+TAG.PRIOR=9
+
+ON=@CREATE
+COLOR=0835
+
+[ITEMDEF i_gold_bar]
+ID=01bec
+TYPE=t_coin
+VALUE=10000
+NAME=Bar%s% of Gold
+WEIGHT=5
+TAG.PRIOR=10
+
+[ITEMDEF i_copper_bar]
+ID=01be6
+TYPE=t_coin
+VALUE=100
+NAME=Bar%s% of Copper
+WEIGHT=5
+TAG.PRIOR=6
+
+[ITEMDEF i_silver_bar]
+ID=01bf8
+TYPE=t_coin
+VALUE=1000
+NAME=Bar%s% of Silver
+WEIGHT=5
+TAG.PRIOR=8
+
+[ITEMDEF i_platinum_bar]
+ID=01bf8
+TYPE=t_coin
+VALUE=100000
+NAME=Bar%s% of Platinum
+WEIGHT=5
+TAG.PRIOR=12
+
+ON=@CREATE
+COLOR=0835
+
+[ITEMDEF i_obsidian_coin]
+ID=i_gold
+TYPE=t_coin
+VALUE=1
+NAME=Obsidian Coin%s%
+WEIGHT=0.1
+TAG.PRIOR=4
+
+ON=@CREATE
+COLOR=0497
+
+[ITEMDEF i_elven_scrip]
+ID=01f71
+TYPE=t_note
+VALUE=1
+WEIGHT=0
+NAME=Elven Scrip
+TAG.PRIOR=10
+
+ON=@CREATE
+COLOR=01ca
+
+[ITEMDEF i_turqoise_tradebit]
+ID=03194
+TYPE=t_coin
+VALUE=1
+NAME=Turqoise Tradebit%s%
+WEIGHT=0.2
+FLIP=0
+TAG.PRIOR=2
+
+ON=@CREATE
+COLOR=054
+
+[ITEMDEF i_marble_tradebit]
+ID=03194
+TYPE=t_coin
+VALUE=8
+NAME=Marble Tradebit%s%
+WEIGHT=0.2
+FLIP=0
+TAG.PRIOR=2
+
+ON=@CREATE
+COLOR=0b8c
+
+[ITEMDEF i_alabaster_tradebit]
+ID=03194
+TYPE=t_coin
+VALUE=24
+NAME=Alabaster Tradebit%s%
+WEIGHT=0.2
+FLIP=0
+TAG.PRIOR=4
+
+ON=@CREATE
+COLOR=0b8f
+
+[ITEMDEF i_jade_tradebit]
+ID=03194
+TYPE=t_coin
+VALUE=72
+NAME=Jade Tradebit%s%
+WEIGHT=0.2
+FLIP=0
+TAG.PRIOR=6
+
+ON=@CREATE
+COLOR=0b94
+
+[ITEMDEF i_Guilder]
+ID=i_gold
+TYPE=t_coin
+VALUE=66
+NAME=Guilder%s%
+WEIGHT=0.1
+TAG.PRIOR=6
+
+ON=@CREATE
+COLOR=0498
+
+[ITEMDEF i_Monetar]
+ID=i_gold
+TYPE=t_coin
+VALUE=200
+NAME=Monetar%i%
+WEIGHT=0.1
+TAG.PRIOR=8
+
+ON=@CREATE
+COLOR=color_o_gold
+
+[ITEMDEF i_Filar]
+ID=i_gold
+TYPE=t_coin
+VALUE=50
+NAME=Filar%i%
+WEIGHT=0.1
+TAG.PRIOR=5
+
+ON=@CREATE
+COLOR=0501
+
+[ITEMDEF i_grey_note]
+ID=01f71
+TYPE=t_note
+VALUE=1
+WEIGHT=0
+NAME=Grey Note%s
+TAG.PRIOR=10
+
+ON=@CREATE
+COLOR=03e8
+
+
+
+
+[DIALOG d_buy]
+0,0
+PAGE 0
+NOCLOSE
+resizepic 50 50 5170 500 300
+
+PAGE 1
+BUTTON 500 90 2084 2084 1 0 1
+BUTTON 500 280 2085 2085 1 0 2
+
+BUTTON 160 300 247 249 1 0 4
+BUTTON 80 300 241 243 1 0 3
+
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.AMOUNT>)
+dcroppedtext 90 97 170 20 1152 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.NAME>
+DTEXT 330 90 1152 <eval <src.tag0.vendslot_<src.tag0.scroll>>> / <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0<src.tag0.scroll>>.AMOUNT>
+DTEXT 270 97 1152 <eval (((<EVAL <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.TAG0.MODVALUE>>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.VALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>c
+TILEPICHUE 390 97 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.COLOR>>
+BUTTON 330 107 55 55 1 0 5
+BUTTON 345 107 56 56 1 0 6
+ENDIF
+
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.AMOUNT>)
+dcroppedtext 90 139 170 20 1152 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.NAME>
+DTEXT 330 132 1152 <eval <src.tag0.vendslot_<src.tag0.scroll2>>> / <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.AMOUNT>
+DTEXT 270 139 1152 <eval (((<EVAL <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.TAG0.MODVALUE>>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.VALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>c
+TILEPICHUE 390 139 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.COLOR>>
+BUTTON 330 149 55 55 1 0 7
+BUTTON 345 149 56 56 1 0 8
+ENDIF
+
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.AMOUNT>)
+dcroppedtext 90 181 170 20 1152 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.NAME>
+DTEXT 330 174 1152 <eval <src.tag0.vendslot_<src.tag0.scroll3>>> / <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.AMOUNT>
+DTEXT 270 181 1152 <eval (((<EVAL <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.TAG0.MODVALUE>>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.VALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>c
+TILEPICHUE 390 181 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.COLOR>>
+BUTTON 330 191 55 55 1 0 9
+BUTTON 345 191 56 56 1 0 10
+ENDIF
+
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.AMOUNT>)
+dcroppedtext 90 223 170 20 1152 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.NAME>
+DTEXT 330 216 1152 <eval <src.tag0.vendslot_<src.tag0.scroll4>>> / <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.AMOUNT>
+DTEXT 270 223 1152 <eval (((<EVAL <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.TAG0.MODVALUE>>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.VALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>c
+TILEPICHUE 390 223 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.COLOR>>
+BUTTON 330 233 55 55 1 0 11
+BUTTON 345 233 56 56 1 0 12
+ENDIF
+
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT>)
+dcroppedtext 90 265 160 20 1152 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.NAME>
+DTEXT 330 258 1152 <eval <src.tag0.vendslot_<src.tag0.scroll5>>> / <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT>
+DTEXT 270 265 1152 <eval (((<EVAL <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.TAG0.MODVALUE>>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.VALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>c
+TILEPICHUE 390 265 <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.COLOR>>
+BUTTON 330 275 55 55 1 0 13
+BUTTON 345 275 56 56 1 0 14
+ENDIF
+
+DTEXT 260 300 1152 Total: <eval (<src.tag0.buytotal>)>c
+DTEXT 360 300 1152 Local Currency: <eval (<src.currencylocal>)>c
+
+
+[DIALOG d_buy TEXT]
+<VAR.NOTHING>
+
+
+[DIALOG d_buy BUTTON]
+ONBUTTON=1
+IF (0<src.tag0.scroll> > 0)
+src.tag0.scroll=<src.tag0.scroll>+-1
+scrollslots
+SDIALOG d_buy
+RETURN 0
+ELSE
+scrollslots
+SDIALOG d_buy
+RETURN 0
+ENDIF
+
+ONBUTTON=2
+IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT> > 0)
+src.tag0.scroll=<src.tag0.scroll>+1
+scrollslots
+SDIALOG d_buy
+RETURN 0
+ELSE
+scrollslots
+SDIALOG d_buy
+RETURN 0
+ENDIF
+
+ONBUTTON=4
+if (<DISTANCE> > <eval <def.vendor_maxdistance>>)
+	l You are too far away.
+	SDIALOG d_buy
+	return 1
+endif
+local.buytotal=<eval <src.tag0.buytotal>>
+local.cycle=0
+local.listtotal=0
+WHILE (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>.AMOUNT>)
+	local.listtotal += 1
+	local.cycle += 1
+ENDWHILE
+IF (<SRC.CURRENCYLOCAL> >= <local.buytotal>)
+	SRC.CONSUMECURRENCYLOCAL <local.buytotal>
+	vendgold += <local.buytotal>
+	local.cycle=<local.listtotal>
+	WHILE (<local.cycle> >= 0)
+		IF (<src.tag0.vendslot_<hval <local.cycle>>>)
+			IF !(<FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>.CANSTACK>)
+				FOR <local.index> 1 <src.tag0.vendslot_<hval <local.cycle>>>
+					OBJ = <FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>>
+					OBJ.DUPE
+					NEW.AMOUNT=1
+					NEW.BOUNCE
+					local.index += 1
+					OBJ.CONSUME 1
+					src.tag0.vendslot_<hval <local.cycle>>=0
+				ENDFOR
+			ELSE
+				OBJ = <FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>>
+				OBJ.DUPE
+				NEW.AMOUNT=<src.tag0.vendslot_<hval <local.cycle>>>
+				NEW.BOUNCE
+				OBJ.CONSUME <src.tag0.vendslot_<hval <local.cycle>>>
+				src.tag0.vendslot_<hval <local.cycle>>=0
+			ENDIF
+		ELSEIF (<src.tag0.vendslot_0>) && (<local.cycle>==0)
+			IF !(<FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>.CANSTACK>)
+				FOR <local.index> 1 <src.tag0.vendslot_0>>>
+					OBJ = <FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>>
+					OBJ.DUPE
+					NEW.AMOUNT=1
+					NEW.BOUNCE
+					local.index += 1
+					OBJ.CONSUME 1
+					src.tag0.vendslot_0=0
+				ENDFOR
+			ELSE
+				OBJ = <FINDLAYER(layer_vendor_stock).FINDCONT.<eval <local.cycle>>>
+				OBJ.DUPE
+				NEW.AMOUNT=<src.tag0.vendslot_0>
+				NEW.BOUNCE
+				OBJ.CONSUME <src.tag0.vendslot_0>
+				src.tag0.vendslot_0=0
+			ENDIF
+		ENDIF
+		local.cycle -= 1
+	ENDWHILE
+	rvar
+	FACE
+	SRC.FACE
+	l Here is your purchase.
+	tag0.shopper= 
+ELSE
+	l You do not have enough money.
+	SDIALOG d_buy
+ENDIF
+
+ONBUTTON=3
+rvar
+tag0.shopper= 
+
+
+ONBUTTON=5
+src.tag0.outo=<hval <src.tag0.scroll>>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> < <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.AMOUNT>)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>+1
+src.tag0.buytotal += <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=6
+src.tag0.outo=<hval <src.tag0.scroll>>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> >= 1)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>-1
+src.tag0.buytotal -= <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=7
+src.tag0.outo=<hval <src.tag0.scroll>+1>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> < <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.AMOUNT>)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>+1
+src.tag0.buytotal += <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=8
+src.tag0.outo=<hval <src.tag0.scroll>+1>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> >= 1)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>-1
+src.tag0.buytotal -= <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=9
+src.tag0.outo=<hval <src.tag0.scroll>+2>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> < <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.AMOUNT>)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>+1
+src.tag0.buytotal += <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=10
+src.tag0.outo=<hval <src.tag0.scroll>+2>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> >= 1)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>-1
+src.tag0.buytotal -= <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=11
+src.tag0.outo=<hval <src.tag0.scroll>+3>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> < <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.AMOUNT>)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>+1
+src.tag0.buytotal += <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=12
+src.tag0.outo=<hval <src.tag0.scroll>+3>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> >= 1)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>-1
+src.tag0.buytotal -= <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=13
+src.tag0.outo=<hval <src.tag0.scroll>+4>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> < <FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT>)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>+1
+src.tag0.buytotal += <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+ONBUTTON=14
+src.tag0.outo=<hval <src.tag0.scroll>+4>
+IF (0<src.tag0.vendslot_<src.tag0.outo>> >= 1)
+TRY src.tag0.vendslot_<src.tag0.outo>=<src.tag0.vendslot_<src.tag0.outo>>-1
+src.tag0.buytotal -= <eval (((<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(<eval <tag0.VENDORMARKUP>>+100)*<eval <tag0.INFLATION>>)/10000)>
+ENDIF
+scrollslots
+SDIALOG d_buy
+
+
+[FUNCTION scrollslots]
+src.tag0.scroll2=<eval <src.tag0.scroll>+1>
+src.tag0.scroll3=<eval <src.tag0.scroll>+2>
+src.tag0.scroll4=<eval <src.tag0.scroll>+3>
+src.tag0.scroll5=<eval <src.tag0.scroll>+4>
+
+[FUNCTION rvar]
+SRC.TAG.LOCALCURRENCY=
+SRC.TAG.CURRENCY_1=
+SRC.TAG.CURRENCY_2=
+SRC.TAG.CURRENCY_3=
+SRC.TAG.CURRENCY_4=
+SRC.TAG.CURRENCY_5=
+SRC.TAG.CURRENCY_6=
+SRC.TAG.CURRENCY_7=
+SRC.TAG.CURRENCY_8=
+SRC.TAG.CURRENCY_9=
+SRC.TAG.CURRENCY_10=
+SRC.TAG.CURRENCY_11=
+SRC.TAG.CURRENCY_12=
+SRC.TAG.CURRENCY_13=
+SRC.TAG.CURRENCY_14=
+SRC.TAG.CURRENCY_15=
+SRC.TAG.CURRENCY_16=
+SRC.TAG.CURRENCY_17=
+SRC.TAG.CURRENCY_18=
+SRC.TAG.CURRENCY_19=
+SRC.TAG.CURRENCY_20=
+src.tag0.buytotal=
+src.tag0.scroll=
+src.tag0.vendormem=
+src.tag0.vendslot_0=
+Var.cycle=0
+WHILE (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval <var.cycle>>.AMOUNT>)
+src.tag0.vendslot_<hval <var.cycle>>=0
+var.cycle += 1
+ENDWHILE
+src.tag0.outo=
+
+
+[function CanStack]
+return <qval <can> & 0100 ? 1:0>
+
+[function GetMarkUp]
+var.currencypriorindex = 1
+FOR <var.currencypriorindex> 1 <def.currencies_total>
+	IF	(<src.TAG0.currency_<Eval <var.currencypriorindex>>PRIOR>==0)
+			src.TAG0.currency_<eval <var.currencypriorindex>>PRIOR = <serv.itemdef(<def.currency_<eval <var.currencypriorindex>>>).tag0.prior>
+	ENDIF
+	var.currencypriorindex += 1
+ENDFOR
+IF !(<tag0.shopper> == <src.uid>)
+	IF (<tag0.shopper> == 0)
+		tag.shopper = <src.uid>
+	ELSE
+		L Sorry, I'm with another customer.
+		RETURN 1
+	ENDIF
+ENDIF
+IF (<tag0.VENDORMARKUP>==0)
+	IF (<REGION.TAG0.VENDORMARKUP>)
+		TAG0.VENDORMARKUP =<REGION.TAG.VENDORMARKUP>
+	ELSE
+			TAG0.VENDORMARKUP = 15
+	ENDIF
+ENDIF
+IF (<tag0.INFLATION>==0)
+	IF (<REGION.TAG0.INFLATION>)
+		TAG0.INFLATION =<REGION.TAG.INFLATION>
+	ELSE
+		TAG0.INFLATION = 100
+	ENDIF
+ENDIF
+SRC.TAG.LOCALCURRENCY=<TAG0.LOCALCURRENCY>
+SRC.TAG.CURRENCY_1=<TAG0.CURRENCY_1>
+SRC.TAG.CURRENCY_2=<TAG0.CURRENCY_2>
+SRC.TAG.CURRENCY_3=<TAG0.CURRENCY_3>
+SRC.TAG.CURRENCY_4=<TAG0.CURRENCY_4>
+SRC.TAG.CURRENCY_5=<TAG0.CURRENCY_5>
+SRC.TAG.CURRENCY_6=<TAG0.CURRENCY_6>
+SRC.TAG.CURRENCY_7=<TAG0.CURRENCY_7>
+SRC.TAG.CURRENCY_8=<TAG0.CURRENCY_8>
+SRC.TAG.CURRENCY_9=<TAG0.CURRENCY_9>
+SRC.TAG.CURRENCY_10=<TAG0.CURRENCY_10>
+SRC.TAG.CURRENCY_11=<TAG0.CURRENCY_11>
+SRC.TAG.CURRENCY_12=<TAG0.CURRENCY_12>
+SRC.TAG.CURRENCY_13=<TAG0.CURRENCY_13>
+SRC.TAG.CURRENCY_14=<TAG0.CURRENCY_14>
+SRC.TAG.CURRENCY_15=<TAG0.CURRENCY_15>
+SRC.TAG.CURRENCY_16=<TAG0.CURRENCY_16>
+SRC.TAG.CURRENCY_17=<TAG0.CURRENCY_17>
+SRC.TAG.CURRENCY_18=<TAG0.CURRENCY_18>
+SRC.TAG.CURRENCY_19=<TAG0.CURRENCY_19>
+SRC.TAG.CURRENCY_20=<TAG0.CURRENCY_20>
+RETURN
+
+[function vendoropen]
+FINDLAYER(layer_vendor_stock).OPEN
+
+[function vendorextraopen]
+FINDLAYER(layer_vendor_extra).OPEN
+
+[function vendorbuyopen]
+FINDLAYER(layer_vendor_buys).OPEN
+
+
+
+
+
+
+
+[DIALOG d_sell]
+0,0
+PAGE 0
+NOCLOSE
+resizepic 50 50 5170 500 300
+
+
+PAGE 1
+
+BUTTON 500 90 2084 2084 1 0 1
+BUTTON 500 280 2085 2085 1 0 2
+button 150 290 9721 9725 1 0 4
+dtext 185 300 0 Sell Item
+BUTTON 80 300 241 243 1 0 3
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 200 97 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 90 97 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.NAME>
+dTEXT 90 112 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+0+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 400 97 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 290 97 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.NAME>
+dTEXT 290 112 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.VALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+1+0<src.tag0.scroll>>.TAG0.MODVALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 200 139 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 90 139 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.NAME>
+dTEXT 90 154 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+2+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 400 139 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 290 139 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.NAME>
+dTEXT 290 154 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+3+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 200 181 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 90 181 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.NAME>
+dTEXT 90 196 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 400 181 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 290 181 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.NAME>
+dTEXT 290 196 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+5+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 200 223 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 90 223 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.NAME>
+dTEXT 90 238 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+6+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 400 223 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 290 223 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.NAME>
+dTEXT 290 238 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+7+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 200 265 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 90 265 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.NAME>
+dTEXT 90 280 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+8+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+IF (<eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.AMOUNT>>)
+TILEPICHUE 400 265 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.ID> <eval <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.COLOR>>
+dcroppedtext 290 265 160 20 1152 <FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.NAME>
+dTEXT 290 280 1152 <eval (((<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.TAG0.MODVALUE>+<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.VALUE>)*(100-<eval <tag0.VENDORMARKUP>>)*<eval <tag0.INFLATION>>)/10000)>c
+ENDIF
+
+[DIALOG d_sell TEXT]
+<VAR.NOTHING>
+
+
+[DIALOG d_sell BUTTON]
+ONBUTTON=1
+IF (0<src.tag0.scroll> > 0)
+src.tag0.scroll=<src.tag0.scroll>+-2
+scrollslots
+SDIALOG d_sell
+RETURN 0
+ELSE
+scrollslots
+SDIALOG d_sell
+RETURN 0
+ENDIF
+
+ONBUTTON=2
+IF (<FINDLAYER(layer_vendor_buys).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+9+0<src.tag0.scroll>>.AMOUNT> > 0)
+src.tag0.scroll=<src.tag0.scroll>+2
+scrollslots
+SDIALOG d_sell
+RETURN 0
+ELSE
+scrollslots
+SDIALOG d_sell
+RETURN 0
+ENDIF
+
+ONBUTTON=4
+src.TAG.VENDORMEM=<UID>
+src.TARGETF f_sell Select the item you wish to sell...
+scrollslots
+SDIALOG d_sell
+RETURN 0
+
+ONBUTTON=3
+rvar
+tag0.shopper= 
+
+[FUNCTION f_sell]
+if (<DISTANCE> > <eval <def.vendor_maxdistance>>)
+	l You are too far away.
+	SDIALOG d_sell
+	return 1
+endif
+obj=<src.tag.vendormem>
+IF !(<ARGO.TOPOBJ.UID>==<SRC.UID>)
+	src.SYSMESSAGE The item must be in your possession.
+	src.TARGETF f_sell Select the item you wish to sell...
+	return 1
+endif
+IF (<OBJ.FINDLAYER(layer_vendor_buys).FINDID.<eval <ARGO.ID>>.VALUE> > 0)
+	IF (<obj.vendgold> < <eval <eval (((<ARGO.VALUE>+<EVAL <ARGO.TAG0.MODVALUE>>)*(100-<eval <obj.tag0.VENDORMARKUP>>)*<eval <obj.tag0.INFLATION>>)/10000)>*<argo.amount>>)
+		obj.l I can't pay a fair price for that at the moment. 
+		src.TARGETF f_sell Select the item you wish to sell...
+		RETURN 1
+	ENDIF
+	obj.l Alright. For <argo.amount> <argo.name> I will give you <eval <eval (((<ARGO.VALUE>+<eval <ARGO.TAG0.MODVALUE>>)*(100-<eval <obj.tag0.VENDORMARKUP>>)*<eval <obj.tag0.INFLATION>>)/10000)>*<argo.amount>>c.
+	VAR.CONSUMEPRIOR=20
+	src.GETCHANGELOCAL <eval <eval (((<ARGO.VALUE>+<eval <ARGO.TAG0.MODVALUE>>)*(100-<eval <obj.tag0.VENDORMARKUP>>)*<eval <obj.tag0.INFLATION>>)/10000)>*<argo.amount>>
+	obj.vendgold -= <eval <eval (((<ARGO.VALUE>+<eval <ARGO.TAG0.MODVALUE>>)*(100-<eval <obj.tag0.VENDORMARKUP>>)*<eval <obj.tag0.INFLATION>>)/10000)>*<argo.amount>>
+	ARGO.removefromview
+	ARGO.CONT=<OBJ.FINDLAYER(layer_vendor_stock)>
+	src.TARGETF f_sell Select the item you wish to sell...
+ELSE
+	obj.l I'm not looking to buy that.
+	src.TARGETF f_sell Select the item you wish to sell...
+	return 1
+endif
+
+
+
+//Non-localized
+
+[FUNCTION CONSUMECURRENCY]
+VAR.CONSUMEPRIOR=1
+VAR.REMAININGPAYMENT=<eval <ARGS>>
+CONSUMECURRENCY_aux=<ARGS>
+
+[FUNCTION CONSUMECURRENCY_aux]
+var.currencyindex=1
+FOR <var.currencyindex> 1 <def.currencies_total>
+	IF (<VAR.CONSUMEPRIOR> == <TAG.CURRENCy_<eval <var.currencyindex>>PRIOR>) && (<VAR.REMAININGPAYMENT> >= <eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)
+	IF (<eval <RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> >= <eval <VAR.REMAININGPAYMENT>>)
+			CONSUME=<eval <VAR.REMAININGPAYMENT>/<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> <def.currency_<eval <var.currencyindex>>>
+			VAR.REMAININGPAYMENT=<eval <VAR.REMAININGPAYMENT>+(-<eval <eval <VAR.REMAININGPAYMENT>/<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)>
+			IF	!(<eval <VAR.REMAININGPAYMENT>>>0)
+					VAR.CONSUMEPRIOR=
+					VAR.REMAININGPAYMENT=
+				RETURN 1
+			ENDIF
+	ELSEIF	(<RESCOUNT <def.currency_<eval <var.currencyindex>>>>>0)
+			VAR.REMAININGPAYMENT=<eval <VAR.REMAININGPAYMENT>+(-<eval <RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)>
+			CONSUME = <RESCOUNT <def.currency_<eval <var.currencyindex>>>> <def.currency_<eval <var.currencyindex>>>
+	ENDIF
+	ENDIF
+	var.currencyindex += 1
+ENDFOR
+IF	(<eval <VAR.CONSUMEPRIOR>>==20)
+		IF	(<eval <VAR.REMAININGPAYMENT>>>0)
+				MAKECHANGE
+		ELSE
+		ENDIF
+		VAR.CONSUMEPRIOR=
+		VAR.REMAININGPAYMENT=
+	RETURN 1
+ELSE
+		VAR.CONSUMEPRIOR=<eval <VAR.CONSUMEPRIOR>+1>
+		CONSUMECURRENCY_aux=<ARGS>
+ENDIF
+
+[FUNCTION MAKECHANGE]
+var.currencyindex=1
+FOR <var.currencyindex> 1 <def.currencies_total> 
+	IF (<RESCOUNT <def.currency_<eval <var.currencyindex>>>> > 0) && (<eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> >= <eval <VAR.REMAININGPAYMENT>>)
+			CONSUME = 1 <def.currency_<eval <var.currencyindex>>>
+			GETCHANGE <eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>+(-<eval <VAR.REMAININGPAYMENT>>)>
+		RETURN 1
+	ENDIF
+	var.currencyindex += 1
+ENDFOR
+return
+
+[FUNCTION GETCHANGE]
+var.currencyindex2=<def.currencies_total>
+FOR <var.currencyindex2> 1 <def.currencies_total>
+	IF	(<eval <ARGS>> >= <eval <serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>) && (<VAR.CONSUMEPRIOR> == <TAG.CURRENCy_<eval <var.currencyindex2>>PRIOR>)
+			NEWITEM=<def.currency_<eval <var.currencyindex2>>>
+			ACT.AMOUNT= <eval <ARGS>/<eval <serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>>
+			ACT.BOUNCE
+			IF	(<eval <ARGS>+(-<eval <eval <ARGS>/<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>)>==0)
+				RETURN 1
+			ELSE
+					GETCHANGE=<eval <ARGS>+(-<eval <eval <ARGS>/<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>)>
+				RETURN 1
+			ENDIF
+	ELSE
+	ENDIF
+	var.currencyindex2 -= 1
+ENDFOR
+IF	!(<eval <VAR.CONSUMEPRIOR>>==1)
+VAR.CONSUMEPRIOR -= 1
+GETCHANGE=<ARGS>
+ENDIF
+RETURN
+
+[FUNCTION CURRENCY]
+var.currencyindex = 1
+var.currencytotal = 0
+FOR <var.currencyindex> 1 <def.currencies_total>
+	IF (<RESCOUNT <def.currency_<eval <var.currencyindex>>>>)
+			var.currencytotal += (<RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>)
+	ENDIF
+	var.currencyindex += 1
+ENDFOR
+RETURN <eval <var.currencytotal>>
+
+//Localized
+[FUNCTION CONSUMECURRENCYLOCAL]
+VAR.CONSUMEPRIOR=1
+VAR.REMAININGPAYMENT=<eval <ARGS>>
+CONSUMECURRENCYLOCAL_aux=<ARGS>
+
+[FUNCTION CONSUMECURRENCYLOCAL_aux]
+var.currencyindex=1
+FOR <var.currencyindex> 1 <def.currencies_total>
+	IF !(<TAG0.LOCALCURRENCY>) || (<TAG0.CURRENCy_<eval <var.currencyindex>>>==1)
+	IF (<VAR.CONSUMEPRIOR> == <TAG.CURRENCy_<eval <var.currencyindex>>PRIOR>) && (<VAR.REMAININGPAYMENT> >= <eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)
+	IF (<eval <RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> >= <eval <VAR.REMAININGPAYMENT>>)
+			CONSUME=<eval <VAR.REMAININGPAYMENT>/<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> <def.currency_<eval <var.currencyindex>>>
+			VAR.REMAININGPAYMENT=<eval <VAR.REMAININGPAYMENT>+(-<eval <eval <VAR.REMAININGPAYMENT>/<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)>
+			IF	!(<eval <VAR.REMAININGPAYMENT>>>0)
+					VAR.CONSUMEPRIOR=
+					VAR.REMAININGPAYMENT=
+				RETURN 1
+			ENDIF
+	ELSEIF	(<RESCOUNT <def.currency_<eval <var.currencyindex>>>>>0)
+			VAR.REMAININGPAYMENT=<eval <VAR.REMAININGPAYMENT>+(-<eval <RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>>)>
+			CONSUME = <RESCOUNT <def.currency_<eval <var.currencyindex>>>> <def.currency_<eval <var.currencyindex>>>
+	ENDIF
+	ENDIF
+	ENDIF
+	var.currencyindex += 1
+ENDFOR
+IF	(<eval <VAR.CONSUMEPRIOR>>==20)
+		IF	(<eval <VAR.REMAININGPAYMENT>>>0)
+				MAKECHANGELOCAL
+		ELSE
+		ENDIF
+		VAR.CONSUMEPRIOR=
+		VAR.REMAININGPAYMENT=
+	RETURN 1
+ELSE
+		VAR.CONSUMEPRIOR=<eval <VAR.CONSUMEPRIOR>+1>
+		CONSUMECURRENCYLOCAL_aux=<ARGS>
+ENDIF
+
+[FUNCTION MAKECHANGELOCAL]
+var.currencyindex=1
+FOR <var.currencyindex> 1 <def.currencies_total> 
+	IF !(<TAG0.LOCALCURRENCY>) || (<TAG0.CURRENCy_<eval <var.currencyindex>>>==1)
+	IF (<RESCOUNT <def.currency_<eval <var.currencyindex>>>> > 0) && (<eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>> >= <eval <VAR.REMAININGPAYMENT>>)
+			CONSUME = 1 <def.currency_<eval <var.currencyindex>>>
+			GETCHANGELOCAL <eval <serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>+(-<eval <VAR.REMAININGPAYMENT>>)>
+		RETURN 1
+	ENDIF
+	ENDIF
+	var.currencyindex += 1
+ENDFOR
+return
+
+[FUNCTION GETCHANGELOCAL]
+var.currencyindex2=<def.currencies_total>
+FOR <var.currencyindex2> 1 <def.currencies_total>
+	IF !(<TAG0.LOCALCURRENCY>) || (<TAG0.CURRENCy_<eval <var.currencyindex2>>>==1)
+	IF	(<eval <ARGS>> >= <eval <serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>) && (<VAR.CONSUMEPRIOR> == <TAG.CURRENCy_<eval <var.currencyindex2>>PRIOR>)
+			NEWITEM=<def.currency_<eval <var.currencyindex2>>>
+			ACT.AMOUNT= <eval <ARGS>/<eval <serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>>
+			ACT.BOUNCE
+			IF	(<eval <ARGS>+(-<eval <eval <ARGS>/<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>)>==0)
+				RETURN 1
+			ELSE
+					GETCHANGELOCAL=<eval <ARGS>+(-<eval <eval <ARGS>/<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>*<serv.itemdef(<def.currency_<eval <var.currencyindex2>>>).value>>)>
+				RETURN 1
+			ENDIF
+	ELSE
+	ENDIF
+	ENDIF
+	var.currencyindex2 -= 1
+ENDFOR
+IF	!(<eval <VAR.CONSUMEPRIOR>>==1)
+VAR.CONSUMEPRIOR -= 1
+GETCHANGELOCAL=<ARGS>
+ENDIF
+RETURN
+
+[FUNCTION CURRENCYLOCAL]
+IF !(<ISEMPTY <TAG0.LOCALCURRENCY>>)
+	var.currencyindex = 1
+	var.currencytotal = 0
+	FOR <var.currencyindex> 1 <def.currencies_total>
+		IF	(<RESCOUNT <def.currency_<eval <var.currencyindex>>>>) && (<TAG0.CURRENCy_<eval <var.currencyindex>>>==1)
+				var.currencytotal += (<RESCOUNT <def.currency_<eval <var.currencyindex>>>>*<serv.itemdef(<def.currency_<eval <var.currencyindex>>>).value>)
+		ENDIF
+		var.currencyindex += 1
+	ENDFOR
+	RETURN <eval <var.currencytotal>>
+ELSE
+	RETURN <CURRENCY>
+ENDIF
+
+[eof]

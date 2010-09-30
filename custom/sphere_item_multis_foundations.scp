@@ -1,0 +1,2581 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2007
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, April 5 2008 by Mordaunt
+//
+
+
+[ITEMDEF i_deed_foundation_7x7]
+NAME=Deed to a 7x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x7
+
+[ITEMDEF i_deed_foundation_7x8]
+NAME=Deed to a 7x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x8
+
+[ITEMDEF i_deed_foundation_7x9]
+NAME=Deed to a 7x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x9
+
+[ITEMDEF i_deed_foundation_7x10]
+NAME=Deed to a 7x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x10
+
+[ITEMDEF i_deed_foundation_7x11]
+NAME=Deed to a 7x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x11
+
+[ITEMDEF i_deed_foundation_7x12]
+NAME=Deed to a 7x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_7x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=7x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_7x12
+
+[ITEMDEF i_deed_foundation_8x7]
+NAME=Deed to a 8x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x7
+
+[ITEMDEF i_deed_foundation_8x8]
+NAME=Deed to a 8x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x8
+
+[ITEMDEF i_deed_foundation_8x9]
+NAME=Deed to a 8x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x9
+
+[ITEMDEF i_deed_foundation_8x10]
+NAME=Deed to a 8x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x10
+
+[ITEMDEF i_deed_foundation_8x11]
+NAME=Deed to a 8x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x11
+
+[ITEMDEF i_deed_foundation_8x12]
+NAME=Deed to a 8x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x12
+
+[ITEMDEF i_deed_foundation_8x13]
+NAME=Deed to a 8x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_8x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=8x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_8x13
+
+[ITEMDEF i_deed_foundation_9x7]
+NAME=Deed to a 9x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x7
+
+[ITEMDEF i_deed_foundation_9x8]
+NAME=Deed to a 9x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x8
+
+[ITEMDEF i_deed_foundation_9x9]
+NAME=Deed to a 9x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x9
+
+[ITEMDEF i_deed_foundation_9x10]
+NAME=Deed to a 9x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x10
+
+[ITEMDEF i_deed_foundation_9x11]
+NAME=Deed to a 9x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x11
+
+[ITEMDEF i_deed_foundation_9x12]
+NAME=Deed to a 9x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x12
+
+[ITEMDEF i_deed_foundation_9x13]
+NAME=Deed to a 9x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x13
+
+[ITEMDEF i_deed_foundation_9x14]
+NAME=Deed to a 9x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_9x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=9x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_9x14
+
+[ITEMDEF i_deed_foundation_10x7]
+NAME=Deed to a 10x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x7
+
+[ITEMDEF i_deed_foundation_10x8]
+NAME=Deed to a 10x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x8
+
+[ITEMDEF i_deed_foundation_10x9]
+NAME=Deed to a 10x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x9
+
+[ITEMDEF i_deed_foundation_10x10]
+NAME=Deed to a 10x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x10
+
+[ITEMDEF i_deed_foundation_10x11]
+NAME=Deed to a 10x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x11
+
+[ITEMDEF i_deed_foundation_10x12]
+NAME=Deed to a 10x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x12
+
+[ITEMDEF i_deed_foundation_10x13]
+NAME=Deed to a 10x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x13
+
+[ITEMDEF i_deed_foundation_10x14]
+NAME=Deed to a 10x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x14
+
+[ITEMDEF i_deed_foundation_10x15]
+NAME=Deed to a 10x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_10x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=10x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_10x15
+
+[ITEMDEF i_deed_foundation_11x7]
+NAME=Deed to a 11x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x7
+
+[ITEMDEF i_deed_foundation_11x8]
+NAME=Deed to a 11x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x8
+
+[ITEMDEF i_deed_foundation_11x9]
+NAME=Deed to a 11x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x9
+
+[ITEMDEF i_deed_foundation_11x10]
+NAME=Deed to a 11x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x10
+
+[ITEMDEF i_deed_foundation_11x11]
+NAME=Deed to a 11x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x11
+
+[ITEMDEF i_deed_foundation_11x12]
+NAME=Deed to a 11x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x12
+
+[ITEMDEF i_deed_foundation_11x13]
+NAME=Deed to a 11x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x13
+
+[ITEMDEF i_deed_foundation_11x14]
+NAME=Deed to a 11x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x14
+
+[ITEMDEF i_deed_foundation_11x15]
+NAME=Deed to a 11x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x15
+
+[ITEMDEF i_deed_foundation_11x16]
+NAME=Deed to a 11x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_11x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=11x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_11x16
+
+[ITEMDEF i_deed_foundation_12x7]
+NAME=Deed to a 12x7 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x7
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x7 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x7
+
+[ITEMDEF i_deed_foundation_12x8]
+NAME=Deed to a 12x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x8
+
+[ITEMDEF i_deed_foundation_12x9]
+NAME=Deed to a 12x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x9
+
+[ITEMDEF i_deed_foundation_12x10]
+NAME=Deed to a 12x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x10
+
+[ITEMDEF i_deed_foundation_12x11]
+NAME=Deed to a 12x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x11
+
+[ITEMDEF i_deed_foundation_12x12]
+NAME=Deed to a 12x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x12
+
+[ITEMDEF i_deed_foundation_12x13]
+NAME=Deed to a 12x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x13
+
+[ITEMDEF i_deed_foundation_12x14]
+NAME=Deed to a 12x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x14
+
+[ITEMDEF i_deed_foundation_12x15]
+NAME=Deed to a 12x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x15
+
+[ITEMDEF i_deed_foundation_12x16]
+NAME=Deed to a 12x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x16
+
+[ITEMDEF i_deed_foundation_12x17]
+NAME=Deed to a 12x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_12x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=12x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_12x17
+
+[ITEMDEF i_deed_foundation_13x8]
+NAME=Deed to a 13x8 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x8
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x8 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x8
+
+[ITEMDEF i_deed_foundation_13x9]
+NAME=Deed to a 13x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x9
+
+[ITEMDEF i_deed_foundation_13x10]
+NAME=Deed to a 13x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x10
+
+[ITEMDEF i_deed_foundation_13x11]
+NAME=Deed to a 13x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x11
+
+[ITEMDEF i_deed_foundation_13x12]
+NAME=Deed to a 13x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x12
+
+[ITEMDEF i_deed_foundation_13x13]
+NAME=Deed to a 13x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x13
+
+[ITEMDEF i_deed_foundation_13x14]
+NAME=Deed to a 13x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x14
+
+[ITEMDEF i_deed_foundation_13x15]
+NAME=Deed to a 13x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x15
+
+[ITEMDEF i_deed_foundation_13x16]
+NAME=Deed to a 13x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x16
+
+[ITEMDEF i_deed_foundation_13x17]
+NAME=Deed to a 13x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x17
+
+[ITEMDEF i_deed_foundation_13x18]
+NAME=Deed to a 13x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_13x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=13x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_13x18
+
+[ITEMDEF i_deed_foundation_14x9]
+NAME=Deed to a 14x9 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x9
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x9 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x9
+
+[ITEMDEF i_deed_foundation_14x10]
+NAME=Deed to a 14x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x10
+
+[ITEMDEF i_deed_foundation_14x11]
+NAME=Deed to a 14x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x11
+
+[ITEMDEF i_deed_foundation_14x12]
+NAME=Deed to a 14x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x12
+
+[ITEMDEF i_deed_foundation_14x13]
+NAME=Deed to a 14x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x13
+
+[ITEMDEF i_deed_foundation_14x14]
+NAME=Deed to a 14x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x14
+
+[ITEMDEF i_deed_foundation_14x15]
+NAME=Deed to a 14x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x15
+
+[ITEMDEF i_deed_foundation_14x16]
+NAME=Deed to a 14x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x16
+
+[ITEMDEF i_deed_foundation_14x17]
+NAME=Deed to a 14x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x17
+
+[ITEMDEF i_deed_foundation_14x18]
+NAME=Deed to a 14x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_14x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=14x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_14x18
+
+[ITEMDEF i_deed_foundation_15x10]
+NAME=Deed to a 15x10 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x10
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x10 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x10
+
+[ITEMDEF i_deed_foundation_15x11]
+NAME=Deed to a 15x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x11
+
+[ITEMDEF i_deed_foundation_15x12]
+NAME=Deed to a 15x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x12
+
+[ITEMDEF i_deed_foundation_15x13]
+NAME=Deed to a 15x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x13
+
+[ITEMDEF i_deed_foundation_15x14]
+NAME=Deed to a 15x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x14
+
+[ITEMDEF i_deed_foundation_15x15]
+NAME=Deed to a 15x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x15
+
+[ITEMDEF i_deed_foundation_15x16]
+NAME=Deed to a 15x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x16
+
+[ITEMDEF i_deed_foundation_15x17]
+NAME=Deed to a 15x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x17
+
+[ITEMDEF i_deed_foundation_15x18]
+NAME=Deed to a 15x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_15x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=15x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_15x18
+
+[ITEMDEF i_deed_foundation_16x11]
+NAME=Deed to a 16x11 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x11
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x11 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x11
+
+[ITEMDEF i_deed_foundation_16x12]
+NAME=Deed to a 16x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x12
+
+[ITEMDEF i_deed_foundation_16x13]
+NAME=Deed to a 16x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x13
+
+[ITEMDEF i_deed_foundation_16x14]
+NAME=Deed to a 16x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x14
+
+[ITEMDEF i_deed_foundation_16x15]
+NAME=Deed to a 16x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x15
+
+[ITEMDEF i_deed_foundation_16x16]
+NAME=Deed to a 16x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x16
+
+[ITEMDEF i_deed_foundation_16x17]
+NAME=Deed to a 16x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x17
+
+[ITEMDEF i_deed_foundation_16x18]
+NAME=Deed to a 16x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_16x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=16x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_16x18
+
+[ITEMDEF i_deed_foundation_17x12]
+NAME=Deed to a 17x12 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x12
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x12 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x12
+
+[ITEMDEF i_deed_foundation_17x13]
+NAME=Deed to a 17x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x13
+
+[ITEMDEF i_deed_foundation_17x14]
+NAME=Deed to a 17x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x14
+
+[ITEMDEF i_deed_foundation_17x15]
+NAME=Deed to a 17x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x15
+
+[ITEMDEF i_deed_foundation_17x16]
+NAME=Deed to a 17x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x16
+
+[ITEMDEF i_deed_foundation_17x17]
+NAME=Deed to a 17x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x17
+
+[ITEMDEF i_deed_foundation_17x18]
+NAME=Deed to a 17x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_17x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=17x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_17x18
+
+[ITEMDEF i_deed_foundation_18x13]
+NAME=Deed to a 18x13 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x13
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x13 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x13
+
+[ITEMDEF i_deed_foundation_18x14]
+NAME=Deed to a 18x14 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x14
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x14 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x14
+
+[ITEMDEF i_deed_foundation_18x15]
+NAME=Deed to a 18x15 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x15
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x15 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x15
+
+[ITEMDEF i_deed_foundation_18x16]
+NAME=Deed to a 18x16 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x16
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x16 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x16
+
+[ITEMDEF i_deed_foundation_18x17]
+NAME=Deed to a 18x17 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x17
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x17 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x17
+
+[ITEMDEF i_deed_foundation_18x18]
+NAME=Deed to a 18x18 foundation
+ID=i_deed
+RESOURCES=i_deed,i_multi_foundation_18x18
+CATEGORY=Provisions - Deeds
+SUBSECTION=foundation Deeds
+DESCRIPTION=18x18 Foundation
+
+ON=@Create
+	MORE=i_multi_foundation_18x18
+
+
+// 7x* foundations
+[ITEMDEF 093ec]
+DEFNAME=i_multi_foundation_7x7
+TYPE=t_multi_custom
+NAME=7x7 2-Story Customizable House
+VALUE=30500
+MULTIREGION=-3,-3,3,4
+COMPONENT=0b98,-2,4,7
+COMPONENT=0009,-2,3,7
+COMPONENT=0bd2,-2,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x7 2-Story Customizable House
+
+[ITEMDEF 093ed]
+DEFNAME=i_multi_foundation_7x8
+TYPE=t_multi_custom
+NAME=7x8 2-Story Customizable House
+VALUE=34500
+MULTIREGION=-3,-3,3,5
+COMPONENT=0b98,-2,5,7
+COMPONENT=0009,-2,4,7
+COMPONENT=0bd2,-2,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x8 2-Story Customizable House
+
+[ITEMDEF 093ee]
+DEFNAME=i_multi_foundation_7x9
+TYPE=t_multi_custom
+NAME=7x9 2-Story Customizable House
+VALUE=38500
+MULTIREGION=-3,-4,3,5
+COMPONENT=0b98,-2,5,7
+COMPONENT=0009,-2,4,7
+COMPONENT=0bd2,-2,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x9 2-Story Customizable House
+
+[ITEMDEF 093ef]
+DEFNAME=i_multi_foundation_7x10
+TYPE=t_multi_custom
+NAME=7x10 2-Story Customizable House
+VALUE=42500
+MULTIREGION=-3,-4,3,6
+COMPONENT=0b98,-2,6,7
+COMPONENT=0009,-2,5,7
+COMPONENT=0bd2,-2,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x10 2-Story Customizable House
+
+[ITEMDEF 093f0]
+DEFNAME=i_multi_foundation_7x11
+TYPE=t_multi_custom
+NAME=7x11 2-Story Customizable House
+VALUE=46500
+MULTIREGION=-3,-5,3,6
+COMPONENT=0b98,-2,6,7
+COMPONENT=0009,-2,5,7
+COMPONENT=0bd2,-2,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x11 2-Story Customizable House
+
+[ITEMDEF 093f1]
+DEFNAME=i_multi_foundation_7x12
+TYPE=t_multi_custom
+NAME=7x12 2-Story Customizable House
+VALUE=50500
+MULTIREGION=-3,-5,3,7
+COMPONENT=0b98,-2,7,7
+COMPONENT=0009,-2,6,7
+COMPONENT=0bd2,-2,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=7x12 2-Story Customizable House
+
+
+// 8x* foundations
+//need to double check 
+[ITEMDEF 093f8]
+DEFNAME=i_multi_foundation_8x7
+TYPE=t_multi_custom
+NAME=8x7 2-Story Customizable House
+VALUE=34500
+MULTIREGION=-3,-3,4,3
+COMPONENT=0b98,-2,4,7
+COMPONENT=0009,-2,3,7
+COMPONENT=0bd2,-2,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x7 2-Story Customizable House
+
+[ITEMDEF 093f9]
+DEFNAME=i_multi_foundation_8x8
+TYPE=t_multi_custom
+NAME=8x8 2-Story Customizable House
+VALUE=39500
+MULTIREGION=-3,-3,4,4
+COMPONENT=0b98,-2,5,7
+COMPONENT=0009,-2,4,7
+COMPONENT=0bd2,-2,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x8 2-Story Customizable House
+
+[ITEMDEF 093fa]
+DEFNAME=i_multi_foundation_8x9
+TYPE=t_multi_custom
+NAME=8x9 2-Story Customizable House
+VALUE=435000
+MULTIREGION=-3,-4,4,4
+COMPONENT=0b98,-2,5,7
+COMPONENT=0009,-2,4,7
+COMPONENT=0bd2,-2,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x9 2-Story Customizable House
+
+[ITEMDEF 093fb]
+DEFNAME=i_multi_foundation_8x10
+TYPE=t_multi_custom
+NAME=8x10 2-Story Customizable House
+VALUE=48000
+MULTIREGION=-3,-4,4,5
+COMPONENT=0b98,-2,6,7
+COMPONENT=0009,-2,5,7
+COMPONENT=0bd2,-2,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x10 2-Story Customizable House
+
+[ITEMDEF 093fc]
+DEFNAME=i_multi_foundation_8x11
+TYPE=t_multi_custom
+NAME=8x11 2-Story Customizable House
+VALUE=52500
+MULTIREGION=-3,-5,4,5
+COMPONENT=0b98,-2,6,7
+COMPONENT=0009,-2,5,7
+COMPONENT=0bd2,-2,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x11 2-Story Customizable House
+
+[ITEMDEF 093fd]
+DEFNAME=i_multi_foundation_8x12
+TYPE=t_multi_custom
+NAME=8x12 2-Story Customizable House
+VALUE=57000
+MULTIREGION=-3,-5,4,6
+COMPONENT=0b98,-2,7,7
+COMPONENT=0009,-2,6,7
+COMPONENT=0bd2,-2,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x12 2-Story Customizable House
+
+
+[ITEMDEF 093fe]
+DEFNAME=i_multi_foundation_8x13
+TYPE=t_multi_custom
+NAME=8x13 2-Story Customizable House
+VALUE=61500
+MULTIREGION=-3,-6,4,7
+COMPONENT=0b98,-2,7,7
+COMPONENT=0009,-2,6,7
+COMPONENT=0bd2,-2,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=8x13 2-Story Customizable House
+
+//9x* foundations
+[ITEMDEF 09404]
+DEFNAME=i_multi_foundation_9x7
+TYPE=t_multi_custom
+NAME=9x7 2-Story Customizable House
+VALUE=38500
+MULTIREGION=-4,-3,4,3
+COMPONENT=0b98,-3,4,7
+COMPONENT=0009,-3,3,7
+COMPONENT=0bd2,-3,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x7 2-Story Customizable House
+
+[ITEMDEF 09405]
+DEFNAME=i_multi_foundation_9x8
+TYPE=t_multi_custom
+NAME=9x8 2-Story Customizable House
+VALUE=43500
+MULTIREGION=-4,-3,4,4
+COMPONENT=0b98,-3,5,7
+COMPONENT=0009,-3,4,7
+COMPONENT=0bd2,-3,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x8 2-Story Customizable House
+
+[ITEMDEF 09406]
+DEFNAME=i_multi_foundation_9x9
+TYPE=t_multi_custom
+NAME=9x9 2-Story Customizable House
+VALUE=48500
+MULTIREGION=-4,-4,4,4
+COMPONENT=0b98,-3,5,7
+COMPONENT=0009,-3,4,7
+COMPONENT=0bd2,-3,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x9 2-Story Customizable House
+
+[ITEMDEF 09407]
+DEFNAME=i_multi_foundation_9x10
+TYPE=t_multi_custom
+NAME=9x10 2-Story Customizable House
+VALUE=53500
+MULTIREGION=-4,-4,4,5
+COMPONENT=0b98,-3,6,7
+COMPONENT=0009,-3,5,7
+COMPONENT=0bd2,-3,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x10 2-Story Customizable House
+
+[ITEMDEF 09408]
+DEFNAME=i_multi_foundation_9x11
+TYPE=t_multi_custom
+NAME=9x11 2-Story Customizable House
+VALUE=58500
+MULTIREGION=-4,-5,4,5
+COMPONENT=0b98,-3,6,7
+COMPONENT=0009,-3,5,7
+COMPONENT=0bd2,-3,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x11 2-Story Customizable House
+
+[ITEMDEF 09409]
+DEFNAME=i_multi_foundation_9x12
+TYPE=t_multi_custom
+NAME=9x12 2-Story Customizable House
+VALUE=63500
+MULTIREGION=-4,-5,4,6
+COMPONENT=0b98,-3,7,7
+COMPONENT=0009,-3,6,7
+COMPONENT=0bd2,-3,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x12 2-Story Customizable House
+
+[ITEMDEF 0940a]
+DEFNAME=i_multi_foundation_9x13
+TYPE=t_multi_custom
+NAME=9x13 2-Story Customizable House
+VALUE=68500
+MULTIREGION=-4,-6,4,6
+COMPONENT=0b98,-3,7,7
+COMPONENT=0009,-3,6,7
+COMPONENT=0bd2,-3,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x13 2-Story Customizable House
+
+[ITEMDEF 0940b]
+DEFNAME=i_multi_foundation_9x14
+TYPE=t_multi_custom
+NAME=9x14 3-Story Customizable House
+VALUE=73500
+MULTIREGION=-4,-6,4,7
+COMPONENT=0b98,-3,8,7
+COMPONENT=0009,-3,7,7
+COMPONENT=0bd2,-3,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=9x14 3-Story Customizable House
+
+//10x* foundations
+[ITEMDEF 09410]
+DEFNAME=i_multi_foundation_10x7
+TYPE=t_multi_custom
+NAME=10x7 2-Story Customizable House
+VALUE=42500
+MULTIREGION=-4,-3,5,3
+COMPONENT=0b98,-3,4,7
+COMPONENT=0009,-3,3,7
+COMPONENT=0bd2,-3,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x7 2-Story Customizable House
+
+[ITEMDEF 09411]
+DEFNAME=i_multi_foundation_10x8
+TYPE=t_multi_custom
+NAME=10x8 2-Story Customizable House
+VALUE=48000
+MULTIREGION=-4,-3,5,4
+COMPONENT=0b98,-3,5,7
+COMPONENT=0009,-3,4,7
+COMPONENT=0bd2,-3,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x8 2-Story Customizable House
+
+[ITEMDEF 09412]
+DEFNAME=i_multi_foundation_10x9
+TYPE=t_multi_custom
+NAME=10x9 2-Story Customizable House
+VALUE=53500
+MULTIREGION=-4,-4,5,4
+COMPONENT=0b98,-3,5,7
+COMPONENT=0009,-3,4,7
+COMPONENT=0bd2,-3,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x9 2-Story Customizable House
+
+[ITEMDEF 09413]
+DEFNAME=i_multi_foundation_10x10
+TYPE=t_multi_custom
+NAME=10x10 2-Story Customizable House
+VALUE=59000
+MULTIREGION=-4,-4,5,5
+COMPONENT=0b98,-3,6,7
+COMPONENT=0009,-3,5,7
+COMPONENT=0bd2,-3,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x10 2-Story Customizable House
+
+[ITEMDEF 09414]
+DEFNAME=i_multi_foundation_10x11
+TYPE=t_multi_custom
+NAME=10x11 2-Story Customizable House
+VALUE=64500
+MULTIREGION=-4,-5,5,5
+COMPONENT=0b98,-3,6,7
+COMPONENT=0009,-3,5,7
+COMPONENT=0bd2,-3,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x11 2-Story Customizable House
+
+[ITEMDEF 09415]
+DEFNAME=i_multi_foundation_10x12
+TYPE=t_multi_custom
+NAME=10x12 2-Story Customizable House
+VALUE=70000
+MULTIREGION=-4,-5,5,6
+COMPONENT=0b98,-3,7,7
+COMPONENT=0009,-3,6,7
+COMPONENT=0bd2,-3,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x12 2-Story Customizable House
+
+[ITEMDEF 09416]
+DEFNAME=i_multi_foundation_10x13
+TYPE=t_multi_custom
+NAME=10x13 2-Story Customizable House
+VALUE=75500
+MULTIREGION=-4,-6,5,6
+COMPONENT=0b98,-3,7,7
+COMPONENT=0009,-3,6,7
+COMPONENT=0bd2,-3,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x13 2-Story Customizable House
+
+[ITEMDEF 09417]
+DEFNAME=i_multi_foundation_10x14
+TYPE=t_multi_custom
+NAME=10x14 3-Story Customizable House
+VALUE=81000
+MULTIREGION=-4,-6,5,7
+COMPONENT=0b98,-3,8,7
+COMPONENT=0009,-3,7,7
+COMPONENT=0bd2,-3,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x14 3-Story Customizable House
+
+[ITEMDEF 09418]
+DEFNAME=i_multi_foundation_10x15
+TYPE=t_multi_custom
+NAME=10x15 3-Story Customizable House
+VALUE=86500
+MULTIREGION=-4,-7,5,8
+COMPONENT=0b98,-3,8,7
+COMPONENT=0009,-3,7,7
+COMPONENT=0bd2,-3,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=10x15 3-Story Customizable House
+
+//11x* foundations
+[ITEMDEF 0941c]
+DEFNAME=i_multi_foundation_11x7
+TYPE=t_multi_custom
+NAME=11x7 2-Story Customizable House
+VALUE=46500
+MULTIREGION=-5,-3,5,3
+COMPONENT=0b98,-4,4,7
+COMPONENT=0009,-4,3,7
+COMPONENT=0bd2,-4,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x7 2-Story Customizable House
+
+[ITEMDEF 0941d]
+DEFNAME=i_multi_foundation_11x8
+TYPE=t_multi_custom
+NAME=11x8 2-Story Customizable House
+VALUE=52500
+MULTIREGION=-5,-3,5,4
+COMPONENT=0b98,-4,5,7
+COMPONENT=0009,-4,4,7
+COMPONENT=0bd2,-4,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x8 2-Story Customizable House
+
+[ITEMDEF 0941e]
+DEFNAME=i_multi_foundation_11x9
+TYPE=t_multi_custom
+NAME=11x9 2-Story Customizable House
+VALUE=58500
+MULTIREGION=-5,-4,5,4
+COMPONENT=0b98,-4,5,7
+COMPONENT=0009,-4,4,7
+COMPONENT=0bd2,-4,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x9 2-Story Customizable House
+
+[ITEMDEF 0941f]
+DEFNAME=i_multi_foundation_11x10
+TYPE=t_multi_custom
+NAME=11x10 2-Story Customizable House
+VALUE=64500
+MULTIREGION=-5,-4,5,5
+COMPONENT=0b98,-4,6,7
+COMPONENT=0009,-4,5,7
+COMPONENT=0bd2,-4,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x10 2-Story Customizable House
+
+[ITEMDEF 09420]
+DEFNAME=i_multi_foundation_11x11
+TYPE=t_multi_custom
+NAME=11x11 2-Story Customizable House
+VALUE=70500
+MULTIREGION=-5,-5,5,5
+COMPONENT=0b98,-4,6,7
+COMPONENT=0009,-4,5,7
+COMPONENT=0bd2,-4,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x11 2-Story Customizable House
+
+[ITEMDEF 09421]
+DEFNAME=i_multi_foundation_11x12
+TYPE=t_multi_custom
+NAME=11x12 2-Story Customizable House
+VALUE=76500
+MULTIREGION=-5,-5,5,6
+COMPONENT=0b98,-4,7,7
+COMPONENT=0009,-4,6,7
+COMPONENT=0bd2,-4,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x12 2-Story Customizable House
+
+[ITEMDEF 09422]
+DEFNAME=i_multi_foundation_11x13
+TYPE=t_multi_custom
+NAME=11x13 2-Story Customizable House
+VALUE=82500
+MULTIREGION=-5,-6,5,6
+COMPONENT=0b98,-4,7,7
+COMPONENT=0009,-4,6,7
+COMPONENT=0bd2,-4,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x13 2-Story Customizable House
+
+[ITEMDEF 09423]
+DEFNAME=i_multi_foundation_11x14
+TYPE=t_multi_custom
+NAME=11x14 3-Story Customizable House
+VALUE=88500
+MULTIREGION=-5,-6,5,7
+COMPONENT=0b98,-4,8,7
+COMPONENT=0009,-4,7,7
+COMPONENT=0bd2,-4,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x14 3-Story Customizable House
+
+[ITEMDEF 09424]
+DEFNAME=i_multi_foundation_11x15
+TYPE=t_multi_custom
+NAME=11x15 3-Story Customizable House
+VALUE=94500
+MULTIREGION=-5,-7,5,7
+COMPONENT=0b98,-4,8,7
+COMPONENT=0009,-4,7,7
+COMPONENT=0bd2,-4,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x15 3-Story Customizable House
+
+[ITEMDEF 09425]
+DEFNAME=i_multi_foundation_11x16
+TYPE=t_multi_custom
+NAME=11x16 3-Story Customizable House
+VALUE=105000
+MULTIREGION=-5,-7,5,8
+COMPONENT=0b98,-4,9,7
+COMPONENT=0009,-4,8,7
+COMPONENT=0bd2,-4,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=11x16 3-Story Customizable House
+
+//12x* foundations
+[ITEMDEF 09428]
+DEFNAME=i_multi_foundation_12x7
+TYPE=t_multi_custom
+NAME=12x7 2-Story Customizable House
+VALUE=50500
+MULTIREGION=-5,-3,6,3
+COMPONENT=0b98,-4,4,7
+COMPONENT=0009,-4,3,7
+COMPONENT=0bd2,-4,4,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x7 2-Story Customizable House
+
+[ITEMDEF 09429]
+DEFNAME=i_multi_foundation_12x8
+TYPE=t_multi_custom
+NAME=12x8 2-Story Customizable House
+VALUE=57000
+MULTIREGION=-5,-3,6,4
+COMPONENT=0b98,-4,5,7
+COMPONENT=0009,-4,4,7
+COMPONENT=0bd2,-4,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x8 2-Story Customizable House
+
+[ITEMDEF 0942a]
+DEFNAME=i_multi_foundation_12x9
+TYPE=t_multi_custom
+NAME=12x9 2-Story Customizable House
+VALUE=63500
+MULTIREGION=-5,-4,6,4
+COMPONENT=0b98,-4,5,7
+COMPONENT=0009,-4,4,7
+COMPONENT=0bd2,-4,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x9 2-Story Customizable House
+
+[ITEMDEF 0942b]
+DEFNAME=i_multi_foundation_12x10
+TYPE=t_multi_custom
+NAME=12x10 2-Story Customizable House
+VALUE=70000
+MULTIREGION=-5,-4,6,5
+COMPONENT=0b98,-4,6,7
+COMPONENT=0009,-4,5,7
+COMPONENT=0bd2,-4,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x10 2-Story Customizable House
+
+
+[ITEMDEF 0942c]
+DEFNAME=i_multi_foundation_12x11
+TYPE=t_multi_custom
+NAME=12x11 2-Story Customizable House
+VALUE=76500
+MULTIREGION=-5,-5,6,5
+COMPONENT=0b98,-4,6,7
+COMPONENT=0009,-4,5,7
+COMPONENT=0bd2,-4,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x11 2-Story Customizable House
+
+[ITEMDEF 0942d]
+DEFNAME=i_multi_foundation_12x12
+TYPE=t_multi_custom
+NAME=12x12 2-Story Customizable House
+VALUE=83000
+MULTIREGION=-5,-5,6,6
+COMPONENT=0b98,-4,7,7
+COMPONENT=0009,-4,6,7
+COMPONENT=0bd2,-4,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x12 2-Story Customizable House
+
+[ITEMDEF 0942e]
+DEFNAME=i_multi_foundation_12x13
+TYPE=t_multi_custom
+NAME=12x13 2-Story Customizable House
+VALUE=89500
+MULTIREGION=-5,-6,6,6
+COMPONENT=0b98,-4,7,7
+COMPONENT=0009,-4,6,7
+COMPONENT=0bd2,-4,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x13 2-Story Customizable House
+
+[ITEMDEF 0942f]
+DEFNAME=i_multi_foundation_12x14
+TYPE=t_multi_custom
+NAME=12x14 3-Story Customizable House
+VALUE=96000
+MULTIREGION=-5,-6,6,7
+COMPONENT=0b98,-4,8,7
+COMPONENT=0009,-4,7,7
+COMPONENT=0bd2,-4,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x14 3-Story Customizable House
+
+[ITEMDEF 09430]
+DEFNAME=i_multi_foundation_12x15
+TYPE=t_multi_custom
+NAME=12x15 3-Story Customizable House
+VALUE=102500
+MULTIREGION=-5,-7,6,7
+COMPONENT=0b98,-4,8,7
+COMPONENT=0009,-4,7,7
+COMPONENT=0bd2,-4,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x15 3-Story Customizable House
+
+[ITEMDEF 09431]
+DEFNAME=i_multi_foundation_12x16
+TYPE=t_multi_custom
+NAME=12x16 3-Story Customizable House
+VALUE=105000
+MULTIREGION=-5,-7,6,8
+COMPONENT=0b98,-4,9,7
+COMPONENT=0009,-4,8,7
+COMPONENT=0bd2,-4,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x16 3-Story Customizable House
+
+[ITEMDEF 09432]
+DEFNAME=i_multi_foundation_12x17
+TYPE=t_multi_custom
+NAME=12x17 3-Story Customizable House
+VALUE=115500
+MULTIREGION=-5,-8,6,8
+COMPONENT=0b98,-4,9,7
+COMPONENT=0009,-4,8,7
+COMPONENT=0bd2,-4,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=12x17 3-Story Customizable House
+
+//13x* foundations
+[ITEMDEF 09435]
+DEFNAME=i_multi_foundation_13x8
+TYPE=t_multi_custom
+NAME=13x8 2-Story Customizable House
+VALUE=61500
+MULTIREGION=-6,-3,6,4
+COMPONENT=0b98,-5,5,7
+COMPONENT=0009,-5,4,7
+COMPONENT=0bd2,-5,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x8 2-Story Customizable House
+
+[ITEMDEF 09436]
+DEFNAME=i_multi_foundation_13x9
+TYPE=t_multi_custom
+NAME=13x9 2-Story Customizable House
+VALUE=68500
+MULTIREGION=-6,-4,6,4
+COMPONENT=0b98,-5,5,7
+COMPONENT=0009,-5,4,7
+COMPONENT=0bd2,-5,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x9 2-Story Customizable House
+
+[ITEMDEF 09437]
+DEFNAME=i_multi_foundation_13x10
+TYPE=t_multi_custom
+NAME=13x10 2-Story Customizable House
+VALUE=75500
+MULTIREGION=-6,-4,6,5
+COMPONENT=0b98,-5,6,7
+COMPONENT=0009,-5,5,7
+COMPONENT=0bd2,-5,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x10 2-Story Customizable House
+
+[ITEMDEF 09438]
+DEFNAME=i_multi_foundation_13x11
+TYPE=t_multi_custom
+NAME=13x11 2-Story Customizable House
+VALUE=82500
+MULTIREGION=-6,-5,6,5
+COMPONENT=0b98,-5,6,7
+COMPONENT=0009,-5,5,7
+COMPONENT=0bd2,-5,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x11 2-Story Customizable House
+
+[ITEMDEF 09439]
+DEFNAME=i_multi_foundation_13x12
+TYPE=t_multi_custom
+NAME=13x12 2-Story Customizable House
+VALUE=89500
+MULTIREGION=-6,-5,6,6
+COMPONENT=0b98,-5,7,7
+COMPONENT=0009,-5,6,7
+COMPONENT=0bd2,-5,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x12 2-Story Customizable House
+
+[ITEMDEF 0943a]
+DEFNAME=i_multi_foundation_13x13
+TYPE=t_multi_custom
+NAME=13x13 2-Story Customizable House
+VALUE=96500
+MULTIREGION=-6,-6,6,6
+COMPONENT=0b98,-5,7,7
+COMPONENT=0009,-5,6,7
+COMPONENT=0bd2,-5,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x13 2-Story Customizable House
+
+[ITEMDEF 0943b]
+DEFNAME=i_multi_foundation_13x14
+TYPE=t_multi_custom
+NAME=13x14 3-Story Customizable House
+VALUE=103500
+MULTIREGION=-6,-6,6,7
+COMPONENT=0b98,-5,8,7
+COMPONENT=0009,-5,7,7
+COMPONENT=0bd2,-5,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x14 3-Story Customizable House
+
+[ITEMDEF 0943c]
+DEFNAME=i_multi_foundation_13x15
+TYPE=t_multi_custom
+NAME=13x15 3-Story Customizable House
+VALUE=110500
+MULTIREGION=-6,-7,6,7
+COMPONENT=0b98,-5,8,7
+COMPONENT=0009,-5,7,7
+COMPONENT=0bd2,-5,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x15 3-Story Customizable House
+
+[ITEMDEF 0943d]
+DEFNAME=i_multi_foundation_13x16
+TYPE=t_multi_custom
+NAME=13x16 3-Story Customizable House
+VALUE=117500
+MULTIREGION=-6,-7,6,8
+COMPONENT=0b98,-5,9,7
+COMPONENT=0009,-5,8,7
+COMPONENT=0bd2,-5,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x16 3-Story Customizable House
+
+[ITEMDEF 0943e]
+DEFNAME=i_multi_foundation_13x17
+TYPE=t_multi_custom
+NAME=13x17 3-Story Customizable House
+VALUE=124500
+MULTIREGION=-6,-8,6,8
+COMPONENT=0b98,-5,9,7
+COMPONENT=0009,-5,8,7
+COMPONENT=0bd2,-5,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x17 3-Story Customizable House
+
+[ITEMDEF 0943f]
+DEFNAME=i_multi_foundation_13x18
+TYPE=t_multi_custom
+NAME=13x18 3-Story Customizable House
+VALUE=131500
+MULTIREGION=-6,-8,6,9
+COMPONENT=0b98,-5,10,7
+COMPONENT=0009,-5,9,7
+COMPONENT=0bd2,-5,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=13x18 3-Story Customizable House
+
+//14x* foundations
+[ITEMDEF 09442]
+DEFNAME=i_multi_foundation_14x9
+TYPE=t_multi_custom
+NAME=14x9 3-Story Customizable House
+VALUE=73500
+MULTIREGION=-6,-4,7,4
+COMPONENT=0b98,-5,5,7
+COMPONENT=0009,-5,4,7
+COMPONENT=0bd2,-5,5,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x9 3-Story Customizable House
+
+[ITEMDEF 09443]
+DEFNAME=i_multi_foundation_14x10
+TYPE=t_multi_custom
+NAME=14x10 3-Story Customizable House
+VALUE=81000
+MULTIREGION=-6,-4,7,5
+COMPONENT=0b98,-5,6,7
+COMPONENT=0009,-5,5,7
+COMPONENT=0bd2,-5,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x10 3-Story Customizable House
+
+[ITEMDEF 09444]
+DEFNAME=i_multi_foundation_14x11
+TYPE=t_multi_custom
+NAME=14x11 3-Story Customizable House
+VALUE=88500
+MULTIREGION=-6,-5,7,5
+COMPONENT=0b98,-5,6,7
+COMPONENT=0009,-5,5,7
+COMPONENT=0bd2,-5,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x11 3-Story Customizable House
+
+[ITEMDEF 09445]
+DEFNAME=i_multi_foundation_14x12
+TYPE=t_multi_custom
+NAME=14x12 3-Story Customizable House
+VALUE=96000
+MULTIREGION=-6,-5,7,6
+COMPONENT=0b98,-5,7,7
+COMPONENT=0009,-5,6,7
+COMPONENT=0bd2,-5,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x12 3-Story Customizable House
+
+[ITEMDEF 09446]
+DEFNAME=i_multi_foundation_14x13
+TYPE=t_multi_custom
+NAME=14x13 3-Story Customizable House
+VALUE=103500
+MULTIREGION=-6,-6,7,6
+COMPONENT=0b98,-5,7,7
+COMPONENT=0009,-5,6,7
+COMPONENT=0bd2,-5,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x13 3-Story Customizable House
+
+[ITEMDEF 09447]
+DEFNAME=i_multi_foundation_14x14
+TYPE=t_multi_custom
+NAME=14x14 3-Story Customizable House
+VALUE=111000
+MULTIREGION=-6,-6,7,7
+COMPONENT=0b98,-5,8,7
+COMPONENT=0009,-5,7,7
+COMPONENT=0bd2,-5,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x14 3-Story Customizable House
+
+[ITEMDEF 09448]
+DEFNAME=i_multi_foundation_14x15
+TYPE=t_multi_custom
+NAME=14x15 3-Story Customizable House
+VALUE=118500
+MULTIREGION=-6,-7,7,7
+COMPONENT=0b98,-5,8,7
+COMPONENT=0009,-5,7,7
+COMPONENT=0bd2,-5,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x15 3-Story Customizable House
+
+[ITEMDEF 09449]
+DEFNAME=i_multi_foundation_14x16
+TYPE=t_multi_custom
+NAME=14x16 3-Story Customizable House
+VALUE=126000
+MULTIREGION=-6,-7,7,8
+COMPONENT=0b98,-5,9,7
+COMPONENT=0009,-5,8,7
+COMPONENT=0bd2,-5,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x16 3-Story Customizable House
+
+[ITEMDEF 0944a]
+DEFNAME=i_multi_foundation_14x17
+TYPE=t_multi_custom
+NAME=14x17 3-Story Customizable House
+VALUE=133500
+MULTIREGION=-6,-8,7,8
+COMPONENT=0b98,-5,9,7
+COMPONENT=0009,-5,8,7
+COMPONENT=0bd2,-5,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x17 3-Story Customizable House
+
+[ITEMDEF 0944b]
+DEFNAME=i_multi_foundation_14x18
+TYPE=t_multi_custom
+NAME=14x18 3-Story Customizable House
+VALUE=141000
+MULTIREGION=-6,-8,7,9
+COMPONENT=0b98,-5,10,7
+COMPONENT=0009,-5,9,7
+COMPONENT=0bd2,-5,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=14x18 3-Story Customizable House
+
+//15x* foundations  
+[ITEMDEF 0944f]
+DEFNAME=i_multi_foundation_15x10
+TYPE=t_multi_custom
+NAME=15x10 3-Story Customizable House
+VALUE=86500
+MULTIREGION=-7,-4,7,5
+COMPONENT=0b98,-6,6,7
+COMPONENT=0009,-6,5,7
+COMPONENT=0bd2,-6,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x10 3-Story Customizable House
+
+[ITEMDEF 09450]
+DEFNAME=i_multi_foundation_15x11
+TYPE=t_multi_custom
+NAME=15x11 3-Story Customizable House
+VALUE=94500
+MULTIREGION=-7,-5,7,5
+COMPONENT=0b98,-6,6,7
+COMPONENT=0009,-6,5,7
+COMPONENT=0bd2,-6,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x11 3-Story Customizable House
+
+[ITEMDEF 09451]
+DEFNAME=i_multi_foundation_15x12
+TYPE=t_multi_custom
+NAME=15x12 3-Story Customizable House
+VALUE=102500
+MULTIREGION=-7,-5,7,6
+COMPONENT=0b98,-6,7,7
+COMPONENT=0009,-6,6,7
+COMPONENT=0bd2,-6,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x12 3-Story Customizable House
+
+[ITEMDEF 09452]
+DEFNAME=i_multi_foundation_15x13
+TYPE=t_multi_custom
+NAME=15x13 3-Story Customizable House
+VALUE=110500
+MULTIREGION=-7,-6,7,6
+COMPONENT=0b98,-6,7,7
+COMPONENT=0009,-6,6,7
+COMPONENT=0bd2,-6,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x13 3-Story Customizable House
+
+[ITEMDEF 09453]
+DEFNAME=i_multi_foundation_15x14
+TYPE=t_multi_custom
+NAME=15x14 3-Story Customizable House
+VALUE=118500
+MULTIREGION=-7,-6,7,7
+COMPONENT=0b98,-6,8,7
+COMPONENT=0009,-6,7,7
+COMPONENT=0bd2,-6,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x14 3-Story Customizable House
+
+[ITEMDEF 09454]
+DEFNAME=i_multi_foundation_15x15
+TYPE=t_multi_custom
+NAME=15x15 3-Story Customizable House
+VALUE=126500
+MULTIREGION=-7,-7,7,7
+COMPONENT=0b98,-6,8,7
+COMPONENT=0009,-6,7,7
+COMPONENT=0bd2,-6,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x15 3-Story Customizable House
+
+[ITEMDEF 09455]
+DEFNAME=i_multi_foundation_15x16
+TYPE=t_multi_custom
+NAME=15x16 3-Story Customizable House
+VALUE=134500
+MULTIREGION=-7,-7,7,8
+COMPONENT=0b98,-6,9,7
+COMPONENT=0009,-6,8,7
+COMPONENT=0bd2,-6,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x16 3-Story Customizable House
+
+[ITEMDEF 09456]
+DEFNAME=i_multi_foundation_15x17
+TYPE=t_multi_custom
+NAME=15x17 3-Story Customizable House
+VALUE=142500
+MULTIREGION=-7,-8,7,8
+COMPONENT=0b98,-6,9,7
+COMPONENT=0009,-6,8,7
+COMPONENT=0bd2,-6,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x17 3-Story Customizable House
+
+[ITEMDEF 09457]
+DEFNAME=i_multi_foundation_15x18
+TYPE=t_multi_custom
+NAME=15x18 3-Story Customizable House
+VALUE=150500
+MULTIREGION=-7,-8,7,9
+COMPONENT=0b98,-6,10,7
+COMPONENT=0009,-6,9,7
+COMPONENT=0bd2,-6,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=15x18 3-Story Customizable House
+
+//16x* foundations
+[ITEMDEF 0945c]
+DEFNAME=i_multi_foundation_16x11
+TYPE=t_multi_custom
+NAME=16x11 3-Story Customizable House
+VALUE=100500
+MULTIREGION=-7,-5,8,5
+COMPONENT=0b98,-6,6,7
+COMPONENT=0009,-6,5,7
+COMPONENT=0bd2,-6,6,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x11 3-Story Customizable House
+
+[ITEMDEF 0945d]
+DEFNAME=i_multi_foundation_16x12
+TYPE=t_multi_custom
+NAME=16x12 3-Story Customizable House
+VALUE=105000
+MULTIREGION=-7,-5,8,6
+COMPONENT=0b98,-6,7,7
+COMPONENT=0009,-6,6,7
+COMPONENT=0bd2,-6,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x12 3-Story Customizable House
+
+[ITEMDEF 0945e]
+DEFNAME=i_multi_foundation_16x13
+TYPE=t_multi_custom
+NAME=16x13 3-Story Customizable House
+VALUE=117500
+MULTIREGION=-7,-6,8,6
+COMPONENT=0b98,-6,7,7
+COMPONENT=0009,-6,6,7
+COMPONENT=0bd2,-6,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x13 3-Story Customizable House
+
+[ITEMDEF 0945f]
+DEFNAME=i_multi_foundation_16x14
+TYPE=t_multi_custom
+NAME=16x14 3-Story Customizable House
+VALUE=126000
+MULTIREGION=-7,-6,8,7
+COMPONENT=0b98,-6,8,7
+COMPONENT=0009,-6,7,7
+COMPONENT=0bd2,-6,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x14 3-Story Customizable House
+
+[ITEMDEF 09460]
+DEFNAME=i_multi_foundation_16x15
+TYPE=t_multi_custom
+NAME=16x15 3-Story Customizable House
+VALUE=134500
+MULTIREGION=-7,-7,8,7
+COMPONENT=0b98,-6,8,7
+COMPONENT=0009,-6,7,7
+COMPONENT=0bd2,-6,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x15 3-Story Customizable House
+
+[ITEMDEF 09461]
+DEFNAME=i_multi_foundation_16x16
+TYPE=t_multi_custom
+NAME=16x16 3-Story Customizable House
+VALUE=143000
+MULTIREGION=-7,-7,8,8
+COMPONENT=0b98,-6,9,7
+COMPONENT=0009,-6,8,7
+COMPONENT=0bd2,-6,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x16 3-Story Customizable House
+
+[ITEMDEF 09462]
+DEFNAME=i_multi_foundation_16x17
+TYPE=t_multi_custom
+NAME=16x17 3-Story Customizable House
+VALUE=151500
+MULTIREGION=-7,-8,8,8
+COMPONENT=0b98,-6,9,7
+COMPONENT=0009,-6,8,7
+COMPONENT=0bd2,-6,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x17 3-Story Customizable House
+
+[ITEMDEF 09463]
+DEFNAME=i_multi_foundation_16x18
+TYPE=t_multi_custom
+NAME=16x18 3-Story Customizable House
+VALUE=160000
+MULTIREGION=-7,-8,8,9
+COMPONENT=0b98,-6,10,7
+COMPONENT=0009,-6,9,7
+COMPONENT=0bd2,-6,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=16x18 3-Story Customizable House
+
+//17x* foundations
+[ITEMDEF 09469]
+DEFNAME=i_multi_foundation_17x12
+TYPE=t_multi_custom
+NAME=17x12 3-Story Customizable House
+VALUE=115500
+MULTIREGION=-8,-5,8,6
+COMPONENT=0b98,-7,7,7
+COMPONENT=0009,-7,6,7
+COMPONENT=0bd2,-7,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x12 3-Story Customizable House
+
+[ITEMDEF 0946a]
+DEFNAME=i_multi_foundation_17x13
+TYPE=t_multi_custom
+NAME=17x13 3-Story Customizable House
+VALUE=124500
+MULTIREGION=-8,-6,8,6
+COMPONENT=0b98,-7,7,7
+COMPONENT=0009,-7,6,7
+COMPONENT=0bd2,-7,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x13 3-Story Customizable House
+
+[ITEMDEF 0946b]
+DEFNAME=i_multi_foundation_17x14
+TYPE=t_multi_custom
+NAME=17x14 3-Story Customizable House
+VALUE=133500
+MULTIREGION=-8,-6,8,7
+COMPONENT=0b98,-7,8,7
+COMPONENT=0009,-7,7,7
+COMPONENT=0bd2,-7,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x14 3-Story Customizable House
+
+[ITEMDEF 0946c]
+DEFNAME=i_multi_foundation_17x15
+TYPE=t_multi_custom
+NAME=17x15 3-Story Customizable House
+VALUE=142500
+MULTIREGION=-8,-7,8,7
+COMPONENT=0b98,-7,8,7
+COMPONENT=0009,-7,7,7
+COMPONENT=0bd2,-7,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x15 3-Story Customizable House
+
+[ITEMDEF 0946d]
+DEFNAME=i_multi_foundation_17x16
+TYPE=t_multi_custom
+NAME=17x16 3-Story Customizable House
+VALUE=151500
+MULTIREGION=-8,-7,8,8
+COMPONENT=0b98,-7,9,7
+COMPONENT=0009,-7,8,7
+COMPONENT=0bd2,-7,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x16 3-Story Customizable House
+
+[ITEMDEF 0946e]
+DEFNAME=i_multi_foundation_17x17
+TYPE=t_multi_custom
+NAME=17x17 3-Story Customizable House
+VALUE=160500
+MULTIREGION=-8,-8,8,8
+COMPONENT=0b98,-7,9,7
+COMPONENT=0009,-7,8,7
+COMPONENT=0bd2,-7,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x17 3-Story Customizable House
+
+[ITEMDEF 0946f]
+DEFNAME=i_multi_foundation_17x18
+TYPE=t_multi_custom
+NAME=17x18 3-Story Customizable House
+VALUE=169500
+MULTIREGION=-8,-8,8,9
+COMPONENT=0b98,-7,10,7
+COMPONENT=0009,-7,9,7
+COMPONENT=0bd2,-7,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=17x18 3-Story Customizable House
+
+//18x* foundations
+[ITEMDEF 09476]
+DEFNAME=i_multi_foundation_18x13
+TYPE=t_multi_custom
+NAME=18x13 3-Story Customizable House
+VALUE=131500
+MULTIREGION=-8,-6,9,6
+COMPONENT=0b98,-7,7,7
+COMPONENT=0009,-7,6,7
+COMPONENT=0bd2,-7,7,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x13 3-Story Customizable House
+
+[ITEMDEF 09477]
+DEFNAME=i_multi_foundation_18x14
+TYPE=t_multi_custom
+NAME=18x14 3-Story Customizable House
+VALUE=141000
+MULTIREGION=-8,-6,9,7
+COMPONENT=0b98,-7,8,7
+COMPONENT=0009,-7,7,7
+COMPONENT=0bd2,-7,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x14 3-Story Customizable House
+
+[ITEMDEF 09478]
+DEFNAME=i_multi_foundation_18x15
+TYPE=t_multi_custom
+NAME=18x15 3-Story Customizable House
+VALUE=150500
+MULTIREGION=-8,-7,9,7
+COMPONENT=0b98,-7,8,7
+COMPONENT=0009,-7,7,7
+COMPONENT=0bd2,-7,8,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x15 3-Story Customizable House
+
+[ITEMDEF 09479]
+DEFNAME=i_multi_foundation_18x16
+TYPE=t_multi_custom
+NAME=18x16 3-Story Customizable House
+VALUE=160000
+MULTIREGION=-8,-7,9,8
+COMPONENT=0b98,-7,9,7
+COMPONENT=0009,-7,8,7
+COMPONENT=0bd2,-7,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x16 3-Story Customizable House
+
+[ITEMDEF 0947a]
+DEFNAME=i_multi_foundation_18x17
+TYPE=t_multi_custom
+NAME=18x17 3-Story Customizable House
+VALUE=169500
+MULTIREGION=-8,-8,9,8
+COMPONENT=0b98,-7,9,7
+COMPONENT=0009,-7,8,7
+COMPONENT=0bd2,-7,9,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x17 3-Story Customizable House
+
+[ITEMDEF 0947b]
+DEFNAME=i_multi_foundation_18x18
+TYPE=t_multi_custom
+NAME=18x18 3-Story Customizable House
+VALUE=179000
+MULTIREGION=-8,-8,9,9
+COMPONENT=0b98,-7,10,7
+COMPONENT=0009,-7,9,7
+COMPONENT=0bd2,-7,10,7
+
+CATEGORY=Multis
+SUBSECTION=House Foundations
+DESCRIPTION=18x18 3-Story Customizable House
+
+[EOF]

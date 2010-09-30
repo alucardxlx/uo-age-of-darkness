@@ -1,0 +1,342 @@
+//************************************************
+//Language System [Customizeable] - v1.5
+//Scripted By: Majesty
+//PLEASE DO NOT REMOVE THIS HEADER!
+//Originally Released: 'March 2006'
+//************************************************
+
+//**IMPORTANT: Please read the "LangSys_ReadMe.txt" about Updates, 'TalkMode', Installation, and Usage.**
+//**Also read the "LangSys_Pt2.scp" about customizing, or editing languages, colors, etc...**
+
+//Player Commands
+[plevel 0]
+TalkMode  // Switches between Lang and AltLang1
+
+//GM, Admin Commands, and Script Commands.
+[plevel 3]
+L  //'.L <message>' - Speak in your special language.
+givelang  //'.xgivelang <#>' - Give them a special language.
+givealtlang_1 //'.xgivealtlang_1 <#>' - Give them a 2nd language.
+givealtlang_2 //'.xgivealtlang_2 <#>' - Give them a 3rd language.
+givealtlang_3 //'.xgivealtlang_3 <#>' - Give them a 4th language.
+givealtlang_4 //'.xgivealtlang_4 <#>' - Give them a 5th language.
+
+//<><><><><><><><><><><><><><><><><><>
+
+//**Main Setup Options**
+[defname Lang_Setup]
+//This is the total # of special languages on your shard. ( 'Lang_0' isn't counted as a special language )
+//This is used to get words for the secret language.
+Total_Langs=20
+
+//Hear their "voices" when they speak thier special language? 1=Yes | 0=No
+Lang_Voices=0
+
+//This will override all special language colors, and display them as the # you specify. [ 0 = No Override ]
+Lang_Override_Clr=0
+
+//This is how long the delay is before they can use the function again. (20 = 2 Seconds)
+Lang_UseDelay=10
+
+//The chance that you will hear the "voice" when they speak in their special language. [1 in # Chance]
+Lang_Voice_Chance=5
+
+//This is the max distance an NPC can be in order to respond to special languages. (Must be atleast 1)
+NPC_Lang_RespDist=4
+
+//<><><><><><><><><><><><><><><><><><>
+
+/////////////
+//FUNCTIONS//
+/////////////
+
+[Function L] //Language: '.L <text>'
+if (<isempty <args>>)
+sysmessage @0481 You must supply text with this function. Type: '.L (message)'
+return 0
+endif
+if (<isbadstr <args>>)
+sysmessage @0481 You maybe using invalid characters for this function.
+return 0
+endif
+if (<hits> < 1 ) //Are they dead?
+say @0481 <args>
+return 0
+endif
+if (<lang> == 0 )
+say <args>
+return 0
+endif
+if !(<npc>)
+if (<eval <ctag.langdelay>> > <serv.time> )
+sysmessage @0481 Wait a few more seconds before talking again.
+return 0
+endif
+endif
+local.spkruid=<uid>
+local.l=<eval <tag0.lang>>
+if (<eval strlen(<args>)> <= 10 )
+local.lang_msg=<strsub 0 0 <def.l_<eval <local.l>>_<eval {1 50}>>>
+else
+dorand=2
+local.lang_msg="<strsub 0 0 <def.l_<eval <local.l>>_<eval {1 50}>>> <strtolower <def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>>>"
+local.lang_msg="<strsub 0 0 <def.l_<eval <local.l>>_<eval {1 50}>>> <strtolower <def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>>>"
+local.lang_msg="<strsub 0 0 <def.l_<eval <local.l>>_<eval {1 50}>>> <strtolower <def.l_<eval <local.l>>_<eval {1 50}>><def.l_<eval <local.l>>_<eval {1 50}>>>"
+enddo
+endif
+if (strmatch("*,","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>,"
+endif
+if (strmatch("*?","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>?"
+endif
+if (strmatch("*.","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>."
+endif
+if (strmatch("*...","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>..."
+endif
+if (strmatch("*!","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>!"
+endif
+if (strmatch("*-","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>-"
+endif
+if (strmatch("*[a-z]","<args>"))
+local.punc="<def.l_<eval <local.l>>_<eval {1 50}>>"
+endif
+for 0 <eval <serv.clients>-1>
+if (<serv.client.<local._for>.distance> <= 18 ) //Are they atleast in your screen?
+obj=<local.spkruid>
+if (<serv.client.<local._for>.lang> == <lang>)||(<serv.client.<local._for>.cantranslate>)||(<serv.client.<local._for>.isgm>)
+trysrc <serv.client.<local._for>.uid> obj.message @<qval <def.lang_override_clr> ? <def0.lang_override_clr>: <def.lang_<eval <local.l>>_clr>> <args>
+else 
+trysrc <serv.client.<local._for>.uid> obj.message @<qval <def.lang_override_clr> ? <def0.lang_override_clr>: <def.lang_<eval <local.l>>_clr>> <local.lang_msg> <strtolower <local.punc>>
+endif
+endif
+endfor
+if (<def.lang_voices>)&&(<lang>)
+if (<eval rand(<def.lang_voice_chance>)> == 1 )
+sound=<def.lang_<lang>_voice>
+endif
+endif
+if !(<npc>)
+ctag.langdelay=<eval <serv.time>+<def.lang_usedelay>>
+endif
+return 1
+
+//<><><><><><><><><><><><><><><><><><>
+
+//<><><><><><><><><><><><><><><><><><>
+
+
+
+[TYPEDEF e_langbook]
+
+ON=@ClientToolTip
+	NAME=Guide to <def.lang_<eval <more2>>> in <def.lang_<eval <more1>>>
+//	SRC.ADDCLILOC 1070722,Guide to <def.lang_<eval <more2>>>
+//	SRC.ADDCLILOC 1042971,In <def.lang_<eval <more1>>>
+
+ON=@DClick
+if (<src.tag0.lang> == <more1>)||(<src.tag0.al_1> == <more1>)||(<src.tag0.al_2> == <more1>)||(<src.tag0.al_3> == <more1>)||(<src.tag0.al_4> == <more1>)
+if (<src.tag0.lang> == <more2>)||(<src.tag0.al_1> == <more2>)||(<src.tag0.al_2> == <more2>)||(<src.tag0.al_3> == <more2>)||(<src.tag0.al_4> == <more2>)
+src.sysmessage @0481 You already know that language.
+else
+
+if (<src.tag0.al_1> == 0)
+src.givealtlang_1 <more2>
+elif (<src.tag0.al_2> == 0)
+IF (<src.int> < 50)
+src.sysmessage @0481 You need 50 Int to learn a third language.
+RETURN 1
+ENDIF
+src.givealtlang_2 <more2>
+elif (<src.tag0.al_3> == 0)
+IF (<src.int> < 65)
+src.sysmessage @0481 You need 65 Int to learn a fourth language.
+RETURN 1
+ENDIF
+src.givealtlang_3 <more2>
+elif (<src.tag0.al_4> == 0)
+IF (<src.int> < 80)
+src.sysmessage @0481 You need 80 Int to learn a fifth language.
+RETURN 1
+ENDIF
+src.givealtlang_4 <more2>
+ELSE
+src.sysmessage @0481 You cannot learn another language.
+endif
+
+ENDIF
+ELSE
+src.sysmessage @0481 You cannot read the text.
+ENDIF
+RETURN 1
+
+[MENU MENU_LANGUAGE]
+Current Language: <def.lang_<lang>>
+
+ON=0 Speak: <def.lang_<eval <tag0.al_1>>>
+IF (<eval <tag0.al_1>> == 0)
+sysmessage @0481 You cannot speak no language.
+RETURN 1
+ENDIF
+local.swlang=<eval <tag0.lang>>
+tag0.lang=<eval <tag0.al_1>>
+tag0.al_1=<eval <local.swlang>>
+sysmessage @0481 You are now speaking the '<def.lang_<lang>>' language.
+
+ON=0 Speak: <def.lang_<eval <tag0.al_2>>>
+IF (<eval <tag0.al_2>> == 0)
+sysmessage @0481 You cannot speak no language.
+RETURN 1
+ENDIF
+local.swlang=<eval <tag0.lang>>
+tag0.lang=<eval <tag0.al_2>>
+tag0.al_2=<eval <local.swlang>>
+sysmessage @0481 You are now speaking the '<def.lang_<lang>>' language.
+
+ON=0 Speak: <def.lang_<eval <tag0.al_3>>>
+IF (<eval <tag0.al_3>> == 0)
+sysmessage @0481 You cannot speak no language.
+RETURN 1
+ENDIF
+local.swlang=<eval <tag0.lang>>
+tag0.lang=<eval <tag0.al_3>>
+tag0.al_3=<eval <local.swlang>>
+sysmessage @0481 You are now speaking the '<def.lang_<lang>>' language.
+
+ON=0 Speak: <def.lang_<eval <tag0.al_4>>>
+IF (<eval <tag0.al_4>> == 0)
+sysmessage @0481 You cannot speak no language.
+RETURN 1
+ENDIF
+local.swlang=<eval <tag0.lang>>
+tag0.lang=<eval <tag0.al_4>>
+tag0.al_4=<eval <local.swlang>>
+sysmessage @0481 You are now speaking the '<def.lang_<lang>>' language.
+
+
+[function talkmode] //Switches languages
+src.menu menu_language
+
+[function lang] //Returns the language # they are using.
+return <eval <tag0.lang>>
+
+[function cantranslate] //Can they translate the(my) language? - al = Alternative Language
+if (<tag0.al_1> == <obj.lang>)||(<tag0.al_2> == <obj.lang>)||(<tag0.al_3> == <obj.lang>)||(<tag0.al_4> == <obj.lang>)
+return 1 //If they can translate a language, it returns 1.
+endif
+return 0
+
+//<><><><><><><><><><><>
+
+[function givelang] //This is how you give a language, either type: '.xgivelang <#>', or add it to a stone with 'src.givelang <#>'.
+if (<eval <args>> > <def.total_langs>)
+serv.log An Invalid language was number. The number must not be greater than <eval <def.total_langs>>!
+sysmessage @0481 You have specified an invalid language. Must < or = to <eval <def.total_langs>>.
+return 0
+else
+tag0.lang=<eval <args>>
+sysmessage @0481 You can speak the '<def.lang_<lang>>' language.
+return 1
+endif
+
+//<><><><><><><><><><><><>
+
+[function givealtlang_1] //This is how you give an alternate language in "slot 1", either type: '.xgivealtlang_1 <#>', or add it to a stone with 'src.givealtlang_1 <#>'.
+if (<eval <args>> > <def.total_langs>)
+serv.log And invalid language number was given. The number must not be greater than <eval <def.total_langs>>!
+sysmessage @0481 The admin has specified an invalid language number. Must be < or = to <eval <def.total_langs>>.
+return 0
+else
+tag0.al_1=<eval <args>>
+sysmessage @0481 You can understand the '<def.lang_<eval <tag0.al_1>>>' language.
+return 1
+endif
+
+[function givealtlang_2] //This is how you give an alternate language in "slot 2", either type: '.xgivealtlang_2 <#>', or add it to a stone with 'src.givealtlang_2 <#>'.
+if (<eval <args>> > <def.total_langs>)
+serv.log And invalid language number was given. The number must not be greater than <eval <def.total_langs>>!
+sysmessage @0481 The admin has specified an invalid language number. Must be < or = to <eval <def.total_langs>>.
+return 0
+else
+tag0.al_2=<eval <args>>
+sysmessage @0481 You can understand the '<def.lang_<eval <tag0.al_2>>>' language.
+return 1
+endif
+
+[function givealtlang_3] //This is how you give an alternate language in "slot 3", either type: '.xgivealtlang_3 <#>', or add it to a stone with 'src.givealtlang_3 <#>'.
+if (<eval <args>> > <def.total_langs>)
+serv.log And invalid language number was given. The number must not be greater than <eval <def.total_langs>>!
+sysmessage @0481 The admin has specified an invalid language number. Must be < or = to <eval <def.total_langs>>.
+return 0
+else
+tag0.al_3=<eval <args>>
+sysmessage @0481 You can understand the '<def.lang_<eval <tag0.al_3>>>' language.
+return 1
+endif
+
+[function givealtlang_4] //This is how you give an alternate language in "slot 4", either type: '.xgivealtlang_4 <#>', or add it to a stone with 'src.givealtlang_4 <#>'.
+if (<eval <args>> > <def.total_langs>)
+serv.log And invalid language number was given. The number must not be greater than <eval <def.total_langs>>!
+sysmessage @0481 The admin has specified an invalid language number. Must be < or = to <eval <def.total_langs>>.
+return 0
+else
+tag0.al_4=<eval <args>>
+sysmessage @0481 You can understand the '<def.lang_<eval <tag0.al_4>>>' language.
+return 1
+endif
+
+
+//<><><><><><><><><><><><>
+
+[function isbadstr] //If this string can cause errors.
+if !(<eval strlen(<args>)>)||(strmatch("*[[]*","<args>"))||(strmatch("*]*","<args>"))||(strmatch("*[(]*","<args>"))||(strmatch("*[*}`>´^$¨<#@_~|=+&/æ{]*","<args>"))
+return 1
+else
+return 0
+endif
+
+[function isplayerstr] //This is what players call for, guards, home home home, etc...
+if (strmatch("*guards","<args>"))||(strmatch("guards*","<args>"))||(strmatch("home home home","<args>"))||(strmatch("i resign from my guild","<args>"))||(strmatch("i resign from my town","<args>"))||(strmatch("i must consider my sins","<args>"))||(strmatch("help guards*","<args>")) 
+return 1
+else
+return 0
+endif
+
+[function ispetstr] //What pets respond to.
+if (strmatch("attack","<args>"))||(strmatch("come","<args>"))||(strmatch("defend me","<args>"))||(strmatch("dismiss","<args>"))||(strmatch("drop","<args>"))||(strmatch("drop all","<args>"))||(strmatch("fetch","<args>")) 
+return 1
+elseif (strmatch("follow","<args>"))||(strmatch("follow me","<args>"))||(strmatch("friend","<args>"))||(strmatch("go","<args>"))||(strmatch("guard","<args>"))||(strmatch("guard me","<args>"))||(strmatch("kill","<args>")) 
+return 1
+elseif (strmatch("release","<args>"))||(strmatch("speak","<args>"))||(strmatch("stay","<args>"))||(strmatch("stay here","<args>"))||(strmatch("stop","<args>"))||(strmatch("transfer","<args>"))
+return 1
+else
+return 0
+endif 
+
+[function ishiredstr] //What hirelings respond to.
+if (strmatch("bought","<args>"))||(strmatch("cash","<args>"))||(strmatch("equip","<args>"))||(strmatch("equip all","<args>"))||(strmatch("get dressed","<args>"))||(strmatch("inventory","<args>"))||(strmatch("price","<args>")) 
+return 1
+elseif (strmatch("unfurl sail","<args>"))||(strmatch("furl sail","<args>"))||(strmatch("turn left","<args>"))||(strmatch("port","<args>"))||(strmatch("turn right","<args>"))||(strmatch("starboard","<args>"))||(strmatch("drift left","<args>")) 
+return 1
+elseif (strmatch("left","<args>"))||(strmatch("drift right","<args>"))||(strmatch("right","<args>"))||(strmatch("back","<args>"))||(strmatch("backward","<args>"))||(strmatch("backwards","<args>"))||(strmatch("foreward","<args>")) 
+return 1
+elseif (strmatch("forward","<args>"))||(strmatch("forward right","<args>"))||(strmatch("forward left","<args>"))||(strmatch("backward right","<args>"))||(strmatch("backward left","<args>"))||(strmatch("raise anchor","<args>"))||(strmatch("drop anchor","<args>"))
+return 1
+elseif (strmatch("up","<args>"))||(strmatch("down","<args>"))||(strmatch("faster","<args>"))||(strmatch("slower","<args>"))||(strmatch("full speed","<args>"))
+return 1
+elseif (strmatch("recieved","<args>"))||(strmatch("samples","<args>"))||(strmatch("status","<args>"))||(strmatch("stock","<args>"))||(strmatch("suit up","<args>"))
+return 1
+elseif (strmatch("bond","<args>"))
+return 1
+else
+return 0
+endif 
+
+//<><><><><><><><><><><><><><><>
+
+
+[eof]
