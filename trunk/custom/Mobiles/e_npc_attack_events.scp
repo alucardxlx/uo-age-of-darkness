@@ -45,6 +45,13 @@ ON=@NPCLookAtChar
      ENDIF
  ENDIF
 
+
+if (<npc> == brain_healer)
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
+endif
+
  IF (<KARMA> > 0) //If my karma is good
    IF (<SRC.KARMA> < -1000) //If my target's karma is bad
      IF !( <TAG0.NPCAI.Ally> & <SRC.TAG0.NPCAI.Race> )
