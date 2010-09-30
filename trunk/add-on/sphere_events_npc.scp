@@ -1,0 +1,102 @@
+[EVENTS e_NpcGenericEvent]
+// Followers (Death)
+on=@death
+forcharmemorytype memory_fight
+color |= <def.memory_harmedby>
+endfor
+if <def.scp.followers> == 1
+	if <src.memoryfindtype.memory_ipet>
+		if !<src.tag0.summonfail>
+		ref7 = <src.memoryfindtype.memory_ipet.link.uid>
+		ref7.curfollower -= <qval <src.tag0.control.slots> ? <src.tag0.control.slots> : 1>
+		endif
+	endif
+endif
+// Death Robe Fix
+if <findlayer.22>
+tag.robe=<findlayer.22.uid>
+	if <findlayer.3>
+	tag.feet=<findlayer.3.uid>
+	endif
+endif
+
+on=@deathcorpse
+if <tag0.robe>
+uid.<tag.robe>.z = 3
+uid.<tag.feet>.z = 8
+tag.robe=
+tag.feet=
+argo.update
+endif
+
+// Followers (Death?)
+on=@destroy
+if <def.scp.followers> == 1
+	if <memoryfindtype.memory_ipet>
+	ref7 = <memoryfindtype.memory_ipet.link.uid>
+	ref7.curfollower -= <qval <tag0.control.slots> ? <tag0.control.slots> : 1>
+	endif
+endif
+
+// Followers (Desert)
+on=@petdesert
+if <def.scp.followers> == 1
+src.curfollower -= <qval <tag0.control.slots> ? <tag0.control.slots> : 1>
+endif
+
+// OSI Spells Bonus + Magic Reflection + Magic Resistance
+// Followers (Summon)
+on=@spelleffect
+tag.spellhit = <argn1>
+if <isdamagespell <argn1>>
+	if <def.scp.Combat_SpellBonus> == 1
+	tag.gothitbyspell = <argn1>
+	endif
+elif <serv.spell.<argn1>.flags>&spellflag_summon
+	if <def.scp.followers> == 1
+	local.slots = <qval <tag0.control.slots> ? <tag0.control.slots>:1>
+		if <eval <src.curfollower>+<local.slots>> > <src.maxfollower>
+		src.sysmessage You have too many followers
+		tag.summonfail = 1
+		hits = 0
+		else
+		src.curfollower += <local.slots>
+		endif
+	endif
+endif
+if <flags>&statf_reflection
+	if <src.uid> != <uid>
+		if (<serv.spell.<argn1>.flags>&spellflag_harm) || <argn> == 41
+		flags &= ~statf_reflection
+		findid.i_rune_magic_reflection.remove
+		effect 3,i_fx_bless_effect,16,16
+			if <src.flags>&statf_reflection
+			src.flags &= ~statf_reflection
+			src.findid.i_rune_magic_reflection.remove
+			src.effect 3,i_fx_bless_effect,16,16
+			else
+			src.spelleffect <argn1>,<argn2>
+			endif
+		return 1
+		endif
+	endif
+endif
+
+// Poisoning System
+on=@hittry
+if <def.scp.NewSkills_Poisoning> == 1
+	if <poisoning> >= <def.scp.Poisoning_MonsterPoisonous>
+	tag.skill.poisoning = <min <eval (<poisoning> + 1) / (<def.scp.Poisoning_MonsterPoisonous> + 1)>,6>
+	endif
+poisoning = 0
+endif
+
+// Poisoning System
+on=@hit
+if <def.scp.NewSkills_Poisoning> == 1
+	if <tag0.skill.poisoning>
+	src.new_poison <max <eval <tag0.skill.poisoning>-2>,0>,<uid>
+	endif
+endif
+
+[eof]

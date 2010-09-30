@@ -1,0 +1,131 @@
+[SPEECH spk_ship_cmds]
+
+ON=Set name *
+// Changes Ship's name, where *=name.
+// NAME=<strmid(<args>,8,64)>
+
+
+ON=Furl sail	// Stop
+ON=Stop			// Stops current ship movement.
+	SHIPSTOP
+
+ON=Turn Left
+ON=Port			// Turn Left
+	SHIPSTOP
+
+ON=Turn Right
+ON=Starboard	// Turn Right
+	SHIPSTOP
+
+ON=Left			// Move ship in desired direction.
+ON=Drift Left
+	SHIPDRIFTLEFT
+
+ON=Right		// Move ship in desired direction.
+ON=Drift Right
+	SHIPDRIFTRIGHT
+
+ON=Back			// Move ship backwards
+ON=Backward		// Move ship backwards
+ON=Backwards	// Move ship backwards
+	SHIPBACK
+
+ON=Forward
+ON=Foreward		// Moves ship forward.
+ON=Unfurl sail	// Moves ship forward.
+	SHIPFORE
+
+ON=Forward left
+	SHIPFORELEFT
+
+ON=forward right
+	SHIPFORERIGHT
+
+ON=backward left
+ON=back left
+	SHIPBACKLEFT
+
+ON=backward right
+ON=back right
+	SHIPBACKRIGHT
+
+ON=Raise Anchor
+	SHIPANCHORRAISE
+
+ON=Drop Anchor
+	SHIPANCHORDROP
+
+ON=Turn around
+ON=Come about
+	SHIPTURN
+
+ON=Up
+	SHIPUP
+
+ON=Down
+	SHIPDOWN
+
+ON=Land
+	SHIPLAND
+
+
+[FUNCTION F_TRANSFER]
+OBJ=<SRC.CTAG.PETUID>
+IF (<ARGO.UID>==<SRC.UID>)
+SRC.SYSMESSAGE You can't transfer to yourself!
+RETURN 1
+ELSE
+	IF (!<ARGO.BRAIN>)
+	  if !(<ISEMPTY <OBJ.tag0.slots_needed>>)
+	    local.slots = (<OBJ.tag0.slots_needed>)
+	  else
+	    local.slots = 1
+	  endif
+	IF ((<ARGO.CURFOLLOWER>+<local.slots>) > <ARGO.MAXFOLLOWER>)
+		ARGO.SYSMESSAGE You have too many followers.
+		SRC.SYSMESSAGE They have too many followers.
+		RETURN 1
+	ENDIF
+    //OBJ.MEMORYFINDTYPE.MEMORY_IPET.link=<ARGO.UID>
+    OBJ.MEMORYFINDTYPE.MEMORY_IPET.REMOVE
+    OBJ.newitem=i_memory
+    OBJ.ACT.COLOR=02
+    OBJ.act.cont=<OBJ>
+    OBJ.act.link=<ARGO.UID>
+    OBJ.act.more2=<ARGO.UID>
+    SRC.SYSMESSAGE You have given <ARGO.NAME> your pet.
+    SRC.CURFOLLOWER -= <local.slots>
+    ARGO.CURFOLLOWER += <local.slots>
+    TRY UID.<ARGO.UID>.SYSMESSAGE <OBJ.NAME> is your new pet.
+    RETURN 1
+    ENDIF
+  SRC.SYSMESSAGE That's not a player
+  RETURN 1
+  ENDIF
+
+[TYPEDEF T_FIGURINE]
+
+ON=@dclick
+	if (<tag0.dead>==1)
+		src.sysmessage <name> is dead and must be resurrected before being revived.
+		RETURN 1
+	endif
+	obj=<more2>
+	if !(<obj.tag0.bond> == 0)
+		if !(<obj.tag0.bond> == <src.uid>)
+			src.sysmessage <obj.name> is bonded to someone else.
+			RETURN 1
+		ENDIF
+	endif
+  if !(<ISEMPTY <serv.chardef(<more1>).tag0.slots_needed>>)
+    local.slots = (<serv.chardef(<more1>).tag0.slots_needed>)
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>)
+	SRC.SYSMESSAGE You have too many followers.
+	RETURN 1
+ENDIF
+SRC.CURFOLLOWER += <local.slots>
+
+[eof]

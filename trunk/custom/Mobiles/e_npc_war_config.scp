@@ -1,0 +1,338 @@
+//*****************************************************************
+
+[DEFNAME Race_Flags]
+racef_britannian  000000001 //Britannian*
+racef_shadowlords  000000002 //Shadowlords*
+racef_minax   000000004 //Minax*
+racef_magincia  000000008 //Magincia*
+racef_chaos  000000010 //Chaos Ophidians*
+racef_order  000000020 //Order Ophidians*
+racef_guardian  000000040 //Guardian*
+racef_tokuno  000000080 //Tokuno?*
+racef_elf  000000100 //Elf Races
+racef_orc  000000200 //Orc Race
+racef_undead  000000400 //Undead creatures and earth elementals
+racef_pirate  000000800 //Pirates and theives guilds
+racef_commoner  000001000 //Neutral humans
+racef_dragon  000002000 //Dragon Races
+racef_demon  000004000 //Demon Races and fire elementals
+racef_goblin  000008000 //Goblin Race
+racef_ant  000010000 //Ant Race
+racef_lizardman  000020000 //Lizardman Race
+racef_ratman  000040000 //Ratman Race
+racef_cyclops  000080000 //Cyclops Race
+racef_minotaur  000100000 //Minotaur Race
+racef_troll  000200000 //Troll Race
+racef_gargoyle   000400000 //Gargoyle Race
+racef_notdefined 000800000 //This race not yet defined
+racef_notdefined 001000000 //This race not yet defined
+racef_notdefined 002000000 //This race not yet defined
+racef_notdefined 004000000 //This race not yet defined
+racef_notdefined 008000000 //This race not yet defined
+racef_goodfaction 010000000 //GOOD FACTION xperimental
+racef_evilfaction 020000000 //EVIL FACTION xperimental
+racef_Juka       040000000 //Juka
+racef_meer       080000000 //Meer
+
+
+[FUNCTION SetGarg]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_gargoyle>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_gargoyle>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+
+[FUNCTION SetOrc]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_orc>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_orc>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_gargoyle>)
+
+[FUNCTION SetUndead]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_undead>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_undead>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_demon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_commoner>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_gargoyle>)
+
+[FUNCTION Setpirate]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_pirate>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_pirate>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_commoner>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_gargoyle>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+
+[FUNCTION SetDragon]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_dragon>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_elf>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_gargoyle>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+
+[FUNCTION SetDemon]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_demon>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_demon>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_undead>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minax>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_cyclops>)
+ RETURN 0
+
+
+[FUNCTION SetGoblin]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_goblin>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_orc>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ RETURN 0
+
+[FUNCTION Setant]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_ant>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=0fffeffff //All races except ant race
+ RETURN 0
+
+[FUNCTION SetLizardman]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_lizardman>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ RETURN 0
+
+[FUNCTION SetRatman]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_ratman>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_demon>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_mAhagincia>)
+ RETURN 0
+
+[FUNCTION SetCyclops]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_cyclops>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
+ RETURN 0
+
+[FUNCTION SetMinotaur]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_minotaur>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_cyclops>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_troll>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_orc>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minax>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_lizardman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ RETURN 0
+
+[FUNCTION SetTroll]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_troll>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_troll>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_orc>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ RETURN 0
+
+[FUNCTION SetElf]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_elf>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_elf>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_dragon>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+
+[FUNCTION Setbritannian]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_britannian>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_order>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minax>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_gargoyle>)
+
+[FUNCTION Setcommoner]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_britannian>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_britannian>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_magincia>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_order>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_elf>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+
+[FUNCTION SetBasics]
+TAG.NPCAI.ONPC=<NPC>
+IF !(<brain> == brain_vendor) && !(<brain> == brain_healer) && !(<brain> == brain_banker)
+	NPC=14  //Setting NPC to 14 keeps them from attacking when not wanted
+endif
+EVENTS +e_npc_wars
+IF (<EVAL npcai_opt_switchfrombow>)
+	IF (<ARCHERY> > 0)
+		 EVENTS +e_npc_weapon_switcher
+	ENDIF
+ENDIF
+IF (<EVAL npcai_opt_npclooting>)
+	EVENTS +e_intel_char_looting
+ ENDIF
+IF (<CAN> & mt_usehands) || !(<EVAL npcai_opt_requiremtusehands>)
+	IF (<EVAL npcai_opt_npcusepotions>)
+		EVENTS +e_npc_intel_potion_user
+	ENDIF
+	//IF (<HEALING> > 0)
+		//EVENTS +e_npc_intel_healing
+	//ENDIF
+ENDIF
+
+[EOF]

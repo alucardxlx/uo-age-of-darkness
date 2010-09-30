@@ -1,0 +1,980 @@
+/////////////////////////////////////////////////////////////////////////////
+//Elemental expansion Pack By Mordaunt
+//Based on the pack created by Mordaunt for L.O.A, minus a few special eles
+//& the resistances (they are secret to the server)
+// "Ore" Elementals
+// 
+//
+//There are 2 files for this script
+//1.chars_ele.scp - The elementals
+//3.chars_eles_loot.scp - loot templates for each ele
+//
+//
+//
+//Just drop the scripts in and your good to go
+//If you want resistances for the Eles, I will tell you how, but I won't give
+//them away, i'd spoil the surprise for players ;)
+/////////////////////////////////////////////////////////////////////////////
+
+
+[chardef 074]
+defname=c_nightmare
+name="nightmare"
+sound=snd_animals_horse1
+icon=i_pet_nightmare_lbr
+dam=10,18
+armor=42
+moverate=0
+resources=25 i_ribs_raw,10 i_hide
+can=mt_walk|mt_run|mt_nonhum
+foodtype=65 t_meat_raw
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_corpse,t_gem,t_coin
+aversions=r_civilization,r_water
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+tag.firedamage=25
+TEVENTS=e_combat_move_intel
+TEVENTS=e_evil_mount
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=23
+
+category=AoD Monsters
+subsection=General
+description=Nightmare
+
+on=@create
+     npc=brain_monster
+
+     str={171 210}
+     dex={76 110}
+     int={86 135}
+
+     anatomy={55.0 95.0}
+     parrying={55.0 95.0}
+     magicresistance={86.0 98.0}
+     tactics={97.6 100.0}
+     wrestling={84.8 98.1}
+     magery={31.1 49.9}
+     evaluatingintel={31.1 49.9}
+
+     taming=97.5
+
+     EXP={ 33500 41900 } //Level 7
+
+     fame={1000 3000}
+     karma={-1000 -3000}
+
+	givelang 8
+	givelang 2
+
+     respoison=40
+     resfire=40
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 20
+     EVENTS=+e_intel_char_magery_user
+
+
+
+[chardef 07a]
+defname=c_unicorn
+name="unicorn"
+sound=snd_animals_unicorn
+icon=i_pet_unicorn_lbr
+can=mt_walk|mt_run|mt_nonhum
+dam=8,16
+armor=40
+moverate=0
+//resources=
+foodtype=65 t_crops, t_fruit, t_grain, i_hay, t_grass
+desires=spk_human_prime,t_crops, t_fruit, t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+ANIM=03FFFFF
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+tag.energydamage=25
+TEVENTS=e_combat_move_intel
+TEVENTS=e_good_mount
+TAG.MANUEVER1=23
+TAG.MANUEVER2=27
+TAG.MANUEVER3=4
+
+category=AoD Monsters
+subsection=General
+description=Unicorn
+
+on=@create
+     npc=brain_animal
+
+     str={166 185}
+     dex={86 105}
+     int={137 165}
+
+     parrying={65.0 75.0}
+     magicresistance={73.3 95.0}
+     tactics={32.5 48.8 }
+     wrestling={79.3 91.0}
+     evaluatingintel={64.2 79.6}
+     magery={75.6 99.5}
+     meditation={59.1 70.0}
+
+     taming=97.5
+
+     EXP={ 33500 41900 } //Level 7
+
+     fame={1000 3000}
+     karma={1000 3000}
+
+	givelang 2
+
+     resenergy=40
+     respoison=40
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 25
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 03a]
+defname=c_wisp
+name="wisp"
+sound=snd_monster_wisp1
+icon=i_pet_wisp
+anim=078c7f
+dam=5,9
+armor=50
+moverate=0
+can=mt_walk|mt_fly|mt_fire_immune|mt_usehands|mt_nonhum|mt_hover
+foodtype=t_spell
+TEVENTS=e_Level_up_NPC
+aversions=r_civilization
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.energydamage=100
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=1
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=General
+description=Wisp
+
+on=@create
+     npc=brain_animal
+     fame=3500
+     karma=0
+     exp={ 18100 22000 }
+
+     str={132 145}
+     dex={136 150}
+     int={180 205}
+
+	givelang 10
+
+     resfire=40
+     rescold=40
+     resenergy=10
+     respoison=80
+
+     parrying=88.0
+     magery=98.0
+     magicresistance=95.0
+     tactics=95.0
+     wrestling=97.0
+     evaluatingintel=79.6
+     meditation=99.0
+
+     EXP={ 260000 320000 } //Level 10
+
+     itemnewbie=i_light_source
+     attr=attr_magic|attr_newbie
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 723]
+defname=c_gremlin
+NAME=gremlin
+SOUND=snd_monster_harpy1
+ICON=i_pet_gibberling
+DAM=3,6
+ARMOR=10
+moverate=9
+CAN=MT_USEHANDS|MT_WALK|MT_RUN
+foodtype=100 t_food,t_fruit
+DESIRES=t_coin,t_food,t_fruit,c_gremlin,t_corpse,t_gem
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TEVENTS=e_food_steal
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=12
+
+category=AoD Monsters
+subsection=Fae
+description=Gremlin
+
+ON=@Create 
+	NPC=brain_monster
+
+	FAME={10 100} 
+	KARMA={-1000 -1099} 
+	//COLOR={04f7 04f8}
+
+	STR={38 59}
+	INT={15 34}
+	DEX={91 115} 
+
+	givelang 2
+
+	STEALTH={40.0 60.0}
+	HIDING={40.0 60.0}
+	MAGICRESISTANCE={40.0 70.0}
+	TACTICS={40.0 60.0}
+	WRESTLING={50.0 70.0}
+
+ON=@NpcRestock
+	ITEM={ Fae_Pouch 1 0 3}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_BOTTLE 1 0 2}
+
+
+[chardef 084]
+defname=c_kirin
+name="ki-rin"
+sound=snd_kirin
+icon=i_pet_kirin_lbr
+can=mt_walk|mt_run|mt_nonhum
+dam=10,18
+armor=50
+moverate=10
+resources=5 i_ribs_raw
+foodtype=65 t_food, t_fruit
+desires=c_man,c_kirin
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+ANIM=01FFF
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+tag.energydamage=25
+TEVENTS=e_combat_move_intel
+TEVENTS=e_good_mount
+TAG.MANUEVER1=27
+TAG.MANUEVER2=23
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=General
+description=Ki-rin
+
+on=@create
+     npc=brain_animal
+	setUndead
+
+     str={126 140}
+     dex={86 105}
+     int={176 205}
+
+     parrying={70.0 80.0}
+     magicresistance={87.3 98.0}
+     tactics={20.1 22.5}
+     wrestling={83.8 91.3}
+     chivalry={72.7 94.0}
+
+     taming=97.5
+
+     EXP={ 33500 41900 } //Level 7
+
+     resenergy=30
+     respoison=30
+
+     fame={1000 3000}
+     karma={1000 3000}
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 30
+     EVENTS=+e_intel_char_chivalry_user
+
+
+[chardef 080]
+defname=c_faerie
+name="faerie"
+sound=snd_monster_pixie1
+icon=i_pet_pixie_lbr
+can=mt_walk|mt_fly|mt_hover
+dam=2,8
+armor=30
+moverate=5
+resources=10 i_feather, 5 i_ribs_raw
+foodtype=10 t_fruit
+ANIM=078C7F
+desires=c_pixie,t_wand,t_corpse,t_gem,t_coin
+aversions=t_trap,t_eerie_stuff
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+tag.energydamage=25
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=29
+TAG.MANUEVER3=1
+
+category=AoD Monsters
+subsection=Fae
+description=Faerie
+
+on=@create
+     name="#names_pixie"
+     npc=brain_monster
+
+     str={26 35}
+     dex={102 112}
+     int={101 151}
+
+     parrying={10.0 20.0}
+     magicresistance=100.0
+     tactics={10.1 20.0}
+     wrestling={14.5 17.8}
+     evaluatingintel={80.1 89.8}
+     magery={81.5 90.0}
+     meditation={80.2 90.0}
+
+
+	givelang 2
+
+     resfire=32
+     rescold=32
+     resenergy=32
+
+     fame={500 1000}
+     karma={1000 2000}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 30
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+	ITEM={ Fae_Pouch 2 Fae_bag 1 0 1 }
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_BOTTLE 1 0 2}
+	ITEM={ random_reagent 1 random_jewel 1 0 1},{1 4}
+
+[chardef 0a5]
+defname=c_wisp_shadow
+name="shadow wisp"
+sound=snd_monster_wisp1
+icon=i_pet_wisp
+anim=078c7f
+dam=10,14
+armor=20
+moverate=3
+can=mt_walk|mt_fly|mt_fire_immune|mt_usehands|mt_nonhum|mt_hover
+foodtype=t_spell
+resources=t_magic
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Heavy
+tag.poisondamage=100
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=1
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=General
+description=shadow wisp
+
+on=@create
+     npc=brain_monster
+     fame={0 100}
+     karma=0
+
+     str={26 40}
+     dex={36 45}
+     int={16 35}
+
+     resfire=40
+     rescold=40
+     resenergy=10
+     respoison=80
+
+     parrying=90.0
+     magery=51.8
+     magicresistance=10.0
+     tactics=14.7
+     wrestling=41.8
+
+
+     itemnewbie=i_light_source
+     attr=attr_magic|attr_newbie
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 065]
+defname=c_centaur
+name="centaur"
+sound=snd_monster_centaur
+icon=i_pet_centaur_lbr
+can=mt_walk|mt_run
+dam=9,14
+armor=20
+moverate=5
+ANIM=078C7F
+resources=8 i_ribs_raw
+foodtype=75 t_fruit, t_food, t_booze
+desires=c_centaur,t_wand,t_corpse,t_gem,t_coin
+shelter=r_forests,r_mountains
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=4
+TAG.MANUEVER2=3
+TAG.MANUEVER3=5
+
+category=AoD Monsters
+subsection=Fae
+description=Centaur
+
+on=@create
+     npc=brain_monster
+
+     str={161 182}
+     dex={112 139}
+     int={51 74}
+
+	givelang 2
+
+	exp={ 3600 6900 }
+
+     parrying={80.0 90.0}
+     magicresistance={56.5 73.5}
+     tactics={80.2 90.0}
+     wrestling={95.5 99.8}
+     anatomy={95.2 100.0}
+
+     EXP={ 2050 2950 } //Level 3
+
+     fame={1600 2699}
+     karma={100 1300}
+
+ON=@NpcRestock
+	ITEM={ Fae_backpack 1 Supply_backpack 1 Fae_bag 1 0 1 }
+
+[chardef 257] 
+defname=c_bleak_unicorn
+name=bleak unicorn
+//SOUND=snd_monster_daemon1
+ICON=i_pet_dark_unicorn
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+dam=8,18
+armor=60
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+tag.energydamage=50
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=23
+TAG.MANUEVER2=2
+TAG.MANUEVER3=1
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Bleak Unicorn
+
+ON=@Create 
+	NPC=brain_monster
+
+	FAME={5100 7000} 
+	KARMA={-5000 -6999} 
+
+     str={196 210}
+     dex={76 105}
+     int={127 155}
+
+	givelang 2
+
+     resfire=40
+     resenergy=40
+     rescold=40
+     respoison=40
+
+
+	EXP={ 65000 81000 } //Level 8
+
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={70.0 90.0}
+	MAGERY={80.0 95.0}
+	TACTICS={70.0 95.0}
+	WRESTLING={70.0 95.0}
+	evaluatingintel={90.1 99.8}
+	meditation={90.2 100.0}
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 35
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+	ITEM={ Fae_Chest 2 Fae_Chest_metal 1 Magic_backpack 3 }
+	ITEM={ random_reagent 1 random_jewel 1 0 1},{1 4}
+
+[chardef 258] 
+defname=c_dark_dryad
+name=dark dryad
+//SOUND=snd_monster_daemon1
+ICON=i_pet_dark_dryad
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=9,15
+ARMOR=20
+RESOURCES=6 i_reag_dead_wood
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=29
+TAG.MANUEVER2=27
+TAG.MANUEVER3=17
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Dark Dryad
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={100 3000} 
+	KARMA={-5000 -6999} 
+
+	STR={70 90}
+	INT={100 200} 
+	DEX={100 150} 
+
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	MAGERY={60.0 100.0}
+	TACTICS={60.0 90.0}
+	WRESTLING={60.0 90.0}
+	evaluatingintel={90.1 99.8}
+	meditation={90.2 100.0}
+
+	EXP={ 16500 20500 } //Level 6
+
+     rescold=32
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+	ITEM={ Fae_Chest 1 Fae_Backpack 1 Fae_bag 2 0 1}
+	ITEM={ random_reagent 1 random_jewel 1 0 1},{1 4}
+
+
+[chardef 261] 
+defname=c_Shimmering_Effusion
+name=Shimmering Effusion
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=6,11
+ARMOR=48
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=1
+TAG.MANUEVER3=11
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.energydamage=100
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Shimmering Effusion
+
+ON=@Create 
+	NPC=brain_monster
+
+	FAME={4100 5000} 
+	KARMA={-5000 -6999} 
+
+	STR={120 145}
+	INT={180 200} 
+	DEX={140 170} 
+
+	PARRYING=98.0
+	MAGICRESISTANCE=100.0
+	MAGERY=99.0
+	TACTICS=96.0
+	WRESTLING=97.0
+	evaluatingintel=99.0
+	meditation=98.0
+	anatomy=98.0
+
+	EXP={ 520000 640000 } //Level 11
+
+     resfire=40
+     rescold=40
+     resenergy=10
+     respoison=80
+
+     TAG.RANDCAST=45
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 264] 
+defname=c_Sprite
+name=Sprite
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=2,7
+ARMOR=55
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_USEHANDS|MT_EQUIP|MT_FLY|mt_hover
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Quick
+tag.energydamage=100
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=5
+TAG.MANUEVER2=11
+TAG.MANUEVER3=1
+
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Changeling
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={100 3000} 
+	KARMA={-5000 -6999} 
+
+	STR={50 79}
+	INT={120 119} 
+	DEX={150 179} 
+
+	PARRYING={60.0 75.0}
+	MAGICRESISTANCE={50.0 70.0}
+	MUSICIANSHIP={65.0 75.0}
+	ENTICEMENT={65.0 75.0}
+	PROVOCATION={65.0 75.0}
+	PEACEMAKING={65.0 75.0}
+	TACTICS={60.0 70.0}
+	WRESTLING={60.0 70.0}
+
+
+     resfire=48
+     rescold=48
+     resenergy=48
+
+	EXP={ 2050 2950 } //Level 3
+
+ON=@NpcRestock
+	ITEM={ Fae_Pouch 1 0 1 }
+	ITEM=random_jewel,{1 4}
+	ITEM=i_copper_coin,{80 130}
+
+
+[chardef 266] 
+defname=c_Dryad
+name=Dryad
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=9,16
+ARMOR=20
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=29
+TAG.MANUEVER2=27
+TAG.MANUEVER3=17
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Dryad
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={2100 3000} 
+	KARMA={4000 5999} 
+
+	STR={90 115}
+	INT={145 165} 
+	DEX={115 130} 
+
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	MAGERY={60.0 75.0}
+	TACTICS={60.0 90.0}
+	WRESTLING={60.0 90.0}
+
+	EXP={ 4050 5500 } //Level 4
+
+     rescold=32
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+	ITEM={ Fae_Chest 1 Fae_Backpack 1 Fae_bag 2 0 1}
+	ITEM={ random_reagent 1 random_jewel 1 0 1},{1 4}
+
+[chardef 271] 
+defname=c_Satyr
+name=Satyr
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=9,13
+ARMOR=18
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+tag.slots_needed=4
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Satyr
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={2100 3600} 
+	KARMA={1100 1600} 
+
+	STR={79 119}
+	INT={55 79} 
+	DEX={180 210} 
+
+	EXP={ 4050 5500 } //Level 4
+
+     respoison=16
+
+	ANATOMY={50.0 70.0}
+	MAGICRESISTANCE={50.0 70.0}
+	MUSICIANSHIP={75.0 85.0}
+	ENTICEMENT={75.0 85.0}
+	PROVOCATION={75.0 85.0}
+	PEACEMAKING={75.0 85.0}
+	TACTICS={66.0 80.0}
+	WRESTLING={66.0 80.0}
+
+ON=@NpcRestock
+	ITEM={ Fae_backpack 1 Supply_backpack 1 Fae_pouch 1 Fae_bag 1 }
+	ITEM={ random_reagent 1 random_jewel 1 0 1},{1 4}
+	ITEM=random_instrument
+
+
+[chardef 273] 
+defname=c_Fetid_Essence
+name=Fetid Essence
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=10,16
+ARMOR=40
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK
+category=AoD Monsters
+subsection=Fae
+DESCRIPTION=Fetid Essence
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=8
+TAG.MANUEVER2=1
+TAG.MANUEVER3=27
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+
+ON=@Create 
+	NPC=brain_monster
+
+	FAME={4100 5000} 
+	KARMA={-5000 -6999} 
+
+	STR={140 155}
+	INT={150 170} 
+	DEX={160 190} 
+
+	PARRYING=98.0
+	MAGICRESISTANCE=100.0
+	MAGERY=99.0
+	TACTICS=96.0
+	WRESTLING=97.0
+	evaluatingintel=99.0
+	poisoning=98.0
+	anatomy=98.0
+
+	EXP={ 520000 640000 } //Level 11
+
+     resfire=20
+     rescold=40
+     resenergy=10
+     respoison=100
+
+     TAG.RANDCAST=45
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+
+[chardef 277]  
+name=cu sidhe
+defname=c_cu_sidhe
+ICON=i_pet_cu_sidhe
+DAM=9,13
+ARMOR=21
+RESOURCES=5 i_ribs_raw, 4 i_fur_light
+CAN=MT_WALK|MT_RUN|mt_nonhum
+moverate=10
+FOODTYPE=55 t_meat_raw
+DESIRES=c_elf_male,c_elf_female 
+tevents=e_carnivores3
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=44
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=2
+TAG.MANUEVER2=29
+TAG.MANUEVER3=6
+
+category=AoD Monsters
+subsection=Fae
+description=Cu Sidhe
+
+on=@create
+	NPC=brain_animal
+
+	STR={135 146}
+	INT={36 45}
+	DEX={71 85}
+
+	MagicResistance={79.0 89.0}
+	wrestling={85.0 93.0}
+	tactics={89.0 95.0}
+	anatomy={49.0 67.0}
+
+     taming=90.5
+
+
+[CHARDEF 718]
+DEFNAME=c_dragon_faerie
+NAME=faerie dragon
+DAM=4,9
+ARMOR=20
+CAN=mt_walk|mt_run|mt_nonhum|mt_fly|mt_hover
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+tag.wrestlingspeed=48
+TEVENTS=e_combat_move_intel
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=44
+TAG.MANUEVER1=29
+TAG.MANUEVER2=27
+TAG.MANUEVER3=13
+
+category=AoD Monsters
+subsection=Fae
+description=Faerie Dragon
+
+
+ON=@CREATE
+	NPC=brain_dragon
+
+	FAME={1450 2450}
+	KARMA={2000 3000}
+
+	STR={68 82}
+	DEX={118 133}
+	INT={83 106}
+
+	WRESTLING={55.0 75.0}
+	TACTICS={40.0 60.0}
+	MAGICRESISTANCE={50.0 75.0}
+	HIDING={50.0 75.0}
+	STEALTH={50.0 75.0}
+	MAGERY={50.0 75.0}
+
+	resfire=12
+	rescold=12
+	respoison=25
+	resenergy=12
+
+	taming=86.3
+	EXP={ 2050 2950 } //Level 3
+
+     TAG.RANDCAST=45
+     TAG.QUICKCAST = 20
+     EVENTS=+e_intel_char_magery_user
+
+[EOF]

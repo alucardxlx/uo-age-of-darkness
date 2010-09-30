@@ -1,0 +1,156 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2006
+//www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+//
+// COPYRIGHT NOTICE: All files and content are copyright 1997-1999 Menasoft & Partners. All
+// donations and contributions become the property of Menasoft.
+
+// Purpose: Britannia Actor Script
+// Notes:  This is used for general information pertaining to all Britannian Actor's
+// Current Keyword List:
+//	job, ac*tor, what*do*do, ac-tore, stage, perform, Noble, Lord British,
+//	art, theatre, theater, costume, clothe, sissy, wuss, priss,  real job
+//
+[SPEECH jobActor]
+ON=Hi*
+ON=Greet*
+ON=Hello*
+ON=Hail*
+	IF ( <SRC.KARMA> >= 0 )
+		L Ah! Hello, <SRC.NAME>!  Dost thou require my autograph?
+	ELIF ( <SRC.KARMA> >= -1000 )
+		L Good day fellow! Dost thou require my autograph?
+	ELSE
+		L Please just leave me be! I've done you no harm.
+	ENDIF
+
+ON=*job*
+ON=*work*
+ON=*what*do*do*
+ON=*profession*
+ON=*occupation*
+ON=*ac*tor*
+ON=*ac-tore*
+	DORAND 4
+		L I am an Ac-tore!
+		L I have performed, to the best of my humble abilities, for Lord British and other Nobles of this fine land.
+		L The stage, my ignoble friend, is my - as thou dost L - job.
+		L I, <SRC.SEX milord/milady> am no mere actor. I am an ... ac-tore!
+	ENDDO
+ON=*stage*
+ON=*perform*
+	DORAND 3
+		L To paraphrase: All our land is a stage, acted upon by men and women who shall, in their lives, play many parts. I just happen to be one of the best of them.
+		L To live is to act. And the world is our stage. And thou art the janitor, my friend.
+		L The stage is that which I yearn for.
+	ENDDO
+ON=*Noble*
+ON=*Lord British*
+ON=* art*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			L The nobility of this land supports the fine arts. They seem to appreciate our humble efforts.
+			L Lord British is well-known as one of the greatest supporters of the arts.
+			L The arts prospers in Britannia, thanks to the generosity of Lord British and the great nobles of this land.
+		ENDDO
+	ELSE
+		DORAND 3
+			L The nobility of this land are our main supporters, I'm told.
+			L Lord British enjoys the theater.  He has been known to help support many performers.
+			L We don't tend to go hungry in Britannia, thanks to Lord British and some of the nobles of this land.
+		ENDDO
+	ENDIF
+ON=*theatre*
+ON=*theater*
+	DORAND 2
+		L The theatre IS my life!
+		L Ah! That grande analogy of life! The theatre!
+	ENDDO
+ON=*costume*
+	DORAND 3
+		L What thou dost wear ... is not that thy costume? So is all that I doth put on, mine.
+		L I doth wear clothes, <SRC.SEX milord/milady>. Even that which I wear on the stage, is but clothing.
+		L Clothes do make the man, do they not?
+	ENDDO
+ON=*clothe*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 2
+			L Buy thy clothes from a tailor, <SRC.SEX milord/milady>.
+			L A tailor can supply thee with clothes.
+		ENDDO
+	ELIF ( <COMPLEXITY.MEDIUM> )
+		DORAND 2
+			L A good tailor can sell thee clothes.
+			L If thou art needing clothes, look to a tailor.
+		ENDDO
+	ELSE
+		DORAND 2
+			L A tailor will sell thee clothes.
+			L Find a tailor and thou'lt find clothes.
+		ENDDO
+	ENDIF
+ON=*sissy*
+ON=*wuss*
+ON=*priss*
+ON=*real job*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			L I shall brook no discourtesy from the likes of a bottom-dweller like thyself!
+			L Art thou mocking me? Well thy ignorant words fall on deaf ears.
+			L Thou art not of the intelligence to understand what it is that we suffer so diligently to accomplish, <SRC.SEX milord/milady>. Compassion is not a virtue of thine!
+		ENDDO
+	ELSE
+		DORAND 3
+			L I shall brook no discourtesy from the likes of a bottom-dweller like thyself!
+			L Art thou mocking me?
+			L Thou art not of the intelligence to understand what it is that we suffer so diligently to accomplish, <SRC.SEX milord/milady>. Compassion is not a virtue of thine!
+		ENDDO
+	ENDIF
+
+ON=Job
+ON=What do you do
+	L Thou must ask? I am an Actor!    *applause*    Thank you!
+
+ON=Bye
+ON=Goodbye
+ON=Farewell
+	L Fare thee well.
+	BYE
+	return 1
+
+ON=ACTOR
+ON=ACTORE
+	L Thou hast need of a thespian?
+
+ON=ART
+	L I cause the joyful to be melancholy and the woeful to be merry.
+
+ON=CLOTHE
+ON=COSTUME
+	L 'Tis merely the raiment of the thespian.
+ON=NOBLE
+	L Yes, I am quite noble -- that is no act, friend! My thanks to thee.  ON=PERFORM
+	L If thou wouldst see me perform then come to the theater this eve.
+ON=PRISS
+	L I do not PRISS. I move with grace and style.
+ON=REAL
+	L Who among us can L what is real.
+ON=SISSY
+	L Excuse me but I will not banter words with a fool.
+ON=STAGE
+	L Ah!  My playground! Thou shouldst attend the theatre!
+ON=THEATER
+ON=THEATRE
+	L Pick a theater, any theater!  I will perform for thee!
+ON=WUSS
+	L  Excuse me but I will not banter words with a fool.
+	//RANDOM= Hear ye! Hear ye! Thou art invited to view the spectacle  of life and death at the grand theater.
+
+[EOF]

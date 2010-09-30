@@ -1,0 +1,366 @@
+[chardef 030f]
+defname=c_red_solen_queen
+name="red solen queen"
+sound=snd_monster_insect_race
+icon=i_pet_solen_queen_lbr
+can=mt_walk|mt_usehands|mt_run
+dam=12,16
+armor=36
+moverate=10
+resdispid=c_m_terathan_avenger
+reslevel=
+resdisphue=
+resources=15 i_ribs_raw
+foodtype=100 t_meat_raw,t_food,t_fruit
+desires=c_red_solen_warrior,c_red_solen_worker,c_red_solen_queen,t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=23
+TAG.MANUEVER2=4
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Solen
+description=Red solen queen
+
+on=@create
+     npc=brain_monster
+
+
+     str={227 249}
+     dex={142 165}
+     int={96 124}
+     TAG.NPCAI.Rank=5
+     SetAnt
+
+
+     resenergy=18
+     respoison=12
+     resfire=12
+     tag.poisondamage=50
+
+	exp={ 7600 12900 }
+
+     parrying={90.0 100.0}
+     magicresistance={ 90.0 95.0 }
+     tactics={ 90.0 95.0 }
+     wrestling={ 90.0 95.0 }
+
+     karma={-3000 -3999}
+     fame={5375 5600}
+
+ON=@NpcRestock
+     item={ wooden_treasure_chest 1 treasure_crate_large 1 }
+     item=random_food,{2 8}
+
+
+[chardef 030e]
+defname=c_red_solen_warrior
+name="red solen warrior"
+sound=snd_monster_insect_race
+icon=i_pet_solen_warrior_lbr
+can=mt_walk|mt_usehands|mt_run
+dam=9,14
+armor=18
+moverate=10
+resdispid=c_m_terathan_avenger
+reslevel=
+resdisphue=
+resources=15 i_ribs_raw
+foodtype=60 t_meat_raw,t_food,t_fruit
+desires=c_red_solen_warrior,c_red_solen_worker,c_red_solen_queen,t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=23
+TAG.MANUEVER2=4
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Solen
+description=Red solen warrior
+
+on=@create
+     npc=brain_monster
+
+     str={197 220}
+     dex={103 123}
+     int={36 50}
+     TAG.NPCAI.Rank=3
+     SetAnt
+
+     resenergy=12
+     respoison=6
+     resfire=6
+     tag.poisondamage=25
+
+	exp={ 5900 7600 }
+
+     parrying={70.0 80.0}
+     magicresistance={63.8 64.0}
+     tactics={75.0 85.0}
+     wrestling={77.0 87.0}
+
+     karma={-3000 -3999}
+     fame={2250 2500}
+
+ON=@NpcRestock
+     item=random_food,{1 4}
+
+[chardef 030d]
+defname=c_red_solen_worker
+name="red solen worker"
+sound=snd_monster_insect_race
+icon=i_pet_solen_warrior2_lbr
+can=mt_walk|mt_usehands|mt_run
+dam=8,12
+armor=13
+moverate=10
+resdispid=c_m_terathan_avenger
+reslevel=
+resdisphue=
+resources=15 i_ribs_raw
+foodtype=50 t_meat_raw,t_food,t_fruit
+desires=c_red_solen_warrior,c_red_solen_worker,c_red_solen_queen,t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=23
+TAG.MANUEVER2=4
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Solen
+description=Red solen worker
+
+on=@create
+     npc=brain_monster
+
+     str={96 120}
+     dex={84 103}
+     int={27 35}
+     TAG.NPCAI.Rank=1
+     SetAnt
+
+     resenergy=12
+     respoison=6
+     resfire=6
+     tag.poisondamage=25
+
+     parrying={70.0 80.0}
+     magicresistance={63.8 64.0}
+     tactics={63.8 67.0}
+     wrestling={63.8 64.0}
+
+     karma={-3000 -3999}
+     fame={1250 1350}
+
+ON=@NpcRestock
+     item={ smith_crate 1 treasure_crate_small 1 Armory_crate_small 1 Supply_Keg 2 Provision_Keg 2 Veggie_Basket 2 food_basket 1 }
+
+
+
+[chardef 098]
+defname=c_arachnian_avenger
+name="arachnian avenger"
+sound=snd_monster_tera_warrior1
+icon=i_pet_terethan_avenger_lbr
+dam=10,30
+armor=50
+moverate=3
+ANIM=078C7F
+resources=10 i_ribs_raw
+can=mt_walk
+foodtype=15 t_meat_raw
+aversions=r_civilization
+
+category=monsters
+subsection=terathans
+description=terathan avenger - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={501 585}
+     dex={79 95}
+     int={126 147}
+     maxhits={501 585}
+     maxstam={79 95}
+     maxmana={48 60}
+
+     parrying={75.0 85.0}
+     magery={81.9 97.3}
+     magicresistance={67.4 79.8}
+     tactics={90.1 99.1}
+     wrestling={93.5 99.3}
+     poisoning={60.7 79.2}
+
+     peacemaking=59.1	
+
+     fame={100 2000}
+     karma={-5000 -5999}
+
+     itemnewbie=i_spellbook
+     addspell=s_clumsy
+     addspell=s_feeblemind
+     addspell=s_magic_arrow
+     addspell=s_weaken
+     addspell=s_harm
+     addspell=s_fireball
+     addspell=s_poison
+     addspell=s_curse
+     addspell=s_fire_field
+     addspell=s_lightning
+
+on=@death
+     newloot=loot_terathan_avenger
+
+[chardef 047]
+defname=c_arachnian_drone
+name="arachnian drone"
+sound=snd_monster_tera_drone1
+icon=i_pet_terathan_drone
+anim=078c7f
+dam=4,14
+armor=24
+moverate=3
+resources=20 i_ribs_raw
+can=mt_walk
+foodtype=15 t_meat_raw
+aversions=r_civilization
+desires=e_terathan,t_wand,t_corpse,t_gem,i_gold
+tevents=e_terathan
+
+category=monsters
+subsection=terathans
+description=terathan drone
+
+on=@create
+     npc=brain_monster
+
+     str={37 64}
+     dex={96 145}
+     int={21 44}
+     maxhits={37 64}
+     maxstam={96 145}
+     maxmana=0
+
+     parrying={30.0 40.0}
+     magicresistance={30.6 43.7}
+     tactics={31.7 49.6}
+     wrestling={44.5 53.0}
+
+     peacemaking=47.5
+
+     fame={100 2000}
+     karma={-2000 -2999}
+
+on=@death
+     newloot=loot_terathan_drone
+
+[chardef 048]
+defname=c_arachnian_matriarch
+name="arachnian matriarch"
+sound=snd_monster_tera_matriarch1
+icon=i_pet_terathan_queen
+anim=07fc7f
+dam=5,20
+armor=50
+moverate=3
+can=mt_walk|mt_usehands
+aversions=r_civilization
+desires=e_terathan,t_wand,t_corpse,t_gem,i_gold
+tevents=e_terathan
+reslevel=2
+
+category=monsters
+subsection=terathans
+description=terathan matriarch
+
+on=@create
+     npc=brain_monster
+
+     str={317 399}
+     dex={98 115}
+     int={366 454}
+     maxhits={317 399}
+     maxstam={98 115}
+     maxmana={366 454}
+
+     parrying={55.0 65.0}
+     magery={91.5 99.7}
+     magicresistance={92.1 98.3}
+     tactics={51.1 69.1}
+     wrestling={69.8 80.2}
+     meditation={5.5 29.7}
+
+     peacemaing=47.5
+
+     fame={100 2000}
+     karma={-4000 -4999}
+
+     itemnewbie=i_spellbook
+     addspell=s_clumsy
+     addspell=s_feeblemind
+     addspell=s_magic_arrow
+     addspell=s_weaken
+     addspell=s_harm
+     addspell=s_fireball
+     addspell=s_poison
+     addspell=s_curse
+     addspell=s_fire_field
+     addspell=s_lightning
+
+on=@death
+     newloot=loot_terathan_matriarch
+
+[chardef 046]
+defname=c_arachnian_warrior
+name="arachnian warrior"
+sound=snd_monster_tera_warrior1
+icon=i_pet_terathan_war
+anim=078c7f
+can=mt_walk|mt_usehands
+dam=4,20
+armor=30
+moverate=3
+resources=20 i_ribs_raw
+foodtype=15 t_meat_raw
+aversions=r_civilization
+desires=e_terathan,t_wand,t_corpse,t_gem,i_gold
+tevents=e_terathan
+
+category=monsters
+subsection=terathans
+description=terathan warrior
+
+on=@create
+     npc=brain_monster
+
+     str={167 205}
+     dex={98 141}
+     int={45 64}
+     maxhits={167 205}
+     maxstam={98 141}
+     maxmana=0
+
+     parrying={70.0 80.0}
+     magicresistance={60.2 74.9}
+     tactics={80.7 96.3}
+     wrestling={82.2 90.7}
+     poisoning={60.0 80.0}
+
+     peacemaking=24.1
+
+     fame={100 2000}
+     karma={-3000 -4999}
+
+
+[eof]
