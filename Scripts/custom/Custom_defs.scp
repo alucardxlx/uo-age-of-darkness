@@ -1,0 +1,222 @@
+//****************************************************************************
+// SPHERE by : Menasoft ?997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Wednesday, July 24, 2002
+//
+VERSION=0.99o
+
+[defname elf_stuff]
+random_elf_male_hair    { i_hair_elven_mullet 1 i_hair_elven_spike 1 i_hair_elven_braid 1 i_hair_elven_long2 1 i_hair_LF 1 i_hair_short1 1}
+random_elf_female_hair  { i_hair_elven_ML 1 i_hair_LF 1 i_hair_elven_flower 1 i_hair_elven_long2 1 i_hair_elven_long3 1 i_hair_elven_braid 1 i_hair_elven_long4 1 }
+//start on row 6
+colors_elf { {024d 024f} 1 051d 1 04de 1 076c 1 0835 1 0430 1 0bf 1 04a7 1 0361 1 0375 1 0367 1 03e8 1 03de 1 0353 1 0903 1 076d 1 0384 1 0579 1 03e9 1 0374 1 }
+//start on row 5
+colors_elf_hair { 0211 1 0128 1 034 3 039 1 101 1 06b8 1 0207 1 026c 1 02c3 1 02c9 1 01e4 1 0239 1 0369 1 059d 1 0583 1 092 1 0159 1 }
+
+[DEFNAME ITEMS_HAIR]
+RANDOM_FEMALE_HAIR      { i_hair_short 1 i_hair_long 1 i_hair_ponytail 1 i_hair_pageboy 1 i_hair_buns 1 i_hair_afro 1 i_hair_receding 1 i_hair_2_pigtails 1 i_hair_krisna 1 }
+RANDOM_MALE_HAIR        { i_hair_short 1 i_hair_long 1 i_hair_ponytail 1 i_hair_mohawk 1 i_hair_pageboy 1 i_hair_afro 1 i_hair_receding 1 i_hair_2_pigtails 1 i_hair_krisna 1 }
+RANDOM_FACIAL_HAIR      { i_beard_long 1 i_beard_short 1 i_beard_goatee 1 i_beard_mustache 1 i_beard_short_med 1 i_beard_long_med 1 i_beard_vandyke 1 }
+
+[DEFNAME ITEMS_CLOTHING]
+RANDOM_HATS             { i_floppy_hat 1 i_wide_brim_hat 1 i_cap 1 i_tall_straw_hat 1 i_straw_hat 1 i_wizards_hat 1 i_bonnet 1 i_feathered_hat 1 i_bandana 1 i_skull_cap 1 }
+RANDOM_OVER_ARMOR       { i_tunic 1 i_doublet 1 i_sash 1 }
+RANDOM_FEMALE_TOPS      { i_shirt_plain 1 i_shirt_fancy 1 i_doublet 1 i_tunic 1 i_dress_full 1 i_dress_plain 1 i_robe 1 }
+RANDOM_FEMALE_PANTS     { i_pants_short 1 i_pants_long 1 i_kilt 1 i_skirt_long 1 i_dress_full 1 i_dress_plain 1 }
+RANDOM_MASKS            { i_helm_orc 1 i_mask_bear 1 i_mask_deer 1 i_mask_orc 1 i_mask_tribal_red 1 i_mask_blue 1 }
+RANDOM_BOOTS            { i_boots_thigh 1 i_boots_calf 1 }
+RANDOM_MALE_PANTS       { i_pants_short 1 i_pants_long 1 i_kilt 1 }
+RANDOM_MALE_TOPS        { i_shirt_plain 1 i_pants_long 1 i_doublet 1 i_tunic 1 i_robe 1 }
+RANDOM_SHOES            { i_shoes_plain 1 i_sandals 1 i_boots_calf 1 }
+RANDOM_FOOTWEAR         { i_boots_thigh 1 i_boots_calf 1 i_shoes_plain 1 i_sandals 1 }
+RANDOM_PANTS            { i_pants_short 1 i_pants_long 1 }
+RANDOM_SKIRT            { i_skirt_long 1 i_kilt 1 i_skirt_short 1 }
+
+
+[DEFNAME ITEMS_ARMOR]
+RANDOM_LEG_ARMOR        { i_studded_leggings 1 i_platemail_leggings 1 i_chainmail_leggings 1 i_leather_leggings 1 i_ringmail_leggings 1 i_hide_pants 1 i_bone_leggings 1 }
+RANDOM_ARM_ARMOR        { i_studded_sleeves 1 i_platemail_arms 1 i_leather_sleeves 1 i_ringmail_sleeves 1 i_hide_paldrons 1 i_bone_arms 1 }
+RANDOM_GLOVES           { i_studded_gloves 1 i_platemail_gloves 1 i_leather_gloves 1 i_ringmail_gloves 1 i_hide_gloves 1  i_bone_gloves 1 }
+RANDOM_SHIELD           { i_shield_round_bronze 1 i_shield_buckler 1 i_shield_kite_metal 1 i_shield_heater 1 i_shield_kite_wood 1 i_shield_wood 1 i_shield_round_metal 1 }
+RANDOM_HEAD_ARMOR       { i_chainmail_coif 1 i_helm_closed 1 i_helm_open 1 i_helm_nose 1 i_bascinet 1 i_platemail_helm 1 i_bone_helm 1 }
+RANDOM_HELMET           { i_helm_closed 1 i_helm_open 1 i_bascinet 1 i_helm_nose 1 i_platemail_helm 1 i_bone_helm 1 }
+RANDOM_CHEST_ARMOR      { i_studded_tunic 1 i_platemail_chest 1 i_bone_chest 1 i_chainmail_tunic 1 i_leather_tunic 1 i_ringmail_tunic 1 i_hide_tunic 1 i_hide_tunic_female 1 }
+RANDOM_GORGET           { i_studded_gorget 1 i_platemail_gorget 1 i_leather_gorget 1 i_studded_gorget 1 i_hide_gorget 1 }
+RANDOM_ARMOR		{ RANDOM_GLOVES 1 RANDOM_HELMET 1 RANDOM_GORGET 1 RANDOM_SHIELD 1 RANDOM_ARM_ARMOR 1 RANDOM_LEG_ARMOR 1 RANDOM_CHEST_ARMOR 1 }
+
+[DEFNAME ITEMS_WEAPONS]
+RANDOM_AXE              { i_axe_exec 1 i_axe_battle 2 i_hatchet 3 i_axe 3 i_axe_double 1 i_axe_two_hand 2 }
+RANDOM_POLE_ARM         { i_bardiche 1 i_halberd 2 i_scythe 1 }
+RANDOM_MACE             { i_club 3 i_mace_war 2 i_mace 3 i_maul 2 i_hammer_war 2 i_hammer_smith 1 i_scepter 1 }
+RANDOM_BLUNTAXE         { i_axe_war 1 i_hammer_pick 1 }
+RANDOM_SWORD            { i_cutlass 2 i_sword_broad 2 i_sword_long 2 i_sword_long_b 1 i_scimitar 1 i_sword_paladin 1 }
+RANDOM_STAFF            { i_staff_gnarled 2 i_staff_quarter 3 i_staff_black 1 i_shepherds_crook 1}
+RANDOM_KNIFE            { i_cleaver_meat 1 i_knife_skinning 2 i_knife_butcher 2 i_bone_harvester 1 }
+RANDOM_MISSILE          { i_bow 3 i_bow_composite 1 i_crossbow 2 i_crossbow_heavy 1 }
+RANDOM_FENCE            { i_dagger 2 i_kryss 1 i_sword_assassin_spike 1 }
+RANDOM_SPEAR            { i_spear 3 i_spear_short 3 i_war_fork 2 i_pike 2 i_lance 2 i_pitchfork 1}
+RANDOM_WEAPON           { RANDOM_AXE 2 RANDOM_BLUNTAXE 1 RANDOM_POLE_ARM 2 RANDOM_MACE 3 RANDOM_SWORD 5 RANDOM_STAFF 2 RANDOM_KNIFE 2 RANDOM_MISSILE 3 RANDOM_SPEAR 3 RANDOM_FENCE 3 }
+
+[DEFNAME ITEMS_OTHER]
+RANDOM_LIGHT			{ i_CANDLE 1 i_TORCH 1 i_LANTERN 1 }
+random_fishing_junk		{ i_FISHING_WEIGHT 1 i_FISHING_POLE 1 i_fish_cut_raw 1 i_FISH_RAW_HEAD 1 i_FISH_SMALL 1 i_FISH_BIG_1 1 i_FISH_BIG_2 1 i_FISH_BIG_3 1 i_FISH_BIG_4 1 }
+
+[DEFNAME POTIONS]
+RANDOM_POTION			{ i_potion_refresh 3 i_potion_refreshtotal 1 i_potion_agility 3 i_potion_agilitygreat 1 i_potion_nightsight 4 i_potion_healless 4 i_potion_heal 3 i_potion_healgreat 2 i_potion_strength 3 i_potion_strengthgreat 1 i_potion_poisonless 3 i_potion_poison 2 i_potion_poisongreat 1 i_potion_poisondeadly 1 i_potion_cureless 3 i_potion_cure 2 i_potion_curegreat 1 i_potion_explosionless 3 i_potion_explosion 2 i_potion_explosiongreat 1 i_potion_shrink 1 i_potion_invisibility 2 i_potion_incognito 2 i_potion_mana 3 i_potion_manatotal 1 i_potion_clever 3 i_potion_clevergreat 1 i_potion_restore 2 i_potion_restoregreat 1 i_potion_stoneskinless 3 i_potion_stoneskin 2 i_potion_stoneskingreat 1 i_potion_warmthless 3 i_potion_warmth 2 i_potion_warmthgreat 1 i_potion_chillless 3 i_potion_chill 2 i_potion_chillgreat 1 i_potion_innoculationless 3 i_potion_innoculation 2 i_potion_innoculationgreat 1 i_potion_groundingless 3 i_potion_grounding 2 i_potion_groundinggreat 1 }
+
+[DEFNAME ITEMS_MISC]
+random_instrument      { i_drum 1 i_tambourine 1 i_lyre 1 i_lute 1 }
+
+[DEFNAME ITEMS_JEWELS]
+random_NECKLACE        { i_necklace_silver_beads 1 i_necklace_gold_beads 1 i_necklace_gold 1 i_necklace_silver 1 i_ankh_pendant 1 }
+random_JEWEL           { i_gem_star_sapphire 1 i_gem_emerald 1 i_gem_sapphire 1 i_gem_ruby 1 i_gem_citrine 1 i_gem_amethyst 1 i_gem_tourmaline 1 i_gem_amber 1 i_gem_diamond 1 }
+
+[DEFNAME ITEMS_FOOD]
+random_BREAD           { i_bread_loaf 1 i_bread_french 1 }
+random_OTHER_FOOD      { i_eggs_fresh 1 i_donuts 1 i_muffin 1 i_jar_honey 1 i_pizza 1 i_cheese_wheel 1 }
+random_MEAT            { i_chicken_leg 1 i_lamb_leg 1 i_bird_cooked 1 i_ham 1 i_lamb_leg_raw 1 I_BIRD_RAW 1 i_ribs_raw 1 i_ribs_cooked 1 i_bacon_slice 1 i_sausages 1 }
+random_VEGGIE          { i_fruit_cabbage 1 i_fruit_carrot 1 i_fruit_corn 1 i_fruit_gourd1 1 i_fruit_gourd2 1 i_fruit_lettuce 1 i_fruit_onion 1 i_fruit_pumpkin 1 i_fruit_squash 1 i_fruit_turnip 1 }
+random_PITCHER         { i_pitcher_ale 1 i_pitcher_cider 1 i_pitcher_glass 1 i_pitcher_liquor 1 i_pitcher_milk 1 i_pitcher_wine 1 i_pitcher_water 1 }
+random_BOTTLE          { i_bottle_ale 1 i_bottle_wine 1 i_bottle_liquor 1 i_jug_cider 1 }
+random_FRUIT           { i_fruit_dates 1 i_fruit_peach 1 i_fruit_pear 1 i_fruit_lemon 1 i_fruit_lime 1 i_fruit_grapes 1 i_fruit_apple 1 i_fruit_banana 1 i_fruit_coconut 1 i_fruit_cantelope 1 i_fruit_honeydewmelon 1 i_fruit_watermelon 1 }
+random_FOOD            { random_meat 1 random_bread 1 random_veggie 1 random_fruit 1 random_other_food 1 }
+
+// Items (Scrolls)
+[DEFNAME ITEMS_SCROLLS]
+random_SCROLL          { RANDOM_LOWER_SCROLL 3 RANDOM_UPPER_SCROLL 1 RANDOM_CHIVALRY_SCROLL 1 }
+random_MAGERY_SCROLL   { RANDOM_LOWER_SCROLL 3 RANDOM_UPPER_SCROLL 1 }
+random_LOWER_SCROLL    { RANDOM_FIRST_CIRCLE 4 RANDOM_SECOND_CIRCLE 3 RANDOM_THIRD_CIRCLE 2 RANDOM_FOURTH_CIRCLE 1 }
+random_UPPER_SCROLL    { RANDOM_FIFTH_CIRCLE 4 RANDOM_SIXTH_CIRCLE 3 RANDOM_SEVENTH_CIRCLE 2 RANDOM_EIGHTH_CIRCLE 1 }
+
+random_FIRST_CIRCLE    { i_scroll_reactive_armor 1 i_scroll_clumsy 1 i_scroll_create_food 1 i_scroll_feeblemind 1 i_scroll_heal 1 i_scroll_magic_arrow 1 i_scroll_night_sight 1 i_scroll_weaken 1 i_scroll_detect_trap 1 i_scroll_calculate 1 i_scroll_open_gate 1 }
+random_SECOND_CIRCLE   { i_scroll_agility 1 i_scroll_cunning 1 i_scroll_cure 1 i_scroll_harm 1 i_scroll_magic_trap 1 i_scroll_magic_untrap 1 i_scroll_protection 1 i_scroll_strength 1 i_scroll_vanish 1 i_scroll_reappear 1 }
+random_THIRD_CIRCLE    { i_scroll_bless 1 i_scroll_fireball 1 i_scroll_magic_lock 1 i_scroll_poison 1 i_scroll_telekinesis 1 i_scroll_teleport 1 i_scroll_unlock 1 i_scroll_wall_of_stone 1 i_scroll_attune_gate 1 }
+random_FOURTH_CIRCLE   { i_scroll_archcure 1 i_scroll_archprotection 1 i_scroll_curse 1 i_scroll_fire_field 1 i_scroll_greater_heal 1 i_scroll_lightning 1 i_scroll_mana_drain 1 i_scroll_recall 1 }
+random_FIFTH_CIRCLE    { i_scroll_blade_spirits 1 i_scroll_dispel_field 1 i_scroll_incognito 1 i_scroll_magic_reflection 1 i_scroll_mind_blast 1 i_scroll_paralyze 1 i_scroll_poison_field 1 i_scroll_summon_creature 1 }
+random_SIXTH_CIRCLE    { i_scroll_dispel 1 i_scroll_energy_bolt 1 i_scroll_explosion 1 i_scroll_invisibility 1 i_scroll_mark 1 i_scroll_mass_curse 1 i_scroll_paralyze_field 1 i_scroll_reveal 1 i_scroll_web 1 }
+random_SEVENTH_CIRCLE  { i_scroll_chain_lightning 1 i_scroll_energy_field 1 i_scroll_flamestrike 1 i_scroll_gate_travel 1 i_scroll_mana_vampire 1 i_scroll_mass_dispel 1 i_scroll_meteor_swarm 1 i_scroll_polymorph 1 }
+random_EIGHTH_CIRCLE   { i_scroll_earthquake 1 i_scroll_energy_vortex 1 i_scroll_resurrection 1 i_scroll_summon_elem_air 1 i_scroll_summon_daemon 1 i_scroll_summon_elem_earth 1 i_scroll_summon_elem_fire 1 i_scroll_summon_elem_water 1 }
+
+random_Chivalry_SCROLL          { random_LOWER_Chivalry_SCROLL 3 random_UPPER_Chivalry_SCROLL 1 }
+random_LOWER_Chivalry_SCROLL	{ i_scroll_close_wounds 1 i_scroll_consecrate_weapon 1 i_scroll_cleanse_by_fire 1 i_scroll_dispel_evil 1 i_scroll_divine_fury 1 i_scroll_enemy_of_one 1 i_scroll_destroy_undead 1  i_scroll_remove_curse 1 }
+random_UPPER_Chivalry_SCROLL	{ i_scroll_holy_light 1 i_scroll_noble_sacrifice 1 i_scroll_sacred_journey 1 i_scroll_transmute_poison 1 }
+
+random_Necro_SCROLL          { random_LOWER_Necro_SCROLL 3 random_UPPER_Necro_SCROLL 1 }
+random_LOWER_Necro_SCROLL	{ i_scroll_animate_dead 1 i_scroll_evil_omen 1 i_scroll_curse_weapon 1 i_scroll_blood_oath 1 i_scroll_summon_familiar 1 i_scroll_pain_spike 1 i_scroll_corpse_skin 1 i_scroll_mind_rot 1 }
+random_UPPER_Necro_SCROLL	{ i_scroll_vengeful_Spirit 1 i_scroll_strangle 1 i_scroll_poison_strike 1 i_scroll_wither 1 i_scroll_horrific_beast 1 }
+
+//*******************************************************************
+//items - Random Item Spawns
+[DEFNAME ITEMS_RANDOM_SPAWNS]
+random_all_items  { random_weapons 3 random_armor 3 random_scroll 3 random_targetables 2 random_wearables 2 random_activators 1 random_reagents 1 }
+
+// items - armor
+[DEFNAME ITEMS_RANDOM_ARMOR]
+random_all_armor           { random_body_armor 1 random_extra_armor 1 random_helms 1 random_coifs 1 }
+random_armor               { random_body_armor 1 random_extra_armor 1 }
+random_extra_armor         { random_shields }
+random_head_armor          { random_helms 1 random_coifs 1 }
+random_body_armor          { random_chest_armor 1 random_leg_armor 1 random_arm_armor 1 random_neck_armor 1 random_head_armor 1 random_hand_armor 1 }
+random_chest_armor         { random_chest_armor_male 2 random_chest_armor_female 1 }
+random_leg_armor           { random_leg_armor_male 2 random_leg_armor_female 1 }
+
+random_chest_armor_male    { i_bone_chest 1 i_chainmail_tunic 10 i_leather_tunic 30 i_studded_tunic 20 i_ringmail_tunic 15 i_platemail_chest 5 }
+random_chest_armor_female  { i_armor_female_studded 8 i_armor_female_plate 3 i_armor_female_leather 9 }
+random_leg_armor_male      { i_bone_leggings 1 i_chainmail_leggings 10 i_leather_leggings 30 i_studded_leggings 20 i_ringmail_leggings 15 i_platemail_leggings 5 }
+random_leg_armor_female    { i_armor_female_shorts 5 i_armor_female_skirt 5 i_armor_female_bustier 5 i_armor_female_bustier_studded 5 }
+random_arm_armor           { i_bone_arms 1 i_leather_sleeves 30 i_studded_sleeves 20 i_ringmail_sleeves 15 i_platemail_arms 5 }
+random_neck_armor          { i_leather_gorget 3 i_studded_gorget 2 i_platemail_gorget 1 i_studded_gorget 2 }
+random_helms               { i_platemail_helm 3 i_bone_helmet 1 i_helm_nose 2 } // i_closed, i_open , i_bascinet,
+random_coifs               { i_chainmail_coif 4 i_helm_closed 6 }
+random_hand_armor          { i_bone_gloves 3 i_leather_gloves 50 i_studded_gloves 30 i_ringmail_gloves 10 i_platemail_gloves 7 }
+random_shields             { i_shield_wood 3 i_shield_buckler 2 i_shield_kite_wood 2 i_shield_kite_metal 3 i_shield_heater 1 }
+
+//******************************************************************************// items - weapons
+[DEFNAME ITEMS_RANDOM_WEAPONS]
+random_weapons             { random_everyday_weapons 1 random_real_weapons 5 }
+random_real_weapons        { random_blunt_weapons 1 random_edged_weapons 1 random_ranged_weapons 1 }
+random_blunt_weapons       { random_cudgels 1 random_maces 1 random_hammers 1 }
+random_edged_weapons       { random_axes 1 random_swords 1 random_pole_arms 1 random_daggers 1 }
+
+random_everyday_weapons    { i_pickaxe 5 i_pitchfork 1 i_staff_quarter 5 i_cleaver_meat 1 i_knife_skinning 1 i_shepherds_crook 2 i_knife_butcher 1 }
+
+random_missiles            { i_arrow 3 i_xbolt 2 }
+random_missiles_magic      { i_arrow_fire 3 i_arrow_poison 3 i_arrow_sting 2 i_xbolt_ice 2 i_xbolt_thunder 2 }
+
+//*****************************************************************
+// items - wearables
+[DEFNAME ITEMS_RANDOM_WEARABLES]
+random_cloaks              { i_cape 1 }
+random_boots               { i_boots_thigh 1 i_boots_calf 1 }
+random_hats                { i_hat_wide_brim 1 i_cap 1 i_hat_straw_tall 1 i_hat_straw 1 i_hat_wizards 1 i_bonnet 1 i_hat_feather 1 i_hat_tricorne 1 i_hat_jester 1 }
+random_belts               { i_sash 1 }
+random_bracelets           { i_bracelet_gold 1 i_bracelet_silver 1 }
+random_rings               { i_ring_gold 1 i_ring_silver 1  }
+random_earrings		  { i_earrings_gold 1 i_earrings_silver 1 }
+random_circlets		  { i_circlet 1 i_circlet_gemmed 1 i_circlet_royal 1 }
+
+random_wearables           { random_clothing 1 random_jewelry 1 };
+random_clothing            { random_male_tops 1 random_female_tops 1 random_male_pants 1 random_female_pants 1 random_cloaks 1 random_boots 1 random_hats 1 random_belts 1 }
+random_jewelry             { random_necklace 2 random_bracelets 2 random_earrings 2 random_rings 1 random_circlets 1 i_elven_glasses 1}
+
+//*******************************************************************
+// items - magic related items
+[DEFNAME ITEMS_RANDOM_MAGIC]
+[DEFNAME REAGENTS]
+RANDOM_REAGENT         { i_reag_black_pearl 3 i_reag_blood_moss 6 i_reag_garlic 9 i_reag_ginseng 6 i_reag_mandrake_root 6 i_reag_nightshade 6 i_reag_sulfur_ash 6 i_reag_spider_silk 9 i_reag_batwing 6 i_reag_blackmoor 1 i_reag_blood_spawn 1 i_reag_blood_vial 6 i_reag_bone 6 i_reag_brimstone 6 i_reag_daemon_bone 1 i_reag_dragon_blood 1 i_reag_executioners_cap 3 i_reag_eye_of_newt 6 i_reag_obsidian 6 i_reag_pig_iron 6 i_reag_pumice 6 i_reag_serpent_scale 9 i_reag_dead_wood 9 i_reag_worm_heart 1 i_reag_fertile_dirt 9 }
+
+RANDOM_REAGENT_DARK         { i_reag_nightshade 3 i_reag_blackmoor 1 i_reag_blood_spawn 1 i_reag_blood_vial 6 i_reag_bone 6 i_reag_brimstone 6 i_reag_daemon_bone 1 i_reag_executioners_cap 3 i_reag_fertile_dirt 9 i_reag_batwing 6 i_reag_dead_wood 9 }
+
+// Prices: Very Rare (1) 16 gp, Rare (3) 12 gp, Uncommon (6) 8 gp, Common (9) 4 gp
+
+random_spellbooks          { i_spellbook 1 }
+//random_potions             { i_bottle_black 1 i_bottle_orange 1 i_bottle_blue 1 i_bottle_white 1 i_bottle_green 1 i_bottle_red 1 i_bottle_yellow 1 i_bottle_purple 1 }
+random_wands               { i_wand_1 1 i_wand_2 1 i_wand_3 1 i_wand_4 1 }
+random_staves              i_staff_gnarled
+random_crystal_balls       i_crystal_ball
+random_stationary          { i_brazier_2 1 i_statue_stone_sm 1 }
+
+random_activators          { random_crystal_balls 1 random_stationary 1 }
+random_magic_related_items { random_reagents 2 random_unknown_scrolls 3 random_potions 3 random_wearables 1 random_targetables 1 random_activators 1 }
+random_targetables         { random_wands 2 random_staves 1 }
+
+random_body_parts_1        { i_flesh_arm_right 1 i_flesh_upper_body 1 i_flesh_leggings 1 i_flesh_torso 1 i_flesh_head_2 1 i_flesh_legs_3 1 i_flesh 1 i_flesh_legs_3 1 i_flesh_arm_left 1 i_flesh_upper_body_2 1 i_flesh_legs_4 1 i_flesh_torso_2 1 i_flesh_head_2 1 i_flesh_2 1 i_flesh_legs_5 1 i_flesh_leg 1 i_flesh_heart 1 i_flesh_liver 1 i_flesh_entrails 1 i_flesh_brain 1 }
+random_body_parts_2        { i_flesh_torso 1 i_flesh_head 1 i_flesh_left_arm 1 i_flesh_right_arm 1 i_flesh_left_leg 1 i_flesh_right_leg 1 }
+
+random_magic_weapon_low       { i_venom_kryss 2 i_poison_dagger 1 i_giant_bane 3 i_fire_sword 2 i_frost_sword 2 i_shock_spear 1 i_sword_of_thunder 1 i_Dreads_Revenge 2 i_blade_of_striking 1 i_skullcrusher 1 i_shadow_claw 2 }
+random_magic_weapon_med       { i_ice_pick 1 i_sword_of_defense 2 i_death_blade 1 i_foe_cleaver 2 i_hammer_of_light 1 i_Bow_Lizardslaying 1 i_Nox_Ranger_Heavy_Crossbow 2 i_Death_scythe 2 }
+random_magic_weapon_high	{ i_Luna_Lance 3 i_divine_blade 3 i_cold_blood 2 i_Night_Kiss 2 i_Arctic_Death_Dealer 1 i_Blaze_Death 1 i_firedoom_staff 2 i_Enchanted_Titan_Leg_Bone 2 i_Pixie_Swatter 1 }
+random_magic_artifact 		{ i_orb_moons 1 i_Alchemists_Bauble 2 i_Candelabra_Souls 2 i_fire_horn 2 i_Bloodwood_Spirit 2 i_Crimson_Cinture 1  i_friend_ring 3 }
+
+random_magic_fae	      	{ i_Righteous_Anger 2 i_Glory_Blade 2 i_Cavorting_Club 1 i_Fey_Leggings 3 i_Bonesmasher 3 i_Wildfire_Bow 3 i_Blade_Dance 2 i_Boomstick 2 i_Windsong 3 i_Flesh_Ripper 3 i_Talon_Bite 1 i_Wrath_Dryad 1 i_Soul_Seeker 1 }
+random_magic_pirate      	{ i_Pirate_Cutlass 1 i_Ghost_Ship_Anchor 2 i_dread_pirate_hat 2 }
+random_magic_armor_low        { i_Burglar_Bandana 1 i_sprinter_legs 1 i_spiked_chest 2 i_Helm_Swiftness 3 i_Fearsome_Visage 1 i_Polar_Bear_Mask 1 }
+random_magic_armor_high		{ i_Gloves_Pugilist 2 i_Brightsight_Lenses 1 i_heart_lion 1 i_shield_invul 2 }
+
+
+random_body_parts       { i_flesh_heart 1 i_flesh_liver 1 i_flesh_entrails 1 i_flesh_brain 1 i_flesh_torso 1 i_flesh_head 1 i_flesh_left_arm 1 i_flesh_right_arm 1 i_flesh_left_leg 1 i_flesh_right_leg 1 }
+
+random_ore       { i_ore_iron 12 i_ore_copper 6 i_ore_silver 3 i_ore_gold 2 i_ore_shadow 1 i_ore_agapite 1 i_ore_verite 1 i_ore_rose 1 i_ore_bloodrock 1 i_ore_valorite 1 }
+random_ingot       { i_ingot_iron 10 i_ingot_copper 4 i_ingot_silver 3 i_ingot_gold 2 i_ingot_shadow 1 i_ingot_agapite 1 i_ingot_verite 1 i_ingot_valorite 1 i_ingot_rose 1  i_ingot_bloodrock 1 i_ingot_bronze 5 i_ingot_corroded_bronze 4 i_ingot_rusty 6 i_ingot_old_copper 4 i_ingot_dull_copper 3 }
+
+//*******************************************************************
+// Chars
+[DEFNAME NPC_GROUPS]
+HORSES                 { c_horse_tan 1 c_horse_gray 1 c_horse_brown_lt 1 c_horse_brown_dk 1 }
+LIZARD_MEN             { c_lizardman 1 c_lizardman_spear 1 c_lizardman_mace 1 }
+RATMEN                 { c_ratman 1 c_ratman_w_sword 1 c_ratman_w_mace 1 }
+SKELETONS              { c_skeleton 1 c_skeleton_w_sword 1 c_skeleton_w_axe 1}
+TROLLS                 { c_troll 1 c_troll_w_axe 1 c_troll_w_mace 1 }
+
+
+
+
+[EOF]

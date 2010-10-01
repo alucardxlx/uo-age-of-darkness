@@ -1,0 +1,66 @@
+// Streetlight Manager Scripted by Mordaunt aka Drogyn/Mordrogyn
+//
+// This script requires my Environmental Control script v1.9a (or later) to run.
+//
+// I don't know if there is a "lighter" way of doing this, but this script only runs once per hour
+// and should ignore anything that falls outside it's perameters.  It may be a little heavy
+// the first couple of times as it adjusts lights to their correct setting.
+// DCliCK is disabled on these lights to prevent extra work if players turn them on and off.
+// I considered running this on a player trigger, but that would fire more often thanthis way,
+// and probably be more laggy.
+//
+// This script will run on ANY item with type t_light_out or t_light_lit and TEVENT t_light_mgr,
+// That is in a region with flags &080.  All other lightsources are ignored, and run as normal.
+//
+// !!WARNING!! The more items you set this event to, the more items it will effect, & 
+// the slower your server will run while this script fires.
+//
+// NOTE:You may have to DCLICK the lightsource the first time around to correct it's light
+//	pattern (Only GM's can dclick lightsources in town.)
+//
+// Installation: add TEVENTS t_light_mgr to ALL lightsources you wish to control.
+//
+///////////////////////////////////////////////////////////////////////////////////////////
+
+[TYPEDEF t_light_mgr]
+ON=@DClick
+	if (<region.flags> & 080)
+		if !(<src.isgm>)
+			return 1
+		else
+			return 0
+		endif	
+	endif
+
+[ITEMDEF i_light_man]
+ID=i_gravestone
+NAME=Light Manager
+TYPE=t_script
+
+ON=@Create
+attr=attr_invis|attr_can_decay
+timerf 1,f_streetlight_mgr
+timerf 6, remove
+
+[FUNCTION f_streetlight_mgr]
+FORITEMS 7168 
+	if (<region.flags> & 080)
+		if (<sector.isdark>)
+			if (<type>==t_light_out)
+				type=t_light_lit
+				dispid=<typedef.defname>_lit
+				update
+			endif
+		else
+			if (<type>==t_light_lit)
+				local.defname=<eval strlen(<dispid>)>
+				local.defname=<eval <local.defname>-4>
+				type=t_light_out
+				dispid=<strsub 0 <dlocal.defname> <typedef.defname>>
+				update
+			endif
+		endif
+	endif
+endfor
+
+[EOF]

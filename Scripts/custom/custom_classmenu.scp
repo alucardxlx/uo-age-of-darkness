@@ -1,0 +1,1559 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+//
+VERSION=0.54
+
+[DIALOG d_human_class]
+0,0
+page 0
+resizepic 0 0 2620 500 350
+page 1
+text 195 8 3 1
+dtext 35 30 1152 Britannian
+dtext 43 50 1152 Ranger
+button 20 50 5541 5542 1 0 1000
+dtext 43 80 1152 Mage
+button 20 80 5541 5542 1 0 1001
+dtext 43 110 1152 Fighter
+button 20 110 5541 5542 1 0 1002
+dtext 43 140 1152 Druid
+button 20 140 5541 5542 1 0 1003
+dtext 43 170 1152 Bard
+button 20 170 5541 5542 1 0 1004
+dtext 43 200 1152 Paladin
+button 20 200 5541 5542 1 0 1005
+dtext 43 230 1152 Tinker
+button 20 230 5541 5542 1 0 1006
+dtext 43 260 1152 Shepherd
+button 20 260 5541 5542 1 0 1007
+dtext 153 300 1152 Change Race
+button 120 300 2472 2473 0 2 0
+page 2
+text 195 8 1152 Choose your Race
+dtext 43 50 1152 Orc
+button 20 50 5541 5542 0 3 0
+dtext 150 303 1152 Back to Classes
+button 120 300 2472 2473 0 1 0
+page 3
+dtext 195 8 1152 Orc Customization
+gumppic -30 -10 50416 346
+button 20 50 5541 5542 1 0 3000
+gumppic -30 25 50416 347
+button 20 85 5541 5542 1 0 3001
+gumppic -30 60 50416 348
+button 20 120 5541 5542 1 0 3002
+gumppic -30 95 50416 446
+button 20 155 5541 5542 1 0 3003
+gumppic -30 130 50416 447
+button 20 190 5541 5542 1 0 3004
+gumppic -30 165 50416 448
+button 20 225 5541 5542 1 0 3005
+
+gumppic 40 -10 50416 546
+button 90 50 5541 5542 1 0 3006
+gumppic 40 25 50416 547
+button 90 85 5541 5542 1 0 3007
+gumppic 40 60 50416 548
+button 90 120 5541 5542 1 0 3008
+gumppic 40 95 50416 646
+button 90 155 5541 5542 1 0 3009
+gumppic 40 130 50416 647
+button 90 190 5541 5542 1 0 3010
+gumppic 40 165 50416 648
+button 90 225 5541 5542 1 0 3011
+
+gumppic 110 -10 50416 641
+button 160 50 5541 5542 1 0 3012
+gumppic 110 25 50416 642
+button 160 85 5541 5542 1 0 3013
+gumppic 110 60 50416 636
+button 160 120 5541 5542 1 0 3014
+gumppic 110 95 50416 637
+button 160 155 5541 5542 1 0 3015
+gumppic 110 130 50416 638
+button 160 190 5541 5542 1 0 3016
+gumppic 110 165 50416 741
+button 160 225 5541 5542 1 0 3017
+
+gumppic 180 -10 50416 742
+button 230 50 5541 5542 1 0 3018
+gumppic 180 25 50416 743
+button 230 85 5541 5542 1 0 3019
+gumppic 180 60 50416 746
+button 230 120 5541 5542 1 0 3020
+gumppic 180 95 50416 747
+button 230 155 5541 5542 1 0 3021
+gumppic 180 130 50416 748
+button 230 190 5541 5542 1 0 3022
+gumppic 180 165 50416 836
+button 230 225 5541 5542 1 0 3023
+
+
+gumppic 250 -10 50416 837
+button 300 50 5541 5542 1 0 3024
+gumppic 250 25 50416 838
+button 300 85 5541 5542 1 0 3025
+//gumppic 250 60 50416 746
+//button 300 120 5541 5542 0 0 1007
+//gumppic 250 95 50416 747
+//button 300 155 5541 5542 0 0 1007
+//gumppic 250 130 50416 748
+//button 300 190 5541 5542 0 0 1007
+//gumppic 250 165 50416 836
+//button 300 225 5541 5542 0 0 1007
+dtext 150 303 1152 Back to Races
+button 120 300 2472 2473 0 2 0
+
+
+
+[DIALOG d_human_class TEXT]
+0
+Select your Class
+
+[DIALOG d_human_class BUTTON]
+ONBUTTON=1000
+f_ranger
+ONBUTTON=1001
+f_mage
+ONBUTTON=1002
+f_fighter
+ONBUTTON=1003
+f_druid
+ONBUTTON=1004
+f_bard
+ONBUTTON=1005
+f_paladin
+ONBUTTON=1006
+f_tinker
+ONBUTTON=1007
+f_shepherd
+ONBUTTON=3000
+convert_orc 347
+ONBUTTON=3001
+convert_orc 348
+ONBUTTON=3002
+convert_orc 349
+ONBUTTON=3003
+convert_orc 447
+ONBUTTON=3004
+convert_orc 448
+ONBUTTON=3005
+convert_orc 449
+ONBUTTON=3006
+convert_orc 547
+ONBUTTON=3007
+convert_orc 548
+ONBUTTON=3008
+convert_orc 549
+ONBUTTON=3009
+convert_orc 647
+ONBUTTON=3010
+convert_orc 648
+ONBUTTON=3011
+convert_orc 649
+ONBUTTON=3012
+convert_orc 642
+ONBUTTON=3013
+convert_orc 643
+ONBUTTON=3014
+convert_orc 637
+ONBUTTON=3015
+convert_orc 638
+ONBUTTON=3016
+convert_orc 639
+ONBUTTON=3017
+convert_orc 742
+ONBUTTON=3018
+convert_orc 743
+ONBUTTON=3019
+convert_orc 744
+ONBUTTON=3020
+convert_orc 747
+ONBUTTON=3021
+convert_orc 748
+ONBUTTON=3022
+convert_orc 749
+ONBUTTON=3023
+convert_orc 837
+ONBUTTON=3024
+convert_orc 838
+ONBUTTON=3025
+convert_orc 839
+
+[DIALOG d_elf_class]
+0,0
+page 0
+resizepic 0 0 2620 500 350
+page 1
+text 195 8 3 1
+dtext 35 30 1152 Summer Court
+dtext 43 50 1152 Hunter
+button 20 50 5541 5542 1 0 1000
+dtext 43 80 1152 Artisan
+button 20 80 5541 5542 1 0 1001
+dtext 43 110 1152 Enchanter
+button 20 110 5541 5542 1 0 1002
+dtext 43 140 1152 Minstrel
+button 20 140 5541 5542 1 0 1003
+dtext 153 300 1152 Change Race
+button 120 300 2472 2473 0 2 0
+page 2
+text 195 8 1152 Choose your Race
+dtext 53 50 1152 Orc
+button 20 50 5541 5542 0 0 1007
+dtext 150 303 1152 Back to Classes
+button 120 300 2472 2473 0 1 0
+
+
+//gumppic x,y,gump,hue   
+
+[DIALOG d_elf_class TEXT]
+<LOCAL.BLANKLINE>
+Select your Class
+
+[DIALOG d_elf_class BUTTON]
+ONBUTTON=1000
+f_hunter
+ONBUTTON=1001
+f_artisan
+ONBUTTON=1002
+f_enchanter
+ONBUTTON=1003
+f_minstrel
+
+[DIALOG d_orc_class]
+0,0
+page 0
+resizepic 0 0 2620 500 350
+page 1
+text 195 8 3 1
+dtext 35 30 1152 Great Horde
+dtext 43 50 1152 Barbarian
+button 20 50 5541 5542 1 0 1000
+dtext 43 80 1152 Laborer
+button 20 80 5541 5542 1 0 1001
+dtext 43 110 1152 Shaman
+button 20 110 5541 5542 1 0 1002
+dtext 43 140 1152 Assassin
+button 20 140 5541 5542 1 0 1003
+
+//gumppic x,y,gump,hue   
+
+[DIALOG d_orc_class TEXT]
+<LOCAL.BLANKLINE>
+Select your Class
+
+[DIALOG d_orc_class BUTTON]
+ONBUTTON=1000
+f_barbarian
+ONBUTTON=1001
+f_laborer
+ONBUTTON=1002
+f_shaman
+ONBUTTON=1003
+f_assassin
+
+
+[ITEMDEF i_cards_of_destiny]
+ID=012a8
+DEFNAME=i_CARDS_DESTINY
+NAME=Cards of Destiny
+
+CATEGORY=Special Items
+SUBSECTION=Character Select
+DESCRIPTION=Cards Of Destiny
+
+ON=@CREATE
+TYPE=1
+
+ON=@DCLICK
+IF (STRMATCH(*<SRC.TAG0.RACE>*,"Orc"))
+	DIALOG D_ORC_CLASS
+	RETURN 1
+ENDIF
+If (<SRC.BODY> == c_man) ||(<SRC.BODY> == c_woman)
+		DIALOG D_HUMAN_CLASS
+		RETURN 1
+ENDIF
+If (<SRC.BODY> == c_elf_male) || (<SRC.BODY> == c_elf_female)
+		DIALOG D_ELF_CLASS
+		RETURN 1
+ENDIF
+
+
+
+[function race_human]
+src.events +e_environmental
+SRC.MAXFOLLOWER=6
+SRC.EVENTS +e_Level_up
+SRC.EVENTS +e_tailoring_color
+SRC.EVENTS +e_WeaponSkills
+SRC.givelang 1 //This will give them the english language.
+SRC.TAG0.MODMAXWEIGHT += 25
+SRC.MAXHITS=(<SRC.STR>)
+SRC.MAXMANA=(<SRC.INT>)
+SRC.MAXSTAM=(<SRC.DEX>)
+If (<SRC.BODY> == c_man) // human males are stronger and tougher
+SRC.STR=(<SRc.STR>+4)
+SRC.HITS=(<SRc.HITS>+4)
+SRC.MAXHITS=(<SRc.MAXHITS>+4)
+SRC.TAG0.OVERRIDE.STATCAP_0=(<SRC.SKILLCLASS.STR>+4)
+endif
+If (<SRC.BODY> == c_woman) // human females are more agile and enduring
+SRC.DEX=(<SRc.DEX>+4)
+SRC.STAMINA=(<SRc.STAMINA>+4)
+SRC.MAXSTAM=(<SRc.MAXSTAM>+4)
+SRC.TAG0.OVERRIDE.STATCAP_2=(<SRC.SKILLCLASS.DEX>+4)
+ENDIF
+SRC.HITS=(<SRC.HITS>+8) // humans are resilant
+SRC.TAG0.MODHITS += 8
+//as part of classes humans have greater skill cap
+SRC.TAG0.RACE=Human
+RETURN 0
+
+[function race_elf]
+src.events +e_environmental
+SRC.MAXFOLLOWER=6
+SRC.EVENTS +e_Level_up
+SRC.EVENTS +e_tailoring_color
+SRC.EVENTS +e_WeaponSkills
+SRC.givelang 2 //This will give them the elven language.
+SRC.givealtlang_1 1 //This will give them the english language.
+SRC.DEX=(<SRc.DEX>+4) //elves are quick
+SRC.MAXHITS=(<SRC.STR>)
+SRC.MAXMANA=(<SRC.INT>)
+SRC.MAXSTAM=(<SRC.DEX>)
+SRC.MANA=(<SRc.MANA>+8) // elves are innately magical
+SRC.TAG0.MODMANA += 8
+SRC.RESENERGY=10 // elves are resistant to natural and magical energy
+SRC.NIGHTSIGHT=1 // elves have permanant nightsight
+SRC.TAG0.RACE=Elf
+RETURN 0
+
+[function convert_orc]
+If (<SRC.BODY> == c_elf_male)
+	src.body=c_man
+	src.obody=c_man
+endif
+If (<SRC.BODY> == c_elf_female)
+	src.body=c_woman
+	src.obody=c_woman
+endif
+src.color=<ARGV[0]>
+src.oskin=<ARGV[0]>
+SRC.FINDLAYER.11.REMOVE
+SRC.FINDLAYER.16.REMOVE
+NEWITEM i_head_orc
+src.EQUIP <NEW>
+SRC.TAG0.RACE=Orc
+return
+
+[function race_orc]
+src.events +e_environmental
+SRC.MAXFOLLOWER=6
+SRC.EVENTS +e_Level_up
+SRC.EVENTS +e_tailoring_color
+SRC.EVENTS +e_WeaponSkills
+SRC.givelang 4 //This will give them the orcish language.
+SRC.str=(<SRc.str>+4) //orcs are strong
+If (<SRC.BODY> == c_man) // orc males are stronger and tougher
+SRC.STR=(<SRc.STR>+4)
+SRC.HITS=(<SRc.HITS>+4)
+SRC.MAXHITS=(<SRc.MAXHITS>+4)
+SRC.TAG0.OVERRIDE.STATCAP_0=(<SRC.SKILLCLASS.STR>+4)
+endif
+If (<SRC.BODY> == c_woman) // orc females are more agile and enduring
+SRC.DEX=(<SRc.DEX>+4)
+SRC.STAMINA=(<SRc.STAMINA>+4)
+SRC.MAXSTAM=(<SRc.MAXSTAM>+4)
+SRC.TAG0.OVERRIDE.STATCAP_2=(<SRC.SKILLCLASS.DEX>+4)
+ENDIF
+SRC.MAXHITS=(<SRC.STR>)
+SRC.MAXMANA=(<SRC.INT>)
+SRC.MAXSTAM=(<SRC.DEX>)
+SRC.STAM=(<SRc.STAM>+8) // orcs are tireless
+SRC.TAG0.MODSTAM += 8
+SRC.RESPOISON=10 // orcs are resistant to toxiins
+SRC.TAG0.RACE=Orc
+RETURN 0
+
+
+[MENU MENU_BRITANNIAN]
+Choose your class
+
+[function f_ranger]
+SRC.ARCHERY += 25.0
+SRC.TRACKING += 25.0
+SRC.BOWCRAFT += 25.0
+SRC.HIDING += 20.0
+SRC.TAMING += 20.0
+SRC.TACTICS += 20.0
+SRC.CARTOGRAPHY += 20.0
+SRC.SPELLWEAVING += 15.0
+SRC.STEALTH += 15.0
+SRC.MAGERY += 15.0
+SRC.SKILLCLASS=Class_Ranger 
+SRC.SYSMESSAGE Thou art now a Ranger!
+NEWITEM i_spellbook
+NEW.ATTR=0024
+NEW.tag.spell_1 s_clumsy //1st circle 1-8
+NEW.tag.spell_2 s_weaken
+NEW.tag.spell_3 s_feeblemind
+NEW.tag.spell_4 s_heal
+NEW.tag.spell_5 s_magic_arrow
+NEW.tag.spell_6 s_night_sight
+NEW.tag.spell_9 s_protection //2nd circle 9-16
+NEW.tag.spell_10 s_magic_trap
+NEW.tag.spell_11 s_magic_untrap
+NEW.tag.spell_12 s_cure
+NEW.tag.spell_13 s_agility
+NEW.tag.spell_17 s_fireball //3rd circle 17-24
+NEW.tag.spell_18 s_poison
+NEW.tag.spell_19 s_teleport
+NEW.tag.spell_20 s_wall_of_stone
+NEW.tag.spell_25 s_archprotection  //4th circle 25-32
+NEW.tag.spell_27 s_greater_heal
+NEW.tag.spell_28 s_fire_field
+NEW.tag.spell_33 s_paralyze  //5th circle 33-40
+NEW.tag.spell_34 s_summon_creature
+NEW.BOUNCE
+NEWITEM=i_LEATHER_TUNIC
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM=i_LEATHER_LEGGINGS
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_LEATHER_SLEEVES
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_LEATHER_GORGET
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_LEATHER_GLOVES
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_LEATHER_CAP
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_cape
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=1153
+NEWITEM 01537 //kilt
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=1153
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_bow_composite
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_arrow,24
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_black_pearl,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_blood_moss,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_garlic,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_ginseng,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_nightshade,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_sulfur_ash,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_spider_silk,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_mandrake_root,8
+NEW.BOUNCE
+NEW.ATTR=04
+SRC.GO 573 2146 0
+SRC.HOME=573 2146 0
+NEWITEM i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_boots_calf
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_dagger
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_candle
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_book_sm
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_copper_coin,100
+NEW.BOUNCE
+NEW.ATTR=04
+race_human
+SRC.FIX
+
+[function f_mage]
+SRC.MAGERY += 25.0
+SRC.MEDITATION += 25.0
+SRC.INSCRIPTION += 25.0
+SRC.MAGICRESISTANCE += 25.0
+SRC.ITEMID += 25.0
+SRC.EVALUATINGINTEL += 25.0
+SRC.TASTEID += 20.0
+SRC.NECROMANCY += 15.0
+SRC.SPELLWEAVING += 15.0
+SRC.SKILLCLASS=Class_Mage 
+SRC.SYSMESSAGE Thou art now a Mage!
+NEWITEM i_spellbook
+NEW.ATTR=0024
+NEW.tag.spell_1 s_clumsy //1st circle 1-8
+NEW.tag.spell_2 s_weaken
+NEW.tag.spell_3 s_feeblemind
+NEW.tag.spell_4 s_magic_arrow
+NEW.tag.spell_5 s_reactive_armor
+NEW.tag.spell_6 s_night_sight
+NEW.tag.spell_9 s_harm //2nd circle 9-16
+NEW.tag.spell_10 s_protection
+NEW.tag.spell_11 s_cunning
+NEW.tag.spell_12 s_agility
+NEW.tag.spell_13 s_strength
+NEW.tag.spell_17 s_fireball //3rd circle 17-24
+NEW.tag.spell_18 s_poison
+NEW.tag.spell_19 s_teleport
+NEW.tag.spell_20 s_wall_of_stone
+NEW.tag.spell_25 s_archprotection  //4th circle 25-32
+NEW.tag.spell_26 s_fire_field
+NEW.tag.spell_27 s_mana_drain
+NEW.tag.spell_33 s_magic_reflection  //5th circle 33-40
+NEW.tag.spell_34 s_mind_blast
+NEW.BOUNCE
+NEWITEM 01f03 //Robe
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=2
+NEWITEM 01718 //wizard's hat
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=2
+NEWITEM 0e89 //quarter staff
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_scroll_blank,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_potion_Mana,3
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_black_pearl,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_blood_moss,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_garlic,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_ginseng,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_nightshade,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_sulfur_ash,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_spider_silk,16
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_reag_mandrake_root,16
+NEW.BOUNCE
+NEW.ATTR=04
+SRC.GO 4455 1086 0
+SRC.HOME=4455 1086 0SRC.NEW
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_shoes_plain
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_dagger
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_candle
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_book_sm
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_copper_coin,100
+NEW.BOUNCE
+NEW.ATTR=04
+race_human
+SRC.FIX
+
+[function f_paladin]
+SRC.PARRYING += 25.0
+SRC.SWORDSMANSHIP += 25.0
+SRC.TACTICS += 25.0
+SRC.ANATOMY += 25.0
+SRC.CHIVALRY += 25.0
+SRC.HEALING += 20.0
+SRC.VETERINARY += 20.0
+SRC.ARMSLORE += 20.0
+SRC.FOCUS += 15.0
+SRC.SKILLCLASS=Class_Paladin 
+SRC.SYSMESSAGE Thou art now a Paladin!
+NEWITEM i_spellbook_paladin
+NEW.ATTR=0024
+NEW.BOUNCE
+NEWITEM i_sash
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=14
+NEWITEM i_cape
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=14
+NEWITEM i_shield_kite_metal
+NEW.BOUNCE
+NEW.ATTR=04
+NEW.COLOR=14
+NEWITEM i_sword_long
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_chainmail_coif
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_ringmail_TUNIC
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_bandage,8
+NEW.BOUNCE
+NEW.ATTR=04
+SRC.TITHING=300
+SRC.GO 2017 2747 30
+SRC.HOME=2017 2747 30
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_boots_calf
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_dagger
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_candle
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_book_sm
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_copper_coin,100
+NEW.BOUNCE
+NEW.ATTR=04
+race_human
+SRC.FIX
+
+[function f_fighter]
+SRC.MACEFIGHTING += 25.0
+SRC.SWORDSMANSHIP += 25.0
+SRC.TACTICS += 25.0
+SRC.FENCING += 25.0
+SRC.ANATOMY += 20.0
+SRC.MAGICRESISTANCE += 20.0
+SRC.ARMSLORE += 20.0
+SRC.FOCUS += 20.0
+SRC.PARRYING += 20.0
+SRC.SKILLCLASS=Class_Fighter
+SRC.SYSMESSAGE Thou art now a Fighter!
+NEWITEM i_tunic
+NEW.BOUNCE
+NEW.COLOR=38
+NEW.ATTR=04
+NEWITEM i_chainmail_coif
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_STUDDED_TUNIC
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_STUDDED_LEGGINGS
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_STUDDED_SLEEVES
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_sTUDDED_GORGET
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_STUDDED_GLOVES
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM i_potion_Strength,3
+NEW.BOUNCE
+NEW.ATTR=04
+SRC.GO 1367 3714 0
+SRC.HOME=1367 3714 0
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_candle
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEW.ATTR=04
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+NEW.ATTR=04
+race_human
+SRC.FIX
+MENU MENU_WEAPON
+
+[function f_tinker]
+SRC.BLACKSMITHING += 25.0
+SRC.TINKERING += 25.0
+SRC.CARPENTRY += 25.0
+SRC.REMOVETRAP += 25.0
+SRC.ARMSLORE += 20.0
+SRC.LOCKPICKING += 20.0
+SRC.MINING += 20.0
+SRC.LUMBERJACKING += 20.0
+SRC.DetectingHidden += 20.0
+SRC.SKILLCLASS=Class_Tinker
+SRC.SYSMESSAGE Thou art now a Tinker!
+NEWITEM i_apron_full
+NEW.BOUNCE
+NEW.COLOR=44
+NEWITEM i_hammer_smith
+NEW.BOUNCE
+NEWITEM i_saw
+NEW.BOUNCE
+NEWITEM i_tinker_tools
+NEW.BOUNCE
+NEWITEM i_shovel
+NEW.BOUNCE
+NEWITEM i_hatchet
+NEW.BOUNCE
+NEWITEM i_ingot_iron,20
+NEW.BOUNCE
+NEWITEM i_lockpick,8
+NEW.BOUNCE
+NEWITEM i_board,20
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+SRC.GO 2469 455 15
+SRC.HOME=2469 455 15
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_human
+SRC.FIX
+
+[function f_bard]
+SRC.MUSICIANSHIP += 25.0
+SRC.PROVOCATION += 25.0
+SRC.PEACEMAKING += 25.0
+SRC.ENTICEMENT += 25.0
+SRC.MAGERY += 20.0
+SRC.STEALING += 20.0
+SRC.SNOOPING += 20.0
+SRC.ITEMID += 20.0
+SRC.TACTICS += 20.0
+SRC.SKILLCLASS=Class_Bard
+SRC.SYSMESSAGE Thou art now a Bard!
+NEWITEM i_spellbook
+tag.spell_1 s_clumsy //1st circle 1-8
+tag.spell_2 s_weaken
+tag.spell_3 s_feeblemind
+tag.spell_4 s_heal
+tag.spell_5 s_reactive_armor
+tag.spell_6 s_night_sight
+tag.spell_9 s_protection //2nd circle 9-16
+tag.spell_10 s_magic_trap
+tag.spell_11 s_magic_untrap
+tag.spell_12 s_cunning
+tag.spell_13 s_agility
+tag.spell_17 s_magic_lock //3rd circle 17-24
+tag.spell_18 s_magic_unlock
+tag.spell_19 s_telekinesis
+tag.spell_20 s_poison
+tag.spell_25 s_archprotection  //4th circle 25-32
+tag.spell_26 s_curse
+tag.spell_27 s_greater_heal
+tag.spell_33 s_mind_blast  //5th circle 33-40
+tag.spell_34 s_paralyze
+SRC.ACT.ATTR=0024
+NEW.BOUNCE
+NEWITEM i_tunic
+NEW.BOUNCE
+NEW.COLOR=52
+NEWITEM i_cape
+NEW.BOUNCE
+NEW.COLOR=52
+NEWITEM i_bow_composite
+NEW.BOUNCE
+NEWITEM i_arrow,24
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,8
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,8
+NEW.BOUNCE
+NEWITEM i_reag_garlic,8
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,8
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,8
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,8
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,8
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,8
+NEW.BOUNCE
+SRC.GO 1454 1568 30
+SRC.HOME=1454 1568 30
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_human
+SRC.FIX
+MENU MENU_INSTRUMENT
+
+[function f_druid]
+SRC.ALCHEMY += 25.0
+SRC.MAGERY += 25.0
+SRC.TAMING += 25.0
+SRC.MEDITATION += 25.0
+SRC.FOCUS += 25.0
+SRC.ANIMALLORE += 25.0
+SRC.SPELLWEAVING += 20.0
+SRC.FORENSICS += 15.0
+SRC.TASTEID += 15.0
+SRC.SKILLCLASS=Class_Druid
+SRC.SYSMESSAGE Thou art now a Druid!
+NEWITEM i_spellbook
+itemnewbie=i_spellbook
+tag.spell_1 s_clumsy //1st circle 1-8
+tag.spell_2 s_weaken
+tag.spell_3 s_feeblemind
+tag.spell_4 s_heal
+tag.spell_5 s_create_food
+tag.spell_6 s_night_sight
+tag.spell_9 s_protection //2nd circle 9-16
+tag.spell_10 s_cure
+tag.spell_11 s_strength
+tag.spell_12 s_cunning
+tag.spell_13 s_agility
+tag.spell_17 s_bless //3rd circle 17-24
+tag.spell_18 s_poison
+tag.spell_19 s_teleport
+tag.spell_20 s_wall_of_stone
+tag.spell_25 s_archprotection  //4th circle 25-32
+tag.spell_27 s_archcure
+tag.spell_28 s_greater_heal
+tag.spell_33 s_poison_field  //5th circle 33-40
+tag.spell_34 s_summon_creature
+SRC.ACT.ATTR=0024
+NEW.BOUNCE
+NEWITEM i_robe
+NEW.BOUNCE
+NEW.COLOR=67
+NEWITEM i_staff_gnarled
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEWITEM i_BOTTLE_EMPTY,8
+NEW.BOUNCE
+NEWITEM i_mortar_pestle
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,16
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,16
+NEW.BOUNCE
+NEWITEM i_reag_garlic,16
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,16
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,16
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,16
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,16
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,16
+NEW.BOUNCE
+SRC.GO 634 851 0
+SRC.HOME=634 851 0
+NEWITEM =i_sandals
+NEW.BOUNCE
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_human
+SRC.FIX
+
+[function f_shepherd]
+SRC.HERDING += 25.0
+SRC.TAMING += 25.0
+SRC.ANIMALLORE += 25.0
+SRC.VETERINARY += 25.0
+SRC.TAILORING += 25.0
+SRC.DETECTINGHIDDEN += 25.0
+SRC.HEALING += 25.0
+SRC.TRACKING += 25.0
+SRC.SKILLCLASS=Class_Shepherd
+SRC.SYSMESSAGE Thou art now a Shepherd!
+NEWITEM i_robe
+NEW.BOUNCE
+NEW.COLOR=2306
+NEWITEM i_sewing_kit
+NEW.BOUNCE
+NEWITEM i_cloth,20
+NEW.BOUNCE
+NEW.COLOR=2306
+NEWITEM i_shepherds_crook
+NEW.BOUNCE
+NEWITEM i_scissors
+NEW.BOUNCE
+NEWITEM i_bandage,8
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+SRC.GO 3670 2233 20
+SRC.HOME=3670 2233 20
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_human
+SRC.FIX
+
+[MENU MENU_INSTRUMENT]
+Choose your instrument
+
+ON=0 Harp
+NEWITEM i_lyre
+
+NEW.BOUNCE
+
+ON=0 Tamborine
+NEWITEM i_tambourine
+
+NEW.BOUNCE
+
+ON=0 Lute
+NEWITEM i_lute
+
+NEW.BOUNCE
+
+ON=0 Drum
+NEWITEM i_drum
+
+NEW.BOUNCE
+
+[MENU MENU_WEAPON]
+Choose your weapon
+
+ON=0 Broad Sword
+NEWITEM i_sword_broad
+
+NEW.BOUNCE
+
+ON=0 Pitchfork
+NEWITEM i_pitchfork
+
+NEW.BOUNCE
+
+ON=0 Club
+NEWITEM i_club
+
+NEW.BOUNCE
+
+
+[function f_hunter]
+SRC.ARCHERY += 25.0
+SRC.HIDING += 25.0
+SRC.TRACKING += 25.0
+SRC.DETECTINGHIDDEN += 25.0
+SRC.STEALTH += 25.0
+SRC.SPELLWEAVING += 20.0
+SRC.TAMING += 20.0
+SRC.TACTICS += 20.0
+SRC.MAGERY += 15.0
+SRC.SKILLCLASS=Class_Hunter
+SRC.SYSMESSAGE Thou art now a Hunter!
+//Spelweaving Book
+NEWITEM i_LEAF_TUNIC
+NEW.BOUNCE
+NEWITEM i_LEAF_PANTS
+NEW.BOUNCE
+NEWITEM i_LEAF_ARMS
+NEW.BOUNCE
+NEWITEM i_LEAF_GORGET
+NEW.BOUNCE
+NEWITEM i_LEAF_GLOVES
+NEW.BOUNCE
+NEWITEM i_elven_boots
+NEW.BOUNCE
+NEWITEM i_elven_composite_longbow
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_helm_raven
+NEW.BOUNCE
+NEWITEM i_arrow,24
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,8
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,8
+NEW.BOUNCE
+NEWITEM i_reag_garlic,8
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,8
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,8
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,8
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,8
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,8
+NEW.BOUNCE
+SRC.GO 7057 383 0
+SRC.HOME=7057 383 0
+NEWITEM =i_elven_shirt
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM=02fc3
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_elf
+SRC.FIX
+
+[function f_enchanter]
+SRC.MAGERY += 25.0
+SRC.MEDITATION += 25.0
+SRC.INSCRIPTION += 25.0
+SRC.MAGICRESISTANCE += 25.0
+SRC.ITEMID += 25.0
+SRC.EVALUATINGINTEL += 25.0
+SRC.ALCHEMY += 25.0
+SRC.SPELLWEAVING += 25.0
+SRC.SKILLCLASS=Class_Enchanter
+SRC.SYSMESSAGE Thou art now an Enchanter!
+NEWITEM i_elven_robe_female //Robe
+NEW.BOUNCE
+NEWITEM 0e89 //quarter staff
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_scroll_blank,5
+NEW.BOUNCE
+NEWITEM i_potion_Mana,3
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,16
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,16
+NEW.BOUNCE
+NEWITEM i_reag_garlic,16
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,16
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,16
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,16
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,16
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,16
+NEW.BOUNCE
+NEWITEM i_BOTTLE_EMPTY,8
+NEW.BOUNCE
+NEWITEM i_mortar_pestle
+NEW.BOUNCE
+SRC.GO 7057 383 0
+SRC.HOME=7057 383 0
+NEWITEM =i_elven_shirt
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM=02fc3
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_elf
+SRC.FIX
+
+[function f_artisan]
+SRC.BLACKSMITHING += 25.0
+SRC.TAILORING += 25.0
+SRC.CARPENTRY += 25.0
+SRC.BOWCRAFT += 25.0
+SRC.ARMSLORE += 25.0
+SRC.TINKERING += 20.0
+SRC.MINING += 20.0
+SRC.LUMBERJACKING += 20.0
+SRC.COOKING += 15.0
+SRC.SKILLCLASS=Class_Artisan
+SRC.SYSMESSAGE Thou art now an Artisan!
+NEWITEM i_elven_shirt
+NEW.BOUNCE
+NEW.COLOR=colors_all
+NEWITEM i_hammer_smith
+NEW.BOUNCE
+NEWITEM i_saw
+NEW.BOUNCE
+NEWITEM i_tinker_tools
+NEW.BOUNCE
+NEWITEM i_shovel
+NEW.BOUNCE
+NEWITEM i_hatchet
+NEW.BOUNCE
+NEWITEM i_ingot_iron,10
+NEW.BOUNCE
+NEWITEM i_log,10
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_sewing_kit
+NEW.BOUNCE
+NEWITEM i_cloth,10
+NEW.BOUNCE
+NEWITEM i_dough_raw,5
+NEW.BOUNCE
+NEWITEM i_ribs_raw,5
+NEW.BOUNCE
+SRC.GO 7057 383 0
+SRC.HOME=7057 383 0
+NEWITEM=02fc3
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_elf
+SRC.FIX
+
+[function f_minstrel]
+SRC.MUSICIANSHIP += 25.0
+SRC.PROVOCATION += 25.0
+SRC.PEACEMAKING += 25.0
+SRC.ENTICEMENT += 25.0
+SRC.MAGERY += 20.0
+SRC.SPELLWEAVING += 20.0
+SRC.FENCING += 20.0
+SRC.ITEMID += 20.0
+SRC.TACTICS += 20.0
+SRC.SKILLCLASS=Class_Minstrel
+SRC.SYSMESSAGE Thou art now a Minstrel!
+NEWITEM i_elven_shirt_dark
+NEW.BOUNCE
+NEW.COLOR=colors_all
+NEWITEM i_cape
+NEW.BOUNCE
+NEW.COLOR=colors_all
+NEWITEM i_sword_Assassin_Spike
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,8
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,8
+NEW.BOUNCE
+NEWITEM i_reag_garlic,8
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,8
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,8
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,8
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,8
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,8
+NEW.BOUNCE
+SRC.GO 7057 383 0
+SRC.HOME=7057 383 0
+NEWITEM=02fc3
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_elf
+SRC.FIX
+MENU MENU_INSTRUMENT
+
+[function f_barbarian]
+SRC.SWORDSMANSHIP += 25.0
+SRC.FOCUS += 25.0
+SRC.MACEFIGHTING += 25.0
+SRC.TACTICS += 25.0
+SRC.TRACKING += 20.0
+SRC.DetectingHidden += 20.0
+SRC.ANATOMY += 20.0
+SRC.REMOVETRAP += 20.0
+SRC.PARRYING += 20.0
+SRC.SKILLCLASS=Class_Barbarian
+SRC.SYSMESSAGE Thou art now a Barbarian
+NEWITEM i_tunic
+NEW.BOUNCE
+NEW.COLOR=38
+NEWITEM i_STUDDED_TUNIC
+NEW.BOUNCE
+NEWITEM i_STUDDED_LEGGINGS
+NEW.BOUNCE
+NEWITEM i_STUDDED_SLEEVES
+NEW.BOUNCE
+NEWITEM i_sTUDDED_GORGET
+NEW.BOUNCE
+NEWITEM i_STUDDED_GLOVES
+NEW.BOUNCE
+NEWITEM i_ribs,8
+NEW.BOUNCE
+NEWITEM i_potion_Strength,3
+NEW.BOUNCE
+SRC.GO 2170 1362 0
+SRC.HOME=2170 1362 0
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_orc
+SRC.FIX
+MENU MENU_WEAPON
+
+[function f_shaman]
+SRC.SPIRITSPEAK += 25.0
+SRC.ALCHEMY += 25.0
+SRC.MAGICRESISTANCE += 25.0
+SRC.EVALUATINGINTEL += 20.0
+SRC.TASTEID += 20.0
+SRC.MAGERY += 20.0
+SRC.HEALING += 20.0
+SRC.MEDITATION += 25.0
+SRC.SPELLWEAVING += 20.0
+SRC.SKILLCLASS=Class_Shaman
+SRC.SYSMESSAGE Thou art now a Shaman
+NEWITEM i_robe
+NEW.BOUNCE
+NEW.COLOR=67
+NEWITEM i_staff_gnarled
+NEW.BOUNCE
+NEWITEM i_ribs,8
+NEW.BOUNCE
+NEWITEM i_potion_Heal,3
+NEW.BOUNCE
+NEWITEM i_bandage,8
+NEW.BOUNCE
+NEWITEM i_BOTTLE_EMPTY,8
+NEW.BOUNCE
+NEWITEM i_mortar_pestle
+NEW.BOUNCE
+NEWITEM i_reag_black_pearl,16
+NEW.BOUNCE
+NEWITEM i_reag_blood_moss,16
+NEW.BOUNCE
+NEWITEM i_reag_garlic,16
+NEW.BOUNCE
+NEWITEM i_reag_ginseng,16
+NEW.BOUNCE
+NEWITEM i_reag_nightshade,16
+NEW.BOUNCE
+NEWITEM i_reag_sulfur_ash,16
+NEW.BOUNCE
+NEWITEM i_reag_spider_silk,16
+NEW.BOUNCE
+NEWITEM i_reag_mandrake_root,16
+NEW.BOUNCE
+SRC.GO 634 851 0
+SRC.HOME=634 851 0
+NEWITEM =i_sandals
+NEW.BOUNCE
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_orc
+SRC.FIX
+MENU MENU_WEAPON
+
+[function f_assassin]
+SRC.ANATOMY += 25.0
+SRC.TACTICS += 25.0
+SRC.FENCING += 25.0
+SRC.POISONING += 25.0
+SRC.HIDING += 25.0
+SRC.STEALTH += 25.0
+SRC.LOCKPICKING += 25.0
+SRC.DetectingHidden += 25.0
+SRC.SKILLCLASS=Class_Assassin
+SRC.SYSMESSAGE Thou art now a Assassin
+NEWITEM i_sash
+NEW.BOUNCE
+NEW.COLOR=52
+NEWITEM i_LEATHER_TUNIC
+NEW.BOUNCE
+NEWITEM i_LEATHER_LEGGINGS
+NEW.BOUNCE
+NEWITEM i_LEATHER_SLEEVES
+NEW.BOUNCE
+NEWITEM i_LEATHER_GORGET
+NEW.BOUNCE
+NEWITEM i_LEATHER_GLOVES
+NEW.BOUNCE
+NEWITEM i_assassin_spike
+NEW.BOUNCE
+NEWITEM i_ribs,8
+NEW.BOUNCE
+NEWITEM i_lockpick,8
+NEW.BOUNCE
+NEWITEM i_potion_poison,3
+NEW.BOUNCE
+SRC.GO 1454 1568 30
+SRC.HOME=1454 1568 30
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_orc
+SRC.FIX
+MENU MENU_WEAPON
+
+[function f_laborer]
+SRC.ARMSLORE += 25.0
+SRC.MINING += 25.0
+SRC.LUMBERJACKING += 25.0
+SRC.FISHING += 25.0
+SRC.BLACKSMITHING += 20.0
+SRC.TINKERING += 20.0
+SRC.CARPENTRY += 20.0
+SRC.TAILORING += 20.0
+SRC.COOKING += 20.0
+SRC.SKILLCLASS=Class_Laborer
+SRC.SYSMESSAGE Thou art now a Laborer
+NEWITEM i_hammer_smith
+NEW.BOUNCE
+NEWITEM i_saw
+NEW.BOUNCE
+NEWITEM i_tinker_tools
+NEW.BOUNCE
+NEWITEM i_shovel
+NEW.BOUNCE
+NEWITEM i_hatchet
+NEW.BOUNCE
+NEWITEM i_ingot_iron,10
+NEW.BOUNCE
+NEWITEM i_log,10
+NEW.BOUNCE
+NEWITEM i_sewing_kit
+NEW.BOUNCE
+NEWITEM i_hide,8
+NEW.BOUNCE
+NEWITEM i_dough_raw,5
+NEW.BOUNCE
+NEWITEM i_ribs_raw,5
+NEW.BOUNCE
+NEWITEM i_bread_loaf,8
+NEW.BOUNCE
+SRC.GO 2170 1362 0
+SRC.HOME=2170 1362 0
+NEWITEM =i_shirt_plain
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_pants_long
+NEW.COLOR=colors_all
+NEW.BOUNCE
+NEWITEM =i_shoes_plain
+NEW.BOUNCE
+NEWITEM =i_dagger
+NEW.BOUNCE
+NEWITEM =i_candle
+NEW.BOUNCE
+NEWITEM =i_book_sm
+NEW.BOUNCE
+NEWITEM =i_copper_coin,100
+NEW.BOUNCE
+race_orc
+SRC.FIX
+MENU MENU_WEAPON
+
+[EOF]

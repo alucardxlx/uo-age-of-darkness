@@ -1,0 +1,785 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+//// NPC's DOMESTIC ANIMALS////
+
+[chardef 0124]
+defname=c_llama_pack
+defname=packllamas
+name="pack llama"
+sound=snd_animals_llama3
+icon=i_pet_llama_pack
+anim=01fff
+dam=4,7
+armor=13
+moverate=0
+resources=5 i_ribs_raw, 5 i_fur_light, 2 i_backpack
+can=mt_walk|mt_run|mt_nonhum
+foodtype=60 t_crops, t_fruit, t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_llama,c_llama_pack,t_crops, t_fruit, t_grain, i_hay, t_grass
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Pack Llama
+
+on=@create
+     npc=brain_animal
+
+     str={57 77}
+     dex={41 54}
+     int={17 30}
+
+     parrying={35.0 45.0}
+     magicresistance={16.0 19.9}
+     tactics={22.8 27.6}
+     wrestling={28.4 31.3}
+
+     taming=35.1
+     Peacemaking=0.1
+
+     fame=0
+
+[chardef 0dc]
+defname=c_llama
+name="llama"
+sound=snd_animals_llama3
+icon=i_pet_llama
+can=mt_walk|mt_run|mt_nonhum
+ANIM=01FFF
+dam=4,7
+armor=13
+moverate=0
+resources=5 i_ribs_raw, 5 i_fur_light
+foodtype=60 t_crops, t_fruit, t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_llama,c_llama_pack,t_crops, t_fruit, t_grain, i_hay, t_grass
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Llama
+
+on=@create
+     npc=brain_animal
+
+     str={25 48}
+     dex={37 55}
+     int={16 30}
+
+     parrying={35.0 45.0}
+     magicresistance={15.5 20.0}
+     tactics={19.6 28.1}
+     wrestling={21.6 28.3}
+
+     taming=45.1
+     Peacemaking=0.1
+
+     fame=10
+
+[chardef 0123]
+defname=c_horse_pack
+defname=packhorses
+name="pack horse"
+sound=snd_animals_horse1
+anim=01fff
+icon=i_pet_horse_pack
+can=mt_walk|mt_run|mt_nonhum
+dam=4,6
+armor=14
+moverate=0
+resources=8 i_ribs_raw, 6 i_hide, 2 i_backpack
+foodtype=70 t_crops,t_fruit t_grain, t_grass
+desires=e_horses,c_man,c_woman,t_crops, t_fruit, t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+tevents=e_horses
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Pack Horse
+
+on=@create
+     npc=brain_animal
+
+     str={68 110}
+     dex={36 52}
+     int={6 10}
+
+     parrying={35.0 45.0}
+     magicresistance={25.5 29.6}
+     tactics={32.1 42.3}
+     wrestling={39.3 44.8}
+
+     taming=29.1
+
+     fame=0
+
+[chardef 0c8]
+defname=c_horse_tan
+name="horse"
+sound=snd_animals_horse1
+icon=i_pet_horse_tan
+anim=01fff
+can=mt_walk|mt_run|mt_nonhum
+resources=8 i_ribs_raw, 6 i_hide
+foodtype=70 t_crops,t_fruit t_grain, t_grass
+dam=4,6
+armor=14
+moverate=0
+desires=e_horses,c_man,c_woman,t_crops, t_fruit, t_grain, i_hay, t_grass
+tevents=e_horses
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Horse (tan)
+
+on=@create
+     npc=brain_animal
+     fame=0
+
+     str={33 76}
+     dex={57 75}
+     int=10
+
+     parrying={35.0 45.0}
+     magicresistance={23.4 29.6}
+     tactics={31.0 41.7}
+     wrestling={33.7 44.9}
+
+     taming=39.1
+     Peacemaking=0.1
+
+[chardef 0cc]
+defname=c_horse_brown_dk
+name="horse"
+anim=01fff
+sound=snd_animals_horse1
+icon=i_pet_horse_brown_dk
+can=mt_walk|mt_run|mt_nonhum
+dam=4,6
+armor=14
+moverate=0
+resources=8 i_ribs_raw, 6 i_hide
+foodtype=70 t_crops,t_fruit t_grain, t_grass
+desires=e_horses,c_man,c_woman,t_crops, t_fruit, t_grain, i_hay, t_grass
+tevents=e_horses
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Horse (dark brown)
+
+on=@create
+     npc=brain_animal
+     fame=0
+
+     str={33 76}
+     dex={57 75}
+     int=10
+
+     parrying={35.0 45.0}
+     magicresistance={23.4 29.6}
+     tactics={31.0 41.7}
+     wrestling={33.7 44.9}
+
+     taming=39.1
+     Peacemaking=0.1
+
+[chardef 0e2]
+defname=c_horse_gray
+name="horse"
+sound=snd_animals_horse1
+icon=i_pet_horse_gray
+can=mt_walk|mt_run|mt_nonhum
+anim=01fff
+dam=4,6
+armor=14
+moverate=0
+resources=8 i_ribs_raw, 6 i_hide
+desires=c_horse_gray,c_man,c_woman,t_crops, t_fruit, t_grain, i_hay, t_grass
+foodtype=70 t_crops,t_fruit t_grain, t_grass
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+resources=15 i_ribs_raw, 10 i_hide
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Horse (grey)
+
+on=@create
+     npc=brain_animal
+     fame=0
+
+     str={33 76}
+     dex={57 75}
+     int=10
+
+     parrying={35.0 45.0}
+     magicresistance={23.4 29.6}
+     tactics={31.0 41.7}
+     wrestling={33.7 44.9}
+
+     taming=39.1
+     Peacemaking=0.1
+
+[chardef 0e4]
+defname=c_horse_brown_lt
+name="horse"
+sound=snd_animals_horse1
+icon=i_pet_horse_brown_lt
+ANIM=01FFF
+dam=4,6
+armor=14
+moverate=0
+resources=8 i_ribs_raw, 6 i_hide
+can=mt_walk|mt_run|mt_nonhum
+foodtype=70 t_crops,t_fruit t_grain, t_grass
+TEVENTS=e_Level_up_NPC
+desires=e_horses,c_man,c_woman,t_crops, t_fruit, t_grain, i_hay, t_grass
+tevents=e_horses
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Horse (light brown)
+
+on=@create
+     npc=brain_animal
+     fame=0
+
+     str={33 76}
+     dex={57 75}
+     int=10
+
+     parrying={35.0 45.0}
+     magicresistance={23.4 29.6}
+     tactics={31.0 41.7}
+     wrestling={33.7 44.9}
+
+     taming=39.1
+     Peacemaking=0.1
+
+[chardef 0d1]
+defname=c_goat
+name="goat"
+anim=01fff
+sound=snd_animals_goat1
+icon=i_pet_goat
+dam=3,4
+armor=16
+moverate=0
+resources=4 i_ribs_raw, 4 i_hide
+can=mt_walk|mt_run|mt_nonhum
+foodtype=50 t_fruit, t_leather, t_grass, t_garbage
+desires=c_man,c_woman,c_goat,t_fruit, t_leather, t_grass, t_garbage
+TEVENTS=e_Level_up_NPC
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=5
+
+category=AoD Animals
+subsection=Domestic
+description=Goat
+
+on=@create
+     npc=brain_animal
+	nightsight=1
+
+     str={34 56}
+     dex={56 74}
+     int={16 30}
+
+     parrying=50.0
+     magicresistance={25.3 30.0}
+     tactics={31.1 41.6}
+     wrestling={36.0 43.2}
+
+     taming=30.0
+     Peacemaking=0.1
+
+     fame=20
+
+[chardef 0e8]
+defname=c_bull_lt
+name="bull"
+sound=snd_animals_bull1
+icon=i_pet_bull
+anim=017ff
+dam=5,8
+armor=16
+moverate=0
+resources=6 i_ribs_raw, 6 i_steak_raw, 12 i_hide
+can=mt_walk|mt_run|mt_nonhum
+foodtype=80 t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_cow_bw,c_cow_brown,c_bull_brown_lt,c_bull_brown_dk,t_grain, i_hay, t_grass
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=27
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Bull (light brown)
+
+on=@create
+     npc=brain_animal
+     fame=50
+     karma=0
+     color={ colors_brown 1 color_none 1 }
+
+     str={80 109}
+     dex={56 75}
+     int={50 90}
+
+     parrying={43.0 55.0}
+     magicresistance={17.6 24.7}
+     tactics={69.4 84.9}
+     wrestling={45.7 60.7}
+
+     taming=71.1
+     Peacemaking=7.1
+
+[chardef 0e9]
+defname=c_bull_dk
+name="bull"
+sound=snd_animals_bull1
+icon=i_pet_bull
+anim=017ff
+dam=5,8
+armor=16
+moverate=0
+resources=6 i_ribs_raw, 6 i_steak_raw, 12 i_hide
+can=mt_walk|mt_run|mt_nonhum
+foodtype=80 t_grain, i_hay, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_cow_bw,c_cow_brown,c_bull_brown_lt,c_bull_brown_dk,t_grain, i_hay, t_grass
+aversions=e_carnivores3
+tag.slots_needed=2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=27
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Bull (dark brown)
+
+on=@create
+     npc=brain_animal
+     fame=50
+     karma=0
+     color={ colors_brown 1 color_none 1 }
+
+     str={80 109}
+     dex={56 75}
+     int={50 90}
+
+     parrying={43.0 55.0}
+     magicresistance={17.6 24.7}
+     tactics={69.4 84.9}
+     wrestling={45.7 60.7}
+
+     taming=71.1
+     Peacemaking=7.1
+
+[chardef 0e7]
+defname=c_cow_brown
+name="cow"
+sound=snd_animals_cow1
+icon=i_pet_cow
+anim=017ff
+dam=2,4
+armor=10
+moverate=0
+resources=6 i_ribs_raw, 4 i_steak_raw, 10 i_hide
+can=mt_walk|mt_run|mt_female|mt_nonhum
+foodtype=70 t_grass, t_grain, i_hay
+TEVENTS=e_Level_up_NPC
+desires=c_cow_bw,c_cow_brown,c_bull_brown_lt,c_bull_brown_dk,t_grain, i_hay, t_grass
+aversions=e_carnivores3
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=27
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Cow (brown)
+
+on=@create
+     npc=brain_animal
+
+     str=30
+     dex=15
+     int=10
+
+     parrying=5.5
+     magicresistance=5.5
+     tactics=5.5
+     wrestling=8.1
+
+     taming=11.3
+     Peacemaking=0.1
+
+     fame=10
+
+[chardef 0d8]
+defname=c_cow_bw
+name="cow"
+sound=snd_animals_cow1
+icon=i_pet_cow
+anim=017ff
+dam=2,4
+armor=10
+moverate=0
+resources=6 i_ribs_raw, 4 i_steak_raw, 10 i_hide
+can=mt_walk|mt_run|mt_female|mt_nonhum
+foodtype=70 t_grass,t_grain, i_hay
+TEVENTS=e_Level_up_NPC
+desires=c_cow_bw,c_cow_brown,c_bull_brown_lt,c_bull_brown_dk,t_grain, i_hay, t_grass
+aversions=e_carnivores3
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=27
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Cow (black and white)
+
+on=@create
+     npc=brain_animal
+
+     str=30
+     dex=15
+     int=10
+
+     parrying=5.5
+     magicresistance=5.5
+     tactics=5.5
+     wrestling=8.1
+
+     taming=11.3
+     Peacemaking=0.1
+
+     fame=10
+
+[chardef 0cf]
+defname=c_sheep_woolly
+name="sheep"
+sound=snd_animals_sheep1
+icon=i_pet_sheep_wooly
+dam=2,3
+armor=8
+moverate=0
+resources=2 i_ribs_raw, 4 i_lamb_leg_raw, 1 i_wool
+can=mt_walk|mt_run|mt_nonhum
+foodtype=40 t_crops, t_grain, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_sheep_woolly,c_sheep_shorn,c_man,c_woman,t_crops, t_grain, t_grass
+aversions=e_carnivores3
+anim=01fff
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=4
+TAG.MANUEVER2=17
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Sheep (wooly)
+
+on=@create
+     npc=brain_animal
+     fame=10
+     color={ colors_white 9 color_gray_lt 1 }
+
+     str=19
+     dex=25
+     int=10
+
+     parrying=5.0
+     magicresistance=5.0
+     tactics=6.0
+     wrestling=6.8
+
+     taming=11.1
+     Peacemaking=0.1
+
+[chardef 0df]
+defname=c_sheep_shorn
+name="sheep"
+sound=snd_animals_sheep1
+icon=i_pet_sheep
+anim=01fff
+dam=2,3
+armor=8
+moverate=0
+resources=2 i_ribs_raw, 4 i_lamb_leg_raw
+can=mt_walk|mt_run|mt_nonhum
+foodtype=40 t_crops, t_grain, t_grass
+TEVENTS=e_Level_up_NPC
+desires=c_sheep_woolly,c_sheep_shorn,c_man,c_woman,t_crops, t_grain, t_grass
+aversions=e_carnivores3
+anim=01fff
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=4
+TAG.MANUEVER2=17
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Sheep (shorn)
+
+on=@create
+     npc=brain_animal
+     fame=10
+     color={ colors_white 9 color_gray_lt 1 }
+
+     str=19
+     dex=25
+     int=10
+
+     parrying=5.0
+     magicresistance=5.0
+     tactics=6.0
+     wrestling=6.8
+
+     taming=11.1
+     Peacemaking=0.1
+
+[chardef 0c9]
+defname=c_cat
+name="cat"
+anim=017ff
+sound=snd_animals_cat1
+icon=i_pet_cat
+dam=4,5
+armor=7
+moverate=0
+resources=2 i_ribs_raw, 1 i_fur_light
+can=mt_walk|mt_run|mt_nonhum
+foodtype=20 t_meat_raw, t_fish
+TEVENTS=e_Level_up_NPC
+desires=e_human_greet,t_window,t_meat_raw, t_fish
+tag.wrestlingspeed=48
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=2
+TAG.MANUEVER2=7
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Domestic
+description=Cat
+
+on=@create
+     npc=brain_animal
+     color=colors_animal
+	nightsight=1
+
+     str={9 15}
+     dex={20 40}
+     int={10 28}
+
+     hiding={15.0 35.0}
+     parrying=2.5
+     magicresistance=5.0
+     tactics=4.0
+     wrestling=6.0
+
+     taming=3.6
+     Peacemaking=0.1
+
+     fame=10
+
+[chardef 0d9]
+defname=c_dog
+name="dog"
+sound=snd_animals_dog1
+icon=i_pet_dog
+can=mt_walk|mt_run|mt_nonhum
+anim=017ff
+dam=4,7
+armor=6
+moverate=0
+resources=3 i_ribs_raw, 2 i_fur_light
+foodtype=40 t_meat_raw
+TEVENTS=e_Level_up_NPC
+desires=c_man,c_woman,c_dog,t_meat_raw
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=2
+TAG.MANUEVER2=11
+TAG.MANUEVER3=6
+
+category=AoD Animals
+subsection=Domestic
+description=Dog
+
+on=@create
+     npc=brain_animal
+     fame=10
+	nightsight=1
+
+     str={30 41}
+     dex={27 37}
+     int={15 26}
+
+     parrying={28.0 43.0}
+     magicresistance={12.8 36.4}
+     tactics={21.0 27.7}
+     wrestling={23.5 30.7}
+
+     taming=1.1
+
+[chardef 0d0]
+defname=c_chicken
+name="chicken"
+sound=snd_animals_chicken1
+icon=i_pet_chicken
+anim=01fff
+dam=2,3
+armor=3
+moverate=0
+RESOURCES=25 i_feather, 2 i_ribs_raw, 2 i_chicken_leg_raw
+can=mt_walk|mt_run|mt_nonhum
+foodtype=20 t_grain
+TEVENTS=e_Level_up_NPC
+desires=c_chicken,t_grain
+aversions=e_carnivores2
+tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=17
+TAG.MANUEVER2=19
+TAG.MANUEVER3=2
+
+category=AoD Animals
+subsection=Domestic
+description=Chicken
+
+on=@create
+     npc=brain_animal
+
+     str={10 12}
+     dex={15 18}
+     int={8 10}
+
+     parrying={1.5 5.8}
+     tactics={5.4 9.8}
+     wrestling=5.5 9.9}
+
+     taming=10.0
+
+
+[chardef 0cb]
+defname=c_pig
+name="pig"
+sound=snd_animals_pig1
+icon=i_pet_pig
+can=mt_walk|mt_run|mt_nonhum
+dam=4,6
+armor=10
+moverate=0
+RESOURCES=2 i_ribs_raw, 4 i_bacon_slab, 6 i_hide
+foodtype=55 t_fruit, t_crops, t_grain, t_garbage
+TEVENTS=e_Level_up_NPC
+desires=c_pig,c_pig_big, t_fruit, t_crops, t_grain, t_garbage
+anim=01fff
+tag.wrestlingspeed=42
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Animals
+subsection=Domestic
+description=Pig
+
+on=@create
+     npc=brain_animal
+     fame=10
+	nightsight=1
+
+     str={22 28}
+     dex={18 20}
+     int={15 20}
+
+     parrying={5.0 7.5}
+     magicresistance={5.0 7.5}
+     tactics={5.0 8.7}
+     wrestling={6.9 9.8}
+
+     taming=16.1
+
+     fame=10
+
+[eof]

@@ -1,0 +1,42 @@
+[ITEMDEF i_focus_timer]
+Id=i_memory
+name = Focus timer
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 10
+   return 1
+
+On=@Timer
+	IF (<LINK.FINDLAYER(6).TYPE>==t_armor) || (<LINK.FINDLAYER(13).TYPE>==t_armor) || (<LINK.FINDLAYER(24).TYPE>==t_armor) || (<LINK.FINDLAYER(19).TYPE>==t_armor) || (<LINK.FINDLAYER(10).TYPE>==t_armor) || (<LINK.FINDLAYER(7).TYPE>==t_armor)
+		IF (<LINK.ACTION> == SKILL_MEDITATION)
+			LINK.SYSMESSAGE You cannot meditate in heavy armor.
+			LINK.ACTION = -1
+		ENDIF
+		IF ((<link.STAM> < <link.MAXSTAM>) || (<link.mana> < <link.MAXmana>) || (<link.hits> < <link.MAXhits>)) && !(<link.flags>&statf_dead)
+			IF  (<link.SKILLLOCK.50> == 0) && ((<link.STAM> < <link.MAXSTAM>) || (<link.mana> < <link.MAXmana>))
+				link.skillgain focus 1000
+			ENDIF
+			link.TAG.OVERRIDE.Regen_0=<EVAL (((<link.FOOD> * 100)/<link.MAXFOOD>)/12)>
+			link.TAG.OVERRIDE.Regen_1=<EVAL ((<link.FOCUS>+<link.Skillmod Focus>) / 165)>
+			link.TAG.OVERRIDE.Regen_2=<EVAL ((<link.FOCUS>+<link.Skillmod Focus>) / 120)>
+		ENDIF
+
+	ELSE
+
+		IF ((<link.STAM> < <link.MAXSTAM>) || (<link.mana> < <link.MAXmana>) || (<link.hits> < <link.MAXhits>)) && !(<link.flags>&statf_dead)
+			IF  (<link.SKILLLOCK.50> == 0) && ((<link.STAM> < <link.MAXSTAM>) || (<link.mana> < <link.MAXmana>))
+				link.skillgain focus 1000
+			ENDIF
+			link.TAG.OVERRIDE.Regen_0=<EVAL (((<link.FOOD> * 100)/<link.MAXFOOD>)/12)>
+			link.TAG.OVERRIDE.Regen_1=<EVAL (((<link.FOCUS>+<link.Skillmod Focus>) / 165) + ((<link.Meditation>+<link.Skillmod Meditation>) / 165))>
+			link.TAG.OVERRIDE.Regen_2=<EVAL ((<link.FOCUS>+<link.Skillmod Focus>) / 120)>
+		ENDIF
+	ENDIF
+	timer = 10
+	return 1 
