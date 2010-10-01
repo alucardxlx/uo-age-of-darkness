@@ -1,0 +1,2380 @@
+//***************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+//****************************************************************************
+// SPHERE by : Menasoft 1997-2006
+// www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Sunday, April 9 2006
+// by Rattlehead, few changes & fixes by ClouD_BR & Ellessar
+VERSION=0.56b
+
+
+[chardef 755]
+defname=c_destroyer_gargoyle
+name=Destroyer Gargoyle
+SOUND=snd_monster_gargyl1
+ICON=i_pet_GARG
+ARMOR=50
+DAM=31,64
+CAN=MT_WALK|MT_USEHANDS|MT_EQUIP|MT_FLY
+FOODTYPE=1 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=0ad
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Destroyer Gargoyle
+MOVERATE=30
+
+ON=@Create
+	NPC=brain_monster
+	FAME=8000
+	KARMA=-8000
+	STR={760 850}
+	MAXHITS=485
+	INT={152 200}
+	DEX={102 150}
+	MAGICRESISTANCE={120.0 160.0}
+	MAGERY={91.0 100.0}
+	EVALUATINGINTEL={91.0 100.0}
+	MEDITATION={91.0 100.0}
+	TACTICS={90.0 100.0}
+	WRESTLING={90.0 100.0}
+	ANATOMY={50.0 100.0}
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{750 950}
+	ITEM=random_scroll
+	ITEM=random_scroll
+
+[CHARDEF 0302]
+defname=c_meer_mage
+NAME=Meer Mage
+SOUND=snd_human_foomph09
+ICON=i_pet_meermage
+DAM=51,55
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+ARMOR=50
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Meer Mage
+
+ON=@Create
+	NPC=brain_monster
+	FAME=2000
+	KARMA=-5000
+	STR={171 200}
+	INT={276 305}
+	DEX={126 145}
+	MAXHITS={103 120}
+	MAGICRESISTANCE={80.1 100.0}
+	TACTICS={70.1 90.0}
+	WRESTLING={60.1 80.0}
+	MAGERY={75.1 85.0}
+	EVALUATINGINTEL=100.0
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{500 600}
+
+[chardef 0303]
+defname=c_Meer_Warrior
+name=Meer Warrior
+SOUND=snd_human_foomph09
+ICON=i_pet_meerwarrior
+DAM=22,34
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+ARMOR=39
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Meer Warrior
+
+ON=@Create
+	NPC=brain_monster
+	FAME=2000
+	KARMA=-2000
+	STR={86 100}
+	MAXHITS={52 60}
+	INT={86 100}
+	DEX={186 200}
+	MAGICRESISTANCE={91.0 100.0}
+	TACTICS={91.0 100.0}
+	WRESTLING={91.0 100.0}
+
+ON=@NpcRestock
+	ITEM=i_gold,{50 100}
+
+[CHARDEF 0304]
+defname=c_meer_eternal
+NAME=Meer Eternal
+SOUND=snd_human_foomph09
+ICON=i_pet_meereternal
+DAM=31,39
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+ARMOR=50
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Meer Eternal
+
+ON=@Create
+	NPC=brain_monster
+	FAME=10000
+	KARMA=-10000
+	STR={416 505}
+	MAXHITS={250 303}
+	INT={566 655}
+	DEX={146 165}
+	MAGICRESISTANCE={150.5 200.0}
+	TACTICS={50.1 70.0}
+	WRESTLING={60.1 80.0}
+	MAGERY={90.1 100.0}
+	EVALUATINGINTEL={90.1 100.0}
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{1000 1200}
+
+[CHARDEF 0305]
+defname=c_meer_captain
+NAME=Meer Captain
+SOUND=snd_human_foomph09
+ICON=i_pet_meercaptain
+DAM=34,39
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+ARMOR=50
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Meer Captain
+
+ON=@Create
+	NPC=brain_monster
+	FAME=2000
+	KARMA=-5000
+	STR={96 110}
+	MAXHITS={58 66}
+	INT={96 110}
+	DEX={186 200}
+	MAGICRESISTANCE={91.0 100.0}
+	TACTICS={91.0 100.0}
+	WRESTLING={80.9 89.9}
+
+ON=@NpcRestock
+	ITEM=i_gold,{50 100}
+
+[chardef 174]
+defname=c_abyss_lord
+name=Abyss Lord
+SOUND=snd_monster_daemon1
+ICON=i_pet_wailingbanshee
+DAM=10,20
+ARMOR=40
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+RESDISPDNID=c_woman
+RESLEVEL=2
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Abyss Lord
+MOVERATE=40
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={200 300}
+	MAXHITS=800
+	INT={130 200}
+	DEX={40 60}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS=70.0
+	WRESTLING={65.0 80.0}
+	MAGERY=1000
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{700 1100}
+	ITEM=random_weapon
+
+[chardef 189]
+defname=c_orc_brute
+name=Orc Brute
+SOUND=snd_monster_orc1
+ICON=i_pet_orc
+DAM=82,111
+ARMOR=45
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_USEHANDS|MT_RUN
+FOODTYPE=1 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Orc Brute
+
+ON=@Create
+	NPC=brain_monster
+	FAME=10000
+	KARMA=-10000
+	STR={767 945}
+	MAXHITS={476 552}
+	INT={46 70}
+	DEX={66 75}
+	MAGICRESISTANCE={125.0 140.0}
+	TACTICS={90.0 100.0}
+	WRESTLING={90.0 100.0}
+
+ON=@NpcRestock
+	ITEM=i_gold,{750 950}
+	ITEM=i_ore_shadow,{10 25}
+	ITEM=i_ingot_iron,{10 20}
+	ITEM=random_weapon
+
+
+
+[chardef 198]
+defname=c_orderlord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+[chardef 197]
+defname=c_chaoslord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+[chardef 689]
+defname=c_timelord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+[chardef 704]
+defname=c_shadow_lord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+
+
+
+[chardef 0309]
+defname=c_doppleganger
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+
+
+[chardef 244]
+defname=c_rune_beetle
+name=Rune Beetle
+SOUND=snd_rune_beetle
+ICON=i_pet_runebeetle
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+DAM=1,30
+ARMOR=45
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=40
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Super Besouro
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={200 300}
+	MAXHITS={300 1000}
+	INT={230 400}
+	DEX={50 80}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE=1000
+	TACTICS=100.0
+	WRESTLING={95.0 100.0}
+
+ON=@NpcRestock
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
+	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
+	ITEM={ rich_gold_pile 1 }
+	ITEM=random_jewel,{1 4},R2
+	ITEM=i_gold,{2200 2900}
+
+////////////////////////////
+
+[chardef 245]
+defname=c_Yomotsu_Warrior
+name=Yomotsu Warrior
+SOUND=snd_yomotsu
+ICON=i_pet_yomotsu_warrior
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+DAM=4,10
+ARMOR=15
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=60
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Yomotsu Warrior
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={70 90}
+	MAXHITS=150
+	INT={100 200}
+	DEX={70 110}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS={60.0 90.0}
+	WRESTLING={60.0 90.0}
+	SWORDSMANSHIP={60.0 90.0}
+	ITEMNEWBIE=i_staff_bladed_double
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+
+////////////////////////////
+
+[chardef 253]
+defname=c_Yomotsu_Priest
+name=Yomotsu Priest
+SOUND=snd_yomotsu
+ICON=i_pet_yomotsu_priest
+DAM=8,16
+ARMOR=18
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=60
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Yomotsu Mage
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={5000 6999}
+	STR={50 70}
+	INT={200 300}
+	DEX={30 80}
+
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={80.0 100.0}
+	TACTICS={40.0 60.0}
+	WRESTLING={40.0 60.0}
+	SWORDSMANSHIP={30.0 60.0}
+	MAGERY=100.0
+
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE=8,1
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{110 180}
+
+////////////////////////////
+
+[chardef 255]
+defname=c_Yomotsu_Elder
+name=Yomotsu Elder
+SOUND=snd_yomotsu
+ICON=i_pet_yomotsu_elder
+DAM=10,25
+ARMOR=22
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=60
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Elder Yomotsu
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={100 200}
+	MAXHITS={400 500}
+	INT={400 500}
+	DEX={50 90}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE=100.0
+	TACTICS={40.0 60.0}
+	WRESTLING={40.0 60.0}
+	SWORDSMANSHIP={30.0 60.0}
+	MAGERY=125.0
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE=8,1
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{210 280}
+	ITEM=random_platemail_invulnerability
+
+///////////////////////
+
+[chardef 240]
+defname=c_kappa
+name=Kappa
+SOUND=snd_kappa
+ICON=i_pet_kappa
+DAM=5,15
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+ARMOR=15
+CAN=MT_WALK|MT_USEHANDS|MT_SWIM
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Tartarugao
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={50 100}
+	INT={30 60}
+	DEX={30 60}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS=60.0
+	WRESTLING={55.0 70.0}
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+
+////////////////////////////
+
+[chardef 242]
+defname=c_deathwatch_beetle
+name=deathwatch beetle
+SOUND=snd_monster_lavalizard1
+ICON=i_pet_deathwatch_beetle
+DAM=4,30
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+ARMOR=20
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=55
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Worm
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={100 200}
+	MAXHITS=500
+	INT={230 300}
+	DEX={90 110}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS=100.0
+	WRESTLING={95.0 100.0}
+
+ON=@Hit
+	IF !(<SRC.FLAGS>&statf_poisoned)
+		SRC.SPELLEFFECT S_POISON,1000,<UID>
+	endif
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{380 630}
+
+[CHARDEF 246]
+NAME=Bake Kitsune
+DEFNAME=c_bake_kitsune
+SOUND=snd_z_end_spirtspk
+CAN=MT_WALK|MT_RUN|MT_EQUIP
+ICON=i_pet_bakekitsune
+DAM=9,18
+ARMOR=18
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Bake Kitsune
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+
+ON=@Create
+	NPC=brain_monster
+	Str={170 220}
+	Dex={125 145}
+	Int={375 425}
+	MagicResistance={80.0 100.0}
+	Tactics={70.0 90.0}
+	Wrestling={50.0 55.0}
+	Magery={80.0 90.0}
+	Meditation={85.0 95.0}
+	EvaluatingIntel={80.0 90.0}
+	Fame=150
+	Karma=-2150
+
+[CHARDEF 247]
+Name=Fan Dancer
+DEFNAME=c_fan_dancer
+ARMOR=15
+CAN=MT_WALK|MT_RUN
+ICON=i_pet_fandancer
+DAM=7,12
+SOUND=snd_human_foomph01
+CATEGORY=New Monsters
+SUBSECTION=SE
+RESDISPDNID=c_woman
+RESLEVEL=3
+RESDISPDNHUE=33
+DESCRIPTION=Fan Dancer
+on=@create
+NPC=BRAIN_MONSTER
+Str={115 175}
+MAXHITS={315 415}
+Dex={200 255}
+Int={20 25}
+MagicResistance={100.0 110.0}
+Tactics={100.0 120.0}
+Wrestling={85.0 95.0}
+Anatomy={85.0 95.0}
+Fame=300
+Karma=-3000
+
+[CHARDEF 248]
+Name=Gaman
+DEFNAME=c_gaman
+ARMOR=20
+ICON=i_pet_gaman
+SOUND=snd_gaman
+CAN=MT_WALK|MT_RUN
+DAM=4,7
+CATEGORY=New Monsters
+RESDISPDNID=c_dog
+RESLEVEL=3
+RESDISPDNHUE=33
+SUBSECTION=SE
+DESCRIPTION=Gaman
+on=@create
+NPC=BRAIN_MONSTER
+Str={145 175}
+Dex={115 145}
+Int={45 60}
+MagicResistance={35.0 45.0}
+Tactics={70.0 85.0}
+Wrestling={50.0 60.0}
+Anatomy={10.0 40.0}
+Fame=900
+Karma=-5000
+
+[CHARDEF 249]
+Name=Yamandon
+DEFNAME=c_yamandon
+ICON=i_pet_yamandon
+ARMOR=18
+SOUND=snd_yomotsu
+CAN=MT_WALK|MT_RUN
+DAM=14,40
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Yamandon
+on=@create
+NPC=BRAIN_MONSTER
+Str={285 330}
+MAXHITS={950 1100}
+Dex={50 65}
+Int={100 120}
+MagicResistance={115.0 135.0}
+Tactics={115.0 135.0}
+Wrestling={110.0 135.0}
+Poisoning={120.0 140.0}
+Fame=2000
+Karma=-5000
+
+[CHARDEF 250]
+Name=Tsuki Wolf
+DEFNAME=c_tsuki_wolf
+ARMOR=35
+CAN=MT_WALK|MT_RUN
+SOUND=snd_tsuki_wolf
+ICON=i_pet_tsukiwolf
+RESDISPDNID=c_dog
+RESLEVEL=3
+RESDISPDNHUE=33
+DAM=13,30
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Tsuki Wolf
+on=@create
+NPC=BRAIN_MONSTER
+Str={200 250}
+MAXHITS=500
+Dex={150 200}
+Int={65 75}
+MagicResistance={65.0 70.0}
+Tactics={95.0 110.0}
+Wrestling={98.0 108.0}
+Anatomy={65.0 75.0}
+Fame=2000
+Karma=-5000
+
+
+[CHARDEF 199]
+Name=Rai-Ju
+DEFNAME=c_rai_ju
+RESDISPDNID=c_elem_air
+ICON=i_pet_raiju
+SOUND=snd_elementl_airelem5
+RESLEVEL=3
+RESDISPDNHUE=33
+ARMOR=15
+CAN=MT_WALK|MT_RUN
+DAM=6,18
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Rai-Ju
+on=@create
+NPC=BRAIN_MONSTER
+Str={105 155}
+MAXHITS={225 335}
+Dex={85 135}
+Int={175 180}
+Anatomy={25.1 35.0}
+MagicResistance={110.2 120.0}
+Tactics={55.1 65.0}
+Wrestling={85.1 95.0}
+Fame=4500
+Karma=-4500
+
+[CHARDEF 252]
+Name=Lady of the Snow
+DEFNAME=c_lady_of_snow
+RESDISPDNID=c_woman
+RESLEVEL=3
+RESDISPDNHUE=33
+ICON=i_pet_ladysnow
+ARMOR=18
+CAN=MT_WALK|MT_RUN
+DAM=9,13
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Lady of Snow
+SOUND=snd_elementl_airelem5
+on=@create
+NPC=BRAIN_MONSTER
+Str={115 205}
+MAXHITS={300 400}
+Dex={105 125}
+Int={470 490}
+MagicResistance={90.0 105.0}
+Tactics={85.0 100.0}
+Wrestling={85.0 100.0}
+Magery={95.0 110.0}
+Meditation={85.0 90.0}
+Fame=1500
+Karma=-3500
+
+[CHARDEF 196]
+Name=Kaze Kemono
+DEFNAME=c_kaze_kemono
+RESDISPDNID=c_elem_air
+RESLEVEL=3
+RESDISPDNHUE=33
+ARMOR=35
+CAN=MT_WALK|MT_RUN
+ICON=i_pet_kazekemono
+DAM=9,23
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Kaze Kemono
+SOUND=snd_elementl_airelem5
+on=@create
+NPC=BRAIN_MONSTER
+Str={105 175}
+MAXHITS={275 375}
+Dex={100 155}
+Int={100 110}
+Anatomy={25.0 35.0}
+Magery={95.0 105.0}
+MagicResistance={110.0 120.0}
+Tactics={55.0 65.0}
+Wrestling={85.0 95.0}
+Fame=4500
+Karma=-4500
+
+[CHARDEF 241]
+Name=Oni
+DEFNAME=c_oni
+RESDISPDNID=c_man
+SOUND=snd_oni
+RESLEVEL=3
+RESDISPDNHUE=55
+DAM=15,36
+ICON=i_pet_oni
+ARMOR=40
+CAN=MT_WALK|MT_RUN
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Oni
+on=@create
+NPC=BRAIN_MONSTER
+Str={500 605}
+MAXHITS={800 1000}
+Dex={150 200}
+Int={170 200}
+MagicResistance={85.0 100.0}
+Tactics={85.0 100.0}
+Wrestling={90.0 100.0}
+Magery={96.0 106.0}
+Meditation={27.5 42.5}
+EvaluatingIntel={100.0 125.0}
+Fame=2000
+Karma=-5000
+
+
+//// NPC's UNDISCOVERED ////
+//Looking for dire wolf, gray wolf, hellcat
+
+[chardef 262] 
+defname=c_Tormented_Minotaur
+name=Tormented Minotaur
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=15,30
+ARMOR=26
+RESOURCES=15 i_ribs_raw 
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+CATEGORY=New Monsters
+SUBSECTION=ML
+DESCRIPTION=Tormented Minotaur
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={100 1201} 
+	KARMA={-5000 -6999} 
+	STR={100 130}
+	MAXHITS=160
+	INT={100 150} 
+	DEX={100 130} 
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	MAGERY={60.0 75.0}
+	TACTICS={60.0 90.0}
+	WRESTLING={70.0 90.0}
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+	//Minotaur
+
+	//Changeling
+	////////////////////////
+	////RACES///////////////
+	//Elfs
+
+[CHARDEF 605]
+DEFNAME=c_elf_male
+Name=Elf Male
+ICON=i_pet_MAN
+RESLEVEL=5
+RESDISPDNHUE=0410
+RESDISPDNID=c_man
+CAN=MT_EQUIP|MT_WALK|MT_SWIM|MT_RUN|MT_USEHANDS
+RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+BLOODCOLOR=0
+TSPEECH=spk_human_prime
+TSPEECH=spk_human_default
+TEVENTS=e_Human_HearUnk
+DESCRIPTION=Elf Man
+SUBSECTION=Miscellaneous
+CATEGORY=Civilized
+
+ON=@Create
+	NPC=brain_human
+	COLOR=colors_skin
+	FENCING={15.0 38.0}
+	PARRYING={15.0 38.0}
+	SWORDSMANSHIP={15.0 38.0}
+	WRESTLING={15.0 38.0}
+	MACEFIGHTING={15.0 38.0}
+	MAGICRESISTANCE={15.0 38.0}
+	TACTICS={15.0 38.0}
+	resenergy=10
+
+
+[CHARDEF 606]
+DEFNAME=c_elf_female
+Name=Elf Female
+ICON=i_pet_woman
+RESLEVEL=5
+RESDISPDNHUE=0410
+RESDISPDNID=c_woman
+CAN=MT_EQUIP|MT_WALK|MT_SWIM|MT_RUN|MT_FEMALE|MT_USEHANDS
+RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+BLOODCOLOR=0
+TSPEECH=spk_human_prime
+TSPEECH=spk_human_default
+TEVENTS=e_Human_HearUnk
+DESCRIPTION=Elf Woman
+SUBSECTION=Miscellaneous
+CATEGORY=Civilized
+
+ON=@Create
+	NPC=brain_human
+	COLOR=colors_skin
+	FENCING={15.0 38.0}
+	PARRYING={15.0 38.0}
+	SWORDSMANSHIP={15.0 38.0}
+	WRESTLING={15.0 38.0}
+	MACEFIGHTING={15.0 38.0}
+	MAGICRESISTANCE={15.0 38.0}
+	TACTICS={15.0 38.0}
+	resenergy=10
+
+[CHARDEF 607]
+DEFNAME=c_elf_ghost_man
+Name=Elf male Ghost
+ICON=i_pet_MAN
+RESLEVEL=5
+RESDISPDNHUE=0
+RESDISPDNID=c_ghost_man
+CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_GHOST
+RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+BLOODCOLOR=0
+TSPEECH=spk_human_prime
+TSPEECH=spk_human_default
+TEVENTS=e_Human_HearUnk
+DESCRIPTION=Elf Ghost Man
+SUBSECTION=Miscellaneous
+CATEGORY=Civilized
+
+ON=@Create
+	NPC=brain_human
+	COLOR=colors_skin
+	FENCING={15.0 38.0}
+	PARRYING={15.0 38.0}
+	SWORDSMANSHIP={15.0 38.0}
+	WRESTLING={15.0 38.0}
+	MACEFIGHTING={15.0 38.0}
+	MAGICRESISTANCE={15.0 38.0}
+	TACTICS={15.0 38.0}
+
+[CHARDEF 608]
+DEFNAME=c_elf_ghost_woman
+Name=Elf Female Ghost
+ICON=i_pet_woman
+RESLEVEL=5
+RESDISPDNHUE=0
+RESDISPDNID=c_ghost_woman
+CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_GHOST|MT_FEMALE
+RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+BLOODCOLOR=0
+TSPEECH=spk_human_prime
+TSPEECH=spk_human_default
+TEVENTS=e_Human_HearUnk
+DESCRIPTION=Elf Ghost Woman
+SUBSECTION=Miscellaneous
+CATEGORY=Civilized
+
+ON=@Create
+	NPC=brain_human
+	COLOR=colors_skin
+	FENCING={15.0 38.0}
+	PARRYING={15.0 38.0}
+	SWORDSMANSHIP={15.0 38.0}
+	WRESTLING={15.0 38.0}
+	MACEFIGHTING={15.0 38.0}
+	MAGICRESISTANCE={15.0 38.0}
+	TACTICS={15.0 38.0}
+	// Second Part //
+	//By Rattlehead
+
+[chardef 280]  
+name=Minotaur Captain
+defname=c_minotaur_captain
+ICON=i_pet_dragon 
+DAM=25,38 
+ARMOR=60 
+RESOURCES=15 i_ribs_raw,10 i_hide 
+CAN=MT_WALK|MT_RUN 
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_orc
+FOODTYPE=55 i_ribs_raw  
+AVERSIONS=e_carnivores3 
+CATEGORY=New Monsters
+SUBSECTION=ML
+DESCRIPTION=Minotaur Captain
+on=@create
+str=1256
+dex=782
+int=564
+maxhits=1142
+wrestling=97.0
+tactics=98.4
+anatomy=89.2
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+
+[chardef 281]  
+name=Minotaur Scout
+defname=c_minotaur_scout
+ICON=i_pet_dragon 
+DAM=20,32 
+ARMOR=50 
+RESOURCES=15 i_ribs_raw,10 i_hide 
+CAN=MT_WALK|MT_RUN 
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_orc
+FOODTYPE=55 i_ribs_raw 
+AVERSIONS=e_carnivores3 
+CATEGORY=New Monsters
+SUBSECTION=ML
+DESCRIPTION=Minotaur Scout
+on=@create
+str=1042
+dex=450
+int=356
+maxhits=944
+wrestling=87.5
+tactics=73.2
+anatomy=62.4
+
+ON=@NpcRestock
+	ITEM=random_jewel,{1 4}
+	ITEM=i_gold,{80 130}
+
+
+[chardef 284]  
+name=Armor Steed
+defname=c_m_armor_steed
+ICON=i_pet_horse 
+DAM=10,15 
+ARMOR=20 
+RESOURCES=15 i_ribs_raw,10 i_hide 
+CAN=MT_WALK|MT_RUN 
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_horse_gray
+FOODTYPE=55 i_ribs_raw  
+DESIRES=c_man,c_woman 
+AVERSIONS=e_carnivores3
+CATEGORY=New Monsters
+SUBSECTION=ML
+DESCRIPTION=Armored Steed (Modain's Steed)
+on=@create
+str=1042
+dex=672
+int=564
+maxhits=946
+wrestling=89.0
+tactics=78.0
+anatomy=75.6
+
+
+[chardef 023e]
+defname=c_blade_spirit
+name="blade spirits"
+sound=snd_weapons_sword1
+icon=i_fx_blade_spirit_1
+dam=10,18
+armor=0
+moverate=4
+can=mt_walk|mt_run|mt_fly
+ANIM=0FFFFFFFF
+
+description=monsters
+subsection=blade spirits
+category=blade spirits
+
+on=@create
+     npc=brain_beserk
+
+     str=150
+     dex=150
+     int=100
+     maxhits=1200
+     maxstam=250
+     maxmana=0
+
+     magicresistance=70.0
+     tactics=90.0
+     wrestling=91.0
+     poisoning=300.0
+
+     peacemaking=75.1
+
+     fame=0
+     karma=-100
+
+
+
+
+[CHARDEF 832]
+DEFNAME=c_phoenix
+NAME=phoenix
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_fly
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+ANIM=0FFFFFFFF
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+Taming=38.0
+
+
+[CHARDEF 270]
+DEFNAME=c_fat
+NAME=fat
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 721]
+DEFNAME=c_mind_ripper
+NAME=mind ripper
+DAM=3,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_usehands
+MOVERATE=0
+FOODTYPE=30 t_crops, t_fruit, t_grain
+tag.wrestlingspeed=44
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME={ 4500 5500 }
+KARMA={ -4000 -5000 }
+
+STR={99 125}
+DEX={58 83}
+INT={215 247}
+
+WRESTLING={50.3 70.5}
+TACTICS={55.7 75.9}
+ANATOMY={54.0 87.9}
+PARRYING={50.0 85.0}
+MAGICRESISTANCE={70.0 90.0}
+MEDITATION={70.0 90.0}
+
+
+
+[CHARDEF 283]
+DEFNAME=c_flayer
+NAME=flayer
+DAM=3,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_usehands
+MOVERATE=0
+FOODTYPE=30 t_crops, t_fruit, t_grain
+tag.wrestlingspeed=44
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME={ 4500 5500 }
+KARMA={ -4000 -5000 }
+
+STR={99 125}
+DEX={58 83}
+INT={215 247}
+
+WRESTLING={50.3 70.5}
+TACTICS={55.7 75.9}
+ANATOMY={54.0 87.9}
+PARRYING={50.0 85.0}
+MAGICRESISTANCE={70.0 90.0}
+MEDITATION={70.0 90.0}
+
+[CHARDEF 719]
+DEFNAME=c_dragon_wolf
+NAME=dragon wolf
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 742]
+DEFNAME=c_body
+NAME=body
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 743]
+DEFNAME=c_tentacle
+NAME=tentacle
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 293]
+DEFNAME=c_Gargouille
+NAME=gargouille
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 740]
+DEFNAME=c_shadow_dweller
+NAME=shadow dweller
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 713]
+DEFNAME=c_Abyssal_Infernal
+NAME=abyssal infernal
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 714]
+DEFNAME=c_iron_beetle
+NAME=iron beetle
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 715]
+DEFNAME=c_boura
+NAME=boura
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 716]
+DEFNAME=c_compy
+NAME=compy
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 717]
+DEFNAME=c_clockwork_scorpion
+NAME=clockwork scorpion
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 720]
+DEFNAME=c_salamander
+NAME=salamander
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 334]
+DEFNAME=c_mite
+NAME=mite
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 724]
+DEFNAME=c_kobold
+NAME=kobold
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 725]
+DEFNAME=c_homonculous
+NAME=homonculous
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 692]
+DEFNAME=c_weapon
+NAME=weapon
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 705]
+DEFNAME=c_golem
+NAME=golem
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+
+[CHARDEF 726]
+DEFNAME=c_kepetch
+NAME=kepetch
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 727]
+DEFNAME=c_kepetch_shorn
+NAME=kepetch
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+
+[CHARDEF 728]
+DEFNAME=c_medusa
+NAME=medusa
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 729]
+DEFNAME=c_mimic
+NAME=mimic
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 730]
+DEFNAME=c_Raptor
+NAME=raptor
+DAM=10,12
+ARMOR=16
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=0
+foodtype=55 t_meat_raw, t_fish
+desires=c_raptor,t_meat_raw,t_fish
+aversions=r_civilization,c_man,c_woman,e_carnivores3
+TEVENTS=e_Level_up_NPC
+tevents=e_carnivores3
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=52
+TAG.MANUEVER1=2
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Reptiles
+DESCRIPTION=Raptor
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={71 85}
+DEX={108 123}
+INT={25 37}
+
+WRESTLING={45.4 68.5}
+TACTICS={50.0 72.5}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={45.4 68.5}
+STEALTH={45.4 68.5}
+
+
+
+
+[CHARDEF 733]
+DEFNAME=c_skree
+NAME=skree
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+[CHARDEF 734]
+DEFNAME=c_slith
+NAME=slith
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+
+[CHARDEF 735]
+DEFNAME=c_spider_female
+NAME=spider
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 736]
+DEFNAME=c_spider_male
+NAME=spider
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[CHARDEF 737]
+DEFNAME=c_trapdoor_spider
+NAME=trapdoor spider
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+
+[CHARDEF 739]
+DEFNAME=c_leather_wolf
+NAME=leather wolf
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+
+
+[CHARDEF 829]
+DEFNAME=c_colosus
+NAME=colosus
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[eof]
+
+741	MONSTER		10000	0 # 	Slasher of Veils
+826	MONSTER		10008	0 # 	Stygian Dragon

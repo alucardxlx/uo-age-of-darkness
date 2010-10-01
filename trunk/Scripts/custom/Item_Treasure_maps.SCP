@@ -1,0 +1,306 @@
+///Treasure Maps by ClouD_BR///
+//modified by Anarch Cassius
+
+[TEMPLATE Map_Treasure_Chest]
+CATEGORY=Item Templates
+SUBSECTION=Loot Templates
+DESCRIPTION=Map Treasure Chest
+CONTAINER=i_chest_metal
+TYPE=T_CONTAINER_LOCKED
+color=colors_neutral
+MORE2={360 1000}
+ITEM={ RANDOM_JEWELRY 1 0 1 }
+ITEM={ RANDOM_wearables 1 0 1 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_MISSILES_magic 1 0 3 },{24 50}
+ITEM={ RANDOM_UPPER_SCROLL 1 0 3 }
+ITEM={ RANDOM_UPPER_SCROLL 1 0 3 }
+ITEM={ RANDOM_ARMOR 1 0 1 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+ITEM={ RANDOM_ARMOR 3 RANDOM_WEAPON 4 random_magic_weapon_low 2 0 10 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+ITEM={ random_magic_artifact 1 0 10 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+
+[itemdef i_map_bottle]
+NAME=Bottled Map
+ID=0efb
+VALUE=1000
+TYPE=t_normal
+WEIGHT=4
+
+ON=@Create
+tag0.cartography={100 600}
+
+ON=@Dclick
+newitem=i_treasure_map
+new.tag0.cartography=<eval <tag0.cartography>>
+new.bounce
+remove
+
+[itemdef i_map_bottle_old]
+NAME=Bottled Map
+ID=0e2b
+VALUE=1000
+TYPE=t_normal
+WEIGHT=4
+
+ON=@Create
+tag0.cartography={500 1250}
+
+ON=@Dclick
+newitem=i_treasure_map
+new.tag0.cartography=<eval <tag0.cartography>>
+new.bounce
+remove
+
+[itemdef i_treasure_map]
+NAME=Treasure Map
+ID=i_map_rolled
+VALUE=1000
+TYPE=t_normal
+WEIGHT=3
+FLIP=0
+CATEGORY=Do Not Use
+SUBSECTION=Treasure System
+DESCRIPTION=Do Not Use
+
+ON=@Create
+color=colors_neutral
+f_selecionar_local_tesouro
+attr=0
+
+
+on=@dclick
+if (<more2>) && !(<more1>) && !(<src.isnextp <eval <morex>> <eval <morey>> 10>)
+	sdialog d_tesouro_mapa
+elif (<topobj.uid>!=<src>) && !(<src.isgm>)
+	src.message The map isn't with you.
+elif (<more1>)
+	src.sysmessage The treasure has already been found.
+	dispid=i_map
+	update
+elif (<more2>)
+	IF (<src.isnextp <eval <morex>> <eval <morey>> 10>) 
+		IF !(<src.findid.i_shovel>)
+			src.sysmessage You need a shovel.
+		else
+			FOR (<eval <tag0.cartography>/200>+1)
+				DORAND 7
+					serv.newnpc=c_skeleton_knight
+					serv.newnpc=c_skeleton_mage
+					serv.newnpc=c_spectre
+					serv.newnpc=099
+					serv.newnpc=c_imp
+					serv.newnpc=c_hellhound
+					serv.newnpc=c_mud_golem
+				ENDDO
+				new.p=<morep>
+				new.home=<new.p>
+				new.fix
+				new.update
+				new.homedist 10
+				new.removetimer <EVAL 60*30>
+			ENDFOR
+			DORAND 9
+				serv.newnpc=c_liche
+				serv.newnpc=c_efreet
+				serv.newnpc=c_zombie_lord
+				serv.newnpc=c_daemon_magus
+				serv.newnpc=c_chaos_daemon
+				serv.newnpc=c_reaper
+				serv.newnpc=c_stone_gargoyle
+				serv.newnpc=c_stone_harpy
+				serv.newnpc=c_iron_golem
+			ENDDO
+			new.p=<morep>
+			new.fix
+			new.update
+			DORAND 6
+				new.L Who dares to take my treasure!?
+				new.L You came for the treasure? Then find only death!
+				new.L Looking for something?
+				new.L No one shall take my gold!
+				new.L Foolish robber, meet your doom!
+				new.L This chest remains with me...
+			ENDDO
+			new.tag.prizemoney=<eval <tag0.cartography>>
+			new.home=<new.p>
+			new.homedist 10
+			new.events +e_tesouro_chefe
+			new.removetimer <EVAL 60*30>
+			src.sysmessage Now you've gotta kill the monsters to get the treasure.
+			more1=1
+		ENDIF
+	ENDIF
+ELSE
+IF (<SRC.cartography> < (<TAG0.cartography>-50))
+	SRC.SYSMESSAGE This map is beyond your ability to decipher.
+	RETURN 1
+ELIF <src.skillcheck cartography <EVAL <tag0.cartography>/10>>
+	MORE2=1
+	src.message You decipher the map.
+	dispid=i_map
+	update
+ELSE
+	src.message You fail!
+ENDIF
+src.skillgain cartography <EVAL <tag0.cartography>>
+ENDIF
+RETURN 1
+
+//////////////
+
+[DIALOG d_tesouro_mapa] 
+200,90
+src.closealldialogs
+PAGE 0
+resizepic 0 0 5120 403 494 
+gumppic 10 10 5528 
+gumppic <EVAL (10+((<morex>*100)/1337))> <EVAL (10+((<morey>*100)/1067))> 0938
+gumppic <EVAL (10+((<src.p.x>*100)/1337))> <EVAL (10+((<src.p.y>*100)/1067))> 0939
+dhtmlgump 20 400 240 85 1 200 The treasure is in <TAG0.LUGAR>, at <eval <morex>>,<eval <morey>>
+tilepic 280 400 7575
+tilepic 302 400 7576
+
+///////////////////
+
+[function isnextp]
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<argn1>,<argn2>
+IF (<new.distance> <= <argn3>)
+new.remove
+return 1
+else
+new.remove
+return 0
+ENDIF
+
+/////////////////
+
+[events e_tesouro_chefe]
+
+ON=@DEATHCORPSE
+serv.newitem=Map_Treasure_Chest
+new.p=<argo.p>
+new.nudgeup 1
+new.timer=360
+//traps
+local.bau=<new>
+FOR 3
+serv.newitem={ i_copper_coin 7 i_silver_coin 6 i_gold_coin 5 i_platinum_coin 3 i_copper_bar 3 i_silver_bar 2 i_gold_bar 1 i_turqoise_tradebit 4 i_marble_tradebit 3 i_alabaster_tradebit 2 i_jade_tradebit 1 }
+new.amount=(rand((10*<Eval <tag0.prizemoney>>)/<new.value>))
+if (<new.amount> < 1)
+	new.amount=1
+endif
+new.cont=<Local.Bau>
+ENDFOR
+FOR (<eval <tag0.cartography>/400>)
+	serv.newitem={ I_Spellbook 1 RANDOM_JEWELRY 1 RANDOM_wearables 1 RANDOM_ARMOR 5 random_magic_artifact 1 random_magic_weapon_low 3 random_magic_weapon_med 2 random_magic_weapon_high 1 0 8 }
+	new.EVENTS +E_MAGICITEM
+	new.TAG.MAGICPOWER=(<eval <tag0.cartography>/10>+10)
+	new.TAG.MAGICNUMBER=2
+	new.cont=<Local.Bau>
+ENDFOR
+try uid.<local.bau>.update
+try uid.<uid.<argo.uid>.more2>.sysmessage You killed the guardian, now take the treasure!
+
+
+///////////////////
+
+[function f_selecionar_local_tesouro]
+SERV.NEWITEM i_gold
+NEW.ATTR=ATTR_INVIS
+DORAND 3
+NEW.RANDLOCATION
+NEW.DUNGLOCATION
+NEW.RANDLOCATION
+ENDDO
+TAG.LUGAR=<NEW.REGION.NAME>
+MOREP=<NEW.P>
+NEW.REMOVE
+
+
+[FUNCTION removetimer]
+SERV.NEWITEM i_removetimer_mem
+EQUIP <NEW>
+NEW.TIMER=<ARGN1>
+
+[ITEMDEF i_removetimer_mem]
+ID=i_memory
+NAME=remove timer
+TYPE=t_eq_script
+CATEGORY=Do Not Use
+SUBSECTION=Treasure System
+DESCRIPTION=Do Not Use
+
+ON=@Timer
+cont.remove
+return 1
+
+[FUNCTION RANDLOCATION]
+DORAND 8
+P=<eval {792 1336}>,<eval {640 2432}> //Brittannia
+P=<eval {664 2801}>,<eval {424 1000}> //Brittannia
+P=<eval {1816 2240}>,<eval {1902 2238}> //Britanny Isles
+P=<eval {956 1714}>,<eval {2623 3242}> //Destard Area
+P=<eval {1864 2559}>,<eval {3213 4044}> //Cape of Valor Isles
+P=<eval {428 500}>,<eval {2001 2124}> //off Skara Brae
+P=<eval {2924 2984}>,<eval {2118 2247}> //off Bucaneer's Den
+P=<eval {4346 4801}>,<eval {3121 3991}> //Isle of the Abyss
+ENDDO
+LOCAL.TMP=<OBJ>
+OBJ=<region.uid>
+IF (<obj.type>==t_multi)
+OBJ=<LOCAL.TMP>
+RANDLOCATION
+RETURN 1
+ELIF (<NEW.region.flags>&region_flag_guarded) || (<NEW.region.flags>&region_flag_safe) || (<NEW.isneartype t_rock>) || (<NEW.isneartype t_tree>) || (<NEW.isneartype t_door>) || (<NEW.isneartype t_wall>) || (<NEW.isneartype t_water>) || (<isneartype t_multi 10>)
+OBJ=<LOCAL.TMP>
+RANDLOCATION
+RETURN 1
+ENDIF
+FIX
+OBJ=<LOCAL.TMP>
+
+[FUNCTION DUNGLOCATION]
+DORAND 7
+P=<eval {5282 5294}>,<eval {576 590}>
+P=<eval {5280 5294}>,<eval {536 550}>
+P=<eval {5403 5418}>,<eval {1928 1937}>
+P=<eval {5415 5444}>,<eval {745 753}>
+P=<eval {5184 5206}>,<eval {648 661}>
+P=<eval {6048 6062}>,<eval {152 166}>
+P=<eval {5463 5481}>,<eval {172 192}>
+ENDDO
+LOCAL.TMP=<OBJ>
+OBJ=<region.uid>
+IF (<obj.type>==t_multi)
+OBJ=<LOCAL.TMP>
+DUNGLOCATION
+RETURN 1
+ELIF (<NEW.region.flags>&region_flag_guarded) || (<NEW.region.flags>&region_flag_safe) || (<NEW.isneartype t_rock>) || (<NEW.isneartype t_tree>) || (<NEW.isneartype t_door>) || (<NEW.isneartype t_wall>) || (<NEW.isneartype t_water>) || (<isneartype t_multi 10>)
+OBJ=<LOCAL.TMP>
+DUNGLOCATION
+RETURN 1
+ELIF ((<NEW.serv.map(<p>).terrain>>=025A) && (<NEW.serv.map(<p>).terrain>==026D)) || (<NEW.serv.map(<p>).terrain>==0244)
+OBJ=<LOCAL.TMP>
+DUNGLOCATION
+RETURN 1
+ENDIF
+FIX
+OBJ=<LOCAL.TMP>
+
+[EOF]

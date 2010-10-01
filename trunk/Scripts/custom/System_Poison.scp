@@ -1,0 +1,474 @@
+[Function Poisonous]
+If ((<Poisoning> > <Def0.PoisonSys_Monster_Poisonous>) || (<Tag0.Skill.Poisoning>))
+Return 1
+Endif
+Return 0
+
+
+[DEFNAME Poisons]
+
+//General Defs
+
+//Undead monsters are immune to poison (1 = yes, 0 = no)
+PoisonSys_MonsterImmuneUndead = 1
+
+//Poisonous monsters are immune to poison (1 = yes, 0 = no)
+PoisonSys_MonsterImmunePoisonous = 0
+
+//Minimum Poisoning required to be classed as poisonous (able to poison)
+PoisonSys_Monster_Poisonous = 200
+
+//Monsters are immune to poison if they have 100 ResPoison or more (1 = yes, 0 = no)
+PoisonSys_MonsterImmuneResist = 1
+
+//Two Handed weapons can be poisoned (1 = yes, 0 = no)
+PoisonSys_WeaponPoisonTwoHand = 1
+
+//Chance for food to poison consumer (Percent value)
+PoisonFood_Chance = 100 //100%
+
+//If a weapon is poisoned it required cleaning to be poisoned again (1 = yes, 0 = no)
+//This is probably used to make gaining harder? (item for cleaning is i_cloth_oil, needs adding to a craft or vendor for use)
+//This is turned off by default
+PoisonSys_CleanWeapons = 0
+
+//Weapons poison on hit (1 = yes, 0 = no)
+//Leave this on unless you plan on using things like Infectious Strike from the maneuvers system.
+//Turning this off will still poison the weapon, It just wont add the event for using it.
+PoisonSys_WeaponsPoison = 1
+
+//Bandage Healing
+
+//Minimum Healing required to cure
+PoisonSys_MinHealingCure = 620
+//Minimum Anatomy required to cure
+PoisonSys_MinAnatomyCure = 620
+//Is anatomy skill used in the cure chance? (1 = yes, 0 = no)
+PoisonSys_HealUseAnatomy = 1
+//Poison prevents healing from bandages
+PoisonSys_NoHealBandage = 1
+
+
+//Bandage Veterinary
+
+//Minimum Veterinary required to cure
+PoisonSys_MinVeterinaryCure = 620
+//Minimum Animal Lore required to cure
+PoisonSys_MinAnimalLoreCure = 620
+//Is animal lore skill used in the cure chance? (1 = yes, 0 = no)
+PoisonSys_HealUseAnimalLore = 1
+//Poison prevents veterinary healing from bandages
+PoisonSys_NoVetHealBandage = 1
+
+
+//Misc Cliloc Defs
+PoisonCliloc_PoisonImmune = 1005534
+PoisonCliloc_BeenPoisoned = 1010512
+PoisonCliloc_BeenCured = 1010059
+PoisonCliloc_WornOff = 502136
+
+PoisonCliloc_CuredTarget = 1010058
+PoisonCliloc_FailCureTarget = 1010650
+PoisonCliloc_YouNotPoisoned = 1042000
+PoisonCliloc_TargetNotPoisoned = 1060176
+
+PoisonCliloc_PoisonWhat = 502142
+PoisonCliloc_YouMustWait = 501789
+PoisonCliloc_FailToApply = 1010518
+PoisonCliloc_MustBeInPack = 1062334
+PoisonCliloc_CantWorkOnThat = 500422
+PoisonCliloc_NotPoisonable = 500422
+PoisonCliloc_NotPoisonableTwoHands = 500422
+PoisonCliloc_WhatPoisonUse = 1010611
+PoisonCliloc_TargetTooFar = 501853
+PoisonCliloc_NotPoisonPot = 502139
+PoisonCliloc_YouApplyPoison = 1010517
+PoisonCliloc_GraveMistake = 502152
+PoisonCliloc_FailApplyPoison = 1010518
+PoisonCliloc_BloodMixPoison = 1005537
+
+PoisonCliloc_CleanedItem = 1010496
+PoisonCliloc_MustBeCleaned = 1005536
+PoisonCliloc_UseThisOn = 1010086
+
+
+
+//Poison Defs
+
+//Lesser Poison
+PoisonType_0 = Lesser
+PoisonType_0_Message_Self = 1042857
+PoisonType_0_Message_Other = 1042858
+//Lowest damage the poison can deal
+PoisonType_0_DamLow = 3
+//Highest damage the poison can deal
+PoisonType_0_DamHigh = 22
+//Amount to divide remaining health by to calculate damage
+PoisonType_0_Divide = 24
+//How often damage is dealt in seconds
+PoisonType_0_Frequency = 15
+//How long the poison lasts in seconds
+PoisonType_0_Duration = 120
+//The % chance for damage to be recalculated each tick (50% is OSI default)
+PoisonType_0_RecalcChance = 50
+//The difficulty to remove the poison (most likely checked against skills, so 1000 would be near impossible)
+PoisonType_0_Difficulty = 50
+//The difficulty to apply the poison (most likely checked against skills, so 1000 would be near impossible)
+PoisonType_0_ApplicationDifficulty = 0
+//The amount of charges given when applied to a weapon
+PoisonType_0_ApplicationCharges = 20
+
+//Normal Poison
+PoisonType_1 = Regular
+PoisonType_1_Message_Self = 1042859
+PoisonType_1_Message_Other = 1042860
+PoisonType_1_DamLow = 4
+PoisonType_1_DamHigh = 24
+PoisonType_1_Divide = 16
+PoisonType_1_Frequency = 10
+PoisonType_1_Duration = 120
+PoisonType_1_RecalcChance = 50
+PoisonType_1_Difficulty = 200
+PoisonType_1_ApplicationDifficulty = 300
+PoisonType_1_ApplicationCharges = 18
+
+
+//Greater Poison
+PoisonType_2 = Greater
+PoisonType_2_Message_Self = 1042861
+PoisonType_2_Message_Other = 1042862
+PoisonType_2_DamLow = 5
+PoisonType_2_DamHigh = 26
+PoisonType_2_Divide = 12
+PoisonType_2_Frequency = 10
+PoisonType_2_Duration = 120
+PoisonType_2_RecalcChance = 50
+PoisonType_2_Difficulty = 300
+PoisonType_2_ApplicationDifficulty = 600
+PoisonType_2_ApplicationCharges = 16
+
+//Deadly Poison
+PoisonType_3 = Deadly
+PoisonType_3_Message_Self = 1042863
+PoisonType_3_Message_Other = 1042864
+PoisonType_3_DamLow = 6
+PoisonType_3_DamHigh = 28
+PoisonType_3_Divide = 8
+PoisonType_3_Frequency = 5
+PoisonType_3_Duration = 120
+PoisonType_3_RecalcChance = 50
+PoisonType_3_Difficulty = 400
+PoisonType_3_ApplicationDifficulty = 900
+PoisonType_3_ApplicationCharges = 14
+//This is a function to perform when poison is applied and whenever it ticks.
+//Argv[0] = 1 when the poison is first applied
+//PoisonType_3_Function = f_poison_effect_deadly
+
+//Lethal Poison
+PoisonType_4 = Lethal
+PoisonType_4_Message_Self = 1042865
+PoisonType_4_Message_Other = 1042866
+PoisonType_4_DamLow = 8
+PoisonType_4_DamHigh = 30
+PoisonType_4_Divide = 4
+PoisonType_4_Frequency = 5
+PoisonType_4_Duration = 120
+PoisonType_4_RecalcChance = 50
+PoisonType_4_Difficulty = 800
+PoisonType_4_ApplicationDifficulty = 10000
+PoisonType_4_ApplicationCharges = 12
+//PoisonType_4_Function = f_poison_effect_lethal
+
+//Poisonable Weapon Types
+//Weapons of this type or weapons with TAG.OVERRIDE.POISONABLE set are poisonable
+PoisonWep_t_weapon_sword = 1
+PoisonWep_t_weapon_fence = 1
+PoisonWep_t_weapon_axe = 1
+
+//Poisonable Food Types
+PoisonFood_t_food = 1
+PoisonFood_t_drink = 1
+PoisonFood_t_booze = 1
+
+
+
+
+[Function PsnSys_Max]
+RETURN <QVAL <ARGN2> < <ARGN1>? <ARGN1> : <ARGN2>>
+
+[Function PsnSys_Min]
+RETURN <QVAL <ARGN2> < <ARGN1>? <ARGN2> : <ARGN1>>
+
+
+[Function New_Cure]
+If <Findid.i_memory_poison_new>
+Findid.i_memory_poison_new.Trigger @Cure,<Def0.TAT_AS_ARGN>,<Argv[0]>
+Endif
+Return 0
+
+[Function New_Poison]
+
+//Prevent Poison to Poisonous monsters, undead and npcs with respoison at 100 or more
+If ((<Npc>) && (((<Poisonous>) && (<DEF0.PoisonSys_MonsterImmunePoisonous>)) || ((<Brain>==brain_undead) && (<DEF0.PoisonSys_MonsterImmuneUndead>)) || ((<ResPoison> >= 100) && (<DEF0.PoisonSys_MonsterImmuneResist>))))
+Message @,,2 <Def0.PoisonCliloc_PoisonImmune>
+Return 1
+Endif
+
+Local.Poison = <Eval <Argv[0]>>
+If !<Isempty <Argv[1]>>
+Local.Src = <Argv[1]>
+Else
+Local.Src = <Uid>
+Endif
+If <Findid.i_memory_poison_new>
+If <Findid.i_memory_poison_new.More2> > <Local.Poison>
+Return 1
+Elif <Findid.i_memory_poison_new.More2> == <Local.Poison>
+Findid.i_memory_poison_new.More1h = <Def0.PoisonType_<dLocal.Poison>_Duration>
+Return 1
+Else
+Consume i_memory_poison_new
+Endif
+Endif
+Serv.Newitem = i_memory_poison_new
+New.More2 = <Local.Poison>
+New.Link = <Local.Src>
+New.More1l = <Def0.PoisonType_<dLocal.Poison>_Frequency>
+New.More1h = <Def0.PoisonType_<dLocal.Poison>_Duration>
+If <Trigger @Poison,<Def0.TAT_AS_ARGO>,<New.Uid>> == 1
+New.Remove
+Else
+Equip <New.Uid>
+Endif
+
+[Itemdef i_memory_poison_new]
+ID=i_memory
+TYPE=t_eq_script
+NAME=Poison
+
+ON=@Equip
+Timer = <More1l>
+Src.Flags = <Src.Flags>|080
+Src.Update
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_BeenPoisoned>
+If (<Cont.IsPlayer>)
+   TrySrc <Cont> Cont.Message @32,,2 <Def0.PoisonType_<dMore2>_Message_Self>
+Endif
+If ((<Cont.Flags> != <Cont.Flags>|08) && (<Cont.Flags> != <Cont.Flags>|0800000))
+   Cont.f_Psn_msg_other <dMore2>
+Endif
+Src.Events +e_poisoned
+Morex = <Eval 1 + (<Src.Hits> / <Def0.PoisonType_<Eval <More2>>_Divide>)>
+Morex = <PsnSys_Max <Morex>,<Def0.PoisonType_<Eval <More2>>_DamLow>>
+Morex = <PsnSys_Min <Morex>,<Def0.PoisonType_<Eval <More2>>_DamHigh>>
+If !<IsEmpty <Def.PoisonType_<Eval <More2>>_Function>>
+Src.<Def.PoisonType_<Eval <More2>>_Function> 1
+Endif
+
+ON=@Unequip
+Src.Flags = <Src.Flags>&~080
+Src.Update
+Src.Events -e_poisoned
+If <Tag0.Cured>
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_BeenCured>
+Endif
+
+ON=@Cure
+Tag.Cure = <Argn1>
+Local.Cure = <Cont.Trigger @Cure,<Def0.TAT_AS_ARGO>,<Uid>>
+If <Local.Cure>==-1
+Tag.Cured = 1
+Remove
+Return 1
+Endif
+If ((<Local.Cure>==2) || (<Local.Cure>==0))
+If Rand(1,<Def0.PoisonType_<Eval <More2>>_Difficulty>) < <Tag0.Cure>
+Tag.Cured = 1
+Remove
+Return 1
+Endif
+Return 0
+Endif
+Return 0
+
+On=@Timer
+If ((!<Link.IsChar>) && (!<Link.IsItem>))
+Link = <Cont.Uid>
+Endif
+
+If <Cont.Trigger @PoisonTick,<Def0.TAT_AS_ARGO>,<Uid>> == 1
+Remove
+Return 1
+Endif
+
+More1h -= <More1l>
+
+//Damage Calculation
+If RAND(1,100) <= <Def0.PoisonType_<Eval <More2>>_RecalcChance>
+Morex = <Eval 1 + (<Cont.Hits> / <Def0.PoisonType_<Eval <More2>>_Divide>)>
+Morex = <PsnSys_Max <Morex>,<Def0.PoisonType_<Eval <More2>>_DamLow>>
+Morex = <PsnSys_Min <Morex>,<Def0.PoisonType_<Eval <More2>>_DamHigh>>
+Endif
+
+If !<IsEmpty <Def.PoisonType_<Eval <More2>>_Function>>
+Cont.<Def.PoisonType_<Eval <More2>>_Function> 0
+Endif
+
+//Timer Check & Set
+If <More1h> <= 0
+Cont.Sysmessage @,,2 <Def0.PoisonCliloc_WornOff>
+Remove
+Else
+Timer = <More1l>
+Endif
+
+//Damage (Poison, Noreveal)
+Cont.Damage <Morex> 04008 <Link.Uid>
+
+//Message (Message if hidden, Say if not)
+If (<Cont.IsPlayer>)
+   TrySrc <Cont> Cont.Message @32,,2 <Def0.PoisonType_<dMore2>_Message_Self>
+Endif
+If ((<Cont.Flags> != <Cont.Flags>|08) && (<Cont.Flags> != <Cont.Flags>|0800000))
+   Cont.f_Psn_msg_other <dMore2>
+Endif
+
+Return 1
+
+
+[Events e_poisoned]
+//Poison Event
+
+On=@Spelleffect
+
+On=@Death
+Consume i_memory_poison_new
+
+
+[Function f_Psn_msg_self]
+Message @32,,2 <Def0.PoisonType_<dArgv[0]>_Message_Self>
+
+[Function f_Psn_msg_other]
+Ref1 = <uid>
+FORCLIENTS 18
+   IF (<Ref1> != <UID>)
+      TRYSRC <UID> UID.<Ref1>.MESSAGE @32,,2 <Def0.PoisonType_<Eval <Argv[0]>>_Message_Other>,<Ref1.Name>,<UID.<SRC>.NAME>
+      TRYSRC <UID> UID.<Ref1>.MESSAGE @32
+   ENDIF
+ENDFOR
+
+
+//Test Event for Triggers
+[Events e_poison_event_test]
+
+On=@Poison
+//Argo = Poison Item
+//Removing Argo here prevents poison
+//Return 1 Prevents Poison
+
+ON=@PoisonTick
+//Argo = Poison Item (DO NOT REMOVE IT)
+//Return 1 Removes poison object (This removes it properly)
+
+On=@Cure
+//Argo = Poison Item
+//Argo.Tag.Cure = Cure Strength
+//Return 1 Prevents Curing
+//Return -1 Forces Curing
+
+[Function f_poison_effect_deadly]
+If ((<Argv[0]> == 0) && (<Hits> <= <MaxHits>/4))
+Stam -= <Eval {10 19}>
+If <Stam> < 0
+Stam = 0
+Endif
+Endif
+
+[Function f_poison_effect_lethal]
+If ((<Argv[0]> == 0) && (<Hits> <= <MaxHits>/4))
+Stam -= <Eval {15 29}>
+If <Stam> < 0
+Stam = 0
+Endif
+Endif
+
+[Function f_bandage_cure]
+If !<Restest i_memory_poison_new>
+Return 0
+Endif
+If ((<Def0.PoisonSys_MinAnatomyCure> > <Src.Anatomy>) || (<Def0.PoisonSys_MinHealingCure> > <Src.Healing>))
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_FailCureTarget>
+Return 1
+Endif
+Local.Skill = <Src.Healing>
+If <Def0.PoisonSys_HealUseAnatomy>
+Local.Skill += <Src.Anatomy>
+Else
+Local.Skill *= 2
+Endif
+Local.Cured = <Findid.i_memory_poison_new.Trigger @Cure,<Def0.TAT_AS_ARGN>,<Local.Skill> / 2>
+If <Local.Cured>
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_CuredTarget>
+Else
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_FailCureTarget>
+Endif
+Return 1
+
+[Function f_veterinary_bandage_cure]
+If !<Restest i_memory_poison_new>
+Return 0
+Endif
+If ((<Def0.PoisonSys_MinAnimalLoreCure> > <Src.AnimalLore>) || (<Def0.PoisonSys_MinVeterinaryCure> > <Src.Veterinary>))
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_FailCureTarget>
+Return 1
+Endif
+Local.Skill = <Src.Veterinary>
+If <Def0.PoisonSys_HealUseAnimalLore>
+Local.Skill += <Src.AnimalLore>
+Else
+Local.Skill *= 2
+Endif
+Local.Cured = <Findid.i_memory_poison_new.Trigger @Cure,<Def0.TAT_AS_ARGN>,<Local.Skill> / 2>
+If <Local.Cured>
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_CuredTarget>
+Else
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_FailCureTarget>
+Endif
+Return 1
+
+
+[Itemdef i_cloth_oil]
+ID=i_cloth
+TYPE=t_script
+NAME=Oil Cloth
+
+ON=@Create
+Color = 61
+
+ON=@Dclick
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_UseThisOn>
+Target
+Return 1
+
+On=@Targon_Item
+Ref1 = <Src.Targ.Uid>
+If <Ref1.IsWeapon>
+If !<IsEmpty <Ref1.Tag.Poison.Level>>
+Ref1.Tag.Poison.Level =
+Ref1.Events -t_weapon_poisoned
+Ref1.Tag.Poison.Charges =
+If <Src.Findlayer.<Ref1.Layer>.Uid>==<Ref1.Uid>
+Src.Events -e_weapon_poisoned
+Endif
+Ref1.ResendToolTip
+Endif
+Else
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_CantWorkOnThat>
+Return 1
+Endif
+Src.Sysmessage @,,2 <Def0.PoisonCliloc_CleanedItem>
+Consume
+Return 1
+
+On=@Targon_Char
+Return 1

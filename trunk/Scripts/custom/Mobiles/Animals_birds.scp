@@ -1,0 +1,406 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+//// NPC's BIRDS////
+
+[CHARDEF 05F]   //95 In mobs.def
+DEFNAME=c_turkey
+NAME=turkey
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum
+moverate=0
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+TAG.MANUEVER1=19
+TAG.MANUEVER2=2
+TAG.MANUEVER3=1
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+Taming=38.0
+
+
+[CHARDEF 254]
+Name=crane
+DEFNAME=c_crane
+DAM=3,7
+SOUND=snd_crane
+ARMOR=8
+CAN=MT_WALK|MT_RUN|mt_nonhum
+ICON=i_pet_crane
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+TEVENTS=e_Level_up_NPC
+Tag.BeastClass=Beast_Quick
+tag.wrestlingspeed=40
+moverate=0
+RESOURCES=20 i_feather, 1 I_BIRD_RAW
+foodtype=30 t_fish
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Crane
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=17
+
+on=@create
+	NPC=BRAIN_ANIMAL
+	Str={25 35}
+	Dex={35 45}
+	Int={10 15}
+
+	MagicResistance={4.0 5.0}
+	Tactics={10.0 11.0}
+	Wrestling={10.0 11.0}
+	Anatomy={5.0 6.0}
+
+	Taming=30.0
+
+	Fame=35
+	Karma=10
+
+
+[chardef 06]
+defname=c_songbird
+name="songbird"
+sound=snd_animals_frstbrd1
+icon=i_pet_bird
+anim=03e007f
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+dam=1,2
+armor=2
+moverate=0
+RESOURCES=15 i_feather, 1 I_BIRD_RAW
+foodtype=20 t_crops, t_fruit, t_grain
+desires=t_foliage, c_songbird, t_crops, t_fruit, t_grain
+aversions=t_water, c_man, c_woman, i_scarecrow
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=17
+
+category=AoD Animals
+subsection=Birds
+description=Songbird
+
+on=@create
+     color=colors_bird
+     npc=brain_animal
+     str=10
+     dex={25 35}
+     int=10
+
+     hiding=50.0
+     magicresistance={14.0 15.0}
+     tactics={4.0 6.0}
+     wrestling={4.2 6.4}
+
+     taming=0.1
+     Peacemaking=0.1
+
+     fame=10
+     karma=5
+     FOOD=15
+
+[chardef c_seagull]
+name="seagull"
+id=c_songbird
+sound=snd_animals_crow1
+icon=i_pet_bird
+dam=1,2
+armor=4
+moverate=0
+RESOURCES=20 i_feather, 1 I_BIRD_RAW
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+foodtype=25 t_fruit, t_meat_raw, t_fish, t_food
+desires=c_seagull, t_fruit, t_meat_raw, t_fish, t_food
+aversions=i_scarecrow
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=19
+TAG.MANUEVER2=2
+TAG.MANUEVER3=5
+
+category=AoD Animals
+subsection=Birds
+description=Seagull
+
+on=@create
+     color=colors_white
+     npc=brain_animal
+     str={20 30}
+     dex={25 35}
+     int=10
+
+     hiding=50.0
+     parrying=50.0
+     magicresistance={4.0 5.0}
+     tactics={4.0 6.0}
+     wrestling={14.2 16.4}
+
+     taming=5.1
+     Peacemaking=0.1
+
+     fame=10
+     karma=5
+     FOOD=15
+
+[chardef c_crow]
+name="crow"
+id=c_songbird
+sound=snd_animals_crow1
+icon=i_pet_bird
+dam=1,3
+armor=2
+moverate=0
+RESOURCES=15 i_feather, 1 I_BIRD_RAW
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+foodtype=25 t_crops, t_grain
+desires=c_crow, t_crops, t_grain
+aversions=r_water, i_scarecrow
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=17
+
+category=AoD Animals
+subsection=Birds
+description=Crow
+
+on=@create
+     color=colors_black
+     npc=brain_animal
+     str={15 25}
+     dex={25 35}
+     int=10
+
+     hiding=50.0
+     parrying=50.0
+     magicresistance={4.0 5.0}
+     tactics={4.0 6.0}
+     wrestling={14.2 16.4}
+
+     taming=4.1
+     Peacemaking=0.1
+
+     fame=30
+     karma=5
+     FOOD=15
+
+
+[chardef 831]
+name="parrot"
+defname=c_parrot
+sound=snd_animals_parrot1
+icon=i_pet_bird
+dam=1,2
+armor=4
+moverate=0
+RESOURCES=20 i_feather, 1 I_BIRD_RAW
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+foodtype=25 t_crops, t_fruit
+desires=c_parrot, t_crops, t_fruit
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=17
+
+category=AoD Animals
+subsection=Birds
+description=Parrot
+
+on=@create
+     //color={ colors_red 1 colors_blue 1 colors_yellow 1 colors_green 1 colors_orange 1 }
+     npc=brain_animal
+     str={15 25}
+     dex={25 35}
+     int={25 35}
+
+     hiding=50.0
+     parrying=50.0
+     magicresistance={14.0 15.0}
+     tactics={4.0 6.0}
+     wrestling={14.2 16.4}
+
+     taming=8.1
+     peacemaking=0.1
+
+     fame=30
+     karma=5
+     FOOD=15
+
+[chardef c_raven]
+name="raven"
+id=c_songbird
+sound=snd_animals_raven1
+icon=i_pet_raven
+dam=1,3
+armor=2
+moverate=0
+RESOURCES=15 i_feather, 1 I_BIRD_RAW
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+foodtype=25 t_crops, t_grain
+desires=c_raven, t_crops, t_grain
+aversions=r_civilization, r_water, i_scarecrow
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=19
+TAG.MANUEVER2=2
+TAG.MANUEVER3=5
+
+category=AoD Animals
+subsection=Birds
+description=Raven
+
+on=@create
+     color=colors_black
+     npc=brain_animal
+
+     str={15 25}
+     dex={25 35}
+     int={25 35}
+
+     hiding=50.0
+     parrying=50.0
+     magicresistance={14.0 15.0}
+     tactics={4.0 6.0}
+     wrestling={14.2 16.4}
+
+     taming=8.1
+     Peacemaking=0.1
+
+     fame=30
+     karma=5
+     FOOD=15
+
+[chardef c_jungle_bird]
+name="jungle bird"
+id=c_songbird
+sound=snd_animals_jungbrd1
+icon=i_pet_bird
+dam=1,2
+armor=2
+moverate=0
+RESOURCES=15 i_feather, 1 I_BIRD_RAW
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+foodtype=25 t_crops,  t_fruit
+desires=c_jungle_bird, t_crops, t_fruit
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=1
+TAG.MANUEVER2=2
+TAG.MANUEVER3=17
+
+category=AoD Animals
+subsection=Birds
+description=Jungle Bird
+
+on=@create
+     color=colors_bird
+     npc=brain_animal
+     str={10 20}
+     dex={25 35}
+     int=10
+
+     hiding=50.0
+     parrying=50.0
+     magicresistance={4.0 5.0}
+     tactics={4.0 6.0}
+     wrestling={4.2 6.4}
+
+     taming=4.1
+     Peacemaking=0.1
+
+     fame=30
+     karma=5
+     FOOD=15
+
+[chardef 05]
+defname=c_eagle
+name="eagle"
+sound=snd_animals_eagle1
+icon=i_pet_eagle
+anim=03a0c1f
+can=mt_walk|mt_fly|mt_nonhum|mt_hover
+dam=5,8
+armor=12
+moverate=0
+resources=30 i_feather, 1 i_bird_raw
+foodtype=25 t_fish, t_meat_raw, i_fish_steak_raw, i_fish_steak_cooked, i_fish_raw, i_fish_cooked
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tevents=e_carnivores
+tag.wrestlingspeed=40
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=19
+TAG.MANUEVER2=2
+TAG.MANUEVER3=1
+
+category=AoD Animals
+subsection=Birds
+description=Eagle
+
+on=@create
+     npc=brain_animal
+     fame=50
+     karma=5
+
+     str={37 52}
+     dex={38 65}
+     int={15 28}
+
+     parrying={25.0 40.0}
+     magicresistance={17.3 27.3}
+     tactics={30.2 45.6}
+     wrestling={33.9 42.3}
+
+     taming=41.7
+     Peacemaking=0.1
+     FOOD=15
+
+[eof]

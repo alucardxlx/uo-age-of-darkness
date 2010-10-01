@@ -1,0 +1,149 @@
+[function removeboat]
+IF !(0<argn2>)
+LOCAL.TRANSFER=0
+ELSE
+LOCAL.TRANSFER=<argn2>
+ENDIF
+FORCHARMEMORYTYPE 0100
+	IF (<LINK.TYPE> == t_ship)
+		IF (<LINK> == <ARGN1>)
+			IF !(<LOCAL.TRANSFER>)
+			LINK.REMOVE
+			REMOVE
+			RETURN 1
+			ENDIF
+		CONT=<LOCAL.TRANSFER>
+		ENDIF
+	ENDIF
+ENDFOR
+
+[FUNCTION barcos]
+IF !(<memoryfindtype.0100>)
+return 0
+ENDIF
+LOCAL.BARCOS=0
+LOCAL.TMP=<OBJ>
+OBJ=<UID>
+FORCHARMEMORYTYPE 0100
+	IF (<LINK.TYPE>==t_ship)
+		IF (<LINK.MORE1>==<OBJ>)
+		LOCAL.BARCOS ++
+		ENDIF
+	ENDIF
+ENDFOR
+return <eval <local.barcos>>
+
+//////////////
+
+[function disc]
+TRYSRV DISCONNECT
+
+[function kickp]
+TRYSRV KICK
+
+///////////////////////
+
+[FUNCTION ISINBANK]
+LOCAL.PUR=<UID>
+FORCONT <UID.<ARGN1>.FINDLAYER.29> 9999
+	IF (<UID>==<LOCAL.PUR>)
+	RETURN 1
+	ENDIF
+ENDFOR
+RETURN 0
+
+/////////////////
+
+[function REMOVEALLMEMS]
+IF (0<MEMORYFINDTYPE.<ARGS>>)
+WHILE (0<MEMORYFINDTYPE.<ARGS>>)
+TRY MEMORYFINDTYPE.<ARGS>.REMOVE
+ENDWHILE
+ENDIF
+
+[function equipall]
+equipweapon
+equiparmor
+
+[function unequipall]
+FOR 24
+IF (<LOCAL._FOR>!=11) && (<LOCAL._FOR>!=15) && (<LOCAL._FOR>!=16) && (<LOCAL._FOR>!=18) && (<LOCAL._FOR>!=21)
+IF (<FINDLAYER.<LOCAL._FOR>>)
+IF !(<ARGN1>)
+UNEQUIP <FINDLAYER.<LOCAL._FOR>>
+ELSE
+TRY FINDLAYER.<LOCAL._FOR>.CONT=<ARGN1>
+ENDIF
+ENDIF
+ENDIF
+ENDFOR
+IF (<FINDLAYER.31>)
+UNEQUIP <FINDLAYER.31>
+ENDIF
+
+////////////////////
+
+[FUNCTION OPENDOORS]
+FORITEMS <ARGN1>
+IF (<TYPE>==t_door)
+IF (<Z>==<ARGN2>)
+TIMERD=1
+ENDIF
+ENDIF
+ENDFOR
+
+//////////////////
+
+[FUNCTION WARMODE]
+IF (<FLAGS>&statf_war) && !(0<ARGN1>)
+FLAGS &= ~statf_war
+IF (<ISPLAYER>) && (<ISONLINE>)
+SENDPACKET 072 00 00 32 00
+ENDIF
+ELIF !(<FLAGS>&statf_war) && (0<ARGN1>)
+FLAGS |= statf_war
+IF (<ISPLAYER>) && (<ISONLINE>)
+SENDPACKET 072 01 00 32 00
+ENDIF
+ENDIF
+
+/////////////////////////
+
+[FUNCTION totalpks]
+VAR.TOTALPKS=0
+SERV.ALLCLIENTS totalpks_
+LOCAL.PKS=<VAR.TOTALPKS>
+VAR.TOTALPKS=
+RETURN <EVAL <LOCAL.PKS>>
+
+[FUNCTION totalpks_]
+IF (<ISPK>)
+VAR0.TOTALPKS ++
+ENDIF
+
+[FUNCTION totalapks]
+VAR.TOTALAPKS=0
+SERV.ALLCLIENTS totalapks_
+LOCAL.APKS=<VAR.TOTALAPKS>
+VAR.TOTALAPKS=
+RETURN <EVAL <LOCAL.APKS>>
+
+[FUNCTION totalapks_]
+IF !(<ISPK>)
+VAR0.TOTALAPKS ++
+ENDIF
+
+////////////////////
+
+[FUNCTION mapname]
+IF !(<MAP>)
+RETURN Felucca
+ELIF (<MAP>==1)
+RETURN Trammel
+ELIF (<MAP>==2)
+RETURN Ilshenar
+ELIF (<MAP>==3)
+RETURN Malas
+ENDIF
+
+[EOF]

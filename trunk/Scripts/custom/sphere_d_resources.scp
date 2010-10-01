@@ -1,0 +1,799 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2003
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Monday, March 18, 2003
+//
+VERSION=0.99y
+//****************************************************************************
+
+// Base Items not created from other items.
+
+
+[itemdef 09b4]
+defname=i_eggshells
+value=1
+category=items - resources
+subsection=cook
+description=eggshells
+
+[itemdef 0c37]
+//flowers
+defname=i_crop_flower
+value=2
+category=vegetation
+subsection=plants and flowers
+description=flowers
+
+[itemdef 0c38]
+//flowers
+defname=i_crop_flower_2
+value=2
+category=vegetation
+subsection=plants and flowers
+description=flowers
+
+
+
+[itemdef 0e57]
+defname=i_stump
+value=1
+category=vegetation
+subsection=trees
+description=stump
+dupelist=0e59
+
+
+
+[itemdef 0f0f]
+//star sapphire
+defname=i_gem_star_sapphire
+type=t_gem
+value=35
+weight=1
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 1 (dark blue)
+
+[itemdef 0f10]
+//emerald
+defname=i_gem_emerald
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=emerald 1
+
+[itemdef 0f11]
+//sapphire (gem)
+defname=i_gem_sapphire
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 1 (light blue)
+
+[itemdef 0f12]
+//sapphire
+defname=i_gem_sapphire_2
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 2 (dark blue)
+
+[itemdef 0f13]
+//ruby
+defname=i_gem_ruby
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 1
+
+[itemdef 0f14]
+//ruby
+defname=i_gem_ruby_2
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 2
+
+[itemdef 0f15]
+//citrine
+defname=i_gem_citrine
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 1
+
+[itemdef 0f16]
+//amethyst (gem)
+defname=i_gem_amethyst
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 1
+
+[itemdef 0f17]
+//amethyst
+defname=i_gem_amethyst_2
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 2
+
+[itemdef 0f18]
+//tourmaline (gem)
+defname=i_gem_tourmaline
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 1
+
+[itemdef 0f19]
+//sapphire
+defname=i_gem_sapphire_3
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 3
+
+[itemdef 0f1a]
+//ruby (gem)
+defname=i_gem_ruby_3
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 3
+
+[itemdef 0f1b]
+//star sapphire
+defname=i_gem_star_sapphire_2
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 2 (shining blue)
+
+[itemdef 0f1c]
+//ruby
+defname=i_gem_ruby_4
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 4 (small)
+
+[itemdef 0f1d]
+//ruby
+defname=i_gem_ruby_5
+value=40
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 5 (small) (darkened)
+
+[itemdef 0f1e]
+//tourmaline
+defname=i_gem_tourmaline_2
+type=t_gem
+value=25
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 2
+
+[itemdef 0f1f]
+//sapphire
+defname=i_gem_sapphire_4
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 4
+
+[itemdef 0f20]
+//tourmaline
+defname=i_gem_tourmaline_3
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 3 (shining green)
+
+[itemdef 0f21]
+//star sapphire
+defname=i_gem_star_sapphire_3
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 3 (big)
+
+[itemdef 0f22]
+//amethyst (gem) (large)
+defname=i_gem_amethyst_3
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 1
+
+[itemdef 0f23]
+//citrine (gem)
+defname=i_gem_citrine_2
+value=50
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 2 (big)
+
+[itemdef 0f24]
+//citrine
+defname=i_gem_citrine_3
+value=50
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 3 (big)
+
+[itemdef 0f25]
+//piece of amber (gem)
+defname=i_gem_amber
+type=t_gem
+value=10
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=piece of amber
+
+[itemdef 0f26]
+//diamond (gem)
+defname=i_gem_diamond
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 1 (dark) (small)
+
+[itemdef 0f27]
+//diamond
+defname=i_gem_diamond_2
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 2 (dark) (big)
+
+[itemdef 0f28]
+//diamond
+defname=i_gem_diamond_3
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 3 (light) (small)
+
+[itemdef 0f29]
+//diamond
+defname=i_gem_diamond_4
+type=t_gem
+value=55
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 4 (light) (big)
+
+[itemdef 0f2a]
+//ruby
+defname=i_gem_ruby_6
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 6 (big)
+
+[itemdef 0f2b]
+//ruby
+// defname2=gem25
+defname=i_gem_ruby_7
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 7 (big)
+
+[itemdef 0f2c]
+//citrine
+// defname2=gem26
+defname=i_gem_citrine_4
+type=t_gem
+weight=0.5
+value=30
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 4
+
+[itemdef 0f2d]
+//tourmaline
+// defname2=gem27
+defname=i_gem_tourmaline_4
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 4 (big)
+
+[itemdef 0f2e]
+//amethyst (large)
+// defname2=gem28
+defname=i_gem_amethyst_4
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 4
+
+[itemdef 0f2f]
+//emerald (gem)
+// defname2=gem29
+defname=i_gem_emerald_2
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=emerald (big)
+
+[itemdef 0f30]
+//diamond
+// defname2=gem30
+defname=i_gem_diamond_5
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 5 (big)
+
+[itemdef 0f36]
+//sheaf of hay
+//food for animals only? is there a distinction?
+// defname2=bundle_of_grain
+defname=i_hay_sheaf
+type=t_grain
+value=3
+weight=2
+category=items - resources
+subsection=stablemaster
+description=hay (sheaf)
+
+[itemdef 0100c]
+//sheaf of hay
+//food for animals only? is there a distinction?
+// defname2=bundle_of_grain
+defname=i_hay_sheaf2
+type=t_grain
+value=3
+weight=2
+category=items - resources
+subsection=stablemaster
+description=hay (sheaf, stacking)
+dupelist=0100d
+
+[itemdef 0100d]
+dupelist=0100c
+
+[itemdef 0f3b]
+//horse dung
+defname=i_horse_dung
+value=1
+category=items - resources
+subsection=stablemaster
+description=horse dung
+dupelist=0f3c
+
+[itemdef 0f3c]
+//horse dung
+dupeitem=0f3b
+
+[itemdef 01cc7]
+defname=i_blood_tile
+type=t_blood
+//weight=.1
+value=3
+category=decoration - dungeons and the dead
+subsection=blood
+description=@
+dupelist=01cc8,01cc9,01cca,01ccb,01ccc,01ccd,01cce,01ccf,01cd0,01cd1,01cd2,01cd3,01cd4,01cd5,01cd6,01cd7,01cd8,01cd9,01cda,01cdb,01cdc
+
+[itemdef 01ced]
+defname=i_flesh_heart
+type=t_meat_raw
+tdata1=i_ribs_cooked
+value=1
+weight=5
+category=decoration - dungeons and the dead
+subsection=body parts
+description=heart
+
+[itemdef 01cee]
+defname=i_flesh_liver
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=5
+category=decoration - dungeons and the dead
+subsection=body parts
+description=liver
+
+[itemdef 01cef]
+defname=i_flesh_entrails
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=6
+category=decoration - dungeons and the dead
+subsection=body parts
+description=entrails
+
+[itemdef 01cf0]
+defname=i_flesh_brain
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=8
+category=decoration - dungeons and the dead
+subsection=body parts
+description=brain
+
+[itemdef 01cf1]
+defname=i_blood_2
+value=1
+type=t_blood
+category=decoration - dungeons and the dead
+subsection=blood
+description=@
+dupelist=01cf2,01cf3,01cf4,01cf5,01cf6,01cf7,01cf8,01cf9,01cfa,01cfb,01cfc,01cfd,01cfe,01cff,01d00,01d01,01d02,01d03,01d04,01d05,01d06,01d07,01d08,01d09,01d0a,01d0b,01d0c,01d0d,01d0e,01d0f,01d10,01d11,01d12
+
+on=@create
+decay=60
+
+on=@step
+if <timer>=-1
+attr=attr_decay
+timer=1
+return 1
+else
+return 1
+endif
+
+[itemdef 01d9f]
+defname=i_flesh_torso
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+resources=i_flesh_heart, 2 i_ribs_raw, i_flesh_liver, i_flesh_entrails, i_blood_2
+weight=20
+category=decoration - dungeons and the dead
+subsection=body parts
+description=torso
+dupelist=01dad
+
+[itemdef 01da0]
+// smaller head.
+defname=i_flesh_head_2
+value=1
+resources=i_bone_skull, i_bone_jaw, i_flesh_brain, i_blood_2
+weight=20
+category=decoration - dungeons and the dead
+subsection=body parts
+description=head
+dupelist=01dae
+
+[itemdef 01da1]
+defname=i_flesh_left_arm
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=7
+category=decoration - dungeons and the dead
+subsection=body parts
+description=left arm
+dupelist=01daf
+
+[itemdef 01da2]
+defname=i_flesh_right_arm
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=7
+category=decoration - dungeons and the dead
+subsection=body parts
+description=right arm
+dupelist=01db0
+
+[itemdef 01da3]
+defname=i_flesh_left_leg
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=11
+category=decoration - dungeons and the dead
+subsection=body parts
+description=left leg
+dupelist=01db1
+
+[itemdef 01da4]
+defname=i_flesh_right_leg
+value=1
+type=t_meat_raw
+tdata1=i_ribs_cooked
+weight=11
+category=decoration - dungeons and the dead
+subsection=body parts
+description=right leg
+dupelist=01db2
+
+[itemdef 01dfd]
+defname=i_dirt
+value=1
+weight=.1
+category=ground tiles
+subsection=dirt
+description=@
+dupelist=01dfe,01dff,01e00
+[itemdef 0175d]
+// defname2=folded_cloth_1
+defname=i_cloth
+weight=2
+value=3
+type=t_cloth
+dye=1
+category=items - resources
+subsection=tailor
+description=folded cloth
+dupelist=0175e,0175f,01760,01761,01762,01763,01764,01765
+
+[itemdef 01797]
+defname=i_water
+value=2
+type=t_water
+category=ground tiles
+subsection=water
+description=@
+dupelist=01798,01799,0179a,0179b,0179c,0179d,0179e,0179f,017a0,017a1,017a2,017a3,017a4,017a5,017a6,017a7,017a8,017a9,017aa,017ab,017ac,017ad,017ae,017af,017b0,017b1,017b2
+
+[itemdef 019ab]
+//fire
+defname=i_fire
+type=t_fire
+value=1
+weight=1
+category=ground tiles
+subsection=fire
+description=@
+dupelist=019ac,019ad,019ae,019af,019b0,019b1,019b2,019b3,019b4,019b5,019b6
+
+on=@create
+Decay=30
+
+on=@step
+remove
+
+on=@timer
+link=04fffffff
+
+on=@dropon_ground
+attr_static=1
+src.sysmessage "you burn yourself badly!"
+src.hits=((src.hits)-40)
+src.sound 0153
+
+[itemdef 01ae0]
+defname=i_bone_skull
+type=t_bone
+value=1
+weight=3
+category=decoration - dungeons and the dead
+subsection=skeletons
+description=skull
+dupelist=01ae1,01ae2,01ae3,01ae4
+
+[itemdef 01b11]
+defname=i_bone
+type=t_bone
+value=1
+weight=1
+category=decoration - dungeons and the dead
+subsection=bones
+description=bone
+dupelist=01b12
+
+[itemdef 01b13]
+defname=i_bone_jaw
+type=t_bone
+value=1
+weight=1
+category=decoration - dungeons and the dead
+subsection=bones
+description=jaw bone
+dupelist=01b14
+
+[itemdef 01b15]
+defname=i_bone_pelvis
+type=t_bone
+value=1
+weight=4
+category=decoration - dungeons and the dead
+subsection=bones
+description=pelvis bone
+dupelist=01b16
+
+[itemdef 01b17]
+defname=i_bone_ribcage
+type=t_bone
+value=1
+weight=4
+category=decoration - dungeons and the dead
+subsection=bones
+description=rib cage
+dupelist=01b18
+
+[itemdef 01b19]
+defname=i_bone_shards
+type=t_bone
+value=1
+weight=2
+category=decoration - dungeons and the dead
+subsection=bones
+description=bone shards
+dupelist=01b1a
+
+[itemdef 01b1b]
+defname=i_bone_spine
+type=t_bone
+value=2
+weight=4
+category=decoration - dungeons and the dead
+subsection=bones
+description=spine
+dupelist=01b1c
+
+[itemdef 01b1f]
+defname=i_leaves
+value=2
+weight=.1
+category=vegetation
+subsection=trees
+description=leaves
+dupelist=01b20,01b21,01b22,01b23,01b24,01b25,01b26
+
+[itemdef 01b27]
+defname=i_dirt_tile
+value=2
+weight=1
+category=ground tiles
+subsection=dirt
+description=@
+dupelist=01b28,01b29,01b2a,01b2b,01b2c,01b2d,01b2e,01b2f,01b30,01b31,01b32,01b33,01b34,01b35,01b36,01b37,01b38,01b39,01b3a,01b3b,01b3c,01b3d,01b3e
+
+[itemdef 01b9b]
+defname=i_sticks
+value=2
+weight=3
+category=vegetation
+subsection=sticks and wood
+description=sticks
+dupelist=01b9c,01b9d,01b9e
+
+[itemdef 01bd1]
+defname=i_feather
+type=t_feather
+value=2
+weight=.1
+category=items - resources
+subsection=archers/bowyers
+description=feathers (white)
+dupelist=0dfa,0dfb,01bd2,01bd3
+
+on=@userdclick
+src.skillmenu=sm_bolts
+return 1
+
+[itemdef 01bd7]
+//defname2=lumber
+defname=i_board
+resources=i_log
+skillmake=1 carpentry
+value=2
+weight=1
+type=t_board
+category=items - resources
+subsection=archers/bowyers
+description=board
+dupelist=01bd8,01bd9,01bda,01bdb,01bdc
+
+[itemdef 01bdd]
+defname=i_log
+name=log%s
+value=2
+type=t_log
+weight=2
+category=items - resources
+subsection=archers/bowyers
+description=log (se)
+dupelist=01bde,01bdf,01be0,01be1,01be2
+
+[itemdef 010b8]
+defname=i_spiderweb
+value=2
+weight=.1
+type=t_web
+category=items - resources
+subsection=large spiderwebs
+description=spiderweb 01 (01/05)
+dupelist=010b9,010ba,010bb,010bc,010bd,010be,010bf,010c0,010c1,010c2,010c3,010c4,010c5,010c6,010c7,010c8,010c9,010ca,010cb,010cc,010cd,010ce,010cf,010d0,010d1
+
+[itemdef 010ee]
+defname=i_garbage
+type=t_garbage
+value=1
+weight=.2
+category=items - resources
+subsection=cook
+description=garbage
+dupelist=010ef,010f0,010f1,010f2,010f3
+
+[itemdef 0fc4]
+defname=i_shell
+value=1
+weight=.1
+//conch shell
+category=items - resources
+subsection=shells
+description=conch shells
+
+[eof]

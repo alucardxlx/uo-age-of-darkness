@@ -1,0 +1,46 @@
+//*****************************************************************
+//**        NPC Wars
+//**        By Lerkur
+//** Edited by Anarch Cassius
+//**   Last Edited 09/13/10
+//**  
+//**  Script option for NPCs to cause fear and terror
+//**  
+//**  
+//**  
+//*****************************************************************
+
+[DEFNAME NPC_AI_System_Options]
+
+//NPC AI System Options
+npcai_opt_formsquads  01 //NPCs will form squads (Boolean)
+npcai_opt_initializeRanks 00 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
+// (Fame + stats*10 + skills) / 2000
+npcai_opt_stationarysquads 00 //Squads will not roam around (Boolean)
+
+npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
+npcai_opt_npcusepotions  01 //Faction NPCs will use potions (Boolean)
+npcai_opt_requiremtusehands 00 //Require MT_USEHANDS in order to heal self/use potions (Boolean)
+
+npcai_opt_initializeMagicAI 01 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
+npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
+npcai_opt_castbeneficialspells 01 //NPCs will cast helpful spells on others (Boolean)
+
+npcai_opt_switchfrombow  01 //Faction NPC archers will switch to a melee weapon when in close combat (Boolean)
+npcai_opt_npclooting  01 //Use NPC Looting system on Faction NPCs (Boolean)
+
+npcai_opt_lowbodycount  01 //Keeps the body count low of NPCs that were slain by Faction NPCs (Boolean)
+npcai_opt_clickrecognition 01 //Uses race based click recognition of NPCs (Boolean)
+
+//Debug Utilities
+npcai_opt_resetnpcs  00 //Set this in order reset the races and events of all NPCs with monster markers (Boolean)
+npcai_opt_respawnworld  00 //Set this in order to remove creatures with monster markers (Boolean)
+
+
+[EOF]
+
+[Fighter Types]
+0  Default, no special actions
+1  Fire support, primary offensive caster for squad
+2  Healer support, primary healing/support caster for squad
+3  Stealth support, uses hiding, stealing and other skills for squad

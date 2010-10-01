@@ -1,0 +1,479 @@
+[ITEMDEF i_mirror_purification]
+ID=i_wash_basin
+
+NAME=Mirror of Purification
+
+ON=@Create
+ATTR=attr_blessed
+COLOR=88
+
+ON=@Dclick
+IF (<UID.<REGION.UID>.TYPE> == t_multi)
+IF (<UID.<REGION.UID>.MORE1> == <SRC>)
+SRC.SPELLEFFECT S_GREATER_HEAL,1000,<SRC>
+ENDIF
+ENDIF
+MESSAGE @946,3,1 The mirror must be inside one of your properties to have effect.
+RETURN 1
+
+
+[ITEMDEF i_thing]
+ID=0eb0
+
+ON=@CLIENTTOOLTIP
+  serv.newitem {i_dragon_scale_red 1 i_dragon_scale_green 1}
+  IF <CONT>
+	NEw.CONT=<CONT>
+  ELSE
+	NEW.P=<P>
+  ENDIF
+  NEW.AMOUNT=<amount>
+  remove
+  update
+  return 1
+
+ON=@CLICK
+  serv.newitem {i_dragon_scale_red 1 i_dragon_scale_green 1}
+  IF <CONT>
+	NEw.CONT=<CONT>
+  ELSE
+	NEW.P=<P>
+  ENDIF
+  NEW.AMOUNT=<amount>
+  remove
+  update
+  return 1
+
+[ITEMDEF i_eternal_flower]
+ID=0eb0
+NAME=Eternal Flower
+
+ON=@Create
+ATTR=attr_blessed|attr_newbie
+COLOR=colors_all
+
+
+
+[ITEMDEF i_map_fragment]
+ID=i_map_rolled
+NAME=Map Fragment
+TYPE=T_NORMAL
+
+ON=@Create
+COLOR={ 0751 0757 }
+
+
+
+
+[ITEMDEF i_transparent_heart]
+ID=i_earrings_gold
+NAME=Transparent Heart
+//TEVENTS=T_LUCK_ITEM
+//TAG.LUCK=100
+WEIGHT=2
+
+ON=@Create
+COLOR=colors_all
+
+
+[ITEMDEF i_power_crystal]
+ID=i_crystal_1
+NAME=Power Crystal
+VALUE=1000
+
+ON=@Create
+COLOR=colors_gray
+
+
+
+[ITEMDEF i_spirit_bottle]
+ID=i_bottle_6
+NAME=Spirit Bottle
+TYPE=T_NORMAL
+
+ON=@Create
+COLOR=88
+
+
+[ITEMDEF i_silk_of_dread_spider]
+ID=i_wool
+NAME=ball of dread spider silk
+TYPE=T_NORMAL
+
+ON=@Create
+COLOR=0481
+
+
+
+[ITEMDEF i_old_ring]
+ID=i_ring_gold
+NAME=old ring
+VALUE=2500
+
+ON=@Create
+COLOR=0b97
+
+[ITEMDEF i_old_necklace]
+ID=i_necklace_gold
+NAME=old necklace
+VALUE=2500
+
+ON=@Create
+COLOR=0b98
+
+
+[ITEMDEF i_book_bound_red_leather]
+ID=i_spellbook
+NAME=a book
+TYPE=T_NORMAL
+
+ON=@Create
+COLOR=0846
+
+
+[FUNCTION quest125setwolfslayerdagger]
+LOCAL.OLDOBJ=<OBJ>
+OBJ=<FINDID.i_wolf_slayer_dagger>
+OBJ.COLOR=04ac
+OBJ.TAG.DAMINCREASE=10
+OBJ.TAG.HITCHANCEINCREASE=10
+OBJ.SETSLAYER
+OBJ.TAG.SLAYERGROUP=WOLF
+OBJ.NAME=Wolf Slayer Dagger
+TRYSRC <UID> SRC.OBJ.RESENDTOOLTIP 1
+OBJ.MESSAGE @946,3,1 Your dagger now has some magical properties.
+OBJ=<LOCAL.OLDOBJ>
+
+[FUNCTION DOOMSUMMONBONEDAEMON]
+OBJ.ANIM 16
+OBJ.SAYLOC 33,3,1050031
+OBJ.TIMERF 2,DOOMSAYTIMING
+SYSMESSAGELOC 55,3,1050036
+SERV.NEWNPC C_BONE_DAEMON
+NEW.NAME=the devourer
+NEW.GO=442,204,-3,3
+NEW.HOME=442,204,-3,3
+NEW.HOMEDIST=30
+NEW.EVENTS +e_questsylvana_daemon
+LOCAL.DEVOURER=<NEW>
+SERV.NEWITEM i_doom_bone_daemon_remover,1,<LOCAL.DEVOURER>
+NEW.TIMER=60*10
+
+[FUNCTION DOOMSAYTIMING]
+SAY @33,3,1 Go forth and vanquish the devourer that has been summoned!
+
+
+[ITEMDEF 026c3]
+DEFNAME=i_repeating_crossbow
+NAME=Repeating Crossbow
+DAM=10,12
+SPEED=41
+WEIGHT=5
+//TEVENTS=t_showprops
+TYPE=t_weapon_XBOW
+TWOHANDS=Y
+TDATA3=i_xbolt
+TDATA4=i_xbolt_x
+SKILLMAKE=SKILL_BOWCRAFT 90.0
+RESOURCES=10 i_log
+SKILL=Archery
+CATEGORY=Provisions - Weapons
+SUBSECTION=Bows
+DESCRIPTION=Repeating Crossbow
+REQSTR=30
+ON=@create
+hitpoints={50 100}
+
+
+
+///////////////////////////////////
+///////////////////////////////////
+
+[TEMPLATE Quest_Treasure_Box]
+CATEGORY=Item Templates
+SUBSECTION=Loot Templates
+DESCRIPTION=Quest Treasure Box
+CONTAINER=i_box_brass
+TYPE=T_CONTAINER_LOCKED
+color=colors_all
+MORE2={360 1000}
+ITEM={ RANDOM_JEWELRY 1 0 1 }
+ITEM={ RANDOM_JEWELRY 1 0 1 }
+ITEM={ RANDOM_JEWELRY 1 0 2 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_JEWEL 1 0 2 },{2 12}
+ITEM={ RANDOM_MISSILES_magic 1 0 3 },{24 50}
+ITEM={ RANDOM_ARMOR 1 RANDOM_WEAPON 4 random_magic_weapon_low 3 0 10 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=90
+TAG.MAGICNUMBER=2
+
+
+//////////////////////
+
+[itemdef i_old_necklace_map]
+NAME=Old Necklace Map
+ID=i_map_rolled
+VALUE=100
+TYPE=t_normal
+WEIGHT=3
+FLIP=0
+CATEGORY=Do Not Use
+SUBSECTION=Treasure System
+DESCRIPTION=Do Not Use
+
+ON=@Create
+color=colors_neutral
+f_select_necklace_treasure_location
+tag.cartography={200 400}
+attr=0
+
+
+on=@dclick
+if !(<more1>) && !(<src.isnextp <eval <morex>> <eval <morey>> 10>)
+	sdialog d_tesouro_mapa
+elif (<topobj.uid>!=<src>) && !(<src.isgm>)
+	src.message The map isn't with you.
+elif (<more1>)
+	src.sysmessage The treasure has already been found.
+	dispid=i_map
+	update
+else
+	IF (<src.isnextp <eval <morex>> <eval <morey>> 10>) 
+		IF !(<src.findid.i_shovel>)
+			src.sysmessage You need a shovel.
+		else
+			FOR (<eval {2 4}>)
+				DORAND 3
+					serv.newnpc=c_skeleton
+					serv.newnpc=c_zombie
+					serv.newnpc=c_corpser
+				ENDDO
+				new.p=<morep>
+				new.home=<new.p>
+				new.fix
+				new.update
+				new.homedist 10
+				new.removetimer <EVAL 60*30>
+			ENDFOR
+			DORAND 2
+				serv.newnpc=c_flesh_golem
+				serv.newnpc=c_banshee
+			ENDDO
+			new.p=<morep>
+			new.fix
+			new.update
+			DORAND 6
+				new.L Who dares to take my treasure!?
+				new.L You came for the treasure? Then find only death!
+				new.L Looking for something?
+				new.L No one shall take my necklace!
+				new.L Foolish robber, meet your doom!
+				new.L This necklace is mine!
+			ENDDO
+			new.tag.prizemoney=<eval {50 500}>
+			new.home=<new.p>
+			new.homedist 10
+			new.events +e_necklace_box
+			new.removetimer <EVAL 60*30>
+			src.sysmessage Now you have to kill the monsters to get the treasure.
+			more1=1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+
+
+[events e_necklace_box]
+
+ON=@DEATHCORPSE
+serv.newitem=Quest_Treasure_Box
+new.p=<argo.p>
+new.nudgeup 1
+new.timer=360
+//traps
+local.bau=<new>
+FOR 3
+serv.newitem={ i_copper_coin 7 i_silver_coin 6 i_gold_coin 5 i_platinum_coin 3 i_copper_bar 3 i_silver_bar 2 i_gold_bar 1 }
+new.amount=(rand((10*<Eval <tag0.prizemoney>>)/<new.value>))
+if (<new.amount> < 1)
+	new.amount=1
+endif
+new.cont=<Local.Bau>
+ENDFOR
+serv.newitem=i_old_necklace
+new.cont=<Local.Bau>
+try uid.<local.bau>.update
+try uid.<uid.<argo.uid>.more2>.sysmessage You killed the guardian, now take the treasure!
+
+
+
+
+[function f_select_necklace_treasure_location]
+SERV.NEWITEM i_gold
+NEW.ATTR=ATTR_INVIS
+DORAND 2
+NEW.P=<eval {792 1336}>,<eval {640 2432}> //Brittannia
+NEW.P=<eval {664 2801}>,<eval {424 1000}> //Brittannia
+ENDDO
+LOCAL.TMP=<OBJ>
+OBJ=<NEW.region.uid>
+IF (<obj.type>==t_multi)
+OBJ=<LOCAL.TMP>
+f_select_necklace_treasure_location
+RETURN 1
+ELIF (<NEW.region.flags>&region_flag_guarded) || (<NEW.region.flags>&region_flag_safe) || (<NEW.isneartype t_rock 1>) || (<NEW.isneartype t_tree 1>) || (<NEW.isneartype t_door 1>) || (<NEW.isneartype t_wall 1>) || (<NEW.isneartype t_water 1>) || (<isneartype t_multi 10>) || (<NEW.serv.map(<p>).terrain>==0244)
+OBJ=<LOCAL.TMP>
+f_select_necklace_treasure_location
+RETURN 1
+ENDIF
+FIX
+OBJ=<LOCAL.TMP>
+TAG.LUGAR=<NEW.REGION.NAME>
+MOREP=<NEW.P>
+NEW.REMOVE
+
+///////////////////////////////////////
+
+[itemdef i_old_ring_map]
+NAME=Old Ring Map
+ID=i_map_rolled
+VALUE=100
+TYPE=t_normal
+WEIGHT=3
+FLIP=0
+CATEGORY=Do Not Use
+SUBSECTION=Treasure System
+DESCRIPTION=Do Not Use
+
+ON=@Create
+color=colors_neutral
+tag.cartography={200 400}
+f_select_ring_treasure_location
+attr=0
+
+
+on=@dclick
+if !(<more1>) && !(<src.isnextp <eval <morex>> <eval <morey>> 10>)
+	sdialog d_tesouro_mapa
+elif (<topobj.uid>!=<src>) && !(<src.isgm>)
+	src.message The map isn't with you.
+elif (<more1>)
+	src.sysmessage The treasure has already been found.
+	dispid=i_map
+	update
+else
+	IF (<src.isnextp <eval <morex>> <eval <morey>> 10>) 
+		IF !(<src.findid.i_shovel>)
+			src.sysmessage You need a shovel.
+		else
+			FOR (<eval {1 3}>)
+				DORAND 3
+					serv.newnpc=c_imp
+					serv.newnpc=c_hellhound
+				ENDDO
+				new.p=<morep>
+				new.home=<new.p>
+				new.fix
+				new.update
+				new.homedist 10
+				new.removetimer <EVAL 60*30>
+			ENDFOR
+			DORAND 2
+				serv.newnpc=c_daemon
+				serv.newnpc=c_daemon_magus
+				serv.newnpc=c_chaos_daemon
+			ENDDO
+			new.p=<morep>
+			new.fix
+			new.update
+			DORAND 6
+				new.L Who dares to take my treasure!?
+				new.L I take what I please! Try to reclaim it!
+				new.L Looking for something?
+				new.L No one shall take my ring!
+				new.L Foolish mortal, meet your doom!
+				new.L This ring is mine now!
+			ENDDO
+			new.tag.prizemoney=<eval {10 100}>
+			new.home=<new.p>
+			new.homedist 10
+			new.events +e_ring_box
+			new.removetimer <EVAL 60*30>
+			src.sysmessage Now you have to kill the monsters to get the treasure.
+			more1=1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+
+
+[events e_ring_box]
+
+ON=@DEATHCORPSE
+serv.newitem=Quest_Treasure_Box
+new.p=<argo.p>
+new.nudgeup 1
+new.timer=360
+//traps
+local.bau=<new>
+FOR 3
+serv.newitem={ i_copper_coin 7 i_silver_coin 6 i_gold_coin 5 i_platinum_coin 3 i_copper_bar 3 i_silver_bar 2 i_gold_bar 1 }
+new.amount=(rand((10*<Eval <tag0.prizemoney>>)/<new.value>))
+if (<new.amount> < 1)
+	new.amount=1
+endif
+new.cont=<Local.Bau>
+ENDFOR
+serv.newitem=i_old_ring
+new.cont=<Local.Bau>
+try uid.<local.bau>.update
+try uid.<uid.<argo.uid>.more2>.sysmessage You killed the guardian, now take the treasure!
+
+
+
+
+[function f_select_ring_treasure_location]
+SERV.NEWITEM i_gold
+NEW.ATTR=ATTR_INVIS
+DORAND 7
+NEW.P=<eval {5282 5294}>,<eval {576 590}>
+NEW.P=<eval {5280 5294}>,<eval {536 550}>
+NEW.P=<eval {5403 5418}>,<eval {1928 1937}>
+NEW.P=<eval {5415 5444}>,<eval {745 753}>
+NEW.P=<eval {5184 5206}>,<eval {648 661}>
+NEW.P=<eval {6048 6062}>,<eval {152 166}>
+NEW.P=<eval {5463 5481}>,<eval {172 192}>
+ENDDO
+LOCAL.TMP=<OBJ>
+OBJ=<NEW.region.uid>
+IF (<obj.type>==t_multi)
+OBJ=<LOCAL.TMP>
+NEW.REMOVE
+f_select_ring_treasure_location
+RETURN 1
+ELIF (<NEW.region.flags>&region_flag_guarded) || (<NEW.region.flags>&region_flag_safe) || (<NEW.isneartype t_rock>) || (<NEW.isneartype t_tree>) || (<NEW.isneartype t_door>) || (<NEW.isneartype t_wall>) || (<NEW.isneartype t_water>) || (<isneartype t_multi 10>)
+OBJ=<LOCAL.TMP>
+NEW.REMOVE
+f_select_ring_treasure_location
+RETURN 1
+ELIF ((<NEW.serv.map(<p>).terrain>>=025A) && (<NEW.serv.map(<p>).terrain>==026D)) || (<NEW.serv.map(<p>).terrain>==0244)
+OBJ=<LOCAL.TMP>
+NEW.REMOVE
+f_select_ring_treasure_location
+RETURN 1 
+ENDIF
+FIX
+OBJ=<LOCAL.TMP>
+TAG.LUGAR=<NEW.REGION.NAME>
+MOREP=<NEW.P>
+NEW.REMOVE
+
+[EOF]

@@ -1,0 +1,114 @@
+[FUNCTION f_resource_replace_repair]//argn1 = item, argn2 = resource to search for, argn3 = resource to replace with
+//this function returns a resource list with the specified resource replaced with another
+LOCAL.I=1
+WHILE (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL>)
+	FLOAT.RESN=<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL>
+	FLOAT.RESN=<FLOATVAL <FLOAT.RESN>-(<FLOAT.RESN>*<VAR.DAMAGEPERCENT>)>
+	LOCAL.RESN=<FLOAT.RESN>
+	LOCAL.RESN=<EVAL <LOCAL.RESN>/1200000>
+	IF (<EVAL <LOCAL.RESN>><1) 
+		LOCAL.RESN=1
+	ENDIF 
+	IF (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.KEY>==<ARGV[1]>)
+		LOCAL.RETURN=<LOCAL.RETURN>, <LOCAL.RESN> <ARGV[2]>
+	ELSE
+		LOCAL.RETURN=<LOCAL.RETURN>, <LOCAL.RESN> <SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.KEY>
+	ENDIF
+	LOCAL.I += 1
+ENDWHILE
+RETURN <STREAT <LOCAL.RETURN>>
+
+
+
+
+[FUNCTION RepairItem] 
+TARGETF f_repair Target an item to repair. 
+ 
+[FUNCTION f_repair]
+IF (<ARGO.tag0.MATERIAL>)
+	LOCAL.SKILLMOD = <DEF.SKMENU_SUBRES_<ARGO.tag0.MATERIAL>_SKILL>
+ELSE
+	LOCAL.SKILLMOD = 0
+ENDIF
+
+LOCAL.SKILL=<ARGO.SKILLMAKE.1.KEY>
+LOCAL.DIFF=<eval <ARGO.SKILLMAKE.1.VAL>+<LOCAL.SKILLMOD>>
+
+VAR.DAMAGEPERCENT=<FLOATVAL <ARGO.HITS> / <ARGO.MAXHITS>>
+
+IF (<ARGO.ISCHAR>) 
+	SRC.SYSMESSAGE You can't repair that.  
+	RETURN 1 
+ELSEIF !(<ARGO.CONT.UID> = <SRC.FINDLAYER(21).UID>) 
+	SRC.SYSMESSAGE The item must be in your backpack to repair it.  
+	RETURN 1 
+ELSEIF 	!(<ARGO.HITS>) //!(<ARGO.ISWEAPON>) && !(<ARGO.ISARMOR>) 
+	SRC.SYSMESSAGE You can't repair that.  
+	RETURN 1 
+ELSEIF (<ARGO.HITS> >= <ARGO.MAXHITS>) 
+	SRC.SYSMESSAGE The item is already in full repair. 
+	RETURN 1 
+ELSEIF ((<LOCAL.DIFF>/2) >= <src.<serv.skill(<LOCAL.SKILL>).name>>) 
+	SRC.SYSMESSAGE That is beyond your ability to repair.
+	RETURN 1 
+ELSEIF (<LOCAL.SKILL>==skill_blacksmith) && !<isneartype t_anvil 2>
+	src.sysmessage This requires an anvil to repair.
+	RETURN 1 
+ENDIF
+
+IF (<ARGO.tag0.MATERIAL>)
+	LOCAL.RESOURCES=<f_resource_replace_repair <ARGO.BASEID>,<ARGO.tag0.BASEMATERIAL>,<ARGO.tag0.MATERIAL>>
+ELSE
+	LOCAL.RESOURCES=<f_resource_replace_repair <ARGO.BASEID>,i_gold,i_gold>
+ENDIF
+
+IF !(<SRC.RESTEST <LOCAL.RESOURCES>>)
+	SRC.SYSMESSAGE You don't have the resources required to repair that item.
+	RETURN 1
+ENDIF
+SRC.CONSUME <LOCAL.RESOURCES>
+
+	IF <src.skillcheck <serv.skill(<LOCAL.SKILL>).name> <EVAL <LOCAL.DIFF>/10>>
+		ARGO.HITS=<ARGO.MAXHITS>
+		ARGO.RESENDTOOLTIP 
+		SRC.SYSMESSAGE You repair the <ARGO.name>.
+		src.skillgain <serv.skill(<LOCAL.SKILL>).name> <EVAL <LOCAL.DIFF>/10>
+	ELSE
+		SRC.SYSMESSAGE You fail to repair the <ARGO.name>.
+		src.skillgain <serv.skill(<LOCAL.SKILL>).name> <EVAL <LOCAL.DIFF>/10>
+	ENDIF
+Return 1
+
+
+[FUNCTION NPC_RepairItem]
+IF !(<ARGO.CONT.UID> = <SRC.FINDLAYER(21).UID>) 
+	SRC.SYSMESSAGE The item must be in your backpack to repair it.  
+	RETURN 1 
+ENDIF
+OBJ=<SRC.TAG.VENDORUSED>
+IF (<ARGO.tag0.MATERIAL>)
+	LOCAL.SKILLMOD = <DEF.SKMENU_SUBRES_<ARGO.tag0.MATERIAL>_SKILL>
+ELSE
+	LOCAL.SKILLMOD = 0
+ENDIF
+LOCAL.SKILL=<ARGO.SKILLMAKE.1.KEY>
+LOCAL.DIFF=<eval <ARGO.SKILLMAKE.1.VAL>+<LOCAL.SKILLMOD>>
+IF ((<LOCAL.DIFF>/2) > <OBJ.<serv.skill(<LOCAL.SKILL>).name>>)
+	OBJ.L I cannot repair that.
+	RETURN 1
+ENDIF
+LOCAL.PERCENT = 100-<MulDiv <ARGO.HITS>,100,<ARGO.MAXHITS>>
+LOCAL.COST = <MulDiv <eval (<ARGO.TAG0.MODVALUE>+5+<ARGO.VALUE>)>,<LOCAL.PERCENT>,100>
+IF (<SRC.currency> >= <LOCAL.COST>)
+		src.consumecurrency <LOCAL.COST>
+		ARGO.HITS=<ARGO.MAXHITS>
+		ARGO.UPDATE
+		OBJ.L It's repaired for <eval <local.cost>>c.
+ELSE
+		OBJ.L You cannot afford this, I need <eval <local.cost>>c.
+ENDIF
+SRC.TAG.VENDORUSED=
+RETURN
+
+
+[eof]

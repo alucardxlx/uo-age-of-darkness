@@ -1,0 +1,138 @@
+//Quest reward templates
+
+[TEMPLATE tm_questbagsuppliessmall]
+CONTAINER=i_bag
+COLOR=0283
+ITEM=RANDOM_food,{1 5}
+ITEM=RANDOM_bottle
+ITEM={ RANDOM_food 1 0 2 },{1 5}
+ITEM={ RANDOM_bottle 1 0 2 }
+ITEM={ RANDOM_potion 1 0 2 }
+ITEM={ i_bandage 1 0 2 },{1 6}
+
+[TEMPLATE tm_questbagsupplies]
+CONTAINER=i_bag
+COLOR=0283
+ITEM=RANDOM_food,{1 10}
+ITEM=RANDOM_bottle
+ITEM=RANDOM_bottle
+ITEM={ RANDOM_food 1 0 2 },{1 5}
+ITEM={ RANDOM_food 1 0 2 },{1 5}
+ITEM={ RANDOM_potion 1 0 2 }
+ITEM={ RANDOM_potion 1 0 2 }
+ITEM={ i_bandage 1 0 2 },{2 12}
+
+[TEMPLATE tm_questbagtrinketssmall]
+CONTAINER=i_bag
+COLOR=0283
+ITEM=random_jewel,{1 2}
+ITEM=RANDOM_JEWELRY
+ITEM={ RANDOM_JEWELRY 1 0 1 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=40
+TAG.MAGICNUMBER=0
+
+[TEMPLATE tm_questbagtrinkets]
+CONTAINER=i_bag
+COLOR=01bb
+ITEM=random_jewel,{2 3}
+ITEM=random_jewel,{2 3}
+ITEM=RANDOM_JEWELRY
+ITEM=RANDOM_JEWELRY
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=40
+TAG.MAGICNUMBER=0
+ITEM={ RANDOM_JEWELRY 1 0 2 }
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=40
+TAG.MAGICNUMBER=0
+
+[TEMPLATE tm_questbagtreasure]
+CONTAINER=i_bag
+COLOR=55
+ITEM=i_copper_coin,{100 240}
+ITEM=i_silver_coin,{20 40}
+ITEM=random_jewel,{2 4}
+
+[TEMPLATE tm_questlargebagtreasure]
+CONTAINER=i_bag
+COLOR=04ac
+ITEM=i_silver_coin,{20 40}
+ITEM=i_gold_coin,{4 9}
+ITEM=random_jewel,{3 6}
+
+[TEMPLATE tm_queststrongbox]
+CONTAINER=i_ornate_elven_chest_sm
+ITEM=i_elven_scrip,{800 1600}
+ITEM=random_jewel,{3 6}
+ITEM=RANDOM_JEWELRY
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=60
+TAG.MAGICNUMBER=0
+
+[TEMPLATE tm_questtreausrechest]
+CONTAINER=i_chest_wooden_brass
+ITEM=i_silver_coin,{30 55}
+ITEM=i_gold_coin,{6 14}
+ITEM=random_jewel,{3 6}
+ITEM=random_jewel,{3 6}
+ITEM=RANDOM_JEWELRY
+EVENTS +E_MAGICITEM
+TAG.MAGICPOWER=60
+TAG.MAGICNUMBER=0
+
+[TEMPLATE tm_questtailorcraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_cloth_bolt
+COLOR=COLORS_ALL
+ITEM=i_sewing_kit
+ATTR=ATTR_NEWBIE
+
+[TEMPLATE tm_questcarpentercraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_saw
+ATTR=ATTR_NEWBIE
+ITEM={i_log_ancientwood 1 i_log_heartwood 1 i_log_stonewood 1 i_board_darkwood 1 i_board_bloodwood 1 i_board_frostwood 1 i_board_sunwood 1 },{2 4}
+
+[TEMPLATE  tm_questblacksmithcraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_ingot_iron,{4 10}
+ITEM=i_hammer_smith
+ATTR=ATTR_NEWBIE
+ITEM={i_deed_anvil 1 i_deed_forge 1 0 2}
+ITEM={ i_ingot_bronze 3 i_ingot_copper 2 i_ingot_rusty 2 i_ingot_gold 1 i_ingot_silver 1 i_ingot_shadow 1 i_ingot_dull_copper 2 i_ingot_old_copper 2 i_ingot_corroded_bronze 2 },{1 2}
+
+[TEMPLATE  tm_questtinkercraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_ingot_iron,{4 15}
+ITEM=i_board,{4 15}
+ITEM=i_tinker_tools
+ATTR=ATTR_NEWBIE
+ITEM=random_jewel,{1 5}
+
+[TEMPLATE  tm_questbowcraftcraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_log,{5 10}
+ITEM=i_dagger
+ATTR=ATTR_NEWBIE
+ITEM={i_log_ancientwood 1 i_log_heartwood 1 i_log_stonewood 1 i_board_darkwood 1 i_board_bloodwood 1 i_board_frostwood 1 i_board_sunwood 1 },{1 2}
+
+[TEMPLATE  tm_questminingcraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=i_pickaxe
+ATTR=ATTR_NEWBIE
+ITEM={ i_ingot_bronze 3 i_ingot_copper 2 i_ingot_rusty 2 i_ingot_gold 1 i_ingot_silver 1 i_ingot_shadow 1 i_ingot_dull_copper 2 i_ingot_old_copper 2 i_ingot_corroded_bronze 2 },{3 6}
+
+[TEMPLATE  tm_questalchemycraftsatchel]
+CONTAINER=i_backpack
+ITEM=i_silver_coin,{10 15}
+ITEM=random_reagents,{10 30}
+ITEM=i_mortar_pestle
+ATTR=ATTR_NEWBIE
+ITEM=i_bottle_empty,{3 10}

@@ -1,0 +1,454 @@
+
+[CHARDEF C_STRIPPER]
+NAME=#NAMES_STRIPPER the Stripper
+ID=C_WOMAN
+
+DAM=15,30
+ARMOR=40
+
+CAN=MT_WALK|MT_EQUIP|MT_FEMALE
+DESIRES=t_coin,t_note,t_drink,c_man,c_woman
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TEVENTS=e_stripper
+TEVENTS=e_Human_Scavenge
+
+TSPEECH=jobstripper
+
+
+ON=@Create
+COLOR=colors_skin
+STR={86 90}
+DEX={91 100}
+INT={71 85}
+
+WRESTLING=(100.0)
+MAGICRESISTANCE=(100.0)
+TACTICS=(100.0)
+
+NPC=brain_Human
+
+KARMA=(100)
+FAME=(2000)
+
+ITEMNEWBIE=i_hair_buns
+COLOR={ colors_red 3 colors_stripper 2 colors_pink 1 colors_bird 1 }
+ITEMNEWBIE=i_show_timer
+TIMER=10
+ITEMNEWBIE=i_backpack
+ITEM=loot_strip_clothes
+
+ON=@NPCRestock
+
+
+CATEGORY=Haendler
+SUBSECTION=Kuenstler & Barden
+DESCRIPTION=Stripper
+
+[SPEECH jobstripper]
+ON=*bravo*
+ON=*super*
+ON=*ingenious*
+ON=*more*
+   DORAND 3
+   SAY Wow, thanks you liked my performance <SRC.sex mylord/mylady> Would you mind buying me a drink?
+   SAY Thanks, many thanks. Next performance starts in less than fifteen minutes.
+   SAY Don't just talk - how about a drink for a hard working girl?
+   ENDDO
+
+ON=*gold*
+ON=*money*
+ON=*tip*
+ON=*coin*
+ON=*pay*
+   DORAND 3
+   SAY Tips are always welcome, <SRC.sex mylord/mylady>
+   EMOTE smile happily
+   SAY You're a cavalier who knows a girl's best friend, <SRC.NAME>
+   ENDDO
+
+ON=*love*
+ON=*come*
+   SAY Indeed my heart belongs just to you, <src.sex mylord/mylady>, but unfortunately I have to stay a while.
+
+ON=*show*
+ON=*undress*
+ON=*strip*
+ON=*dance*
+   ANIM 01e
+   DORAND 2
+   SAY My next performance will start soon, <SRC.SEX mylord/mylady> Until then, How about a drink?
+   EMOTE smile smuggly towards <SRC.NAME>  
+   ENDDO
+
+ON=*drink*
+ON=*ale*
+ON=*wine*
+ON=*liquor*
+ON=*beer*
+on=*wine*
+on=*drink*
+on=*booze*
+   DORAND 3
+   SAY Oh thanks, that would be nice
+   SAY Oh, I'll take what you're taking, <SRC.sex mylord/mylady>
+   SAY Ohhh pleaaaase <SRC.sex mylord/mylady>! I'm so thirsty.
+   ENDDO
+
+ON=*fuck*
+ON=*bang*
+  SAY Watch your language!!
+
+ON=*whore*
+ON=*hooker*
+   DORAND 3
+   SAY Such words towards a lady? Only an asshole like you would do that!
+   EMOTE show <SRC.NAME> the middle finger
+   SAY Hey, boss, throw this <SRC.SEX idiot/rabid cow> out!
+   END
+   ENDDO
+
+ON=*tit*
+ON=*breast*
+ON=*boob*
+ON=*ass*
+ON=*butt*
+   DORAND 4
+   SAY Some gold would bring you along, darling.
+   SAY What about a drink beforehand, <SRC.TAG.NAME>
+   EMOTE shake her breasts
+   EMOTE jiggle with her butt
+   ENDDO
+
+ON=*profession*
+ON=*work*
+ON=*job*
+   DORAND 4
+   SAY Why I am a dancer.
+   SAY I work in exotic dancing.
+   SAY I'm a stripper, silly.
+   SAY I remove my clothing while dancing. Some call it stripping.
+   ENDDO
+
+[ITEMDEF i_strip_timer]
+ID= i_memory
+TYPE= t_eq_script
+NAME=stripper
+ON=@CREATE
+   TIMER=10
+   MORE=22
+
+ON=@TIMER
+IF (<MORE>==22)
+   CONT.P=<CONT.HOME>
+   CONT.FIX
+   CONT.EMOTE starting to dance
+   CONT.ANIM 020
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==21)
+   CONT.ANIM 011
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==20)
+   CONT.ANIM 01e
+   CONT.FINDLAYER(6).CONT=<CONT.FINDLAYER(21)> //hat
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==19)
+   CONT.ANIM 010
+   CONT.EMOTE smile seductively
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==18)
+   CONT.ANIM 0c
+   CONT.FINDLAYER(20).CONT=<CONT.FINDLAYER(21)> //cape
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==17)
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==16)
+   CONT.ANIM 0d
+   CONT.FINDLAYER(7).CONT=<CONT.FINDLAYER(21)> //gloves
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==15)
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==14)
+   CONT.ANIM 013
+   CONT.FINDLAYER(23).CONT=<CONT.FINDLAYER(21)> //skirt
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==13)
+   CONT.ANIM 01e
+   CONT.EMOTE blush
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==12)
+   CONT.ANIM 0c
+   CONT.FINDLAYER(17).CONT=<CONT.FINDLAYER(21)> //over-armor
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==11)
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>=10)
+   CONT.ANIM 0e
+   CONT.FINDLAYER(3).CONT=<CONT.FINDLAYER(21)> //shoes
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==9)
+   LOCAL.COLOR=<CONT.FINDLAYER(11).COLOR>
+   CONT.FINDLAYER(11).remove
+   CONT.NEWITEM=i_hair_long
+   CONT.ACT.COLOR=<LOCAL.COLOR>
+   CONT.ACT.CONT=<CONT.UID>
+   CONT.ACT.EQUIP
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==8)
+   CONT.ANIM 0d
+   CONT.FINDLAYER(5).CONT=<CONT.FINDLAYER(21)> //shirt
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==7)
+   CONT.ANIM 010
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==6)
+   CONT.ANIM 01f
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==5)
+   CONT.ANIM 0e
+   CONT.FINDLAYER(13).CONT=<CONT.FINDLAYER(21)> //bustier
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==4)
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==3)
+   CONT.ANIM 013
+   CONT.EMOTE blow kisses
+   CONT.FINDLAYER(4).CONT=<CONT.FINDLAYER(21)> //shorts
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==2)
+   CONT.ANIM 01e
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==1)
+   CONT.ANIM 011
+   MORE=<MORE>+-1
+   TIMER=2
+   RETURN 1
+
+ELSEIF (<MORE>==0)
+   CONT.ANIM 020
+CONT.EQUIPARMOR
+LOCAL.COLOR=<CONT.FINDLAYER(11).COLOR>
+CONT.FINDLAYER(11).remove
+CONT.NEWITEM=i_hair_buns
+   CONT.ACT.COLOR=<LOCAL.COLOR>
+   CONT.ACT.CONT=<CONT.UID>
+   CONT.ACT.EQUIP
+   REMOVE
+   RETURN 1
+ENDIF
+
+[TEMPLATE loot_strip_clothes]
+CATEGORY=Item Templates
+SUBSECTION=Loot Templates
+DESCRIPTION=Stripper Clothes
+
+ITEM={ i_hat_wizards 1 i_bonnet 1 i_hat_feather 2 i_hat_jester 1 }
+COLOR=colors_stripper
+ITEM={ i_armor_female_bustier_studded 1 i_armor_female_bustier_studded 1 }
+COLOR=colors_stripper
+ITEM={ i_shirt_fancy 1 i_shirt_plain 1 }
+COLOR=colors_stripper
+ITEM=i_cape
+COLOR=colors_stripper
+ITEM={ i_armor_female_shorts 2 i_pants_short 1 }
+COLOR=colors_stripper
+ITEM=random_skirt
+COLOR=colors_stripper
+ITEM={ i_jester_suit 1 i_tunic 2 i_doublet 2 }
+COLOR=colors_stripper
+ITEM=i_studded_gloves
+COLOR=colors_stripper
+ITEM={ i_sandals 1 i_boots_thigh 1 }
+COLOR=colors_stripper
+ITEM={ random_necklace 1 i_studded_gorget 1 }
+COLOR={ colors_all 1 0 1 }
+ITEM=random_bracelets
+COLOR={ colors_all 1 0 1 }
+ITEM=random_earrings
+COLOR={ colors_all 1 0 1 }
+ITEM=random_rings
+COLOR={ colors_all 1 0 1 }
+
+[DEFNAME HUES_STRIPPER]
+colors_stripper {{1 201}}
+
+[ITEMDEF i_show_timer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=show timer
+ON=@CREATE
+   TIMER=300
+ON=@TIMER
+IF !(<CONT.RESTEST 1 i_strip_timer>)
+   CONT.NEWITEM=i_strip_timer
+   CONT.ACT.CONT=<CONT.UID>
+   CONT.ACT.EQUIP
+   TIMER=300
+   RETURN 1
+ELSE
+TIMER=300
+RETURN 1
+ENDIF
+
+[EVENTS e_stripper]
+ON=@NPCSeeNewPlayer
+   DORAND 3
+   SAY Hi, shall I dance for you?
+   SAY Would you buy a girl like me a drink?
+   SAY Hey - where have you been hiding recently?
+   ENDDO
+ON=@PersonalSpace
+   DORAND 3
+   SAY Careful <SRC.SEX big boy/little lady> don't touch!
+   SAY Not. So. Near!
+   SAY Don't stomp on my feet!
+   ENDDO
+
+[NAMES NAMES_STRIPPER]
+59
+Anita
+Velvet
+Molly
+Aurora
+Cherry
+Kitty
+Venus
+Silver
+Scarlet
+Sapphire
+Ivy
+Alexa
+Summer
+Pandora
+Katy
+Flame
+Skye
+Hayley
+Crystal
+Angel
+Amber
+Jasmine
+Phoenix
+Brittney
+Lola
+Ivory
+Amanda
+Bubbles
+Ruby
+Brandy
+Bambi
+Candy
+Destiny
+Nikki
+Roxanne
+Sierra
+Cheyenne
+Ginger
+Chastity
+Lacey
+Cookie
+Essence
+Karma
+Lexus
+Jenna
+Sephora
+Bunny
+Jaycee
+Trixie
+Magic
+Jayla
+Tiffany
+Simone
+Alexis
+Ariel
+Alicia
+Autumn
+Jewel
+Monique
+
+[NAMES NAMES_STRIPPER_MALE]
+Adonis
+Mack
+Leo
+Lance
+Amir
+Rocky
+Dick
+Lucky
+Jack
+Chip
+Dallas
+Prince
+Stud
+Steel
+Rusty
+
+

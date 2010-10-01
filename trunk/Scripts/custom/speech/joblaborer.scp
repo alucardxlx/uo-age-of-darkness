@@ -1,0 +1,119 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2006
+//www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+
+// Purpose: Britannia Laborer Script
+// Notes:  This is used for general information pertaining to all Britannian Laborers
+// Current Keyword List:
+//	work, labor, job, what*do*do
+//
+[SPEECH jobLaborer]
+ON=*job*
+ON=*work*
+ON=*what*do*do*
+ON=*profession*
+ON=*occupation*
+ON=*labor*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 4
+				L  Thou askest after my work? Well, I tell thee frankly: I do makework, I labor under the sun that roasts my bones, and I break my back for petty rewards and much disrespect!
+				L  My job is that of laborer, and a paltry lot 'tis! Gladly would I set it aside, for my life is miserable.
+				L  My job? Dost THOU wish it? Thou canst have it! Being a laborer such as I am hath ruined my life and left me hopeless and in despair.
+				L  vrgrumbfr PLOTTING sgarfifmfl BUGGEREM nrgfrafmalms LORD BRITISH ifinimirik G'ORF, THEE!
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 4
+				L  None treat a laborer with common decency!
+				L  I'm a laborer and 'tis miserable.
+				L  My job? Thou canst have it!.
+				L  Don't turn around, but there's a garfink followin' thee. DON'T TURN AROUND!
+			ENDDO
+		ELSE
+			DORAND 4
+				L  I hate bein' a laborer!
+				L  I'm a laborer and 'tis awful.
+				L  If thou wants me job, thou kin have it!
+				L  Casey? Is't thee Casey? I know what thou did. I KNOW WHAT THOU DID.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 4
+				L  'Tis not the best life in the world to be a laborer. My life has oft been better than 'tis now.
+				L  Thou askest after my labor? Well, I slave away for little reward. 'Tis not as bad as it could be, I suppose, but 'tis not a wonderful life either.
+				L  To be a laborer is an unhappy life indeed--at least, 'tis so for me.
+				L  Where's me welk? WHERE'S ME DAMN WELK!?
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 4
+				L  The life of a laborer is not the best.
+				L  I do a lot and get little back. Life could be worse, but...
+				L  I don't like being a laborer much.
+				L  'Ere, smell this. Think it's gone over?
+			ENDDO
+		ELSE
+			DORAND 4
+				L  Well, I's just a dumb laborer.
+				L  I don' get paid 'nough for bein' a laborer.
+				L  I don' like bein' a laborer much.
+				L  Get orf, thee. This town already got an idiot, an it don't needa nother.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 5
+				L  I am a laborer, and working is how I spend my days.
+				L  I wish I could tell thee wonderful details of my work, but I am just a laborer.
+				L  I am just a laborer, and my life hath nothing special about it. I live out my days much as anyone else.
+				L  Millennium hand and shrimp!
+				L  OODIE VOODIE BOODIE DOODIE!
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 4
+				L  I am a laborer.
+				L  There is nothing much to know of me, for I am just a laborer.
+				L  I'm just a laborer, so there is not much to tell thee.
+				L  Gorra copper frien'? Sparra copper ferra vetrin?
+			ENDDO
+		ELSE
+			DORAND 4
+				L  I's a laborer.
+				L  Nothin' to tell, I's just a laborer.
+				L  What, thou wants to know about bein' a laborer?.
+				L  I AIN'T drunk! I'm an IDIOT! So there!
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 4
+				L  I enjoy my work, even if 'tis only that of a common laborer.
+				L  I believe that even we laborers have much to offer, and my life is happy enough that my belief has not been questioned.
+				L  I am but a laborer, yet my life is content. I rejoice in the sunshine and the song of birds, I marvel at the sky full of stars, and I welcome those whom I love into my home. Canst thou L  the same?
+				L  Oooh. Colors.
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 4
+				L  I like being a laborer.
+				L  I am a laborer, and 'tis a good life.
+				L  I am happy as a laborer, for the world is good to me.
+				L  Hmmph? Hmpph.
+			ENDDO
+		ELSE
+			DORAND 4
+				L  I likes bein' a laborer.
+				L  I's happy to be a laborer. 'Tis challenging work.
+				L  I's best suited to be a laborer, so I is one.
+				L  I don't think... Hmmm.  I don't, do I?
+			ENDDO
+		ENDIF
+	ENDIF
+
+[EOF]

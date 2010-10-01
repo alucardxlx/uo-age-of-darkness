@@ -1,0 +1,793 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//MISC FUNCTIONS
+//These are functions not directly related with the craft, but used inside the skillmenu or in other parts of the system
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Fix Blacksmithing materials
+
+
+[FUNCTION htmlFormatTitle]
+RETURN <DEF.BFONT_WHITE><DEF.CENTER><ARGS><DEF.CENTERE><DEF.BFONTE>
+
+[FUNCTION htmlFormat]
+RETURN <DEF.BFONT_WHITE><ARGS><DEF.BFONTE>
+
+[FUNCTION buttonId] //argn1=type, argn2=id
+RETURN <EVAL 1+<ARGN1>+(<ARGN2>*8)>
+
+[FUNCTION isArmor]
+RETURN <EVAL (<TYPE>==t_armor)|(<TYPE>==t_armor_leather)>
+[EVENTS e_crafting]
+ON=@SKILLSTART
+SRC.SYSMESSAGE You must wait to perform another action
+ACTION -1
+RETURN 1
+
+
+[FUNCTION f_resource_replace]//argn1 = item, argn2 = resource to search for, argn3 = resource to replace with
+//this function returns a resource list with the specified resource replaced with another
+LOCAL.I=1
+TAG.SUBRESUSED=0
+WHILE (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL>)
+	IF (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.KEY>==<ARGV[1]>)
+		LOCAL.RETURN=<LOCAL.RETURN>, <SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL> <ARGV[2]>
+		TAG.SUBRESUSED=1
+	ELSE
+		LOCAL.RETURN=<LOCAL.RETURN>, <SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL> <SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.KEY>
+	ENDIF
+	LOCAL.I += 1
+ENDWHILE
+RETURN <STREAT <LOCAL.RETURN>>
+
+
+
+
+[FUNCTION f_skmenu_successchance]
+//argv[0] = item to craft
+//argv[1] = the tool used in the craft (so that one can easily make magical tools that increase success chance or something like that)
+//IF !(<CANMAKESKILL <ARGV[0]>>)
+//	RETURN 0
+//ENDIF
+//the skill checked for the success chance is only the first in the skillmake list
+//I think this is a bit different from osi
+LOCAL.CHANCE=0
+IF (<SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.1.VAL>)
+	LOCAL.DIVIDE = 0
+	WHILE !(<SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.<eval (<local._while>+1)>.VAL>==0)
+		LOCAL.CHANCE += <EVAL ( (<SKILLMOD <SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.<eval (<local._while>+1)>.KEY>>+<I.<SERV.SKILL.<SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.<eval (<local._while>+1)>.KEY>.KEY>>)-<SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.<eval (<local._while>+1)>.VAL>)*2>
+		LOCAL.DIVIDE += 1
+	ENDWHILE
+	LOCAL.CHANCE = <LOCAL.CHANCE>/<LOCAL.DIVIDE>
+	LOCAL.I=1
+	WHILE (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.VAL>)
+		IF (<SERV.ITEMDEF.<ARGV[0]>.RESOURCES.<LOCAL.I>.KEY>==<CTAG0.SKMENU_SUBRES_BASE>)
+			LOCAL.CHANCE -= <dCTAG0.SKMENU_SUBRES_SKILL>
+		ENDIF
+		LOCAL.I += 1
+	ENDWHILE
+ENDIF
+IF (<LOCAL.CHANCE>>1000)
+	LOCAL.CHANCE=1000
+ELSEIF (<LOCAL.CHANCE><0)
+	LOCAL.CHANCE=0
+ENDIF
+RETURN <LOCAL.CHANCE>
+
+[FUNCTION f_skmenu_exceptionalchance]
+//argv[0] = item to craft
+//argv[1] = the tool used in the craft
+LOCAL.OFFSET=600-( <I.<SERV.SKILL.<SERV.ITEMDEF.<ARGV[0]>.SKILLMAKE.1.KEY>.KEY>>-950)*3)
+IF (<LOCAL.OFFSET><450)
+	LOCAL.OFFSET=450
+ELSEIF (<LOCAL.OFFSET>>600)
+	LOCAL.OFFSET=600
+ENDIF
+LOCAL.CHANCE=<f_skmenu_successchance <ARGV[0]>,<ARGV[1]>>-<LOCAL.OFFSET>
+IF (<LOCAL.CHANCE>>1000)
+	LOCAL.CHANCE=1000
+ELSEIF (<LOCAL.CHANCE><0)
+	LOCAL.CHANCE=0
+ENDIF
+RETURN <LOCAL.CHANCE>
+
+
+
+[FUNCTION f_skmenu_details_drawskills]
+LOCAL.I=1
+WHILE (<SERV.ITEMDEF.<ARGS>.SKILLMAKE.<LOCAL.I>.VAL>)
+	dhtmlgump 170 <EVAL 115+(<LOCAL.I>*16)> 200 18 0 0 <HtmlFormat <SERV.SKILL.<SERV.ITEMDEF.<ARGS>.SKILLMAKE.<LOCAL.I>.KEY>.NAME>>
+	dhtmlgump 430 <EVAL 115+(<LOCAL.I>*16)> 90 18 0 0 <HtmlFormat <FVAL <SERV.ITEMDEF.<ARGS>.SKILLMAKE.<LOCAL.I>.VAL>>>
+	LOCAL.I += 1
+ENDWHILE
+dhtmlgump 170 80 250 18 0 0 <HtmlFormat Success Chance:>
+dhtmlgump 430 80 90 18 0 0 <HtmlFormat <FVAL <SRC.f_skmenu_successchance <ARGS>, <UID>>>%>
+dhtmlgump 170 100 250 18 0 0 <HtmlFormat Exceptional Chance:>
+dhtmlgump 430 100 90 18 0 0 <HtmlFormat <FVAL <SRC.f_skmenu_exceptionalchance <ARGS>, <UID>>>%>
+
+
+[FUNCTION f_skmenu_details_drawresources]
+LOCAL.I=1
+WHILE (<SERV.ITEMDEF.<ARGS>.RESOURCES.<LOCAL.I>.VAL>)
+	IF (<SRC.Ctag0.SKMENU_SUBRES_SKILL>) && (<SERV.ITEMDEF.<ARGS>.RESOURCES.<LOCAL.I>.KEY>==<SRC.Ctag0.SKMENU_SUBRES_BASE>)
+		dhtmlgump 170 <EVAL 199+(<LOCAL.I>*16)> 310 18 0 0 <HtmlFormat <SERV.ITEMDEF.<SRC.Ctag0.SKMENU_SUBRES>.NAME>>
+		dhtmlgump 170 *16 310 18 0 0 <HtmlFormat * The item retains the color of this material>
+		dhtmlgump 500 <EVAL 199+(<LOCAL.I>*16)> 18 18 0 0 <HtmlFormat *>
+	ELSE
+		dhtmlgump 170 <EVAL 199+(<LOCAL.I>*16)> 310 18 0 0 <HtmlFormat <SERV.ITEMDEF.<SERV.ITEMDEF.<ARGS>.RESOURCES.<LOCAL.I>.KEY>.NAME>>
+	ENDIF
+	dhtmlgump 430 <EVAL 199+(<LOCAL.I>*16)> 310 18 0 0 <HtmlFormat <SERV.ITEMDEF.<ARGS>.RESOURCES.<LOCAL.I>.VAL>>
+	LOCAL.I += 1
+ENDWHILE
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//RESOURCES
+//These are the functions that determine the characteristics of an item crafted with a certain resources
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+[DEFNAME def_skmenu_materials]
+skmenu_subres_i_log_skill 0.0
+skmenu_subres_i_log_birch_skill 15
+skmenu_subres_i_log_willow_skill 30
+skmenu_subres_i_log_cyprus_skill 45
+skmenu_subres_i_log_cedar_skill 60
+skmenu_subres_i_log_oak_skill 80
+skmenu_subres_i_log_yew_skill 100
+skmenu_subres_i_log_walnut_skill 120
+skmenu_subres_i_log_mahogany_skill 140
+skmenu_subres_i_log_heartwood_skill 170
+skmenu_subres_i_log_bloodwood_skill 200
+skmenu_subres_i_log_frostwood_skill 230
+skmenu_subres_i_log_sunwood_skill 260
+
+skmenu_subres_i_ingot_iron_skill 00
+skmenu_subres_i_ingot_rusty_skill 25
+skmenu_subres_i_ingot_old_copper_skill 50
+skmenu_subres_i_ingot_dull_copper_skill 75
+skmenu_subres_i_ingot_copper_skill 100
+skmenu_subres_i_ingot_bronze_skill 150
+skmenu_subres_i_ingot_corroded_bronze_skill 175
+skmenu_subres_i_ingot_shadow_skill 200
+skmenu_subres_i_ingot_silver_skill 225
+skmenu_subres_i_ingot_gold_skill 250
+skmenu_subres_i_ingot_rose_skill 275
+skmenu_subres_i_ingot_agapite_skill 300
+skmenu_subres_i_ingot_verite_skill 325
+skmenu_subres_i_ingot_valorite_skill 375
+skmenu_subres_i_ingot_bloodrock_skill 400
+skmenu_subres_i_ingot_mytheril_skill 425
+skmenu_subres_i_ingot_blackrock_skill 450
+
+skmenu_subres_i_cloth_skill 00
+
+
+[FUNCTION f_material_i_cloth]
+
+[FUNCTION f_material_i_ingot_iron]
+
+[FUNCTION f_material_i_ingot_rusty] //weakened but with some energy resist
+tag0.MATERIAL=i_ingot_rusty
+tag.basematerial=i_ingot_iron
+NAME=Rusty <NAME>
+COLOR=color_o_rusty
+HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.POISONDAMAGE += 25
+tag0.DAMINCREASE -= 15
+ENDIF
+tag0.modvalue += (4*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_old_copper] //copper and rusty
+tag0.MATERIAL=i_ingot_old_copper
+tag.basematerial=i_ingot_iron
+NAME=old copper <NAME>
+COLOR=color_o_oldcopper
+tag0.LOWERREQS -= 20
+HITPOINTS -= <MulDiv <HITPOINTS>,25,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,30,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.POISONDAMAGE += 25
+tag0.DAMINCREASE -= 30
+ENDIF
+tag0.modvalue += (4*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_dull_copper]
+tag0.MATERIAL=i_ingot_dull_copper
+tag.basematerial=i_ingot_iron
+NAME=dull copper <NAME>
+COLOR=color_o_dullcopper
+tag0.LOWERREQS -= 20
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE -= 15
+ENDIF
+tag0.modvalue += (4*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_copper]
+tag0.MATERIAL=i_ingot_copper
+tag.basematerial=i_ingot_iron
+NAME=copper <NAME>
+COLOR=color_o_copper
+tag0.LOWERREQS -= 20
+HITPOINTS -= <MulDiv <HITPOINTS>,20,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.SKILLBOOST1=MAGICRESISTANCE
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.SKILLBOOST1AMT=50
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.SKILLBOOST1AMT=40
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.SKILLBOOST1AMT=25
+	ELSEIF (<LAYER>==4)
+		tag0.SKILLBOOST1AMT=20
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.SKILLBOOST1AMT=15
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.SKILLBOOST1AMT=10
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.SKILLBOOST1AMT=5
+	ENDIF
+ELSEIF (<ISWEAPON>)
+TAG.SPELL.0=10,41
+tag0.DAMINCREASE -= 15
+ENDIF
+tag0.modvalue += (8*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_bronze]
+tag0.MATERIAL=i_ingot_bronze
+tag.basematerial=i_ingot_iron
+NAME=bronze <NAME>
+COLOR=color_o_bronze
+tag0.LOWERREQS -= 30
+HITPOINTS -= <MulDiv <HITPOINTS>,10,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,10,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE -= 10
+ENDIF
+tag0.modvalue += (8*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_corroded_bronze]
+tag0.MATERIAL=i_ingot_corroded_bronze
+tag.basematerial=i_ingot_iron
+NAME=corroded bronze <NAME>
+COLOR=color_o_corrodedbronze
+tag0.LOWERREQS -= 30
+HITPOINTS -= <MulDiv <HITPOINTS>,25,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,25,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.POISONDAMAGE += 25
+tag0.DAMINCREASE -= 25
+ENDIF
+tag0.modvalue += (8*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_ingot_shadow]
+tag0.MATERIAL=i_ingot_shadow
+tag.basematerial=i_ingot_iron
+NAME=shadow <NAME>
+COLOR=color_o_shadow
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	tag0.RESCOLD += <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,20,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE += 20
+tag.chaosdamage += 20
+ENDIF
+tag0.modvalue += (16*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_ingot_silver]
+tag0.MATERIAL=i_ingot_silver
+tag.basematerial=i_ingot_iron
+NAME=silver <NAME>
+COLOR=color_o_silver
+HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,10,100>
+	tag0.SKILLBOOST1=MAGICRESISTANCE
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.SKILLBOOST1AMT=100
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.SKILLBOOST1AMT=80
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.SKILLBOOST1AMT=50
+	ELSEIF (<LAYER>==4)
+		tag0.SKILLBOOST1AMT=40
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.SKILLBOOST1AMT=30
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.SKILLBOOST1AMT=20
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.SKILLBOOST1AMT=10
+	ENDIF
+ELSEIF (<ISWEAPON>)
+TAG.SPELL.0=20,41
+tag0.DAMINCREASE -= 10
+ENDIF
+tag0.modvalue += (16*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_gold]
+tag0.MATERIAL=i_ingot_gold
+tag.basematerial=i_ingot_iron
+NAME=golden <NAME>
+COLOR=color_o_gold
+HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
+tag0.LOWERREQS += 10
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> - <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.SKILLBOOST1=MAGICRESISTANCE
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.SKILLBOOST1AMT=200
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.SKILLBOOST1AMT=160
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.SKILLBOOST1AMT=100
+	ELSEIF (<LAYER>==4)
+		tag0.SKILLBOOST1AMT=80
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.SKILLBOOST1AMT=60
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.SKILLBOOST1AMT=40
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.SKILLBOOST1AMT=20
+	ENDIF
+ELSEIF (<ISWEAPON>)
+TAG.SPELL.0=40,41
+tag0.DAMINCREASE -= 20
+ENDIF
+tag0.modvalue += (24*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_rose]
+tag0.MATERIAL=i_ingot_rose
+tag.basematerial=i_ingot_iron
+NAME=rose <NAME>
+COLOR=color_o_rose
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	tag0.RESCOLD += <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,20,100>
+ELSEIF (<ISWEAPON>)
+tag0.FIREDAMAGE += 20
+tag0.SWINGINCREASE += 20
+ENDIF
+tag0.modvalue += (16*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_agapite]
+tag0.MATERIAL=i_ingot_agapite
+tag.basematerial=i_ingot_iron
+NAME=agapite <NAME>
+COLOR=color_o_agapite
+HITPOINTS += <MulDiv <HITPOINTS>,15,100>
+tag0.LOWERREQS += 5
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE += 20
+tag0.COLDDAMAGE += 30
+ENDIF
+tag0.modvalue += (24*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_verite]
+tag0.MATERIAL=i_ingot_verite
+tag.basematerial=i_ingot_iron
+NAME=verite <NAME>
+COLOR=color_o_verite
+HITPOINTS += <MulDiv <HITPOINTS>,15,100>
+tag0.LOWERREQS += 5
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESPOISON += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE += 20
+tag0.POISONDAMAGE += 30
+ENDIF
+tag0.modvalue += (24*<RESOURCES.1.VAL>)
+	
+[FUNCTION f_material_i_ingot_valorite]
+tag0.MATERIAL=i_ingot_valorite
+tag.basematerial=i_ingot_iron
+NAME=valorite <NAME>
+COLOR=color_o_valorite
+tag0.LOWERREQS += 10
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,40,100>
+ELSEIF (<ISWEAPON>)
+tag0.DAMINCREASE += 40
+ENDIF
+tag0.modvalue += (32*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_ingot_bloodrock]
+tag0.MATERIAL=i_ingot_bloodrock
+tag.basematerial=i_ingot_iron
+NAME=bloodrock <NAME>
+COLOR=color_o_bloodrock
+tag0.LOWERREQS += 20
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.MODHITS=10
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.MODHITS=8
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.MODHITS=5
+	ELSEIF (<LAYER>==4)
+		tag0.MODHITS=4
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.MODHITS=3
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.MODHITS=2
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.MODHITS=1
+	ENDIF
+ELSEIF (<ISWEAPON>)
+tag0.LIFELEECH += 20
+tag0.DAMINCREASE += 20
+ENDIF
+tag0.modvalue += (32*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_mytheril]
+tag0.MATERIAL=i_ingot_mytheril
+tag.basematerial=i_ingot_iron
+NAME=mytheril <NAME>
+COLOR=color_o_mytheril
+tag0.LOWERREQS -= 10
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+IF (<TYPE>==t_shield)
+	tag0.spellchannel=1
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISARMOR>)
+	tag0.magearmor=1
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
+ELSEIF (<ISWEAPON>)
+tag0.spellchannel=1
+tag0.SWINGINCREASE += 20
+tag0.manaleech += 20
+ENDIF
+tag0.modvalue += (40*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_ingot_blackrock]
+tag0.MATERIAL=i_ingot_blackrock
+tag.basematerial=i_ingot_iron
+NAME=blackrock <NAME>
+COLOR=color_o_blackrock
+tag0.LOWERREQS += 25
+HITPOINTS += <MulDiv <HITPOINTS>,30,100>
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,50,100>
+	tag0.SKILLBOOST1=MAGICRESISTANCE
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.SKILLBOOST1AMT=100
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.SKILLBOOST1AMT=80
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.SKILLBOOST1AMT=50
+	ELSEIF (<LAYER>==4)
+		tag0.SKILLBOOST1AMT=40
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.SKILLBOOST1AMT=30
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.SKILLBOOST1AMT=20
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.SKILLBOOST1AMT=10
+	ENDIF
+ELSEIF (<ISWEAPON>)
+tag0.HITDISPEL=20
+tag0.DAMINCREASE += 50
+ENDIF
+tag0.modvalue += (40*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_ingot_aurichalcum]
+tag0.MATERIAL=i_ingot_aurichalcum
+tag.basematerial=i_ingot_iron
+NAME=aurichalcum <NAME>
+COLOR=color_o_aurichalcum
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+tag0.LOWERREQS += 10
+IF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <modar> + <MulDiv <ARMOR.HIGH>,10,100>
+	tag0.SKILLBOOST1=MAGICRESISTANCE
+	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
+		tag0.SKILLBOOST1AMT=200
+	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
+		tag0.SKILLBOOST1AMT=160
+	ELSEIF (<LAYER>==4) && (<TAG0.COVERFEET>)
+		tag0.SKILLBOOST1AMT=100
+	ELSEIF (<LAYER>==4)
+		tag0.SKILLBOOST1AMT=80
+	ELSEIF (<LAYER>==6) && (<TAG0.COVERNECK>)
+		tag0.SKILLBOOST1AMT=60
+	ELSEIF (<LAYER>==6) || (<LAYER>==19) || (<LAYER>==7)
+		tag0.SKILLBOOST1AMT=40
+	ELSEIF (<LAYER>==10) || (<LAYER>==3)
+		tag0.SKILLBOOST1AMT=20
+	ENDIF
+ELSEIF (<ISWEAPON>)
+TAG.SPELL.0=40,41
+tag0.DAMINCREASE += 10
+ENDIF
+tag0.modvalue += (40*<RESOURCES.1.VAL>)
+
+
+
+
+[FUNCTION f_material_i_dragon_scale_red]
+tag0.MATERIAL=i_dragon_scale_red
+NAME=Red <NAME>
+COLOR=color_s_red
+tag0.RESFIRE += 10
+tag0.RESCOLD -= 3
+
+[FUNCTION f_material_i_dragon_scale_yellow]
+tag0.MATERIAL=i_dragon_scale_yellow
+NAME=Yellow <NAME>
+COLOR=color_s_yellow
+tag0.PHYSICALRESIST -= 3
+tag0.LUCK += 20
+
+[FUNCTION f_material_i_dragon_scale_black]
+tag0.MATERIAL=i_dragon_scale_black
+NAME=Black <NAME>
+COLOR=color_s_black
+tag0.PHYSICALRESIST += 10
+tag0.RESENERGY -= 3
+
+[FUNCTION f_material_i_dragon_scale_green]
+tag0.MATERIAL=i_dragon_scale_green
+NAME=Green <NAME>
+COLOR=color_s_green
+tag0.RESPOISON += 10
+tag0.RESFIRE -= 3
+
+[FUNCTION f_material_i_dragon_scale_white]
+tag0.MATERIAL=i_dragon_scale_white
+NAME=White <NAME>
+COLOR=color_s_white
+tag0.RESCOLD += 10
+tag0.PHYSICALRESIST -= 3
+
+[FUNCTION f_material_i_dragon_scale_blue]
+tag0.MATERIAL=i_dragon_blue
+NAME=Blue <NAME>
+COLOR=color_s_blue
+tag0.RESENERGY += 10
+tag0.RESPOISON -= 3
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//RESOURCES
+//These are the functions that determine the characteristics of an item crafted with a certain resources
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+[FUNCTION f_material_i_dough]
+more2=i_dough
+
+[FUNCTION f_material_i_dough_milk]
+NAME creamy <name>
+TAG0.STAM=<TAG0.STAM>+(2*<RESOURCES.1.VAL>)
+TAG0.HITS=<TAG0.HITS>+(1*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+more2=i_dough_milk
+
+[FUNCTION f_material_i_dough_honey]
+NAME honey <name>
+TAG0.STAM=<TAG0.STAM>+(1*<RESOURCES.1.VAL>)
+TAG0.MANA=<TAG0.MANA>+(2*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (9*<RESOURCES.1.VAL>)
+more2=i_dough_honey
+
+[FUNCTION f_material_i_dough_magic]
+NAME magic <name>
+TAG0.STAM=<TAG0.STAM>+(2*<RESOURCES.1.VAL>)
+TAG0.HITS=<TAG0.HITS>+(1*<RESOURCES.1.VAL>)
+TAG0.MANA=<TAG0.MANA>+(2*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+more2=i_dough_magic
+
+[FUNCTION f_material_i_dough_dragon]
+NAME dragon-egg <name>
+TAG0.HITS=<TAG0.HITS>+(2*<RESOURCES.1.VAL>)
+TAG0.MANA=<TAG0.MANA>+(3*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (24*<RESOURCES.1.VAL>)
+more2=i_dough_dragon
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//RESOURCES
+//These are the functions that determine the characteristics of an item crafted with a certain resources
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+[FUNCTION f_material_i_log]
+
+[FUNCTION f_material_i_log_birch]
+TAG0.MATERIAL=i_log_birch
+tag.basematerial=i_log
+NAME=birch <NAME>
+COLOR=color_o_birch
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG.VELOCITY += 12
+ELSEIF (<ISWEAPON>)
+	TAG0.SWINGINCREASE += 20
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+ENDIF
+new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_cyprus]
+TAG0.MATERIAL=i_log_cyprus
+tag.basematerial=i_log
+NAME=cypress <NAME>
+COLOR=color_o_cyprus
+HITPOINTS += <MulDiv <HITPOINTS>,40,100>
+new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_cedar]
+TAG0.MATERIAL=i_log_cedar
+tag.basematerial=i_log
+NAME=cedar <NAME>
+COLOR=color_o_cedar
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+IF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 10
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,20,100>
+ENDIF
+new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_willow]
+TAG0.MATERIAL=i_log_willow
+tag.basematerial=i_log
+NAME=willow <NAME>
+COLOR=color_o_willow
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	IF (<TAG0.OVERRIDE.RANGE>)
+		TAG.OVERRIDE.RANGE += 3
+	ELSE 
+		TAG.OVERRIDE.RANGE=(<RANGE>+3)
+	ENDIF
+ELSEIF (<ISWEAPON>)
+	TAG0.SWINGINCREASE += 15
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,15,100>
+ENDIF
+new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_yew]
+TAG0.MATERIAL=i_log_yew
+tag.basematerial=i_log
+NAME=yew <NAME>
+COLOR=color_o_yew
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 25
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,25,100>
+ENDIF
+new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_oak]
+TAG0.MATERIAL=i_log_oak
+tag.basematerial=i_log
+NAME=oak <NAME>
+COLOR=color_o_oak
+HITPOINTS += <MulDiv <HITPOINTS>,30,100>
+IF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 15
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,15,100>
+ENDIF
+new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_mahogany]
+TAG0.MATERIAL=i_log_mahogany
+tag.basematerial=i_log
+NAME=mahogany <NAME>
+COLOR=color_o_mahogany
+HITPOINTS += <MulDiv <HITPOINTS>,40,100>
+IF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 10
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,10,100>
+ENDIF
+new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
+
+[FUNCTION f_material_i_log_heartwood]
+TAG0.MATERIAL=i_log_heartwood
+tag.basematerial=i_log
+NAME=heartwood <NAME>
+COLOR=color_o_heartwood
+HITPOINTS += <MulDiv <HITPOINTS>,15,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG.DAMINCREASE += 10 
+	IF (<TAG0.OVERRIDE.RANGE>)
+		TAG.OVERRIDE.RANGE += 6
+	ELSE 
+		TAG.OVERRIDE.RANGE=(<RANGE>+6)
+	ENDIF
+ELSEIF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 15
+	TAG0.MANALEECH += 15
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESPOISON += <MulDiv <ARMOR.HIGH>,20,100>
+ENDIF
+new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_log_bloodwood]
+TAG0.MATERIAL=i_log_bloodwood
+tag.basematerial=i_log
+NAME=bloodwood <NAME>
+COLOR=color_o_bloodwood
+HITPOINTS += <MulDiv <HITPOINTS>,15,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG0.LIFELEECH += 15
+	IF (<TAG0.OVERRIDE.RANGE>)
+		TAG.OVERRIDE.RANGE += 3
+	ELSE 
+		TAG.OVERRIDE.RANGE=(<RANGE>+3)
+	ENDIF
+ELSEIF (<ISWEAPON>)
+	TAG0.LIFELEECH += 25 
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,40,100>
+ENDIF
+new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_log_frostwood]
+TAG0.MATERIAL=i_log_frostwood
+tag.basematerial=i_log
+NAME=frostwood <NAME>
+COLOR=color_o_frostwood
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG0.COLDDAMAGE += 20
+	IF (<TAG0.OVERRIDE.RANGE>)
+		TAG.OVERRIDE.RANGE += 3
+	ELSE 
+		TAG0.OVERRIDE.RANGE=(<RANGE>+3)
+	ENDIF
+ELSEIF (<ISWEAPON>)
+	TAG0.COLDDAMAGE += 30
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESCOLD += <MulDiv <ARMOR.HIGH>,20,100>
+ENDIF
+new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+	
+[FUNCTION f_material_i_log_sunwood]
+TAG0.MATERIAL=i_log_sunwood
+tag.basematerial=i_log
+NAME=sunwood <NAME>
+COLOR=color_o_sunwood
+HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG0.FIREDAMAGE += 20
+	IF (<TAG0.OVERRIDE.RANGE>)
+		TAG.OVERRIDE.RANGE += 3
+	ELSE 
+		TAG0.OVERRIDE.RANGE=(<RANGE>+3)
+	ENDIF
+ELSEIF (<ISWEAPON>)
+	TAG0.FIREDAMAGE += 30
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,20,100>
+ENDIF
+new.tag0.modvalue += (20*<RESOURCES.1.VAL>)

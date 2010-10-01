@@ -1,0 +1,108 @@
+[FUNCTION iscriminal]
+IF (<ISPLAYER>)
+IF (<FLAGS>&statf_criminal) || (<karma> <= -2000)
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+ENDIF
+IF ((<FLAGS>&statf_criminal) || (<karma> <= 0)) && (<NPC>!=brain_human)
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+//////////////
+
+[FUNCTION fountains]
+IF !(<memoryfindtype.0100>)
+return 0
+ENDIF
+LOCAL.FOUNTAINS=0
+FORCHARMEMORYTYPE MEMORY_GUARD
+IF (STRMATCH(i_multi_fount_*,<LINK.BASEID>))
+LOCAL.FOUNTAINS ++
+ENDIF
+ENDFOR
+RETURN <EVAL <LOCAL.FOUNTAINS>>
+
+////////////
+
+[FUNCTION recordhp]
+RETURN <eval <var0.clirecord>>
+
+///////////////////
+
+[FUNCTION killspk]
+IF !(0<ARGN>)
+RETURN <LEVEL>
+ELSE
+LEVEL=<ARGN>
+ENDIF
+
+///////////////////
+[PLEVEL 1]
+DROPCHANCE
+
+[FUNCTION DROPCHANCE]
+FLOAT.CONSTA=0.000863
+FLOAT.CONSTB=0.000004
+LOCAL.POINTS=<dTAG0.DoomPoints>
+FLOAT.CHANCEDF=<FLOATVAL (<FLOAT.CONSTA>*(10@(<FLOAT.CONSTB>*<dLOCAL.POINTS>)))>
+FLOAT.CHANCELESSERBOSS=<FLOATVAL ((<FLOAT.CONSTA>*(10@(<FLOAT.CONSTB>*<dLOCAL.POINTS>)))/2)>
+SRC.SYSMESSAGE @,3,1 Drop Chance at Doom:
+SRC.SYSMESSAGE @,3,1 Dark Father: <FVAL <FEVAL <FLOATVAL (<FLOAT.CHANCEDF>*1000)>>>%
+SRC.SYSMESSAGE @,3,1 Lesser Boss: <FVAL <FEVAL <FLOATVAL (<FLOAT.CHANCELESSERBOSS>*1000)>>>%
+
+IF (<DEF0.ToTs_Are_Active>)
+LOCAL.POINTS=<dTAG0.ToTPoints>
+FLOAT.CHANCE=<FLOATVAL (<FLOAT.CONSTA>*(10@(<FLOAT.CONSTB>*<dLOCAL.POINTS>)))>
+SRC.SYSMESSAGE @,3,1 ToT Drop Chance:
+SRC.SYSMESSAGE @,3,1 Lesser ToT: <FVAL <FEVAL <FLOATVAL (<FLOAT.CHANCE>*1000)>>>%
+ENDIF
+
+/////////////////////
+[FUNCTION RANDOMDOUBLE]
+IF (<ARGN1>)
+LOCAL.VAL=<EVAL <ARGN1>*1000000>
+ELSE
+LOCAL.VAL=1000000
+ENDIF
+FLOAT.RANDOM=<FLOATVAL <R<dLOCAL.VAL>>/1000000>
+RETURN <FLOAT.RANDOM>
+
+[function ISNEXTP]
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<argn1>,<argn2>,0,<map>
+IF (<new.distance> <= <argn3>)
+new.remove
+return 1
+else
+new.remove
+return 0
+ENDIF
+
+[function DISTANCEP]
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<argv[0]>,<argv[1]>,0,<map>
+LOCAL.RETURN=<new.distance <uid>>
+new.remove
+RETURN <dLOCAL.RETURN>
+
+[FUNCTION F_CHECK_PILING]
+IF (<CONT>)
+RETURN
+ENDIF
+REF1=<UID>
+FORITEMS 0
+	IF (<UID> != <REF1>)
+	LOCAL.ITEMS ++
+	ENDIF
+ENDFOR
+IF (<LOCAL.ITEMS> == 1)
+Z ++
+ENDIF
+
+[EOF]

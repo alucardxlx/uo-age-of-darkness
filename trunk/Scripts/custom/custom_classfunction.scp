@@ -1,0 +1,1395 @@
+VERSION=0.56
+
+[plevel 0]
+explevel
+
+[plevel 5]
+forkill  
+
+[FUNCTION forkill] 
+FORCHARS <args>
+	remove
+endfor
+return
+
+[FUNCTION fordel] 
+FORitems <args>
+	remove
+endfor
+return
+
+[FUNCTION SPECIAL] 
+
+IF <SRC.SKILLCLASS>==Class_Druid
+	SRC.SKILLMENU Menu_Shapeshift
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Ranger
+	if (<src.findlayer(30).baseid>=i_recharge_terrain)
+	   src.sysmessage You can't change your adaption again so soon!
+	   return 1
+	endif
+	SRC.MENU Menu_Terrain_Special
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Fighter
+	SRC.MENU Menu_Critical_Hits
+ENDIF
+
+IF (<SRC.SKILLCLASS>==Class_Tinker) || (<SRC.SKILLCLASS>==Class_Artisan) || (<SRC.SKILLCLASS>==Class_Laborer)
+	SRC.MENU Menu_Tinker
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Paladin
+	SRC.layhands
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Shepherd
+	SRC.MENU Menu_Shepherd_Special
+ENDIF
+
+IF (<SRC.SKILLCLASS>==Class_Bard) || (<SRC.SKILLCLASS>==Class_Minstrel)
+	SRC.MENU Menu_Bardsong
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Assassin
+	SRC.backstab
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Barbarian
+	SRC.rage
+ENDIF
+
+IF <SRC.SKILLCLASS>==Class_Hunter
+if (<src.findlayer(30).baseid>=i_recharge_hunting)
+   src.sysmessage You can't change your prey again so soon!
+   return 1
+endif
+SRC.MENU Menu_Hunting
+ENDIF
+
+IF (<SRC.SKILLCLASS>==Class_Mage) || (<SRC.SKILLCLASS>==Class_Enchanter)
+if (<src.findlayer(30).baseid>=i_recharge)
+   src.sysmessage You can't change your mana flow again so soon!
+   return 1
+endif
+SRC.MENU Menu_Mana_Channel
+ENDIF
+
+[MENU MENU_MANA_CHANNEL]
+How do you wish to channel your mana?
+
+ON=0 Neutral: Inert
+SRC.TAG0.manaoffense=0
+SRC.EVENTS -e_manadefense
+src.newitem i_recharge
+src.act.equip 
+src.act.timer = 900
+RETURN
+
+ON=0 Mana Offense: Combat Manuevers
+SRC.TAG0.manaoffense=1
+SRC.EVENTS -e_manadefense
+src.newitem i_recharge
+src.act.equip 
+src.act.timer = 900
+RETURN
+
+ON=0 Mana Defense: Shielding
+SRC.TAG0.manaoffense=0
+SRC.EVENTS +e_manadefense
+src.newitem i_recharge
+src.act.equip 
+src.act.timer = 900
+RETURN
+
+
+[events e_manadefense]
+
+on=@gethit
+IF (<R100> < ((<LEVEL>+10)*2)) && (<MANA> > <ARGN1>)
+	EMOTE channel mana to deflect the blow
+	MANA -= <ARGN1>
+	SOUND 0456
+	RETURN 1
+ENDIF
+return 0
+
+//////////////////
+/// Lay Hands
+//////////////////
+
+[FUNCTION layhands]
+
+if (<src.findlayer(30).baseid>=i_recharge_layhands)
+   src.sysmessage You can't use this ability again yet!
+   return 1
+endif
+
+if  (<src.flags> & statf_dead)
+   src.sysmessage You can't use this ability in your current state.
+   return 1
+endif
+
+If (<src.mana> < 12)
+   src.sysmessage You do not have enough mana to use this ability.
+   return 1
+endif
+
+if (<src.region.flags> = 08422)
+   src.sysmessage You can't use your ability here!
+   return 1
+else
+   src.newitem i_heal_target
+   src.act.equip
+   return 1
+endif
+
+[ITEMDEF i_heal_target]
+Name = Heal Target
+ID = i_deed
+Weight = 0
+Type = t_eq_script
+Layer = 30
+
+On=@Create
+   attr = attr_decay
+
+On=@Equip
+   attr = <attr> | attr_decay
+   timer = 30
+   link = <src.uid>
+   src.sysmessage Whom do you wish to heal?
+   target
+   return 1
+
+On=@TargOn_char
+
+if (<src.targ.flags> & statf_dead)
+   src.sysmessage You can't heal ghosts!
+   remove
+   return 1
+endif
+
+If (!<src.targ.canseelos>)
+   src.sysmessage @38 The target is not on your line of sight!
+   remove
+   return 1
+else   
+   src.anim 17
+   SRC.SAY Sanctu
+   SRC.EMOTE lay hands
+   src.sfx = snd_spell_heal
+   src.targ.effect = 3, i_fx_sparkle_2, 9, 16
+   src.targ.hits = (<src.targ.hits> + (<src.level>*3)+10)
+   src.mana = (<src.mana> - 12)
+   link.newitem i_recharge_layhands
+   link.act.equip 
+   remove
+   return 1
+endif
+
+On=@Targon_item
+   src.sysmessage @5 You must target a character!
+   remove
+   return 1
+
+[ITEMDEF i_recharge_layhands]
+Id=i_memory
+name = Recharge Lay Hands
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 240
+
+On=@Timer
+   link.sysmessage You can use lay hands again!
+   remove
+   return 1 
+
+
+
+//////////////////
+/// Shape Shifting
+//////////////////
+
+
+[SKILLMENU MENU_SHAPESHIFT]
+What form do you wish to take?
+
+ON=i_pet_panther <NAME> // 3/2 mod ar, 3/2 mod dex
+IF (<SRC.MANA> > 10)
+SRC.MANA=(<SRC.MANA> - 10)
+SRC.MESSAGE You assume the form of a Panther.
+SRC.BODY=c_panther
+SRC.COLOR=0
+SRC.FIX
+RETURN 1
+ELSE
+SRC.MESSAGE You do not have enough mana for the transformation.
+RETURN 1
+
+ON=i_pet_wolf <NAME> // 3/2 mod ar, 3/2 mod strength
+IF (<SRC.MANA> > 10)
+SRC.MANA=(<SRC.MANA> - 10)
+SRC.MESSAGE You assume the form of a Wolf.
+SRC.BODY=c_Wolf
+SRC.COLOR=0
+SRC.FIX
+RETURN 1
+ELSE
+SRC.MESSAGE You do not have enough mana for the transformation.
+RETURN 1
+
+ON=i_pet_bear_black <NAME> // 2/1 mod ar, 1/1 mod strength
+IF (<SRC.MANA> > 10)
+SRC.MANA=(<SRC.MANA> - 10)
+SRC.MESSAGE You assume the form of a Black Bear.
+SRC.BODY=c_brown_bear
+SRC.COLOR=colors_brown
+SRC.FIX
+RETURN 1
+ELSE
+SRC.MESSAGE You do not have enough mana for the transformation.
+RETURN 1
+
+ON=i_PET_Snake Snake // 5.0/1 poison strike, 1/1 mod dex
+IF (<SRC.MANA> > 10)
+SRC.MANA=(<SRC.MANA> - 10)
+SRC.MESSAGE You assume the form of a Snake.
+SRC.BODY=c_snake
+SRC.COLOR=colors_snake
+SRC.FIX
+RETURN 1
+ELSE
+SRC.MESSAGE You do not have enough mana for the transformation.
+RETURN 1
+
+ON=i_pet_man Original Form
+SRC.MESSAGE You assume your original form.
+SRC.BODY=<SRC.OBODY>
+SRC.COLOR=<SRC.OSKIN>
+SRC.FIX
+RETURN 1
+
+
+
+
+//////////////////
+/// Critical Hits
+//////////////////
+
+[MENU MENU_CRITICAL_HITS]
+What attack do you wish to use?
+
+ON=0 Brutal Hit
+src.events -e_stunning_hit
+src.events -e_spirit_hit
+src.events +e_brutal_hit
+src.events -e_sundering_hit
+SRC.MESSAGE You prepare to attempt for extra damage.
+RETURN 1
+
+ON=0 Stunning Hit
+src.events +e_stunning_hit
+src.events -e_spirit_hit
+src.events -e_brutal_hit
+src.events -e_sundering_hit
+SRC.MESSAGE You prepare to attempt for stamina damage.
+RETURN 1
+
+ON=0 Sundering Hit
+src.events -e_stunning_hit
+src.events -e_spirit_hit
+src.events -e_brutal_hit
+src.events +e_sundering_hit
+SRC.MESSAGE You prepare to attempt for armor damage.
+RETURN 1
+
+ON=0 Spirit Hit
+src.events -e_stunning_hit
+src.events +e_spirit_hit
+src.events -e_brutal_hit
+src.events -e_sundering_hit
+SRC.MESSAGE You prepare to attempt for mana damage.
+RETURN 1
+
+
+[EVENTS e_brutal_hit]
+ON=@Hit
+	IF (RAND(30) <= (<EVAL <src.level>>+1))
+		EMOTE score a brutal hit on <SRC.NAME>!
+		SRC.BARK 4
+		ARGN1 += <EVAL(RAND((<ARGN1> * 2)))>
+	ENDIF
+
+[EVENTS e_stunning_hit]
+ON=@Hit
+	IF (RAND(25) <= (<EVAL <src.level>>+1))
+		EMOTE score a stunning hit on <SRC.NAME>!
+		SRC.BARK 4
+		SRC.STAM -= <EVAL(RAND((<ARGN1> * 2)))>
+	ENDIF
+
+
+[EVENTS e_sundering_hit]
+ON=@Hit
+	IF (RAND(25) <= (<EVAL <src.level>>+1))
+		EMOTE score a sundering hit on <SRC.NAME>!
+		SRC.BARK 4
+		ARGN2 |= 0100
+	ENDIF
+
+[EVENTS e_spirit_hit]
+ON=@Hit
+	IF (RAND(30) <= (<EVAL <src.level>>+1))
+		EMOTE score a spirit hit on <SRC.NAME>!
+		SRC.BARK 4
+		SRC.MANA -= <EVAL(RAND(<ARGN1>))>
+	ENDIF
+
+
+
+//Mage item enchanter
+
+[itemdef 02f60]
+defname=i_enchant_arms
+NAME=arms enchantment
+
+ON=@DCLICK
+if (<SRC.SKILLCLASS>==Class_Mage)
+	SRC.MESSAGE Target gems to increase the enchantment potential.
+endif
+SRC.MESSAGE Target a weapon or armor to enchant it.
+TARGET
+RETURN 1
+
+ON=@TARGON_ITEM
+	if (<SRC.TARG.ATTR>&(attr_newbie))
+		src.message This item is newbied!
+		return 1
+	endif
+	if (<SRC.SKILLCLASS>==Class_Mage) && (<SRC.TARG.TYPE>==T_gem)
+		if (<MORE1> = <SRC.MAGERY>) || (<MORE1> > <SRC.MAGERY>)
+			SRC.MESSAGE You cannot increase the enchantment potential further at your current skill.
+			RETURN 1
+		endif
+		MORE1 += ((<SRC.TARG.VALUE>*<SRC.TARG.AMOUNT>)/2)
+		SRC.MESSAGE You increase the enchantment potential.
+		if (<MORE1> > <SRC.MAGERY>)
+			MORE1=<SRC.MAGERY>
+			SRC.MESSAGE The enchantment potential is at maximum for your current skill.
+		endif
+		SRC.TARG.REMOVE
+		return 1
+	endif
+	if !(<SRC.TARG.TYPE>==T_Armor) && !(<SRC.TARG.TYPE>==T_Armor_leather) && !(<SRC.TARG.TYPE>==T_weapon_mace_smith) && !(<SRC.TARG.TYPE>==T_weapon_mace_sharp) && !(<SRC.TARG.TYPE>==T_weapon_sword) && !(<SRC.TARG.TYPE>==T_weapon_fence) && !(<SRC.TARG.TYPE>==T_weapon_bow)
+		src.message This item is not a weapon or armor.
+		return 1
+	endif
+	//Success!!
+	SRC.MESSAGE You enchant the item.
+	SRC.SOUND snd_SPELL_PROTECTION
+	SRC.TARG.ATTR=attr_magic
+	SRC.TARG.MOREY=<MORE1>
+	REMOVE
+	RETURN 1
+
+
+//////////////////
+/// Bardsong
+//////////////////
+
+[FUNCTION bardsong_rest]
+
+if (<src.findlayer(30).baseid>=i_recharge)
+   src.sysmessage You can't use this ability again yet!
+   return 1
+endif
+
+if  (<src.flags> & statf_dead)
+   src.sysmessage You can't use this ability in your current state.
+   return 1
+endif
+
+If (<src.stam> < 15)
+   src.sysmessage You do not have enough stamina to use this ability.
+   return 1
+endif
+
+if (<src.region.flags> = 08422)
+   src.sysmessage You can't use your ability here!
+   return 1
+else
+   src.newitem i_bardsong_rest_target
+   src.act.equip
+   return 1
+endif
+
+[ITEMDEF i_bardsong_rest_target]
+Name = Song of Rest Target
+ID = i_deed
+Weight = 0
+Type = t_eq_script
+Layer = 30
+
+On=@Create
+   attr = attr_decay
+
+On=@Equip
+   attr = <attr> | attr_decay
+   timer = 3
+   link = <src.uid>
+   src.sysmessage What will you play on?
+   target
+   return 1
+
+On=@Targon_item
+
+   IF !(<SRC.TARG.TOPOBJ.UID>==<SRC.UID>)
+      SRC.SYSMESSAGE "You must have the instrument in your backpack."
+      RETURN 1 
+   ENDIF
+
+   IF (<SRC.targ.baseid>==i_drum) 
+   src.sfx = 745
+   var.songlevel=<SRC.LEVEL>
+   ELSEIF (<SRC.targ.baseid>==i_tambourine) 
+   src.sfx = 1207
+   var.songlevel=<SRC.LEVEL>
+   ELSEIF (<SRC.targ.baseid>==i_lute) 
+   src.sfx = 1048
+   var.songlevel=<SRC.LEVEL>+1
+   ELSEIF (<SRC.targ.baseid>==i_lyre) 
+   src.sfx = 915
+   var.songlevel=<SRC.LEVEL>+2
+   ELSEIF (<SRC.targ.baseid>==i_flute) 
+   src.sfx = 1419
+   var.songlevel=<SRC.LEVEL>
+   ELSE
+   SRC.sysmessage You cannot play this song on that.
+   RETURN 1
+   ENDIF
+
+   src.stam = (<src.stam> - 15)
+
+   IF !(<SRC.tag0.bardsong_rest>==1) 
+      SRC.events +e_bardsong_rest
+      SRC.tag0.bardsong_rest=1
+      SRC.sysmessage You feel relaxed and at ease.
+      SRC.newitem i_bardsong_rest_timer
+      SRC.act.morem=(<var.songlevel>*2)+10
+      SRC.act.equip 
+   endif
+
+forchars <SRC.LEVEL>+5
+
+IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+   IF  !(<tag0.bardsong_rest>==1)
+
+      events +e_bardsong_rest
+      tag0.bardsong_rest=1
+      sysmessage You feel relaxed and at ease.
+      trysrc <UID> SRC.newitem i_bardsong_rest_timer
+      trysrc <UID> SRC.act.morem=(<var.songlevel>*2)+10
+      trysrc <UID> SRC.act.equip
+
+   endif
+ENDIF
+
+IF (<ISINPARTY.SRC.PARTY>)
+   IF  !(<tag0.bardsong_rest>==1)
+
+      events +e_bardsong_rest
+      tag0.bardsong_rest=1
+      sysmessage You feel relaxed and at ease.
+      trysrc <UID> SRC.newitem i_bardsong_rest_timer
+      trysrc <UID> SRC.act.morem=(<var.songlevel>*2)+10
+      trysrc <UID> SRC.act.equip
+      trysrc <UID> SRC.forchars 5
+	IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+	   IF  !(<tag0.bardsong_rest>==1)
+	      events +e_bardsong_rest
+	      tag0.bardsong_rest=1
+	      sysmessage You feel relaxed and at ease.
+	      trysrc <UID> SRC.newitem i_bardsong_rest_timer
+	      trysrc <UID> SRC.act.morem=(<var.songlevel>*2)+10
+	      trysrc <UID> SRC.act.equip
+	   endif
+      endfor
+
+   endif
+ENDIF
+
+endfor
+
+   link.newitem i_recharge
+   link.act.equip 
+   link.act.timer=(240-(<src.musicianship>/10))
+   remove
+   return 1
+
+
+[itemdef i_bardsong_rest_timer]
+Id=i_memory
+name=Song of Rest
+TYPE=t_eq_script
+
+on=@create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer=3
+   return
+
+on=@timer
+IF (<link.tag0.bardsong_rest>==1)
+IF (<MOREM> > 0)
+MOREM -= 1
+IF (<LINK.MAXHITS> > <LINK.HITS>) || (<LINK.STR> > <LINK.HITS>) 
+LINK.HITS += 1
+ENDIF
+IF (<LINK.MAXMANA> > <LINK.MANA>) || (<LINK.INT> > <LINK.MANA>) 
+LINK.MANA += 1
+ENDIF
+timer=3
+RETURN 1
+ELSE
+link.events -e_bardsong_rest
+link.tag0.bardsong_rest=
+link.sysmessage The bard song wears off.
+ENDIF
+remove
+return 1
+ENDIF
+remove
+return 1
+
+[events e_bardsong_rest]
+
+ON=@LOGOUT
+ARGN1=60
+RETURN
+
+ON=@GETHIT
+events -e_bardsong_rest
+tag0.bardsong_rest=
+sysmessage The bard song wears off.
+RETURN
+
+ON=@HITTRY
+events -e_bardsong_rest
+tag0.bardsong_rest=
+sysmessage The bard song wears off.
+RETURN
+
+
+[FUNCTION bardsong_battle]
+
+if (<src.findlayer(30).baseid>=i_recharge)
+   src.sysmessage You can't use this ability again yet!
+   return 1
+endif
+
+if  (<src.flags> & statf_dead)
+   src.sysmessage You can't use this ability in your current state.
+   return 1
+endif
+
+If (<src.stam> < 20)
+   src.sysmessage You do not have enough stamina to use this ability.
+   return 1
+endif
+
+if (<src.region.flags> = 08422)
+   src.sysmessage You can't use your ability here!
+   return 1
+else
+   src.newitem i_bardsong_battle_target
+   src.act.equip
+   return 1
+endif
+
+[ITEMDEF i_bardsong_battle_target]
+Name = Song of Battle Target
+ID = i_deed
+Weight = 0
+Type = t_eq_script
+Layer = 30
+
+On=@Create
+   attr = attr_decay
+
+On=@Equip
+   attr = <attr> | attr_decay
+   timer = 30
+   link = <src.uid>
+   src.sysmessage What will you play on?
+   target
+   return 1
+
+On=@Targon_item
+
+   IF !(<SRC.TARG.TOPOBJ.UID>==<SRC.UID>)
+      SRC.SYSMESSAGE "You must have the instrument in your backpack."
+      RETURN 1 
+   ENDIF
+
+   IF (<SRC.targ.baseid>==i_drum) 
+   src.sfx = 743
+   var.songlevel=<SRC.LEVEL>
+   ELSEIF (<SRC.targ.baseid>==i_tambourine) 
+   src.sfx = 1205
+   var.songlevel=<SRC.LEVEL>
+   ELSEIF (<SRC.targ.baseid>==i_lute) 
+   src.sfx = 1027
+   var.songlevel=<SRC.LEVEL>+1
+   ELSEIF (<SRC.targ.baseid>==i_lyre) 
+   src.sfx = 913
+   var.songlevel=<SRC.LEVEL>+2
+   ELSEIF (<SRC.targ.baseid>==i_flute) 
+   src.sfx = 1418
+   var.songlevel=<SRC.LEVEL>
+   ELSE
+   SRC.sysmessage You cannot play this song on that.
+   RETURN 1
+   ENDIF
+
+   src.stam = (<src.stam> - 20)
+
+   IF !(<SRC.tag0.bardsong_battle>==1) 
+      SRC.events +e_bardsong_battle
+      SRC.tag0.bardsong_battle=1
+      SRC.sysmessage You feel inspired to fight.
+      SRC.newitem i_bardsong_battle_timer
+      SRC.act.timer=(<var.songlevel>*3)+15
+      SRC.act.equip 
+   endif
+
+forchars <SRC.LEVEL>+5
+
+IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+   IF  !(<tag0.bardsong_battle>==1)
+
+      events +e_bardsong_battle
+      tag0.bardsong_battle=1
+      trysrc <UID> SRC.newitem i_bardsong_battle_timer
+      trysrc <UID> SRC.act.link = <uid>
+      trysrc <UID> SRC.act.timer=(<var.songlevel>*3)+15
+      trysrc <UID> SRC.act.equip
+
+   endif
+ENDIF
+
+IF (<ISINPARTY.SRC.PARTY>)
+   IF  !(<tag0.bardsong_battle>==1)
+
+      events +e_bardsong_battle
+      tag0.bardsong_battle=1
+      sysmessage You feel inspired to fight.
+      trysrc <UID> SRC.newitem i_bardsong_battle_timer
+      trysrc <UID> SRC.act.link = <uid>
+      trysrc <UID> SRC.act.timer=(<var.songlevel>*3)+15
+      trysrc <UID> SRC.act.equip
+      trysrc <UID> SRC.forchars 5
+	IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+	   IF  !(<tag0.bardsong_battle>==1)
+	      events +e_bardsong_battle
+	      tag0.bardsong_battle=1
+	      trysrc <UID> SRC.newitem i_bardsong_battle_timer
+	      trysrc <UID> SRC.act.link = <uid>
+	      trysrc <UID> SRC.act.timer=(<var.songlevel>*3)+15
+	      trysrc <UID> SRC.act.equip
+	   endif
+      endfor
+
+   endif
+ENDIF
+
+endfor
+
+   link.newitem i_recharge
+   link.act.equip 
+   link.act.timer=(240-(<src.musicianship>/20))
+   remove
+   return 1
+
+
+[itemdef i_bardsong_battle_timer]
+Id=i_memory
+name=Song of battle
+TYPE=t_eq_script
+
+on=@create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = (<var.songlevel>*3)+15
+   return
+
+on=@timer
+link.events -e_bardsong_battle
+link.tag0.bardsong_battle=
+link.sysmessage The bard song wears off.
+remove
+
+[events e_bardsong_battle]
+ON=@HIT
+	IF (RAND(5) <= 1)
+		EMOTE strike <SRC.NAME> with inspired strength!
+		SRC.BARK 4
+		ARGN1 += <EVAL(RAND((<ARGN1> * 1)))>
+	ENDIF
+RETURN
+
+[MENU MENU_BARDSONG]
+What song do you wish to play?
+
+ON=0 Song of Rest
+src.bardsong_rest
+RETURN 1
+
+ON=0 Song of Battle
+src.bardsong_battle
+RETURN 1
+
+
+
+//////////////////
+/// Animal Training
+//////////////////
+
+[MENU MENU_SHEPHERD_SPECIAL]
+What skill do you wish to train?
+
+ON=0 Tactics
+SRC.shepherd_train "tactics"
+RETURN 1
+
+ON=0 Wrestling
+SRC.shepherd_train "wrestling"
+RETURN 1
+
+ON=0 Resisting Spells
+SRC.shepherd_train "magicresistance"
+RETURN 1
+
+ON=0 Anatomy
+SRC.shepherd_train "Anatomy"
+RETURN 1
+
+ON=0 Parrying
+SRC.shepherd_train "Parrying"
+RETURN 1
+
+ON=0 Hiding
+SRC.shepherd_train "Hiding"
+RETURN 1
+
+ON=0 Stealth
+SRC.shepherd_train "Stealth"
+RETURN 1
+
+
+[FUNCTION shepherd_train]
+
+if  (<src.flags> & statf_dead)
+   src.sysmessage You can't use this ability in your current state.
+   return 1
+endif
+
+If (<src.stam> < 15)
+   src.sysmessage You do not have enough stamina to use this ability.
+   return 1
+endif
+
+if (<src.region.flags> = 08422)
+   src.sysmessage You can't use your ability here!
+   return 1
+else
+   src.newitem i_shepherd_target
+   src.act.equip
+   src.tag0.animalskill = <args>
+   return 1
+endif
+
+
+
+[ITEMDEF i_shepherd_target]
+Name = Song of Rest Target
+ID = i_deed
+Weight = 0
+Type = t_eq_script
+Layer = 30
+
+On=@Create
+   attr = attr_decay
+
+On=@Equip
+   attr = <attr> | attr_decay
+   timer = 3
+   link = <src.uid>
+
+   src.sysmessage Which animal will you train?
+   target
+   return 1
+
+On=@TARGON_CHAR
+
+IF !(<src.targ.MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+	SRC.SYSMESSAGE "You must control the animal."
+	RETURN 1 
+endif
+
+if !(<SRC.targ.<src.tag0.animalskill>> < (<SRC.<src.tag0.animalskill>>/2))
+	SRC.MESSAGE You cannot train this animal any further in <src.tag0.animalskill>.
+	RETURN 1
+endif
+
+if (<SRC.targ.exp> < 50)
+	SRC.MESSAGE You cannot train this animal until it has more experience.
+	RETURN 1
+endif
+
+
+SRC.targ.<src.tag0.animalskill> +=((<SRC.level>*2)+3)
+SRC.targ.exp -= 50
+SRC.MESSAGE You train the animal in <src.tag0.animalskill>.
+
+if (<SRC.targ.<src.tag0.animalskill>> > (<SRC.<src.tag0.animalskill>>/2))
+	SRC.targ.<src.tag0.animalskill>=(<SRC.<src.tag0.animalskill>>/2)
+	SRC.MESSAGE The animal is at the maximum training for your current <src.tag0.animalskill>.
+endif
+
+   src.stam = (<src.stam> - 15)
+   remove
+   return 1
+
+
+
+//////////////////
+/// Hunting
+//////////////////
+
+
+[MENU MENU_HUNTING]
+What prey do you wish to hunt?
+
+ON=0 Ogres
+
+SRC.TAG.HUNTERGROUP=OGRE
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Orcs
+
+SRC.TAG.HUNTERGROUP=ORC
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Trolls
+
+SRC.TAG.HUNTERGROUP=TROLL
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Ophidians
+SRC.TAG.HUNTERGROUP=Naga
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Lizardfolk
+SRC.TAG.HUNTERGROUP=LIZARDMAN
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Snakes
+SRC.TAG.HUNTERGROUP=SNAKE
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Gargoyles
+SRC.TAG.HUNTERGROUP=GARGOYLE
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Terathans
+SRC.TAG.HUNTERGROUP=TERATHAN
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Spiders
+SRC.TAG.HUNTERGROUP=SPIDER
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Scorpions
+SRC.TAG.HUNTERGROUP=SCORPION
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Plants
+SRC.TAG.HUNTERGROUP=PLANT
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+ON=0 Bovine
+SRC.TAG.HUNTERGROUP=BOVINE
+src.newitem i_recharge_hunting
+src.act.equip 
+RETURN
+
+[ITEMDEF i_recharge_hunting]
+Id=i_memory
+name = Recharge Hunting
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 7200
+
+On=@Timer
+   link.sysmessage You can change your prey again!
+   remove
+   return 1 
+
+
+//////////////////
+/// Terrain Adaption
+//////////////////
+
+
+[MENU MENU_TERRAIN_SPECIAL]
+To what terrain do you wish to adapt?
+
+ON=0 Swamps
+SRC.EVENTS +e_terrainspecialty
+SRC.TAG.terrainspecialty=t_swamp
+src.newitem i_recharge_terrain
+src.act.equip 
+RETURN
+
+ON=0 Ice
+SRC.EVENTS +e_terrainspecialty
+SRC.TAG.terrainspecialty=t_snow
+src.newitem i_recharge_terrain
+src.act.equip 
+RETURN
+
+ON=0 Sand
+SRC.EVENTS +e_terrainspecialty
+SRC.TAG.terrainspecialty=t_sand
+src.newitem i_recharge_terrain
+src.act.equip 
+RETURN
+
+ON=0 Volcanic
+SRC.EVENTS +e_terrainspecialty
+SRC.TAG.terrainspecialty=t_lava
+src.newitem i_recharge_terrain
+src.act.equip 
+RETURN
+
+
+[events e_terrainspecialty]
+
+on=@gethit
+IF (<ISNEARTYPE <TAG.TERRAINSPECIALTY> 8>)
+	IF (<R100> < (<LEVEL>+10))
+		EMOTE dodge behind the terrain.
+		RETURN 1
+	ENDIF
+ENDIF
+return 0
+
+on=@STEPSTEALTH
+IF (<ISNEARTYPE <TAG.TERRAINSPECIALTY> 3>) 
+	IF (<ARGN1>==1)
+		IF (<R100> < ((<LEVEL>*2)+15))
+			ARGN1=0
+			SYSMESSAGE You stealthily move through this terrain.
+		ENDIF
+	ENDIF
+ENDIF
+RETURN
+
+[ITEMDEF i_recharge_terrain]
+Id=i_memory
+name = Recharge Terrain Adaption
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 7200
+
+On=@Timer
+   link.sysmessage You can change your terrain specialty again!
+   remove
+   return 1 
+
+
+//////////////////
+//// Tinkering
+//////////////////
+
+
+[MENU MENU_TINKER]
+What modification do you wish to make?
+
+ON=0 Increase Weapon Damage
+TARGETF f_tinker_weapon_damage Target a weapon...
+
+ON=0 Increase Weapon Speed
+TARGETF f_tinker_weapon_speed Target a weapon...
+
+ON=0 Lower Requirements
+TARGETF f_tinker_lowerreqs Target a weapon or armor...
+
+ON=0 Reinforce Armor
+TARGETF f_tinker_armor_reinforce Target an armor...
+
+ON=0 Insulate Armor
+TARGETF f_tinker_armor_insulate Target an armor...
+
+
+
+[FUNCTION f_tinker_weapon_damage]
+IF !(<ISEMPTY <ARGO.tag.tinkered>>) 
+	SRc.SYSMESSAGE That has already been modifed.
+	return 1
+endif
+IF (<ARGO.isweapon>)
+	ARGO.HITPOINTS -= (15-<src.level>)
+	ARGO.tag0.DAMINCREASE += 20
+	ARGO.tag0.tinkered=<src.name>
+	src.emote modify a <ARGO.name>
+ELSE
+	SRc.SYSMESSAGE You cannot increase the damage of that.
+ENDIF
+
+[FUNCTION f_tinker_lowerreqs]
+IF !(<ISEMPTY <ARGO.tag.tinkered>>) 
+	SRc.SYSMESSAGE That has already been modifed.
+	return 1
+endif
+IF (<ARGO.isweapon>) || (<ARGO.ISARMOR>) || (<ARGO.TYPE>==t_shield)
+	ARGO.HITPOINTS -= (15-<src.level>)
+	ARGO.tag0.LOWERREQS -= 20
+	ARGO.tag0.tinkered=<src.name>
+	src.emote modify a <ARGO.name>
+ELSE
+	SRc.SYSMESSAGE You cannot lower the requirements of that.
+ENDIF
+
+[FUNCTION f_tinker_weapon_speed]
+IF !(<ISEMPTY <ARGO.tag.tinkered>>) 
+	SRc.SYSMESSAGE That has already been modifed.
+	return 1
+endif
+IF (<ARGO.isweapon>)
+	ARGO.HITPOINTS -= (15-<src.level>)
+	ARGO.tag0.SWINGINCREASE += 20
+	ARGO.tag0.tinkered=<src.name>
+	src.emote modify a <ARGO.name>
+ELSE
+	SRc.SYSMESSAGE You cannot increase the speed of that.
+ENDIF
+
+[FUNCTION f_tinker_armor_reinforce]
+IF !(<ISEMPTY <ARGO.tag.tinkered>>) 
+	SRc.SYSMESSAGE That has already been modifed.
+	return 1
+endif
+IF (<ARGO.ISARMOR>) || (<ARGO.TYPE>==t_shield)
+	ARGO.HITPOINTS -= (15-<src.level>)
+	local.one = <eval (<ARGO.armor.hi> * 2)>
+	local.two = <eval (<local.one> / 10)>
+	ARGO.modar += <dlocal.two>
+	ARGO.tag0.tinkered=<src.name>
+	src.emote modify a <ARGO.name>
+ELSE
+	SRc.SYSMESSAGE You cannot reinforce that.
+ENDIF
+
+[FUNCTION f_tinker_armor_insulate]
+IF !(<ISEMPTY <ARGO.tag.tinkered>>)
+	SRc.SYSMESSAGE That has already been modifed.
+	return 1
+endif
+IF (<ARGO.ISARMOR>) || (<ARGO.TYPE>==t_shield)
+	ARGO.HITPOINTS -= (15-<src.level>)
+	IF (<ARGO.LAYER>==13) || (<ARGO.TYPE>==t_shield)
+		ARGO.tag0.RESENERGY=8
+		ARGO.tag0.RESFIRE=8
+		ARGO.tag0.RESCOLD=8
+	ELSEIF (<ARGO.LAYER>==24)
+		ARGO.tag0.RESENERGY=5
+		ARGO.tag0.RESFIRE=5
+		ARGO.tag0.RESCOLD=5
+	ELSEIF (<ARGO.LAYER>==4)
+		ARGO.tag0.RESENERGY=4
+		ARGO.tag0.RESFIRE=4
+		ARGO.tag0.RESCOLD=4
+	ELSEIF (<ARGO.LAYER>==6) || (<ARGO.LAYER>==19) || (<ARGO.LAYER>==7)
+		ARGO.tag0.RESENERGY=2
+		ARGO.tag0.RESFIRE=2
+		ARGO.tag0.RESCOLD=2
+	ELSEIF (<ARGO.LAYER>==10) || (<ARGO.LAYER>==3)
+		ARGO.tag0.RESENERGY=1
+		ARGO.tag0.RESCOLD=1
+		ARGO.tag0.RESFIRE=1
+	ENDIF
+	ARGO.tag0.tinkered=<src.name>
+	src.emote modify a <ARGO.name>
+ELSE
+	SRc.SYSMESSAGE You cannot insulate that.
+ENDIF
+
+
+
+//////////////////
+//// Rage
+//////////////////
+
+[FUNCTION Rage]
+If (<src.stam> < 15)
+	src.sysmessage You do not have enough stamina to rage.
+	return 1
+endif
+if (<src.findlayer(30).baseid>=i_recharge_Rage)
+   src.sysmessage You can't rage again yet!
+   return 1
+endif
+src.stam -= 15
+src.emote rage!
+SRC.SFX 01b2
+src.newitem i_rage_timer
+new.tag.modstr = (10+(<src.level>*2))
+new.tag.timer = 60+(<src.level>*5)
+new.LINK=<src>
+src.act.equip
+src.newitem i_recharge_rage
+src.act.equip 
+
+
+[itemdef i_rage_timer]
+ID=i_memory
+name=Frenzy Timer
+TYPE=t_eq_script
+
+on=@create
+ATTR=attr_invis|attr_decay
+
+on=@equip
+link.modstr += <tag0.modstr>
+link.hits += <tag0.modstr>
+link.f_statcheck
+timer = <tag.timer>
+
+on=@timer
+link.modstr -= <tag0.modstr>
+link.maxhits -= <tag0.modstr>
+if (<link.maxhits> < <link.hits>)
+	link.hits = <link.maxhits>
+endif
+timerf 1, link.f_statcheck
+remove
+return 1
+
+[ITEMDEF i_recharge_rage]
+Id=i_memory
+name = Recharge Rage
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 5*60
+
+On=@Timer
+   link.sysmessage You can rage again!
+   remove
+   return 1 
+
+//////////////////
+//// Backstab
+//////////////////
+
+
+[FUNCTION Backstab]
+IF !<src.findid.i_memory_backstab>
+	SRC.MSG You ready yourself to backstab your opponent.
+	SRC.EVENTS +e_es_backstab
+ELSE
+	SRC.MSG @33 You have to wait <eval <src.findid.i_recharge_backstab.timer>> seconds til you can use this ability again.
+ENDIF
+RETURN 1
+
+[ITEMDEF i_recharge_backstab]
+Id=i_memory
+name = Recharge backstab
+type = t_eq_script
+layer = 30
+
+On=@Create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer = 5*60
+
+On=@Timer
+   link.sysmessage You can backstab again!
+   remove
+   return 1 
+
+[EVENTS e_es_back_stab]
+ON=@Hit
+IF (<STAM> >= 15)
+				IF (<SRC.DIR>=<DIR>)
+					LOCAL.BACKSTAB.LEVEL = (3 + <LEVEL>)
+				ELSEIF (<DIR>==0)
+					IF (<SRC.DIR>==1)||(<SRC.DIR>==7)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==1)
+					IF (<SRC.DIR>==2)||(<SRC.DIR>==0)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==2)
+					IF (<SRC.DIR>==3)||(<SRC.DIR>==1)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==3)
+					IF (<SRC.DIR>==4)||(<SRC.DIR>==2)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==4)
+					IF (<SRC.DIR>==5)||(<SRC.DIR>==3)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==5)
+					IF (<SRC.DIR>==6)||(<SRC.DIR>==4)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+		
+				ELSEIF (<DIR>==6)
+					IF (<SRC.DIR>==7)||(<SRC.DIR>==5)
+						LOCAL.BACKSTAB.LEVEL = (1 + <LEVEL>)
+					ELSE
+						MSG You need to be behind your opponent to pull of a backstab.
+						EVENTS -e_es_back_stab
+						RETURN 0
+					ENDIF
+				ENDIF
+				IF (<FLAGS&statf_hidden>)
+					LOCAL.BACKSTAB.LEVEL += 2
+			ENDIF
+
+	IF (<ARGO.TYPE> == t_weapon_fencing)
+		LOCAL.Backstab=<MulDiv <ARGN1>,<eval (25 * <LOCAL.BACKSTAB.LEvEL>)>,100>
+		ARGN1=<EVAL (<ARGN1> + <LOCAL.Backstab>)>
+		STAM-=15
+		//MSG @33 <EVAL <LOCAL.Backstab>> Backstab Damage
+		//SRC.MSG @33 <EVAL <LOCAL.Backstab>> Backstab Damage
+		SRC.EFFECT=3,i_fx_glow_spike,6,15,1
+		EVENTS= -e_es_backstab
+		SERV.NEWITEM=i_memory_backstab
+		NEW.EQUIP <CONT>
+		RETURN 0
+	ELSE
+		MSG You need to use a fencing weapon to backstab an opponent.
+		EVENTS -e_es_back_stab
+		ARGN1=<ARNG1>
+		RETURN 0
+	ENDIF
+ELSE
+	MSG You lack the Stamina to use the Backstab ability.
+	EVENTS -e_es_backstab
+	ARGN1=<ARGN1>
+	RETURN 0
+ENDIF
+
+
+
+[EVENTS E_ES_DODGE]
+ON=@GETHIT
+LOCAL.DODGE_CHANCE=<EVAL <R100>>
+IF <LOCAL.DODGE_CHANCE> <= <EVAL (<TAG.CLASS_LVL> * 2>)
+MSG The blow is dodged.
+SRC.MSG The blow is dodged.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[EVENTS E_ES_DODGE_IMPROVED]
+ON=@GETHIT
+LOCAL.DODGE_CHANCE=<EVAL <R1,100>>
+IF <LOCAL.DODGE_CHANCE> <= <EVAL (<TAG.CLASS_LVL> * 3>)
+MSG The blow is dodged.
+SRC.MSG The blow is dodged.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[eof]

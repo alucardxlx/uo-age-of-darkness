@@ -1,0 +1,99 @@
+// Script created by Belgar.
+// Received this file without a header, so I'm adding this.
+// Modifed for Currency System by Anarch Cassius
+
+[FUNCTION payup] // main FUNCTION
+IF !(<args> ) //empty command line?
+return 1 //then do nothing
+ENDIF
+
+var.enough=0 //IF not enough gold, var.enough will be '0'
+var.totalgold=<SRC.FINDLAYER.21.currency> + <SRC.FINDLAYER.29.currency>
+
+IF (<eval <args>> > <var.totalgold> )
+
+ELSE
+   var.enough=1
+   IF (<eval <args>> <= <SRC.FINDLAYER.29.currency> )
+       goldtopack <args>
+   ELSE
+       goldtopackall
+   ENDIF
+   SRC.consumecurrency <args>
+ENDIF
+
+[FUNCTION goldtopackall]
+IF (<SRC.FINDLAYER.29.findtype.t_coin.uid> )
+
+   SRC.FINDLAYER.29.findtype.t_coin.cont=<SRC.FINDLAYER.21.uid>
+   goldtopackall
+
+ELIF (<SRC.FINDLAYER.29.findtype.t_note.uid>)
+
+   SRC.FINDLAYER.29.findtype.t_note.cont=<SRC.FINDLAYER.21.uid>
+   goldtopackall
+
+ENDIF
+
+[FUNCTION goldtopack]
+var.counter=<eval <args>>
+IF (<SRC.FINDLAYER.29.findtype.t_coin>)
+	var.found=(<var.counter> - (<SRC.FINDLAYER.29.findtype.t_coin.amount> * <SRC.FINDLAYER.29.findtype.t_coin.value>))
+
+	IF (<var.found> > 0)
+
+	   SRC.FINDLAYER.29.findtype.t_coin.cont=<SRC.FINDLAYER.21.uid>
+	   goldtopack <var.found>
+
+	ELSE
+
+	   var.left = (0 - <var.found>)
+	   IF (<var.left> >= <SRC.FINDLAYER.29.findtype.t_coin.value>)
+	
+		   var.keep = (<var.left> / <SRC.FINDLAYER.29.findtype.t_coin.value>)
+		   OBJ = <SRC.FINDLAYER.29.findtype.t_coin>
+		   obj.amount=(<obj.amount> - <var.keep>)
+   		   obj.cont=<SRC.FINDLAYER.21.uid>
+		   obj.dupe
+		   new.amount=<var.keep>
+   		   new.cont=<SRC.FINDLAYER.29.uid>
+
+	   ELSE
+
+		   SRC.FINDLAYER.29.findtype.t_coin.cont=<SRC.FINDLAYER.21.uid>
+
+	   ENDIF
+
+	ENDIF
+ELSE
+	var.found=(<var.counter> - (<SRC.FINDLAYER.29.findtype.t_note.amount> * <SRC.FINDLAYER.29.findtype.t_note.value>))
+
+	IF (<var.found> > 0)
+
+	   SRC.FINDLAYER.29.findtype.t_note.cont=<SRC.FINDLAYER.21.uid>
+	   goldtopack <var.found>
+
+	ELSE
+
+	   var.left = (0 - <var.found>)
+	   IF (<var.left> >= <SRC.FINDLAYER.29.findtype.t_note.value>)
+	
+		   var.keep = (<var.left> / <SRC.FINDLAYER.29.findtype.t_note.value>)
+		   OBJ = <SRC.FINDLAYER.29.findtype.t_note>
+		   obj.amount=(<obj.amount> - <var.keep>)
+   		   obj.cont=<SRC.FINDLAYER.21.uid>
+		   obj.dupe
+		   new.amount=<var.keep>
+   		   new.cont=<SRC.FINDLAYER.29.uid>
+
+	   ELSE
+
+		   SRC.FINDLAYER.29.findtype.t_note.cont=<SRC.FINDLAYER.21.uid>
+
+	   ENDIF
+
+
+	ENDIF
+ENDIF
+
+[eof]

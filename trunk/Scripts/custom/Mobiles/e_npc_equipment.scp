@@ -1,0 +1,143 @@
+//*****************************************************************
+//**   NPC Weapon Switcher
+//**        By Lerkur
+//**  Last Edited 10/01/02
+//**  
+//**  This script contains:
+//**   -f_equip_melee_weapon function
+//**   -f_equip_ranged_weapon function
+//**   -e_npc_weapon_switcher events
+//*****************************************************************
+
+
+[EVENTS e_intel_char_looting]
+
+ON=@NPCLookAtItem
+ IF !(<FLAGS>&statf_war)
+	 IF (<ARGO.TYPE> == t_corpse)
+		 IF (<ARGO.TAG0.LOOTED.<UID>> < 5 )
+			 GOTO <ARGO.P>
+			 //TIMERF 1, GOTO <ARGO.P>
+			 //TIMERF 2, GOTO <ARGO.P>
+			 //TIMERF 3, GOTO <ARGO.P>
+			 ARGN2 = 100
+			 return 1
+		 ENDIF
+	 ENDIF	
+ ENDIF	
+return
+
+ON=@ItemStep
+IF !(<FLAGS> & statf_conjured)
+	IF (<ACT.TYPE> == t_corpse) || (<ACT.TYPE> == t_container)
+	    IF (<ACT.FCOUNT> > 0)
+		  local.item=<r<ACT.FCOUNT>>
+		  obj=<ACT.FINDCONT.<local.item>.uid>
+		  IF (STRMATCH(*<obj.type>*,<serv.chardef(<body>).desires>)) || (STRMATCH(*<obj.type>*,<serv.chardef(<body>).desires>))
+			    IF !(<ACT.FINDCONT.<local.item>.ATTR> & attr_newbie)
+				    TRYSRC <UID> ACT.FINDCONT.<local.item>.BOUNCE
+				    ACT.TAG0.LOOTED.<UID> -= 1
+			    ELSE
+				    ACT.TAG0.LOOTED.<UID> += 1
+			    ENDIF
+	          ELIF !(<ACT.FINDCONT.<local.item>.ATTR> & attr_magic)
+			    IF !(<ACT.FINDCONT.<local.item>.ATTR> & attr_newbie)
+				    TRYSRC <UID> ACT.FINDCONT.<local.item>.BOUNCE
+				    ACT.TAG0.LOOTED.<UID> -= 1
+			    ELSE
+				    ACT.TAG0.LOOTED.<UID> += 1
+			    ENDIF
+		  ELSE
+			    ACT.TAG0.LOOTED.<UID> += 1
+		  ENDIF
+	    ENDIF
+        ENDIF
+ENDIF
+
+ON=@EnvironChange
+     SRC.EQUIPARMOR
+     SRC.EQUIPWEAPON
+
+[EVENTS e_npc_weapon_switcher]
+
+ON=@NPCActFight
+   IF ( <DISTANCE> > 2 )
+     IF ( (<FINDTYPE(t_weapon_bow)>) || (<FINDTYPE(t_weapon_xbow)>) )
+       IF !( (<FINDLAYER(2).TYPE> == t_weapon_bow) || (<FINDLAYER(2).TYPE> == t_weapon_xbow) )
+         f_equip_ranged_weapon
+       ENDIF
+     ENDIF
+   ELIF ( <DISTANCE> < 2 )
+     IF ( (<FINDLAYER(2).TYPE>==t_weapon_bow) || (<FINDLAYER(2).TYPE>==t_weapon_xbow) )
+       f_equip_melee_weapon
+     ENDIF
+   ENDIF
+ RETURN 0
+
+
+
+
+[EVENTS e_npc_intel_potion_user]
+
+ON=@GETHIT
+   LOCAL.UID = 0
+   IF (<EVAL {1 3}>!=1)
+      RETURN 0
+   ENDIF
+   IF (<HITS> <= (<MAXHITS>/3))
+      //Check for pots
+      LOCAL.UID=<FINDID(i_potion_HealGreat)>
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_Heal)>
+      ENDIF
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_HealLess)>
+      ENDIF
+      //We found one, use it
+      IF (<LOCAL.UID>!=0)
+         TRYP 0 UID.<LOCAL.UID>.DCLICK
+      ENDIF
+   ENDIF
+RETURN 0
+
+ON=@EnvironChange
+   LOCAL.UID = 0
+   //If not full health then use it
+   IF ((<HITS>)<(<MAXHITS>/4))
+      //Check for pots
+      LOCAL.UID=<FINDID(i_potion_HealGreat)>
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_Heal)>
+      ENDIF
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_HealLess)>
+      ENDIF
+      //We found one, use it
+      IF (<LOCAL.UID>!=0)
+         TRYP 0 UID.<LOCAL.UID>.DCLICK
+      ENDIF
+   ENDIF
+RETURN 0
+
+[FUNCTION f_equip_melee_weapon]
+ VAR.EquipMeleeWeapon.OldArchery=<ARCHERY>
+ ARCHERY=0
+ TRYSRC <UID> FINDLAYER(1).BOUNCE
+ TRYSRC <UID> FINDLAYER(2).BOUNCE
+ EQUIPWEAPON
+ EQUIPARMOR
+ ARCHERY=<VAR.EquipMeleeWeapon.OldArchery>
+ RETURN 0
+
+[FUNCTION f_equip_ranged_weapon]
+ VAR.EquipMeleeWeapon.OldArchery=<ARCHERY>
+ ARCHERY=2000
+ TRYSRC <UID> FINDLAYER(1).BOUNCE
+ TRYSRC <UID> FINDLAYER(2).BOUNCE
+ EQUIPWEAPON
+ EQUIPARMOR
+ ARCHERY=<VAR.EquipMeleeWeapon.OldArchery>
+ RETURN 0
+
+
+[EOF]
