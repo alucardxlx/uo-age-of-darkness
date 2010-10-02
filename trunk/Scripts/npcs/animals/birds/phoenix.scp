@@ -1,0 +1,56 @@
+//LOOT: 800-1000+ gp, magic items.
+//SPELLCIRCLES: 4,7?
+//Should generate a better list.
+
+[CHARDEF 832]
+DEFNAME=c_phoenix
+NAME=phoenix
+CAN=mt_walk|mt_fly
+MOVERATE=100
+DAM=20,25	//was just 25, added 20 min range.
+ARMOR=45,55
+SOUND=snd_animals_eagle1
+ICON=i_pet_eagle
+RESOURCES=1 i_bird_raw, 36 i_feather
+FOODTYPE=25 t_meat_raw
+//SHELTER=r_mountains
+DESIRES=c_bird_crow,t_crops
+AVERSIONS=e_carnivores,r_water,i_scarecrow
+
+RESLEVEL=7
+RESDISPDNID=c_eagle
+RESDISPDNHUE=colors_lava
+
+TEVENTS=//Fire aura
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Phoenix
+
+ON=@Create
+ NPC=brain_monster
+
+ FAME=15000
+ KARMA=0
+
+ //TAG.FIREDAMAGE=50
+
+ RESFIRE={ 60 70 }
+ RESCOLD={ 0 0 }
+ RESPOISON={ 25 35 }
+ RESENERGY={ 40 50 }
+
+ OSTR={ 500 700 }
+ ODEX={ 200 300 }
+ OINT={ 500 700 }
+ MAXHITS={ 340 400 }
+ MAXSTAM=<odex>
+ MAXMANA=<oint>
+
+ WRESTLING={ 90.0 100.0 }
+ TACTICS={ 80.0 90.0 }
+ MAGICRESISTANCE={ 85.0 135.0 }
+ ANATOMY={ 0.0 0.0 }
+ MAGERY={ 90.0 100.0 }
+ EVALUATINGINTEL={ 90.0 100.0 }
+ MEDITATION={ 75.0 100.0 }

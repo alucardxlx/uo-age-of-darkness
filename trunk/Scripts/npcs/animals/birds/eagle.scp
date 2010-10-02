@@ -1,0 +1,51 @@
+[CHARDEF 05]
+DEFNAME=c_eagle
+NAME=eagle
+CAN=mt_walk|mt_fly
+MOVERATE=100
+DAM=6,13
+ARMOR=20,25
+SOUND=snd_animals_eagle1
+ICON=i_pet_eagle
+//ANIM=03a0c1f
+RESOURCES=1 i_bird_raw, 36 i_feather
+FOODTYPE=25 t_fish
+//SHELTER=r_foliage,r_mountains
+DESIRES=c_eagle
+AVERSIONS=e_carnivores2, r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Eagle
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0
+
+ TAG.SLOTS=1
+
+ FAME=300
+ KARMA=-300
+
+ RESFIRE={ 10 15 }
+ RESCOLD={ 20 25 }
+ RESPOISON={ 5 10 }
+ RESENERGY={ 5 10 }
+
+ OSTR={ 31 47 }
+ ODEX={ 36 60 }
+ OINT={ 8 20 }
+ MAXHITS={ 20 27 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 20.0 30.0 }
+ TACTICS={ 18.0 37.0 }
+ MAGICRESISTANCE={ 15.0 30.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 25.0 40.0 }			//OSV
+ TAMING=17.1
+
+ON=@NPCRestock
+ ITEM=i_gold, { 50 100 }
+ ITEM=i_reag_black_pearl, { 2 4 }

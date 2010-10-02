@@ -1,0 +1,43 @@
+[CHARDEF 06]
+DEFNAME=c_bird
+//DEFNAME2=c_forest_bird
+NAME=#names_birds
+CAN=mt_walk|mt_fly
+MOVERATE=100
+DAM=1,1
+ARMOR=0
+SOUND=snd_animals_frstbrd1	//01b?
+ICON=i_pet_bird
+//ANIM=03e007f
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_grain, t_fruit
+//SHELTER=t_foliage, t_grass, t_tree
+DESIRES=t_foliage, c_bird
+AVERSIONS=e_carnivores, t_water, c_man, c_woman
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Bird
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=colors_bird
+
+ TAG.SLOTS=1
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 1 4 }
+ ODEX={ 25 25 }
+ OINT={ 1 4 }
+ MAXHITS={ 1 3 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 5.0 5.0 }
+ TACTICS={ 5.0 5.0 }
+ MAGICRESISTANCE={ 5.0 5.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 5.0 5.0 }		//CSV
+ TAMING=-6.9			//OSV = 10.0

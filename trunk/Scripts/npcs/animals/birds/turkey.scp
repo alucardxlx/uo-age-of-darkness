@@ -1,0 +1,97 @@
+[CHARDEF 95]
+DEFNAME=c_turkey
+NAME=turkey
+CAN=mt_walk
+MOVERATE=100
+DAM=1,1
+ARMOR=0
+SOUND=snd_animals_frstbrd1
+ICON=i_pet_bird
+RESOURCES=2 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_grain, t_fruit
+//SHELTER=t_crops,t_grain
+DESIRES=c_turkey
+AVERSIONS=e_carnivores
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Turkey
+
+ON=@Create
+ NPC=brain_animal
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 5 15 }
+ ODEX={ 25 25 }
+ OINT={ 5 10 }
+ MAXHITS=<ostr>
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 10.0 10.0 }
+ TACTICS={ 10.0 10.0 }
+ MAGICRESISTANCE={ 5.0 5.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 5.0 5.0 }		//ASV = to keep with bird consistency.
+
+
+
+//Loot: cornucopia, ornithologist's map, fragment of a map,
+//plucked turkey (Loot is not scripted!)
+//
+//Attacks: Mind Blast-like attack, bleed attack, loud turkey call
+//which slows players to walking speed even if mounted
+//(Even lowers swing speed, casting speed, casting recovery. Dismount,
+//lower phys res, area dmg spell?, pull in owners of attacking pets
+//and summons, xtra dmg to mounts
+//
+//I took uoguide's info and did a roundabout on the stats.
+//There was no fame/karma info.
+//No spell info, though i'd think mind blast would be used as a spell
+//
+//Is there a turkey specific sound?
+//
+[CHARDEF 1026]
+DEFNAME=c_giant_turkey
+NAME=giant turkey
+CAN=mt_walk
+MOVERATE=100
+DAM=20,30
+ARMOR=50,60
+SOUND=snd_animals_frstbrd1
+ICON=i_pet_bird
+RESOURCES=14 i_bird_raw, 50 i_feather
+FOODTYPE=25 t_crops, t_grain, t_fruit
+//SHELTER=t_crops,t_grain
+DESIRES=c_turkey, c_giant_turkey
+AVERSIONS=e_carnivores
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Giant Turkey
+
+ON=@Create
+ NPC=brain_animal
+
+ FAME=5000
+ KARMA=0
+
+ RESFIRE={ 80 90 }
+ RESCOLD={ 30 40 }
+ RESPOISON={ 50 60 }
+ RESENERGY={ 40 50 }
+
+ OSTR={ 1276 }
+ ODEX={ 185 }
+ OINT={ 481 }
+ MAXHITS={ 30000 32000 }
+ MAXSTAM=<odex>
+ MAXMANA={ 1000 1000 }
+
+ WRESTLING={ 100.0 120.0 }
+ TACTICS={ 100.0 120.0 }
+ MAGICRESISTANCE={ 90.0 100.0 }
+ ANATOMY={ 70.0 80.0 }
+ PARRYING={ 70.0 80.0 }			//ASV = Consistency reasons.

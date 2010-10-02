@@ -1,0 +1,85 @@
+[CHARDEF 0D0]
+DEFNAME=c_chicken
+NAME=chicken
+CAN=mt_walk|mt_run
+MOVERATE=100
+DAM=1,1
+ARMOR=1,5
+SOUND=snd_animals_chicken1
+ICON=i_pet_chicken
+ANIM=01FFF
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_grain
+//SHELTER=i_nest_with_eggs
+DESIRES=c_chicken
+AVERSIONS=e_carnivores2
+
+CATEGORY=Animals
+SUBSECTION=Air (Domestic)
+DESCRIPTION=Chicken
+
+ON=@Create
+ NPC=brain_animal
+
+ TAG.SLOTS=1
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 5 5 }
+ ODEX={ 15 15 }
+ OINT={ 5 5 }
+ MAXHITS={ 3 3 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 5.0 5.0 }
+ TACTICS={ 5.0 5.0 }
+ MAGICRESISTANCE={ 4.0 4.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 2.0 2.0 }
+ TAMING=-0.9			//OSV = 20.0
+
+
+//Greater Chicken
+[CHARDEF c_greater_chicken]
+DEFNAME=c_greater_chicken
+ID=c_chicken
+NAME=greater chicken
+CAN=mt_walk|mt_run
+MOVERATE=100
+DAM=1,4
+ARMOR=1,10
+SOUND=snd_animals_chicken1
+ICON=i_pet_chicken
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_grain
+//SHELTER=i_nest_with_eggs
+DESIRES=c_chicken
+AVERSIONS=e_carnivores2
+
+CATEGORY=Animals
+SUBSECTION=Air (Domestic)
+DESCRIPTION=Greater Chicken
+
+ON=@Create
+ NPC=brain_animal
+
+ TAG.SLOTS=1
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 5 15 }
+ ODEX={ 15 15 }
+ OINT={ 5 15 }
+ MAXHITS={ 5 15 }
+ MAXSTAM=<odex>
+ MAXMANA=<oint>
+
+ WRESTLING={ 5.0 15.0 }
+ TACTICS={ 5.0 15.0 }
+ MAGICRESISTANCE={ 5.0 15.0 }
+ ANATOMY={ 5.0 15.0 }
+ PARRYING={ 5.0 15.0 }
+ TAMING=20.0			//OSV served useful for this.
