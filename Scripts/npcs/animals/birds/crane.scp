@@ -1,0 +1,99 @@
+[CHARDEF 254]
+//Need to add the new pet icon.
+//Note: There is also "a very ancient crane"
+//5000+ hp. 125 in every stat otherwise.
+//resists: phys 42, fire 18, cold 23, poison 61, energy 41
+//Damage: 80 phys, 20 energy; actual amount: unknown.
+//skills: 100.0 wrestling, tactics, anatomy, and 77.4 magic resist.
+//Pets won't fight it unless in defense.
+DEFNAME=c_crane
+NAME=crane
+CAN=mt_walk
+MOVERATE=100
+DAM=1,1
+ARMOR=5
+SOUND=snd_animals_FRSTBRD1	//04D7?
+ICON=i_pet_bird
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_grain, t_fruit
+//SHELTER=t_crops, t_grain
+DESIRES=c_crane, t_crops
+AVERSIONS=e_carnivores
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Crane
+
+ON=@Create
+ NPC=brain_animal
+
+ FAME=200
+ KARMA=2000
+
+ OSTR={ 25 35 }
+ ODEX={ 15 25 }
+ OINT={ 10 15 }
+ MAXHITS=<ostr>
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 10.0 11.0 }
+ TACTICS={ 10.0 11.0 }
+ MAGICRESISTANCE={ 4.0 5.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 10.0 11.0 }			//ASV
+
+
+
+//Very Ancient Crane
+[CHARDEF c_very_ancient_crane]
+//Need to add the new pet icon.
+//5000+ hp. 125 in every stat otherwise.
+//resists: phys 42, fire 18, cold 23, poison 61, energy 41
+//Damage: 80 phys, 20 energy; actual amount: unknown.
+//skills: 100.0 wrestling, tactics, anatomy, and 77.4 magic resist.
+//Pets won't fight it unless in defense.
+DEFNAME=c_very_ancient_crane
+ID=c_crane
+NAME=very ancient crane
+CAN=mt_walk
+MOVERATE=100
+DAM=1,5
+ARMOR=50,50
+SOUND=snd_animals_FRSTBRD1
+ICON=i_pet_bird
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_grain, t_fruit
+//SHELTER=t_crops, t_grain
+DESIRES=c_crane, t_crops
+AVERSIONS=e_carnivores
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Very Ancient Crane
+
+ON=@Create
+ NPC=brain_animal
+
+ FAME=2000
+ KARMA=2000
+
+// TAG.ENERGYDAMAGE=20
+
+ RESFIRE={ 15 25}
+ RESCOLD={ 15 25 }
+ RESPOISON={ 55 65 }
+ RESENERGY={ 35 45 }
+
+ OSTR={ 100 150 }
+ ODEX={ 100 150 }
+ OINT={ 100 150 }
+ MAXHITS={ 5000 6000 }
+ MAXSTAM=<odex>
+ MAXMANA=<oint>
+
+ WRESTLING={ 100.0 110.0 }
+ TACTICS={ 100.0 110.0 }
+ MAGICRESISTANCE={ 70.0 80.0 }
+ ANATOMY={ 100.0 110.0 }
+ PARRYING={ 75.0 100.0 }

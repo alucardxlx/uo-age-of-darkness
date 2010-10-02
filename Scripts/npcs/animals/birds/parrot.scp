@@ -1,0 +1,98 @@
+//Both parrots are in here.
+//The deco one is first (one for the parrot stand).
+//The actual new graphiced one is second.
+
+[CHARDEF 282]
+DEFNAME=c_deco_parrot
+NAME=parrot
+CAN=mt_nonmover
+MOVERATE=100
+DAM=1,1
+ARMOR=0
+SOUND=snd_animals_parrot1
+ICON=i_pet_bird
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_fruit
+//SHELTER=t_foliage, t_grass, t_tree
+DESIRES=t_foliage, c_bird, c_bird_tropical, r_jungle
+AVERSIONS=e_carnivores, r_civilization
+
+RESLEVEL=5
+RESDISPDNID=c_bird
+RESDISPDNHUE=0
+
+TSPEECH=//Add parrot speech here. Just mimics speech based on food levels.
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Parrot (Decorative)
+
+ON=@Create
+ NPC=brain_animal
+
+// TAG.SLOTS=1	//This should not count if the parrot is on display!
+
+ FLAGS=statf_invul
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 1 4 }
+ ODEX={ 25 25 }
+ OINT={ 1 4 }
+ MAXHITS={ 1 3 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 5.0 5.0 }
+ TACTICS={ 5.0 5.0 }
+ MAGICRESISTANCE={ 5.0 5.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 5.0 5.0 }		//CSV
+ TAMING=-6.9			//OSV = 10.0
+
+
+[CHARDEF 831]
+DEFNAME=c_bird_parrot
+NAME=parrot
+CAN=mt_walk|mt_fly
+MOVERATE=100
+DAM=1,1
+ARMOR=0
+SOUND=snd_animals_parrot1
+ICON=i_pet_bird
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_fruit
+//SHELTER=t_foliage, t_grass, t_tree
+DESIRES=t_foliage, c_bird, c_bird_tropical, r_jungle
+AVERSIONS=e_carnivores, r_civilization
+
+RESLEVEL=7
+RESDISPDNID=c_bird
+RESDISPDNHUE=0
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Parrot
+
+ON=@Create
+ NPC=brain_animal
+
+ TAG.SLOTS=1
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 1 4 }
+ ODEX={ 25 25 }
+ OINT={ 1 4 }
+ MAXHITS={ 1 3 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 5.0 5.0 }
+ TACTICS={ 5.0 5.0 }
+ MAGICRESISTANCE={ 5.0 5.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 5.0 5.0 }		//CSV
+ TAMING=-6.9			//OSV = 10.0

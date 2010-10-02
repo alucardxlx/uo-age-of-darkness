@@ -1,0 +1,44 @@
+//Isn't this the same as a tropical bird?
+//The name is really lacking and needs more thought, if not.
+[CHARDEF c_bird_jungle]
+DEFNAME=c_bird_jungle
+ID=c_bird
+NAME=jungle bird
+CAN=mt_walk|mt_fly
+MOVERATE=100
+DAM=1,1
+ARMOR=0
+SOUND=snd_animals_parrot1
+ICON=i_pet_bird
+RESOURCES=1 i_bird_raw, 25 i_feather
+FOODTYPE=25 t_crops, t_fruit
+//SHELTER=t_foliage, t_grass, t_tree
+DESIRES=t_foliage, c_bird, c_bird_tropical, r_jungle, c_bird_jungle
+AVERSIONS=e_carnivores, r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Air (Wild)
+DESCRIPTION=Jungle Bird
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=colors_bird
+
+ TAG.SLOTS=1
+
+ FAME=150
+ KARMA=-150
+
+ OSTR={ 1 4 }
+ ODEX={ 25 25 }
+ OINT={ 1 4 }
+ MAXHITS={ 1 3 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 5.0 5.0 }
+ TACTICS={ 5.0 5.0 }
+ MAGICRESISTANCE={ 5.0 5.0 }
+ Anatomy={ 0.0 0.0 }
+ PARRYING={ 5.0 5.0 }		//CSV
+ TAMING=-6.9			//OSV = 10.0
