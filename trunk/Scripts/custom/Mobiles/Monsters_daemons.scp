@@ -79,7 +79,8 @@ on=@create
      EXP={ 129000 161000 } //Level 9
 
      TAG.RANDCAST=45
-     TAG.QUICKCAST = 50
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
 
 
@@ -145,7 +146,6 @@ on=@create
      EXP={ 129000 161000 } //Level 9
 
      TAG.RANDCAST=20
-     TAG.QUICKCAST = 30
      EVENTS=+e_intel_char_magery_user
 
 
@@ -205,7 +205,6 @@ on=@create
 	EXP={ 1050 1450 } //Level 2
 
      TAG.RANDCAST=20
-     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_itens_com_props
 
@@ -259,7 +258,6 @@ on=@create
 	karma={-3000 -3999}
 
      TAG.RANDCAST=20
-     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_itens_com_props
 
@@ -332,7 +330,8 @@ on=@create
 
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 30
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
 
 
@@ -374,7 +373,7 @@ on=@create
      int={96 120}
 
      parrying={50.0 60.0}
-     magery={74.0 82.8}
+     magery={62.0 79.8}
      magicresistance={30.8 49.4}
      tactics={52.1 60.0}
      wrestling={56.2 59.5}
@@ -386,14 +385,13 @@ on=@create
 	resenergy=30
 
 
-
      EXP={ 1050 1450 } //Level 2
 
      fame={100 300}
      karma={-2000 -2999}
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 30
+     TAG.QUICKCAST = 15
      EVENTS=+e_intel_char_magery_user
 
 [chardef 095]
@@ -460,7 +458,8 @@ on=@create
 
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_itens_com_props
 
@@ -530,7 +529,8 @@ on=@create
      karma={-5000 -5999}
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 30
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
 
      item={ I_Sword_daemon 1 0 1 }
@@ -600,14 +600,15 @@ on=@create
 	givelang 8
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
 
      item=I_Sword_daemon
 
 [chardef 028]
-defname=c_death_fiend
-name="death fiend"
+defname=c_orcus
+name="orcus"
 sound=snd_monster_daemon1
 icon=i_pet_daemon_elder_lbr
 dam=13,17
@@ -636,7 +637,7 @@ TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
-description=Death Fiend
+description=Orcus
 
 on=@create
 	nightsight=1
@@ -671,7 +672,8 @@ on=@create
 	givelang 8
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 50
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
 
      item=I_Sword_daemon
@@ -702,9 +704,9 @@ TAG.MANUEVER2=7
 TAG.MANUEVER3=9
 TEVENTS=e_combat_move_intel
 
-category=undiscovered
-subsection=daemons
-description=four armed daemon - lbr
+category=AoD Monsters
+subsection=Daemons
+description=Moloch
 
 on=@create
 	nightsight=1
@@ -793,7 +795,8 @@ on=@create
      EXP={ 8050 11000 } //Level 5
 
      TAG.RANDCAST=35
-     TAG.QUICKCAST = 35
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
 
 on=@death
@@ -856,7 +859,8 @@ on=@create
      EXP={ 16500 20500 } //Level 6
 
      TAG.RANDCAST=45
-     TAG.QUICKCAST = 50
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
 
 on=@death
@@ -923,7 +927,6 @@ ON=@Create
 	WRESTLING={95.0 100.0}
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
      EVENTS=+e_intel_char_magery_user
 
 
