@@ -1,64 +1,23 @@
 [== Age of Darkness: Revisions ==]
-- REMOVED: Deleted all bird_types from spherechar.scp
-- REMOVED: Deleted all bird_types from spherechar_anim.scp
-- ADDED: Added the folder "animals" for organization purposes.
-- ADDED: Added the folder "birds" for organization purposes.
+- REMOVED: Deleted all bear_types from spherechar.scp
+- REMOVED: Deleted all bear_types from spherechar_anim.scp
+- ADDED: Added the folder "bears" for organization purposes.
 - MODIFIED: Every creature has its own definition block.
-- ADDED: Crow; updated to the new animations.
-- ADDED: Magpie; should not be stand alone and should be on a list of
-  bird names.
-- ADDED: Raven; should possibly be on the same name list. If not
-  it should get upgraded script wise (ie stats, skills, & abilities).
-- ADDED: Parrot (Bird); this is the new animation from SA.
-- ADDED: Parrot (Deco); new animation from ML. Has the same stats as
-  SA one. None of the EA code for stand or wafer is implemented.
-  Deco and Bird parrots are in the same file.
-- ADDED: Crane; SE Expansion bird.
-- ADDED: Very Ancient Crane
-- ADDED: Turkey; I assume this is in anim.mul and won't need any
-  backwards compatability. I don't have an older client to test.
-- ADDED: Giant Turkey; Notes are within its file, ai is NOT scripted!
-  it is located in the turky file. No loot was done for it either.
-  Meant to be a group fight boss-level mobile.
-- ADDED: Jungle Birds; refer to FCs.
-- ADDED: Tropical Birds; refer to FCs.
-- ADDED: Forest Birds; refer to FCs.
-- ADDED: Chicken; should they be laying eggs?
-- ADDED: Greater Chicken; it is contained in the chicken script.
-- ADDED: Phoenix; need to define a better spell list.
-  Upgraded the animation to the new SA one.
-- ADDED: Eagle; nothing to note.
-
+- ADDED: Black Bear;
+- ADDED: Brown Bear;
+- ADDED: Raging Grizzly Bear; The skills are guesstimated.
+  No information was given on them, just stats.
+- ADDED: Grizzly Bear;
+- ADDED: Polar Bear;
+- MODIFICATION: Changed all the c_bear_* to c_*_bear.
 
 [== FCs (Future Changes) ==]
-- MODIFICATION: Jungle Bird; should this be consolidated into
-  just tropical or vice versa? Seems redundant.
-- MODIFICATION: Name lists for birds needs major updating.
-- MODIFICATION: Remove c_bird_* and change to c_* from the
-  following list: crow, magpie, raven, & parrot (non-deco).
-- MODIFICATION: Need to move phoenix later. It is a monster
-  not an animal.
-- MODIFICATION: Sounds should be checked for actions for possible
-  errors or weirdness.
-- MODIFICATION: Might up the "very ancient crane" and the
-  "greater chicken" damage resource.
-- MODFICIATION: Give "very ancient crane" and "greater chicken"
-  there own script file separate of their lesser mobile brethren.
+
 
 [== FAs (Future Additions) ==]
-- ADDITION: Add to a new backwards compatability file old defnames
-  that will be changed later and make neccesary changes in any
-  dependant script files.
-- ADDITION: Vulture; could use the eagle anim and hue it brown,
-  grey, or black. Would be nice for a arid setting.
-- ADDITION: Duck; this could be easily done. Just use the chicken
-  animation and hue it. Set it to swim and it should work fine.
+- ADDITION: Pack Instincts.
+
 
 [== RunUO Information ==]
 //For personal references.
-- NOTE: Standard bird name list: "bird"?
-- NOTE: Secondary bird name list: magpie, raven, & crow (remove
-  has its own animation)
-- NOTE: Standard hue: random?
-- NOTE: Secondary hue: 0901 for the name list?
-- NOTE: Sounds: standard 01B; tropical 0BF
+- NOTE: 

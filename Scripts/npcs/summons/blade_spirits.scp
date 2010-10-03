@@ -1,0 +1,48 @@
+[CHARDEF 023E]
+DEFNAME=c_blade_spirit
+NAME=blade spirits
+CAN=mt_walk|mt_fly|mt_run
+MOVERATE=100
+DAM=4,5
+ARMOR=30,40
+SOUND=snd_weapons_sword1
+ICON=i_fx_blade_spirit_1
+RESOURCES=
+FOODTYPE=
+//SHELTER=
+DESIRES=
+AVERSIONS=
+
+CATEGORY=Miscellaneous
+SUBSECTION=Summoned
+DESCRIPTION=Blade Spirits
+
+ON=@Create
+ NPC=brain_berserk
+ COLOR=0
+
+ TAG.SLOTS=2
+
+ FAME=0
+ KARMA=0
+
+// TAG.POISONDAMAGE=20
+// TAG.ENERGYDAMAGE=20
+
+ RESFIRE={ 40 50 }
+ RESCOLD={ 30 40 }
+ RESPOISON={ 100 100 }
+ RESENERGY={ 20 30}
+
+ OSTR={ 150 150 }
+ ODEX={ 150 150 }
+ OINT={ 100 100 }
+ MAXHITS={ 160 160 }
+ MAXSTAM={ 250 250 }
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 90.0 90.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 70.0 70.0 }
+ Anatomy={ 0.0 0.0 }
+// POISONING=300.0	//Ummm okay.
