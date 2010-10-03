@@ -1,6 +1,6 @@
 //Did this really need it's own def?
-[CHARDEF c_bird_raven]
-DEFNAME=c_bird_raven
+[CHARDEF c_raven]
+DEFNAME=c_raven
 ID=c_bird
 NAME=raven
 CAN=mt_walk|mt_fly

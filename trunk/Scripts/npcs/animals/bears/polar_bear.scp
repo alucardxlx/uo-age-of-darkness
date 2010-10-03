@@ -1,0 +1,49 @@
+//no fur on stratics.
+//no fishing skills.
+[CHARDEF 213]
+DEFNAME=c_polar_bear
+NAME=polar bear
+CAN=mt_walk|mt_run
+MOVERATE=100
+DAM=13,23
+ARMOR=25,35
+SOUND=snd_animals_bear1
+ICON=i_pet_bear_polar
+ANIM=01FFF
+RESOURCES=2 i_ribs_raw, 16 i_hides, 5 i_fur_light
+FOODTYPE=25 t_fish, t_meat_raw
+//SHELTER=r_forests, r_caves
+DESIRES=c_polar_bear, r_snow, t_fish
+AVERSIONS=r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Land (Wild)
+DESCRIPTION=Polar Bear
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0	// was colors_white
+
+ TAG.SLOTS=1
+
+ FAME=1500
+ KARMA=0
+
+ RESCOLD={ 60 80 }
+ RESPOISON={ 15 25 }
+ RESENERGY={ 10 15 }
+
+ OSTR={ 116 140 }
+ ODEX={ 81 105 }
+ OINT={ 26 50 }
+ MAXHITS={ 70 84 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 45.0 70.0 }
+ TACTICS={ 60.0 90.0 }
+ MAGICRESISTANCE={ 45.0 60.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 70.0 85.0 }
+ TAMING=50.0			//35.1 using spheres instead.
+ FISHING={ 20.0 20.0 }

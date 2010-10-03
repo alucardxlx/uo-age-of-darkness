@@ -1,0 +1,48 @@
+//no fur on stratics.
+//no fishing skills.
+[CHARDEF 167]
+DEFNAME=c_brown_bear
+NAME=brown bear
+CAN=mt_walk
+MOVERATE=100
+DAM=9,19
+ARMOR=20,30
+SOUND=snd_animals_bear1
+ICON=i_pet_bear_black
+ANIM=01FFF
+RESOURCES=1 i_ribs_raw, 12 i_hides, 4 i_fur_dark
+FOODTYPE=25 t_fish, t_fruit, t_meat_raw
+//SHELTER=r_forests, r_caves
+DESIRES=c_brown_bear
+AVERSIONS=r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Land (Wild)
+DESCRIPTION=Brown Bear
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0
+
+ TAG.SLOTS=1
+
+ FAME=450
+ KARMA=-450
+
+ RESCOLD={ 15 20 }
+ RESPOISON={ 10 15 }
+
+ OSTR={ 76 100 }
+ ODEX={ 26 46 }
+ OINT={ 23 47 }
+ MAXHITS={ 46 60 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 40.0 60.0 }
+ TACTICS={ 40.0 60.0 }
+ MAGICRESISTANCE={ 20.0 40.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 40.0 55.0 }
+ TAMING=41.1			//OSV 55.0
+ FISHING={ 20.0 20.0 }
