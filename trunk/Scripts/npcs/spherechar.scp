@@ -2522,41 +2522,6 @@ ON=@Create
 	FAME=0
 	KARMA={-300 -599}
 
-
-
-[CHARDEF 0D4]
-//GrizzlyBear
-DEFNAME=c_bear_grizzly
-NAME=Grizzly Bear
-SOUND=snd_ANIMALS_GRIZZLY1
-ICON=i_pet_Grizzly
-ANIM=01fff
-DAM=6,15
-ARMOR=12
-RESOURCES=10 i_ribs_raw,4 i_fur_light
-CAN=MT_WALK|MT_RUN
-FOODTYPE=6 t_FISH,5 t_fruit, 15 t_meat_raw
-//SHELTER=r_forests,r_caves,r_mountains
-AVERSIONS=r_civilization
-DESCRIPTION=Grizzly Bear
-SUBSECTION=Land (Wild)
-CATEGORY=Animals
-
-ON=@Create
-	NPC=brain_animal
-	STR={125 155}
-	DEX={80 105}
-	INT={15 40}
-	PARRYING={70.0 85.0}
-	MAGICRESISTANCE={45.0 60.0}
-	TACTICS={70.0 100.0}
-	WRESTLING={50.0 65.0}
-	TAMING=70.0
-	FISHING=25.0
-	FAME=250
-	KARMA={-600 -899}
-	//ALIGNMENT=NEUTRAL
-
 [CHARDEF 0d6]
 //Panther
 DEFNAME=c_panther
@@ -3551,31 +3516,6 @@ ON=@Create
 	//SPELLCIRCLE=3-5
 	ITEMNEWBIE=i_light_source
 	ATTR=attr_magic|attr_newbie
-
-[CHARDEF 023e]
-DEFNAME=c_blade_spirit
-DEFNAME2=blade_spirits
-Name=Blade Spirits
-SOUND=snd_WEAPONS_SWORD1
-ICON=i_FX_Blade_Spirit_1
-DAM=4,5
-ARMOR=20
-CAN=MT_WALK|MT_RUN|MT_FLY
-DESCRIPTION=Blade Spirits
-SUBSECTION=Blade Spirits
-CATEGORY=Miscellaneous
-
-ON=@Create
-	NPC=brain_berserk
-	STR=150
-	DEX=500
-	INT=1
-	TACTICS=250.0
-	WRESTLING=250.0
-	POISONING=300.0
-	FAME=0
-	KARMA=-100
-	//ALIGNMENT=EVIL
 
 [CHARDEF 03ca]
 DEFNAME=c_grim_reaper

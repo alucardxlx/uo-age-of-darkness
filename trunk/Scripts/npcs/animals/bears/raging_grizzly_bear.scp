@@ -1,0 +1,50 @@
+//no fur on stratics.
+//no fishing skills.
+[CHARDEF c_raging_grizzly_bear]
+DEFNAME=c_raging_grizzly_bear
+ID=c_grizzly_bear
+NAME=raging grizzly bear
+CAN=mt_walk|mt_run
+MOVERATE=100
+DAM=16,26
+ARMOR=50,70
+SOUND=snd_animals_grizzly1
+ICON=i_pet_grizzly
+ANIM=01FFF
+RESOURCES=2 i_ribs_raw, 16 i_hides, 5 i_fur_light
+FOODTYPE=25 t_fish, t_meat_raw
+//SHELTER=r_forests, r_caves
+DESIRES=c_polar_bear, r_snow, t_fish
+AVERSIONS=r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Land (Wild)
+DESCRIPTION=Raging Grizzly Bear
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0
+
+ FAME=10000
+ KARMA=0
+
+ RESCOLD={ 30 50 }
+ RESPOISON={ 10 20 }
+ RESENERGY={ 10 20 }
+
+ OSTR={ 1250 1550 }
+ ODEX={ 800 1050 }
+ OINT={ 151 400 }
+ MAXHITS={ 750 930 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 90.0 120.0 }
+ TACTICS={ 90.0 120.0 }
+ MAGICRESISTANCE={ 90.0 120.0 }
+ ANATOMY={ 50.0 75.0 }
+ PARRYING={ 70.0 100.0 }
+ FISHING={ 50.0 75.0 }
+
+ON=NPCSeeNewPlayer
+ attack

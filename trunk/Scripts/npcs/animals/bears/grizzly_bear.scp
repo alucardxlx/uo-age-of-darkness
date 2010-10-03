@@ -1,0 +1,49 @@
+//no fur on stratics.
+//no fishing skills.
+[CHARDEF 212]
+DEFNAME=c_grizzly_bear
+NAME=grizzly bear
+CAN=mt_walk|mt_run
+MOVERATE=100
+DAM=16,26
+ARMOR=25,35
+SOUND=snd_animals_grizzly1
+ICON=i_pet_grizzly
+ANIM=01FFF
+RESOURCES=2 i_ribs_raw, 16 i_hides, 5 i_fur_light
+FOODTYPE=25 t_fish, t_meat_raw
+//SHELTER=r_forests, r_caves
+DESIRES=c_polar_bear, r_snow, t_fish
+AVERSIONS=r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Land (Wild)
+DESCRIPTION=Grizzly Bear
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0
+
+ TAG.SLOTS=1
+
+ FAME=1500
+ KARMA=0
+
+ RESCOLD={ 15 25 }
+ RESPOISON={ 5 10 }
+ RESENERGY={ 5 10 }
+
+ OSTR={ 116 140 }
+ ODEX={ 81 105 }
+ OINT={ 26 50 }
+ MAXHITS={ 70 84 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 45.0 70.0 }
+ TACTICS={ 60.0 90.0 }
+ MAGICRESISTANCE={ 45.0 60.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 70.0 100.0 }
+ TAMING=59.1			//OSV = 70.0
+ FISHING={ 25.0 25.0 }
