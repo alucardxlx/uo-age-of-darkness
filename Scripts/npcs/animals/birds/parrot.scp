@@ -53,7 +53,7 @@ ON=@Create
 
 
 [CHARDEF 831]
-DEFNAME=c_bird_parrot
+DEFNAME=c_parrot
 NAME=parrot
 CAN=mt_walk|mt_fly
 MOVERATE=100

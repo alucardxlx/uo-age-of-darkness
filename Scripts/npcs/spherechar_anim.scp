@@ -572,37 +572,6 @@ ON=@Create
 	FAME=175
 	KARMA={-400 -599}
 
-[CHARDEF 01056]
-DEFNAME=c_a_black_bear
-NAME=Black Bear
-ID=c_Bear_Brown
-SOUND=snd_ANIMALS_BEAR1
-ICON=i_pet_bear_black
-DAM=2,12
-ARMOR=8
-RESOURCES=9 i_ribs_raw
-FOODTYPE=5 t_FISH, 5 t_fruit, 15 t_meat_raw
-CAN=MT_WALK
-//SHELTER=r_forests,r_caves
-AVERSIONS=r_civilization
-DESCRIPTION=Black Bear
-SUBSECTION=Land (Wild)
-CATEGORY=Animals
-
-ON=@Create
-	COLOR=colors_black
-	STR={75 100}
-	DEX={55 75}
-	INT={10 14}
-	PARRYING={25.0 45.0}
-	MAGICRESISTANCE={20.0 40.0}
-	TACTICS={40.0 60.0}
-	WRESTLING={40.0 60.0}
-	TAMING=50.0
-	NPC=brain_animal
-	FAME=10
-	KARMA={-300 -399}
-
 [CHARDEF 01059]
 DEFNAME=C_A_SNOW_LEOPARD
 NAME=Snow Leopard

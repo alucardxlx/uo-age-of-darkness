@@ -1,0 +1,48 @@
+// No furs on stratics
+// no fishing either.
+[CHARDEF 211]
+DEFNAME=c_black_bear
+NAME=black bear
+CAN=mt_walk
+MOVERATE=100
+DAM=6,16
+ARMOR=20,25
+SOUND=snd_animals_bear1
+ICON=i_pet_bear_black
+ANIM=01FFF
+RESOURCES=1 i_ribs_raw, 12 i_hides, 4 i_fur_dark
+FOODTYPE=25 t_fish, t_fruit, t_meat_raw
+//SHELTER=r_forests, r_caves
+DESIRES=c_black_bear
+AVERSIONS=r_civilization
+
+CATEGORY=Animals
+SUBSECTION=Land (Wild)
+DESCRIPTION=Black Bear
+
+ON=@Create
+ NPC=brain_animal
+ COLOR=0		//OSV =  colors_black
+
+ TAG.SLOTS=1
+
+ FAME=450
+ KARMA=-450
+
+ RESCOLD={ 10 15 }
+ RESPOISON={ 5 10 }
+
+ OSTR={ 76 100 }
+ ODEX={ 56 75 }
+ OINT={ 11 14 }
+ MAXHITS={ 46 60 }
+ MAXSTAM=<odex>
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 40.0 60.0 }
+ TACTICS={ 40.0 60.0 }
+ MAGICRESISTANCE={ 20.0 40.0 }
+ ANATOMY={ 0.0 0.0 }
+ PARRYING={ 25.0 45.0 }
+ TAMING=35.1			//OSV = 50.0
+ FISHING={ 20.0 20.0 }

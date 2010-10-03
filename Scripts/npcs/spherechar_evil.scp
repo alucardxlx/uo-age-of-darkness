@@ -919,42 +919,6 @@ ON=@Create
 ON=@NPCRestock
 	ITEM=loot_LICH_LORD
 
-
-[CHARDEF 01042]
-DEFNAME=c_m_phoenix
-NAME=Phoenix
-ID=c_EAGLE
-SOUND=snd_ANIMALS_EAGLE1
-ICON=i_pet_EAGLE
-CAN=MT_FLY|MT_WALK|MT_FIRE_IMMUNE
-DAM=7,25
-ARMOR=25
-RESOURCES=2 i_ribs_raw, 36 i_feather
-FOODTYPE=5 t_meat_raw
-//SHELTER==r_mountains
-CATEGORY=Monsters
-SUBSECTION=Miscellaneous
-DESCRIPTION=Phoenix
-
-ON=@Create
-	COLOR=colors_lava
-	STR={500 600}
-	DEX={300 400}
-	INT={50 65}
-	//ALIGNMENT=NEUTRAL
-	//SPELLCIRCLES=4,7
-	MAGERY={90.0 100.0}
-	MAGICRESISTANCE={85.0 100.0}
-	TACTICS={80.0 90.0}
-	WRESTLING={90.0 100.0}
-	NPC=brain_monster
-	FAME={1000 2000}
-	KARMA={-5000 -5999}
-
-ON=@NPCRestock
-	ITEM=loot_PHOENIX
-	
-
 [CHARDEF 01043]
 DEFNAME=c_m_elem_poison
 NAME=Poison Elemental

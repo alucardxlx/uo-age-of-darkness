@@ -1,6 +1,5 @@
 [CHARDEF 283]
-//Changing to c_crow later.
-DEFNAME=c_bird_crow
+DEFNAME=c_crow
 NAME=crow
 CAN=mt_walk|mt_fly
 MOVERATE=100

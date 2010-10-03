@@ -1,0 +1,14 @@
+[DEFNAME backward_compatability_mobiles]
+//Dependancies: character icons and spawns.
+//Bear Files
+c_a_black_bear		c_black_bear
+//i_pet_bear_black	i_pet_black_bear
+c_bear_brown		c_brown_bear
+c_bear_polar		c_polar_bear
+//i_pet_bear_polar	i_pet_polar_bear
+
+//Bird Files
+c_bird_crow			c_crow
+c_bird_raven		c_raven
+c_bird_magpie		c_magpie
+c_m_phoenix			c_phoenix
