@@ -74,7 +74,8 @@ on=@create
      karma={-7000 -7999}
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 45
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_intel_char_necro_user
      EVENTS=+e_death_rain_gold
@@ -303,7 +304,8 @@ on=@create
      respoison=100
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 25
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 10
      EVENTS=+e_intel_char_magery_user
 
 	EXP={ 2050 3950 } //Level 3
@@ -421,7 +423,6 @@ on=@create
      respoison=100
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
 
 
@@ -537,7 +538,8 @@ on=@create
 
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
 
      EXP={ 16500 20500 } //Level 6
@@ -628,7 +630,7 @@ ON=@Create
 	EXP={ 2050 3950 } //Level 3
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 30
+     TAG.SPELLPOWER = 10
      EVENTS=+e_intel_char_necro_user
 
 
@@ -945,7 +947,6 @@ ON=@Create
 	WRESTLING={70.0 90.0}
 
 	TAG.RANDCAST=20
-	TAG.QUICKCAST = 35
 	EVENTS=+e_intel_char_necro_user
 
 ON=@NpcRestock
@@ -1002,7 +1003,8 @@ ON=@CREATE
      respoison=100
 
      TAG.RANDCAST=35
-     TAG.QUICKCAST = 25
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 10
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
@@ -1056,7 +1058,6 @@ Karma={-2000 -2500}
 EXP={ 8500 10500 } //Level 5
 
 TAG.RANDCAST=15
-TAG.QUICKCAST = 20
 EVENTS=+e_intel_char_magery_user
 
 rescold=15
