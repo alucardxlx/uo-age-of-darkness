@@ -275,7 +275,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
@@ -293,7 +293,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_goblin>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_troll>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
@@ -310,7 +310,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_elf>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_undead>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_daemon>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_demon>)
 
 [FUNCTION SetBasics]
 TAG.NPCAI.ONPC=<NPC>

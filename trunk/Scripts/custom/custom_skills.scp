@@ -1194,84 +1194,87 @@ IF (<SRC.TAMING> < (<SRC.TARG.TAMING>-50))
 	SRC.SYSMESSAGE This creature is beyond your ability to tame.
 	RETURN 1
 ENDIF
-SKILLGAIN taming <EVAL <SRC.TARG.TAMING>>
-
+src.tag.taming=<src.targ.uid>
 
 ON=@Success
-  if (<src.targ.tag0.slots_needed>)
-    local.slots = <src.targ.tag.slots_needed>
+  obj=<src.tag.taming>
+  if (<obj.tag0.slots_needed>)
+    local.slots = <obj.tag.slots_needed>
   else
     local.slots = 1
   endif
   CURFOLLOWER += <local.slots>
-  SKILLGAIN taming <EVAL <SRC.TARG.TAMING>>
-  SRC.TARG.EMOTE loose some wild instincts
-  SRC.TARG.STR -= (<SRC.TARG.STR>/10)
-  SRC.TARG.DEX -= (<SRC.TARG.DEX>/10)
-  SRC.TARG.INT -= (<SRC.TARG.INT>/10)
-  SRC.TARG.EXP -= (<SRC.TARG.EXP>/2)
+  SKILLGAIN taming <EVAL <obj.TAMING>>
+  obj.EMOTE loose some wild instincts
+  obj.STR -= (<obj.STR>/10)
+  obj.DEX -= (<obj.DEX>/10)
+  obj.INT -= (<obj.INT>/10)
+  obj.EXP -= (<obj.EXP>/2)
 	IF (<SRC.TARG.LEVEL> > 0)
-	  SRC.TARG.TAG.NEXTLEVEL -= (<SRC.TARG.TAG.NEXTLEVEL>/2)
-	  SRC.TARG.LEVEL -= 1
+	  obj.TAG.NEXTLEVEL -= (<SRC.TARG.TAG.NEXTLEVEL>/2)
+	  obj.LEVEL -= 1
 	ENDIF
-src.targ.0 -= (<src.targ.0>/10)
-src.targ.1 -= (<src.targ.1>/10)
-src.targ.2 -= (<src.targ.2>/10)
-src.targ.3 -= (<src.targ.3>/10)
-src.targ.4 -= (<src.targ.4>/10)
-src.targ.5 -= (<src.targ.5>/10)
-src.targ.6 -= (<src.targ.6>/10)
-src.targ.7 -= (<src.targ.7>/10)
-src.targ.8 -= (<src.targ.8>/10)
-src.targ.9 -= (<src.targ.9>/10)
-src.targ.10 -= (<src.targ.10>/10)
-src.targ.11 -= (<src.targ.11>/10)
-src.targ.12 -= (<src.targ.12>/10)
-src.targ.13 -= (<src.targ.13>/10)
-src.targ.14 -= (<src.targ.14>/10)
-src.targ.15 -= (<src.targ.15>/10)
-src.targ.16 -= (<src.targ.16>/10)
-src.targ.17 -= (<src.targ.17>/10)
-src.targ.18 -= (<src.targ.18>/10)
-src.targ.19 -= (<src.targ.19>/10)
-src.targ.20 -= (<src.targ.20>/10)
-src.targ.21 -= (<src.targ.21>/10)
-src.targ.22 -= (<src.targ.22>/10)
-src.targ.23 -= (<src.targ.23>/10)
-src.targ.24 -= (<src.targ.24>/10)
-src.targ.25 -= (<src.targ.25>/10)
-src.targ.26 -= (<src.targ.26>/10)
-src.targ.27 -= (<src.targ.27>/10)
-src.targ.28 -= (<src.targ.28>/10)
-src.targ.29 -= (<src.targ.29>/10)
-src.targ.30 -= (<src.targ.30>/10)
-src.targ.31 -= (<src.targ.31>/10)
-src.targ.32 -= (<src.targ.32>/10)
-src.targ.33 -= (<src.targ.33>/10)
-src.targ.34 -= (<src.targ.34>/10)
-src.targ.36 -= (<src.targ.36>/10)
-src.targ.37 -= (<src.targ.37>/10)
-src.targ.38 -= (<src.targ.38>/10)
-src.targ.39 -= (<src.targ.39>/10)
-src.targ.40 -= (<src.targ.40>/10)
-src.targ.41 -= (<src.targ.41>/10)
-src.targ.42 -= (<src.targ.42>/10)
-src.targ.43 -= (<src.targ.43>/10)
-src.targ.44 -= (<src.targ.44>/10)
-src.targ.45 -= (<src.targ.45>/10)
-src.targ.46 -= (<src.targ.46>/10)
-src.targ.47 -= (<src.targ.47>/10)
-src.targ.48 -= (<src.targ.48>/10)
-src.targ.49 -= (<src.targ.49>/10)
-src.targ.50 -= (<src.targ.50>/10)
-src.targ.51 -= (<src.targ.51>/10)
-src.targ.52 -= (<src.targ.52>/10)
-src.targ.53 -= (<src.targ.53>/10)
-src.targ.54 -= (<src.targ.54>/10)
+obj.0 -= (<obj.0>/10)
+obj.1 -= (<obj.1>/10)
+obj.2 -= (<obj.2>/10)
+obj.3 -= (<obj.3>/10)
+obj.4 -= (<obj.4>/10)
+obj.5 -= (<obj.5>/10)
+obj.6 -= (<obj.6>/10)
+obj.7 -= (<obj.7>/10)
+obj.8 -= (<obj.8>/10)
+obj.9 -= (<obj.9>/10)
+obj.10 -= (<obj.10>/10)
+obj.11 -= (<obj.11>/10)
+obj.12 -= (<obj.12>/10)
+obj.13 -= (<obj.13>/10)
+obj.14 -= (<obj.14>/10)
+obj.15 -= (<obj.15>/10)
+obj.16 -= (<obj.16>/10)
+obj.17 -= (<obj.17>/10)
+obj.18 -= (<obj.18>/10)
+obj.19 -= (<obj.19>/10)
+obj.20 -= (<obj.20>/10)
+obj.21 -= (<obj.21>/10)
+obj.22 -= (<obj.22>/10)
+obj.23 -= (<obj.23>/10)
+obj.24 -= (<obj.24>/10)
+obj.25 -= (<obj.25>/10)
+obj.26 -= (<obj.26>/10)
+obj.27 -= (<obj.27>/10)
+obj.28 -= (<obj.28>/10)
+obj.29 -= (<obj.29>/10)
+obj.30 -= (<obj.30>/10)
+obj.31 -= (<obj.31>/10)
+obj.32 -= (<obj.32>/10)
+obj.33 -= (<obj.33>/10)
+obj.34 -= (<obj.34>/10)
+obj.36 -= (<obj.36>/10)
+obj.37 -= (<obj.37>/10)
+obj.38 -= (<obj.38>/10)
+obj.39 -= (<obj.39>/10)
+obj.40 -= (<obj.40>/10)
+obj.41 -= (<obj.41>/10)
+obj.42 -= (<obj.42>/10)
+obj.43 -= (<obj.43>/10)
+obj.44 -= (<obj.44>/10)
+obj.45 -= (<obj.45>/10)
+obj.46 -= (<obj.46>/10)
+obj.47 -= (<obj.47>/10)
+obj.48 -= (<obj.48>/10)
+obj.49 -= (<obj.49>/10)
+obj.50 -= (<obj.50>/10)
+obj.51 -= (<obj.51>/10)
+obj.52 -= (<obj.52>/10)
+obj.53 -= (<obj.53>/10)
+obj.54 -= (<obj.54>/10)
+src.tag.taming=
 
 ON=@Fail
-	SKILLGAIN taming <EVAL <SRC.TARG.TAMING>>
+	obj=<src.tag.taming>
+	SKILLGAIN taming <EVAL <obj.TAMING>>
 	SRC.MESSAGE @,,2 502798
+	src.tag.taming=
 
 
 [SKILL 36]

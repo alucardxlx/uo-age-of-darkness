@@ -716,7 +716,7 @@ ENDIF
 ON=@DeathCorpse
 IF <ATTACKER> > 0
 	FOR x 0 <EVAL <ATTACKER>-1>
-		local.exp = ((rand(<EXP>/75) + rand(<EXP>/25)) / <ATTACKER>)
+		local.exp = ((rand(<EXP>/25) + rand(<EXP>/25)) / <ATTACKER>)
 		if (<local.exp> > 0) && !(<ATTACKER.<LOCAL.X>.uid>==<uid>)
 			uid.<ATTACKER.<LOCAL.X>.uid>.Trigger @ExpChange,<def.TAT_AS_ARGN>,<eval <local.exp>>,1,1
 		endif
@@ -1119,12 +1119,18 @@ ENDIF
 
 IF STRMATCH("<SRC.TAG0.RACE>","Human") 
 	SRC.MODMAXWEIGHT += 30
-	LOCAL.MAXHITS += 8
+	IF (<TAG0.MODHITS> == 0)
+		TAG0.MODMANA = 8
+	ENDIF
 ELSEIF STRMATCH("<SRC.TAG0.RACE>","Elf") 
-	LOCAL.MAXMANA += 8
+	IF (<TAG0.MODMANA> == 0)
+		TAG0.MODMANA = 8
+	ENDIF
 	TAG.NPCAI.Race=<EVAL racef_elf>
 ELSEIF STRMATCH("<SRC.TAG0.RACE>","Orc") 
-	LOCAL.MAXSTAM += 8
+	IF (<TAG0.MODSTAM> == 0)
+		TAG0.MODSTAM = 8
+	ENDIF
 	TAG.NPCAI.Race=<EVAL racef_orc>
 ENDIF
 

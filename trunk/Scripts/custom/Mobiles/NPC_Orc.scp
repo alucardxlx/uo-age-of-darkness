@@ -11,42 +11,23 @@
 //****************************************************************************
 // FILE LAST UPDATED: Saturday, January 4, 2003
 //
-VERSION=0.99w5
-
-
 
 //// NPC's ORC ////
 
 
 [TYPEDEF T_hair_dye]
 ON=@DCLICK
-IF (<SRC.FINDLAYER.11.BASEID>==i_head_orc) || (<SRC.FINDLAYER.11.BASEID>==i_head_garg)
+IF (<SRC.FINDLAYER.11.BASEID>==i_head_orc)
 	SRC.SYSMESSAGE You have no hair to dye.
-	RETURN 
+	RETURN 1
 ENDIF
 
 [TYPEDEF T_SCISSORS]
 ON=@TARGON_CHAR
-IF (<ARGO.FINDLAYER.11.BASEID>==i_head_orc) || (<ARGO.FINDLAYER.11.BASEID>==i_head_garg)
+IF (<ARGO.FINDLAYER.11.BASEID>==i_head_orc)
 	SRC.SYSMESSAGE They have no hair to cut.
 	RETURN 1
 ENDIF
-
-[ITEMDEF i_head_garg]
-ID=i_bone_helmet
-TYPE=T_hair
-LAYER=layer_hair
-NAME=Gargoyle Head
-CATEGORY=Provisions - Armor
-SUBSECTION=Masks
-DESCRIPTION=Gargoyle Head
-
-ON=@Create
-	ATTR=attr_newbie|attr_move_never
-
-ON=@EQUIP
-COLOR=<SRC.COLOR>
-RETURN
 
 
 
@@ -79,7 +60,7 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 
 
 [CHARDEF c_orc_female]
@@ -89,17 +70,17 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 
 
 [CHARDEF c_orc_grunt]
 ID=0190
 SOUND=snd_MONSTER_ORC1
-DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 AVERSIONS=t_TRAP,t_eerie_stuff
 JOB=1
 TSPEECH=spk_human_prime
@@ -116,6 +97,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -124,6 +106,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={76 100}
 	dex={62 84}
@@ -131,10 +115,9 @@ ON=@Create
 
 	macefighting={55.0 65.0}
 	parrying={35.0 60.0}
-	magicresistance={54.7 61.5}
+	magicresistance={14.7 21.5}
 	tactics={57.8 77.0}
 	wrestling={36.3 51.9} 
-	swordsmanship={55.0 65.0}
 	ninjitsu={55.0 65.0}
 
 	fame={1250 2499}
@@ -152,7 +135,7 @@ ON=@NPCRestock
 	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 3 }
 	ITEM={ i_bone_leggings 1 i_leather_leggings 3 i_studded_leggings 2 0 3 }
 	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
-	item={ i_club 4 i_mace 2 i_sword_broad 1 i_axe_battle 1 }
+	item={ i_club 3 i_mace 1 i_axe_battle 1 i_hatchet 2 }
 	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
 	ITEM={ i_fur_sarong 1 i_pants_short 1 }
 	COLOR=colors_brown
@@ -168,11 +151,11 @@ on=@deathcorpse
 [CHARDEF c_orc_grunt_f]
 ID=0191
 SOUND=snd_MONSTER_ORC1
-DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 moverate=0
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
@@ -188,6 +171,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -195,6 +179,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={76 100}
 	dex={62 84}
@@ -202,11 +188,11 @@ ON=@Create
 
 	macefighting={55.0 65.0}
 	parrying={35.0 60.0}
-	magicresistance={54.7 61.5}
+	magicresistance={14.7 21.5}
 	tactics={57.8 77.0}
 	wrestling={36.3 51.9} 
-	swordsmanship={55.0 65.0}
 	ninjitsu={55.0 65.0}
+
 
 	fame={1250 2499}
 	karma={-3250 -3499}
@@ -222,7 +208,7 @@ ON=@NPCRestock
 	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 3 }
 	ITEM={ i_bone_leggings 1 i_leather_leggings 3 i_studded_leggings 2 0 3 }
 	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
-	item={ i_club 4 i_mace 2 i_sword_broad 1 i_axe_battle 1 }
+	item={ i_club 3 i_mace 1 i_axe_battle 1 i_hatchet 2 }
 	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
 	ITEM={ i_fur_sarong 1 i_pants_short 1 }
 	COLOR=colors_brown
@@ -246,7 +232,7 @@ foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
-SRC.TAG.RACE=Orc
+
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 TSPEECH=jobBrigand
@@ -262,6 +248,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 
@@ -270,13 +257,15 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=3
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={79 101}
 	dex={65 85}
 	int={18 37}
 
 	anatomy={25.0 50.0}
-	magicresistance={54.7 61.5}
+	magicresistance={25.0 50.0}
 	tactics={67.8 87.0}
 	wrestling={46.3 61.9} 
 	bushido={65.0 75.0}
@@ -297,7 +286,7 @@ ON=@NPCRestock
 	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_studded_leggings 2 }
 	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
 	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
-	item={ i_spear 4 i_pike 2 i_halberd 1 i_bariche 1 }
+	item={ i_spear 4 i_pike 2 i_halberd 1 i_bardiche 1 }
 	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
 	ITEM={ i_fur_sarong 1 i_pants_short 1 }
 	COLOR=colors_yellow
@@ -319,7 +308,7 @@ foodtype=65 t_meat_raw,t_food,t_fruit
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 TSPEECH=jobBrigand
@@ -334,6 +323,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -341,13 +331,15 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=3
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={79 101}
 	dex={65 85}
 	int={18 37}
 
 	anatomy={25.0 50.0}
-	magicresistance={54.7 61.5}
+	magicresistance={25.0 50.0}
 	tactics={67.8 87.0}
 	wrestling={46.3 61.9} 
 	bushido={65.0 75.0}
@@ -367,7 +359,7 @@ ON=@NPCRestock
 	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_studded_leggings 2 }
 	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
 	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
-	item={ i_spear 4 i_pike 2 i_halberd 1 i_bariche 1 }
+	item={ i_spear 4 i_pike 2 i_halberd 1 i_bardiche 1 }
 	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
 	ITEM={ i_fur_sarong 1 i_pants_short 1 }
 	COLOR=colors_yellow
@@ -390,7 +382,6 @@ CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
@@ -406,6 +397,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -413,13 +405,15 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={66 90}
 	dex={82 94}
 	int={16 37}
 
 	anatomy={66.3 71.9}
-	magicresistance={34.7 51.5}
+	magicresistance={25.0 50.0}
 	tactics={66.3 81.9}
 	fencing={46.3 61.9}
 	macefighting={46.3 61.9}
@@ -467,7 +461,7 @@ CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-SRC.TAG.RACE=Orc
+
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
@@ -483,6 +477,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -490,13 +485,15 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={66 90}
 	dex={82 94}
 	int={16 37}
 
 	anatomy={66.3 71.9}
-	magicresistance={34.7 51.5}
+	magicresistance={25.0 50.0}
 	tactics={66.3 81.9}
 	fencing={46.3 61.9}
 	macefighting={46.3 61.9}
@@ -560,6 +557,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -567,6 +565,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=5
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={62 84}
 	dex={26 47}
@@ -638,6 +638,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -645,6 +646,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=5
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={62 84}
 	dex={26 47}
@@ -718,6 +721,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 ON=@Create
 	NAME=#NAMES_ORC
@@ -725,6 +729,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=7
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={96 120}
 	dex={62 84}
@@ -795,6 +801,7 @@ TEVENTS=e_Human_Space
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
 
 	CATEGORY=Orc
 	SUBSECTION=Warriors
@@ -806,6 +813,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=7
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 	str={96 120}
 	dex={62 84}
@@ -884,6 +893,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}
@@ -978,6 +989,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 
 STR={44 58}
@@ -1072,6 +1085,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 
 STR={44 58}
@@ -1147,6 +1162,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 
 STR={44 58}
@@ -1223,6 +1240,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}
@@ -1291,6 +1310,8 @@ ON=@Create
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}
@@ -1359,6 +1380,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}
@@ -1441,6 +1464,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}
@@ -1505,14 +1530,13 @@ TEVENTS=e_Human_Environ
 TEVENTS=e_Level_up_NPC
 
 ON=@Create
-
-NPC=BRAIN_BANKER
-NEED=i_gold
-
+	NPC=BRAIN_BANKER
 	NAME=#NAMES_ORC
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={71 85}
 DEX={66 80}
@@ -1576,6 +1600,8 @@ NEED=i_FLOUR_SACK
 	COLOR=colors_orc
 	TAG.NPCAI.Rank=-1
 	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
 
 STR={44 58}
 DEX={33 47}

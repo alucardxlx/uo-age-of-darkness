@@ -331,151 +331,6 @@ initialize hits
 skill disappear
 
 
-TOP
-
-Animal taming reducing player "instincts"
-
-Craft systems
-	valorite/rose
-
-	Alchemy	db
-	 Purple - Turns player into a rat (dead wood)
-	 Orange - Performs a sleep spell on the player it's used on. (exec)
-	 Blue - Casts awaken on a player. (pumice)
-	 Yellow - (pig iron)
-
-batwing (shrink)
-eye of n (mana)
-dragon blood (restore)
-
-worm heart (chill)
-serpent scale (incog)
-
-bone (ground)
-blackmoor (clever)
-blood (inoc)
-fertile dirt (invis)
-dead
-exec (Orange: Sleep)
-
-brim (warmth)
-obs (stoneskin)
-pumice (Awake: Blue)
-pig iron
-daemon bone
-
-SCP
-	Skill usage
-	Artifacts
-
-
-*Currency
-	faster buy arrows
-	adjustable currency number
-	barter?
-	*ensure currency and modvalue used all over server
-		skill trains
-	?deed prices fix
-	drop on sell
-	sell price cursor check
-	Raise dead money
-	Checking
-
-Weather system
-	optimize snow/rain
-	Tel Mur/other areas
-
-Combat
-	Combat manuevers for new system
-
-inn/house log out
-
-Hirelings
-	Currency/loyalty
-	classses
-	AI
-
-
-HIGH
-
-
-*Language system
-	pass yell/whisper
-	pet name commands
-	client.0 error
-	more words
-
-
-*NPC AI
-	Pets: grazers graze, thievse steal, hiding , etc
-	Hireling control
-
-stables
-Virtue systems
-	Begging
-more quests
-farming
-	stealing crops
-	adjustable difficulty
-	pest difficulty
-	sabadilla
-	wild crops
-	crop cap
-Bonding
-	bandages
-
-orcs
-	class equipment
-	npcs
-
-Class abils (almost done)
-	assassin
-	shaman?
-
-event/encounter system
-Factionsys
-	Townstones
-		Taxing
-		Conquest
-		Vendors
-	Faction ranking
-		kills
-		donation
-		honoring
-guard rally
-feats
-	secondary power
-	+10.0 skill cap
-
-
-
-MEDIUM
-
-books
-spellweaving
-anti-macro systems
-diseases
-fountains
-
-
-
-LOW
-
-alphabetaize spellbooks
-unstack command
-add emote configs
-timestop powder
-
-492 slickenss
-486 dark purple
-495 brightblue wood
-48a bluegreen wood
-
-exodus teleports
-skill up/down locks
-artistry
-
-
 
 Thief
 Illusionist (cleric/thief)
@@ -610,7 +465,6 @@ Arquebuss
 Blunderbuss
 Main-Gauche
 Gargoyle Helm (horse-hair mohawk crest type)
-Gargoyle Belt (heavy armor belt)
 Hoe
 Atl-atl
 dwarven Arbalest
@@ -623,10 +477,11 @@ Paired swords
 Ether Monster
 Seeker
 Kith
-Sand Trap
+Sand Trap (red corpser, draws ant lions)
 Tangle Vines
 Dragon Turtle
 Lurker
+Bradle
 Brain Creature
 
 Mandril
@@ -636,10 +491,9 @@ Penguin
 Fox
 Shark
 Mouse
-vulture
+vulture (black eagle)
 Giant Bee
 Giant Centipede/Carrion Creeper
-Giant Crab
 
 Troll
 Cyclops
@@ -649,6 +503,7 @@ Emp
 Dwarf
 Halfling
 Pixie/Faerie
+Goblin
 
 Wildmen
 Gwani
@@ -656,7 +511,6 @@ Automaton
 Nixie
 Wingless Gargoyle
 
-Winged Gargoyle
 Angel
 
 Naga
