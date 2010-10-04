@@ -14,22 +14,22 @@
 
 //NPC AI System Options
 npcai_opt_formsquads  01 //NPCs will form squads (Boolean)
-npcai_opt_initializeRanks 00 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
+//npcai_opt_initializeRanks 00 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
 // (Fame + stats*10 + skills) / 2000
 npcai_opt_stationarysquads 00 //Squads will not roam around (Boolean)
 
-npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
+//npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
 npcai_opt_npcusepotions  01 //Faction NPCs will use potions (Boolean)
 npcai_opt_requiremtusehands 00 //Require MT_USEHANDS in order to heal self/use potions (Boolean)
 
 npcai_opt_initializeMagicAI 01 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
-npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
+//npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
 npcai_opt_castbeneficialspells 01 //NPCs will cast helpful spells on others (Boolean)
 
 npcai_opt_switchfrombow  01 //Faction NPC archers will switch to a melee weapon when in close combat (Boolean)
 npcai_opt_npclooting  01 //Use NPC Looting system on Faction NPCs (Boolean)
 
-npcai_opt_lowbodycount  01 //Keeps the body count low of NPCs that were slain by Faction NPCs (Boolean)
+//npcai_opt_lowbodycount  01 //Keeps the body count low of NPCs that were slain by Faction NPCs (Boolean)
 npcai_opt_clickrecognition 01 //Uses race based click recognition of NPCs (Boolean)
 
 //Debug Utilities

@@ -1,6 +1,7 @@
 VERSION=0.56
 
 [plevel 0]
+special
 explevel
 
 [plevel 5]
