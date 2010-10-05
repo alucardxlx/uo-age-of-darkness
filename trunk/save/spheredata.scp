@@ -1,0 +1,721 @@
+TITLE=Sphere World Script
+VERSION=0.56b-Nightly
+TIME=326976398
+SAVECOUNT=9765
+
+[TIMERF]
+CurTick=1
+
+[GLOBALS]
++="ranU87"
+aantal=03
+argn1=016e
+argn2=04000ef0e
+bankcurrency="CURRENCY"
+bet=03
+betflag=02
+buytotal=0295
+caterpillarattract=00
+caterpillarresist=031
+ccolor=04
+chance="-= 0"
+clientcount=01
+color1=0186d
+color2=01870
+color3=0186c
+colord1=01869
+colord2=01869
+colord3=01869
+colord4=01869
+colord5=01869
+counter=01
+cplace=04
+currency="CURRENCY"
+currencyindex=013
+currencyindex2=01
+currencypriorindex=013
+currencytotal=09b
+cycle=011
+damagepercent="0.250000"
+date=04
+day=04
+divide=01
+enough=01
+equipmeleeweapon.oldarchery="86.7"
+even=00
+exp=00
+expmsg="a little"
+firstcol=01870
+found=0ffff2d4e
+gestate.oldact=04fffffff
+halfrange=02
+hours=05
+index=01
+intline=0938
+left=0d2b2
+link=00
+listtotal=025c3
+lunar=082
+lunar2=0166
+magicinc=0352
+manatest=00
+mins=01b
+month=0a
+multiplier=02
+newchar=00
+newgold=050
+newobj=011fa1
+obj=00
+owner=015bec
+p="012d49,012d4a"
+petshrunk=0d859
+petuid=0e4fc
+phase=03
+phase2=04
+plant_care="looking fine to you."
+pos="5393,1003,5"
+rand=014
+randcast=014
+rollmsg=014
+rollvalue=014
+rune.01="Corp"
+season="winter"
+skillmodcalc=0816500
+slugattract=00
+slugresist=0f
+songlevel=02
+suid=0a695
+take=022
+text1=05
+text2=05
+thirdrange=03
+timemins="0.000030"
+totalgold=044818
+tree="i_tree_cedar2"
+tree_uid=040007db6
+tsize=01f4
+tsize1=01f4
+uid=00
+vend=00
+wager=028
+water_color=04
+water_text="Watered"
+x=012d49
+x1=05
+x2=00
+x3=04
+x4=04
+xpos=05a
+xpos1=05a
+xpos2=0140
+xpos3=014a
+xpos4=015e
+xpos5=0172
+y=012d4a
+y1=0f
+y2=00
+y3=04
+y4=05
+year=028
+yield=00
+zombie=0b449
+
+[WS a_world]
+NAME=Felucca
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.restockvendors=023280
+
+[WS a_cave_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_dungeon_2]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_dungeon_4]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_dungeon_23]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_dungeon_24]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hythloth_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_trinsic_stablery_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shop2_e_1]
+NAME=Buried Treasure Bank
+
+[WS a_britain_barracks_1]
+NAME=Rogues' Guild
+
+[WS a_yew_orcfort_outpost_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_guard_tower,e_region_enviro
+
+[WS a_yew_south_guardtower_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_guard_tower,e_region_enviro
+
+[WS a_fatted_calf_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_mighty_axe_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_entrance_from_vesper_cemetary_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_great_southern_bog_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_swamp,e_region_enviro
+
+[WS a_ruinshe_weeds_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_trinsic_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hidden_valley_temple_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ancient_ruins_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ice_dungeon_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_magincia_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_skara_brae_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_britain_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_moonglow_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_crossroads_1]
+FLAGS=0100
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_minoc_vesper_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_fishermans_hut_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_destard_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_brigand_fort_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_graveyard_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_despise_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deceit_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wrong_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_jhelom_moongate_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_daemon_temple_compound_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hedge_maze_2]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_cove_graveyard_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ice_dungeon_orc_fort_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ice_dungeon_lair_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ice_dungeon_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_fire_dungeon_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wrong_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wrong_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wrong_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_level_4_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_level_4_entryway_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hythloth_level_4_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hythloth_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hythloth_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hythloth_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_destard_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_destard_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_despise_entryway_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_despise_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_despise_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_despise_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deceit_level_4_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deceit_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deceit_level_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deceit_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_torture_room_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_lake_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_level_1_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_deep_forest_healing_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_paladins_hall_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_farmland_w_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_nujelm_merchants_association_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_moonglow_student_hostel_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_mages_seat_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_moonglow_healer_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_guildrcane_arts_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_moonglow_councelors_guild_hall_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_fruits_vegetables_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_scholars_goods_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_minoc_mine_1_1]
+EVENTS=r_default_rock,e_region_enviro
+
+[WS a_quality_fletching_1]
+NAME=Iolo's Bows
+
+[WS a_warehouse_c_1]
+NAME=Warehouse C
+
+[WS a_entrance_into_britain_sewers_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ophidian_lair_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_cityhe_dead_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_orcish_lands_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_hoppers_bog_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_swamp,e_region_enviro
+
+[WS a_trinsic_passage_3]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_fire_dungeon_4]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_dungeon,e_region_enviro
+
+[WS a_papua_4]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_delucia_5]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_road_to_deceit_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_humility]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_helpdesk]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_green_acres_2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_plains,e_region_enviro
+
+[WS a_green_acres_3]
+FLAGS=04c8e
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_plains,e_region_enviro
+
+[WS a_north_territory_mine2_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_passage_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_brit_passage2_n_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_north_territory_to_despise_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_brit_passage_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_shame_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_islehe_fire_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ice_isle_3]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_entrance_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_7]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wind_tunnels_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townwind]
+NAME=Dawn
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_sunspot_beach_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_orc_valley_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_monster_valley_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_great_northern_lake_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_crypts_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_orc_fort_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townyew]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.bbsid=0400163cf
+TAG.inflation=05f
+TAG.vendormarkup=05
+
+[WS a_vesper_cemetary_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townvesper]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.inflation=06e
+TAG.restockvendors=015180
+TAG.vendormarkup=05
+
+[WS a_towntrinsic]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.inflation=06e
+TAG.restockvendors=0e100
+TAG.vendormarkup=014
+
+[WS a_townskarabrae]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.bbsid=040003e4c
+TAG.inflation=05a
+TAG.restockvendors=02a300
+TAG.vendormarkup=0a
+
+[WS a_occlo_7]
+NAME=New Magincia
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.inflation=05a
+TAG.vendormarkup=0f
+
+[WS a_townnujelm]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townzoo]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_minoc_mining_camp_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townmagincia]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_south_jhelom_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townjhelom]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.inflation=069
+TAG.vendormarkup=014
+
+[WS a_orc_camp_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_towncove]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.inflation=055
+TAG.restockvendors=03f480
+TAG.vendormarkup=014
+
+[WS a_townbucsden]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_bucs_den,e_region_enviro
+
+[WS a_lord_blackthornes_castle_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_black_castle,e_region_enviro
+
+[WS a_lord_britishs_castle_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_brit_castle,e_region_enviro
+
+[WS a_britain_graveyard_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_britain_west_guardtower_1]
+FLAGS=0880
+
+[WS a_townbritain]
+NAME=Britain
+FLAGS=04180
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.bbsid=040006a87
+TAG.inflation=073
+TAG.noredeed=01
+TAG.restockvendors=0e100
+TAG.sign=04000b113
+TAG.vendormarkup=0f
+
+[WS a_yew_ter]
+NAME=Spiritwood
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_northern_territory_1]
+NAME=Northern Territory
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_vesper_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_trinsic_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_skara_ter]
+NAME=Skara Brae Territory
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_occlo_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_moonglow_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townmoonglow]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_minoc_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_mt_kendall_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_townminoc]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+TAG.restockvendors=015180
+TAG.vendormarkup=0a
+
+[WS a_magincia_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_jhelom_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_cove_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_buccaneers_den_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_bucs_den,e_region_enviro
+
+[WS a_britain_territory_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wastelands_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_plains,e_region_enviro
+
+[WS a_dungeons]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_dungeon,e_region_enviro
+
+[WS a_guard_island_1]
+FLAGS=04000
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_covetous_mine_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_britain_fields]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_sak_teb]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_plains,e_region_enviro
+
+[WS a_desert_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_bog_desolation]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_swamp_destard]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_rock_ridge]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_wisp_circle]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ml_dungeon_4]
+FLAGS=08000
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ml_dungeon_5]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ml_dungeon_6]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_world_map1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_lbr]
+EVENTS=r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_gargoyle_city]
+EVENTS=e_region_enviro
+
+[WS a_montor]
+EVENTS=e_region_enviro
+
+[WS a_ancient_citadel]
+EVENTS=e_region_enviro
+
+[WS a_alexandretta_bowl]
+EVENTS=e_region_enviro
+
+[WS a_gypsy_camp_n1]
+EVENTS=e_region_enviro
+
+[WS a_gypsy_camp_n4]
+EVENTS=e_region_enviro
+
+[WS a_desert_outpost]
+EVENTS=e_region_enviro
+
+[WS a_twisted_weald]
+NAME=Twisted Weald
+GROUP=Ilshenar
+FLAGS=088e
+
+[WS a_abyss]
+EVENTS=e_region_enviro
+
+[WS a_aos]
+EVENTS=r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_luna]
+EVENTS=e_region_enviro
+
+[WS a_doom]
+EVENTS=e_region_enviro
+
+[WS a_doom_gauntlet]
+EVENTS=e_region_enviro
+
+[WS a_se]
+EVENTS=r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_zento]
+EVENTS=e_region_enviro
+
+[WS a_sa]
+EVENTS=r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_underworld]
+EVENTS=e_region_enviro
+
+[WS a_stygian_abyss]
+EVENTS=e_region_enviro
+
+[EOF]

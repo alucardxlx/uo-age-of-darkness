@@ -239,7 +239,8 @@ on=@create
 	KARMA={-4000 -4999}
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
@@ -561,7 +562,8 @@ on=@create
      givelang 9
 
      TAG.RANDCAST=50
-     TAG.QUICKCAST = 50
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_intel_char_necro_user
 
@@ -636,7 +638,8 @@ on=@create
      karma=-6000
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 50
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_intel_char_necro_user
 
@@ -854,7 +857,8 @@ on=@create
      karma={4000 4999}
 
      TAG.RANDCAST=20
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 10
      EVENTS=+e_intel_char_chivalry_user
 
 
@@ -923,7 +927,8 @@ on=@create
      karma={6000 6999}
 
      TAG.RANDCAST=20
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_chivalry_user
 
 
@@ -988,7 +993,6 @@ on=@create
      karma={-5000 -5999}
 
      TAG.RANDCAST=10
-     TAG.QUICKCAST = 40
      EVENTS=+e_intel_char_necro_user
 
 [chardef 030c]
@@ -1106,7 +1110,7 @@ on=@create
      EXP={ 8050 11000 } //Level 5
 
      TAG.RANDCAST=10
-     TAG.QUICKCAST = 40
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
 
 on=@death
@@ -1278,6 +1282,8 @@ DAM=15,20
 ARMOR=56
 FOODTYPE=45 t_ore,t_ingot
 TEvents=t_weapon_mace_pick
+TEVENTS=e_Level_up_NPC
+
 CATEGORY=New Monsters
 SUBSECTION=Stygian Abyss
 DESCRIPTION=Iron Beetle
@@ -1322,5 +1328,55 @@ if (<act.type>==t_ore) && (<food> < <maxfood>)
 	act.dclick
 endif
 
+
+[CHARDEF 721]
+DEFNAME=c_mind_whipper
+NAME=mind whipper
+DAM=13,17
+ARMOR=30
+CAN=mt_walk|mt_run|mt_usehands
+MOVERATE=0
+FOODTYPE=30 t_meat_raw
+tag.wrestlingspeed=45
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_mind_whip
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=3
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=General
+description=Mind Whipper
+
+ON=@CREATE
+NPC=brain_monster
+STR={99 125}
+DEX={58 83}
+INT={215 247}
+
+nightsight=1
+
+FAME={ 5000 6000 }
+KARMA={ -4000 -5000 }
+EXP={ 33500 41900 } //Level 7
+
+RESCOLD=40
+RESPOISON=20
+
+WRESTLING={72.0 92.0}
+TACTICS={55.7 75.9}
+ANATOMY={54.0 87.9}
+MAGICRESISTANCE={75.0 80.0}
+magery={70.0 90.0}
+evaluatingintel={91.9 100.0}
+MEDITATION={91.9 100.0}
+
+TAG.RANDCAST=50
+TAG.QUICKCAST = 20
+TAG.SPELLPOWER = 20
+EVENTS=+e_intel_char_magery_user
 
 [eof]

@@ -66,9 +66,9 @@ on=@create
      evaluatingintel={90.1 98.0}
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
 
      fame={6000 8000}
      karma={-7000 -7999}
@@ -127,9 +127,10 @@ on=@create
      int={51 75}
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
+
 	givelang 8
 
      magery={95.0 98.0}
@@ -310,10 +311,10 @@ on=@create
      tactics={90.1 99.7}
      wrestling={91.2 99.7}
 
-	resfire=30
+	resfire=24
 	rescold=60
-	respoison=30
-	resenergy=30
+	respoison=24
+	resenergy=24
 
 	givelang 8
 
@@ -380,9 +381,9 @@ on=@create
      evaluatingintel={90.1 99.7}
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
 
 
      EXP={ 1050 1450 } //Level 2
@@ -446,9 +447,10 @@ on=@create
 
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
+
 	givelang 8
 
      fame={4500 6500}
@@ -472,7 +474,7 @@ icon=i_pet_daemon
 anim=03fbc7f
 can=mt_equip|mt_walk|mt_fly|mt_usehands
 dam=9,12
-armor=44
+armor=42
 moverate=0
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
@@ -511,7 +513,6 @@ on=@create
 
      meditation={27.3 50.8}
      evaluatingintel={27.3 50.8}
-     swordsmanship={70.0 90.0}
      parrying={65.0 75.0}
      anatomy={35.6 55.7}
      magery={96.9 99.1}
@@ -520,9 +521,10 @@ on=@create
      wrestling={91.2 99.7}
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
+
 	givelang 8
 
      fame={4000 6000}
@@ -533,7 +535,6 @@ on=@create
      TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
 
-     item={ I_Sword_daemon 1 0 1 }
 
 [chardef 026]
 defname=c_balron
@@ -542,7 +543,7 @@ sound=snd_monster_daemon1
 icon=i_pet_daemon_gate_lbr
 can=mt_walk|mt_fly|mt_usehands
 dam=11,15
-armor=50
+armor=46
 moverate=0
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 foodtype=15 t_meat_raw
@@ -584,7 +585,6 @@ on=@create
      tactics={98.0 100.0}
      meditation={27.3 50.8}
      evaluatingintel={80.4 93.6}
-     swordsmanship={70.0 90.0}
      anatomy={35.6 55.7}
      magicresistance=100.0
      wrestling={91.2 99.7}
@@ -594,9 +594,10 @@ on=@create
      karma={-6000 -6999}
 
 	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
+	rescold=24
+	respoison=24
+	resenergy=24
+
 	givelang 8
 
      TAG.RANDCAST=30
@@ -604,15 +605,13 @@ on=@create
      TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
 
-     item=I_Sword_daemon
-
 [chardef 028]
 defname=c_orcus
 name="orcus"
 sound=snd_monster_daemon1
 icon=i_pet_daemon_elder_lbr
 dam=13,17
-armor=65
+armor=60
 moverate=0
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 can=mt_equip|mt_walk|mt_fly|mt_usehands
@@ -654,7 +653,6 @@ on=@create
 
      meditation={35.6 55.7}
      evaluatingintel={80.4 93.6}
-     swordsmanship={80.0 95.8}
      parrying={70.4 83.6}
      anatomy={65.0 75.0}
      magicresistance=100.0
@@ -666,17 +664,16 @@ on=@create
      fame={8000 10000}
      karma={-9000 -9999}
 	resfire=65
-	rescold=35
+	rescold=28
 	respoison=65
-	resenergy=35
+	resenergy=28
+
 	givelang 8
 
      TAG.RANDCAST=30
      TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
-
-     item=I_Sword_daemon
 
 
 
