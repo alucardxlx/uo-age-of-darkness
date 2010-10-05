@@ -201,9 +201,9 @@ ELSE
 	OBJ=<SRC>
 ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze)
-		if <npccast_magery_summon>
+		if <npccast_magery_heavy_offense> 
 			return 0
-		elif <npccast_magery_heavy_offense> 
+		elif <npccast_magery_summon>
 			return 0
 		endif
 	endif
@@ -257,9 +257,9 @@ ELSE
 	OBJ=<SRC>
 ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze)
-		if <npccast_magery_summon>
+		if <npccast_magery_heavy_offense> 
 			return 0
-		elif <npccast_magery_heavy_offense> 
+		elif <npccast_magery_summon>
 			return 0
 		endif
 	endif
@@ -368,11 +368,11 @@ IF (<HITS> < <MAXHITS>)
 		return 0
 	ENDIF
 ENDIF
-
-RETURN 0
 IF !(<FLAGS>&statf_war)
 	SKILL <MEDITATION>
 ENDIF
+
+RETURN 0
 
 
 ON=@SPELLEFFECT
@@ -422,9 +422,9 @@ IF (<ATTACKER> > 0)
 		ENDIF
 	ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze) //if target is paralyzed hit em good while you can
-		if <npccast_magery_summon>
+		if <npccast_magery_heavy_offense> 
 			return 0
-		elif <npccast_magery_heavy_offense> 
+		elif <npccast_magery_summon>
 			return 0
 		endif
 	endif

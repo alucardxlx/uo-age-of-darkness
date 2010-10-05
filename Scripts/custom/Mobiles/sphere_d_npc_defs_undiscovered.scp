@@ -1369,36 +1369,6 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
-[CHARDEF 721]
-DEFNAME=c_mind_ripper
-NAME=mind ripper
-DAM=3,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_usehands
-MOVERATE=0
-FOODTYPE=30 t_crops, t_fruit, t_grain
-tag.wrestlingspeed=44
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME={ 4500 5500 }
-KARMA={ -4000 -5000 }
-
-STR={99 125}
-DEX={58 83}
-INT={215 247}
-
-WRESTLING={50.3 70.5}
-TACTICS={55.7 75.9}
-ANATOMY={54.0 87.9}
-PARRYING={50.0 85.0}
-MAGICRESISTANCE={70.0 90.0}
-MEDITATION={70.0 90.0}
 
 
 

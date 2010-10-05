@@ -251,6 +251,23 @@ IF (<ACT.TYPE> == t_corpse) && !(<ACT.MOREY>)
 	EMOTE drain the corpse to heal
 ENDIF
 
+[EVENTS e_mind_whip] 
+
+on=@NPCActFight
+     if (rand(5) == 1) && (<mana> > 18)
+		FOR 3
+			DORAND 5
+				src.spelleffect s_Hallucination,1000
+				src.spelleffect s_feeblemind,1000
+				src.spelleffect s_mana_drain,1000
+				src.spelleffect s_pain_spike,1000
+				src.spelleffect s_paralyze,1000
+			enddo
+		ENDFOR
+		mana -= 18
+		src.emote reel from a mind whip
+	endif
+
 [EVENTS e_acidic] 
 ON=@HIT
      if (rand(4) == 1)
