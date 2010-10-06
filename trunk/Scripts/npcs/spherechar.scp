@@ -3478,45 +3478,6 @@ ON=@Create
 	MAGICRESISTANCE={8.0 19.0}
 	TACTICS={8.0 19.0}
 
-[CHARDEF 023d]
-//T2A ENERGY VORTEX
-//Can't be seen by non-T2A clients, so we need to fix this before it should be used.
-//Regular clients will not be able to see what is attacking them.
-//In the mean time when this monster is summoned it will call monster number 1063, a hand-edited energy vortex.
-DEFNAME=c_vortex
-NAME=Energy Vortex
-CAN=MT_WALK|MT_FLY|MT_FIRE_IMMUNE|MT_RUN|MT_USEHANDS
-SOUND=snd_ELEMENTL_AIRELEM5
-ICON=i_FX_Blade_Spirit_1
-DAM=8,10
-ARMOR=10
-FOODTYPE=
-RESLEVEL=1
-RESDISPDNID=c_elem_air
-RESDISPDNHUE=01a2
-BLOODCOLOR=colors_pink
-CATEGORY=Miscellaneous
-SUBSECTION=Blade Spirits
-DESCRIPTION=Energy Vortex
-
-ON=@Create
-	BODY=c_elem_air //Edit Out to be New Style
-	NAME=Energy Vortex
-	COLOR=0d // Edit out to be new style
-	NPC=brain_berserk
-	STR=300
-	DEX=1000
-	INT=1
-	TACTICS=500.0
-	WRESTLING=500.0
-	POISONING=600.0
-	FAME=500
-	KARMA=-100
-	//ALIGNMENT=EVIL
-	//SPELLCIRCLE=3-5
-	ITEMNEWBIE=i_light_source
-	ATTR=attr_magic|attr_newbie
-
 [CHARDEF 03ca]
 DEFNAME=c_grim_reaper
 NAME=Grim Reaper
