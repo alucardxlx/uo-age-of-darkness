@@ -49,7 +49,7 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_greater_daemon"
-     TAG.NPCAI.Rank=4
+     TAG.NPCAI.Rank=5
      SetDemon
 
      str={151 175}
@@ -119,7 +119,7 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_daemon"
-     TAG.NPCAI.Rank=3
+     TAG.NPCAI.Rank=4
      SetDemon
 
      str={341 366}
@@ -430,7 +430,7 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_succubus"
-     TAG.NPCAI.Rank=3
+     TAG.NPCAI.Rank=4
      SetDemon
 
      str={206 235}
@@ -575,7 +575,7 @@ on=@create
      str={247 260}
      dex={81 91}
      int={147 164}
-     TAG.NPCAI.Rank=4
+     TAG.NPCAI.Rank=5
      SetDemon
 
      EXP={ 520000 640000 } //Level 11
@@ -642,7 +642,7 @@ on=@create
 	nightsight=1
      name="#names_greater_daemon"
      npc=brain_monster
-     TAG.NPCAI.Rank=5
+     TAG.NPCAI.Rank=6
      SetDemon
 
      str={257 270}
@@ -709,7 +709,7 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_greater_daemon"
-     TAG.NPCAI.Rank=4
+     TAG.NPCAI.Rank=5
      SetDemon
 
      str={280 305}
@@ -829,7 +829,7 @@ description=djinn - lbr
 on=@create
 	nightsight=1
      npc=brain_monster
-     TAG.NPCAI.Rank=3
+     TAG.NPCAI.Rank=4
      SetDemon
 
      str={87 103}
@@ -897,7 +897,7 @@ ON=@Create
 	nightsight=1
 	NPC=brain_monster
 	name="#names_greater_daemon"
-	TAG.NPCAI.Rank=5
+	TAG.NPCAI.Rank=6
 	SetDemon
 
 	FAME={5000 8000} 

@@ -227,6 +227,7 @@ description=Skeleton
 on=@create
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={51 66}
      dex={56 73}
@@ -280,6 +281,7 @@ on=@create
      TAG.NPCAI.Rank=2
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={91 106}
      dex={96 109}
@@ -341,6 +343,7 @@ on=@create
      TAG.NPCAI.Rank=4
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={152 179}
      dex={106 128}
@@ -396,6 +399,7 @@ on=@create
      TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      color=17969
 
@@ -461,7 +465,7 @@ on=@create
      TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
-
+     nightsight=1
 
      str={258 277}
      dex={81 96}
@@ -519,7 +523,7 @@ on=@create
      TAG.NPCAI.Rank=6
      npc=brain_undead
      SetUndead
-
+     nightsight=1
 
         str={91 116}
         dex={76 93}
@@ -604,6 +608,7 @@ ON=@Create
      TAG.NPCAI.Rank=4
      npc=brain_undead
      SetUndead
+     nightsight=1
 
 	FAME={2100 3000} 
 	KARMA={-5000 -6999} 
@@ -664,7 +669,7 @@ description=Patchwork Skeleton
 ON=@Create 
      npc=brain_undead
      SetUndead
-
+     nightsight=1
 
      str={41 56}
      dex={46 63}
@@ -714,6 +719,7 @@ description=Mound of Maggots
 ON=@Create 
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={71 86}
      dex={46 63}
@@ -760,7 +766,7 @@ description=Deformed Zombie
 ON=@Create 
      npc=brain_undead
      SetUndead
-
+     nightsight=1
 
      str={67 78}
      dex={24 38}
@@ -814,6 +820,7 @@ on=@create
      TAG.NPCAI.Rank=6
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={316 350}
      dex={55 92}
@@ -872,6 +879,7 @@ description=Skeletal Mount
 on=@create
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={105 126}
      dex={85 105}
@@ -922,6 +930,7 @@ ON=@Create
      TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
+     nightsight=1
 
 	FAME={3500 4500} 
 	KARMA={-5000 -6999} 
@@ -979,6 +988,7 @@ ON=@CREATE
      TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={85 102}
      dex={73 91}
@@ -1039,6 +1049,7 @@ on=@create
      TAG.NPCAI.Rank=1
      npc=brain_undead
      SetUndead
+     nightsight=1
 
 
 Str={175 190}
@@ -1091,6 +1102,7 @@ on=@create
      TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={444 595}
      dex={235 598}
@@ -1128,7 +1140,7 @@ ON=@CREATE
      TAG.NPCAI.Rank=8
      npc=brain_undead
      SetUndead
-
+     nightsight=1
 
 FAME=45
 KARMA=0
