@@ -7652,8 +7652,12 @@ Ysull
 Ysyssa
 
 [NAMES NAMES_pixie]
+28
+Calee
 Ciline
 Cynthe
+Hali
+Jiki
 Klian
 Klistra
 Laeri
@@ -7661,11 +7665,14 @@ Liera
 Nedra
 Os
 Oune
+Ourie
 Pieppe
 Piku
 Rael
 Sefi
 Shendin
+Shendri
+Shiale
 Shri
 Sili
 Sini
@@ -7673,7 +7680,7 @@ Wienne
 Xian
 Ybri
 Zanne
-Zut 
+Zut
 
 [NAMES NAMES_SAVAGE_FEMALE]
 Aicee
@@ -8427,5 +8434,61 @@ Yuuta
 Yuuto
 
 
+[NAMES names_centaur]
+30
+Sophanon
+Caryax
+Daemeox
+Phlegon
+Aerophus
+Euforus
+Pallax
+Nikaon
+Licouax
+Lindsaon
+Bastax
+Magdanon
+Thayax
+Aethon
+Ceridus
+Galenon
+Rhysus
+Auramax
+Aldrax
+Anaxus
+Luceus
+Quarax
+Ariax
+Balarax
+Vincenus
+Loxias
+Birhamus
+Lekax
+Nyctinus
+Myrsinus
+
+
+[NAMES names_shadowknight]
+20
+Oghmus
+Arametheus
+Terxor
+Erdok
+Archatrix
+Jonar
+Marth'Fador
+Helzigar
+Tyrnak
+Krakus
+Marcus Fel
+Lord Kaos
+Doomor
+Uhn
+Malashim
+Samael
+Nelokhiel
+Montobulus
+Usuhl
+Zul
 
 [EOF]
