@@ -1,0 +1,53 @@
+[ITEMDEF 02649]
+DEFNAME=i_pants_jester
+NAME=jester pants
+TYPE=t_clothing
+ARMOR=3
+WEIGHT=2.0
+REQSTR=10
+RESOURCES=8 i_cloth
+SKILLMAKE=tailoring 27.2, t_sewing_kit
+DYE=1
+FLIP=1
+DUPELIST=0264A
+TEVENTS=t_equip_3d_fix
+
+TAG.DispID=i_pants_long
+
+CATEGORY=Provisions - Clothes
+SUBSECTION=Pants & Skirts
+DESCRIPTION=Jester Pants
+
+ON=@Create
+ HITPOINTS={ 30 50 }
+
+[ITEMDEF 0264A]
+DUPEITEM=02649
+
+
+
+[ITEMDEF 02655]
+DEFNAME=i_shoes_jester
+NAME=jester shoes
+TYPE=t_clothing
+ARMOR=3
+WEIGHT=1.0
+REQSTR=10
+RESOURCES=6 i_hides_cut
+SKILLMAKE=tailoring 18.1, t_sewing_kit
+DYE=1
+FLIP=1
+DUPELIST=02656
+TEVENTS=t_equip_3d_fix
+
+TAG.DispID=i_shoes_plain
+
+CATEGORY=Provisions - Clothes
+SUBSECTION=Footwear
+DESCRIPTION=Jester Shoes
+
+ON=@Create
+ HITPOINTS={ 30 50 }
+
+[ITEMDEF 02656]
+DUPEITEM=02655
