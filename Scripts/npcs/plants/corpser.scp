@@ -1,0 +1,52 @@
+[chardef 08]
+defname=c_corpser
+name=corpser
+can=mt_nonmover|mt_nonhum
+moverate=100
+dam=10,23
+armor=15,20
+icon=i_pet_corpser
+sound=snd_monster_corpsr1
+resources=
+foodtype=24 t_meat_raw
+//shelter=r_jungle,r_swamp,r_forests
+aversions=t_fire
+desires=c_ice_corpser
+bloodcolor=0
+
+category=Monsters
+subsection=Plants
+description=Ice Corpser
+
+on=@Create
+ npc=brain_monster
+ color=0
+
+ fame=1000
+ karma=-1000
+
+// tag.poisondamage=40
+
+ resfire={ 15 25 }
+ rescold={ 10 20 }
+ respoison={ 20 30 }
+ resenergy={ 0 0 }
+
+ ostr={ 156 180 }
+ odex={ 26 45 }
+ oint={ 26 40 }
+ maxhits={ 94 108 }
+ maxstam=<odex>
+ maxmana={ 0 0 }
+
+ wrestling={ 45.0 60.0 }
+ tactics={ 45.0 60.0 }
+ magicresistance={ 15.0 20.0 }
+ anatomy={ 0.0 0.0 }
+ hiding={ 75.0 80.0 }
+ parrying={ 15.0 25.0 }
+
+on=@NPCRestock
+ item=i_gold { 50 100 }
+ item={ i_log 1 i_board 1 }, 10
+ item=random_reagant, 3

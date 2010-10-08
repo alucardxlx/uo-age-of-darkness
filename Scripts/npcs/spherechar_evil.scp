@@ -1250,43 +1250,6 @@ ON=@Create
 ON=@NPCRestock
 	ITEM=loot_FROST_SPIDER
 
-
-[CHARDEF 01053]
-DEFNAME=c_m_swamp_tentacles
-NAME=Swamp Tentacles
-ID=c_CORPSER
-SOUND=snd_MONSTER_CORPSR1
-ICON=i_pet_CORPSER
-CAN=MT_WALK
-FOODTYPE=24 t_meat_raw
-DAM=3,15
-ARMOR=15
-//RESOURCES=5 t_eerie_stuff
-//ALIGNMENT=CHAOTIC
-//SHELTER==r_swamp
-AVERSIONS=r_civilization
-CATEGORY=Monsters
-SUBSECTION=Miscellaneous
-DESCRIPTION=Swamp Tentacles
-
-ON=@Create
-	COLOR=colors_green
-	STR={96 120}
-	DEX={66 85}
-	INT={66 80}
-	PARRYING={15.0 25.0}
-	MAGICRESISTANCE={15.0 20.0}
-	TACTICS={65.0 80.0}
-	WRESTLING={65.0 80.0}
-	HIDING=75.0
-	NPC=brain_monster
-	FAME={100 2000}
-	KARMA={-1000 -5000}
-
-ON=@NPCRestock
-	ITEM=loot_SWAMP_TENTACLE
-
-
 [CHARDEF 01054]
 DEFNAME=c_m_frost_troll
 NAME=Frost Troll

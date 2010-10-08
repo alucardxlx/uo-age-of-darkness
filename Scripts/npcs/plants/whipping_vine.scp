@@ -1,0 +1,56 @@
+[chardef c_whipping_vine]
+defname=c_whipping_vine
+id=c_corpser
+name=whipping vine
+can=mt_nonmover|mt_nonhum
+moverate=100
+dam=7,25
+armor=75,85
+icon=i_pet_corpser
+sound=snd_monster_corpsr1
+resources=
+foodtype=24 t_meat_raw
+//shelter=r_jungle,r_swamp
+aversions=t_fire
+desires=c_whipping_vine
+bloodcolor=0
+
+tevents=//immune to level 5 poison and below.
+
+category=Monsters
+subsection=Plants
+description=Swamp Tentacle
+
+on=@Create
+ npc=brain_monster
+ color=0059C
+
+ fame=1000
+ karma=-1000
+
+// tag.poisondamage=30
+
+ resfire={ 15 25 }
+ rescold={ 15 25 }
+ respoison={ 75 85 }
+ resenergy={ 35 45 }
+
+ ostr={ 251 300 }
+ odex={ 76 100 }
+ oint={ 26 40 }
+ maxhits=<ostr>
+ maxstam=<odex>
+ maxmana={ 0 0 }
+
+ wrestling={ 70.0 70.0 }
+ tactics={ 70.0 70.0 }
+ magicresistance={ 70.0 70.0 }
+ anatomy={ 0.0 0.0 }
+ hiding={ 75.0 80.0 }
+ parrying={ 70.0 70.0 }
+
+on=@NPCRestock
+ item=random_reagants, 3
+ item=i_reag_executioners_cap
+ item=i_reag_fertile_firt, { 1 10 }
+// item={ random_decorative_vine 1 0 9 }
