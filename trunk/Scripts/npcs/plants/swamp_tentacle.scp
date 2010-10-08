@@ -1,0 +1,53 @@
+[chardef 042]
+defname=c_swamp_tentacle
+name=swamp tentacle
+can=mt_nonmover|mt_nonhum
+moverate=100
+dam=6,12
+armor=25,35
+icon=i_pet_corpser
+sound=snd_monster_corpsr1
+resources=
+foodtype=24 t_meat_raw
+//shelter=r_jungle,r_swamp
+aversions=t_fire
+desires=c_swamp_tentacle
+bloodcolor=0
+
+tevents=//immune to level 3 poison and below.
+
+category=Monsters
+subsection=Plants
+description=Swamp Tentacle
+
+on=@Create
+ npc=brain_monster
+ color=0
+
+ fame=3000
+ karma=-3000
+
+// tag.poisondamage=60
+
+ resfire={ 10 20 }
+ rescold={ 10 20 }
+ respoison={ 60 80 }
+ resenergy={ 10 20 }
+
+ ostr={ 96 120 }
+ odex={ 66 85 }
+ oint={ 16 30 }
+ maxhits={ 58 72 }
+ maxstam=<odex>
+ maxmana={ 0 0 }
+
+ wrestling={ 65.0 80.0 }
+ tactics={ 65.0 80.0 }
+ magicresistance={ 15.0 20.0 }
+ anatomy={ 0.0 0.0 }
+ parrying={ 15.0 25.0 }
+ hiding={ 75.0 80.0 }
+
+on=@NPCRestock
+ item=i_gold { 125 175 }
+ item=random_reagant, 3
