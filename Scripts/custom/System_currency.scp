@@ -606,12 +606,13 @@ DTEXT 360 300 1152 Local Currency: <eval (<src.currencylocal>)>c
 
 [DIALOG d_buy BUTTON]
 ONBUTTON=1
-IF (0<src.tag0.scroll> > 0)
-src.tag0.scroll=<src.tag0.scroll>+-1
+IF (0<src.tag0.scroll> > 4)
+src.tag0.scroll=<src.tag0.scroll>+-5
 scrollslots
 SDIALOG d_buy
 RETURN 0
 ELSE
+src.tag0.scroll=0
 scrollslots
 SDIALOG d_buy
 RETURN 0
@@ -619,7 +620,7 @@ ENDIF
 
 ONBUTTON=2
 IF (<FINDLAYER(layer_vendor_stock).FINDCONT.<eval 0<SRC.TAG.VENDOROFFSET>+4+0<src.tag0.scroll>>.AMOUNT> > 0)
-src.tag0.scroll=<src.tag0.scroll>+1
+src.tag0.scroll=<src.tag0.scroll>+5
 scrollslots
 SDIALOG d_buy
 RETURN 0
