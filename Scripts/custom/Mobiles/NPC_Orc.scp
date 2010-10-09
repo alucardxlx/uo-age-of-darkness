@@ -75,6 +75,7 @@ ARMOR=4
 
 [CHARDEF c_orc_grunt]
 ID=0190
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
@@ -150,6 +151,7 @@ on=@deathcorpse
 
 [CHARDEF c_orc_grunt_f]
 ID=0191
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
@@ -231,7 +233,7 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
@@ -378,7 +380,7 @@ NAME="orc archer"
 ID=0190
 moverate=0
 SOUND=snd_MONSTER_ORC1
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
@@ -542,7 +544,7 @@ DESIRES=t_coin,t_gem,t_armor_leather,t_food,t_gem,t_scroll,t_weapon_mace_staff,t
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 tspeech=spk_orc
@@ -705,7 +707,7 @@ SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 ARMOR=4
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
@@ -863,7 +865,7 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 ID=0190
 moverate=0
 
@@ -1058,7 +1060,7 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 
 TSPEECH=spk_human_prime
@@ -1206,7 +1208,7 @@ DESCRIPTION=Fur trader (female)
 ID=0190
 NAME="orc healer"
 moverate=0
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
@@ -1353,7 +1355,7 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,
 foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 
 TSPEECH=spk_human_prime
@@ -1506,7 +1508,7 @@ DESCRIPTION=Provisioner (male)
 [CHARDEF C_orc_BANKER]
 NAME=orc banker
 ID=0190
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
@@ -1569,7 +1571,7 @@ NAME="orc bowyer"
 SOUND=snd_MONSTER_ORC1
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
 foodtype=65 t_meat_raw,t_food,t_fruit
-CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 DAM=2,8
 ARMOR=4
 ID=0190
@@ -1637,300 +1639,6 @@ BUY=VENDOR_B_BOWYER
 CATEGORY=Civilized
 SUBSECTION=Tradesmen (Orc)
 DESCRIPTION=Bowyer (male)
-
-
-[CHARDEF C_E_GUARD]
-NAME=#NAMES_ELF_MALE the Guard
-ID=C_ELF_MALE
-DAM=15,20
-ARMOR=20
-//SHELTER=r_civilization,r_GUARDPOST
-//AVERSIONS=ANYONE WITH NEGATIVITY (SHOWS AGGRESION)
-
-TSPEECH=spk_human_prime
-TSPEECH=jobGuard
-TSPEECH=spk_needs
-TSPEECH=spk_rehello
-TSPEECH=spk_human_default
-
-TEVENTS=e_Human_HearUnk
-TEVENTS=e_Human_Needs
-TEVENTS=e_Human_ConvInit
-TEVENTS=e_Human_Greet
-TEVENTS=e_Human_Space
-TEVENTS=e_Human_Refuse
-TEVENTS=e_Human_Environ
-TEVENTS=e_Level_up_NPC
-
-CATEGORY=Civilized
-SUBSECTION=Guards & Law
-DESCRIPTION=Guard (male)
-
-ON=@Create
-NPC=brain_guard
-//ALIGNMENT=GOOD
-COLOR=colors_elf
-STR={151 165}
-DEX={151 165}
-INT={151 165}
-
-	givelang 2
-
-DETECTINGHIDDEN={90.0 100.0}
-FORENSICS={90.0 100.0}
-FENCING={90.0 100.0}
-PARRYING={90.0 100.0}
-SWORDSMANSHIP={90.0 100.0}
-WRESTLING={90.0 100.0}
-MACEFIGHTING={90.0 100.0}
-MAGICRESISTANCE={90.0 100.0}
-TACTICS={90.0 100.0}
-
-ITEMNEWBIE=i_lantern
-ITEMNEWBIE=random_elf_male_hair
-COLOR=colors_elf_hair
-
-
-
-ON=@NPCRestock
-ITEM={ i_elven_shirt 1 i_elven_shirt_dark 1 i_shirt_plain 1 }
-COLOR=colors_all
-ITEM=random_pants
-COLOR=colors_all
-ITEM=i_Elven_armor_plate_chest
-ITEM=i_Elven_armor_plate_legs
-ITEM=i_Elven_armor_plate_arms
-ITEM=random_over_armor
-COLOR=colors_all
-ITEM=i_halberd
-ITEM=random_coin_purse
-ITEM=03e91	// on cu sidhe
-
-ON=@NPCRefuseItem
-	SAY I cannot be bribed. be gone.
-	return 1
-
-[CHARDEF c_E_guard_f]
-NAME=#NAMES_ELF_FEMALE the Guard
-ID=C_ELF_FEMALE
-DAM=15,20
-ARMOR=20
-//SHELTER=r_civilization,r_GUARDPOST
-//AVERSIONS=ANYONE WITH NEGATIVITY (SHOWS AGGRESION)
-
-TSPEECH=spk_human_prime
-TSPEECH=jobGuard
-TSPEECH=spk_needs
-TSPEECH=spk_rehello
-TSPEECH=spk_human_default
-
-TEVENTS=e_Human_HearUnk
-TEVENTS=e_Human_Needs
-TEVENTS=e_Human_ConvInit
-TEVENTS=e_Human_Greet
-TEVENTS=e_Human_Space
-TEVENTS=e_Human_Refuse
-TEVENTS=e_Human_Environ
-TEVENTS=e_Level_up_NPC
-
-CATEGORY=Civilized
-SUBSECTION=Guards & Law
-DESCRIPTION=Guard (female)
-
-ON=@Create
-NPC=brain_guard
-//ALIGNMENT=GOOD
-COLOR=colors_elf
-STR={151 165}
-DEX={151 165}
-INT={151 165}
-
-	givelang 2
-
-DETECTINGHIDDEN={90.0 100.0}
-FORENSICS={90.0 100.0}
-FENCING={90.0 100.0}
-PARRYING={90.0 100.0}
-SWORDSMANSHIP={90.0 100.0}
-WRESTLING={90.0 100.0}
-MACEFIGHTING={90.0 100.0}
-MAGICRESISTANCE={90.0 100.0}
-TACTICS={90.0 100.0}
-
-ITEMNEWBIE=i_lantern
-ITEMNEWBIE=random_elf_female_hair
-COLOR=colors_elf_hair
-
-ON=@NPCRestock
-ITEM={ i_elven_shirt 1 i_elven_shirt_dark 1 i_shirt_plain 1 }
-COLOR=colors_all
-ITEM=random_pants
-COLOR=colors_all
-ITEM=i_Elven_armor_plate_chest
-ITEM=i_Elven_armor_plate_legs
-ITEM=i_Elven_armor_plate_arms
-ITEM=random_over_armor
-COLOR=colors_all
-ITEM=i_halberd
-ITEM=random_coin_purse
-ITEM=03e91	// on cu sidhe
-
-ON=@NPCRefuseItem
-	SAY I cannot be bribed. be gone.
-	return 1
-
-[CHARDEF C_E_HERBALIST]
-NAME=#NAMES_ELF_MALE the Herbalist
-ID=C_ELF_MALE
-NEEDS=i_gold,e_notoriety,t_crops
-AVERSIONS=t_TRAP,t_eerie_stuff
-
-TSPEECH=spk_human_prime
-TSPEECH=jobherbalist
-TSPEECH=spk_shopkeep
-TSPEECH=spk_needs
-TSPEECH=spk_rehello
-TSPEECH=spk_human_default
-
-TEVENTS=e_Human_HearUnk
-TEVENTS=e_Human_Needs
-TEVENTS=e_Human_ConvInit
-TEVENTS=e_Human_Greet
-TEVENTS=e_Human_Space
-TEVENTS=e_Human_Refuse
-TEVENTS=e_Human_Environ
-TEVENTS=e_Level_up_NPC
-
-ON=@Create
-NPC=brain_vendor
-COLOR=colors_elf
-STR={21 35}
-DEX={36 50}
-INT={36 50}
-
-	givelang 2
-   TAG.LOCALCURRENCY=1
-   TAG.CURRENCY_10=1
-
-ALCHEMY={35.0 58.0}
-TasteID={50.0 70.0}
-COOKING={35.0 58.0}
-FENCING={15.0 38.0}
-WRESTLING={15.0 38.0}
-MAGICRESISTANCE={15.0 38.0}
-TACTICS={15.0 38.0}
-
-ITEMNEWBIE=random_elf_male_hair
-COLOR=colors_elf_hair
-
-
-
-ON=@NPCRestock
-ITEM=RANDOM_LIGHT
-ITEM=i_elven_male
-ITEM={ i_elven_shirt 1 i_elven_shirt_dark 1 i_shirt_plain 1 }
-COLOR=colors_all
-ITEM=random_pants
-COLOR=colors_all
-ITEM=i_sandals
-ITEM=random_coin_purse
-ITEM={i_elven_specs 1 0 20}
-
-SELL=i_reag_ginseng,{8 38}
-SELL=i_reag_garlic,{8 38}
-SELL=i_reag_mandrake_root,{8 38}
-SELL=i_reag_nightshade,{8 38}
-SELL=i_reag_blood_moss,{8 38}
-SELL=i_mortar_pestle,{8 38}
-SELL=i_BOTTLE_EMPTY,{8 38}
-
-BUY=i_BOTTLE_EMPTY,{4 19}
-BUY=i_reag_ginseng,{4 19}
-BUY=i_reag_garlic,{4 19}
-BUY=i_reag_mandrake_root,{4 19}
-BUY=i_reag_nightshade,{4 19}
-BUY=i_reag_blood_moss,{4 19}
-BUY=i_mortar_pestle,{4 19}
-
-CATEGORY=Civilized
-SUBSECTION=Tradesmen (Elven)
-DESCRIPTION=Herbalist (male)
-
-[CHARDEF C_E_HERBALIST_F]
-NAME=#NAMES_ELF_FEMALE the Herbalist
-ID=C_ELF_FEMALE
-NEEDS=i_gold,e_notoriety,t_crops
-AVERSIONS=t_TRAP,t_eerie_stuff
-
-TSPEECH=spk_human_prime
-TSPEECH=jobherbalist
-TSPEECH=spk_shopkeep
-TSPEECH=spk_needs
-TSPEECH=spk_rehello
-TSPEECH=spk_human_default
-
-TEVENTS=e_Human_HearUnk
-TEVENTS=e_Human_Needs
-TEVENTS=e_Human_ConvInit
-TEVENTS=e_Human_Greet
-TEVENTS=e_Human_Space
-TEVENTS=e_Human_Refuse
-TEVENTS=e_Human_Environ
-TEVENTS=e_Level_up_NPC
-
-ON=@Create
-NPC=brain_vendor
-COLOR=colors_elf
-STR={21 35}
-DEX={36 50}
-INT={36 50}
-
-	givelang 2
-   TAG.LOCALCURRENCY=1
-   TAG.CURRENCY_10=1
-
-ALCHEMY={35.0 58.0}
-TasteID={50.0 70.0}
-COOKING={35.0 58.0}
-FENCING={15.0 38.0}
-WRESTLING={15.0 38.0}
-MAGICRESISTANCE={15.0 38.0}
-TACTICS={15.0 38.0}
-
-ITEMNEWBIE=random_elf_female_hair
-COLOR=colors_elf_hair
-
-ON=@NPCRestock
-ITEM=RANDOM_LIGHT
-ITEM={ i_elven_shirt 1 i_elven_shirt_dark 1 i_shirt_plain 1 }
-COLOR=colors_all
-ITEM=random_skirt
-COLOR=colors_all
-ITEM=i_sandals
-ITEM=random_coin_purse
-ITEM={i_elven_specs 1 0 20}
-
-SELL=i_reag_ginseng,{8 38}
-SELL=i_reag_garlic,{8 38}
-SELL=i_reag_mandrake_root,{8 38}
-SELL=i_reag_nightshade,{8 38}
-SELL=i_reag_blood_moss,{8 38}
-SELL=i_mortar_pestle,{8 38}
-SELL=i_reag_executioners_cap,{8 38}
-SELL=i_BOTTLE_EMPTY,{8 38}
-
-BUY=i_BOTTLE_EMPTY,{4 19}
-BUY=i_reag_ginseng,{4 19}
-BUY=i_reag_garlic,{4 19}
-BUY=i_reag_mandrake_root,{4 19}
-BUY=i_reag_nightshade,{4 19}
-BUY=i_reag_blood_moss,{4 19}
-BUY=i_reag_executioners_cap,{4 19}
-BUY=i_mortar_pestle,{4 19}
-
-CATEGORY=Civilized
-SUBSECTION=Tradesmen (Elven)
-DESCRIPTION=Herbalist (female)
 
 
 
