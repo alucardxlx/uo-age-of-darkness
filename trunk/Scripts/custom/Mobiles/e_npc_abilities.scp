@@ -265,6 +265,7 @@ on=@NPCActFight
 			enddo
 		ENDFOR
 		mana -= 18
+		food += 6
 		src.emote reel from a mind whip
 	endif
 

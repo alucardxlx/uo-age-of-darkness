@@ -1,3 +1,25 @@
+Well potion use and bandage use should be implemented. As well as switching weapon AI's. Probably implement targetting priorities too (Who do I attack? Should I switch targets?).
+
+Targeting Priorities
+	Combat priority selection; do I attack anyone who hits me or do I focus on one? 
+	Should I take out pets asap?
+	Do I target against those doing most damage to me, casting on me, or using ranged on me?
+
+with how often do I cast;
+ with mana is low.. do I start mana vampire or switch to ranged or hand to hand.
+
+I have potions in my pack.. should I use them? I have scrolls, should I use them? Im in need of healing.. should I use a bandage or cast heal?
+
+Do I switch to my best weapons if I am think im not doing enough damage? Should I check to see if I have better magical gear on me to equip?
+
+Do I have special abilies? Should I use them? I wonder how often I should.
+
+Do I flee if combat is going against me? If so.. how far and should I check to run again or regroup.
+
+Buff
+Attack
+Summon
+
 
 
 If I define an event for NPCs in Sphere .ini I cannot reuse that event on a PCs either via .INI or my own scripts. I have a major chunk of scripts that are the same for both and don't see why I should have to maintain two copies.
@@ -461,6 +483,7 @@ Sling
 Chakram
 Throwing Axe
 Throwing Knife
+Javelin
 Arquebuss
 Blunderbuss
 Main-Gauche
@@ -468,14 +491,16 @@ Gargoyle Helm (horse-hair mohawk crest type)
 Hoe
 Atl-atl
 dwarven Arbalest
+Obsidian Sword
 dark elf handcrossbow
-Staff-sling(?)
+Staff-sling
 Paired knives
 Paired swords
 
 
 Ether Monster
 Seeker
+Gelantenous cube
 Kith
 Sand Trap (red corpser, draws ant lions)
 Tangle Vines
@@ -498,6 +523,8 @@ Giant Centipede/Carrion Creeper
 Troll
 Cyclops
 Ogre
+Ettin
+Giant
 
 Emp
 Dwarf
@@ -508,6 +535,7 @@ Goblin
 Wildmen
 Gwani
 Automaton
+Orc
 Nixie
 Wingless Gargoyle
 

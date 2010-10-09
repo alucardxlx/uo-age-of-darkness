@@ -1039,7 +1039,7 @@ Spellweaving=100.0
 [SKILLCLASS 201]
 defname=class_monsters
 name=Monsters
-events=e_monster_class
+//events=e_monster_class
 STATSUM=225
 SKILLSUM=800.0
 STR=110
