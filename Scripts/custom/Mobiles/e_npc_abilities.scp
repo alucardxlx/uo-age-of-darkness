@@ -368,4 +368,100 @@ ON=@ItemStep
  ENDIF
  RETURN 1
 
+
+[EVENTS e_Carnivores]
+// weak carnivores.
+
+ON=@NpcLookAtChar
+IF (<FOOD> < (<MAXFOOD>/10)) && !(<BODY> == <SRC.BODY>)
+ATTACK <SRC>
+ENDIF
+RETURN
+
+ON=@KILL
+timerf 1, f_scavenge
+
+ON=@NPCActFight
+IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> >= 500) && !<R6> 
+	IF (<WRESTLING> >= 900)
+		DORAND 3
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever3> : <serv.chardef.<body>.Tag0.Manuever3>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELIF (<WRESTLING> >= 700)
+		DORAND 2
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELSE
+		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+	ENDIF
+ENDIF
+
+
+[EVENTS e_Carnivores2]
+// normal carnivores.  
+
+ON=@NpcLookAtChar
+IF (<FOOD> < (<MAXFOOD>/10)) && !(<BODY> == <SRC.BODY>)
+ATTACK <SRC>
+ENDIF
+RETURN
+
+ON=@KILL
+timerf 1, f_scavenge
+
+
+
+ON=@NPCActFight
+IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> >= 500) && !<R6> 
+	IF (<WRESTLING> >= 900)
+		DORAND 3
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever3> : <serv.chardef.<body>.Tag0.Manuever3>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELIF (<WRESTLING> >= 700)
+		DORAND 2
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELSE
+		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+	ENDIF
+ENDIF
+
+
+[EVENTS e_Carnivores3]
+// strong carnivores.
+
+ON=@NpcLookAtChar
+IF (<FOOD> < (<MAXFOOD>/10)) && !(<BODY> == <SRC.BODY>)
+ATTACK <SRC>
+ENDIF
+RETURN
+
+ON=@KILL
+timerf 1, f_scavenge
+
+ON=@NPCActFight
+IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> >= 500) && !<R6> 
+	IF (<WRESTLING> >= 900)
+		DORAND 3
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever3> : <serv.chardef.<body>.Tag0.Manuever3>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELIF (<WRESTLING> >= 700)
+		DORAND 2
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<body>.Tag0.Manuever2>>
+			TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+		ENDDO
+	ELSE
+		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+	ENDIF
+ENDIF
+
+
 [eof]

@@ -247,7 +247,7 @@ ELSE
 ENDIF
 IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
 	SKILLGAIN MAGICRESISTANCE <ARGN2>
-	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)/2) >
+	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
 	IF (<ARGN2> < 1)
 		I.EMOTE resist the spell completely
 		RETURN 1
@@ -716,7 +716,7 @@ ENDIF
 ON=@DeathCorpse
 IF <ATTACKER> > 0
 	FOR x 0 <EVAL <ATTACKER>-1>
-		local.exp = ((rand(<EXP>/25) + rand(<EXP>/25)) / <ATTACKER>)
+		local.exp = ((rand(<EXP>/30) + rand(<EXP>/30)) / <ATTACKER>)
 		if (<local.exp> > 0) && !(<ATTACKER.<LOCAL.X>.uid>==<uid>)
 			uid.<ATTACKER.<LOCAL.X>.uid>.Trigger @ExpChange,<def.TAT_AS_ARGN>,<eval <local.exp>>,1,1
 		endif
@@ -766,7 +766,7 @@ ELSE
 ENDIF
 IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
 	SKILLGAIN MAGICRESISTANCE <ARGN2>
-	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)/2) >
+	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
 	IF (<ARGN2> < 1)
 		I.EMOTE resist the spell completely
 		RETURN 1

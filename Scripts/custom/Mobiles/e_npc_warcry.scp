@@ -6,10 +6,10 @@ IF (RAND(10) > 1)
 ENDIF
 IF ( <TAG0.NPCAI.Race> == racef_undead )
 	DORAND 5
-	   EMOTE drooling putrid slime
+	   EMOTE drool putrid slime
 	   EMOTE gaze hungrily
 	   SAY Brains...
-	   SAY Join me...
+	   SAY Join me.
 	   SAY I am eternal.
 	ENDDO
 ELIF ( <TAG0.NPCAI.Race> == racef_elf )

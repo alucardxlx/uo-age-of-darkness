@@ -463,7 +463,7 @@ can=mt_nonmover|mt_nonhum
 dam=9,12
 armor=26
 moverate=0
-foodtype=t_meat_raw
+foodtype=24 t_meat_raw
 aversions=r_civilization
 desires=t_meat_raw, t_corpse
 TEVENTS=e_Level_up_NPC
@@ -507,7 +507,7 @@ defname=c_ice_corpser
 id=c_corpser
 name=ice corpser
 can=mt_nonmover|mt_nonhum
-moverate=100
+moverate=0
 dam=12,16
 armor=26
 icon=i_pet_corpser
@@ -540,7 +540,7 @@ on=@Create
  karma=-2000
  EXP={ 550 700 } //Level 1
 
- resfire=25
+ resenergy=25
  rescold=45
  respoison=25
 
@@ -553,11 +553,6 @@ on=@Create
  magicresistance={ 25.0 40.0 }
  hiding={ 80.0 90.0 }
  parrying={ 25.0 45.0 }
-
-on=@NPCRestock
- item=i_gold { 250 300 }
- item={ i_log 1 i_board 1 }, 10
- item=random_reagant, 3
 
 [chardef 02f]
 defname=c_reaper
