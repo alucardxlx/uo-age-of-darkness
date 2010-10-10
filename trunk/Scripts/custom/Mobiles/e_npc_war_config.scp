@@ -7,13 +7,13 @@ racef_minax   000000004 //Minax*
 racef_magincia  000000008 //Magincia*
 racef_chaos  000000010 //Chaos Ophidians*
 racef_order  000000020 //Order Ophidians*
-racef_guardian  000000040 //Guardian*
+racef_sosarian  000000040 //New Sosarian*
 racef_tokuno  000000080 //Tokuno?*
 racef_elf  000000100 //Elf Races
 racef_orc  000000200 //Orc Race
 racef_undead  000000400 //Undead creatures and earth elementals
 racef_pirate  000000800 //Pirates and theives guilds
-racef_commoner  000001000 //Neutral humans
+racef_commoner  000001000 //Neutral humanoids
 racef_dragon  000002000 //Dragon Races
 racef_demon  000004000 //Demon Races and fire elementals
 racef_goblin  000008000 //Goblin Race
@@ -81,7 +81,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_sosarian>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_orc>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minotaur>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)
@@ -107,7 +107,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_shadowlords>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_magincia>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_order>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_sosarian>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_commoner>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_gargoyle>)
@@ -130,7 +130,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ant>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_ratman>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
- TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_sosarian>)
 
 [FUNCTION SetDemon]
  SetBasics
@@ -156,7 +156,7 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Race=<EVAL racef_goblin>
  TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_goblin>)
  TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_orc>)
- TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_guardian>)
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_sosarian>)
  TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_minax>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_britannian>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_elf>)

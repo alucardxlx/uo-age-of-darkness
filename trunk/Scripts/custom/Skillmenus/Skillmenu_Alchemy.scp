@@ -23,7 +23,7 @@ RETURN 1
 [DEFNAME def_skmenu_Alchemy]
 skmenu_Alchemy_flags 01 //01=markoption 02=resmelt 04=repair 08=enhance
 
-skmenu_Alchemy_0_name ENCHANCEMENTS
+skmenu_Alchemy_0_name ENCHANCEMENT
 skmenu_Alchemy_0_0 i_potion_Agility
 skmenu_Alchemy_0_1 i_potion_AgilityGreat
 skmenu_Alchemy_0_2 i_potion_Nightsight
@@ -61,7 +61,7 @@ skmenu_Alchemy_2_6 i_potion_PoisonDeadly
 skmenu_Alchemy_3_name MISC
 skmenu_Alchemy_3_0 i_potion_Invisibility
 skmenu_Alchemy_3_1 i_potion_Incognito
-skmenu_Alchemy_3_0 i_potion_Shrink
+skmenu_Alchemy_3_2 i_potion_Shrink
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MAIN FUNCTIONS
@@ -85,7 +85,7 @@ ENDIF
 LOCAL.RESOURCES=<f_resource_replace <ARGS>,i_dough,<DEF.skmenu_Alchemy_subres_<SRC.dCTAG0.SKMENU_Alchemy_SUBRES>>>
 
 IF !(<SRC.RESTEST <LOCAL.RESOURCES>>)
-	SRC.CTAG0.SKMENU_Alchemy_NOTICE You don't have the ingredients required to cook that.
+	SRC.CTAG0.SKMENU_Alchemy_NOTICE You don't have the resources to make that.
 	DIALOG d_skillmenu_Alchemy
 	RETURN 1
 ENDIF
@@ -135,24 +135,30 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 	LINK.TRIGGER=@MakeItem
 	LOCAL.EXCEP=<VAR.ARGN1>
 	MORE=<VAR.ARGN2>
-	IF (<NEW.RESOURCES.1.KEY>==i_dough)
-		NEW.f_skmenu_Alchemy_material <MORE>
-	ENDIF
 	IF (RAND(1000)<<LOCAL.EXCEP>)
 		NEW.QUALITY=201
 		IF (<CONT.CTAG0.SKMENU_Alchemy_MARKOPTION>==0)
-			NEW.TAG0.CRAFTEDBY=<CONT.UID>
+				NEW.TAG0.CRAFTEDBY=<CONT.NAME>
+				LOCAL.POTENCY=Extremely Weak
+				IF (<MORE2> > 110.0)
+					LOCAL.POTENCY=Supremely Potent
+				ELSEIF (<MORE2> > 95.0)
+					LOCAL.POTENCY=Extremely Potent
+				ELSEIF (<MORE2> > 80.0)
+					LOCAL.POTENCY=Greater
+				ELSEIF (<MORE2> > 65.0)
+					LOCAL.POTENCY=Moderate
+				ELSEIF (<MORE2> > 50.0)
+					LOCAL.POTENCY=Lesser
+				ENDIF
+			NAME=<LOCAL.POTENCY> <SERV.SPELL.<MORE1>.NAME> potion%s
+
 		ELSEIF (<CONT.CTAG0.SKMENU_Alchemy_MARKOPTION>==2)
 			CONT.CTAG0.SKMENU_Alchemy_TOOL=<LINK.UID>
 			TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_Alchemy_querymakersmark
 			LOCAL.NODIALOG=1
 		ENDIF
-		NEW.NAME Exceptional <NEW.NAME>
-		NEW.TAG0.MANA += (<EVAL <CONT.TASTEID>/20>*<NEW.TAG0.MANA>)/100
-		NEW.TAG0.HITS += (<EVAL <CONT.TASTEID>/20>*<NEW.TAG0.HITS>)/100
-		NEW.TAG0.STAM += (<EVAL <CONT.TASTEID>/20>*<NEW.TAG0.STAM>)/100
-		new.tag0.modvalue += <EVAL <CONT.TASTEID>/20>
-		new.more=<cont.tasteid>
+		new.more2 += (<new.more2>*<CONT.TASTEID>/4000)+5
 	ELSE
 		NEW.QUALITY=<EVAL (<LOCAL.CHANCE>+<LOCAL.EXCEP>)/10> //arbitrary formula for quality calculation
 	ENDIF
@@ -291,7 +297,7 @@ gumppictiled 10 37 200 250 2624
 gumppictiled 215 37 305 250 2624
 checkertrans 10 10 510 417
 
-dhtmlgump 10 12 510 20 0 0 <htmlFormatTitle BAKING MENU>
+dhtmlgump 10 12 510 20 0 0 <htmlFormatTitle ALCHEMY MENU>
 dhtmlgump 10 37 200 22 0 0 <htmlFormatTitle CATEGORIES>
 dhtmlgump 215 37 305 22 0 0 <htmlFormatTitle SELECTIONS>
 dhtmlgump 10 302 150 25 0 0 <htmlFormatTitle NOTICES>

@@ -306,8 +306,6 @@ on=@create
      respoison=100
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 10
-     TAG.SPELLPOWER = 10
      EVENTS=+e_intel_char_magery_user
 
 	EXP={ 2050 3950 } //Level 3
@@ -451,7 +449,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=42
+tag.wrestlingspeed=40
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=9
 TAG.MANUEVER2=11
