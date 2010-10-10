@@ -79,10 +79,11 @@ scripts/custom/speech/
 scripts/custom/Functions/
 scripts/custom/Stones/
 scripts/custom/Skills/
+scripts/custom/Skillmenus/
+scripts/custom/Items/
 scripts/custom/houseinfo/
 scripts/custom/
-scripts/custom/Custom_potion_set.scp
-scripts/custom/Custom_speech.scp
+scripts/custom/items/Custom_potion_set.scp
 scripts/custom/System_alchemy_magic.scp
 scripts/custom/System_Characters.scp
 scripts/custom/System_Chivalry.scp
@@ -91,6 +92,7 @@ scripts/custom/System_Combat.scp
 scripts/custom/System_Magic_Properties.scp
 scripts/custom/System_Followers.scp
 scripts/custom/System_Necromancy.scp
+scripts/custom/Custom_speech.scp
 // -----------------------------------
 //scripts/add-on/
 //scripts/add-on/champions/
