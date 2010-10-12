@@ -1,0 +1,22 @@
+[itemdef i_arty_samaritan_robe]
+defname=i_arty_samaritan_robe
+id=i_robe
+name=Samaritan Robe
+type=t_clothing
+strreq=10
+weight=3.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Samaritan Robe
+
+on=@Create
+ color=04F6
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.modar=5

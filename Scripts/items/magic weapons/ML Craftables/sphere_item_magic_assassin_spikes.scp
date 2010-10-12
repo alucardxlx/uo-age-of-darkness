@@ -1,0 +1,123 @@
+//////////////////
+//Assassin Spike//
+//////////////////
+
+//Charged Assassin Spike
+[itemdef i_charged_assassin_spike]
+defname=i_charged_assassin_spike
+id=i_assassin_spike
+name=charged assassin spike
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 75.0
+resources=9 t_ingot, 1 i_gem_ecru_citrine
+
+category=
+subsection=
+description=Assassin Spike
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitLightning=10
+
+
+//Magekiller Assassin Spike
+[itemdef i_magekiller_assassin_spike]
+defname=i_magekiller_assassin_spike
+id=i_assassin_spike
+name=magekiller assassin spike
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 75.0
+resources=9 t_ingot, 1 i_gem_brilliant_amber
+
+category=
+subsection=
+description=Magekiller Assassin Spike
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitManaLeech=16
+
+
+//True Assassin Spike
+[itemdef i_true_assassin_spike]
+defname=i_true_assassin_spike
+id=i_assassin_spike
+name=true assassin spike
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 75.0
+resources=9 t_ingot, 1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=True Assassin Spike
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitChanceIncrease=4
+ tag.DamageIncrease=4
+
+
+//Wounding Assassin Spike
+[itemdef i_wounding_assassin_spike]
+defname=i_wounding_assassin_spike
+id=i_assassin_spike
+name=wounding assassin spike
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 70.0
+resources=9 t_ingot, 1 i_gem_perfect_emerald
+
+category=
+subsection=
+description=Wounding Assassin Spike
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitHarm=15

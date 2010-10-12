@@ -1,0 +1,17 @@
+//Evil Idol Skull
+[itemdef i_arty_evil_idol_skull]
+defname=i_arty_evil_idol_skull
+id=
+name=Evil Idol Skull
+type=t_normal
+weight=
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Evil Idol Skull
+
+on=@Create
+ color=0

@@ -1,0 +1,29 @@
+[itemdef i_arty_lights_rampart]
+defname=i_arty_lights_rampart
+id=i_shield_buckler
+name=Light's Rampart
+type=t_shield
+armor=0
+strreq=45
+weight=6.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Light's Rampart
+
+on=@Create
+ color=06D7
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.modar=4
+ tag.resfire=5
+ tag.rescold=13
+ tag.respoison=3
+ tag.resenergy=3
+
+ tag.spellchanneling=1
+ tag.dci=20

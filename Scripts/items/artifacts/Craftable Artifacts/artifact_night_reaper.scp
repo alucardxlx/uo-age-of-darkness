@@ -1,0 +1,32 @@
+//The Night Reaper
+[itemdef i_the_night_reaper]
+defname=i_the_night_reaper
+id=i_repeating_crossbow
+name=the night reaper
+type=t_weapon_xbow
+dam=8,12
+speed=//2.75s
+range=7
+strreq=30
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 75.0
+resources=10 t_board, 10 i_ingredient_blight, 10 i_ingredient_scourge, 1 i_ingredient_dread_horn_mane
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=The Night Reaper
+
+on=@Create
+ color=07E2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=7	//Double Strike
+ tag.move2=10	//Moving Shot
+
+ tag.slayer=slayer_demon
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ Tag.DamageIncrease=55

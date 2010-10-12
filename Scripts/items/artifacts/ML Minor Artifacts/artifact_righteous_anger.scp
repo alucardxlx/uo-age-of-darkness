@@ -1,0 +1,30 @@
+[itemdef i_righteous_anger]
+defname=i_righteous_anger
+id=i_elven_machete
+name=righteous anger
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Righteous Anger
+
+on=@Create
+ color=0476
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+ tag.HitChanceIncrease=15
+ tag.DefenseChanceIncrease=5
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=40

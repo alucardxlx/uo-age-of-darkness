@@ -1,0 +1,32 @@
+[itemdef i_arty_oblivions_needle]
+defname=i_arty_oblivions_needle
+id=i_dagger
+name=Oblivion's Needle
+type=t_weapon_fence
+dam=10,11
+speed=//2
+strreq=10
+twohands=n
+skill=Fencing
+weight=2.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Oblivion's Needle
+
+on=@Create
+ color=0
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//Infectious Strike
+ tag.move2=	//Shadowstrike
+
+ tag.HitStaminaLeech=50
+ tag.StaminaIncrease=20
+ tag.HitChanceIncrease=20
+ tag.DefenseChanceIncrease=-20
+ tag.DamageIncrease=40

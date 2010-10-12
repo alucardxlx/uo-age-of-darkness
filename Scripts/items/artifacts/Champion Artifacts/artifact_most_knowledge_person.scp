@@ -1,0 +1,21 @@
+[itemdef i_arty_most_knowledge_person]
+defname=i_arty_most_knowledge_person
+id=i_shroud
+name="The Most Knowledge Person"
+type=t_clothing
+weight=1.0
+dye=0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=The Most Knowledge Person
+
+on=@Create
+ color=0B4
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.hpIncrease=<r3,5>

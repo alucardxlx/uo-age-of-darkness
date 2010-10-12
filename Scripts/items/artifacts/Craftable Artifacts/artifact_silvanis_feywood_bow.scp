@@ -1,0 +1,33 @@
+//Silvani's Feywood Bow
+[itemdef i_silvanis_feywood_bow]
+defname=i_silvanis_feywood_bow
+id=i_elven_composite_longbow
+name=silvani's feywood bow
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+skillmake=bowcrafting 75.0
+resources=20 t_board, 10 i_ingredient_muculent, 10 i_ingredient_scourge, 1 i_ingredient_paroxysmus_lard
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Silvani's Feywood Bow
+
+on=@Create
+ color=04FE
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.SpellChanneling=1
+ tag.HitChanceIncrease=12
+ tag.SwingSpeedIncrease=30
+ tag.DamageIncrease=35
+ tag.EnergyDamage=100

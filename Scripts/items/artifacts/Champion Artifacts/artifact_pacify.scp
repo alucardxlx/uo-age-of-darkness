@@ -1,0 +1,33 @@
+[itemdef i_arty_pacify]
+defname=i_arty_pacify
+id=i_pike
+name=Pacify
+type=t_weapon_fence
+dam=14,16
+speed=//3
+strreq=50
+twohands=y
+skill=Fencing
+weight=8.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Pacify
+
+on=@Create
+ color=0
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//Paralyzing Blow
+ tag.move2=	//Infectious Strike
+
+ tag.SpellChanneling=1
+ tag.hitmanaleech=100
+ tag.hitchanceincrease=10
+ tag.swingspeedincrease=20
+ tag.damageIncrease=50
+ tag.UseBestWeaponSkill=1

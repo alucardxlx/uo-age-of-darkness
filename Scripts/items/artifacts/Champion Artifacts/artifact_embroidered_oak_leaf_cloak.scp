@@ -1,0 +1,21 @@
+[itemdef i_arty_embroidered_oak_leaf_cloak]
+defname=i_arty_embroidered_oak_leaf_cloak
+id=i_shroud
+name=Embroidered Oak Leaf Cloak
+type=t_clothing
+weight=1.0
+dye=0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Embroidered Oak Leaf Cloak
+
+on=@Create
+ color={ 04F3 1 0557 1 }
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.stealth=5

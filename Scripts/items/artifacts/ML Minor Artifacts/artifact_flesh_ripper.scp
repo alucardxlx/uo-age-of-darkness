@@ -1,0 +1,31 @@
+[itemdef i_flesh_ripper]
+defname=i_flesh_ripper
+id=i_assassin_spike
+name=flesh ripper
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+resources=9 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Flesh Ripper
+
+on=@Create
+ color=04DD
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.Anatomy=10
+ tag.Slayer=slayer_mage
+ tag.StrengthBonus=5
+ tag.HitChanceIncrease=15
+ tag.SwingSpeedIncrease=40
+ tag.UseBestWeaponSkill=1

@@ -1,0 +1,31 @@
+//Rune Carving Knife
+[itemdef i_rune_carving_knife]
+defname=i_rune_carving_knife
+id=i_assassin_spike
+name=rune carving knife
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 70.0
+resources=9 t_ingot, 10 i_ingredient_muculent, 10 i_ingredient_putrefaction, 1 i_ingredient_dread_horn_mane
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Rune Carving Knife
+
+on=@Create
+ color=04AB
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitManaLeech=40
+ tag.StaminaRegen=2
+ tag.DamageIncrease=30
+ tag.LowerManaCost=10

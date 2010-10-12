@@ -1,0 +1,31 @@
+//
+[itemdef i_arty_captain_johns_hat]
+defname=i_arty_captain_johns_hat
+id=i_hat_tricorne
+name=Captain John's Hat
+type=t_clothing
+strreq=10
+weight=1.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Captain John's Hat
+
+on=@Create
+ color=0800|0497
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.Swordsmanship=20
+ tag.DexterityBonus=8
+ tag.NightSight=1
+ tag.HitChanceIncrease=15
+ tag.ModAR=2
+ tag.resfire=6
+ tag.rescold=9
+ tag.respoison=7
+ tag.resenergy=23

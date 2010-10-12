@@ -1,0 +1,30 @@
+[itemdef i_arty_shroud_of_deceit]
+defname=i_arty_shroud_of_deceit
+id=i_bone_chest
+name=Shroud of Deceit
+type=t_armor
+armor=0
+strreq=60
+weight=6.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Shroud of Deceit
+
+on=@Create
+ color=03C1
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.ModAR=11
+ tag.resfire=6
+ tag.rescold=18
+ tag.respoison=15
+ tag.resenergy=13
+
+ tag.ResistingSpells=10
+ tag.hpregen=3
+ tag.magearmor=1

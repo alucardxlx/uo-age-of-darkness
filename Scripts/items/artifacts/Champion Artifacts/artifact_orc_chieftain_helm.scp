@@ -1,0 +1,36 @@
+[itemdef i_arty_orc_chieftain_helm]
+defname=i_arty_orc_chieftain_helm
+id=i_helm_orc
+name=Orc Chieftain Helm
+type=t_armor
+armor=0
+strreq=30
+weight=5.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Orc Chieftain Helm
+
+on=@Create
+ color=0852
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ local.x=<r1,2>
+ if <local.x> == 1
+  tag.hitpointincreease=30
+ else
+  tag.selfrepair=5
+  tag.hitchanceincrease=30
+ endif
+ tag.hitpointregen=3
+ tag.luck 100
+
+ tag.modar=23
+ tag.resfire=1
+ tag.rescold=23
+ tag.respoison=3
+ tag.resenergy=5

@@ -1,0 +1,123 @@
+//////////////
+//Ornate Axe//
+//////////////
+
+//Guardian Axe
+[itemdef i_guardian_axe]
+defname=i_guardian_axe
+id=i_ornate_axe
+name=guardian axe
+type=t_weapon_axe
+dam=18,20
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=12.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_blue_diamond
+
+category=
+subsection=
+description=Guardian Axe
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=4	//Crushing Blow
+
+ tag.HitPointIncrease=4
+ tag.HitPointRegen=1
+
+
+//Heavy Ornate Axe
+[itemdef i_heavy_ornate_axe]
+defname=i_heavy_ornate_axe
+id=i_ornate_axe
+name=heavy ornate axe
+type=t_weapon_axe
+dam=18,20
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=12.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_turquoise
+
+category=
+subsection=
+description=Heavy Ornate Axe
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=4	//Crushing Blow
+
+ tag.DamageIncrease=8
+
+
+//Singing Axe
+[itemdef i_singing_axe]
+defname=i_singing_axe
+id=i_ornate_axe
+name=singing axe
+type=t_weapon_axe
+dam=18,20
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=12.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_brilliant_amber
+
+category=
+subsection=
+description=Singing Axe
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=4	//Crushing Blow
+
+ tag.Musicianship=5
+
+
+//Thundering Axe
+[itemdef i_thundering_axe]
+defname=i_thundering_axe
+id=i_ornate_axe
+name=thundering axe
+type=t_weapon_axe
+dam=18,20
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=12.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_ecru_citrine
+
+category=
+subsection=
+description=Thundering Axe
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=4	//Crushing Blow
+
+ tag.HitLightning=10

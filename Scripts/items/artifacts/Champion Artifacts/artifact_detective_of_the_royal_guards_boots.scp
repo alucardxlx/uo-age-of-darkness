@@ -1,0 +1,69 @@
+//Detective Boots (3 Kinds)
+[itemdef i_arty_legendary_detective_boots]
+defname=i_arty_legendary_detective_boots
+id=i_boots
+name=Legendary Detective of the Royal Guard
+type=t_clothing
+strreq=10
+weight=3.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Legendary Detective of the Royal Guard
+
+on=@Create
+ color=colors_neutral
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.IntelligenceIncrease=2
+
+[itemdef i_arty_elder_detective_boots]
+defname=i_arty_elder_detective_boots
+id=i_boots
+name=Elder Detective of the Royal Guard
+type=t_clothing
+strreq=10
+weight=3.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Elder Detective of the Royal Guard
+
+on=@Create
+ color=colors_neutral
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.IntelligenceIncrease=3
+
+[itemdef i_arty_mythical_detective_boots]
+defname=i_arty_mythical_detective_boots
+id=i_boots
+name=Mythical Detective of the Royal Guard
+type=t_clothing
+strreq=10
+weight=3.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Mythical Detective of the Royal Guard
+
+on=@Create
+ color=colors_neutral
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.IntelligenceIncrease=4

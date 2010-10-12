@@ -1,0 +1,124 @@
+//////////////
+//Rune Blade//
+//////////////
+
+//Corrupted Rune Blade
+[itemdef i_corrupted_rune_blade]
+defname=i_corrupted_rune_blade
+id=i_rune_blade
+name=corrupted rune blade
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_ingredient_corruption
+
+category=
+subsection=
+description=Corrupted Rune Blade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.ResPhys=-5
+ tag.ResPoison=12
+
+
+//Mage's Rune Blade
+[itemdef i_mages_rune_blade]
+defname=i_mages_rune_blade
+id=i_rune_blade
+name=mage's rune blade
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_blue_diamond
+
+category=
+subsection=
+description=Mage's Rune Blade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.FasterCasting=1
+
+
+//Rune Blade of Knowledge
+[itemdef i_rune_blade_o_knowledge]
+defname=i_rune_blade_o_knowledge
+id=i_rune_blade
+name=rune blade of knowledge
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_ecru_citrine
+
+category=
+subsection=
+description=Rune Blade of Knowledge
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.SpellDamageIncrease=5
+
+
+//Runesabre
+[itemdef i_runesabre]
+defname=i_runesabre
+id=i_rune_blade
+name=runesabre
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_turquoise
+
+category=
+subsection=
+description=Runesabre
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.ResistingSpells=5
+ tag.MageWeapon=-29

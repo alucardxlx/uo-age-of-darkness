@@ -1,0 +1,29 @@
+//Bonesmasher
+[itemdef i_bonesmasher]
+defname=i_bonesmasher
+id=i_diamond_mace
+name=bonesmasher
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+resources=20 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Bonemasher
+
+on=@Create
+ color=0482
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.macefighting=10
+ tag.HitStaminaLeech=40
+ tag.SelfRepair=2

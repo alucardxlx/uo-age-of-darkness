@@ -1,0 +1,38 @@
+//Brave Knight of The Britannia
+[itemdef i_arty_brave_knight_of_britannia]
+defname=i_arty_brave_knight_of_britannia
+id=i_katana
+name=Brave Knight of Britannia
+type=t_weapon_sword
+dam=11,13
+speed=//2.5
+strreq=25
+twohands=n
+skill=swordsmanship
+weight=6.0
+dye=0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Brave Knight of Britannia
+
+on=@Create
+ color=0	//03C1
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//double strike
+ tag.move2=	//armor ignore
+
+ tag.HitStaminaLeech=48
+ tag.HitHarm=26
+ tag.HitLifeLeech=22
+ tag.SwingSpeedIncrease=30
+ tag.DamageIncrease=35
+ tag.FireDamage=40
+ tag.ColdDamage=30
+ tag.PoisonDamage=10
+ tag.EnergyDamage=20

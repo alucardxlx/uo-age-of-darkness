@@ -1,0 +1,31 @@
+//Blade Dance
+[itemdef i_blade_dance]
+defname=i_blade_dance
+id=i_rune_blade
+name=blade dance
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+resources=15 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Blade Dance
+
+on=@Create
+ color=014D	//This is as close as I could get it.
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.SpellChanneling=1
+ tag.HitManaLeech=30
+ tag.ManaIncrease=8
+ tag.DamageIncrease=30
+ tag.UseBestWeaponSkill=1

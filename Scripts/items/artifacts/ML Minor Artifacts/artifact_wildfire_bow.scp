@@ -1,0 +1,30 @@
+[itemdef i_wildfire_bow]
+defname=i_wildfire_bow
+id=i_elven_composite_longbow
+name=wildfire bow
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+resources=20 t_board
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Wildfire Bow
+
+on=@Create
+ color=04EC
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.archery=10
+ tag.velocity=15
+ tag.resfire=25
+ tag.firedamage=100

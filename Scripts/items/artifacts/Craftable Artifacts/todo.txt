@@ -1,0 +1,419 @@
+TODO
+
+//Bramble Coat
+//Darkwood Chest
+//Darkwood Crown
+//Darkwood Gauntlets
+//Darkwood Gorget
+//Darkwood Leggings
+//Darkwood Pauldrons
+//Ironwood Crown
+//Scrappers Compendium
+//Song Woven Mantle
+//Spell Woven Britches
+//Stitcher's Mittens
+//Essence of Battle
+//Pendant of the Magi
+//Resillient Bracer
+
+//Rune Carving Knife
+[itemdef i_rune_carving_knife]
+defname=i_rune_carving_knife
+id=i_assassin_spike
+name=rune carving knife
+type=t_weapon_fence
+dam=10,12
+speed=//2s
+strreq=15
+twohands=n
+skill=fencing
+weight=4.0
+skillmake=blacksmithing 70.0
+resources=9 t_ingot, 10 i_ingredient_muculent, 10 i_ingredient_putrefaction, 1 i_ingredient_dread_horn_mane
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Rune Carving Knife
+
+on=@Create
+ color=04AB
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=8	//infectious strike
+ tag.move2=12	//shadowstrike
+
+ tag.HitManaLeech=40
+ tag.StaminaRegen=2
+ tag.DamageIncrease=30
+ tag.LowerManaCost=10
+
+
+//Shard Thrasher
+[itemdef i_shard_thrasher]
+defname=i_shard_thrasher
+id=i_diamond_mace
+name=shard thrasher
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 10 i_ingredient_corruption, 10 i_ingredient_muculent, 1 i_ingredient_travesty_eye
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Shard Thrasher
+
+on=@Create
+ color=04F2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.HitPhysicalArea=30
+ tag.StaminaIncrease=8
+ tag.HitChanceIncrease=10
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=40
+
+
+//Blight Gripped Longbow
+[itemdef i_blight_gripped_longbow]
+defname=i_blight_gripped_longbow
+id=i_elven_composite_longbow
+name=blight gripped longbow
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+skillmake=bowcrafting 75.0
+resources=20 t_board, 10 i_ingredient_blight, 10 i_ingredient_corruption, 1 i_ingredient_paroxysmus_lard
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Blight Gripped Longbow
+
+on=@Create
+ color=04F3
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.HitPoisonArea=20
+ tag.StaminaRegen=3
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=35
+ tag.PoisonDamage=100
+
+
+//Faerie Fire
+[itemdef i_faerie_fire]
+defname=i_faerie_fire
+id=i_elven_composite_longbow
+name=faerie fire
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+skillmake=bowcrafting 70.0
+resources=20 t_board, 10 i_ingredient_putrefaction, 10 i_ingredient_taint, 1 i_ingredient_paroxysmus_lard
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Faerie Fire
+
+on=@Create
+ color=0550
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.HitFireball=25
+ tag.Balanced=1
+ tag.DexterityBonus=3
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=60
+ tag.FireDamage=100
+
+
+//Silvani's Feywood Bow
+[itemdef i_silvanis_feywood_bow]
+defname=i_silvanis_feywood_bow
+id=i_elven_composite_longbow
+name=silvani's feywood bow
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+skillmake=bowcrafting 75.0
+resources=20 t_board, 10 i_ingredient_muculent, 10 i_ingredient_scourge, 1 i_ingredient_paroxysmus_lard
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Silvani's Feywood Bow
+
+on=@Create
+ color=04FE
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.SpellChanneling=1
+ tag.HitChanceIncrease=12
+ tag.SwingSpeedIncrease=30
+ tag.DamageIncrease=35
+ tag.EnergyDamage=100
+
+
+//Cold Forged Blade
+[itemdef i_cold_forged_blade]
+defname=i_cold_forged_blade
+id=i_elven_spellblade
+name=cold forged blade
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 70.0
+resources=18 t_ingot, 10 i_ingredient_blight, 10 i_ingredient_taint, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Cold Forged Blade
+
+on=@Create
+ color=04F2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.SpellChanneling=1
+ tag.HitHarm=40
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ tag.DamageIncrease=50
+ tag.ColdDamage=100
+
+
+//Mischief Maker
+[itemdef i_lightweight_shortbow]
+defname=i_lightweight_shortbow
+id=i_magical_shortbow
+name=lightweight shortbow
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 75.0
+resources=15 t_board, 10 i_ingredient_corruption, 10 i_ingredient_putrefaction, 1 i_ingredient_dread_horn_mane
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Mischief Maker
+
+on=@Create
+ color=01F2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.Slayer=slayer_undead
+ tag.balanced=1
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=45
+ tag.ColdDamage=100
+
+
+//Overseer Sundered Blade
+[itemdef i_overseer_sundered_blade]
+defname=i_overseer_sundered_blade
+id=i_radiant_scimitar
+name=scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 10 i_ingredient_blight, 10 i_ingredient_scourge, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifact
+description=Overseer Sundered Blade
+
+on=@Create
+ color=0550
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.StaminaRegen=2
+ tag.HitChanceIncrease=10
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=45
+ tag.FireDamage=100
+
+
+//Luminous Rune Blade
+[itemdef i_luminous_rune_blade]
+defname=i_luminous_rune_blade
+id=i_rune_blade
+name=luminous rune blade
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 70.0
+resources=15 t_ingot, 10 i_ingredient_corruption, 10 i_ingredient_putrefaction, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Luminous Rune Blade
+
+on=@Create
+ color=0562
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.HitLightning=40
+ tag.SelfRepair=5
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ tag.DamageIncrease=55
+ tag.EnergyDamage=100
+
+
+//Phantom Staff
+[itemdef i_phantom_staff]
+defname=i_phantom_staff
+id=i_wild_staff
+name=phantom staff
+type=t_weapon_mace_staff
+dam=11,13
+speed=//2.5s
+strreq=40
+twohands=n
+skill=macefighting
+weight=9.0
+skillmake=carpentry 90.0
+resources=16 t_board, 10 i_ingredient_putrefaction, 10 i_ingredient_taint, 1 i_ingredient_diseased_bark
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Phantom Staff
+
+on=@Create
+ color=0455
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=16	//Block
+ tag.move2=29	//Force of Nature
+
+ tag.HitPointRegen=2
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=60
+ tag.ColdDamage=50
+ tag.PoisonDamage=50
+
+
+//The Night Reaper
+[itemdef i_the_night_reaper]
+defname=i_the_night_reaper
+id=i_repeating_crossbow
+name=the night reaper
+type=t_weapon_xbow
+dam=8,12
+speed=//2.75s
+range=7
+strreq=30
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 75.0
+resources=10 t_board, 10 i_ingredient_blight, 10 i_ingredient_scourge, 1 i_ingredient_dread_horn_mane
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=The Night Reaper
+
+on=@Create
+ color=01
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=7	//Double Strike
+ tag.move2=10	//Moving Shot
+
+ tag.slayer=slayer_demon
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ Tag.DamageIncrease=55
+
+
+/////////////////
+//Hovering Wisp//
+/////////////////
+
+
+//Hovering Wisp
+//Cannot be dyed.
+[itemdef i_hovering_wisp]
+defname=i_hovering_wisp
+id=i_pet_wisp
+name=hovering wisp
+type=t_normal
+weight=1.0
+skillmake=alchemy 75.0
+resources=4 i_ingredient_captured_essence
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Hovering Wisp

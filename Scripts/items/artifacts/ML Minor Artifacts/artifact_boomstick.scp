@@ -1,0 +1,30 @@
+[itemdef i_boomstick]
+defname=i_boomstick
+id=i_wild_staff
+name=boomstick
+type=t_weapon_mace_staff
+dam=11,13
+speed=//2.5s
+strreq=40
+twohands=n
+skill=macefighting
+weight=9.0
+resources=16 t_board
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Boomstick
+
+on=@Create
+ color=020
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=16	//Block
+ tag.move2=29	//Force of Nature
+
+ tag.SpellChanneling=1
+ tag.ManaRegen=3
+ tag.FasterCasting=1
+ tag.LowerReagentCost=20
+ tag.ChaosDamage=100

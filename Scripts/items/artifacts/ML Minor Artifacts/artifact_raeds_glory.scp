@@ -1,0 +1,30 @@
+[itemdef i_raeds_glory]
+defname=i_raeds_glory
+id=i_war_cleaver
+name=raed's glory
+type=t_weapon_fencing
+dam=9,11	//10,12
+speed=//2.25s
+strreq=15
+twohands=y
+skill=fencing
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_turqoise
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Raed's Glory
+
+on=@Create
+ color=0187
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=4
+ tag.move2=24
+
+ tag.spellchanneling=1 // 1 = Yes
+ tag.HitLifeLeech=35
+ tag.ManaIncrease=8
+ tag.SwingSpeedIncrease=20

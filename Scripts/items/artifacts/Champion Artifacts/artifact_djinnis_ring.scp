@@ -1,0 +1,22 @@
+[itemdef i_arty_djinnis_ring]
+defname=i_arty_djinnis_ring
+id=i_ring_silver
+name=Djinni's Ring
+type=t_jewelry
+weight=1.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Djinni's Ring
+
+on=@Create
+ color={ 0 4 colors_green 1 }	//supposed to be light green
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.IntelligenceBonus=5
+ tag.SpellDamageIncrease=10
+ tag.FasterCasting=2

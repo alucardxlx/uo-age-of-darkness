@@ -1,0 +1,22 @@
+[itemdef i_arty_necromancer_shroud]
+defname=i_arty_necromancer_shroud
+id=i_robe
+name=Necromancer Shroud
+type=t_clothing
+strreq=10
+weight=3.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Necromancer Shroud
+
+on=@Create
+ color=0497
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.rescold=5

@@ -1,0 +1,123 @@
+////////////////////
+//Elven Spellblade//
+////////////////////
+
+//Fiery Spellblade
+[itemdef i_fiery_spellblade]
+defname=i_fiery_spellblade
+id=i_elven_spellblade
+name=fiery spellblade
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_fire_ruby
+
+category=
+subsection=
+description=Fiery Spellblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.resfire=5
+
+
+//Icy Spellblade
+[itemdef i_icy_spellblade]
+defname=i_icy_spellblade
+id=i_elven_spellblade
+name=icy spellblade
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_turquoise
+
+category=
+subsection=
+description=Icy Spellblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.coldfire=5
+
+
+//Spellblade of Defense
+[itemdef i_spellblade_o_defense]
+defname=i_spellblade_o_defense
+id=i_elven_spellblade
+name=spellblade of defense
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_white_pearl
+
+category=
+subsection=
+description=Spellblade of Defense
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.DefenseChanceIncrease=5
+
+
+//True Spellblade
+[itemdef i_icy_spellblade]
+defname=i_icy_spellblade
+id=i_elven_spellblade
+name=icy spellblade
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_blue_diamond
+
+category=
+subsection=
+description=Icy Spellblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.SpellChanneling=1
+ tag.FasterCasting=-1

@@ -1,0 +1,126 @@
+///////////////
+//War Cleaver//
+///////////////
+
+//Butcher's War Cleaver
+[itemdef i_butchers_war_cleaver]
+defname=i_butchers_war_cleaver
+id=i_war_cleaver
+name=butcher's war cleaver
+type=t_weapon_fencing
+dam=10,12
+speed=//2s
+strreq=10
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_turqoise
+
+category=
+subsection=
+description=Knight's War Cleaver
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=4
+ tag.move2=24
+
+ tag.slayer=slayer_bovine
+//Works on cows, bulls, & gamans.
+//Doesn't work on minotaurs like a talisman would.
+//Hide processing.
+
+
+//Knight's War Cleaver
+[itemdef i_knights_war_cleaver]
+defname=i_knights_war_cleaver
+id=i_war_cleaver
+name=knight's war cleaver
+type=t_weapon_fencing
+dam=10,12
+speed=//2s
+strreq=10
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_perfect_emerald
+
+category=
+subsection=
+description=Knight's War Cleaver
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=4
+ tag.move2=24
+
+ tag.hpregen=3
+
+
+//Serrated War Cleaver
+[itemdef i_serrated_war_cleaver]
+defname=i_serrated_war_cleaver
+id=i_war_cleaver
+name=serrated war cleaver
+type=t_weapon_fencing
+dam=10,12
+speed=//2s
+strreq=10
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_ecru_citrine
+
+category=
+subsection=
+description=Serrated War Cleaver
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=4
+ tag.move2=24
+
+ tag.damageincrease=7
+
+
+//True War Cleaver
+[itemdef i_true_war_cleaver]
+defname=i_true_war_cleaver
+id=i_war_cleaver
+name=true war cleaver
+type=t_weapon_fencing
+dam=10,12
+speed=//2s
+strreq=10
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 75.0
+resources=18 t_ingot, 1 i_gem_brilliant_amber
+
+category=
+subsection=
+description=True War Cleaver
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=4
+ tag.move2=24
+
+ tag.hpregen=2
+ tag.damageincrease=4
