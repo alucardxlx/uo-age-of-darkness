@@ -234,7 +234,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_hair_SHORT,10
 	ATTR=attr_decay
 	SELL=i_hair_LONG,10
@@ -333,7 +333,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_hair_SHORT,10
 	ATTR=attr_decay
 	SELL=i_hair_LONG,10
@@ -427,7 +427,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0410]
@@ -480,7 +480,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0411]
@@ -533,7 +533,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0412]
@@ -701,7 +701,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=i_apron_half
 	COLOR=colors_all
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_PALETTE
 
 [CHARDEF 0415]
@@ -757,7 +757,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=i_apron_half
 	COLOR=colors_all
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_PALETTE
 
 
@@ -816,7 +816,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//vendor items
 	SELL=VENDOR_S_BAKER_TEMPLATE
 	BUY=VENDOR_B_BAKER_TEMPLATE
@@ -874,7 +874,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//vendor items
 	SELL=VENDOR_S_BAKER_TEMPLATE
 	BUY=VENDOR_B_BAKER_TEMPLATE
@@ -931,7 +931,7 @@ ON=@NPCRestock
 	COLOR=colors_yellow
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0419]
@@ -985,7 +985,7 @@ ON=@NPCRestock
 	COLOR=colors_yellow
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=RANDOM_LIGHT
 
 
@@ -1041,7 +1041,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_jar_honey,{14 40}
 	BUY=i_jar_honey,{4 10}
 
@@ -1097,7 +1097,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
 	//pouch items
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_jar_honey,{14 40}
 	BUY=i_jar_honey,{4 10}
 
@@ -1165,7 +1165,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=random_weapon
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0423]
@@ -1227,7 +1227,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=random_weapon
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0424]
@@ -1283,7 +1283,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 	//vendor items
 	SELL=VENDOR_S_BUTCHER_TEMPLATE
 	BUY=VENDOR_B_BUTCHER_TEMPLATE
@@ -1339,7 +1339,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 	//vendor items
 	SELL=VENDOR_S_BUTCHER_TEMPLATE
 	BUY=VENDOR_B_BUTCHER_TEMPLATE
@@ -1398,7 +1398,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//vendor items
 	SELL=VENDOR_S_CARPENTER
 	BUY=VENDOR_B_CARPENTER
@@ -1456,7 +1456,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_CARPENTER
 	BUY=VENDOR_B_CARPENTER
 
@@ -1511,7 +1511,7 @@ ON=@NPCRestock
 	ITEM=random_pants
 	COLOR=colors_all
 	ITEM=random_footwear
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//vendor items
 	SELL=i_boots_thigh,{2 12}
 	COLOR=colors_neutral
@@ -1570,7 +1570,7 @@ ON=@NPCRestock
 	ITEM=random_skirt
 	COLOR=colors_all
 	ITEM=random_footwear
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//vendor items
 	SELL=i_boots_thigh,{2 12}
 	COLOR=colors_neutral
@@ -1758,7 +1758,7 @@ ON=@NPCRestock
 	COLOR=colors_black
 	ITEM=random_boots
 	ITEM=i_knife_skinning
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_FURTRADER
 	BUY=VENDOR_B_FURTRADER
 
@@ -1819,7 +1819,7 @@ ON=@NPCRestock
 	COLOR=colors_black
 	ITEM=random_boots
 	ITEM=i_knife_skinning
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_FURTRADER
 	BUY=VENDOR_B_FURTRADER
 
@@ -1881,7 +1881,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_footwear
 	ITEM=random_dagger
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0435]
@@ -1939,7 +1939,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_footwear
 	ITEM=random_dagger
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0436]
@@ -1993,7 +1993,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_BOTTLE_EMPTY,{5 20}
 	SELL=i_jar_empty,{5 20}
 	SELL=i_pitcher_glass,{5 20}
@@ -2052,7 +2052,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_BOTTLE_EMPTY,{5 20}
 	SELL=i_jar_empty,{5 20}
 	SELL=i_pitcher_glass,{5 20}
@@ -2125,7 +2125,7 @@ ON=@NPCRestock
 	ITEM=i_bandana
 	COLOR=colors_blue
 	ITEM=random_footwear
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0441]
@@ -2189,7 +2189,7 @@ ON=@NPCRestock
 	ITEM=i_bandana
 	COLOR=colors_blue
 	ITEM=random_footwear
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0442]
@@ -2246,7 +2246,7 @@ ON=@NPCRestock
 	ITEM=random_pants
 	COLOR=colors_all
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_reag_ginseng,{8 38}
 	SELL=i_reag_garlic,{8 38}
 	SELL=i_reag_mandrake_root,{8 38}
@@ -2315,7 +2315,7 @@ ON=@NPCRestock
 	ITEM=random_skirt
 	COLOR=colors_all
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_reag_ginseng,{8 38}
 	SELL=i_reag_garlic,{8 38}
 	SELL=i_reag_mandrake_root,{8 38}
@@ -2387,7 +2387,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
 	ITEM=i_sword_long
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0445]
@@ -2443,7 +2443,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
 	ITEM=i_sword_long
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0446]
@@ -2499,7 +2499,7 @@ ON=@NPCRestock
 	COLOR=colors_black
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0447]
@@ -2553,7 +2553,7 @@ ON=@NPCRestock
 	COLOR=colors_black
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0448]
@@ -2721,7 +2721,7 @@ ON=@NPCRestock
 	ITEM=random_pants
 	ITEM=i_sandals
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0451]
@@ -2771,7 +2771,7 @@ ON=@NPCRestock
 	ITEM=i_skirt_long
 	ITEM=i_sandals
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 
@@ -2826,7 +2826,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_FLOUR_SACK,{4 10}
 	SELL=i_hay_sheaf,{4 10}
 	BUY=i_FLOUR_SACK,{4 10}
@@ -2882,7 +2882,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_FLOUR_SACK,{4 10}
 	SELL=i_hay_sheaf,{4 10}
 	BUY=i_FLOUR_SACK,{4 10}
@@ -2941,7 +2941,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0457]
@@ -2994,7 +2994,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0464]
@@ -3175,7 +3175,7 @@ ON=@NPCRestock
 	ITEM=RANDOM_LIGHT
 	ITEM=i_pants_short
 	COLOR=colors_all
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 
 
 [CHARDEF 0473]
@@ -3224,7 +3224,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_skirt
 	COLOR=colors_all
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 
 
 [CHARDEF 0474]
@@ -3285,7 +3285,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_pet_horse_tan,{0 2}
 	SELL=i_pet_horse_gray,{0 2}
 	SELL=i_pet_horse_brown_lt,{0 2}
@@ -3352,7 +3352,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=i_pet_horse_tan,{0 2}
 	SELL=i_pet_horse_gray,{0 2}
 	SELL=i_pet_horse_brown_lt,{0 2}
@@ -3414,7 +3414,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_neutral
 	ITEM=i_sandals
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 	SELL=I_SCROLL_BLANK,{6 24}
 	SELL=i_pen_and_ink,{6 24}
 	SELL=i_BOOK_SM,{6 24}
@@ -3478,7 +3478,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_neutral
 	ITEM=i_sandals
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 	SELL=I_SCROLL_BLANK,{6 24}
 	SELL=i_pen_and_ink,{6 24}
 	SELL=i_BOOK_SM,{6 24}
@@ -3543,7 +3543,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0479]
@@ -3594,7 +3594,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0480]
@@ -3655,7 +3655,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=random_boots
 	ITEM=i_shepherds_crook
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_SHEPHERD
 	BUY=VENDOR_B_SHEPHERD
 
@@ -3716,7 +3716,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=random_boots
 	ITEM=i_shepherds_crook
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_SHEPHERD
 	BUY=VENDOR_B_SHEPHERD
 
@@ -3774,7 +3774,7 @@ ON=@NPCRestock
 	ITEM=random_boots
 	ITEM=i_apron_half
 	COLOR=colors_brown
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TANNER
 	BUY=VENDOR_B_TANNER
 
@@ -3830,7 +3830,7 @@ ON=@NPCRestock
 	ITEM=random_boots
 	ITEM=i_apron_half
 	COLOR=colors_brown
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TANNER
 	BUY=VENDOR_B_TANNER
 
@@ -3886,7 +3886,7 @@ ON=@NPCRestock
 	ITEM=i_hat_wide_brim
 	COLOR=colors_neutral
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_VEGSELLER
 	BUY=VENDOR_B_VEGSELLER
 
@@ -3939,7 +3939,7 @@ ON=@NPCRestock
 	ITEM=i_hat_wide_brim
 	COLOR=colors_neutral
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_VEGSELLER
 	BUY=VENDOR_B_VEGSELLER
 
@@ -3995,7 +3995,7 @@ ON=@NPCRestock
 	ITEM=random_pants
 	COLOR=colors_blue
 	ITEM=random_shoes
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_VET
 	BUY=VENDOR_B_VET
 
@@ -4049,7 +4049,7 @@ ON=@NPCRestock
 	ITEM=random_pants
 	COLOR=colors_blue
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_VET
 	BUY=VENDOR_B_VET
 
@@ -4110,7 +4110,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WAITER
 	BUY=VENDOR_B_WAITER
 
@@ -4167,7 +4167,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WAITER
 	BUY=VENDOR_B_WAITER
 
@@ -4228,7 +4228,7 @@ ON=@NPCRestock
 	COLOR=colors_red
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_ALCHEMIST
 	BUY=VENDOR_B_ALCHEMIST
 
@@ -4287,7 +4287,7 @@ ON=@NPCRestock
 	COLOR=colors_red
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_ALCHEMIST
 	BUY=VENDOR_B_ALCHEMIST
 
@@ -4345,7 +4345,7 @@ ON=@NPCRestock
 	COLOR=colors_blue
 	ITEM=random_shoes
 	COLOR=colors_blue
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=random_upper_scroll
 	ITEM=random_upper_scroll
 	SELL=VENDOR_S_MAGE_SHOP
@@ -4402,7 +4402,7 @@ ON=@NPCRestock
 	COLOR=colors_blue
 	ITEM=random_shoes
 	COLOR=colors_blue
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=random_upper_scroll
 	ITEM=random_upper_scroll
 	SELL=VENDOR_S_MAGE_SHOP
@@ -4461,7 +4461,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_all
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0495]
@@ -4514,7 +4514,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_all
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0496]
@@ -4572,7 +4572,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_red
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=random_upper_scroll
 	ITEM=random_upper_scroll
 	
@@ -4630,7 +4630,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_red
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=random_upper_scroll
 	ITEM=random_upper_scroll
 
@@ -4688,7 +4688,7 @@ ON=@NPCRestock
 	ITEM=i_apron_half
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_COOK
 	BUY=VENDOR_B_COOK
 
@@ -4744,7 +4744,7 @@ ON=@NPCRestock
 	ITEM=i_apron_half
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_COOK
 	BUY=VENDOR_B_COOK
 
@@ -4799,7 +4799,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAVER
 	BUY=VENDOR_B_WEAVER
 
@@ -4852,7 +4852,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAVER
 	BUY=VENDOR_B_WEAVER
 
@@ -4906,7 +4906,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TAILOR
 	BUY=VENDOR_B_TAILOR
 
@@ -4959,7 +4959,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TAILOR
 	BUY=VENDOR_B_TAILOR
 
@@ -5024,7 +5024,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=random_instrument
 	ITEM=random_instrument
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0509]
@@ -5085,7 +5085,7 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=random_instrument
 	ITEM=random_instrument
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 
@@ -5145,7 +5145,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_tinker_tools
 	SELL=VENDOR_S_TINKER
 	BUY=VENDOR_B_TINKER
@@ -5205,7 +5205,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_tinker_tools
 	SELL=VENDOR_S_TINKER
 	BUY=VENDOR_B_TINKER
@@ -5265,7 +5265,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_yellow
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_HEALER_SHOP
 	BUY=VENDOR_B_HEALER_SHOP
 
@@ -5320,7 +5320,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_yellow
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_HEALER_SHOP
 	BUY=VENDOR_B_HEALER_SHOP
 
@@ -5379,7 +5379,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_yellow
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0519]
@@ -5433,7 +5433,7 @@ ON=@NPCRestock
 	ITEM=i_robe
 	COLOR=colors_yellow
 	ITEM=i_sandals
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 [CHARDEF 0522]
 DEFNAME=C_H_FISHER
@@ -5487,7 +5487,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_fishing_pole
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_FISHER
 	BUY=VENDOR_B_FISHER
 
@@ -5542,7 +5542,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_fishing_pole
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_FISHER
 	BUY=VENDOR_B_FISHER
 
@@ -5598,7 +5598,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_MAPMAKER
 	BUY=VENDOR_B_MAPMAKER
 
@@ -5652,7 +5652,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_MAPMAKER
 	BUY=VENDOR_B_MAPMAKER
 
@@ -5709,7 +5709,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_SHIP
 	BUY=VENDOR_B_SHIP
 
@@ -5764,7 +5764,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_SHIP
 	BUY=VENDOR_B_SHIP
 
@@ -5823,7 +5823,7 @@ ON=@NPCRestock
 	ITEM=i_CUTLASS
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0531]
@@ -5879,7 +5879,7 @@ ON=@NPCRestock
 	ITEM=i_CUTLASS
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0532]
@@ -5937,7 +5937,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_lantern
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_INNKEEPER
 	BUY=VENDOR_B_INNKEEPER
 
@@ -5994,7 +5994,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_lantern
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_INNKEEPER
 	BUY=VENDOR_B_INNKEEPER
 
@@ -6053,7 +6053,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_PROVISIONER
 	BUY=VENDOR_B_PROVISIONER
 
@@ -6112,7 +6112,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_shoes
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_PROVISIONER
 	BUY=VENDOR_B_PROVISIONER
 
@@ -6288,7 +6288,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TAVERNKEEPER
 	BUY=VENDOR_B_TAVERNKEEPER
 
@@ -6346,7 +6346,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	COLOR=colors_neutral
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TAVERNKEEPER
 	BUY=VENDOR_B_TAVERNKEEPER
 
@@ -6408,7 +6408,7 @@ ON=@NPCRestock
 	COLOR=colors_brown
 	ITEM=random_footwear
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_bow
 	ITEM=i_arrow,{5 20}
 
@@ -6469,7 +6469,7 @@ ON=@NPCRestock
 	COLOR=colors_brown
 	ITEM=random_footwear
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_bow
 	ITEM=i_arrow,{5 20}
 
@@ -6529,7 +6529,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	ITEM=i_leather_gorget
 	COLOR=colors_brown
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_BOWYER
 	BUY=VENDOR_B_BOWYER
 
@@ -6587,7 +6587,7 @@ ON=@NPCRestock
 	ITEM=random_shoes
 	ITEM=i_leather_gorget
 	COLOR=colors_brown
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_BOWYER
 	BUY=VENDOR_B_BOWYER
 
@@ -6645,7 +6645,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_staff_quarter
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TRAINER
 	BUY=VENDOR_B_TRAINER
 
@@ -6701,7 +6701,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_staff_quarter
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_TRAINER
 	BUY=VENDOR_B_TRAINER
 
@@ -6765,7 +6765,7 @@ ON=@NPCRestock
 	COLOR=color_metal
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_ARMORER_LEATHER
 	SELL=VENDOR_S_ARMORER_RING
 	SELL=VENDOR_S_ARMORER_CHAIN
@@ -6840,7 +6840,7 @@ ON=@NPCRestock
 	COLOR=color_metal
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_ARMORER_LEATHER
 	SELL=VENDOR_S_ARMORER_RING
 	SELL=VENDOR_S_ARMORER_CHAIN
@@ -6918,7 +6918,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
 	ITEM=random_weapon
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//	I took leather out of this section, I believe
 	//		blacksmiths deal in metals only.
 	//		feel free to add the template back in
@@ -7004,7 +7004,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	COLOR=colors_neutral
 	ITEM=random_weapon
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	//	This vendor has items that need to be assigned to the flipped item
 	//		i.e. spears, just to make it look nicer.
 	SELL=VENDOR_S_ARMORER_RING
@@ -7083,7 +7083,7 @@ ON=@NPCRestock
 	ITEM=i_pants_short
 	COLOR=colors_all
 	ITEM=i_sandals
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 
 
 [CHARDEF 0559]
@@ -7138,7 +7138,7 @@ ON=@NPCRestock
 	ITEM=random_skirt
 	COLOR=colors_all
 	ITEM=i_sandals
-	ITEM=backpack_poor
+	ITEM=supply_backpack
 
 
 [CHARDEF 0560]
@@ -7205,7 +7205,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_footwear
 	ITEM=random_dagger
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_lockpick
 
 
@@ -7270,7 +7270,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_footwear
 	ITEM=random_dagger
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	ITEM=i_lockpick
 
 
@@ -7330,7 +7330,7 @@ ON=@NPCRestock
 	ITEM=i_shield_wood
 	ITEM=i_sword_broad
 	ITEM=i_boots_calf
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0565]
@@ -7387,7 +7387,7 @@ ON=@NPCRestock
 	ITEM=i_shield_wood
 	ITEM=i_boots_calf
 	ITEM=i_sword_broad
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0566]
@@ -7449,7 +7449,7 @@ ON=@NPCRestock
 	ITEM=i_shield_wood
 	ITEM=i_boots_calf
 	ITEM=i_sword_broad
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0567]
@@ -7509,7 +7509,7 @@ ON=@NPCRestock
 	ITEM=i_boots_calf
 	ITEM=i_shield_wood
 	ITEM=i_sword_broad
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0568]
@@ -7574,7 +7574,7 @@ ON=@NPCRestock
 	ITEM=random_gorget
 	ITEM=i_boots_calf
 	ITEM=random_weapon
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0569]
@@ -7636,7 +7636,7 @@ ON=@NPCRestock
 	ITEM=random_gorget
 	ITEM=random_weapon
 	ITEM=i_boots_calf
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0570]
@@ -7702,7 +7702,7 @@ ON=@NPCRestock
 	ITEM=i_shield_kite_metal
 	ITEM=i_sword_viking
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0571]
@@ -7767,7 +7767,7 @@ ON=@NPCRestock
 	ITEM=i_shield_kite_metal
 	ITEM=i_sword_viking
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0572]
@@ -7822,7 +7822,7 @@ ON=@NPCRestock
 	ITEM=i_STUDDED_SLEEVES
 	ITEM=i_studded_gloves
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0573]
@@ -7875,7 +7875,7 @@ ON=@NPCRestock
 	ITEM=i_STUDDED_SLEEVES
 	ITEM=i_studded_gloves
 	ITEM=random_boots
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 
 
 [CHARDEF 0576]
@@ -7934,7 +7934,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAPONS_BLADED
 	SELL=VENDOR_S_MAGIC_WEAPONS
 	BUY=VENDOR_B_WEAPONS_BLADED
@@ -7995,7 +7995,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAPONS_BLADED
 	SELL=VENDOR_S_MAGIC_WEAPONS
 	BUY=VENDOR_B_WEAPONS_BLADED
@@ -8058,7 +8058,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAPONS_BLUNT
 	SELL=VENDOR_S_MAGIC_WEAPONS
 	BUY=VENDOR_B_WEAPONS_BLUNT
@@ -8119,7 +8119,7 @@ ON=@NPCRestock
 	COLOR=colors_all
 	ITEM=random_boots
 	ITEM=i_apron_half
-	ITEM=random_coin_purse
+	ITEM=treasure_pouch
 	SELL=VENDOR_S_WEAPONS_BLUNT
 	SELL=VENDOR_S_MAGIC_WEAPONS
 	BUY=VENDOR_B_WEAPONS_BLUNT

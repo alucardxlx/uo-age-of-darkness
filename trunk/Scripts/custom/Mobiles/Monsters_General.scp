@@ -83,7 +83,7 @@ desires=t_coin, t_gem, t_ore, c_headless, t_meat_raw, t_food, t_fruit
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tevents=e_swarm
-moverate=0
+moverate=20
 tag.slots_needed=2
 Tag.BeastClass=Beast_Quick
 TAG.MANUEVER1=3
@@ -255,7 +255,7 @@ anim=060c7f
 can=mt_walk|mt_nonhum
 dam=2,6
 armor=8
-moverate=20
+moverate=40
 foodtype=30 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_slime,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 TEVENTS=e_Level_up_NPC
@@ -306,7 +306,7 @@ anim=060c7f
 can=mt_walk|mt_nonhum
 dam=8,10
 armor=21
-moverate=20
+moverate=30
 foodtype=t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_acid_slug,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 TEVENTS=e_Level_up_NPC
@@ -358,7 +358,7 @@ armor=8
 resdispid=c_slime
 reslevel=3
 resdisphue=0480
-moverate=20
+moverate=40
 can=mt_walk|mt_nonhum
 foodtype=50 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_frostooze,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
@@ -407,7 +407,7 @@ icon=i_pet_tentacles_lbr
 sound=snd_monster_corpsr1
 can=mt_nonmover|mt_nonhum
 foodtype=t_meat_raw
-dam=8,10
+dam=9,12
 armor=28
 moverate=0
 resdispid=c_swamp_tentacles
@@ -429,20 +429,22 @@ on=@create
 	nightsight=1
      npc=brain_monster
 
-     str={106 130}
-     dex={76 90}
+     str={88 110}
+     dex={86 105}
      int={18 25}
 
      parrying={55.0 65.0}
-     magicresistance={15.1 19.3}
-     tactics={66.1 79.3}
-     wrestling={68.6 80.9}
-     hiding={51.8 71.3}
+     magicresistance={25.1 29.3}
+     tactics={76.1 89.3}
+     wrestling={78.6 90.9}
+     hiding={31.8 51.3}
 
      TIMERF 1, NONMOVERNUDGE
-     fame=500
-     karma=-1000
+     fame={ 500 600 }
+     karma= { -900 -1000 }
+     EXP={ 550 700 } //Level 1
 
+     resfire=13
      resenergy=20
      respoison=30
      rescold=20
@@ -460,7 +462,7 @@ sound=snd_monster_corpsr1
 icon=i_pet_corpser
 anim=06147f
 can=mt_nonmover|mt_nonhum
-dam=9,12
+dam=10,13
 armor=26
 moverate=0
 foodtype=24 t_meat_raw
@@ -484,8 +486,8 @@ on=@create
 	nightsight=1
      npc=brain_monster
 
-     str={78 100}
-     dex={76 85}
+     str={106 130}
+     dex={66 80}
      int={27 30}
 
      parrying={15.0 25.0}
@@ -508,7 +510,7 @@ id=c_corpser
 name=ice corpser
 can=mt_nonmover|mt_nonhum
 moverate=0
-dam=12,16
+dam=10,13
 armor=26
 icon=i_pet_corpser
 sound=snd_monster_corpsr1
@@ -526,7 +528,7 @@ TAG.MANUEVER1=9
 TAG.MANUEVER2=13
 TAG.MANUEVER3=15
 TEVENTS=e_combat_move_intel
-tag.colddamage=40
+tag.colddamage=50
 
 category=Monsters
 subsection=Plants
@@ -535,6 +537,7 @@ description=Ice Corpser
 on=@Create
  npc=brain_monster
  color=0480
+ nightsight=1
 
  fame=2000
  karma=-2000
@@ -567,7 +570,7 @@ resources=6 i_reag_dead_Wood, 4 i_log
 foodtype=t_meat_raw
 can=mt_nonhum
 TEVENTS=e_Level_up_NPC
-desires=r_foliage,t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_corpse
+desires=t_scroll, t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_reagent, t_potion
 tag.slots_needed=5
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
@@ -588,6 +591,7 @@ on=@create
      str={132 161}
      dex={66 75}
      int={170 189}
+     TAG0.MODHITS = 16
 
      EXP={ 8050 11000 } //Level 5
 
@@ -629,17 +633,17 @@ defname=c_reaper_elder
 ICON=020fa 
 DAM=14,18 
 ARMOR=48
-moverate=0
+moverate=60
 resources=9 i_reag_dead_Wood, 6 i_log
-CAN=MT_WALK|MT_RUN|mt_nonhum
+CAN=MT_WALK|mt_nonhum
 RESLEVEL=5
 RESDISPDNHUE=33
 RESDISPDNID=c_reaper
 FOODTYPE=55 i_kindling  
-desires=r_foliage,t_coin, t_gem, c_reaper, C_reaper_elder, t_corpse,t_wand
+desires=t_scroll, t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_reagent, t_potion
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=7
-tag.override.range=2
+tag.slots_needed=9
+tag.override.range=3
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=46
 TAG.MANUEVER1=29
@@ -658,6 +662,7 @@ on=@create
      str={162 191}
      dex={76 85}
      int={220 239}
+     TAG0.MODHITS = 32
 
      EXP={ 520000 640000 } //Level 11
 
@@ -679,8 +684,8 @@ on=@create
      respoison=35
      rescold=35
 
-     fame=6000
-     karma=-6000
+     fame={ 8000 9000 }
+     karma={ -6000 -8000 }
 
      TAG.RANDCAST=40
      TAG.QUICKCAST = 25
@@ -689,9 +694,9 @@ on=@create
      EVENTS=+e_intel_char_necro_user
 
 ON=@NpcRestock
-     ITEM={ random_scroll 2 Undead_backpack 1 0 2 }
-     item={ Magic_box 3 Metal_Treasure_Chest 2 Metal_Treasure_Chest_brass 1 }
-
+     ITEM={ random_scroll 2 Undead_backpack 1 0 1 }
+     item={ Metal_Treasure_Chest 2 Metal_Treasure_Chest_brass 1 }
+     item={ Magic_box 1 Magic_bag 2 Treasure_pouch 1 0 1 }
 
 
 [chardef 04d]
@@ -709,7 +714,7 @@ foodtype=t_food_raw, t_fish
 desires=t_food_raw
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=6
 tag.override.range=3
 Tag.BeastClass=Beast_Heavy
 tag.wrestlingspeed=48
@@ -730,6 +735,7 @@ on=@create
      str={236 259}
      dex={124 144}
      int={31 36}
+     TAG0.MODHITS = 32
 
      EXP={ 16500 20500 } //Level 6
 
@@ -753,7 +759,7 @@ icon=i_pet_croc
 dam=7,11
 armor=40
 ANIM=01FFF
-moverate=0
+moverate=10
 resources=6 i_ribs_raw, 12 i_hide
 can=mt_walk|mt_fire_immune|mt_run|mt_nonhum
 foodtype=65 t_meat_raw
@@ -803,13 +809,13 @@ can=mt_walk|mt_nonhum|mt_ghost|mt_passwalls
 icon=i_pet_quagmire_lbr
 dam=8,13
 armor=30
-moverate=0
+moverate=10
 resources=8 i_reag_bone
 foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
 TEVENTS=e_Level_up_NPC
 desires=t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit, c_zorn, c_gazer, c_gazer_larva
 ANIM=0FFC78C7F
-tag.slots_needed=4
+tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
 tag.wrestlingspeed=44
 TAG.MANUEVER1=1
@@ -830,6 +836,7 @@ on=@create
      str={176 205}
      dex={120 145}
      int={46 65}
+     TAG0.MODHITS = 16
 
      parrying={65.0 75.0}
      magicresistance={95.0 100.0}
@@ -992,7 +999,7 @@ icon=i_pet_plague_beast_lbr
 can=mt_walk|mt_usehands|mt_nonhum
 dam=11,15
 armor=35
-moverate=0
+moverate=40
 resources=6 i_ribs_raw,
 foodtype=5 t_meat_raw
 desires=c_plague_beast
@@ -1000,7 +1007,7 @@ aversions=r_civilization
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
 //TEVENTS=e_corpse_eater
-tag.slots_needed=5
+tag.slots_needed=6
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=44
 TAG.MANUEVER1=8
@@ -1020,6 +1027,7 @@ on=@create
      str={264 282}
      dex={46 59}
      int={85 99}
+     TAG0.MODHITS = 16
 
      parrying={85.0 100.0}
      magicresistance={85.0 95.0}
@@ -1048,7 +1056,7 @@ sound=snd_monster_reaper1
 icon=i_pet_bog_thing_lbr
 dam=8,12
 armor=28
-moverate=0
+moverate=40
 resdispid=c_corpser
 reslevel=3
 resdisphue=
@@ -1059,7 +1067,7 @@ shelter=r_jungle,r_swamp_rock,r_forests
 desires=r_foliage
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=4
+tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
 tag.wrestlingspeed=44
 TAG.MANUEVER1=29
@@ -1078,6 +1086,7 @@ on=@create
      str={238 265}
      dex={67 77}
      int={37 49}
+     TAG0.MODHITS = 16
 
      resfire=15
      respoison=80
@@ -1102,7 +1111,7 @@ icon=i_pet_sphinx_lbr
 can=mt_walk|mt_run|mt_nonhum
 dam=15,19
 armor=50
-moverate=0
+moverate=10
 resdispid=c_a_cougar
 reslevel=3
 resdisphue=color_gray_dk
@@ -1136,6 +1145,7 @@ on=@create
      str={105 125}
      dex={65 85}
      int={195 215}
+     TAG0.MODHITS = 8
 
 	givelang 1
 
@@ -1164,14 +1174,13 @@ on=@death
 
 
 
-
 [CHARDEF 732]
 DEFNAME=c_rotworm
 NAME=rotworm
 DAM=7,11
 ARMOR=12
 CAN=mt_walk|mt_run|mt_nonhum
-MOVERATE=2
+MOVERATE=30
 resources=1 i_ribs_raw
 FOODTYPE=30 t_meat_raw,t_garbage,t_blood
 desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
@@ -1237,7 +1246,7 @@ NAME=bloodworm
 DAM=10,14
 ARMOR=18
 CAN=mt_walk|mt_run|mt_nonhum
-MOVERATE=2
+MOVERATE=30
 resources=3 i_ribs_raw
 FOODTYPE=60 t_meat_raw,t_garbage,t_blood
 desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
@@ -1389,6 +1398,7 @@ NPC=brain_monster
 STR={99 125}
 DEX={58 83}
 INT={215 247}
+TAG0.MODMANA = 16
 
 nightsight=1
 

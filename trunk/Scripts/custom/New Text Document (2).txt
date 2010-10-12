@@ -256,48 +256,6 @@ DROP
 ENDFOR
 NEW=<LOCAL.OLDNEW>
 
-//Bone event
-
-ON=@NPCActFollow
-IF !(<R30>)
-SERV.NEWITEM i_unholy_bone
-NEW.LINK=<UID>
-NEW.P=<P>
-NEW.TIMER=20
-ENDIF
-
-
-[ITEMDEF i_unholy_bone]
-ID=i_reag_daemon_bone
-NAME=Unholy Bone
-TYPE=T_NORMAL
-
-ON=@Create
-ATTR=ATTR_MOVE_NEVER
-COLOR=038b
-
-ON=@Timer
-IF (<SECTOR.complexity> < <serv.maxcomplexity>)
-SERV.NEWNPC {c_skeleton 2 c_skeleton_knight 1 c_skeleton_mage 1 c_patchwork_skeleton 3 c_spectre 1 c_ghoul 1}
-NEW.P=<P>
-NEW.UPDATEX
-NEW.FLAGS |= statf_conjured
-LINK.TAME <NEW>
-NEW.REMOVETIMER <EVAL 60*5>
-REMOVE
-ELSE
-TIMER=10
-ENDIF
-RETURN 1
-
-ON=@Damage
-REMOVE
-
-ON=@Step
-IF (<SRC.ISPLAYER>)
-REMOVE
-ENDIF
-
 
 ON=@NpcLookAtChar
 IF (<FLOATVAL 0.08> > <RANDOMDOUBLE>)

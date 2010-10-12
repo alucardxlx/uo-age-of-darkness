@@ -1092,15 +1092,15 @@ BUY=i_ARROW_FLETCHING,{4 12}
 CATEGORY=Vendor Templates
 SUBSECTION=Sell Templates
 DESCRIPTION=Healer
-SELL=i_bandage,{12 64}
+SELL=i_bandage,{64 128}
 SELL=i_potion_Refresh,{3 18}
 SELL=i_potion_HealLess,{4 24}
 SELL=i_potion_Heal,{2 12}
 SELL=i_potion_CureLess,{4 24}
 SELL=i_potion_Cure,{2 12}
-SELL=i_reag_ginseng,{6 38}
-SELL=i_reag_garlic,{6 38}
-SELL=i_reag_spider_silk,{6 38}
+SELL=i_reag_ginseng,{12 48}
+SELL=i_reag_garlic,{12 48}
+SELL=i_reag_spider_silk,{12 48}
 
 
 [TEMPLATE VENDOR_B_HEALER_SHOP]

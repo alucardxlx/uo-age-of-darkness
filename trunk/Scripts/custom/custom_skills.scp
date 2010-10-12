@@ -124,7 +124,8 @@ ON=@Start
 	ENDIF
 
 ON=@Fail
-SRC.MESSAGE @,,2 500334
+SRC.MESSAGE You fail to identify the item.
+SKILLGAIN ItemID 30
 
 [SKILL 4]
 DEFNAME=SKILL_ARMSLORE
@@ -237,6 +238,7 @@ ON=@Fail
 		trysrc <src.targ> new.equip
 		new.timer = 5*60
 	ENDIF
+	SRC.SKILLGAIN BEGGING 30
 
 ON=@Abort
 	SRC.SYSMESSAGE You stop attempting to grovel.
@@ -724,34 +726,25 @@ BONUS_STATS=50
 ADV_RATE=2.5,50.0,125.0
 
 ON=@Success
-	IF (<RESTEST 1 i_lockpick_set>)
-		IF !(rand(16))
-			SRC.CONSUME=1 i_lockpick_set
-			SRC.MESSAGE You break a lockpick set.
-		ENDIF
-	ELSE
-	IF (<RESTEST 1 i_lockpick>)
-		IF !(rand(6))
-			SRC.CONSUME=1 i_lockpick
-			SRC.MESSAGE You break a lockpick.
-		ENDIF
+	IF !(<RESTEST 1 i_lockpick_set>) && !(<RESTEST 1 i_lockpick>)
+		SRC.MESSAGE You do not have the means to open this.
+		RETURN 1
 	ENDIF
-	RETURN
 
 ON=@Fail
 	SRC.SYSMESSAGE You are unable to pick the lock.
 	IF (<RESTEST 1 i_lockpick_set>)
-		IF !(rand(8))
+		IF !<skillcheck LockPicking 300> || !(<R10>)
 			SRC.CONSUME=1 i_lockpick_set
 			SRC.MESSAGE You break a lockpick set.
 		ENDIF
 	ELIF (<RESTEST 1 i_lockpick>)
-		IF !(rand(3))
+		IF !<skillcheck LockPicking 400> || !(<R3>)
 			SRC.CONSUME=1 i_lockpick
 			SRC.MESSAGE You break a lockpick.
 		ENDIF
 	ENDIF
-	SKILLGAIN LOCKPICKING <EVAL <LOCKPICKING>/10>
+	SKILLGAIN LockPicking 30
 	RETURN
 
 
@@ -1312,10 +1305,11 @@ ENDIF
 RETURN
 
 ON=@Fail
-	SRC.MESSAGE @,,2 502823
+	SRC.MESSAGE You cannot identify the substance.
+	SKILLGAIN TasteID 30
 
 ON=@Abort
-	SRC.MESSAGE @,,2 502823
+	SRC.MESSAGE You stop trying to identify the substance.
 
 [SKILL 37]
 DEFNAME=Skill_Tinkering
