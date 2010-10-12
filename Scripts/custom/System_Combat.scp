@@ -1206,7 +1206,7 @@ Return <eval <Local.Hitspeed>>
 [Function CombatSys_HitChance]
 Local.Hitchance=<Eval ((<I.CombatSys_UsedSkill>*10) + 5000) / ((((<Src.Tactics>+<src.skillmod tactics>)/10) + 50) *2)>
 Local.Hitchance += <QVAL <TAG0.HITCHANCEINCREASE> ? <EVAL (<Local.Hitchance>*<TAG0.HITCHANCEINCREASE>)/100> : 0> - <QVAL <SRC.TAG0.HITCHANCEDECREASE> ? <EVAL (<Local.Hitchance>*<SRC.TAG0.HITCHANCEDECREASE>)/100> : 0>
-if (<sector.light> > 4) && (<NIGHTSIGHT>==0) && !(<FINDLAYER.2.TYPE>==T_LIGHT_LIT)
+if (<sector.light> > 4) && (<NIGHTSIGHT>==0) && !(<FINDLAYER.2.TYPE>==T_LIGHT_LIT) && !(<ISNEARTYPE T_LIGHT_LIT 3>)
 	Local.Hitchance -= <sector.light>
 	sysmessage You have trouble fighting in this darkness.
 	Serv.Log Darkness: - <sector.light>% ::: UO:R

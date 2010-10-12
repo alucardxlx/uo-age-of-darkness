@@ -302,14 +302,21 @@ ON=@SpellSelect
 
 ON=@itemdclick
 if (<act.link>==<src.uid>)&&(<act.type>==t_corpse)
-  While <act.rescount>
-    ref1=<act.findcont.0.uid>
-    ref1.cont=<src.findlayer.21.uid>
-    If (<ref1.tag0.contp>)
-      ref1.contp=<ref1.tag0.contp>
-      ref1.tag.contp=
-    endif
-  endwhile
+  local.cycle=0
+  ref1=<act.findcont.<local.cycle>.uid>
+  for 0 <act.rescount>
+	if !(<ref1.attr> & attr_move_never)
+	    ref1.bounce
+	    //ref1.cont = <src.findlayer.21.uid>
+	    If (<ref1.tag0.contp>)
+	      ref1.contp=<ref1.tag0.contp>
+	      ref1.tag.contp=
+	    endif
+	else
+		local.cycle += 1
+	endif
+ 	ref1=<act.findcont.<local.cycle>.uid>
+  endfor
   src.sysmessage You take back all your belongings.
   src.findlayer.21.open
 endif
@@ -1120,7 +1127,7 @@ ENDIF
 IF STRMATCH("<SRC.TAG0.RACE>","Human") 
 	SRC.MODMAXWEIGHT += 30
 	IF (<TAG0.MODHITS> == 0)
-		TAG0.MODMANA = 8
+		TAG0.MODHITS = 8
 	ENDIF
 ELSEIF STRMATCH("<SRC.TAG0.RACE>","Elf") 
 	IF (<TAG0.MODMANA> == 0)

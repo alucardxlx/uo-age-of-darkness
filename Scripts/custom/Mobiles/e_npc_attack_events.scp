@@ -29,14 +29,15 @@ ON=@NPCLookAtChar
        f_warcry
        RETURN 0
  ELIF ( <TAG0.NPCAI.Ally> &<SRC.TAG0.NPCAI.Race> ) //If my target is a friendly
-     IF ( (<SRC.FLAGS>&statf_war) && (<SRC.ATTACKER.MAX.HITS>) ) //If ally is fighting
+     IF (<SRC.FLAGS>&statf_war) && !(<npc> == brain_healer) && !(<TAG0.NPCAI.Ally> &<SRC.ATTACKER.MAX.TAG0.NPCAI.Race>) //If ally is fighting
 	 If <FriendlySpellCheck>
 		return 0
 	 else
 	        IF ( <ISEVENT.e_squad_member> )
-		 	TRYSRC <SRC.ATTACKER.MAX> AlertSquad
+		 OBJ=<SRC.ATTACKER.MAX.UID>
+		 	TRYSRC <OBJ> AlertSquad
 	         ENDIF
-	         TRYSRC <SRC.ATTACKER.MAX> ATTACK
+	         TRYSRC <OBJ> ATTACK
 	         f_warcry
 	         RETURN 0
 	 endif
@@ -45,11 +46,11 @@ ON=@NPCLookAtChar
      ENDIF
  ENDIF
 
-//if (<npc> == brain_healer)
-//	if <src.flags> & statf_dead
-//		src.resurrect
-//	endif
-//endif
+if (<npc> == brain_healer)
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
+endif
 
  IF (<KARMA> > 0) //If my karma is good
    IF (<SRC.KARMA> < -1000) //If my target's karma is bad

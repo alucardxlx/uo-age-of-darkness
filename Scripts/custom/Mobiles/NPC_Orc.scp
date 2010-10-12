@@ -926,7 +926,7 @@ COLOR=colors_all
 ITEM=random_shoes
 COLOR=colors_neutral
 ITEM=i_apron_half
-ITEM=random_coin_purse
+ITEM=treasure_pouch
 ITEM={ random_food 1 random_meat 0 10}
 ITEM={ random_food 1 random_meat 0 10}
 
@@ -1023,7 +1023,7 @@ COLOR=colors_all
 ITEM=random_shoes
 COLOR=colors_neutral
 ITEM=i_apron_half
-ITEM=random_coin_purse
+ITEM=treasure_pouch
 ITEM={ random_food 1 random_meat 0 10}
 ITEM={ random_food 1 random_meat 0 10}
 
@@ -1112,11 +1112,10 @@ ON=@NPCRestock
 ITEM=RANDOM_LIGHT
 ITEM=i_shirt_plain
 COLOR=colors_all
-ITEM=random_pants
-COLOR=colors_all
+ITEM=i_fur_sarong
 ITEM=random_boots
 ITEM=i_knife_skinning
-ITEM=random_coin_purse
+ITEM=treasure_pouch
 
 SELL=VENDOR_S_FURTRADER
 BUY=VENDOR_B_FURTRADER
@@ -1187,10 +1186,10 @@ ON=@NPCRestock
 ITEM=RANDOM_LIGHT
 ITEM=i_shirt_plain
 COLOR=colors_all
-ITEM=random_pants
-COLOR=colors_all
+ITEM=i_fur_sarong
 ITEM=random_boots
 ITEM=i_knife_skinning
+ITEM=treasure_pouch
 
 SELL=VENDOR_S_FURTRADER
 BUY=VENDOR_B_FURTRADER
@@ -1217,8 +1216,8 @@ SUBSECTION=Tradesmen (Orc)
 DESCRIPTION=Healer (male)
 
 TSPEECH=spk_human_prime
-TSPEECH=jobhealer
 TSPEECH=spk_shopkeep
+TSPEECH=jobhealer
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
 TSPEECH=spk_human_default
@@ -1264,6 +1263,7 @@ ITEM=RANDOM_LIGHT
 ITEM=i_robe
 COLOR=colors_all
 ITEM=i_sandals
+ITEM=supply_backpack
 
 SELL=VENDOR_S_HEALER_SHOP
 BUY=VENDOR_B_HEALER_SHOP
@@ -1286,8 +1286,8 @@ SUBSECTION=Tradesmen (Orc)
 DESCRIPTION=Healer (female)
 
 TSPEECH=spk_human_prime
-TSPEECH=jobhealer
 TSPEECH=spk_shopkeep
+TSPEECH=jobhealer
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
 TSPEECH=spk_human_default
@@ -1333,6 +1333,7 @@ ITEM=RANDOM_LIGHT
 ITEM=i_robe
 COLOR=colors_all
 ITEM=i_sandals
+ITEM=supply_backpack
 
 SELL=VENDOR_S_HEALER_SHOP
 BUY=VENDOR_B_HEALER_SHOP
@@ -1399,12 +1400,13 @@ TACTICS={25.0 48.0}
 
 ON=@NPCRestock
 ITEM=RANDOM_LIGHT
-ITEM=i_shirt_plain
+ITEM=i_apron_full
 COLOR=colors_all
 ITEM=random_pants
 COLOR=colors_all
 ITEM=random_boots
 ITEM=i_hammer_smith
+ITEM=supply_backpack
 
 SELL=VENDOR_S_ARMORER_SHIELDS
 SELL=VENDOR_S_ARMORER_RING
@@ -1487,6 +1489,7 @@ COLOR=colors_all
 ITEM=random_pants
 COLOR=colors_all
 ITEM=random_boots
+ITEM=supply_backpack
 
 SELL=VENDOR_S_PROVISIONER
 BUY=VENDOR_B_PROVISIONER
@@ -1551,6 +1554,7 @@ ITEM=i_pants_long
 COLOR=colors_yellow
 ITEM=random_shoes
 COLOR=colors_neutral
+ITEM=treasure_backpack
 
 CATEGORY=Civilized
 SUBSECTION=Tradesmen (Orc)
@@ -1623,6 +1627,7 @@ COLOR=colors_all
 ITEM=random_boots
 item=i_bow
 item=i_ARROW,{35 55}
+ITEM=supply_backpack
 
 SELL=VENDOR_S_BOWYER
 BUY=VENDOR_B_BOWYER
