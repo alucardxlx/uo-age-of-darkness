@@ -1,0 +1,33 @@
+//Luminous Rune Blade
+[itemdef i_luminous_rune_blade]
+defname=i_luminous_rune_blade
+id=i_rune_blade
+name=luminous rune blade
+type=t_weapon_sword
+dam=15,17
+speed=//3s
+strreq=30
+twohands=y
+skill=swordsmanship
+weight=7.0
+skillmake=blacksmithing 70.0
+resources=15 t_ingot, 10 i_ingredient_corruption, 10 i_ingredient_putrefaction, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Luminous Rune Blade
+
+on=@Create
+ color=0562
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=24	//Bladeweave
+
+ tag.HitLightning=40
+ tag.SelfRepair=5
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ tag.DamageIncrease=55
+ tag.EnergyDamage=100

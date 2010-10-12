@@ -1,0 +1,35 @@
+[itemdef i_arty_calm]
+defname=i_arty_calm
+id=i_halberd
+name=Calm
+type=t_weapon_axe
+dam=18,19
+speed=//4.25
+range=
+strreq=95
+twohands=y
+skill=swordsmanship
+weight=16.0
+dye=0
+flip=1
+skillmake=
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Calm
+
+on=@Create
+ color=0
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//Whirlwind Attack
+ tag.move2=	//Concussion Blow
+
+ tag.SpellChanneling=1
+ tag.HitManaLeech=100
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=50
+ tag.UseBestWeaponSkill=1

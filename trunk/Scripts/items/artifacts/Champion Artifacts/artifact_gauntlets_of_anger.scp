@@ -1,0 +1,30 @@
+[itemdef i_arty_gauntlets_of_anger]
+defname=i_arty_gauntlets_of_anger
+id=i_platemail_gloves
+name=Gauntlets of Anger
+type=t_armor
+armor=0
+strreq=70
+weight=2.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Gauntlets of Anger
+
+on=@Create
+ color=0483
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.modar=4
+ tag.resfire=4
+ tag.rescold=5
+ tag.respoison=6
+ tag.resenergy=5
+
+ tag.HitPointIncrease=8
+ tag.HitPointRegen=2
+ tag.DefenseChanceIncrease=10

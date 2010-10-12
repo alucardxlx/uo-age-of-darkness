@@ -1,0 +1,30 @@
+[itemdef i_arty_subdue]
+defname=i_arty_subdue
+id=i_scythe
+name=Subdue
+type=t_weapon_sword
+dam=15,18
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=5.0
+resources=14 i_ingot_iron
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Subdue
+
+on=@Create
+ color=0
+ hitpoints={ 255 255 }
+
+ tag.move1=2	//Bleed attack
+ tag.move2=11	//Paralyzing Blow
+
+ tag.spellchanneling=1
+ tag.hitmanaleech=100
+ tag.hitchanceincrease=10
+ tag.swingspeedincrease=20
+ tag.damageincrease=50
+ tag.usebestweaponskill=1

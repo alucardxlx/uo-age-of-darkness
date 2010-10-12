@@ -1,0 +1,33 @@
+//Cold Forged Blade
+[itemdef i_cold_forged_blade]
+defname=i_cold_forged_blade
+id=i_elven_spellblade
+name=cold forged blade
+type=t_weapon_fence
+dam=12,14
+speed=//2.5s
+strreq=35
+twohands=y
+skill=fencing
+weight=5.0
+skillmake=blacksmithing 70.0
+resources=18 t_ingot, 10 i_ingredient_blight, 10 i_ingredient_taint, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Cold Forged Blade
+
+on=@Create
+ color=04F2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=27	//psychic attack
+ tag.move2=2	//bleed attack
+
+ tag.SpellChanneling=1
+ tag.HitHarm=40
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=25
+ tag.DamageIncrease=50
+ tag.ColdDamage=100

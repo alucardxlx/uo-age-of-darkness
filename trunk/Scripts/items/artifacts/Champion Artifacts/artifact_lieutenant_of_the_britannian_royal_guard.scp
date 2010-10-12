@@ -1,0 +1,24 @@
+[itemdef i_arty_lieutenant_of_the_britannian_royal_guard]
+defname=i_arty_lieutenant_of_the_britannian_royal_guard
+id=i_sash
+name=Lieutenant of the Royal Britannian Guard
+type=t_clothing
+reqstr=10
+weight=1.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Lieutenant of the Royal Britannian Guard
+
+on=@Create
+ color=020
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.intelligencebonus=5
+ tag.manaregen=2
+ tag.lrc=10

@@ -1,0 +1,34 @@
+//Blight Gripped Longbow
+[itemdef i_blight_gripped_longbow]
+defname=i_blight_gripped_longbow
+id=i_elven_composite_longbow
+name=blight gripped longbow
+type=t_weapon_bow
+dam=12,16
+speed=//4s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=8.0
+skillmake=bowcrafting 75.0
+resources=20 t_board, 10 i_ingredient_blight, 10 i_ingredient_corruption, 1 i_ingredient_paroxysmus_lard
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Blight Gripped Longbow
+
+on=@Create
+ color=04F3
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=25	//Force arrow
+ tag.move2=28	//Serpent Arrow
+
+ tag.HitPoisonArea=20
+ tag.StaminaRegen=3
+ tag.NightSight=1
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=35
+ tag.PoisonDamage=100

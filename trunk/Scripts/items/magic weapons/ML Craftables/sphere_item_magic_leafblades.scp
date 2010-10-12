@@ -1,0 +1,122 @@
+/////////////
+//Leafblade//
+/////////////
+
+//Leafblade of Ease
+[itemdef i_leafblade_o_ease]
+defname=i_leafblade_o_ease
+id=i_leafblade
+name=leafblade of ease
+type=t_weapon_fence
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=fencing
+weight=8.0
+skillmake=blacksmithing 75.0
+resources=12 t_ingot, 1 i_gem_perfect_emerald
+
+category=
+subsection=
+description=Leafblade of Ease
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=20	//Feint
+ tag.move2=1	//Armor Ignore
+
+ tag.UseBestWeaponSkill=1
+
+
+//Luckblade
+[itemdef i_luckblade]
+defname=i_luckblade
+id=i_leafblade
+name=luckblade
+type=t_weapon_fence
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=fencing
+weight=8.0
+skillmake=blacksmithing 75.0
+resources=12 t_ingot, 1 i_gem_white_pearl
+
+category=
+subsection=
+description=Luckblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=20	//Feint
+ tag.move2=1	//Armor Ignore
+
+ tag.luck=20
+
+
+//Magekiller Leafblade
+[itemdef i_magekiller_leafblade]
+defname=i_magekiller_leafblade
+id=i_leafblade
+name=magekiller leafblade
+type=t_weapon_fence
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=fencing
+weight=8.0
+skillmake=blacksmithing 75.0
+resources=12 t_ingot, 1 i_gem_fire_ruby
+
+category=
+subsection=
+description=Magekiller Leafblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=20	//Feint
+ tag.move2=1	//Armor Ignore
+
+ tag.HitManaLeech=16
+
+
+//True Leafblade
+[itemdef i_true_leafblade]
+defname=i_true_leafblade
+id=i_leafblade
+name=true leafblade
+type=t_weapon_fence
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=fencing
+weight=8.0
+skillmake=blacksmithing 75.0
+resources=12 t_ingot, 1 i_gem_blue_diamond
+
+category=
+subsection=
+description=True Leafblade
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=20	//Feint
+ tag.move2=1	//Armor Ignore
+
+ tag.respoison=5

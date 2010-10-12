@@ -1,0 +1,31 @@
+[itemdef i_soul_seeker]
+defname=i_soul_seeker
+id=i_radiant_scimitar
+name=soul seeker
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+resources=15 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Soul Seeker
+
+on=@Create
+ color=03D7
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.HitStaminaLeech=40
+ tag.Slayer=slayer_repond
+ tag.HitManaLeech=30
+ tag.HitLifeLeech=30
+ tag.SwingSpeedIncrease=60
+ tag.ColdDamage=100

@@ -1,0 +1,32 @@
+[itemdef i_arty_fang_of_ractus]
+defname=i_arty_fang_of_ractus
+id=i_kryss
+name=Fang of Ractus
+type=t_weapon_fence
+dam=10,12
+speed=//2
+strreq=10
+twohands=n
+skill=Fencing
+weight=2.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Fang of Ractus
+
+on=@Create
+ color=04F6
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//Armor Ignore
+ tag.move2=	//Infectious Strike
+
+ tag.SpellChanneling=1
+ tag.HitPoisonArea=20
+ tag.HitChanceIncrease=5
+ tag.DefenseChanceIncrease=35
+ tag.ResPoison=15

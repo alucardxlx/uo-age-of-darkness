@@ -1,0 +1,128 @@
+////////////////////
+//Magical Shortbow//
+////////////////////
+
+//Assassin's Shortbow
+[itemdef i_assassins_shortbow]
+defname=i_assassins_shortbow
+id=i_magical_shortbow
+name=assassin's shortbow
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 70.0
+resources=15 t_board, 1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=Assassin's Shortbow
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.HitChanceIncrease=3
+ tag.DamageIncrease=4
+
+
+//Lightweight Shortbow
+[itemdef i_lightweight_shortbow]
+defname=i_lightweight_shortbow
+id=i_magical_shortbow
+name=lightweight shortbow
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 70.0
+resources=15 t_board, 1 i_gem_white_pearl
+
+category=
+subsection=
+description=Lightweight Shortbow
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.Balanced=1	//1 = yes
+
+
+//Mystical Shortbow
+[itemdef i_mystical_shortbow]
+defname=i_mystical_shortbow
+id=i_magical_shortbow
+name=mystical shortbow
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 70.0
+resources=15 t_board, 1 i_gem_ecru_citrine
+
+category=
+subsection=
+description=Mystical Shortbow
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.SpellChanneling
+ tag.FasterCasting=-1
+
+
+//Ranger's Shortbow
+[itemdef i_rangers_shortbow]
+defname=i_rangers_shortbow
+id=i_magical_shortbow
+name=ranger's shortbow
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+skillmake=bowcrafting 70.0
+resources=15 t_board, 1 i_gem_perfect_emerald
+
+category=
+subsection=
+description=Ranger's Shortbow
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.SwingSpeedIncrease=5

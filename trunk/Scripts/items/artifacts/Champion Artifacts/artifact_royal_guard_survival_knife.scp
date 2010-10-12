@@ -1,0 +1,33 @@
+[itemdef i_arty_royal_guard_survival_knife]
+defname=i_arty_royal_guard_survival_knife
+id=i_knife_skinning
+name=Royal Guard Survival Knife
+type=t_weapon_sword
+dam=,11,13
+speed=//2.5
+strreq=5
+twohands=n
+skill=swordsmanship
+weight=6.0
+dye=0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Royal Guard Survival Knife
+
+on=@Create
+ color=0
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//shadowstrike
+ tag.move2=	//disarm
+
+ tag.spellchanneling=1
+ tag.luck=140
+ tag.enhancepotions=25
+ tag.usebestweaponskill=1
+ tag.LowerRequirements=50

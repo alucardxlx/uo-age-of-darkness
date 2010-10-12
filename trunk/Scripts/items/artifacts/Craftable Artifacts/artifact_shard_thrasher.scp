@@ -1,0 +1,32 @@
+//Shard Thrasher
+[itemdef i_shard_thrasher]
+defname=i_shard_thrasher
+id=i_diamond_mace
+name=shard thrasher
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 10 i_ingredient_corruption, 10 i_ingredient_muculent, 1 i_ingredient_travesty_eye
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Shard Thrasher
+
+on=@Create
+ color=04F2
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.HitPhysicalArea=30
+ tag.StaminaIncrease=8
+ tag.HitChanceIncrease=10
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=40

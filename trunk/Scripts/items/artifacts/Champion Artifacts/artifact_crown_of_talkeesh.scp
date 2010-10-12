@@ -1,0 +1,28 @@
+[itemdef i_arty_crown_of_talkeesh]
+defname=i_arty_crown_of_talkeesh
+id=i_bandana
+name=Crown of Tal'keesh
+type=t_clothing
+strreq=10
+weight=1.0
+dye=1
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Crown of Tal'keesh
+
+on=@Create
+ color=04F2
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.IntelligenceIncrease=8
+ tag.ManaRegen=4
+ tag.SpellDamageIncrease=10
+ tag.resfire=5
+ tag.rescold=9
+ tag.respoison=20
+ tag.resenergy=20

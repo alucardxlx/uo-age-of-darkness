@@ -1,0 +1,24 @@
+[itemdef i_arty_jade_armband]
+defname=i_arty_jade_armband
+id=i_bracelet_silver
+name=Jade Armband
+type=t_jewelry
+weight=1.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Jade Armband
+
+on=@Create
+ color=0296
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.respoison=20
+
+ tag.hitchanceincrease=10
+ tag.DefenseChanceIncrease=10
+ tag.SwingSpeedIncrease=5

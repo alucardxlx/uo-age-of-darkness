@@ -1,0 +1,32 @@
+//Overseer Sundered Blade
+[itemdef i_overseer_sundered_blade]
+defname=i_overseer_sundered_blade
+id=i_radiant_scimitar
+name=scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 10 i_ingredient_blight, 10 i_ingredient_scourge, 1 i_ingredient_grizzled_bones
+
+category=Provisions - Artifacts
+subsection=Craftable Artifact
+description=Overseer Sundered Blade
+
+on=@Create
+ color=0550
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.StaminaRegen=2
+ tag.HitChanceIncrease=10
+ tag.SwingSpeedIncrease=35
+ tag.DamageIncrease=45
+ tag.FireDamage=100

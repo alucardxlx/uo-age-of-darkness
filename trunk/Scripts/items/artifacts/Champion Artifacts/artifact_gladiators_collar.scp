@@ -1,0 +1,30 @@
+[itemdef i_arty_gladiators_collar]
+defname=i_arty_gladiators_collar
+id=i_platemail_gorget
+name=Gladiator's Collar
+type=t_armor
+armor=0
+strreq=45
+weight=2.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Gladiator's Collar
+
+on=@Create
+ color=04C4
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.ModAR=18
+ tag.resfire=18
+ tag.rescold=17
+ tag.respoison=18
+ tag.resenergy=16
+
+ tag.magearmor=1
+ tag.hpincrease=10
+ tag.hitchanceincrease=10

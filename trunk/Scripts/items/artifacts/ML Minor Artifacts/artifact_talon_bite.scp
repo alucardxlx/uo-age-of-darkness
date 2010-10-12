@@ -1,0 +1,31 @@
+[itemdef i_talon_bite]
+defname=i_talon_bite
+id=i_ornate_axe
+name=talon bite
+type=t_weapon_axe
+dam=18,20
+speed=//3.5
+strreq=45
+twohands=y
+skill=swordsmanship
+weight=12.0
+resources=18 t_ingot
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Talon Bite
+
+on=@Create
+ color=047E
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=5	//Disarm
+ tag.move2=4	//Crushing Blow
+
+ tag.Tactics=10
+ tag.HitHarm=33
+ tag.DexterityBonus=8
+ tag.SwingSpeedIncrease=20
+ tag.DamageIncrease=35
+ tag.UseBestWeaponSkill=1

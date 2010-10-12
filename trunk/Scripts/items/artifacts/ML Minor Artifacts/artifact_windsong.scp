@@ -1,0 +1,29 @@
+[itemdef i_windsong]
+defname=i_windsong
+id=i_magical_shortbow
+name=windsong
+type=t_weapon_bow
+dam=9,13
+speed=//3s
+range=10
+strreq=45
+twohands=y
+skill=archery
+weight=6.0
+resources=15 t_board
+
+category=Provisions - Artifacts
+subsection=ML Minor Artifacts
+description=Windsong
+
+on=@Create
+ color=0174
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.move1=26
+ tag.move2=27
+
+ tag.velocity=25
+ tag.SelfRepair=3
+ tag.DamageIncrease=35

@@ -1,0 +1,32 @@
+//Quell
+[itemdef i_arty_quell]
+defname=i_arty_quell
+id=i_bardiche
+name=Quell
+type=t_weapon_sword
+dam=17,18
+speed=//3.75
+strreq=45
+twohands=y
+skill=Swordsmanship
+weight=7.0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=Quell
+
+on=@Create
+ color=0800|0971
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.move1=	//Crushing Blow
+ tag.move2=	//Dismount
+
+ tag.SpellChanneling=1
+ tag.HitManaLeech=100
+ tag.HitChanceIncrease=10
+ tag.SwingSpeedIncrease=20

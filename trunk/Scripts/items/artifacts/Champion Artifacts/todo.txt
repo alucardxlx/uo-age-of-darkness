@@ -1,0 +1,22 @@
+pier tile
+swamp tile
+blood wall tiles
+dread horn statue
+demon skull
+futon
+ophidian warrior statue
+ophidian arch mage statue
+lava tile
+mummified corpse
+tattered ancient mummy wrapping
+minotaur statue
+small vase
+large vase
+wind spirit
+plague beast statue
+red death statue
+slime statue
+archdemon statuue
+web (2 kinds)
+spider statue
+water tile

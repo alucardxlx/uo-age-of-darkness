@@ -1,0 +1,14 @@
+//Hovering Wisp
+//Cannot be dyed.
+[itemdef i_hovering_wisp]
+defname=i_hovering_wisp
+id=i_pet_wisp
+name=hovering wisp
+type=t_normal
+weight=1.0
+skillmake=alchemy 75.0
+resources=4 i_ingredient_captured_essence
+
+category=Provisions - Artifacts
+subsection=Craftable Artifacts
+description=Hovering Wisp

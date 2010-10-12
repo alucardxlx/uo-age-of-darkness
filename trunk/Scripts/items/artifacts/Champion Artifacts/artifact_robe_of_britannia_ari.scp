@@ -1,0 +1,21 @@
+[itemdef i_arty_robe_of_britannia_ari]
+defname=i_arty_robe_of_britannia_ari
+id=i_shroud
+name="The Robe of Britannia "Ari""
+type=t_clothing
+weight=1.0
+dye=0
+flip=1
+resources=
+value=
+
+category=Provisions - Artifacts
+subsection=Champion Spawns
+description=The Most Knowledge Person
+
+on=@Create
+ color=0561
+ hitpoints={ 150 150 }
+ attr=attr_magic
+
+ tag.modar=10

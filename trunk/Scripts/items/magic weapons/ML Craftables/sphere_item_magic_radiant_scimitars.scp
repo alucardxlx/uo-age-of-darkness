@@ -1,0 +1,122 @@
+////////////////////
+//Radiant Scimitar//
+////////////////////
+
+//Darkglow Scimitar
+[itemdef i_darkglow_scimitar]
+defname=i_darkglow_scimitar
+id=i_radiant_scimitar
+name=darkglow scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot,1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=Darkglow Scimitar
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.HitDispel=10
+
+
+//Icy Scimitar
+[itemdef i_icy_scimitar]
+defname=i_icy_scimitar
+id=i_radiant_scimitar
+name=icy scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=Icy Scimitar
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.HitHarm=15
+
+
+//True Radiant Scimitar
+[itemdef i_true_radiant_scimitar]
+defname=i_true_radiant_scimitar
+id=i_radiant_scimitar
+name=true radiant scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_brilliant_amber
+
+category=
+subsection=
+description=True Radiant Scimitar
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.NightSight=1
+
+
+//Twinkling Scimitar
+[itemdef i_twinkling_scimitar]
+defname=i_twinkling_scimitar
+id=i_radiant_scimitar
+name=twinkling scimitar
+type=t_weapon_sword
+dam=12,14
+speed=//2.5
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=9.0
+skillmake=blacksmithing 75.0
+resources=15 t_ingot, 1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=Twinkling Scimitar
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=13	//Whirlwind Attack
+ tag.move2=24	//Bladeweave
+
+ tag.DefenseChanceIncrease=6

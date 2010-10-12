@@ -1,0 +1,122 @@
+////////////////
+//Diamond Mace//
+////////////////
+
+//Emerald Mace
+[itemdef i_emerald_mace]
+defname=i_emerald_mace
+id=i_diamond_mace
+name=emerald mace
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 1 i_gem_perfect_emerald
+
+category=
+subsection=
+description=Emerald Mace
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.respoison=5
+
+
+//Ruby Mace
+[itemdef i_ruby_mace]
+defname=i_ruby_mace
+id=i_diamond_mace
+name=ruby mace
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 1 i_gem_fire_ruby
+
+category=
+subsection=
+description=Ruby Mace
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.DamageIncrease=5
+
+
+//Sapphire Mace
+[itemdef i_sapphire_mace]
+defname=i_sapphire_mace
+id=i_diamond_mace
+name=sapphire mace
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 1 i_gem_dark_sapphire
+
+category=
+subsection=
+description=Sapphire Mace
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.resenergy=5
+
+
+//Silver-Etched Mace
+[itemdef i_silver_etched_mace]
+defname=i_silver_etched_mace
+id=i_diamond_mace
+name=silver-etched mace
+type=t_weapon_mace_smith
+dam=14,17
+speed=//3s
+strreq=35
+twohands=n
+skill=macefighting
+weight=10.0
+skillmake=blacksmithing 75.0
+resources=20 t_ingot, 1 i_gem_blue_diamond
+
+category=
+subsection=
+description=Silver-Etched Mace
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=3	//Concussion Blow
+ tag.move2=4	//Crushing Blow
+
+ tag.slayer=slayer_undead

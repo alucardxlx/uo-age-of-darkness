@@ -1,0 +1,152 @@
+/////////////////
+//Elven Machete//
+/////////////////
+
+//Adventurer's Machete
+[itemdef i_adventurers_machete]
+defname=i_adventurers_machete
+id=i_elven_machete
+name=adventurer's machete
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_white_pearl
+
+category=
+subsection=
+description=Adventuer's Machete
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+ tag.luck=20
+
+
+//Bone Machete
+//Used to get into the blighted grove
+[itemdef i_bone_machete]
+defname=i_bone_machete
+id=i_elven_machete
+name=bone machete
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 45.0
+resources=20 t_ingot, 6 i_reag_bone
+
+category=
+subsection=
+description=Bone Machete
+
+on=@Create
+ color=0
+ hitpoints={ 1 4 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+
+//Diseased Machete
+[itemdef i_diseased_machete]
+defname=i_diseased_machete
+id=i_elven_machete
+name=diseased machete
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_ingredient_blight
+
+category=
+subsection=
+description=Diseased Machete
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+ tag.HitPoisonArea=25
+
+
+//Machete of Defense
+[itemdef i_bone_o_defense]
+defname=i_machete_o_defense
+id=i_elven_machete
+name=machete of defense
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_gem_brilliant_amber
+
+category=
+subsection=
+description=Machete of Defense
+
+on=@Create
+ color=0
+ hitpoints={ 1 4 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+ tag.DefenseChanceIncrease=5
+
+
+//Orcish Machete
+[itemdef i_orcish_machete]
+defname=i_orcish_machete
+id=i_elven_machete
+name=orcish machete
+type=t_weapon_sword
+dam=13,15
+speed=//2.75s
+strreq=20
+twohands=n
+skill=swordsmanship
+weight=6.0
+skillmake=blacksmithing 75.0
+resources=14 t_ingot, 1 i_ingredient_scourge
+
+category=
+subsection=
+description=Orchish Machete
+
+on=@Create
+ color=0
+ hitpoints={ 36 48 }
+ attr=attr_magic
+
+ tag.move1=17
+ tag.move2=24
+
+ tag.IntelligenceBonus=-5
+ tag.DamageIncrease=10
