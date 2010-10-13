@@ -1,0 +1,88 @@
+[chardef 1068]
+defname=c_scalis
+name=#names_scalis the Enforcer
+can=mt_swim|mt_male|mt_usehands
+moverate=100
+dam=19,26
+armor=80
+icon=i_pet_man
+sound=snd_monster_daemon1
+resources=30 i_ribs_raw
+foodtype=300 t_meat_raw,t_fish
+aversions=t_fire
+desires=t_gem,e_notoriety,t_water
+bloodcolor={ colors_green 1 0 1 }
+
+category=Monsters
+subsection=Sea Creatures
+description=Scalis
+
+ON=@Create
+color=0
+npc=brain_monster
+
+fame=20000
+karma=-20000
+
+//tag.colddamage=30
+//tag.energydamage=30
+
+//modar={ 80 80 }
+resfire={ 80 90 }
+rescold={ 90 95 }
+respoison={ 80 90 }
+resenergy={ 80 90 }
+
+ostr={ 800 900 }
+odex={ 120 165 }
+oint={ 125 140 }
+maxhits={ 32000 32000 }
+maxstam=<odex>
+maxmana={ 4000 4000 }
+
+wrestling={ 120.0 130.0 }
+tactics={ 120.0 130.0 }
+magicresistance={ 120.0 130.0 }
+anatomy={ 10.0 50.0 }
+magery={ 60.0 100.0 }
+evaluatingintel=
+meditation={ 60.0 100.0 }
+necromancy={ 60.0 100.0 }
+
+//Necro Spells
+//Throws parasitic eels on targets
+
+//loot: level 7 tmap; illustrious wand of thundering glory.
+[comment events e_scalis_enforcer]
+ON=@GetHit
+ IF <src.argo.type> == t_weapon_bow || <src.argo.type> ==  t_weapon_xbow
+  local.x=<r1,4>
+  DoSwitch <Local.x>
+    throw_eel
+   Begin
+    throw_eel
+    throw_eel
+   End
+   begin
+    throw_eel
+    throw_eel
+    throw_eel
+   end
+   begin
+    throw_eel
+    throw_eel
+    throw_eel
+    throw_eel
+   end
+  Enddo
+ EndIf
+
+[function throw_eel]
+ new.npc c_parasitic_eel
+ new.p <src.p>
+ new.attack <src.uid>
+
+[names names_scalis]
+2
+Osiredon
+Scalis

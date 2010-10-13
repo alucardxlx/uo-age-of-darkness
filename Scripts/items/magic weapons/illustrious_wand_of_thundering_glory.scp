@@ -1,0 +1,27 @@
+[itemdef i_illustrious_wand_of_thundering_glory]
+defname=i_illustrious_wand_of_thundering_glory
+id=i_wand_1
+name=Illustrious Wand of Thundering Glory
+type=t_wand
+dam=9,11
+speed=//2.75s
+strreq=5
+twohands=n
+skill=macefighting
+weight=1.0
+
+category=Provisions - Artifacts
+subsection=Scalis
+description=Illustrious Wand of Thundering Glory
+
+on=@Create
+ color=0
+ hitpoints={ 255 255 }
+ attr=attr_magic
+
+ tag.SpellChanneling=1
+ tag.hitlightning=40
+ tag.hitchanceincrease=5
+ tag.swingspeedincrease=10
+ tag.damageincrease=50
+ tag.chaosdamage=100
