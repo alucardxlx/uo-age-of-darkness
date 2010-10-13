@@ -19,7 +19,7 @@ subsection=Champion Spawns
 description=Quell
 
 on=@Create
- color=0800|0971
+ color=08000|0971
  hitpoints={ 150 150 }
  attr=attr_magic
 
