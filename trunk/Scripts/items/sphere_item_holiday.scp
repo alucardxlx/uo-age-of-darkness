@@ -1,0 +1,723 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2007
+// www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, December 9, 2005
+
+VERSION=0.56b
+
+[ITEMDEF 02BD9]
+DEFNAME=i_stocking_green
+NAME=stocking
+TYPE=t_container
+DUPELIST=02BDA
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Green Stocking
+
+[ITEMDEF 02BDA]
+DUPEITEM=02BD9
+
+[ITEMDEF 02BDB]
+DEFNAME=i_stocking_red
+NAME=stocking
+TYPE=t_container
+DUPELIST=02BDC
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Red Stocking
+
+[ITEMDEF 02BDC]
+DUPEITEM=02BDB
+
+[ITEMDEF 02BDD]
+DEFNAME=i_candy_cane_red
+NAME=candy cane
+TYPE=t_food
+DUPELIST=02BDE
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Red Candy Cane
+
+[ITEMDEF 02BDE]
+DUPEITEM=02BDD
+
+[ITEMDEF 02BDF]
+DEFNAME=i_candy_cane_green
+NAME=candy cane
+TYPE=t_food
+DUPELIST=02BE0
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Green Candy Cane
+
+[ITEMDEF 02BE0]
+DUPEITEM=02BDF
+
+[ITEMDEF 02BE1]
+DEFNAME=i_gingerbread_man
+NAME=Gingerbread Man
+TYPE=t_food
+DUPELIST=02BE2
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Gingerbread Man
+
+[ITEMDEF 02BE2]
+DUPEITEM=02BE1
+
+[ITEMDEF 02BE3]
+DEFNAME=i_ingredient_ginger
+NAME=Ginger
+TYPE=t_normal
+DUPELIST=02BE4
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Ginger
+
+[ITEMDEF 02BE4]
+DUPEITEM=02BE3
+
+[ITEMDEF 02BE5]
+DEFNAME=i_gingerbread_house
+NAME=Ginger
+TYPE=t_normal
+DUPELIST=02BE6,02BE7
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Gingerbread House
+
+[ITEMDEF 02BE6]
+DUPEITEM=02BE5
+
+[ITEMDEF 02BE7]
+DUPEITEM=02BE5
+
+[ITEMDEF 02376]
+DEFNAME=i_festive_cactus
+NAME=Festive Cactus
+TYPE=T_NORMAL
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Festive Cactus
+
+[ITEMDEF 02377]
+DEFNAME=i_snowy_tree
+NAME=Snowy Tree
+TYPE=T_NORMAL
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Snowy Tree
+
+[ITEMDEF 02378]
+DEFNAME=i_decorative_topiary
+NAME=Decorative Topiary
+TYPE=T_NORMAL
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Decorative Topiary
+
+[ITEMDEF 02374]
+DEFNAME=i_mistletoe
+NAME=Mistletoe
+TYPE=T_NORMAL
+DUPELIST=02375
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Mistletoe
+
+[ITEMDEF 02375]
+DUPEITEM=02374
+
+[ITEMDEF 03a73]
+DEFNAME=i_Sleigh
+NAME=Sleigh
+TYPE=T_NORMAL
+RESLEVEL=5
+RESDISPDNID=i_crate_lg
+RESDINSPCOLOR=33
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Sleigh
+DUPELIST=03a74,03a75,03a76,03a77,03a78,03a79,03a7a,03a7b,03a7c,03a7d,03a7e,03a7f,03a80,03a81,03a82,03a83,03a84,03a85,03a86,03a87,03a88,03a89,03a8a,03a8b,03a8c,03a8d,03a8e,03a8f,03a90,03a91,03a92
+
+[ITEMDEF 03a74]
+DUPEITEM=03a73
+
+[ITEMDEF 03a75]
+DUPEITEM=03a73
+
+[ITEMDEF 03a76]
+DUPEITEM=03a73
+
+[ITEMDEF 03a77]
+DUPEITEM=03a73
+
+[ITEMDEF 03a78]
+DUPEITEM=03a73
+
+[ITEMDEF 03a79]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7a]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7b]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7c]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7d]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7e]
+DUPEITEM=03a73
+
+[ITEMDEF 03a7f]
+DUPEITEM=03a73
+
+[ITEMDEF 03a80]
+DUPEITEM=03a73
+
+[ITEMDEF 03a81]
+DUPEITEM=03a73
+
+[ITEMDEF 03a82]
+DUPEITEM=03a73
+
+[ITEMDEF 03a83]
+DUPEITEM=03a73
+
+[ITEMDEF 03a84]
+DUPEITEM=03a73
+
+[ITEMDEF 03a85]
+DUPEITEM=03a73
+
+[ITEMDEF 03a86]
+DUPEITEM=03a73
+
+[ITEMDEF 03a87]
+DUPEITEM=03a73
+
+[ITEMDEF 03a88]
+DUPEITEM=03a73
+
+[ITEMDEF 03a89]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8a]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8b]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8c]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8d]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8e]
+DUPEITEM=03a73
+
+[ITEMDEF 03a8f]
+DUPEITEM=03a73
+
+[ITEMDEF 03a90]
+DUPEITEM=03a73
+
+[ITEMDEF 03a91]
+DUPEITEM=03a73
+
+[ITEMDEF 03a92]
+DUPEITEM=03a73
+
+[ITEMDEF 03a55]
+DEFNAME=i_reindeer
+NAME=Reindeer
+TYPE=T_NORMAL
+RESLEVEL=5
+RESDISPDNID=16382
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Reindeer
+DUPELIST=03a56,03a57,03a58,03a59,03a5a,03a5b,03a5c,03a5d,03a5e,03a5f,03a60,03a61,03a62,03a63,03a64,03a65,03a66,03a67,03a68,03a69,03a6a,03a6b,03a6c,03a6d,03a6e,03a6f,03a70,03a71,03a72
+
+[ITEMDEF 03a56]
+DUPEITEM=03a55
+
+[ITEMDEF 03a57]
+DUPEITEM=03a55
+
+[ITEMDEF 03a58]
+DUPEITEM=03a55
+
+[ITEMDEF 03a59]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5a]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5b]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5c]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5d]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5e]
+DUPEITEM=03a55
+
+[ITEMDEF 03a5f]
+DUPEITEM=03a55
+
+[ITEMDEF 03a60]
+DUPEITEM=03a55
+
+[ITEMDEF 03a61]
+DUPEITEM=03a55
+
+[ITEMDEF 03a62]
+DUPEITEM=03a55
+
+[ITEMDEF 03a63]
+DUPEITEM=03a55
+
+[ITEMDEF 03a64]
+DUPEITEM=03a55
+
+[ITEMDEF 03a65]
+DUPEITEM=03a55
+
+[ITEMDEF 03a66]
+DUPEITEM=03a55
+
+[ITEMDEF 03a67]
+DUPEITEM=03a55
+
+[ITEMDEF 03a68]
+DUPEITEM=03a55
+
+[ITEMDEF 03a69]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6a]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6b]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6c]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6d]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6e]
+DUPEITEM=03a55
+
+[ITEMDEF 03a6f]
+DUPEITEM=03a55
+
+[ITEMDEF 03a70]
+DUPEITEM=03a55
+
+[ITEMDEF 03a71]
+DUPEITEM=03a55
+
+[ITEMDEF 03a72]
+DUPEITEM=03a55
+
+[ITEMDEF 046EC]
+DEFNAME=i_nutcracker_e
+NAME=Nutcracker
+TYPE=t_normal
+DUPELIST=046ED,046EE
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Nutcracker
+
+[ITEMDEF 046ED]
+DUPEITEM=046EC
+
+[ITEMDEF 046EE]
+DUPEITEM=046EC
+
+[ITEMDEF 046EF]
+DEFNAME=i_nutcracker_s
+NAME=Nutcracker
+TYPE=t_normal
+DUPELIST=046F0,046F1
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Nutcracker
+
+[ITEMDEF 046F0]
+DUPEITEM=046EF
+
+[ITEMDEF 046F1]
+DUPEITEM=046EF
+
+[ITEMDEF 046F2]
+DEFNAME=i_large_nutcracker_e
+NAME=Large Nutcracker
+TYPE=t_normal
+DUPELIST=046F3,046F4
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Large Nutcracker
+
+[ITEMDEF 046F3]
+DUPEITEM=046F2
+
+[ITEMDEF 046F4]
+DUPEITEM=046F2
+
+[ITEMDEF 046F5]
+DEFNAME=i_large_nutcracker_s
+NAME=Large Nutcracker
+TYPE=t_normal
+DUPELIST=046F6,046F7
+
+CATEGORY=Holiday Items
+SUBSECTION=Christmas
+DESCRIPTION=Large Nutcracker
+
+[ITEMDEF 046F6]
+DUPEITEM=046F5
+
+[ITEMDEF 046F7]
+DUPEITEM=046F5
+
+//////////////
+//Valentines//
+//////////////
+
+[ITEMDEF 049C8]
+DEFNAME=i_valentines_day_box
+NAME=Valentines Day Box
+TYPE=t_normal
+DUPELIST=049C9
+
+CATEGORY=Holiday Items
+SUBSECTION=Valentines
+DESCRIPTION=Valentines Day Box
+
+[ITEMDEF 049C9]
+DEFNAME=049C8
+
+[ITEMDEF 049CA]
+DEFNAME=i_heart_shaped_box
+NAME=Heart Shaped Box
+TYPE=t_normal
+DUPELIST=049CB
+
+CATEGORY=Holiday Items
+SUBSECTION=Valentines
+DESCRIPTION=Heart Shaped Box
+
+[ITEMDEF 049CB]
+DEFNAME=049CA
+
+[ITEMDEF 049CC]
+DEFNAME=i_beating_heart_shaped_box_s
+NAME=Heart Shaped Box
+TYPE=t_normal
+DUPELIST=049CD,049CE,049CF
+
+CATEGORY=Holiday Items
+SUBSECTION=Valentines
+DESCRIPTION=Beating Heart Shaped Box
+
+[ITEMDEF 049CD]
+DEFNAME=049CC
+
+[ITEMDEF 049CE]
+DEFNAME=049CC
+
+[ITEMDEF 049CF]
+DEFNAME=049CC
+
+[ITEMDEF 049D0]
+DEFNAME=i_beating_heart_shaped_box_w
+NAME=Heart Shaped Box
+TYPE=t_normal
+DUPELIST=049D1,049D2,049D3
+
+CATEGORY=Holiday Items
+SUBSECTION=Valentines
+DESCRIPTION=Beating Heart Shaped Box
+
+[ITEMDEF 049D1]
+DEFNAME=049D0
+
+[ITEMDEF 049D2]
+DEFNAME=049D0
+
+[ITEMDEF 049D3]
+DEFNAME=049D0
+
+/////////////
+//Halloween//
+/////////////
+
+[ITEMDEF 04688]
+DEFNAME=i_statue_black_cat
+NAME=Black Cat Statue
+TYPE=t_normal
+DUPELIST=04689
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Black Cat Statue
+
+[ITEMDEF 04689]
+DUPEITEM=04688
+
+[ITEMDEF 0468C]
+DEFNAME=i_jellybeans
+NAME=jellybeans
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Jellybeans
+
+[ITEMDEF 0468D]
+DEFNAME=i_lollipop_red
+NAME=lollipop
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Red Lollipop
+
+[ITEMDEF 0468E]
+DEFNAME=i_lollipop_yellow
+NAME=lollipop
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Yellow Lollipop
+
+[ITEMDEF 0468F]
+DEFNAME=i_lollipop_green
+NAME=lollipop
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Green Lollipop
+
+[ITEMDEF 0469D]
+DEFNAME=i_taffy
+NAME=taffy
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Taffy
+
+[ITEMDEF 0469E]
+DEFNAME=i_wrapped_candy
+NAME=wrapped candy
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Wrapped Candy
+
+[ITEMDEF 0469F]
+DEFNAME=i_cake_new
+NAME=Cake
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Cake
+
+[ITEMDEF 04691]
+DEFNAME=i_pumpkin_lit_1
+NAME=pumpkin
+TYPE=t_light_lit
+DUPELIST=04692,04693
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Pumpkin (Lit)
+
+[ITEMDEF 04692]
+DUPEITEM=04691
+
+[ITEMDEF 04693]
+DUPEITEM=04691
+
+[ITEMDEF 04694]
+DEFNAME=i_pumpkin_unlit_1
+NAME=pumpkin
+TYPE=t_light_out
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Pumpkin (Unlit)
+
+[ITEMDEF 04695]
+DEFNAME=i_pumpkin_lit_2
+NAME=pumpkin
+TYPE=t_light_lit
+DUPELIST=04692,04693
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Pumpkin (Lit)
+
+[ITEMDEF 04696]
+DUPEITEM=04695
+
+[ITEMDEF 04693]
+DUPEITEM=04695
+
+[ITEMDEF 04698]
+DEFNAME=i_pumpkin_unlit_2
+NAME=pumpkin
+TYPE=t_light_out
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Pumpkin (Unlit)
+
+[ITEMDEF 0469B]
+DEFNAME=i_scarecrow_new
+NAME=Scarecrow
+TYPE=t_normal
+DUPELIST=0469C
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Scarecrow
+
+[ITEMDEF 0469C]
+DUPEITEM=0469B
+
+[ITEMDEF 0468A]
+DEFNAME=i_gargish_crystal_ball
+NAME=Crystal Ball
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Crystal Ball
+
+[ITEMDEF 0468B]
+DEFNAME=i_gargish_crystal_ball_large
+NAME=Crystal Ball
+TYPE=t_food
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Large Crystal Ball
+
+[ITEMDEF 019BC]
+DEFNAME=i_halloween_mask
+NAME=Halloween Mask
+TYPE=t_normal
+DUPELIST=019BD
+
+CATEGORY=Holiday Items
+SUBSECTION=Halloween
+DESCRIPTION=Halloween Mask
+
+[ITEMDEF 019BD]
+DUPEITEM=019BC
+
+/////////////////
+//Miscellaneous//
+/////////////////
+
+[ITEMDEF 046A2]
+DEFNAME=i_giftbox_cube
+NAME=Giftbox
+TYPE=t_container
+
+CATEGORY=Holiday Items
+SUBSECTION=Miscellaneous
+DESCRIPTION=Giftbox
+
+[ITEMDEF 046A3]
+DEFNAME=i_giftbox_cylinder
+NAME=Giftbox
+TYPE=t_container
+
+CATEGORY=Holiday Items
+SUBSECTION=Miscellaneous
+DESCRIPTION=Giftbox
+
+[ITEMDEF 046A4]
+DEFNAME=i_giftbox_octogon
+NAME=Giftbox
+TYPE=t_container
+
+CATEGORY=Holiday Items
+SUBSECTION=Miscellaneous
+DESCRIPTION=Giftbox
+
+[ITEMDEF 046A5]
+DEFNAME=i_giftbox_rectangle
+NAME=Giftbox
+TYPE=t_container
+DUPELIST=046A6
+
+CATEGORY=Holiday Items
+SUBSECTION=Miscellaneous
+DESCRIPTION=Giftbox
+
+[ITEMDEF 046A6]
+DUPEITEM=046A5
+
+[ITEMDEF 046A7]
+DEFNAME=i_giftbox_rare
+NAME=Giftbox
+TYPE=t_container
+
+CATEGORY=Holiday Items
+SUBSECTION=Miscellaneous
+DESCRIPTION=Giftbox
+
+[ITEMDEF 046A0]
+DEFNAME=i_horn_of_plenty
+NAME=Horn of Plenty
+TYPE=t_normal
+DUPEITEM=046A1
+
+CATEGORY=Holiday Items
+SUBSECTION=Thanksgiving
+DESCRIPTION=Horn of Plenty
+
+[ITEMDEF 046A1]
+DUPEITEM=046A0
+
+[EOF]
