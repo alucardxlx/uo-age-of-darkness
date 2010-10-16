@@ -1,0 +1,332 @@
+[itemdef 046B6]
+// Market Buoy South
+defname=i_market_buoy
+type=t_normal
+dupelist=046B7,046B8,046B9
+
+[itemdef 049D4]
+// Crane East
+defname=i_pulley_crane_e
+type=t_normal
+dupelist=049D5,049D6,049D7,049D8,049D9,049DA,049DB,049DC,049DD
+
+category=Structures
+subsection=Cranes
+description=Crane (East)
+
+[itemdef 049D5]
+dupeitem=049D4
+
+[itemdef 049D6]
+dupeitem=049D4
+
+[itemdef 049D7]
+dupeitem=049D4
+
+[itemdef 049D8]
+dupeitem=049D4
+
+[itemdef 049D9]
+dupeitem=049D4
+
+[itemdef 049DA]
+dupeitem=049D4
+
+[itemdef 049DB]
+dupeitem=049D4
+
+[itemdef 049DC]
+dupeitem=049D4
+
+[itemdef 049DD]
+dupeitem=049D4
+
+[itemdef 049DE]
+// Crane North
+defname=i_pulley_crane_n
+type=t_normal
+dupelist=049DF,049E0,049E1,049E2,049E3,049E4,049E5,049E6,049E7
+
+category=Structures
+subsection=Cranes
+description=Crane (North)
+
+[itemdef 049DF]
+dupeitem=049DE
+
+[itemdef 049E0]
+dupeitem=049DE
+
+[itemdef 049E1]
+dupeitem=049DE
+
+[itemdef 049E2]
+dupeitem=049DE
+
+[itemdef 049E3]
+dupeitem=049DE
+
+[itemdef 049E4]
+dupeitem=049DE
+
+[itemdef 049E5]
+dupeitem=049DE
+
+[itemdef 049E6]
+dupeitem=049DE
+
+[itemdef 049E7]
+dupeitem=049DE
+
+[itemdef 049E8]
+// Crane South
+defname=i_pulley_crane_s
+type=t_normal
+dupelist=049E9,049EA,049EB,049EC,049ED,049EE,049EF,049F0,049F1
+
+category=Structures
+subsection=Cranes
+description=Crane (South)
+
+[itemdef 049E9]
+dupeitem=049E8
+
+[itemdef 049EA]
+dupeitem=049E8
+
+[itemdef 049EB]
+dupeitem=049E8
+
+[itemdef 049EC]
+dupeitem=049E8
+
+[itemdef 049ED]
+dupeitem=049E8
+
+[itemdef 049EE]
+dupeitem=049E8
+
+[itemdef 049EF]
+dupeitem=049E8
+
+[itemdef 049F0]
+dupeitem=049E8
+
+[itemdef 049F1]
+dupeitem=049E8
+
+[itemdef 049F2]
+// Crane West
+defname=i_pulley_crane_w
+name=crane
+type=t_normal
+dupelist=049F3,049F4,049F5,049F6,049F7,049F8,049F9,049FA,049FB
+
+category=Structures
+subsection=Cranes
+description=Crane (West)
+
+[itemdef 049F3]
+dupeitem=049F2
+
+[itemdef 049F4]
+dupeitem=049F2
+
+[itemdef 049F5]
+dupeitem=049F2
+
+[itemdef 049F6]
+dupeitem=049F2
+
+[itemdef 049F7]
+dupeitem=049F2
+
+[itemdef 049F8]
+dupeitem=049F2
+
+[itemdef 049F9]
+dupeitem=049F2
+
+[itemdef 049FA]
+dupeitem=049F2
+
+[itemdef 049FB]
+dupeitem=049F2
+
+[ITEMDEF 0423B]
+DEFNAME=i_soul_forge
+NAME=soul forge
+TYPE=t_forge
+DUPELIST=0423C,0423D,0423E,0423F,04240,04241,04242,04243
+
+category=Structures
+subsection=Soul Forges
+description=Soul Forge
+
+[ITEMDEF 0423C]
+DUPEITEM=0423B
+
+[ITEMDEF 0423D]
+DUPEITEM=0423B
+
+[ITEMDEF 0423E]
+DUPEITEM=0423B
+
+[ITEMDEF 0423F]
+DUPEITEM=0423B
+
+[ITEMDEF 04240]
+DUPEITEM=0423B
+
+[ITEMDEF 04241]
+DUPEITEM=0423B
+
+[ITEMDEF 04242]
+DUPEITEM=0423B
+
+[ITEMDEF 04243]
+DUPEITEM=0423B
+
+[ITEMDEF 0424B]
+DEFNAME=i_soul_forge_roof
+NAME=soul forge roof
+TYPE=t_normal
+DUPELIST=0424C,0424D,0424E,0424F,04250,04251,04252,04253
+
+category=Structures
+subsection=Soul Forges
+description=Soul Forge Roof
+
+[ITEMDEF 0424C]
+DUPEITEM=0424B
+
+[ITEMDEF 0424D]
+DUPEITEM=0424B
+
+[ITEMDEF 0424E]
+DUPEITEM=0424B
+
+[ITEMDEF 0424D]
+DUPEITEM=0424B
+
+[ITEMDEF 04250]
+DUPEITEM=0424B
+
+[ITEMDEF 04251]
+DUPEITEM=0424B
+
+[ITEMDEF 04252]
+DUPEITEM=0424B
+
+[ITEMDEF 04253]
+DUPEITEM=0424B
+
+[ITEMDEF 04263]
+DEFNAME=i_soul_forge_anvil
+NAME=soul forge
+TYPE=t_normal
+DUPELIST=04264,04265,04266,04267,04268,04269,0426A,0426B,0426C,0426D,0426E,0426F,04270,04271,04272
+
+category=Structures
+subsection=Soul Forges
+description=Soul Forge with Anvil
+
+[ITEMDEF 04264]
+DUPEITEM=04263
+
+[ITEMDEF 04265]
+DUPEITEM=04263
+
+[ITEMDEF 04266]
+DUPEITEM=04263
+
+[ITEMDEF 04267]
+DUPEITEM=04263
+
+[ITEMDEF 04268]
+DUPEITEM=04263
+
+[ITEMDEF 04269]
+DUPEITEM=04263
+
+[ITEMDEF 0426A]
+DUPEITEM=04263
+
+[ITEMDEF 0426B]
+DUPEITEM=04263
+
+[ITEMDEF 0426C]
+DUPEITEM=04263
+
+[ITEMDEF 0426D]
+DUPEITEM=04263
+
+[ITEMDEF 0426E]
+DUPEITEM=04263
+
+[ITEMDEF 0426F]
+DUPEITEM=04263
+
+[ITEMDEF 04270]
+DUPEITEM=04263
+
+[ITEMDEF 04271]
+DUPEITEM=04263
+
+[ITEMDEF 04272]
+DUPEITEM=04263
+
+[ITEMDEF 04277]
+DEFNAME=i_soul_forge_anvil_roof
+NAME=soul forge
+TYPE=t_normal
+DUPELIST=04278,04279,0427A,0427B,0427C,0427D,0427E,0427F,04280,04281,04282,04283,04284,04285,04286
+
+category=Structures
+subsection=Soul Forges
+description=Soul Forge with Anvil and Roof
+
+[ITEMDEF 04278]
+DUPEITEM=04277
+
+[ITEMDEF 04279]
+DUPEITEM=04277
+
+[ITEMDEF 0427A]
+DUPEITEM=04277
+
+[ITEMDEF 0427B]
+DUPEITEM=04277
+
+[ITEMDEF 0427C]
+DUPEITEM=04277
+
+[ITEMDEF 0427D]
+DUPEITEM=04277
+
+[ITEMDEF 0427E]
+DUPEITEM=04277
+
+[ITEMDEF 0427F]
+DUPEITEM=04277
+
+[ITEMDEF 04280]
+DUPEITEM=04277
+
+[ITEMDEF 04281]
+DUPEITEM=04277
+
+[ITEMDEF 04282]
+DUPEITEM=04277
+
+[ITEMDEF 04283]
+DUPEITEM=04277
+
+[ITEMDEF 04284]
+DUPEITEM=04277
+
+[ITEMDEF 04285]
+DUPEITEM=04277
+
+[ITEMDEF 04286]
+DUPEITEM=04277
