@@ -1,0 +1,67 @@
+[ITEMDEF 0225A]
+DEFNAME=i_spellbook_bardic
+NAME=Bardic Spellbook
+TYPE=t_spellbook_bard
+WEIGHT=1.0
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Bardic
+DESCRIPTION=Bardic Spellbook
+
+ON=@Create
+ ATTR=aatr_magic|attr_newbie
+
+// Rune Icons
+[ITEMDEF 0574b]
+// Inspire
+DEFNAME=i_rune_inspire
+NAME=Inspire
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Inspire
+
+[ITEMDEF 0574c]
+// Invigorate
+DEFNAME=i_rune_invigorate
+NAME=Invigorate
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Invigorate
+
+[ITEMDEF 0574d]
+// Resilience
+DEFNAME=i_rune_resilience
+NAME=Resilience
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Resilience
+
+[ITEMDEF 0574e]
+// Perseverance
+DEFNAME=i_rune_perseverance
+NAME=Perseverance
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Perseverance
+
+[ITEMDEF 0574f]
+// Tribulation
+DEFNAME=i_rune_tribulation
+NAME=Tribulation
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Tribulation
+
+[ITEMDEF 05750]
+// Despair
+DEFNAME=i_rune_despair
+NAME=Despair
+TYPE=t_spellicon
+CATEGORY=Spell Icons
+SUBSECTION=Bard Spells
+DESCRIPTION=Despair

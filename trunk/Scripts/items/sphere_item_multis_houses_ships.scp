@@ -2249,6 +2249,7 @@ SUBSECTION=Misc
 DESCRIPTION=Scaffold and Trailer
 
 [multidef i_multi_market_buoy]
+id=046B7
 name=Buoy
 type=t_multi
 category=Multis
@@ -2257,10 +2258,10 @@ description=Market Buoy
 multiregion=0,0,0,0
 component=046B9,-1,1,0
 component=046B8,-1,0,0
-component=046B7,0,0,0
 component=046B6,0,1,0
 
 [multidef i_multi_pulley_crane_n]
+id=049E5
 name=Pulley Crane
 type=t_multi
 category=Multis
@@ -2269,7 +2270,6 @@ description=Pulley Crane (North)
 multiregion=0,0,0,0
 component=049E1,1,2,0
 component=049E3,2,0,0
-component=049E5,0,0,0
 component=049E4,0,1,0
 component=049E2,2,1,0
 component=049E6,1,-3,0
@@ -2279,6 +2279,7 @@ component=049DF,1,0,0
 component=049E0,1,1,0
 
 [multidef i_multi_pulley_crane_e]
+id=049DA
 name=Pulley Crane
 type=t_multi
 category=Multis
@@ -2291,12 +2292,12 @@ component=049D4,2,1,0
 component=049D9,1,2,0
 component=049DB,1,0,0
 component=049D5,1,1,0
-component=049DA,0,0,0
 component=049D6,0,1,0
 component=049D8,0,2,0
 component=049D7,-1,1,0
 
 [multidef i_multi_pulley_crane_s]
+id=049E9
 name=Pulley Crane
 type=t_multi
 category=Multis
@@ -2306,7 +2307,6 @@ multiregion=0,0,0,0
 component=049EF,0,2,0
 component=049EB,0,3,0
 component=049E8,0,1,0
-component=049E9,0,0,0
 component=049F1,-1,-1,0
 component=049EC,1,0,0
 component=049ED,-1,0,0
@@ -2315,6 +2315,7 @@ component=049F0,0,-2,0
 component=049EA,0,-1,0
 
 [multidef i_multi_pulley_crane_w]
+id=049F2
 name=Pulley Crane
 type=t_multi
 category=Multis
@@ -2329,7 +2330,6 @@ component=049F7,1,-1,0
 component=049F6,2,-1,0
 component=049F5,3,0,0
 component=049F4,2,0,0
-component=049F2,0,0,0
 component=049F3,1,0,0
 
 [multidef i_multi_cannon_48lb_n]
@@ -2345,43 +2345,40 @@ component=044F4,0,0,0
 component=044F3,0,1,0
 
 [multidef i_multi_cannon_48lb_e]
-defname=i_multi_cannon_48lb_e
+id=044F7
 name=Pounder Cannon
 type=t_multi
 category=Multis
 subsection=Miscellaneous
 description=Pounder Cannon (East)
 multiregion=0,0,0,0
-component=044F7,0,1,0
-component=044F8,-1,1,0
-component=044F6,1,1,0
+component=044F8,-1,0,0
+component=044F6,1,0,0
 
 [multidef i_multi_cannon_48lb_s]
-defname=i_multi_cannon_48lb_s
+id=04221
 name=Pounder Cannon
 type=t_multi
 category=Multis
 subsection=Miscellaneous
 description=Pounder Cannon (South)
 multiregion=0,0,0,0
-component=04222,1,2,0
-component=04221,1,1,0
-component=04220,1,0,0
+component=04222,0,1,0
+component=04220,0,-1,0
 
 [multidef i_multi_cannon_48lb_w]
-defname=i_multi_cannon_48lb_w
+id=0418F
 name=Pounder Cannon
 type=t_multi
 category=Multis
 subsection=Miscellaneous
 description=Pounder Cannon (West)
 multiregion=0,0,0,0
-component=0418F,0,1,0
-component=04223,2,1,0
-component=0424A,1,1,0
+component=04223,2,0,0
+component=0424A,1,0,0
 
 [MULTIDEF i_multi_soul_forge]
-DEFNAME=i_multi_soul_forge
+ID=0423F
 NAME=Soul Forge
 TYPE=t_multi
 CATEGORY=Multis
@@ -2394,12 +2391,12 @@ COMPONENT=04241,-1,1,1
 COMPONENT=0423B,-1,-1,1
 COMPONENT=0423E,-1,0,0
 COMPONENT=04242,0,1,1
-COMPONENT=0423F,0,0,1
+//COMPONENT=0423F,0,0,1
 COMPONENT=0423D,1,-1,1
 COMPONENT=0423C,0,-1,1
 
 [MULTIDEF i_multi_soul_forge_roof]
-DEFNAME=i_multi_soul_forge_roof
+ID=0423B
 NAME=Soul Forge
 TYPE=t_multi
 CATEGORY=Multis
@@ -2418,7 +2415,6 @@ COMPONENT=0424B,0,0,14
 COMPONENT=04243,2,2,1
 COMPONENT=04240,2,1,1
 COMPONENT=04241,0,2,1
-COMPONENT=0423B,0,0,1
 COMPONENT=0423E,0,1,0
 COMPONENT=04242,1,2,1
 COMPONENT=0423F,1,1,1
@@ -2426,7 +2422,7 @@ COMPONENT=0423D,2,0,1
 COMPONENT=0423C,1,0,1
 
 [MULTIDEF i_multi_soul_forge_anvil]
-DEFNAME=i_multi_soul_forge_anvil
+ID=0426C
 NAME=Soul Forge
 TYPE=t_multi
 CATEGORY=Multis
@@ -2439,7 +2435,6 @@ COMPONENT=04270,0,1,0
 COMPONENT=0426F,-1,1,0
 COMPONENT=0426E,2,0,0
 COMPONENT=0426D,1,0,0
-COMPONENT=0426C,0,0,0
 COMPONENT=0426B,-1,0,0
 COMPONENT=0426A,2,-1,0
 COMPONENT=04269,1,-1,0
@@ -2451,7 +2446,7 @@ COMPONENT=04264,0,-2,0
 COMPONENT=04263,-1,-2,0
 
 [MULTIDEF i_multi_soul_forge_anvil_roof]
-DEFNAME=i_multi_soul_forge_anvil_roof
+ID=0427D
 NAME=Soul Forge
 TYPE=t_multi
 CATEGORY=Multis
@@ -2467,7 +2462,6 @@ COMPONENT=04281,0,1,0
 COMPONENT=04280,-1,1,0
 COMPONENT=0427F,-2,1,0
 COMPONENT=0427E,1,0,0
-COMPONENT=0427D,0,0,0
 COMPONENT=0427C,-1,0,0
 COMPONENT=0427B,-2,0,0
 COMPONENT=0427A,1,-1,0
@@ -2476,7 +2470,7 @@ COMPONENT=04278,-1,-1,0
 COMPONENT=04277,-2,-1,0
 
 [MULTIDEF i_multi_gargish_anvil_e]
-DEFNAME=i_multi_gargish_anvil_e
+ID=04254
 NAME=Anvil
 TYPE=t_multi
 CATEGORY=Multis
@@ -2484,10 +2478,9 @@ SUBSECTION=Miscellaneous
 DESCRIPTION=Gargish Anvil (East)
 MULTIREGION=0,0,0,0
 COMPONENT=04255,0,1,0
-COMPONENT=04254,0,0,0
 
 [MULTIDEF i_multi_gargish_anvil_s]
-DEFNAME=i_multi_gargish_anvil_s
+ID=04256
 NAME=Anvil
 TYPE=t_multi
 CATEGORY=Multis
@@ -2495,6 +2488,5 @@ SUBSECTION=Miscellaneous
 DESCRIPTION=Gargish Anvil (South)
 MULTIREGION=0,0,0,0
 COMPONENT=04257,1,0,0
-COMPONENT=04256,0,0,0
 
 [EOF]
