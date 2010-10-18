@@ -42,6 +42,18 @@ DESCRIPTION=Yew Tree (01/08)
 DUPELIST=012b7,012b8,012b9,012ba,012bb,012bc,012bd,012be,012bf,012c0,012c1,012c2,012c3,012c4,012c5,012c6,012c7
 
 
+[itemdef 01bd7]
+//defname2=lumber
+defname=i_board
+resources=i_log
+skillmake=01 carpentry
+value=2
+weight=1
+type=t_board
+category=items - resources
+subsection=archers/bowyers
+description=board
+dupelist=01bd8,01bd9,01bda,01bdb,01bdc
 
 [itemdef i_log_birch]
 id=i_log
@@ -53,6 +65,23 @@ WEIGHT=2
 on=@create
 color=color_o_birch
 
+
+[itemdef i_board_cedar]
+ID=01bd7
+resources=i_log_cedar
+name=cedar board%s
+skillmake=30.0 carpentry, t_carpentry
+value=9
+type=t_board
+
+category=Items - resources
+subsection=new wood
+description=cedar board
+
+ON=@create
+	color=04a7
+
+
 [itemdef i_log_cedar]
 id=i_log
 NAME=cedar log%s
@@ -63,9 +92,26 @@ WEIGHT=2
 on=@create
 color=color_o_cedar
 
+
+[itemdef i_board_cyprus]
+ID=01bd7
+resources=i_log_cyprus
+name=cyprus board%s
+skillmake=30.0 carpentry, t_carpentry
+value=9
+type=t_board
+
+category=Items - resources
+subsection=new wood
+description=cyprus board
+
+ON=@create
+	color=04a7
+
+
 [itemdef i_log_cyprus]
 id=i_log
-NAME=cypress log%s
+NAME=cyprus log%s
 value=9
 TYPE=T_LOG
 WEIGHT=2
@@ -122,6 +168,7 @@ WEIGHT=2
 
 on=@create
 color=color_o_walnut
+
 [itemdef i_board_oak]
 ID=01bd7
 resources=i_log_oak
@@ -1200,7 +1247,7 @@ RESOURCES=1.5 mr_amber
 [REGIONTYPE r_mine_rock t_rock]
 // Mine rocks
 RESOURCES=50.0 mr_nothing
-RESOURCES=250.0 mr_iron
+RESOURCES=200.0 mr_iron
 RESOURCES=20.0 mr_copper
 RESOURCES=6.0 mr_gold
 RESOURCES=5.0 mr_rose

@@ -55,6 +55,8 @@ on=@create
      str={151 175}
      dex={66 85}
      int={201 225}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 32
 
      swordsmanship={60.0 80.0}
      parrying={65.0 75.0}
@@ -122,9 +124,10 @@ on=@create
      TAG.NPCAI.Rank=4
      SetDemon
 
-     str={341 366}
-     dex={90 135}
-     int={51 75}
+     str={291 306}
+     dex={90 120}
+     int={41 54}
+     TAG0.MODHITS = 32
 
 	resfire=60
 	rescold=24
@@ -189,6 +192,8 @@ on=@create
         str={108 139}
         dex={81 104}
         int={36 58}
+	TAG0.MODHITS = 8
+	TAG0.MODMANA = 8
 
 	parrying={63.0 75.0}
 	magicresistance={30.9 63.5}
@@ -197,6 +202,8 @@ on=@create
 	magery={60.0 72.0}
 
 	resfire=60
+	resenergy=12
+	respoison=12
 
 	taming=88.5
 
@@ -228,6 +235,7 @@ DESCRIPTION=Ice Hound
 tag.colddamage=50
 tag.slots_needed=5
 tag.wrestlingspeed=44
+Tag.BeastClass=Beast_Heavy
 TAG.MANUEVER1=6
 TAG.MANUEVER2=9
 TAG.MANUEVER3=11
@@ -243,6 +251,9 @@ on=@create
         dex={81 104}
         int={36 58}
 
+	TAG0.MODHITS = 8
+	TAG0.MODMANA = 8
+
 	parrying={63.0 75.0}
 	magicresistance={40.9 73.5}
 	tactics={50.9 69.8}
@@ -252,6 +263,8 @@ on=@create
 	EXP={ 1050 1450 } //Level 2
 
 	rescold=60
+	resenergy=12
+	respoison=12
 
 	taming=88.5
 
@@ -299,6 +312,8 @@ on=@create
      str={217 230}
      dex={76 83}
      int={137 154}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 16
 
 
      meditation={27.3 50.8}
@@ -341,7 +356,7 @@ defname=c_imp
 name="imp"
 sound=snd_monster_mngbat1
 icon=i_pet_imp_lbr
-dam=5,8
+dam=6,9
 armor=18
 moverate=0
 resources=2 i_ribs_raw, 2 i_hide, 2 i_reag_daemon_bone, 2 i_reag_batwing
@@ -351,7 +366,7 @@ foodtype=9 t_meat_raw
 desires=c_imp
 aversions=r_civilization,r_water
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=4
 Tag.BeastClass=Beast_Magic
 tag.firedamage=50
 TAG.MANUEVER1=27
@@ -372,6 +387,8 @@ on=@create
      str={91 114}
      dex={71 91}
      int={96 120}
+     TAG0.MODHITS = 8
+     TAG0.MODMANA = 8
 
      parrying={50.0 60.0}
      magery={62.0 79.8}
@@ -436,6 +453,9 @@ on=@create
      str={206 235}
      dex={106 125}
      int={101 123}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 16
+     TAG0.MODSTAM = 16
 
      anatomy=100.0
      magicresistance=100.0
@@ -458,7 +478,6 @@ on=@create
 
      EXP={ 129000 161000 } //Level 9
 
-
      TAG.RANDCAST=40
      TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 15
@@ -474,7 +493,7 @@ icon=i_pet_daemon
 anim=03fbc7f
 can=mt_equip|mt_walk|mt_fly|mt_usehands
 dam=9,12
-armor=42
+armor=44
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
@@ -505,6 +524,8 @@ on=@create
      str={217 230}
      dex={76 83}
      int={137 154}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 16
 
      TAG.NPCAI.Rank=3
      SetDemon
@@ -543,7 +564,7 @@ sound=snd_monster_daemon1
 icon=i_pet_daemon_gate_lbr
 can=mt_walk|mt_fly|mt_usehands
 dam=11,15
-armor=46
+armor=48
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 foodtype=15 t_meat_raw
@@ -569,14 +590,18 @@ subsection=Daemons
 description=Balron
 
 on=@create
-	nightsight=1
+     nightsight=1
+
      npc=brain_monster
      name="#names_greater_daemon"
+     TAG.NPCAI.Rank=5
+     SetDemon
+
      str={247 260}
      dex={81 91}
      int={147 164}
-     TAG.NPCAI.Rank=5
-     SetDemon
+     TAG0.MODHITS = 32
+     TAG0.MODMANA = 32
 
      EXP={ 520000 640000 } //Level 11
 
@@ -620,7 +645,7 @@ aversions=r_water,r_mountains
 foodtype=t_meat_raw, i_reag_blood_vial
 TEVENTS=e_Level_up_NPC
 ANIM=03FBC7F
-tag.slots_needed=8
+tag.slots_needed=99
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
 tag.firedamage=50
@@ -648,6 +673,8 @@ on=@create
      str={257 270}
      dex={81 91}
      int={153 169}
+     TAG0.MODHITS = 128
+     TAG0.MODMANA = 64
 
      EXP={ 1100000 1350000 } //Level 12
 
@@ -661,8 +688,9 @@ on=@create
      tactics={99.0 100.0}
 
 
-     fame={8000 10000}
+     fame={8500 10000}
      karma={-9000 -9999}
+
 	resfire=65
 	rescold=28
 	respoison=65
@@ -672,7 +700,7 @@ on=@create
 
      TAG.RANDCAST=30
      TAG.QUICKCAST = 20
-     TAG.SPELLPOWER = 20
+     TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
 
 
@@ -694,6 +722,7 @@ ANIM=0FFC78C7F
 tag.slots_needed=7
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
+TEVENTS=e_Level_up_NPC
 tag.firedamage=50
 tag.wrestlingspeed=54
 TAG.MANUEVER1=13
@@ -715,6 +744,7 @@ on=@create
      str={280 305}
      dex={112 130}
      int={45 65}
+     TAG0.MODHITS = 64
 
      anatomy={94.7 95.0}
      parrying={85.0 100.0}
@@ -731,8 +761,8 @@ on=@create
 
      EXP={ 260000 320000 } //Level 10
 
-     fame={5000 8000}
-     karma={-6000 -6999}
+     fame={6000 8000}
+     karma={-7000 -7999}
 
 [chardef 083]
 defname=c_efreet
@@ -771,11 +801,12 @@ on=@create
      str={118 134}
      dex={101 113}
      int={157 175}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 16
 
      resfire=80
      resenergy=30
      respoison=30
-     tag.firedamage=6
 
 	givelang 1
 
@@ -804,7 +835,7 @@ id=c_efreet
 name="djinn"
 icon=i_pet_efreet_lbr
 sound=snd_elementl_airelem1
-dam=11,13
+dam=11,15
 armor=48
 moverate=0
 resdispid=c_m_efreet
@@ -835,6 +866,8 @@ on=@create
      str={87 103}
      dex={81 93}
      int={228 244}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 32
 
 	resfire=60
 	rescold=30
@@ -873,14 +906,15 @@ ICON=i_pet_glutton
 RESLEVEL=5
 RESDISPDNHUE=33
 RESDISPDNID=c_man
-DAM=10,12
-ARMOR=50
+DAM=12,16
+ARMOR=64
 moverate=60
 RESOURCES=8 i_ribs_raw, 8 i_reag_daemon_bone
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 CAN=MT_WALK|MT_USEHANDS
-tag.slots_needed=7
+tag.slots_needed=99
+TEVENTS=e_Level_up_NPC
 tag.override.range=3
 Tag.BeastClass=Beast_Heavy
 tag.poisondamage=100
@@ -901,20 +935,22 @@ ON=@Create
 	TAG.NPCAI.Rank=6
 	SetDemon
 
-	FAME={5000 8000} 
+	FAME={7000 9500} 
 	KARMA={-6000 -7999} 
 
      str={269 283}
      dex={59 78}
      int={149 169}
+     TAG0.MODHITS = 512
 
      EXP={ 1100000 1350000 } //Level 12
 
-	resfire=60
+	resfire=65
 	rescold=45
-	respoison=60
+	respoison=65
 	resenergy=30
 	givelang 8
+
 
 	POISONING={95.0 100.0}
 	PARRYING={95.0 100.0}

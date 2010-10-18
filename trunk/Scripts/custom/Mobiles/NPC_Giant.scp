@@ -24,7 +24,7 @@ anim=078c7f
 moverate=2
 can=mt_walk|mt_run|mt_usehands
 dam=11,13
-armor=28
+armor=30
 moverate=20
 resources=6 i_ribs_raw
 foodtype=95 t_meat_raw,t_food,t_fruit
@@ -53,6 +53,9 @@ on=@create
      str={168 197}
      dex={48 60}
      int={39 55}
+     TAG0.MODHITS = 16
+     TAG0.MODSTAM = 8
+
 
      parrying={45.0 55.0}
      magicresistance={56.3 69.8}
@@ -61,8 +64,9 @@ on=@create
 
      peacemaking=28.1
 
-     fame={2500 4999}
+     fame={2500 3999}
      karma={-2500 -4999}
+     EXP={ 2050 2950 } //Level 3
 
 on=@npcrestock
      //Item={ I_Giant_wood_club 2 I_Giant_bone_club 2 I_Giant_maul 1 0 6 }
@@ -75,7 +79,7 @@ sound=snd_monster_ogre1
 icon=i_pet_ogrelord_lbr
 can=mt_walk|mt_run|mt_usehands
 dam=11,13
-armor=28
+armor=30
 moverate=20
 resdispid=c_ogre
 reslevel=3
@@ -104,9 +108,12 @@ on=@create
 
      givelang 6
 
-     str={303 333}
+     str={293 303}
      dex={57 65}
      int={42 49}
+
+     TAG0.MODHITS = 16
+     TAG0.MODSTAM = 8
 
      parrying={75.0 85.0}
      magicresistance={90.3 100.0}
@@ -117,8 +124,7 @@ on=@create
 
      fame={3000 4999}
      karma={-4000 -4999}
-	EXP={ 3050 4900 }
-	//EXP={ 2050 3950 } //Level 3
+     EXP={ 8050 8950 } //Level 5
 
 on=@npcrestock
      //Item={ I_Giant_wood_club 1 I_Giant_bone_club 2 0 3 }
@@ -131,12 +137,12 @@ sound=snd_monster_troll1
 icon=i_pet_troll
 anim=078c7f
 dam=10,12
-armor=30
+armor=28
 moverate=20
 resources=10 i_ribs_raw
 can=mt_walk|mt_run|mt_usehands
 foodtype=85 t_meat_raw,t_food,t_fruit
-desires=i_gold
+desires=t_gold,t_potion,t_meat_raw,t_food,t_fruit,t_gem
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
@@ -158,6 +164,11 @@ on=@create
      dex={70 84}
      int={47 63}
 
+     TAG0.MODHITS = 8
+     TAG0.MODSTAM = 8
+
+     TAG.OVERRIDE.REGENVAL_0 = 2
+
      givelang 6
 
      parrying={45.0 60.0}
@@ -168,6 +179,7 @@ on=@create
 
      fame={2100 3000}
      karma={-3000 -3999}
+     EXP={ 2050 2950 } //Level 3
 
 
 on=@npcrestock
@@ -182,7 +194,7 @@ icon=i_pet_titan
 anim=078c7f
 can=mt_walk|mt_run|mt_usehands
 dam=10,12
-armor=26
+armor=28
 resources=10 i_ribs_raw
 foodtype=85 t_meat_raw,t_food,t_fruit
 desires=i_gold
@@ -204,22 +216,24 @@ on=@create
 
      givelang 6
 
-     str={127 184}
+     str={157 214}
      dex={70 84}
-     int={47 63}
+     int={37 53}
+
+     TAG0.MODHITS = 8
+     TAG0.MODSTAM = 8
+
+     TAG.OVERRIDE.REGENVAL_0 = 2
 
      rescold 30
 
-     macefighting={50.0 70.0}
-     parrying={45.0 60.0}
-     magicresistance={45.1 53.8}
-     tactics={50.1 68.8}
-     wrestling={60.3 71.3}
+     magicresistance={55.1 63.8}
+     tactics={60.1 78.8}
+     wrestling={70.3 81.3}
 
-     peacemaking=31.8
-
-     fame={100 5000}
+     fame={3100 5000}
      karma={-3000 -3999}
+     EXP={ 2050 2950 } //Level 3
 
 on=@npcrestock
      //Item={ I_Giant_wood_club 1 I_Giant_bone_club 2 I_Giant_maul 1 0 6}
@@ -287,6 +301,8 @@ ON=@NpcRestock
      //Item={ I_Giant_wood_club 2 I_Giant_bone_club 1 I_Giant_maul 2 0 2 }
      Item={ Giant_bag 2 Treasure_bag 1 Wooden_Treasure_Chest 1 0 1}
 
+
+
 [chardef 04b]
 defname=c_cyclops
 name="cyclops"
@@ -295,7 +311,7 @@ icon=i_pet_cyclops
 anim=078c7f
 can=mt_walk|mt_run|mt_usehands
 dam=11,13
-armor=22
+armor=30
 moverate=20
 resources=10 i_ribs_raw
 foodtype=95 t_meat_raw,t_food,t_fruit
@@ -318,9 +334,12 @@ on=@create
 
      givelang 6
 
-     str={147 181}
-     dex={100 115}
+     str={188 208}
+     dex={90 105}
      int={42 62}
+
+     TAG0.MODHITS = 16
+     TAG0.MODSTAM = 8
 
      parrying={70.0 80.0}
      magicresistance={77.6 82.1}
@@ -328,10 +347,9 @@ on=@create
      wrestling={70.6 85.9}
      macefighting={60.6 75.9}
 
-     peacemaking=33.3
-
      fame={500 2500}
      karma={2500 -4000}
+     EXP={ 4050 4950 } //Level 4
 
 ON=@NpcRestock
      //Item={ I_Giant_wood_club 2 I_Giant_bone_club 1 I_Giant_maul 2 0 3}
@@ -344,17 +362,15 @@ sound=snd_monster_ettin1
 icon=i_pet_ettin
 anim=078c7f
 can=mt_walk|mt_run|mt_usehands
-dam=11,13
-armor=30
+dam=12,14
+armor=32
 moverate=25
 resources=8 i_ribs_raw
 foodtype=95 t_meat_raw,t_food,t_fruit
 desires=c_ettin,t_meat_raw,t_food,t_fruit,t_gem,t_coin,t_potion
 aversions=r_civilization
-tevents=e_intel_potion_user
-tevents=e_intel_char_looting
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=4
+tag.slots_needed=5
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
 
@@ -365,12 +381,17 @@ description=Ettin
 on=@create
      npc=brain_monster
      name=#names_ogre
+     TAG.NPCAI.Rank=3
+     SetTroll
 
      givelang 6
 
-     str={158 195}
+     str={198 218}
      dex={56 74}
      int={31 54}
+
+     TAG0.MODHITS = 32
+     TAG0.MODSTAM = 8
 
      parrying={47.0 63.5}
      magicresistance={62.3 72.9}
@@ -378,8 +399,9 @@ on=@create
      wrestling={78.8 92.6}
      macefighting={68.8 82.6}
 
-     fame={2750 3500}
+     fame={3750 4500}
      karma={-2500 -4000}
+     EXP={ 8050 8950 } //Level 5
 
 ON=@NpcRestock
      //Item={ I_Giant_wood_club 2 I_Giant_bone_club 1 I_Giant_maul 2 0 2 }

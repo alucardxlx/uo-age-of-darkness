@@ -22,7 +22,7 @@ sound=snd_monster_gscorp1
 icon=i_pet_scorp
 anim=078c7f
 can=mt_walk|mt_run|mt_nonhum
-dam=7,10
+dam=7,11
 armor=27
 moverate=0
 resources=6 i_ribs_raw
@@ -44,17 +44,19 @@ description=giant scorpion
 
 on=@create
      npc=brain_animal
-	nightsight=1
+     nightsight=1
 
      str={82 108}
      dex={78 94}
      int={17 29}
 
+     resenergy=8
+
      parrying={26.0 37.0}
      magicresistance={30.1 44.9}
      tactics={62.4 73.5}
      wrestling={67.6 76.0}
-     poisoning={83.4 99.1}
+     poisoning={83.4 95.1}
 
      taming=67.1
 
@@ -66,7 +68,7 @@ name="giant spider"
 sound=snd_monster_gispidr1
 icon=i_pet_spider_giant
 anim=078c7f
-dam=5,9
+dam=6,10
 armor=19
 moverate=0
 resources=6 i_reag_spider_silk
@@ -93,6 +95,8 @@ on=@create
      str={82 100}
      dex={87 104}
      int={26 39}
+
+     resenergy=8
 
      parrying={35.0 45.0}
      magicresistance={25.2 39.8}
@@ -135,6 +139,7 @@ NPC=brain_animal
 	nightsight=1
 
 resfire=8
+resenergy=8
 
 FAME={ 65 89 }
 KARMA=0
@@ -180,9 +185,9 @@ on=@create
 	npc=brain_animal
 	nightsight=1
 
-        str={76 100}
+        str={86 105}
         dex={126 145}
-        int={36 60}
+	INT={15 20}
 
 	anatomy={60.4 79.2}
 	parrying={35.0 45.0}
@@ -193,8 +198,9 @@ on=@create
 	stealth={59.0 76.0}
 
         rescold=60
+        resenergy=8
 
-        taming=92.1
+        taming=90.1
 
 	fame={100 2000}
 
@@ -232,19 +238,23 @@ on=@create
 	nightsight=1
 
      str={77 88}
-     dex={96 115}
-     int={37 60}
+     dex={96 119}
+     int={47 60}
+     TAG0.MODSTAM = 8
+     TAG0.MODMANA = 8
+
+     resenergy=8
 
      parrying={35.0 45.0}
      magicresistance={45.6 59.6}
      tactics={55.9 66.5}
-     wrestling={64.1 75.8}
+     wrestling={74.1 85.8}
      anatomy={41.0 65.4}
      poisoning={91.2 100.0}
      hiding={59.0 76.0}
      stealth={59.0 76.0}
 
-     taming=82.5
+     taming=83.5
 
      fame={1000 2000}
 
@@ -283,16 +293,16 @@ on=@create
      str={145 170}
      dex={85 105}
      int={25 39}
+     TAG0.MODHITS = 8
 
      parrying={70.0 80.0}
      magicresistance={50.0 60.0}
      tactics={65.0 81.0}
      wrestling={75.0 89.0}
+
      taming=85.9
 
-        rescold=8
-
-     peacemaking=57.1
+     resenergy=8
 
      fame={1200 2100}
 
@@ -329,6 +339,7 @@ on=@create
      str={86 107}
      dex={75 95}
      int={10 21}
+     TAG0.MODHITS = 8
 
      parrying={35.0 55.0}
      tactics={60.0 75.0}
@@ -339,6 +350,7 @@ on=@create
      taming=72.0
 
         resfire=8 
+        resenergy=8 
 
      fame=300
 
@@ -352,7 +364,7 @@ dam=10,12
 armor=34
 moverate=0
 resources=8 i_reag_spider_silk
-foodtype=65 t_meat_raw
+foodtype=95 t_meat_raw
 desires=t_meat_raw,c_dread_spider,c_spider_lord
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
@@ -372,25 +384,30 @@ on=@create
      npc=brain_monster
 	nightsight=1
 
-     str={178 190}
+     str={138 150}
      dex={116 134}
-     int={152 179}
+     int={112 139}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 32
+
+     resenergy=12
+     respoison=12
 
      parrying={45.0 55.0}
      magicresistance={65.2 75.9}
      tactics={68.5 79.3}
      wrestling={81.7 95.9}
-     magery={63.0 72.4}
+     magery={73.0 82.4}
      hiding={69.0 86.0}
      stealth={69.0 86.0}
+     poisoning={83.4 95.1}
 
-     fame={2200 3000}
-     karma={-2000 -3999}
-
-     exp={ 5100 7800 }
+     fame={3200 5000}
+     karma={-3000 -5999}
+     exp={ 16100 19800 } // Level 5
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
 
 [chardef 173]
@@ -399,10 +416,10 @@ name=Spider Lord
 sound=snd_monster_gispidr1
 icon=i_pet_spider_dread_lbr
 can=mt_walk|mt_run|mt_nonhum
-dam=10,12
-armor=34
+dam=12,14
+armor=42
 moverate=0
-resources=8 i_reag_spider_silk
+resources=12 i_reag_spider_silk
 foodtype=65 t_meat_raw
 desires=c_dread_spider,t_meat_raw,c_spider_lord,c_frostspider,c_spider_Giant
 aversions=r_civilization
@@ -410,38 +427,42 @@ TEVENTS=e_Level_up_NPC
 ANIM=078C7F
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=52
-tag.slots_needed=5
+tag.slots_needed=6
 TAG.MANUEVER1=8
 TAG.MANUEVER2=7
 TAG.MANUEVER3=12
 
 category=monsters
 subsection=arachnids
-description=dread spider
+description=spider lord
 
 on=@create
      npc=brain_monster
-	nightsight=1
+     nightsight=1
 
      str={188 200}
      dex={126 144}
-     int={202 209}
+     int={102 109}
+     TAG0.MODHITS = 64
+     TAG0.MODMANA = 16
 
      parrying={59.0 69.0}
      magicresistance={75.2 85.9}
      tactics={78.5 89.3}
-     wrestling={81.7 95.9}
-     stealth={69.0 86.0}
-     hiding={69.0 86.0}
-     magery={73.0 82.4}
+     wrestling={87.7 99.9}
+     magery={63.0 72.4}
+     anatomy={69.0 86.0}
+     poisoning={83.4 95.1}
 
-     fame={3200 4000}
+     resenergy=12
+     respoison=12
+
+     fame={5200 7000}
      karma={-3000 -4999}
+     exp={ 64100 69800 } // Level 7
 
-     exp={ 10100 17800 }
-
-     TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
+     TAG.RANDCAST= 20
+     TAG.QUICKCAST = 10
      EVENTS=+e_intel_char_magery_user
 
 [eof]

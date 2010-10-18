@@ -114,7 +114,7 @@ defname=c_snow_leopard
 name="snow leopard"
 sound=snd_animals_panther1
 icon=i_pet_panther
-dam=6,7
+dam=6,8
 armor=13
 moverate=0
 resources=3 i_ribs_raw, 4 i_fur_light
@@ -329,11 +329,12 @@ description=Grizzly Bear
 
 on=@create
      npc=brain_animal
+     nightsight=1
 
      str={126 154}
      dex={81 105}
      int={16 40}
-	nightsight=1
+     TAG0.MODHITS = 8
 
      parrying={70.0 85.0}
      magicresistance={25.5 40.0}
@@ -469,7 +470,9 @@ on=@create
      str={117 137}
      dex={84 105}
      int={27 50}
-	nightsight=1
+     nightsight=1
+
+     TAG0.MODHITS = 8
 
      rescold=14
 
@@ -513,6 +516,7 @@ on=@create
      str={54 59}
      dex={20 22}
      int={15 20}
+     TAG0.MODHITS = 8
 
 	nightsight=1
 
@@ -790,10 +794,10 @@ description=Giant Rat
 on=@create
      npc=brain_monster
 
-     str={32 70}
+     str={42 70}
      dex={46 65}
      int={16 29}
-	nightsight=1
+     nightsight=1
 
      hiding={25.0 45.0}
      stealth={25.0 45.0}
@@ -934,6 +938,7 @@ on=@create
      str={65 88}
      dex={36 55}
      int={26 81}
+     TAG0.MODHITS = 8
 
      parrying={43.0 53.0}
      magicresistance={45.2 59.3}

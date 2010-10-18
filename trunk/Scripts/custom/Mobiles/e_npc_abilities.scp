@@ -216,14 +216,14 @@ ENDIF
 //Put a TAG.SPAWN equal to the id of the creature to spawn
 //Otherwise it defaults to spawning one of its own kind
 ON=@NPCActFight
-IF !(<R10>) && (<STAM> >= 30) && (<HITS> >= 30)
+IF !(<R10>) && (<STAM> >= 20) && (<HITS> > 20)
 	SERV.NEWNPC <QVAL <TAG0.SPAWN> ? <TAG.SPAWN> : <ID>>
 	NEW.P=<P>
 	NEW.HOME=<NEW.P>
 	NEW.HOMEDIST=10
-	STAM -= 30
-	HITS -= 15
-	EMOTE spawn a <NEW.NAME>
+	STAM -= 20
+	HITS -= 10
+	EMOTE spawn <NEW.NAME>
 ENDIF
 
 [EVENTS e_dividing]

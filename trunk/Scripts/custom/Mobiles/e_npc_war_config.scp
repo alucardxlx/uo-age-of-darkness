@@ -24,7 +24,7 @@ racef_cyclops  000080000 //Cyclops Race
 racef_minotaur  000100000 //Minotaur Race
 racef_troll  000200000 //Troll Race
 racef_gargoyle   000400000 //Gargoyle Race
-racef_notdefined 000800000 //This race not yet defined
+racef_arachnian 000800000 //Arachnian ferals
 racef_notdefined 001000000 //This race not yet defined
 racef_notdefined 002000000 //This race not yet defined
 racef_notdefined 004000000 //This race not yet defined
@@ -35,7 +35,7 @@ racef_Juka       040000000 //Juka
 racef_meer       080000000 //Meer
 
 
-[FUNCTION SetGarg]
+[FUNCTION SetGargoyle]
  SetBasics
  TAG.NPCAI.Race=<EVAL racef_gargoyle>
  TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_gargoyle>)
@@ -52,6 +52,14 @@ racef_meer       080000000 //Meer
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_minax>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_chaos>)
  TAG.NPCAI.Enemy=((<TAG0.NPCAI.Enemy>)|<EVAL racef_pirate>)
+
+
+[FUNCTION SetArachnian]
+ SetBasics
+ TAG.NPCAI.Race=<EVAL racef_arachnian>
+ TAG.NPCAI.Ally=((<TAG0.NPCAI.Ally>)|<EVAL racef_arachnian>)
+ TAG.NPCAI.Enemy=0ff7fffff //All races except arachnian race
+ RETURN 0
 
 [FUNCTION SetOrc]
  SetBasics

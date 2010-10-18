@@ -234,41 +234,69 @@ escort 128
 
 5 pointy ears
 
-	EXP={ 550 1400 }
-	//EXP={ 550 750 } //Level 1
 
-	EXP={ 1550 2900 }
-	//EXP={ 1050 1450 } //Level 2
 
-	EXP={ 3050 4900 }
-	//EXP={ 2050 2950 } //Level 3
+1 Armor Ignore
+2 Bleed Attack
+3 Concussion Blow
+4 Crushing Blow
+5 Disarm
+6 Dismount
+7 Double Strike
+8 Infecting
+9 Mortal Strike
+10 Moving Shot
+11 Paralyzing Blow
+12 Shadow Strike
+13 Whirlwind Attack
+14 Riding Swipe
+15 Frenzied Whirlwind
+16 Block
+17 Defence Mastery
+18 Nerve Strike
+19 Talon Strike
+20 Feint
+21 Dual Wield
+22 Double Shot
+23 Armor Pierce
+24 Bladeweave
+25 Force Arrow
+26 Lightning Arrow
+27 Psychic Attack
+28 Serpent Arrow
+29 Force of Nature
 
-	EXP={ 5050 7400 }
-	//EXP={ 4050 5500 } //Level 4
+EXP={ 550 750 } //Level 1
 
-	EXP={ 7550 10000 }
-	//EXP={ 8050 11000 } //Level 5
+EXP={ 1050 1450 } //Level 2
 
-	EXP={ 11000 13500 }
-	//EXP={ 16500 20500 } //Level 6
+EXP={ 2050 2950 } //Level 3
 
-	EXP={ 14500 17500 }
-	//EXP={ 33500 41900 } //Level 7
+EXP={ 4050 5500 } //Level 4
 
-	EXP={ 18500 22000 }
-	//EXP={ 65000 81000 } //Level 8
+EXP={ 8050 11000 } //Level 5
 
-	EXP={ 23000 27000 }
-	//EXP={ 129000 161000 } //Level 9
+EXP={ 16500 20500 } //Level 6
 
-	EXP={ 28000 32000 }
-	//EXP={ 260000 320000 } //Level 10
+EXP={ 33500 41900 } //Level 7
 
-	EXP={ 34000 38000 }
-	//EXP={ 520000 640000 } //Level 11
+EXP={ 65000 81000 } //Level 8
 
-	EXP={ 40000 45000 }
-	//EXP={ 1100000 1350000 } //Level 12
+EXP={ 129000 161000 } //Level 9
+
+EXP={ 260000 320000 } //Level 10
+
+EXP={ 520000 640000 } //Level 11
+
+EXP={ 1100000 1350000 } //Level 12
+
+EXP={ 2050000 2300000 } //Level 13
+
+EXP={ 4100000 4300000 } //Level 14
+
+EXP={ 8200000 8400000 } //Level 15
+
+EXP={ 16500000 16700000 } //Level 16
 
 
 0 window from west

@@ -303,37 +303,6 @@ IF (<FLOATVAL 0.25> > <RANDOMDOUBLE>)
 	ENDIF
 ENDIF
 
-1   SYSMESSAGE @039 Ability in Use: Armor Ignore
-2   SYSMESSAGE @039 Ability in Use: Bleed Attack
-3   SYSMESSAGE @039 Ability in Use: Concussion Blow
-4   SYSMESSAGE @039 Ability in Use: Crushing Blow
-5   SYSMESSAGE @039 Ability in Use: Disarm
-6   SYSMESSAGE @039 Ability in Use: Dismount
-7   SYSMESSAGE @039 Ability in Use: Double Strike
-8   SYSMESSAGE @039 Ability in Use: Infecting
-9   SYSMESSAGE @039 Ability in Use: Mortal Strike
-10 Moving Shot
-11   SYSMESSAGE @039 Ability in Use: Paralyzing Blow
-12   SYSMESSAGE @039 Ability in Use: Shadow Strike
-13   SYSMESSAGE @039 Ability in Use: Whirlwind Attack
-14   SYSMESSAGE @039 Ability in Use: Riding Swipe
-15   SYSMESSAGE @039 Ability in Use: Frenzied Whirlwind
-16   SYSMESSAGE @039 Ability in Use: Block
-17   SYSMESSAGE @039 Ability in Use: Defence Mastery
-18   SYSMESSAGE @039 Ability in Use: Nerve Strike
-19   SYSMESSAGE @039 Ability in Use: Talon Strike
-20   SYSMESSAGE @039 Ability in Use: Feint
-21 Dual Wield
-22 Double Shot
-23   SYSMESSAGE @039 Ability in Use: Armor Pierce
-24 Bladeweave
-25 Force Arrow
-26 Lightning
-27   SYSMESSAGE @039 Ability in Use: Psychic Attack
-28 Serpent Arrow
-29   SYSMESSAGE @039 Ability in Use: Force of Nature
-
-
 New Item Properties
 
 Blood Drinker

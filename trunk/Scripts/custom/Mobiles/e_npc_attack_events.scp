@@ -14,6 +14,38 @@
 
 //*****************************************************************
 
+[comment events e_npc_ai_healer]
+//Use this if brain_healer is not working or you want race checks.
+On=@NpcSeeNewPlayer
+//src is player.
+//I or default is npc.
+if <tag.race> == orc && <tag.race> != orc
+ say Dost thou think me a fool?
+ say I shall not resurrect thou kind. Begone <src.tag.race>!
+ return 1
+elif <tag.race> == elf && <tag.race> != elf
+ say Dost thou think me a fool?
+ say I shall not resurrect thou kind. Begone <src.tag.race>!
+ return 1
+elif <tag.race> == human && <tag.race> != human
+ say Dost thou think me a fool?
+ say I shall not resurrect thou kind. Begone <src.tag.race>!
+ return 1
+elif <tag.race> == gargoyle && <tag.race> != gargoyle
+ say Dost thou think me a fool?
+ say I shall not resurrect thou kind. Begone <src.tag.race>!
+ return 1
+else <src.flags> &= statf_dead
+ say I shall bring thou back from the world of gray <src.name>.
+ src.resurrect
+endif
+
+//Uncomment this if it is a must use.
+//On=@NpcLookAtChar
+//if <src.flags> &= statf_dead
+// src.resurrect
+//endif
+
 [EVENTS e_npc_wars]
 
 ON=@NPCLookAtChar
@@ -29,13 +61,18 @@ ON=@NPCLookAtChar
        f_warcry
        RETURN 0
  ELIF ( <TAG0.NPCAI.Ally> &<SRC.TAG0.NPCAI.Race> ) //If my target is a friendly
-     IF (<SRC.FLAGS>&statf_war) && !(<npc> == brain_healer) && !(<TAG0.NPCAI.Ally> &<SRC.ATTACKER.MAX.TAG0.NPCAI.Race>) //If ally is fighting
-	 If <FriendlySpellCheck>
+     IF (<SRC.FLAGS>&statf_war) && !(<npc> == brain_healer) //If ally is fighting
+	 If (<TAG0.NPCAI.Ally> &<SRC.ATTACKER.last.TAG0.NPCAI.Race>) || (<SRC.ATTACKER.last>==0) //and they have a valid target
+		return 0
+	 elif <FriendlySpellCheck>
 		return 0
 	 else
-	        IF ( <ISEVENT.e_squad_member> )
-		 OBJ=<SRC.ATTACKER.MAX.UID>
-		 	TRYSRC <OBJ> AlertSquad
+		 OBJ = <SRC.ATTACKER.last>
+		 If (<obj> == <src>)
+			 return 0
+	         ENDIF		
+	         IF ( <ISEVENT.e_squad_member> )
+			 TRYSRC <OBJ> AlertSquad
 	         ENDIF
 	         TRYSRC <OBJ> ATTACK
 	         f_warcry
@@ -150,13 +187,13 @@ endif
 
 ON=@NPCSeeNewPlayer
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return 1
 endif
    IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
       RETURN 0
    ENDIF
 If <npccast_magery_defense>
-	return 0
+	return 1
 endif
 RETURN 0
 
@@ -185,7 +222,7 @@ IF (<ATTACKER> > 0)
 	ENDFOR
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		If (<npccast_magery_anticaster>)
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -203,17 +240,16 @@ ELSE
 ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze)
 		if <npccast_magery_heavy_offense> 
-			return 0
+			return 1
 		elif <npccast_magery_summon>
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_magery_offense>
-		return 0
+		return 1
 	elif <npccast_magery_defense>
-		return 0
+		return 1
 	endif
-
 return 0
 
 
@@ -241,7 +277,7 @@ IF (<ATTACKER> > 0)
 	ENDFOR
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		If (<npccast_magery_anticaster>)
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -259,15 +295,15 @@ ELSE
 ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze)
 		if <npccast_magery_heavy_offense> 
-			return 0
+			return 1
 		elif <npccast_magery_summon>
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_magery_offense>
-		return 0
+		return 1
 	elif <npccast_magery_defense>
-		return 0
+		return 1
 	endif
 return 0
 
@@ -299,46 +335,46 @@ IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
 		IF !(<R3>)
 			IF (<npccancast s_mass_dispel>)
 				npccast s_mass_dispel,<src>
-				return 0
+				return 1
 			ENDIF
 		ENDIF
 		IF (<npccancast s_dispel>)
 			npccast s_dispel,<src>
-			return 0
+			return 1
 		ENDIF
 	ENDIF
 	If !(<R3>)
 		If <npccast_magery_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_magery_healing>
-		return 0
+		return 1
 	elif <npccast_magery_offense>
-		return 0
+		return 1
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 	IF (<SRC.FLAGS>&statf_conjured)
 		IF !(<R3>)
 			IF (<npccancast s_mass_dispel>)
 				npccast s_mass_dispel,<src>
-				return 0
+				return 1
 			ENDIF
 		ENDIF
 		IF (<npccancast s_dispel>)
 			npccast s_dispel,<src>
-			return 0
+			return 1
 		ENDIF
 	ENDIF
 	If !(<R3>)
 		If <npccast_magery_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_magery_healing>
-		return 0
+		return 1
 	elif <npccast_magery_offense>
-		return 0
+		return 1
 	endif
 ENDIF
 RETURN 0
@@ -346,7 +382,7 @@ RETURN 0
 
 ON=@ENVIRONCHANGE
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return
 endif
    IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
       RETURN 0
@@ -354,31 +390,30 @@ endif
 IF (<FINDID(i_rune_poison).morey> > 500)
 	IF (<npccancast s_cure>)
 		npccast s_cure,<uid>
-		return 0
+		return 1
 	ENDIF
 ENDIF
 IF (<HITS> < <MAXHITS>)
 	If (<R3>)
 		IF (<npccancast s_greater_heal>)
 			npccast s_greater_heal,<uid>
-			return 0
+			return 1
 		endif
 	endif	
 	IF (<npccancast s_heal>)
 		npccast s_heal,<uid>
-		return 0
+		return 1
 	ENDIF
 ENDIF
-IF !(<FLAGS>&statf_war)
-	SKILL <MEDITATION>
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+	SKILL MEDITATION
 ENDIF
-
-RETURN 0
+RETURN 
 
 
 ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return
 endif
 TAG.NEARBY=0
 TAG.MAGE=0
@@ -409,7 +444,7 @@ IF (<ATTACKER> > 0)
 	ENDFOR
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		If (<npccast_magery_anticaster>)
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -424,27 +459,27 @@ IF (<ATTACKER> > 0)
 	ENDIF
 	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze) //if target is paralyzed hit em good while you can
 		if <npccast_magery_heavy_offense> 
-			return 0
+			return 1
 		elif <npccast_magery_summon>
-			return 0
+			return 1
 		endif
 	endif
 	If !(<R3>)
 		If <npccast_magery_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_magery_offense>
-		return 0
+		return 1
 	elif <npccast_magery_healing>
-		return 0
+		return 1
 	endif
 ELSE
 	If <npccast_magery_healing>
-		return 0
+		return 1
 	endif
 ENDIF
-return 0
+return
 
 
 [FUNCTION npccast_magery_healing]
@@ -696,7 +731,7 @@ endif
       RETURN 0
    ENDIF
 If <npccast_chivalry_defense>
-	return 0
+	return 1
 endif
 RETURN 0
 
@@ -722,11 +757,10 @@ ELSE
 	OBJ=<SRC>
 ENDIF
 	if <npccast_chivalry_offense>
-		return 0
+		return 1
 	elif <npccast_chivalry_defense>
-		return 0
+		return 1
 	endif
-
 return 0
 
 
@@ -751,9 +785,9 @@ ELSE
 	OBJ=<SRC>
 ENDIF
 	if <npccast_chivalry_offense>
-		return 0
+		return 1
 	elif <npccast_chivalry_defense>
-		return 0
+		return 1
 	endif
 return 0
 
@@ -783,24 +817,24 @@ ENDIF
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+30))
 	If !(<R2>)
 		If <npccast_chivalry_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_chivalry_healing>
-		return 0
+		return 1
 	elif <npccast_chivalry_offense>
-		return 0
+		return 1
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
 	If !(<R3>)
 		If <npccast_chivalry_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_chivalry_healing>
-		return 0
+		return 1
 	elif <npccast_chivalry_offense>
-		return 0
+		return 1
 	endif
 ENDIF
 RETURN 0
@@ -808,7 +842,7 @@ RETURN 0
 
 ON=@ENVIRONCHANGE
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return
 endif
    IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
       RETURN 0
@@ -816,30 +850,30 @@ endif
 IF (<FINDID(i_rune_poison).morey> > 500)
 	IF (<npccancast s_cure>)
 		npccast s_cure,<uid>
-		return 0
+		return 1
 	ENDIF
 ENDIF
 IF (<HITS> < <MAXHITS>)
 	If (<R3>)
 		IF (<npccancast s_greater_heal>)
 			npccast s_greater_heal,<uid>
-			return 0
+			return 1
 		endif
 	endif	
 	IF (<npccancast s_heal>)
 		npccast s_heal,<uid>
-		return 0
+		return 1
 	ENDIF
 ENDIF
-
-RETURN 0
-
-// use meditation if not in combat
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+	SKILL MEDITATION
+ENDIF
+RETURN
 
 
 ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return 
 endif
 IF (<ATTACKER> > 0)
 	IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -853,20 +887,20 @@ IF (<ATTACKER> > 0)
 	ENDIF
 	If !(<R3>)
 		If <npccast_chivalry_defense> 
-			return 0
+			return 1
 		endif
 	endif
 	if <npccast_chivalry_offense>
-		return 0
+		return 1
 	elif <npccast_chivalry_healing>
-		return 0
+		return 1
 	endif
 ELSE
 	If <npccast_chivalry_healing>
-		return 0
+		return 1
 	endif
 ENDIF
-return 0
+return 
 
 
 [FUNCTION npccast_chivalry_healing]
@@ -950,7 +984,7 @@ endif
    ENDIF
 IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>)
 	npccast s_curse_weapon
-	return 0
+	return 1
 endif
 RETURN 0
 
@@ -960,7 +994,6 @@ ON=@NPCLookAtItem
 	 obj=<argo>
 	 npccast s_animate_dead,<obj>
 	ELSE
-	 say hi
 	 skill 32 //spiritspeak
 	ENDIF
  ENDIF
@@ -992,7 +1025,7 @@ IF (<ATTACKER> > 0)
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
 			npccast s_mind_rot,<obj>
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -1010,10 +1043,10 @@ ELSE
 ENDIF
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
 		npccast s_curse_weapon
-		return 0
+		return 1
 	endif
 	if <npccast_necro_offense>
-		return 0
+		return 1
 	endif
 return 0
 
@@ -1043,7 +1076,7 @@ IF (<ATTACKER> > 0)
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
 			npccast s_mind_rot,<obj>
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -1061,10 +1094,10 @@ ELSE
 ENDIF
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
 		npccast s_curse_weapon
-		return 0
+		return 1
 	endif
 	if <npccast_necro_offense>
-		return 0
+		return 1
 	endif
 return 0
 
@@ -1094,18 +1127,18 @@ ENDIF
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R2>)
 		npccast s_curse_weapon
-		return 0
+		return 1
 	endif
 	if <npccast_necro_offense>
-		return 0
+		return 1
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
 		npccast s_curse_weapon
-		return 0
+		return 1
 	endif
 	if <npccast_necro_offense>
-		return 0
+		return 1
 	endif
 ENDIF
 RETURN 0
@@ -1113,7 +1146,7 @@ RETURN 0
 
 ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return
 endif
 TAG.NEARBY=0
 TAG.MAGE=0
@@ -1145,7 +1178,7 @@ IF (<ATTACKER> > 0)
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
 			npccast s_mind_rot,<obj>
-			return 0
+			return 1
 		endif
 	ELSE //otherwise just find a good unfrozen target if possible
 		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -1160,14 +1193,18 @@ IF (<ATTACKER> > 0)
 	ENDIF
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
 		npccast s_curse_weapon
-		return 0
+		return 1
 	endif
 	if <npccast_necro_offense>
-		return 0
+		return 1
 	endif
 ENDIF
-return 0
+return
 
+ON=@ENVIRONCHANGE
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+	SKILL MEDITATION
+ENDIF
 
 
 [FUNCTION npccast_necro_offense]
