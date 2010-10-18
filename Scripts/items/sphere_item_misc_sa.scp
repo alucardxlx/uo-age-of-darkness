@@ -1,0 +1,1329 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2010
+// www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Monday, September 4, 2010
+// CREATED BY: Khaos
+VERSION=0.56b
+
+//Gargoyle Bed; South
+[Itemdef 0400C]
+Defname=i_sa_bed_2
+Name=gargoyle bed
+Type=t_bed
+TData1=0
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0400D
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Bed (south)
+
+[Itemdef 0400D]
+Dupeitem=0400C
+
+//Gargoyle Bed; East
+[Itemdef 0400E]
+Defname=i_sa_bed_e
+Name=gargoyle bed
+Type=t_bed
+TData1=0
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0400F
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Bed (East)
+
+[Itemdef 0400F]
+Dupeitem=0400E
+
+//Large Gargoyle Bed; South
+[Itemdef 04010]
+Defname=i_sa_large_bed_s
+Name=large gargoyle bed
+Type=t_bed
+TData1=0
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04011,04012,04013,04014,04015,04016,04017,04018
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Large Bed (South)
+
+[Itemdef 04011]
+Dupeitem=04010
+
+[Itemdef 04012]
+Dupeitem=04010
+
+[Itemdef 04013]
+Dupeitem=04010
+
+[Itemdef 04014]
+Dupeitem=04010
+
+[Itemdef 04015]
+Dupeitem=04010
+
+[Itemdef 04016]
+Dupeitem=04010
+
+[Itemdef 04017]
+Dupeitem=04010
+
+[Itemdef 04018]
+Dupeitem=04010
+
+//Gargoyle Bed; East
+[Itemdef 04019]
+Defname=i_sa_large_bed_e
+Name=large gargoyle bed
+Type=t_bed
+TData1=0
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0401A,0401B,0401C,0401D,0401E,0401F,04020,04021
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Large Bed (East)
+
+[Itemdef 0401A]
+Dupeitem=04019
+
+[Itemdef 0401B]
+Dupeitem=04019
+
+[Itemdef 0401C]
+Dupeitem=04019
+
+[Itemdef 0401D]
+Dupeitem=04019
+
+[Itemdef 0401E]
+Dupeitem=04019
+
+[Itemdef 0401F]
+Dupeitem=04019
+
+[Itemdef 04020]
+Dupeitem=04019
+
+[Itemdef 04021]
+Dupeitem=04019
+
+//Gargoyle Chair; South with Flip of East.
+[Itemdef 04023]
+Defname=i_sa_chair
+Name=chair
+Type=t_chair
+TData1=0
+Weight=20.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=04024
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Chair
+
+[Itemdef 04024]
+Dupeitem=04023
+
+//Gargoyle Chest; South with Flip of East.
+[Itemdef 04025]
+Defname=i_sa_chest
+Name=chest
+Type=t_container
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=04026
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Chest
+
+[Itemdef 04026]
+Dupeitem=04025
+
+//Gargoyle Couch; South
+[Itemdef 04027]
+Defname=i_sa_couch_s
+Name=gargoyle couch
+Type=t_chair
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04028
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Couch (South)
+
+[Itemdef 04028]
+Dupeitem=04027
+
+//Gargoyle Couch; East
+[Itemdef 04029]
+Defname=i_sa_couch_e
+Name=gargoyle couch
+Type=t_chair
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0402A
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Couch (East)
+
+[Itemdef 0402A]
+Dupeitem=04029
+
+//Gargoyle Dresser; South
+[Itemdef 0402B]
+Defname=i_sa_dresser_s
+Name=gargoyle dresser
+Type=t_container
+//TData2=
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0402C
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Dresser (South)
+
+[Itemdef 0402C]
+Dupeitem=0402B
+
+//Gargoyle Dresser; East
+[Itemdef 0402D]
+Defname=i_sa_dresser_e
+Name=gargoyle dresser
+Type=t_container
+//TData2=
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0402E
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Dresser (East)
+
+[Itemdef 0402E]
+Dupeitem=0402D
+
+//Gargoyle Long Table; South
+[Itemdef 0402F]
+Defname=i_sa_long_table_s
+Name=long table
+Type=t_table
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04030
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Long Table (South)
+
+[Itemdef 04030]
+Dupeitem=0402F
+
+//Gargoyle Long Table; East
+[Itemdef 04031]
+Defname=i_sa_long_table_e
+Name=long table
+Type=t_table
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04032
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Long Table (East)
+
+[Itemdef 04032]
+Dupeitem=04031
+
+//Gargoyle Short Table
+[Itemdef 04033]
+Defname=i_sa_short_table
+Name=short table
+Type=t_table
+Weight=
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04034,04035,04036
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Short Table
+
+[Itemdef 04034]
+Dupeitem=04033
+
+[Itemdef 04035]
+Dupeitem=04033
+
+[Itemdef 04036]
+Dupeitem=04033
+
+//Gargoyle Floor Mirror; South and Flips East
+[Itemdef 0403A]
+Defname=i_sa_floor_mirror
+Name=floor mirror
+Type=t_normal
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=04046
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Floor Mirror
+
+[Itemdef 04046]
+Dupeitem=0403A
+
+//Gargoyle endtable
+[Itemdef 04041]
+Defname=i_sa_endtable
+Name=endtable
+Type=t_table
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Endtable
+
+//Gargoyle Wallmirror
+[Itemdef 04044]
+Defname=i_sa_wallmirror
+Name=wallmirror
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04045
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Wallmirror
+
+[Itemdef 04045]
+Dupeitem=04044
+
+//Chair?
+//Seems to be part of the Queens castle.
+[Itemdef 04DE0]
+Defname=i_sa_chair_purple
+Name=chair
+Type=t_chair
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04DE1
+
+Category=Decoration - Furniture
+Subsection=Stygian Abyss
+Description=Chair
+
+[Itemdef 04DE1]
+Dupeitem=04DE0
+
+
+
+
+
+
+
+
+
+
+
+//Gargoyle Candelabra; Unlit
+[Itemdef 04039]
+Defname=i_sa_candelabra_unlit
+Name=candelabra
+Type=t_light_out
+TData3=i_sa_candelabra_lit
+Weight=10.0
+Resources=i_ingot_gold, 3 i_wax
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Candelabra, Unlit
+
+On=@Create
+MoreZ=1
+
+//Gargoyle Candelabra; lit
+[Itemdef 040BE]
+Defname=i_sa_candelabra_lit
+Name=candelabra
+Type=t_light_lit
+TData3=i_sa_candelabra_unlit
+TData4=i_sa_candelabra_unlit
+Weight=10.0
+Resources=i_ingot_gold, 3 i_wax
+Skillmake=Carpentry ,t_carpentry
+Dupelist=040BF,040C0
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Candelabra, Lit
+
+On=@Create
+MoreZ=1
+
+[Itemdef 040BE]
+Dupeitem=040BF
+
+[Itemdef 040BE]
+Dupeitem=040C0
+
+//Red Lantern
+[Itemdef 040FE]
+Defname=i_sa_red_lantern
+Name=red lantern
+Type=t_light_out
+TData3=i_sa_red_lantern_lit
+Weight=2.0
+Resources=5 i_board
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Red Lantern, Unlit
+
+On=@Create
+MoreZ=1
+
+[Itemdef i_sa_red_lantern_lit]
+Defname=i_sa_red_lantern_lit
+Name=red lantern
+ID=i_sa_red_lantern
+Type=t_light_lit
+TData3=i_sa_red_lantern
+TData4=i_sa_red_lantern
+Weight=2.0
+Resources=i_sa_red_lantern
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Red Lantern, Lit
+
+On=@Create
+MoreZ=1
+
+//Blue Lantern
+[Itemdef 040FF]
+Defname=i_sa_blue_lantern
+Name=blue lantern
+Type=t_light_out
+TData3=i_sa_blue_lantern_lit
+Weight=2.0
+Resources=5 i_board
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Blue Lantern, Unlit
+
+On=@Create
+MoreZ=1
+
+[Itemdef i_sa_blue_lantern_lit]
+Defname=i_sa_blue_lantern_lit
+Name=blue lantern
+ID=i_sa_blue_lantern
+Type=t_light_lit
+TData3=i_sa_blue_lantern
+TData4=i_sa_blue_lantern
+Weight=2.0
+Resources=i_blue_lantern
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Blue Lantern, Lit
+
+On=@Create
+MoreZ=1
+
+//Green Lantern
+[Itemdef 04100]
+Defname=i_sa_green_lantern
+Name=green lantern
+Type=t_light_out
+TData3=i_sa_green_lantern_lit
+Weight=2.0
+Resources=5 i_board
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Green Lantern, Unlit
+
+On=@Create
+MoreZ=1
+
+[Itemdef i_sa_green_lantern_lit]
+Defname=i_sa_green_lantern_lit
+Name=green lantern
+ID=i_sa_green_lantern
+Type=t_light_lit
+TData3=i_sa_green_lantern
+TData4=i_sa_green_lantern
+Weight=2.0
+Resources=i_sa_green_lantern
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Green Lantern, Lit
+
+On=@Create
+MoreZ=1
+
+//Purple Lantern
+[Itemdef 04101]
+Defname=i_sa_purple_lantern
+Name=purple lantern
+Type=t_light_out
+TData3=i_sa_purple_lantern_lit
+Weight=2.0
+Resources=5 i_board
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Purple Lantern, Unlit
+
+On=@Create
+MoreZ=1
+
+[Itemdef i_sa_purple_lantern_lit]
+Defname=i_sa_purple_lantern_lit
+Name=purple lantern
+ID=i_sa_purple_lantern
+Type=t_light_lit
+TData3=i_sa_purple_lantern
+TData4=i_sa_purple_lantern
+Weight=2.0
+Resources=i_sa_purple_lantern
+Skillmake=Carpentry 40.0,t_carpentry
+
+Category=Decoration - Lightsources
+Subsection=Stygian Abyss
+Description=Purple Lantern, Lit
+
+On=@Create
+MoreZ=1
+
+
+
+
+
+//Gargoyle Sculpture; South FLIPS East
+[Itemdef 0403F]
+Defname=i_sa_gargoyle_sculpture
+Name=gargoyle sculpture
+Type=t_normal
+Weight=255.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04040
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Gargoyle Sculpture
+
+[Itemdef 04040]
+Dupeitem=0403F
+
+//Gargoyle Vase; South FLIPS East
+[Itemdef 04042]
+Defname=i_sa_vase
+Name=gargoyle vase
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04043
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Gargoyle Vase
+
+[Itemdef 04043]
+Dupeitem=04042
+
+//Large Vase
+[Itemdef 042B2]
+Defname=i_sa_large_vase_1
+Name=large vase
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Large Vase
+
+//Large Vase
+[Itemdef 042B3]
+Defname=i_sa_large_vase_2
+Name=large vase
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Large Vase
+
+//Medusa Statue
+[Itemdef 040BC]
+Defname=i_sa_medusa_statue
+Name=statue
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Medusa Statue
+
+[Itemdef 040BD]
+Defname=i_sa_horse_statue
+Name=statue
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Horse Statue
+
+[Itemdef 042C2]
+Defname=i_sa_warrior_statue
+Name=warrior statue
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Warrior Statue
+
+[Itemdef 042BC]
+Defname=i_sa_bust
+Name=bust
+Type=t_normal
+Weight=3.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Bust
+
+[Itemdef 042BB]
+Defname=i_sa_statue_1
+Name=statue
+Type=t_normal
+Weight=3.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Statue 1
+
+[Itemdef 042C0]
+Defname=i_sa_statue_2
+Name=statue
+Type=t_normal
+Weight=3.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Statue 2
+
+[Itemdef 042C1]
+Defname=i_sa_statue_3
+Name=statue
+Type=t_normal
+Weight=3.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Statue 3
+
+[Itemdef 042C3]
+//oddly labeled as an elven stove with quality 52?
+Defname=i_sa_statue_4
+Name=statue
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Elven Stove Statue
+
+[Itemdef 042C5]
+Defname=i_sa_statue_5
+Name=statue
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Winged Statue
+
+//Pegasus Statue
+[Itemdef 0456E]
+Defname=i_sa_pegasus_statue
+Name=pegasus statue
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0456F
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Pegasus Sculpture
+
+[Itemdef 0456F]
+Dupeitem=0456E
+
+//Seahorse Sculpture
+[Itemdef 04578]
+Defname=i_sa_seahorse_sculpture
+Name=seahorse sculpture
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=04579
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Seahorse Sculpture
+
+[Itemdef 04579]
+Dupeitem=04578
+
+//Mermaid Sculpture
+[Itemdef 0457A]
+Defname=i_sa_mermaid_sculpture
+Name=mermaid sculpture
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0457B
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Mermaid Sculpture
+
+[Itemdef 0457B]
+Dupeitem=0457A
+
+[Itemdef 0457C]
+Defname=i_sa_gryphon_sculpture
+Name=gryphon sculpture
+Type=t_normal
+Weight=5.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0457D
+
+Category=Decoration - Wall Carvings & Statues
+Subsection=Stygian Abyss
+Description=Gryphon Sculpture
+
+[Itemdef 0457D]
+Dupeitem=0457C
+
+
+
+
+
+
+
+//Gargoyle Musical Instrument; South and Flips East
+[Itemdef 0403B]
+Defname=i_sa_musical_instrument
+Name=musical instrument
+Type=t_musical
+TData1=
+TData2=
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=0403C
+
+Category=
+Subsection=
+Description=Musical Instrument
+
+[Itemdef 0403C]
+Dupeitem=0403B
+
+//Harp
+[Itemdef 041FC]
+Defname=i_sa_harp
+Name=harp
+Type=t_musical
+TData1=
+TData2=
+Weight=0.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=041FD
+
+Category=
+Subsection=
+Description=Harp
+
+[Itemdef 041FD]
+Dupeitem=041FC
+
+//Lute
+[Itemdef 0420C]
+Defname=i_sa_lute
+Name=lute
+Type=t_musical
+TData1=
+TData2=
+Weight=0.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=0420D
+
+Category=
+Subsection=
+Description=Lute
+
+[Itemdef 0420D]
+Dupeitem=0420C
+
+//Drum
+[Itemdef 04580]
+Defname=i_sa_drum
+Name=drum
+Type=t_musical
+TData1=
+TData2=
+Weight=0.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=04581
+
+Category=
+Subsection=
+Description=Drum
+
+[Itemdef 04581]
+Dupeitem=04580
+
+//Flute
+[Itemdef 045A6]
+Defname=i_sa_flute
+Name=flute
+Type=t_musical
+TData1=
+TData2=
+Weight=0.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=045A7
+
+Category=
+Subsection=
+Description=Flute
+
+[Itemdef 045A7]
+Dupeitem=045A6
+
+
+
+
+
+//Gargoyle Banner; South and Flips East
+[Itemdef 04037]
+Defname=i_sa_banner
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+Dye=1
+Flip=1
+Dupelist=04038
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner
+
+[Itemdef 04038]
+Dupeitem=04037
+
+//Colorful Tapestry; no dupeitem?!
+[Itemdef 042C4]
+Defname=i_sa_colorful_tapestry
+Name=colorful tapestry
+Weight=5.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Colorful Tapestry
+
+//UO Banner; South and FLIPS East
+[Itemdef 042C9]
+Defname=i_sa_uo_banner
+Name=UO banner
+Type=t_normal
+Weight=2.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=042CA
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=UO Banner
+
+[Itemdef 042CA]
+Dupeitem=042C9
+
+//Chaos Banner; South and FLIPS East
+[Itemdef 042CB]
+Defname=i_sa_chaos_banner
+Name=banner
+Type=t_normal
+Weight=2.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=042CC
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Chaos Banner
+
+[Itemdef 042CC]
+Dupeitem=042CB
+
+//Order Banner; South and FLIPS East
+[Itemdef 042CC]
+Defname=i_sa_order_banner
+Name=banner
+Type=t_normal
+Weight=2.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+Flip=1
+Dupelist=042CD
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Order Banner
+
+[Itemdef 042CD]
+Dupeitem=042CC
+
+//Banner Assembly East 1 Part 1
+[Itemdef 048E5]
+Defname=i_sa_banner_assembly_e_1_1
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 1 (East) (1/2)
+
+//Banner Assembly East 1 Part 2
+[Itemdef 048E6]
+Defname=i_sa_banner_assembly_e_1_2
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 1 (East) (2/2)
+
+//Banner Assembly East 2 Part 1
+[Itemdef 048E7]
+Defname=i_sa_banner_assembly_e_2_1
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 2 (East) (1/2)
+
+//Banner Assembly East 2 Part 2
+[Itemdef 048E8]
+Defname=i_sa_banner_assembly_e_2_2
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 2 (East) (2/2)
+
+//Banner Assembly South 1 Part 1
+[Itemdef 048E9]
+Defname=i_sa_banner_assembly_s_1_1
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 1 (South) (1/2)
+
+//Banner Assembly South 1 Part 2
+[Itemdef 048EA]
+Defname=i_sa_banner_assembly_s_1_2
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 1 (South) (2/2)
+
+//Banner Assembly South 2 Part 1
+[Itemdef 048EB]
+Defname=i_sa_banner_assembly_s_2_1
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 2 (South) (1/2)
+
+//Banner Assembly South 2 Part 2
+[Itemdef 048EC]
+Defname=i_sa_banner_assemply_s_2_2
+Name=banner
+Type=t_normal
+Weight=255.0
+Resources=
+//Skillmake=Carpentry ,t_carpentry
+
+Category=Decorations - Banners and Tapestries
+Subsection=Stygian Abyss
+Description=Banner Assembly 2 (South) (2/2)
+
+
+
+
+
+[Itemdef 056B8]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056B9,056BA,056BB,056BC,056BD,056BE,056BF,056C0,056C1,056C2,056C3,056C4
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 1
+
+[Itemdef 056B9]
+Dupeitem=056B8
+
+[Itemdef 056BA]
+Dupeitem=056B8
+
+[Itemdef 056BB]
+Dupeitem=056B8
+
+[Itemdef 056BC]
+Dupeitem=056B8
+
+[Itemdef 056BD]
+Dupeitem=056B8
+
+[Itemdef 056BE]
+Dupeitem=056B8
+
+[Itemdef 056BF]
+Dupeitem=056B8
+
+[Itemdef 056C0]
+Dupeitem=056B8
+
+[Itemdef 056C1]
+Dupeitem=056B8
+
+[Itemdef 056C2]
+Dupeitem=056B8
+
+[Itemdef 056C3]
+Dupeitem=056B8
+
+[Itemdef 056C4]
+Dupeitem=056B8
+
+[Itemdef 056C5]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056C6,056C7,056C8,056C9,056CA,056CB,056CC,056CD,056CE,056CF
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 2
+
+[Itemdef 056C6]
+Dupeitem=056C5
+
+[Itemdef 056C7]
+Dupeitem=056C5
+
+[Itemdef 056C8]
+Dupeitem=056C5
+
+[Itemdef 056C9]
+Dupeitem=056C5
+
+[Itemdef 056CA]
+Dupeitem=056C5
+
+[Itemdef 056CB]
+Dupeitem=056C5
+
+[Itemdef 056CC]
+Dupeitem=056C5
+
+[Itemdef 056CD]
+Dupeitem=056C5
+
+[Itemdef 056CE]
+Dupeitem=056C5
+
+[Itemdef 056CF]
+Dupeitem=056C5
+
+[Itemdef 056D0]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056D1,056D2,056D3,056D4,056D5,056D6,056D7,056D8
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 3
+
+[Itemdef 056D1]
+Dupeitem=056D0
+
+[Itemdef 056D2]
+Dupeitem=056D0
+
+[Itemdef 056D3]
+Dupeitem=056D0
+
+[Itemdef 056D4]
+Dupeitem=056D0
+
+[Itemdef 056D5]
+Dupeitem=056D0
+
+[Itemdef 056D6]
+Dupeitem=056D0
+
+[Itemdef 056D7]
+Dupeitem=056D0
+
+[Itemdef 056D8]
+Dupeitem=056D0
+
+[Itemdef 056D9]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056DA,056DB,056DC,056DD,056DE,056DF,056E0,056E1
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 4
+
+[Itemdef 056DA]
+Dupeitem=056D9
+
+[Itemdef 056DB]
+Dupeitem=056D9
+
+[Itemdef 056DC]
+Dupeitem=056D9
+
+[Itemdef 056DD]
+Dupeitem=056D9
+
+[Itemdef 056DE]
+Dupeitem=056D9
+
+[Itemdef 056DF]
+Dupeitem=056D9
+
+[Itemdef 056E0]
+Dupeitem=056D9
+
+[Itemdef 056E1]
+Dupeitem=056D9
+
+[Itemdef 056E2]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056E3,056E4,056E5,056E6,056E7,056E8,056E9,056EA
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 5
+
+[Itemdef 056E3]
+Dupeitem=056E2
+
+[Itemdef 056E4]
+Dupeitem=056E2
+
+[Itemdef 056E5]
+Dupeitem=056E2
+
+[Itemdef 056E6]
+Dupeitem=056E2
+
+[Itemdef 056E7]
+Dupeitem=056E2
+
+[Itemdef 056E8]
+Dupeitem=056E2
+
+[Itemdef 056E9]
+Dupeitem=056E2
+
+[Itemdef 056EA]
+Dupeitem=056E2
+
+[Itemdef 056EB]
+Resources=5 i_wool, 1 i_thread
+Dupelist=056EC,056ED,056EE,056EF,056F0,056F1,056F2,056F3,056F4
+
+Category=Decorations - Carpets & Rugs
+Subsection=Stygian Abyss
+Description=Carpet 6
+
+[Itemdef 056EC]
+Dupeitem=056EB
+
+[Itemdef 056ED]
+Dupeitem=056EB
+
+[Itemdef 056EE]
+Dupeitem=056EB
+
+[Itemdef 056EF]
+Dupeitem=056EB
+
+[Itemdef 056F0]
+Dupeitem=056EB
+
+[Itemdef 056F1]
+Dupeitem=056EB
+
+[Itemdef 056F2]
+Dupeitem=056EB
+
+[Itemdef 056F3]
+Dupeitem=056EB
+
+[Itemdef 056F4]
+Dupeitem=056EB
+
+
+
+
+//Gargoyle Painting; South and Flips east.
+[Itemdef 0403D]
+Defname=i_sa_painting
+Name=painting
+Type=t_normal
+Weight=10.0
+Resources=
+Skillmake=Carpentry ,t_carpentry
+Dupelist=0403E
+
+Category=
+Subsection=
+Description=Painting
+
+[Itemdef 0403E]
+Dupeitem=0403D
+
+
+
+[EOF]
