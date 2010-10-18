@@ -32,7 +32,7 @@ desires=t_reagent
 aversions=r_civilization
 bloodcolor=-1
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=7
+tag.slots_needed=8
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=44
@@ -53,6 +53,9 @@ on=@create
      str={190 225}
      dex={85 110}
      int={180 205}
+     TAG0.MODHITS = 32
+     TAG0.MODMANA = 32
+     TAG0.MODSTAM = 16
 
      parrying={75.0 95.0}
      magicresistance={98.4 99.7}
@@ -67,7 +70,7 @@ on=@create
 
      resfire=45
      rescold=25
-     resenergy=18
+     resenergy=25
      respoison=100
 
      fame={7000 8500}
@@ -78,7 +81,6 @@ on=@create
      TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_intel_char_necro_user
-     EVENTS=+e_death_rain_gold
 
 ON=@NpcRestock
      item={ Metal_Treasure_Chest 2 Metal_Treasure_Chest_Brass 1}
@@ -124,6 +126,7 @@ on=@create
      str={78 98}
      dex={80 94}
      int={38 60}
+     TAG0.MODHITS = 8
 
      magicresistance={46.6 58.7}
      parrying={60.0 70.0}
@@ -179,10 +182,10 @@ on=@create
      npc=brain_undead
      SetUndead
 
-
      str={67 88}
      dex={34 48}
      int={16 27}
+     TAG0.MODHITS = 8
 
      parrying={22.0 34.0}
      magicresistance={25.3 39.5}
@@ -232,6 +235,7 @@ on=@create
      str={51 66}
      dex={56 73}
      int={16 27}
+     TAG0.MODHITS = 8
 
      parrying={45.0 55.0}
      magicresistance={45.4 58.2}
@@ -286,6 +290,7 @@ on=@create
      str={91 106}
      dex={96 109}
      int={160 185}
+     TAG0.MODHITS = 8
 
      parrying={55.0 65.0}
      magery={77.6 84.1}
@@ -346,6 +351,7 @@ on=@create
      str={152 179}
      dex={106 128}
      int={36 58}
+     TAG0.MODHITS = 8
 
      parrying={75.0 85.0}
      magicresistance={56.4 68.8}
@@ -443,7 +449,7 @@ sound=snd_monster_zombie1
 icon=i_pet_mummy_lbr
 can=mt_walk
 dam=14,18
-armor=50
+armor=48
 ANIM=078C7F
 moverate=60
 bloodcolor=-1
@@ -453,7 +459,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=40
+tag.wrestlingspeed=38
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=9
 TAG.MANUEVER2=11
@@ -469,24 +475,25 @@ on=@create
      SetUndead
      nightsight=1
 
-     str={258 277}
-     dex={81 96}
+     str={278 297}
+     dex={61 76}
      int={38 50}
+     TAG0.MODHITS = 32
 
 	givelang 1
 
      parrying={20.0 60.0}
      magicresistance={63.1 72.5}
-     tactics={55.8 68.9}
-     wrestling={63.1 72.5}
-     anatomy={45.3 66.6}
+     tactics={65.8 78.9}
+     wrestling={73.1 82.5}
+     anatomy={55.3 76.6}
 
      resenergy=18
      rescold=18
      respoison=100
 
      EXP={ 16500 20500 } //Level 6
-     fame={2500 4000}
+     fame={3500 4400}
      karma={-4000 -5000}
 
 ON=@NpcRestock
@@ -530,6 +537,8 @@ on=@create
         str={91 116}
         dex={76 93}
         int={196 230}
+	TAG0.MODHITS = 16
+        TAG0.MODMANA = 32
 
 	givelang 1
 
@@ -615,9 +624,10 @@ ON=@Create
 	FAME={2100 3000} 
 	KARMA={-5000 -6999} 
 
-	STR={126 157}
+	STR={126 147}
 	DEX={81 109}
 	INT={106 129}
+        TAG0.MODMANA = 16
 
      resfire=15
      resenergy=15
@@ -726,6 +736,7 @@ ON=@Create
      str={71 86}
      dex={46 63}
      int={16 27}
+     TAG0.MODHITS = 16
 
      parrying={45.0 55.0}
      magicresistance={25.4 38.2}
@@ -806,9 +817,9 @@ aversions=t_trap
 tevents=e_undead
 bloodcolor=colors_green
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=6
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=45
+tag.wrestlingspeed=42
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=4
 TAG.MANUEVER2=3
@@ -827,6 +838,7 @@ on=@create
      str={316 350}
      dex={55 92}
      int={75 83}
+     TAG0.MODHITS = 64
 
      resfire=9
      rescold=18
@@ -886,6 +898,7 @@ on=@create
      str={105 126}
      dex={85 105}
      int={25 35}
+     TAG0.MODHITS = 16
 
      rescold=15
      resenergy=15
@@ -940,6 +953,7 @@ ON=@Create
 	STR={187 213} 
 	INT={119 141}
 	DEX={85 106} 
+        TAG0.MODHITS = 64
 
      resfire=18
      resenergy=24
@@ -1057,6 +1071,7 @@ on=@create
 Str={175 190}
 Dex={135 165}
 Int={67 89}
+TAG0.MODHITS = 16
 
 MagicResistance={59.0 70.0}
 Tactics={60.0 76.0}
@@ -1156,5 +1171,69 @@ TACTICS={20.0 40.0}
 MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
+
+
+[chardef 02ec]
+defname=c_ghost
+name="ghost"
+sound=snd_monster_ghost1
+icon=i_pet_ghoul
+anim=078c7f
+dam=9,12
+armor=34
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=c_ghost,t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+description=Ghost
+
+on=@create
+     TAG.NPCAI.Rank=3
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={99 119}
+     dex={98 115}
+     int={74 90}
+
+     tactics={65.2 79.6}
+     wrestling={71.3 78.8}
+     magery={49.0 62.0}
+     meditation={57.6 64.1}
+     hiding={79.0 93.0}
+     stealth={79.0 93.0}
+
+
+	//extinguish light	
+
+	givelang 1
+
+     fame={2250 2300}
+     karma={-3000 -3500}
+     EXP={ 2050 2950 } //Level 3
+
+     resfire=18
+     rescold=18
+     resenergy=18
+     respoison=100
+
+     TAG.RANDCAST=25
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+     ITEM={ Magic_bag 2 Undead_backpack 1 0 3}
+
 
 [eof]

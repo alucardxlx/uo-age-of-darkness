@@ -1,16 +1,16 @@
 TITLE=Sphere World Script
-VERSION=0.56b-Nightly
-TIME=326976398
-SAVECOUNT=9765
+VERSION=0.56b
+TIME=334095547
+SAVECOUNT=10033
 
 [TIMERF]
-CurTick=1
+CurTick=3
 
 [GLOBALS]
 +="ranU87"
 aantal=03
-argn1=016e
-argn2=04000ef0e
+argn1=0ec
+argn2=040010279
 bankcurrency="CURRENCY"
 bet=03
 betflag=02
@@ -28,39 +28,40 @@ colord2=01869
 colord3=01869
 colord4=01869
 colord5=01869
+consumeprior=05
 counter=01
 cplace=04
 currency="CURRENCY"
-currencyindex=013
-currencyindex2=01
+currencyindex=02
+currencyindex2=02
 currencypriorindex=013
-currencytotal=09b
-cycle=011
-damagepercent="0.250000"
-date=04
-day=04
+currencytotal=085
+cycle=045
+damagepercent="0.460000"
+date=01c
+day=06
 divide=01
 enough=01
 equipmeleeweapon.oldarchery="86.7"
 even=00
-exp=00
+exp=08
 expmsg="a little"
 firstcol=01870
 found=0ffff2d4e
 gestate.oldact=04fffffff
 halfrange=02
-hours=05
-index=01
+hours=0c
+index=039
 intline=0938
 left=0d2b2
 link=00
 listtotal=025c3
-lunar=082
-lunar2=0166
+lunar=08c8
+lunar2=023e
 magicinc=0352
 manatest=00
 mins=01b
-month=0a
+month=01
 multiplier=02
 newchar=00
 newgold=050
@@ -70,10 +71,10 @@ owner=015bec
 p="012d49,012d4a"
 petshrunk=0d859
 petuid=0e4fc
-phase=03
-phase2=04
+phase=01
+phase2=01
 plant_care="looking fine to you."
-pos="5393,1003,5"
+pos="5437,1184"
 rand=014
 randcast=014
 rollmsg=014
@@ -84,14 +85,14 @@ skillmodcalc=0816500
 slugattract=00
 slugresist=0f
 songlevel=02
-suid=0a695
-take=022
+suid=0bdd2
+take=0f
 text1=05
 text2=05
 thirdrange=03
 timemins="0.000030"
 totalgold=044818
-tree="i_tree_cedar2"
+tree="i_tree_oak"
 tree_uid=040007db6
 tsize=01f4
 tsize1=01f4
@@ -116,7 +117,7 @@ y1=0f
 y2=00
 y3=04
 y4=05
-year=028
+year=029
 yield=00
 zombie=0b449
 
@@ -333,6 +334,9 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 [WS a_deep_forest_healing_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
+[WS a_vesper_guard_post_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
 [WS a_paladins_hall_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
@@ -371,6 +375,9 @@ NAME=Iolo's Bows
 
 [WS a_warehouse_c_1]
 NAME=Warehouse C
+
+[WS a_entrance_to_below_terathan_keep_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_entrance_into_britain_sewers_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
@@ -445,6 +452,9 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 [WS a_covetous_7]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
+[WS a_wind_courtyard_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
 [WS a_wind_tunnels_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
@@ -471,7 +481,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townyew]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_yew
 TAG.bbsid=0400163cf
 TAG.inflation=05f
 TAG.vendormarkup=05
@@ -503,6 +513,9 @@ NAME=New Magincia
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 TAG.inflation=05a
 TAG.vendormarkup=0f
+
+[WS a_nujelm_cemetary_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townnujelm]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
@@ -547,11 +560,12 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 
 [WS a_britain_west_guardtower_1]
 FLAGS=0880
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_guard_tower,e_region_enviro
 
 [WS a_townbritain]
 NAME=Britain
 FLAGS=04180
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_brit
 TAG.bbsid=040006a87
 TAG.inflation=073
 TAG.noredeed=01
@@ -643,7 +657,16 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 [WS a_rock_ridge]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
+[WS a_windemere_woods]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
 [WS a_wisp_circle]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_yew_lich_ruin]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_ml_dungeon_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_ml_dungeon_4]

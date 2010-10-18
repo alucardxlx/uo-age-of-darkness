@@ -84,13 +84,12 @@ ARMOR=4
 
 AVERSIONS=t_TRAP,t_eerie_stuff
 JOB=1
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 moverate=0
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -145,10 +144,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc (male)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
 [CHARDEF c_orc_grunt_f]
 ID=0191
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
@@ -160,12 +155,11 @@ ARMOR=4
 
 moverate=0
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -220,12 +214,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc (female)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
-
-
 [CHARDEF c_orc_soldier]
 ID=0190
 SOUND=snd_MONSTER_ORC1
@@ -236,13 +224,12 @@ ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 moverate=0
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -297,10 +284,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc (male)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
 [CHARDEF c_orc_soldier_f]
 ID=0191
 moverate=0
@@ -312,12 +295,11 @@ DAM=2,8
 ARMOR=4
 
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -370,9 +352,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc (female)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
 
 [CHARDEF 01695]
 DEFNAME=c_orc_archer
@@ -386,12 +365,11 @@ DAM=2,8
 ARMOR=4
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -448,9 +426,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc Archer (male)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
 
 
 [CHARDEF 01696]
@@ -466,12 +441,11 @@ ARMOR=4
 
 DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -530,11 +504,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc Archer (female)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
-
 [CHARDEF c_orc_mage]
 NAME="orc mage"
 DEFNAME=0190
@@ -546,12 +515,11 @@ DAM=2,8
 ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
-tspeech=spk_orc
+TSPEECH=spk_orc_prime
 moverate=0
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -611,11 +579,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc Mage (male)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
-
 [CHARDEF c_orc_mage_f]
 DEFNAME=0191
 NAME="orc mage"
@@ -627,12 +590,11 @@ CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 DAM=2,8
 ARMOR=4
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
-tspeech=spk_orc
+TSPEECH=spk_orc_prime
 moverate=0
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -694,9 +656,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc Mage (female)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
 
 
 [CHARDEF 01691]
@@ -710,12 +669,11 @@ DAM=2,8
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 ARMOR=4
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -773,9 +731,6 @@ ON=@NPCRestock
 	SUBSECTION=Warriors
 	DESCRIPTION=Orc Captain (male)
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
 
 
 [CHARDEF 01692]
@@ -790,12 +745,11 @@ DAM=2,8
 ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 AVERSIONS=t_TRAP,t_eerie_stuff
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobBrigand
-tspeech=spk_orc
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_ConvInit
 TEVENTS=e_Human_Greet
@@ -853,11 +807,6 @@ ON=@NPCRestock
 	ITEM={ Supply_backpack 3 Treasure_backpack 1 Treasure_pouch 1 }
 
 
-on=@deathcorpse
-	ARGO.amount=0191
-	argo.fix
-
-
 [CHARDEF c_orc_cook]
 NAME="orc cook"
 SOUND=snd_MONSTER_ORC1
@@ -871,12 +820,12 @@ moverate=0
 
 AVERSIONS=t_TRAP,t_eerie_stuff
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -967,12 +916,12 @@ moverate=0
 AVERSIONS=t_TRAP,t_eerie_stuff
 
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1063,12 +1012,12 @@ ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1137,12 +1086,12 @@ CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1215,12 +1164,12 @@ CATEGORY=Civilized
 SUBSECTION=Tradesmen (Orc)
 DESCRIPTION=Healer (male)
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=spk_shopkeep
 TSPEECH=jobhealer
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_ConvInit
@@ -1285,12 +1234,12 @@ CATEGORY=Civilized
 SUBSECTION=Tradesmen (Orc)
 DESCRIPTION=Healer (female)
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=spk_shopkeep
 TSPEECH=jobhealer
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
 TEVENTS=e_Human_ConvInit
@@ -1352,12 +1301,12 @@ ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
 AVERSIONS=t_TRAP,t_eerie_stuff
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1436,12 +1385,12 @@ ARMOR=4
 CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
 AVERSIONS=t_TRAP,t_eerie_stuff
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1510,11 +1459,11 @@ foodtype=65 t_meat_raw,t_food,t_fruit
 DAM=2,8
 ARMOR=4
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbanker
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs
@@ -1572,12 +1521,12 @@ ID=0190
 moverate=0
 AVERSIONS=t_TRAP,t_eerie_stuff
 
-TSPEECH=spk_human_prime
+TSPEECH=spk_orc_prime
 TSPEECH=jobbaker
 TSPEECH=spk_shopkeep
 TSPEECH=spk_needs
 TSPEECH=spk_rehello
-TSPEECH=spk_human_default
+TSPEECH=spk_orc_default
 
 TEVENTS=e_Human_HearUnk
 TEVENTS=e_Human_Needs

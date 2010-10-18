@@ -17,8 +17,7 @@ VERSION=0.55
 // Numbers are decimal not hex.
 
 
-[TEMPLATE 101505]
-DEFNAME=Treasure_backpack
+[TEMPLATE Treasure_backpack]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Backpack
@@ -32,8 +31,8 @@ tag0.cartography={10 250}
 ITEM=i_copper_coin,{1 76}
 ITEM={ i_silver_coin 1 0 2 },{1 14}
 
-[TEMPLATE 101506]
-DEFNAME=Supply_backpack
+
+[TEMPLATE Supply_backpack]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Supply Backpack
@@ -44,11 +43,10 @@ ITEM={ RANDOM_BOTTLE 1 0 1 }
 ITEM={ RANDOM_FOOD 1 0 1 },{1 4}
 ITEM={ RANDOM_FOOD 1 0 1 },{1 4}
 ITEM={ i_bandage 1 RANDOM_MISSILES 1 0 6 },{3 24}
-ITEM={ RANDOM_LIGHT 2 random_fishing_junk 1 I_shovel 1 I_lockpick_set 1 I_rope 1 I_saw 1 i_kindling 1 RANDOM_WEAPON 1 0 4 }
+ITEM={ RANDOM_LIGHT 2 random_fishing_junk 1 I_shovel 1 I_lockpick_set 1 I_rope 1 I_saw 1 i_kindling 1 RANDOM_WEAPON 1 RANDOM_TRAP 1 0 4 }
 ITEM=i_copper_coin,{1 62}
 
-[TEMPLATE 101507]
-DEFNAME=Treasure_pouch
+[TEMPLATE Treasure_pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Pouch
@@ -58,8 +56,7 @@ ITEM={ RANDOM_JEWELRY 1 0 2 }
 ITEM=i_copper_coin,{1 38}
 ITEM={ i_silver_coin 1 0 2 },{1 5}
 
-[TEMPLATE 101508]
-DEFNAME=Filth_pouch
+[TEMPLATE Filth_pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Filth Pouch
@@ -70,10 +67,9 @@ ITEM={ RANDOM_POTION 1 0 4 }
 ITEM={ random_reagent_dark 1 0 4},{1 12}
 ITEM={ random_body_parts 1 0 4 }
 ITEM={ RANDOM_FOOD 1 0 2 },{1 3}
-ITEM={ i_horse_dung 1 i_eggshells 1 i_ribs_burned 1 random_body_parts 1 0 7 }
+ITEM={ i_horse_dung 1 i_eggshells 1 i_ribs_burned 1 i_wood_curls 1 random_body_parts 1 0 7 }
 
-[TEMPLATE 101509]
-DEFNAME=Magic_pouch
+[TEMPLATE Magic_pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Pouch
@@ -85,8 +81,7 @@ ITEM={ random_reagent 2 0 1},{1 10}
 ITEM={ random_reagent 2 0 1},{1 10}
 ITEM={ random_reagent 2 0 1},{1 10}
 
-[TEMPLATE 101510]
-DEFNAME=Magic_bag
+[TEMPLATE Magic_bag]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Bag
@@ -100,8 +95,7 @@ ITEM={ random_reagent 2 0 1},{3 24}
 ITEM={ random_reagent 2 0 1},{3 24}
 ITEM={ random_reagent 2 0 1},{3 24}
 
-[TEMPLATE 101511]
-DEFNAME=Treasure_bag
+[TEMPLATE Treasure_bag]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Bag
@@ -112,8 +106,7 @@ ITEM={ RANDOM_JEWELRY 1 0 2 }
 ITEM=i_copper_coin,{18 76}
 ITEM={ i_silver_coin 2 0 3 },{3 12}
 
-[TEMPLATE 101512]
-DEFNAME=Treasure_crate_small
+[TEMPLATE Treasure_crate_small]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Crate (Small)
@@ -127,8 +120,7 @@ ITEM={ i_silver_coin 1 0 2 },{3 13}
 ITEM={ i_gold_coin 1 0 3 },{1 4}
 ITEM={ i_copper_bar 1 0 4 },{1 2}
 
-[TEMPLATE 101513]
-DEFNAME=Armory_crate_small
+[TEMPLATE Armory_crate_small]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Armory Crate (Small)
@@ -141,8 +133,7 @@ TAG.MAGICNUMBER=0
 ITEM={ RANDOM_WEAPON 2 0 1 }
 ITEM={ RANDOM_MISSILE 2 0 1 }
 
-[TEMPLATE 101514]
-DEFNAME=Magic_crate_small
+[TEMPLATE Magic_crate_small]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Crate (Small)
@@ -157,14 +148,13 @@ ITEM={ random_reagent 2 0 1},{3 24}
 ITEM={ random_reagent 2 0 1},{3 24}
 ITEM={ i_bottle_empty 1 0 1},{3 12}
 ITEM={ i_scroll_blank 1 0 1},{3 12}
-ITEM={ I_mortar_pestle 1 I_pen_and_ink 1 01851 1 i_crystal_ball 1 0 6 }
+ITEM={ I_mortar_pestle 1 I_pen_and_ink 1 01851 1 i_crystal_ball 1 random_LANGBOOK 1 0 6 }
 ITEM={ I_Spellbook 2 I_Spellbook_holy 1 I_Spellbook_necromancy 1 0 12 }
 EVENTS +E_MAGICITEM
 TAG.MAGICPOWER=40
 TAG.MAGICNUMBER=0
 
-[TEMPLATE 101515]
-DEFNAME=Treasure_crate_medium
+[TEMPLATE Treasure_crate_medium]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Crate (Medium)
@@ -200,8 +190,7 @@ TAG.MAGICNUMBER=0
 ITEM={ RANDOM_WEAPON 2 0 1 }
 ITEM={ RANDOM_MISSILE 2 0 1 }
 
-[TEMPLATE 101517]
-DEFNAME=Magic_crate_medium
+[TEMPLATE Magic_crate_medium]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Crate (Medium)
@@ -224,8 +213,7 @@ EVENTS +E_MAGICITEM
 TAG.MAGICPOWER=50
 TAG.MAGICNUMBER=0
 
-[TEMPLATE 101518]
-DEFNAME=Treasure_crate_large
+[TEMPLATE Treasure_crate_large]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Crate (Large)
@@ -243,8 +231,7 @@ ITEM={ i_copper_bar 1 0 4 },{1 6}
 ITEM={ i_silver_bar 1 0 5 },{1 3}
 ITEM={ i_gold_bar 1 0 6 }
 
-[TEMPLATE 101519]
-DEFNAME=Armory_crate_large
+[TEMPLATE Armory_crate_large]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Armory Crate (Large)
@@ -265,8 +252,7 @@ TAG.MAGICNUMBER=1
 ITEM={ RANDOM_MISSILE 2 0 1 }
 
 
-[TEMPLATE 101520]
-DEFNAME=Magic_crate_large
+[TEMPLATE Magic_crate_large]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Crate (Large)
@@ -291,8 +277,7 @@ EVENTS +E_MAGICITEM
 TAG.MAGICPOWER=60
 TAG.MAGICNUMBER=0
 
-[TEMPLATE 101521]
-DEFNAME=Smith_crate
+[TEMPLATE Smith_crate]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Smith Crate
@@ -307,8 +292,7 @@ ITEM={ random_dagger 1 0 1 }
 ITEM={ I_ingot_iron 3 0 1 },{6 24}
 ITEM={ I_hammer_smith 2 0 1 }
 
-[TEMPLATE 101522]
-DEFNAME=Inn_crate
+[TEMPLATE Inn_crate]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Inn Crate
@@ -328,8 +312,7 @@ ITEM={ RANDOM_BOTTLE 2 0 1 }
 ITEM={ RANDOM_BOTTLE 2 0 1 }
 ITEM={ RANDOM_PITCHER 2 0 1 }
 
-[TEMPLATE 101523]
-DEFNAME=Food_Basket
+[TEMPLATE Food_Basket]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Food Basket
@@ -347,8 +330,7 @@ ITEM={ RANDOM_FOOD 2 0 1 },{1 6}
 ITEM={ RANDOM_BOTTLE 1 0 1 }
 ITEM={ RANDOM_PITCHER 1 0 1 }
 
-[TEMPLATE 101524]
-DEFNAME=Supply_Keg
+[TEMPLATE Supply_Keg]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Supply Keg
@@ -365,8 +347,7 @@ ITEM={ I_rope 1 0 2 }
 ITEM={ I_saw 1 0 1 }
 ITEM={ random_fishing_junk 1 0 1 }
 
-[TEMPLATE 101525]
-DEFNAME=Provision_Keg
+[TEMPLATE Provision_Keg]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Provision Keg
@@ -378,8 +359,7 @@ ITEM={ RANDOM_BOTTLE 1 0 1 }
 ITEM={ RANDOM_BOTTLE 1 0 1 }
 ITEM={ RANDOM_PITCHER 1 0 2 }
 
-[TEMPLATE 101526]
-DEFNAME=Fish_crate
+[TEMPLATE Fish_crate]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Fish Crate
@@ -389,8 +369,7 @@ ITEM={ random_fishing_junk 2 0 1 }
 ITEM={ random_fishing_junk 2 0 1 }
 ITEM={ random_fishing_junk 2 0 1 }
 
-[TEMPLATE 101527]
-DEFNAME=Coin_Box
+[TEMPLATE Coin_Box]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Coin Box
@@ -403,8 +382,7 @@ ITEM={ i_silver_coin 1 0 2 },{5 32}
 ITEM={ i_gold_coin 1 0 3 },{1 9}
 ITEM={ i_platinum_coin 1 0 4 }
 
-[TEMPLATE 101528]
-DEFNAME=Meat_crate
+[TEMPLATE Meat_crate]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Meat Crate
@@ -415,8 +393,7 @@ ITEM={ random_meat 2 0 1 },{1 6}
 ITEM={ random_meat 2 0 1 },{1 6}
 ITEM={ random_meat 2 0 1 },{1 6}
 
-[TEMPLATE 101529]
-DEFNAME=Cloth_Basket
+[TEMPLATE Cloth_Basket]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Cloth Basket
@@ -432,8 +409,7 @@ ITEM={  I_cotton 1 I_wool 1 I_flax_bundle 1 0 1 }
 ITEM={ I_thread 1 I_yarn_ball 1 0 1 }, {3 12}
 ITEM={ I_thread 1 I_yarn_ball 1 0 1 }, {3 12}
 
-[TEMPLATE 101530]
-DEFNAME=Instrument_Case
+[TEMPLATE Instrument_Case]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Instrument Case
@@ -443,8 +419,7 @@ MORE2={120 480}
 ITEM=random_instrument
 // add bardic music sheets?
 
-[TEMPLATE 101531]
-DEFNAME=Quiver
+[TEMPLATE Quiver_Pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Quiver
@@ -452,8 +427,7 @@ CONTAINER=i_pouch
 ITEM=random_missiles,{12 48}
 ITEM={ random_missiles 4 random_missiles_magic 1 0 8 },{12 48}
 
-[TEMPLATE 101532]
-DEFNAME=Supply_Box
+[TEMPLATE Supply_Box]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Supply Box
@@ -491,8 +465,7 @@ TAG.MAGICNUMBER=0
 ITEM={ RANDOM_JEWEL 1 0 2 },{1 6}
 ITEM={ RANDOM_JEWEL 1 0 2 },{1 6}
 
-[TEMPLATE 101534]
-DEFNAME=Metal_Treasure_Chest
+[TEMPLATE Metal_Treasure_Chest]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Metal Treasure Chest
@@ -535,8 +508,7 @@ TAG.MAGICPOWER=70
 TAG.MAGICNUMBER=2
 ITEM={ random_magic_weapon_low 2 random_magic_weapon_med 1 0 16 }
 
-[TEMPLATE 101535]
-DEFNAME=Metal_Treasure_Chest_brass
+[TEMPLATE Metal_Treasure_Chest_brass]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Metal Treasure Chest (Brass)
@@ -582,8 +554,7 @@ TAG.MAGICPOWER=80
 TAG.MAGICNUMBER=2
 ITEM={ random_magic_weapon_low 3 random_magic_weapon_med 2 0 16 }
 
-[TEMPLATE 101536]
-DEFNAME=Wooden_Treasure_Chest
+[TEMPLATE Wooden_Treasure_Chest]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Wooden Treasure Chest
@@ -623,8 +594,7 @@ TAG.MAGICPOWER=60
 TAG.MAGICNUMBER=2
 ITEM={ random_magic_weapon_low 1 0 8 }
 
-[TEMPLATE 101537]
-DEFNAME=Magic_box
+[TEMPLATE Magic_box]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Box
@@ -650,8 +620,7 @@ ITEM={ random_reagent 2 0 1},{2 20}
 ITEM={ random_reagent 2 0 1},{2 20}
 ITEM={ random_reagent 2 0 1},{2 20}
 
-[TEMPLATE 101538]
-DEFNAME=Armory_Barrel
+[TEMPLATE Armory_Barrel]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Armory Barrel
@@ -668,8 +637,7 @@ ITEM={ RANDOM_MISSILE 2 0 1 }
 ITEM={ Quiver 2 0 1 }
 ITEM={ Quiver 2 0 1 }
 
-[TEMPLATE 101539]
-DEFNAME=Bread_Basket
+[TEMPLATE Bread_Basket]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Bread Basket
@@ -680,8 +648,7 @@ ITEM={ i_muffin 1 0 1 },{1 3}
 ITEM={ i_jar_honey 1 0 1 },{1 3}
 ITEM={ i_cheese_wheel 1 0 1 },{1 3}
 
-[TEMPLATE 101540]
-DEFNAME=Veggie_Basket
+[TEMPLATE Veggie_Basket]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Veggie Basket
@@ -692,8 +659,7 @@ ITEM={ random_Veggie 3 0 1 },{1 6}
 ITEM={ random_fruit 1 0 2 },{1 6}
 ITEM={ random_fruit 1 0 2 },{1 6}
 
-[TEMPLATE 101541]
-DEFNAME=Mining_crate
+[TEMPLATE Mining_crate]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Mining Crate
@@ -705,8 +671,7 @@ ITEM={ random_ore 2 0 1 },{2 18}
 ITEM={ random_ore 2 0 1 },{2 18}
 ITEM={ I_shovel 2 I_pickaxe 2 0 1 }
 
-[TEMPLATE 101542]
-DEFNAME=Giant_Bag
+[TEMPLATE Giant_Bag]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Giant Bag
@@ -726,6 +691,7 @@ ITEM={ RANDOM_LIGHT 1 i_lockpick 1 I_saw 1 I_rope 1 I_pickaxe 1 random_fishing_j
 ITEM={ RANDOM_LIGHT 1 i_lockpick 1 I_saw 1 I_rope 1 I_pickaxe 1 random_fishing_junk 1 i_kindling 1 i_bandage 1 0 10 }
 ITEM={ random_ore 1 0 3 },{2 12}
 ITEM={ random_body_parts 1 0 2 }
+ITEM={ RANDOM_TRAP 1 0 8 }
 ITEM={ random_reagent_dark 1 random_reagent 2 0 2},{1 12}
 ITEM={ i_horse_dung 1 i_eggshells 1 i_ribs_burned 1 random_body_parts 1 0 7 }
 ITEM={ RANDOM_WEAPON 1 RANDOM_WEARABLES 2 0 16 }
@@ -740,8 +706,7 @@ ITEM={ i_treasure_map 1 i_map_fragment 2 0 18 }
 tag0.cartography={10 250}
 
 
-[TEMPLATE 101543]
-DEFNAME=Undead_pouch
+[TEMPLATE Undead_pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Undead Pouch
@@ -753,8 +718,7 @@ ITEM={ random_reagent_dark 1 0 3},{1 12}
 ITEM={ random_body_parts 1 0 2 }
 ITEM={ i_horse_dung 1 i_ribs_burned 1 random_body_parts 1 0 7 }
 
-[TEMPLATE 101544]
-DEFNAME=Undead_backpack
+[TEMPLATE Undead_backpack]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Undead Backpack
@@ -769,41 +733,36 @@ ITEM={ i_horse_dung 1 i_ribs_burned 1 random_body_parts 1 0 7 }
 ITEM={ I_shovel 1 RANDOM_LOWER_SCROLL 1 0 4 }
 ITEM={ RANDOM_JEWEL 1 0 2 }
 ITEM={ RANDOM_JEWELRY 1 0 4 }
+ITEM={ RANDOM_TRAP 1 0 8 }
 ITEM={ i_copper_coin 1 0 1 },{1 24}
 ITEM={ i_silver_coin 1 0 3 },{1 6}
 ITEM={ i_treasure_map 1 i_map_fragment 3 0 24 }
 tag0.cartography={100 250}
 
-[TEMPLATE 101545]
-DEFNAME=Sewer_Barrel
+[TEMPLATE Sewer_Barrel]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Sewer Barrel
 CONTAINER=i_barrel_open
-ITEM={ i_eggshells 1 I_bottle_empty 1 i_horse_dung 1 i_ribs_burned 1 0 3 }
-ITEM={ i_eggshells 1 I_bottle_empty 1 i_horse_dung 1 i_ribs_burned 1 0 3 }
-ITEM={ random_body_parts 1 0 7 }
-ITEM={ random_reagent_dark 1 0 3}
-ITEM={ random_reagent_dark 1 0 3}
-ITEM={ random_fishing_junk 1 0 5 }
-ITEM={ random_fishing_junk 1 0 5 }
-ITEM={ random_body_parts 1 0 8 }
-ITEM={ RANDOM_MISSILES 1 0 5 }
-ITEM={ RANDOM_JEWELRY 1 0 6 }
+ITEM={ i_eggshells 1 I_bottle_empty 1 i_horse_dung 1 i_ribs_burned 1 i_wood_curls 1 0 3 }
+ITEM={ i_eggshells 1 I_bottle_empty 1 i_horse_dung 1 i_ribs_burned 1 i_wood_curls 1 0 3 }
+ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
+ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
+ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
+ITEM={ RANDOM_MISSILES 1 0 4 }
 ITEM={ 0e22 1 0 5 }
 ITEM={ { 010ee 010f3 } 1 0 1 }
 ITEM={ { 010ee 010f3 } 1 0 1 }
 ITEM={ { 01037 01038 } 1 0 1 }
 
 
-[TEMPLATE 101546]
-DEFNAME=Magic_backpack
+[TEMPLATE Magic_backpack]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Magic Backpack
 CONTAINER=i_backpack
 ITEM={ RANDOM_POTION 1 0 2 }
-ITEM={ RANDOM_POTION 1 0 1 },{1 2}
+ITEM={ RANDOM_POTION 1 0 1 },{1 3}
 ITEM={ RANDOM_LOWER_SCROLL 1 0 4 }
 ITEM={ RANDOM_LOWER_SCROLL 1 0 4 }
 ITEM={ RANDOM_WEAPON 1 0 16 }
@@ -822,8 +781,7 @@ EVENTS +E_MAGICITEM
 TAG.MAGICPOWER=40
 TAG.MAGICNUMBER=1
 
-[TEMPLATE 101547]
-DEFNAME=Holy_Box
+[TEMPLATE Holy_Box]
 CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Holy Box
@@ -841,8 +799,7 @@ ITEM=i_copper_coin,{17 98}
 ITEM={ i_silver_coin 1 0 3 },{1 8}
 ITEM={ i_gold_coin 1 0 4 },{1 2}
 
-[TEMPLATE 101548]
-DEFNAME=Fae_backpack
+[TEMPLATE Fae_backpack]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Fae Backpack
@@ -855,11 +812,11 @@ ITEM={ RANDOM_BOTTLE 1 0 1 }
 ITEM={ RANDOM_FOOD 1 0 1 },{1 4}
 ITEM={ random_fruit 2 i_cheese_wheel 1 i_jar_honey 1 0 1 },{1 4}
 ITEM={ RANDOM_MISSILES 1 0 2 },{3 24}
+ITEM={ RANDOM_TRAP 1 0 8 }
 ITEM={ i_elven_shortbow 1 RANDOM_MISSILES_magic 1 0 4 }
 ITEM={ i_elven_scrip 1 0 1 },{1 96}
 
-[TEMPLATE 101549]
-DEFNAME=Fae_pouch
+[TEMPLATE Fae_pouch]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Fae Pouch
@@ -872,8 +829,7 @@ ITEM={ RANDOM_JEWEL 1 0 2 },{1 3}
 ITEM={ RANDOM_JEWELRY 1 0 2 }
 ITEM={ i_elven_scrip 1 0 2 },{1 15}
 
-[TEMPLATE 101550]
-DEFNAME=Fae_chest
+[TEMPLATE Fae_chest]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Wooden Fae Chest
@@ -893,8 +849,7 @@ ITEM={ RANDOM_JEWELRY 1 0 2 }
 ITEM={ RANDOM_LOWER_SCROLL 1 0 5 }
 ITEM={ random_magic_weapon_low 2 random_magic_weapon_med 1 0 16 }
 
-[TEMPLATE 101551]
-DEFNAME=Fae_chest_metal
+[TEMPLATE Fae_chest_metal]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Metal Fae Chest
@@ -915,8 +870,7 @@ ITEM={ RANDOM_LOWER_SCROLL 1 0 5 }
 ITEM={ RANDOM_LOWER_SCROLL 1 0 5 }
 ITEM={ random_magic_weapon_low 3 random_magic_weapon_med 2 0 16 }
 
-[TEMPLATE 101552]
-DEFNAME=Fae_bag
+[TEMPLATE Fae_bag]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Fae Bag
@@ -929,8 +883,7 @@ ITEM={ RANDOM_JEWEL 1 0 1 },{1 3}
 ITEM={ RANDOM_JEWELRY 1 0 2 }
 ITEM={ i_elven_scrip 1 0 1 },{1 50}
 
-[TEMPLATE 101553]
-DEFNAME=Undead_box
+[TEMPLATE Undead_box]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Undead Box

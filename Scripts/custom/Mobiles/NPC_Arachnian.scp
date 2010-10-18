@@ -1,0 +1,250 @@
+[chardef 047]
+defname=c_arachnian_drone
+name="arachnian drone"
+sound=snd_monster_tera_drone1
+icon=i_pet_arachnian_drone
+anim=078c7f
+dam=8,10
+armor=24
+moverate=0
+resources=2 i_ribs_raw, 4 i_reag_spider_Silk
+can=mt_walk|mt_usehands
+foodtype=45 t_meat_raw
+aversions=r_civilization
+desires=t_wand,t_gem,t_gold,t_note,t_scroll,t_potion,t_container
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=8
+TAG.MANUEVER2=7
+TAG.MANUEVER3=6
+
+category=monsters
+subsection=arachnians
+description=arachnian drone
+
+on=@create
+     npc=brain_monster
+     TAG.NPCAI.Rank=1
+     SetArachnian
+     Givelang 20
+
+     str={47 66}
+     dex={96 135}
+     int={45 64}
+     TAG0.MODHITS = 8
+
+     resenergy=8
+     rescold=8
+
+     parrying={30.0 40.0}
+     magicresistance={30.6 43.7}
+     tactics={31.7 49.6}
+     wrestling={54.5 63.0}
+     poisoning={20.0 30.0}
+
+     fame={ 750 1500 }
+     karma={-2000 -2999}
+
+ON=@NpcRestock
+     item={ Meat_crate 2 smith_crate 1 treasure_crate_small 1 Armory_crate_small 1 Supply_Keg 2 Provision_Keg 2 Veggie_Basket 2 food_basket 1 }
+
+
+
+[chardef 046]
+defname=c_arachnian_warrior
+name="arachnian warrior"
+sound=snd_monster_tera_warrior1
+icon=i_pet_arachnian_war
+anim=078c7f
+can=mt_walk|mt_usehands
+dam=11,13
+armor=30
+moverate=3
+resources=2 i_ribs_raw, 4 i_reag_spider_Silk
+foodtype=55 t_meat_raw
+aversions=r_civilization
+desires=t_wand,t_gem,t_gold,t_note,t_scroll,t_potion
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=8
+TAG.MANUEVER2=7
+TAG.MANUEVER3=6
+
+category=monsters
+subsection=arachnians
+description=arachnian warrior
+
+on=@create
+     npc=brain_monster
+     TAG.NPCAI.Rank=2
+     SetArachnian
+     Givelang 20
+
+     str={98 141}
+     dex={127 185}
+     int={45 64}
+     TAG0.MODHITS = 8
+
+     resenergy=8
+     rescold=8
+
+     parrying={70.0 80.0}
+     magicresistance={60.2 74.9}
+     tactics={80.7 96.3}
+     wrestling={82.2 90.7}
+     poisoning={60.0 80.0}
+
+     fame={2100 3000}
+     karma={-3000 -4999}
+     exp={2100 2999} //Level 3
+
+ON=@NpcRestock
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 4}
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 4}
+
+
+[chardef 098]
+defname=c_arachnian_avenger
+name="arachnian avenger"
+sound=snd_monster_tera_warrior1
+icon=i_pet_terethan_avenger_lbr
+dam=12,15
+armor=45
+moverate=10
+ANIM=078C7F
+resources=4 i_ribs_raw, 6 i_reag_spider_Silk
+desires=t_wand,t_gem,t_gold,t_note,t_scroll,t_potion
+can=mt_walk|mt_usehands
+foodtype=75 t_meat_raw
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+TAG.MANUEVER1=8
+TAG.MANUEVER2=7
+TAG.MANUEVER3=6
+
+category=monsters
+subsection=arachnians
+description=arachnian avenger
+
+on=@create
+     npc=brain_monster
+     TAG.NPCAI.Rank=3
+     SetArachnian
+     Givelang 20
+
+     str={201 225}
+     dex={79 95}
+     int={96 117}
+     TAG0.MODHITS = 16
+
+     resfire=8
+     resenergy=16
+     rescold=16
+     respoison=8
+
+     parrying={75.0 85.0}
+     magery={81.9 97.3}
+     magicresistance={67.4 79.8}
+     tactics={90.1 99.1}
+     wrestling={93.5 99.3}
+     poisoning={60.7 79.2}
+
+     fame={5100 6000}
+     karma={-4000 -4999}
+     exp={16100 16999} //Level 6
+
+     TAG.RANDCAST=25
+     EVENTS=+e_intel_char_magery_user
+
+ON=@NpcRestock
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+
+
+[chardef 048]
+defname=c_arachnian_matriarch
+name="arachnian matriarch"
+sound=snd_monster_tera_matriarch1
+icon=i_pet_arachnian_queen
+anim=07fc7f
+dam=11,14
+armor=48
+moverate=20
+can=mt_walk|mt_usehands
+aversions=r_civilization
+resources=4 i_ribs_raw, 8 i_reag_spider_Silk
+desires=t_wand,t_gem,t_gold,t_note,t_scroll,t_potion
+reslevel=2
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=99
+Tag.BeastClass=Beast_Magic
+TAG.MANUEVER1=8
+TAG.MANUEVER2=7
+TAG.MANUEVER3=6
+TEVENTS=e_spawn_minion
+TAG.MINION=c_arachnian_drone
+TEVENTS=e_layeggsincorpse
+TAG.NPCAI.LayEggsInCorpse=1
+TAG.NPCAI.InvisibleEggLaying=0
+TAG.NPCAI.LEIC.Amount=1
+TAG.NPCAI.LEIC.TotalQuantity=(-1)
+TAG.NPCAI.LEIC.DieOnHatch=0
+TAG.NPCAI.LEIC.Graphic=010d9
+TAG.NPCAI.LEIC.Color=041c
+TAG.NPCAI.LEIC.Message=laying
+TAG.NPCAI.LEIC.Type1=c_arachnian_drone
+TAG.NPCAI.LEIC.Weight1=2
+TAG.NPCAI.LEIC.Type2=c_arachnian_warrior
+TAG.NPCAI.LEIC.Weight2=1
+TAG.NPCAI.LEIC.GestationTime=60
+
+category=monsters
+subsection=arachnians
+description=arachnian matriarch
+
+on=@create
+     npc=brain_monster
+     TAG.NPCAI.Rank=4
+     SetArachnian
+     Givelang 20
+
+     str={211 235}
+     dex={79 95}
+     int={136 155}
+     TAG0.MODHITS = 64
+     TAG0.MODSTAM = 32
+     TAG0.MODMANA = 32
+
+     resfire=8
+     resenergy=24
+     rescold=24
+     respoison=12
+
+     parrying={55.0 65.0}
+     magery={91.5 99.7}
+     magicresistance={92.1 98.3}
+     tactics={51.1 69.1}
+     wrestling={69.8 80.2}
+     meditation={5.5 29.7}
+     poisoning={60.7 79.2}
+
+     fame={8100 9000}
+     karma={-4000 -4999}
+     exp={128100 128999} //Level 9
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 10
+     EVENTS=+e_intel_char_magery_user
+
+on=@death
+     item={ wooden_treasure_chest 1 magic_box 2 }
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+
+[eof]

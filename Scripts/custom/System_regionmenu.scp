@@ -57,8 +57,7 @@ dtextentry 131 66 108 20 52 0 Welcome
 dtextentry 131 36 108 20 52 0 <SRC.REGION.NAME>
 dtextentry 131 96 108 20 52 1 <SRC.REGION.P>
 dtext 15 306 0 Events:
-dtextentry 70 306 400 20 52 1 r_event1,r_event2
-
+dtextentry 70 306 400 40 52 1 <SRC.REGION.EVENTS>
 button 260 336 1149 1147 1 0 1
 button 165 336 1146 1144 1 0 0
 

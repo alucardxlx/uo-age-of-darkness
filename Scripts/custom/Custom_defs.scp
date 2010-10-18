@@ -68,6 +68,7 @@ RANDOM_WEAPON           { RANDOM_AXE 2 RANDOM_BLUNTAXE 1 RANDOM_POLE_ARM 2 RANDO
 [DEFNAME ITEMS_OTHER]
 RANDOM_LIGHT			{ i_CANDLE 1 i_TORCH 1 i_LANTERN 1 }
 random_fishing_junk		{ i_FISHING_WEIGHT 1 i_FISHING_POLE 1 i_fish_cut_raw 1 i_FISH_RAW_HEAD 1 i_FISH_SMALL 1 i_FISH_BIG_1 1 i_FISH_BIG_2 1 i_FISH_BIG_3 1 i_FISH_BIG_4 1 }
+RANDOM_TRAP			{ i_trap_explosion 2 i_trap_poisongas 2 i_trap_sawblade 1 i_trap_bolt 1 i_trap_spell_lightning 1  i_trap_spell_fire_field 1 }
 
 [DEFNAME POTIONS]
 RANDOM_POTION			{ i_potion_refresh 3 i_potion_refreshtotal 1 i_potion_agility 3 i_potion_agilitygreat 1 i_potion_nightsight 4 i_potion_healless 4 i_potion_heal 3 i_potion_healgreat 2 i_potion_strength 3 i_potion_strengthgreat 1 i_potion_poisonless 3 i_potion_poison 2 i_potion_poisongreat 1 i_potion_poisondeadly 1 i_potion_cureless 3 i_potion_cure 2 i_potion_curegreat 1 i_potion_explosionless 3 i_potion_explosion 2 i_potion_explosiongreat 1 i_potion_shrink 1 i_potion_invisibility 2 i_potion_incognito 2 i_potion_mana 3 i_potion_manatotal 1 i_potion_clever 3 i_potion_clevergreat 1 i_potion_restore 2 i_potion_restoregreat 1 i_potion_stoneskinless 3 i_potion_stoneskin 2 i_potion_stoneskingreat 1 i_potion_warmthless 3 i_potion_warmth 2 i_potion_warmthgreat 1 i_potion_chillless 3 i_potion_chill 2 i_potion_chillgreat 1 i_potion_innoculationless 3 i_potion_innoculation 2 i_potion_innoculationgreat 1 i_potion_groundingless 3 i_potion_grounding 2 i_potion_groundinggreat 1 }

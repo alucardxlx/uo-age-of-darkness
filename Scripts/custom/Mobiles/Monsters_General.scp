@@ -12,7 +12,7 @@
 // FILE LAST UPDATED: Saturday, January 4, 2003
 //
 VERSION=0.99w5
-
+//Khaos: 134 ANIMAL 20 alligator unhued, komodo dragon in 3d.
 
 //// NPC's GENERAL ////
 
@@ -37,7 +37,7 @@ Tag.BeastClass=Beast_Quick
 TAG.MANUEVER1=19
 TAG.MANUEVER2=5
 TAG.MANUEVER3=17
-tevents=e_intel_potion_user
+tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
 
@@ -211,6 +211,7 @@ on=@create
 	STR={82 105}
 	DEX={93 115}
 	INT={170 205}
+	TAG0.MODMANA = 16
 
 	exp={ 3600 6900 }
 
@@ -237,6 +238,7 @@ on=@create
 
 ON=@NpcRestock
      ITEM={ Magic_bag 2 Magic_backpack 2 Magic_box 1 0 2}
+     ITEM={ RANDOM_reagent 1 RANDOM_potion 3 0 2 },{1 3}
 
 ON=@DeathCorpse
           serv.newnpc=c_gazer_larva
@@ -336,6 +338,7 @@ on=@create
      str={89 102}
      dex={79 98}
      int={16 20}
+     TAG0.MODHITS = 8
 
      respoison=42
      rescold=21
@@ -432,6 +435,7 @@ on=@create
      str={88 110}
      dex={86 105}
      int={18 25}
+     TAG0.MODHITS = 8
 
      parrying={55.0 65.0}
      magicresistance={25.1 29.3}
@@ -444,7 +448,6 @@ on=@create
      karma= { -900 -1000 }
      EXP={ 550 700 } //Level 1
 
-     resfire=13
      resenergy=20
      respoison=30
      rescold=20
@@ -489,6 +492,7 @@ on=@create
      str={106 130}
      dex={66 80}
      int={27 30}
+     TAG0.MODHITS = 8
 
      parrying={15.0 25.0}
      magicresistance={15.4 18.2}
@@ -550,6 +554,8 @@ on=@Create
  ostr={ 195 270 }
  odex={ 32 68 }
  oint={ 32 60 }
+ TAG0.MODHITS = 8
+
 
  wrestling={ 65.0 90.0 }
  tactics={ 65.0 90.0 }
@@ -626,7 +632,6 @@ ON=@NpcRestock
      ITEM={ random_scroll 3 Undead_box 1 0 2 }
 
 
-
 [chardef 285]  
 name=reaper elder
 defname=c_reaper_elder
@@ -645,11 +650,11 @@ TEVENTS=e_Level_up_NPC
 tag.slots_needed=9
 tag.override.range=3
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=46
+tag.wrestlingspeed=45
 TAG.MANUEVER1=29
 TAG.MANUEVER2=16
 TAG.MANUEVER3=13
-tevents=e_intel_potion_user
+tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
 
@@ -658,7 +663,7 @@ subsection=General
 description=Reaper Elder
 
 on=@create
-	nightsight=1
+     nightsight=1
      str={162 191}
      dex={76 85}
      int={220 239}
@@ -874,7 +879,7 @@ tag.energydamage=50
 TAG.MANUEVER1=17
 TAG.MANUEVER2=27
 TAG.MANUEVER3=16
-tevents=e_intel_potion_user
+tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
 
@@ -942,7 +947,7 @@ tag.energydamage=50
 TAG.MANUEVER1=17
 TAG.MANUEVER2=27
 TAG.MANUEVER3=16
-tevents=e_intel_potion_user
+tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
 
@@ -1127,7 +1132,7 @@ tag.wrestlingspeed=48
 TAG.MANUEVER1=27
 TAG.MANUEVER2=11
 TAG.MANUEVER3=9
-tevents=e_intel_potion_user
+tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
 
@@ -1171,7 +1176,7 @@ on=@create
 
 on=@death
      item={ wooden_treasure_chest 1 treasure_crate_large 1 holy_box 1 }
-
+     ITEM={ RANDOM_potion 1 RANDOM_FOOD 3 RANDOM_scroll 2 },{1 3}
 
 
 [CHARDEF 732]
@@ -1206,8 +1211,6 @@ TAG.NPCAI.LEIC.Color=041c
 TAG.NPCAI.LEIC.Message=implanting
 TAG.NPCAI.LEIC.Type1=c_rotworm
 TAG.NPCAI.LEIC.Weight1=10
-TAG.NPCAI.LEIC.Type2=c_bloodworm
-TAG.NPCAI.LEIC.Weight2=1
 TAG.NPCAI.LEIC.GestationTime=60
 
 category=AoD Monsters
@@ -1250,7 +1253,6 @@ MOVERATE=30
 resources=3 i_ribs_raw
 FOODTYPE=60 t_meat_raw,t_garbage,t_blood
 desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
-tag.wrestlingspeed=43
 TEVENTS=e_corpse_eater
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
@@ -1258,6 +1260,7 @@ tevents=e_carnivores3
 tevents=e_swarm
 tag.slots_needed=3
 tag.override.range=2
+tag.wrestlingspeed=43
 Tag.BeastClass=Beast_Heavy
 TAG.MANUEVER1=2
 TAG.MANUEVER2=9
@@ -1274,9 +1277,7 @@ TAG.NPCAI.LEIC.Color=041c
 TAG.NPCAI.LEIC.Message=implanting
 TAG.NPCAI.LEIC.Type1=c_bloodworm
 TAG.NPCAI.LEIC.Weight1=8
-TAG.NPCAI.LEIC.Type2=c_rotworm
-TAG.NPCAI.LEIC.Weight2=1
-TAG.NPCAI.LEIC.GestationTime=60
+TAG.NPCAI.LEIC.GestationTime=90
 
 category=AoD Monsters
 subsection=General
@@ -1422,5 +1423,100 @@ TAG.RANDCAST=40
 TAG.QUICKCAST = 20
 TAG.SPELLPOWER = 20
 EVENTS=+e_intel_char_magery_user
+
+on=@death
+     item={ wooden_treasure_chest 1 magic_bag 2 magic_box 1 }
+     ITEM={ RANDOM_potion 1 RANDOM_gem 3 RANDOM_scroll 2 },{1 3}
+
+
+[chardef 1068]
+defname=c_scalis
+name=#names_scalis the Enforcer
+can=mt_swim|mt_male|mt_usehands
+moverate=25
+dam=19,23
+armor=80
+icon=i_pet_man
+sound=snd_monster_daemon1
+resources=30 i_ribs_raw
+foodtype=300 t_meat_raw,t_fish
+aversions=t_fire
+desires=t_gem,e_notoriety,t_water
+bloodcolor={ colors_green 1 0 1 }
+tag.colddamage=30
+tag.energydamage=30
+tag.slots_needed=99
+tag.override.range=2
+tag.wrestlingspeed=45
+Tag.BeastClass=Beast_Heavy
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=2
+TAG.MANUEVER2=23
+TAG.MANUEVER3=29
+
+category=Monsters
+subsection=Sea Creatures
+description=Scalis
+
+ON=@Create
+color=0
+npc=brain_monster
+
+fame=20000
+karma=-20000
+EXP={ 16500000 16700000 } //Level 16
+
+resfire=70
+rescold=80
+respoison=70
+resenergy=70
+
+ostr={ 295 320 }
+odex={ 110 145 }
+oint={ 105 125 }
+TAG0.MODHITS = 1024
+TAG0.MODMANA = 64
+TAG0.MODSTAM = 64
+
+wrestling={ 120.0 130.0 }
+tactics={ 120.0 130.0 }
+magicresistance={ 120.0 130.0 }
+anatomy={ 10.0 50.0 }
+magery={ 60.0 100.0 }
+evaluatingintel=
+meditation={ 60.0 100.0 }
+necromancy={ 60.0 100.0 }
+
+TAG.RANDCAST=35
+TAG.QUICKCAST = 20
+TAG.SPELLPOWER = 20
+EVENTS=+e_intel_char_magery_user
+EVENTS=+e_intel_char_necro_user
+
+
+//Necro Spells
+//Throws parasitic eels on targets
+
+//loot: level 7 tmap; illustrious wand of thundering glory.
+
+[comment events e_scalis_enforcer]
+ON=@GetHit
+ IF ( <DISTANCE> > 2 )
+  local.x=<r1,4>
+  For 1 <Local.x>
+    throw_eel
+  Endfor
+ EndIf
+
+[function throw_eel]
+ new.npc c_parasitic_eel
+ new.p <src.p>
+ new.attack <src.uid>
+
+[names names_scalis]
+2
+Osiredon
+Scalis
 
 [eof]

@@ -26,7 +26,7 @@ armor=35
 ANIM=03F8C7F
 moverate=0
 resources=10 i_ribs_raw, 12 i_hide, 6 i_thing
-foodtype=t_meat_raw
+foodtype=75 t_meat_raw
 desires=t_coin
 aversions=r_civilization,r_water
 TEVENTS=e_Level_up_NPC
@@ -52,6 +52,7 @@ on=@create
      str={171 191}
      dex={143 160}
      int={23 40}
+     TAG0.MODHITS = 8
 
      parrying={65.0 80.0}
      magicresistance={68.3 77.7}
@@ -78,7 +79,7 @@ dam=9,12
 armor=38
 moverate=0
 resources=14 i_ribs_raw,6 i_reag_dragon_blood,16 i_dragon_scale_green
-foodtype=25 t_meat_raw,t_gem
+foodtype=75 t_meat_raw,t_gem
 desires=t_coin
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
@@ -105,13 +106,14 @@ on=@create
      str={241 260}
      dex={103 110}
      int={31 40}
+     TAG0.MODHITS = 16
 
      parrying={65.0 80.0}
      magicresistance={65.1 80.0}
      tactics={65.4 88.5}
      wrestling={68.8 81.7}
 
-     taming=91.3
+     taming=93.3
 
      resfire=30
 
@@ -139,7 +141,7 @@ dam=9,12
 armor=38
 moverate=0
 resources=14 i_ribs_raw,6 i_reag_dragon_blood,16 i_dragon_scale_red
-foodtype=25 t_meat_raw,t_gem
+foodtype=75 t_meat_raw,t_gem
 desires=t_coin
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
@@ -167,13 +169,14 @@ on=@create
      str={241 260}
      dex={103 110}
      int={31 40}
+     TAG0.MODHITS = 16
 
      parrying={65.0 80.0}
      magicresistance={65.1 80.0}
      tactics={65.4 88.5}
      wrestling={68.8 81.7}
 
-     taming=91.3
+     taming=93.3
 
      resfire=30
 
@@ -202,7 +205,7 @@ dam=9,11
 armor=45
 moverate=0
 resources=10 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 8 i_hide
-foodtype=t_meat_raw,t_fish
+foodtype=120 t_meat_raw,t_fish
 desires=t_ship,t_meat_raw,t_fish
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
@@ -227,6 +230,7 @@ on=@create
      str={189 215}
      dex={100 125}
      int={70 99}
+     TAG0.MODHITS = 32
 
      parrying={65.0 75.0}
      magery={25.0 45.0}
@@ -234,7 +238,7 @@ on=@create
      tactics={80.4 86.6}
      wrestling={84.0 89.7}
 
-     taming=91.3
+     taming=95.3
 
      fame=5000
      karma=-5000
@@ -245,7 +249,6 @@ on=@create
      EXP={ 16500 20500 } //Level 6
 
      TAG.RANDCAST=25
-     TAG.QUICKCAST = 30
      EVENTS=+e_intel_char_magery_user
 
 
@@ -260,7 +263,7 @@ dam=9,11
 armor=45
 moverate=0
 resources=10 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 8 i_hide
-foodtype=t_meat_raw,t_fish
+foodtype=120 t_meat_raw,t_fish
 desires=t_ship,t_meat_raw,t_fish
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
@@ -285,6 +288,7 @@ on=@create
      str={189 215}
      dex={100 125}
      int={70 99}
+     TAG0.MODHITS = 32
 
      color=04f2
 
@@ -294,7 +298,7 @@ on=@create
      tactics={80.4 86.6}
      wrestling={84.0 89.7}
 
-     taming=91.3
+     taming=95.3
 
      fame=5000
      karma=-5000
@@ -305,7 +309,6 @@ on=@create
      EXP={ 16500 20500 } //Level 6
 
      TAG.RANDCAST=25
-     TAG.QUICKCAST = 30
      EVENTS=+e_intel_char_magery_user
 
 
@@ -320,7 +323,7 @@ dam=13,15
 armor=50
 moverate=0
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_green
-foodtype=80 t_meat_raw,t_gem
+foodtype=120 t_meat_raw,t_gem
 desires=t_coin
 aversions=r_water,r_civilization
 tevents=e_carnivores3
@@ -347,9 +350,12 @@ on=@create
      TAG.NPCAI.Rank=5
 	setDragon
 
-     str={191 200}
-     dex={61 70}
-     int={193 200}
+     str={251 260}
+     dex={51 60}
+     int={143 150}
+     TAG0.MODHITS = 32
+     TAG0.MODSTAM = 16
+     TAG0.MODMANA = 16
 
      parrying={55.0 95.0}
      magicresistance={99.2 100.0}
@@ -370,7 +376,7 @@ on=@create
      resenergy=12
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
@@ -393,7 +399,7 @@ dam=13,15
 armor=50
 moverate=0
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_red
-foodtype=80 t_meat_raw,t_gem
+foodtype=120 t_meat_raw,t_gem
 desires=t_coin
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
@@ -419,9 +425,12 @@ on=@create
      TAG.NPCAI.Rank=5
 	setDragon
 
-     str={191 200}
-     dex={61 70}
-     int={193 200}
+     str={251 260}
+     dex={51 60}
+     int={143 150}
+     TAG0.MODHITS = 32
+     TAG0.MODSTAM = 16
+     TAG0.MODMANA = 16
 
      parrying={55.0 95.0}
      magicresistance={99.2 100.0}
@@ -442,7 +451,7 @@ on=@create
      resenergy=12
 
      TAG.RANDCAST=30
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
@@ -465,7 +474,7 @@ dam=13,15
 armor=50
 moverate=0
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_white
-foodtype=20 t_meat_raw
+foodtype=120 t_meat_raw
 desires=t_coin
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
@@ -492,9 +501,12 @@ on=@create
      TAG.NPCAI.Rank=5
 	setDragon
 
-     str={191 200}
-     dex={61 70}
-     int={193 200}
+     str={251 260}
+     dex={51 60}
+     int={143 150}
+     TAG0.MODHITS = 32
+     TAG0.MODSTAM = 16
+     TAG0.MODMANA = 16
 
      parrying={55.0 95.0}
      magicresistance={99.2 100.0}
@@ -539,7 +551,7 @@ armor=40
 moverate=0
 resources=16 i_ribs_raw, 8 i_reag_serpent_scale, 8 i_reag_dragon_blood, 12 i_hide
 // add dragon's orb
-foodtype=t_food, t_meat_raw, t_gem
+foodtype=120 t_food, t_meat_raw, t_gem
 desires=c_m_serpentine_dragon
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
@@ -570,6 +582,9 @@ on=@create
      str={161 180}
      dex={102 110}
      int={181 200}
+     TAG0.MODHITS = 16
+     TAG0.MODSTAM = 16
+     TAG0.MODMANA = 32
 
      parrying={65.0 75.0}
      magicresistance={88.6 95.7}
@@ -592,7 +607,7 @@ on=@create
      resenergy=40
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST = 40
+     TAG.QUICKCAST = 20
      EVENTS=+e_intel_char_magery_user
 
 
@@ -642,6 +657,7 @@ on=@create
      str={209 229}
      dex={96 125}
      int={21 38}
+     TAG0.MODHITS = 8
 
      parrying={70.0 80.0}
      anatomy={45.2 56.1}
@@ -667,16 +683,17 @@ sound=snd_monster_dragon_asian
 ICON=i_worldgem_bit
 RESLEVEL=5
 DAM=16,18
-ARMOR=30
+ARMOR=38
 moverate=10
 RESOURCES=15 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 10 i_hide
 DESIRES=t_coin,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 can=mt_walk|mt_nonhum
 TEVENTS=e_Level_up_NPC
-foodtype=80 t_food, t_fruit, t_meat_raw
-tag.slots_needed=5
+foodtype=90 t_food, t_fruit, t_meat_raw
+tag.slots_needed=6
 tag.override.range=2
+tag.wrestlingspeed=46
 Tag.BeastClass=Beast_Quick
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=7
@@ -689,15 +706,20 @@ description=Hydra
 
 ON=@Create 
 	npc=brain_animal
-	FAME={4100 6000} 
+
+	FAME={5100 7000} 
 	KARMA={-4000 -5999} 
+	EXP={ 16500 20500 } //Level 6
+
 	nightsight=1
-     TAG.NPCAI.Rank=1
+	TAG.NPCAI.Rank=1
 	setDragon
 
 	STR={152 170}
 	INT={29 40}
 	DEX={177 200}
+        TAG0.MODHITS = 32
+	TAG.OVERRIDE.REGENVAL_0 = 5
 
 	PARRYING={60.0 75.0}
 	MAGICRESISTANCE={50.0 67.0}
@@ -706,8 +728,6 @@ ON=@Create
 
 	taming=93.9
 
-	EXP={ 5050 7400 }
-	//EXP={ 4050 7950 } //Level 4
 
 	respoison=30
 
@@ -727,7 +747,7 @@ moverate=0
 RESOURCES=12 i_ribs_raw, 6 i_hide, 4 i_reag_serpent_scale, 6 i_reag_dragon_blood, 2 i_fur_dark
 CAN=MT_WALK|MT_RUN|mt_nonhum
 RESLEVEL=5
-FOODTYPE=55 i_ribs_raw  
+FOODTYPE=75 i_ribs_raw  
 DESIRES=c_man,c_woman 
 AVERSIONS=e_carnivores3 
 TEVENTS=e_Level_up_NPC
@@ -746,11 +766,13 @@ subsection=Relatives
 description=Chimera
 
 on=@create
-	npc=brain_animal
+     npc=brain_animal
+     
      str={183 219}
      dex={76 95}
      int={31 43}
-	nightsight=1
+     
+     nightsight=1
 
      resfire=15
      respoison=15
@@ -764,8 +786,7 @@ on=@create
      anatomy={ 69.5 84.2 }
      MagicResistance={ 79.5 94.2 }
 
-	EXP={ 3050 4900 }
-	//EXP={ 2050 3950 } //Level 3
+	EXP={ 2050 3950 } //Level 3
 
      taming=92.5
 
@@ -780,13 +801,13 @@ armor=65
 moverate=30
 resources=19 i_ribs_raw,20 i_hide,8 i_reag_dragon_blood
 can=mt_walk|mt_nonhum
-foodtype=80 t_meat_raw
+foodtype=200 t_meat_raw
 desires=t_coin
 aversions=r_civilization,r_water
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
 TEVENTS=e_combat_move_intel
-tag.slots_needed=8
+tag.slots_needed=99
 Tag.BeastClass=Beast_Heavy
 tag.energydamage=50
 tag.wrestlingspeed=44
@@ -805,9 +826,12 @@ on=@create
      TAG.NPCAI.Rank=6
 	setDragon
 
-     str={209 226}
-     dex={82 101}
-     int={184 200}
+     str={269 286}
+     dex={62 81}
+     int={144 160}
+     TAG0.MODHITS = 128
+     TAG0.MODMANA = 32
+     TAG0.MODSTAM = 32
 
      anatomy={61.7 84.4}
      meditation={61.7 64.4}
@@ -829,7 +853,7 @@ on=@create
      EXP={ 1100000 1350000 } //Level 12
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST=50
+     TAG.QUICKCAST=30
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_death_rain_gold
 
@@ -855,12 +879,12 @@ dam=14,20
 armor=65
 moverate=30
 resources=19 i_ribs_raw, 8 i_reag_dragon_blood, 20 i_hide
-foodtype=80 t_meat_raw,t_gem
+foodtype=200 t_meat_raw,t_gem
 desires=t_coin
 aversions=r_water,r_civilization
 TEVENTS=e_Level_up_NPC
 TEVENTS=e_combat_move_intel
-tag.slots_needed=8
+tag.slots_needed=99
 Tag.BeastClass=Beast_Heavy
 tag.firedamage=50
 tag.wrestlingspeed=44
@@ -879,9 +903,12 @@ on=@create
      TAG.NPCAI.Rank=6
 	setDragon
 
-     str={209 226}
-     dex={82 101}
-     int={184 200}
+     str={269 286}
+     dex={62 81}
+     int={144 160}
+     TAG0.MODHITS = 128
+     TAG0.MODMANA = 32
+     TAG0.MODSTAM = 32
 
      anatomy={61.7 84.4}
      meditation={61.7 64.4}
@@ -903,7 +930,7 @@ on=@create
      EXP={ 1100000 1350000 } //Level 12
 
      TAG.RANDCAST=40
-     TAG.QUICKCAST=50
+     TAG.QUICKCAST=30
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_death_rain_gold
 

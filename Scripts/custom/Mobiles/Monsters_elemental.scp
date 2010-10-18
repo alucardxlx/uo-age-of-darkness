@@ -13,9 +13,6 @@
 //
 VERSION=0.99w5
 
-//// NPC's ELEMENTALS////
-
-
 [chardef 010]
 defname=c_elem_water
 name="water elemental"
@@ -566,6 +563,119 @@ on=@create
      fame={1000 6000}
      karma={-4000 -4999}
 
+
+[CHARDEF 023E]
+DEFNAME=c_blade_spirit
+NAME=blade spirits
+CAN=mt_walk|mt_fly|mt_run
+MOVERATE=0
+DAM=4,5
+ARMOR=35
+SOUND=snd_weapons_sword1
+ICON=i_fx_blade_spirit_1
+RESOURCES=
+FOODTYPE=
+DESIRES=
+AVERSIONS=
+TAG.POISONDAMAGE=20
+TAG.ENERGYDAMAGE=20
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=0
+Tag.BeastClass=Beast_Quick
+tag.wrestlingspeed=48
+TAG.MANUEVER1=13
+TAG.MANUEVER2=2
+TAG.MANUEVER3=23
+TEVENTS=e_combat_move_intel
+
+CATEGORY=Miscellaneous
+SUBSECTION=Summoned
+DESCRIPTION=Blade Spirits
+
+ON=@Create
+ NPC=brain_berserk
+ COLOR=0
+
+ FAME=0
+ KARMA=0
+
+ RESFIRE=40
+ RESCOLD=30
+ RESPOISON=100
+ RESENERGY=20
+
+ OSTR={ 125 125 }
+ ODEX={ 125 125 }
+ OINT={ 10 10 }
+ TAG0.MODHITS = 8
+ TAG0.MODSTAM = 32
+
+ WRESTLING={ 90.0 90.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 70.0 70.0 }
+ Anatomy={ 0.0 0.0 }
+
+[CHARDEF 023D]
+DEFNAME=c_energy_vortex
+NAME=energy vortex
+CAN=mt_walk|mt_fly|mt_run|mt_usehands	//removed mt_fire_immune
+MOVERATE=0
+DAM=8,10
+ARMOR=60
+SOUND=snd_elementl_airelem5
+ICON=i_fx_blade_spirit_1
+RESOURCES=
+FOODTYPE=
+DESIRES=
+AVERSIONS=
+BLOODCOLOR=colors_pink
+TAG.ENERGYDAMAGE=100
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=0
+Tag.BeastClass=Beast_Quick
+tag.wrestlingspeed=48
+TAG.MANUEVER1=13
+TAG.MANUEVER2=11
+TAG.MANUEVER3=1
+TEVENTS=e_combat_move_intel
+
+RESLEVEL=1
+RESDISPDNID=c_elem_air
+RESDISPDNHUE=01A2
+
+CATEGORY=Miscellaneous
+SUBSECTION=Summoned
+DESCRIPTION=Energy Vortex
+
+ON=@Create
+ NPC=brain_berserk
+ COLOR=0
+
+ IF (<R1,1000> == 1)
+  BODY=c_llama
+  COLOR=074
+ ENDIF
+
+ FAME=0
+ KARMA=0
+
+ RESFIRE=50
+ RESCOLD=50
+ RESPOISON=50
+ RESENERGY=90
+
+ OSTR={ 170 170 }
+ ODEX={ 170 170 }
+ OINT={ 10 10 }
+ TAG0.MODSTAM = 32
+
+ WRESTLING={ 120.0 120.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 100.0 100.0 }
+ ANATOMY={ 0.0 0.0 }
+
+ ITEMNEWBIE=i_light_source
+ ATTR=attr_magic|attr_newbie
 
 
 [eof]
