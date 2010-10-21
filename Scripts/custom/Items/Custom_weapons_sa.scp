@@ -352,7 +352,7 @@ DUPEITEM=048ae
 [ITEMDEF 048b0]
 DEFNAME=i_axe_battle_gargish
 name=gargish battle axe
-RESOURCES=14 i_ingot_iron,1 I_LOG
+RESOURCES=14 i_ingot_iron,1 I_board
 TYPE=t_weapon_axe
 FLIP=1
 DAM=15,17
@@ -415,7 +415,7 @@ DUPEITEM=048b2
 //Using Sword type below
 name=gargish bardiche
 DEFNAME=i_bardiche_gargish
-RESOURCES=18 i_ingot_iron,1 I_LOG
+RESOURCES=18 i_ingot_iron,1 I_board
 TYPE=T_WEAPON_AXE
 FLIP=1
 DAM=18,20
@@ -459,7 +459,7 @@ TAG.REQSTR=20
 TWOHANDS=Y
 DUPELIST=048b9
 SKILLMAKE=CARPENTRY 68.9
-RESOURCES=7 i_log
+RESOURCES=7 i_board
 CATEGORY=Provisions - Weapons
 SUBSECTION=Staves
 DESCRIPTION=Gnarled Staff
@@ -541,7 +541,7 @@ DUPEITEM=048bc
 [ITEMDEF 048be]
 DEFNAME=i_war_fork_gargish
 name=gargish war fork
-RESOURCES=12 i_ingot_iron,1 I_LOG
+RESOURCES=12 i_ingot_iron,1 I_board
 WEIGHT=8
 TYPE=T_WEAPON_FENCE
 FLIP=1
@@ -572,7 +572,7 @@ DUPEITEM=048be
 [ITEMDEF 048c0]
 DEFNAME=i_hammer_war_gargish
 name=gargish war hammer
-RESOURCES=16 i_ingot_iron,1 I_LOG
+RESOURCES=16 i_ingot_iron,1 I_board
 WEIGHT=7
 TYPE=T_WEAPON_MACE_staff
 FLIP=1

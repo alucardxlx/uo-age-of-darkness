@@ -125,19 +125,19 @@ ENDWHILE
 //These are the functions that determine the characteristics of an item crafted with a certain resources
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 [DEFNAME def_skmenu_materials]
-skmenu_subres_i_log_skill 0.0
-skmenu_subres_i_log_birch_skill 15
-skmenu_subres_i_log_willow_skill 30
-skmenu_subres_i_log_cyprus_skill 45
-skmenu_subres_i_log_cedar_skill 60
-skmenu_subres_i_log_oak_skill 80
-skmenu_subres_i_log_yew_skill 100
-skmenu_subres_i_log_walnut_skill 120
-skmenu_subres_i_log_mahogany_skill 140
-skmenu_subres_i_log_heartwood_skill 170
-skmenu_subres_i_log_bloodwood_skill 200
-skmenu_subres_i_log_frostwood_skill 230
-skmenu_subres_i_log_sunwood_skill 260
+skmenu_subres_i_board_skill 0.0
+skmenu_subres_i_board_birch_skill 15
+skmenu_subres_i_board_willow_skill 30
+skmenu_subres_i_board_cyprus_skill 45
+skmenu_subres_i_board_cedar_skill 60
+skmenu_subres_i_board_oak_skill 80
+skmenu_subres_i_board_yew_skill 100
+skmenu_subres_i_board_walnut_skill 120
+skmenu_subres_i_board_mahogany_skill 140
+skmenu_subres_i_board_heartwood_skill 170
+skmenu_subres_i_board_bloodwood_skill 200
+skmenu_subres_i_board_frostwood_skill 230
+skmenu_subres_i_board_sunwood_skill 260
 
 skmenu_subres_i_ingot_iron_skill 00
 skmenu_subres_i_ingot_rusty_skill 25
@@ -611,11 +611,11 @@ more2=i_dough_dragon
 //These are the functions that determine the characteristics of an item crafted with a certain resources
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-[FUNCTION f_material_i_log]
+[FUNCTION f_material_i_board]
 
-[FUNCTION f_material_i_log_birch]
-TAG0.MATERIAL=i_log_birch
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_birch]
+TAG0.MATERIAL=i_board_birch
+tag.basematerial=i_board
 NAME=birch <NAME>
 COLOR=color_o_birch
 IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
@@ -627,17 +627,17 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_cyprus]
-TAG0.MATERIAL=i_log_cyprus
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_cyprus]
+TAG0.MATERIAL=i_board_cyprus
+tag.basematerial=i_board
 NAME=cypress <NAME>
 COLOR=color_o_cyprus
 HITPOINTS += <MulDiv <HITPOINTS>,40,100>
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_cedar]
-TAG0.MATERIAL=i_log_cedar
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_cedar]
+TAG0.MATERIAL=i_board_cedar
+tag.basematerial=i_board
 NAME=cedar <NAME>
 COLOR=color_o_cedar
 HITPOINTS += <MulDiv <HITPOINTS>,20,100>
@@ -648,9 +648,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_willow]
-TAG0.MATERIAL=i_log_willow
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_willow]
+TAG0.MATERIAL=i_board_willow
+tag.basematerial=i_board
 NAME=willow <NAME>
 COLOR=color_o_willow
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
@@ -667,9 +667,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_yew]
-TAG0.MATERIAL=i_log_yew
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_yew]
+TAG0.MATERIAL=i_board_yew
+tag.basematerial=i_board
 NAME=yew <NAME>
 COLOR=color_o_yew
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
@@ -680,9 +680,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_oak]
-TAG0.MATERIAL=i_log_oak
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_oak]
+TAG0.MATERIAL=i_board_oak
+tag.basematerial=i_board
 NAME=oak <NAME>
 COLOR=color_o_oak
 HITPOINTS += <MulDiv <HITPOINTS>,30,100>
@@ -693,9 +693,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_mahogany]
-TAG0.MATERIAL=i_log_mahogany
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_mahogany]
+TAG0.MATERIAL=i_board_mahogany
+tag.basematerial=i_board
 NAME=mahogany <NAME>
 COLOR=color_o_mahogany
 HITPOINTS += <MulDiv <HITPOINTS>,40,100>
@@ -706,9 +706,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_log_heartwood]
-TAG0.MATERIAL=i_log_heartwood
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_heartwood]
+TAG0.MATERIAL=i_board_heartwood
+tag.basematerial=i_board
 NAME=heartwood <NAME>
 COLOR=color_o_heartwood
 HITPOINTS += <MulDiv <HITPOINTS>,15,100>
@@ -729,9 +729,9 @@ ENDIF
 new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
 
 
-[FUNCTION f_material_i_log_bloodwood]
-TAG0.MATERIAL=i_log_bloodwood
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_bloodwood]
+TAG0.MATERIAL=i_board_bloodwood
+tag.basematerial=i_board
 NAME=bloodwood <NAME>
 COLOR=color_o_bloodwood
 HITPOINTS += <MulDiv <HITPOINTS>,15,100>
@@ -750,9 +750,9 @@ ENDIF
 new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
 
 
-[FUNCTION f_material_i_log_frostwood]
-TAG0.MATERIAL=i_log_frostwood
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_frostwood]
+TAG0.MATERIAL=i_board_frostwood
+tag.basematerial=i_board
 NAME=frostwood <NAME>
 COLOR=color_o_frostwood
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
@@ -771,9 +771,9 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
 	
-[FUNCTION f_material_i_log_sunwood]
-TAG0.MATERIAL=i_log_sunwood
-tag.basematerial=i_log
+[FUNCTION f_material_i_board_sunwood]
+TAG0.MATERIAL=i_board_sunwood
+tag.basematerial=i_board
 NAME=sunwood <NAME>
 COLOR=color_o_sunwood
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
