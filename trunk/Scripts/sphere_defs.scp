@@ -757,6 +757,46 @@ midi_nujelm             45
 midi_dungeon2           46
 midi_cove               47
 midi_moonglow           48
+midi_zento		49
+midi_tokunodungeon	50
+midi_taiko		51
+midi_dread_horn_area	52
+midi_elf_city_1		53
+midi_grizzle_dungeon	54
+midi_melisandes_lair	55
+midi_paroxysmus_lair	56
+midi_Gwenno		57
+midi_GoodEndGame	58
+midi_GoodVsEvil		59
+midi_GreatEarthSerpent	60
+midi_HumanoidsU9	61
+midi_MinocNegative	62
+midi_Paws		63
+midi_SelimsBar		64
+midi_SICombat		65
+midi_valoriaShips	66
+midi_theWanderer	67
+midi_Castle		68
+midi_Festival		69
+midi_Honor		70
+midi_Medieval		71
+midi_BattleOnStones	72
+midi_Docktown		73
+midi_GargoyleQueen	74
+midi_GenericCombat	75
+midi_Holycity		76
+midi_HumanLevel		77
+midi_LoginLoop		78
+midi_ForestStones	79
+midi_PrimevalLich	80
+midi_QueenPalace	81
+midi_RoyalCity		82
+midi_SlasherVeil	83
+midi_StygianAbyss	84
+midi_StygianDragon	85
+midi_Void		86
+midi_CodexShrine	87
+
 
 [DEFNAME needstofix]
 // need to be defined. needs and aversions

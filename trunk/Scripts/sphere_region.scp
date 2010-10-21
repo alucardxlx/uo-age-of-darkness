@@ -94,61 +94,66 @@ RESOURCES=1.5 mr_amber
 [REGIONTYPE r_default]
 // Unclaimed regions.
 ON=@ENTER
-SRC.MUSIC=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
+SRC.midilist=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
+SRC.midilist=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
 
-[REGIONTYPE r_brit t_rock]
-// Brit
-RESOURCES=60.0 mr_nothing
-RESOURCES=30.0 mr_iron
-
+[REGIONTYPE r_brit]
 ON=@ENTER
-SRC.MESSAGE Welcome to Britain <SRC.NAME>!
-SRC.MESSAGE Lord British Guards are here to protect you!
-SRC.MUSIC=midi_britain1,midi_britain2
+SRC.midilist=midi_britain1,midi_britain2
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_britain1,midi_britain2
+SRC.midilist=midi_britain1,midi_britain2
+
+
+
+[REGIONTYPE r_Yew]
+ON=@ENTER
+SRC.midilist=midi_Yew
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Yew
+
+
 
 [REGIONTYPE r_brit_castle]
 // Lord brit castle.
 ON=@ENTER
-SRC.MUSIC=midi_LBCastle
+SRC.midilist=midi_LBCastle
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_LBCastle
+SRC.midilist=midi_LBCastle
 
 [REGIONTYPE r_guard_tower]
 // Guard tower.
 ON=@ENTER
-SRC.MUSIC=midi_ForestA
+SRC.midilist=midi_ForestA
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_ForestA
+SRC.midilist=midi_ForestA
 
 [REGIONTYPE r_black_castle]
 // Lord Blackthorne's Castle
 ON=@ENTER
-SRC.MUSIC=midi_BtCastle
+SRC.midilist=midi_BtCastle
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_BtCastle
+SRC.midilist=midi_BtCastle
 
 [REGIONTYPE r_bucs_den]
 // Bucs den
 ON=@ENTER
 IF <SRC.KILLS> > 5
 SRC.MESSAGE Welcome to Bucs Den <SRC.NAME> You are a murderer and you feel at home here
-SRC.MUSIC=midi_BucsDen
+SRC.midilist=midi_BucsDen
 RETURN 0
 ELSE
-SRC.MUSIC=midi_BucsDen
+SRC.midilist=midi_BucsDen
 ENDIF
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_BucsDen
+SRC.midilist=midi_BucsDen
 
 [REGIONTYPE r_spooky t_rock]
 // Spooky outdoor area.
@@ -157,10 +162,10 @@ RESOURCES=30.0 mr_iron
 RESOURCES=5.0 mr_shadow
 
 ON=@ENTER
-SRC.MUSIC=midi_Approach
+SRC.midilist=midi_Approach
 
 ON=@CLIPERIODIC
-SRC.MUSIC=midi_Approach
+SRC.midilist=midi_Approach
 
 [REGIONTYPE r_dungeon t_rock]
 // Dungeon sounds same day or night.

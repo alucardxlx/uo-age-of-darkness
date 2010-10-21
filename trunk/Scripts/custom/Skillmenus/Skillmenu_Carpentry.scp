@@ -1,3 +1,32 @@
+[TYPEDEF t_log]
+
+on=@dclick
+if !(<topobj>==<src.uid>)
+	src.smsg "You must have this in your backpack to use it."
+	return 1
+endif
+if !(<src.restest 1 i_saw>) && !(<src.restest 1 i_saw_dovetail>)
+	src.smsg "You must have a saw to cut logs."
+	return 1
+endif
+if <src.lumberjacking> >= <eval <skillmake.1.value>-100>
+	if <r> <= <eval (((<src.lumberjacking> - <skillmake.1.value>)*2)+50)>
+		serv.newitem <tdata1>
+		new.amount <eval ((<amount>*(<src.mining>/10))/100)>
+		if <new.amount> < 1
+			new.amount = 1
+		endif
+		src.sysmessage <def.smelt_fail>
+		src.consume <new.amount> <baseid>
+		new.cont <src.findlayer.21>
+	else
+		src.sysmessage You waste a log.
+		src.consume 1 <baseid>
+	endif
+else
+	src.sysmessage <def.smelt_noskill>
+endif
+return 1
 
 [ITEMDEF 01028]
 //DEFNAME2=dovetail
@@ -153,14 +182,14 @@ RETURN 1
 
 [DEFNAME def_skmenu_carpentry]
 skmenu_carpentry_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
-skmenu_carpentry_subres_0 i_log
-skmenu_carpentry_subres_1 i_log_yew
-skmenu_carpentry_subres_2 i_log_oak
-skmenu_carpentry_subres_3 i_log_willow
-skmenu_carpentry_subres_4 i_log_heartwood
-skmenu_carpentry_subres_5 i_log_bloodwood
-skmenu_carpentry_subres_6 i_log_frostwood
-skmenu_carpentry_subres_7 i_log_sunwood
+skmenu_carpentry_subres_0 i_board
+skmenu_carpentry_subres_1 i_board_yew
+skmenu_carpentry_subres_2 i_board_oak
+skmenu_carpentry_subres_3 i_board_willow
+skmenu_carpentry_subres_4 i_board_heartwood
+skmenu_carpentry_subres_5 i_board_bloodwood
+skmenu_carpentry_subres_6 i_board_frostwood
+skmenu_carpentry_subres_7 i_board_sunwood
 
 skmenu_carpentry_0_name WEAPONS
 skmenu_carpentry_0_0 i_club

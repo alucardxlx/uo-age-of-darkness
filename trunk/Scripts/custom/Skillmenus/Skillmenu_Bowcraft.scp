@@ -126,14 +126,14 @@ RETURN 1
 
 [DEFNAME def_skmenu_Bowcraft]
 skmenu_Bowcraft_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
-skmenu_Bowcraft_subres_0 i_log
-skmenu_Bowcraft_subres_1 i_log_ancientwood
-skmenu_Bowcraft_subres_2 i_log_stonewood
-skmenu_Bowcraft_subres_3 i_log_darkwood
-skmenu_Bowcraft_subres_4 i_log_heartwood
-skmenu_Bowcraft_subres_5 i_log_bloodwood
-skmenu_Bowcraft_subres_6 i_log_frostwood
-skmenu_Bowcraft_subres_7 i_log_sunwood
+skmenu_Bowcraft_subres_0 i_board
+skmenu_Bowcraft_subres_1 i_board_oak
+skmenu_Bowcraft_subres_2 i_board_yew
+skmenu_Bowcraft_subres_3 i_board_walnut
+skmenu_Bowcraft_subres_4 i_board_heartwood
+skmenu_Bowcraft_subres_5 i_board_bloodwood
+skmenu_Bowcraft_subres_6 i_board_frostwood
+skmenu_Bowcraft_subres_7 i_board_sunwood
 
 skmenu_Bowcraft_0_name BOWS
 skmenu_Bowcraft_0_0 i_bow
