@@ -1497,9 +1497,9 @@ logs.i_tree_trunk_4_part_3=mr_tree_mahogany
 
 logs.i_tree_yew_1=mr_tree_yew
 
-//logs.i_tree_3=mr_tree_birch
-//logs.i_tree_4=mr_tree_birch
-//logs.i_tree_5=mr_tree_birch
+logs.i_tree_3=mr_tree_birch
+logs.i_tree_4=mr_tree_birch
+logs.i_tree_5=mr_tree_birch
 
 
 [REGIONRESOURCE mr_tree]

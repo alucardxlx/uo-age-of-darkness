@@ -36,7 +36,7 @@ lock_locked 2
 [EVENTS e_Level_up]
 on=@LogOut
 SRC.SYSMESSAGE Hi
-ARGN1=6000
+ARGN1=3000
 ARGN2=0
 IF (<SRC.TAG0.LOGOUT>)
 	ARGN1=<SRC.TAG.LOGOUT>
@@ -506,7 +506,7 @@ IF (<Local.EnergyDam> > 0)
 	Local.EnergyDam = <CombatSys_Max <Local.EnergyDam>,0>
 ENDIF
 
-Weapon.Hits -= <QVAL <r15> ? 0 : 1>
+Weapon.Hits -= <QVAL <r18> ? 0 : 1>
 Weapon.Update
 Src.Damage_Loc_<eval <Local.Location>>
 

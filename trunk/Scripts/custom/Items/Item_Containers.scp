@@ -14,7 +14,11 @@ VERSION=0.56b
 [Typedef t_container]
 
 ON=@DropOn_Self
-If !<Local.Drop>
+if <src.isgm>
+	Timerf 0,ResendTooltip
+	return 0
+endif
+If !<Local.Drop> 
 	If <Src.Findlayer.31.Uid>==<Argo.Uid>
 		If (<Contains>+1) > <GetItemLimit>
 			ReturnToPack <Argo.Uid>,That container cannot hold any more items
