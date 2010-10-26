@@ -67,7 +67,7 @@ IF (<src.skillcheck CAMPING 50>)
 	new.p = <p> // place the pit to where i am
 	new.timer = 5
 	new.tag.burnleft = ((<SRC.CAMPING>+<src.skillmod camping>)/2)
-	new.tag.logout = (10*600)-((<SRC.CAMPING>+<SRC.SKILLMOD CAMPING>)*6)
+	new.tag.logout = (10*300)-((<SRC.CAMPING>+<SRC.SKILLMOD CAMPING>)*3)
 	IF <eval <new.tag.logout>> < 10
 		new.tag.logout=10
 	endif
@@ -113,7 +113,6 @@ On=@Equip
 link = <src.uid>
 
 On=@Timer
-SERV.log YO
 	if (<LINK.TAG0.slots_needed>)
 	  local.slots = (<LINK.TAG0.slots_needed>)
 	else

@@ -1162,6 +1162,7 @@ else
 endif
 return 1
 
+
 [ITEMDEF 014f5]
 DEFNAME=i_spyglass
 TYPE=T_SPY_GLASS
@@ -1183,6 +1184,7 @@ else
 	return 1
 endif
 
+
 [ITEMDEF 0104b]
 DEFNAME=i_clock
 RESOURCES=i_CLOCK_FRAME,i_CLOCK_PARTS
@@ -1197,6 +1199,82 @@ SKILLMAKE=TINKERING 30.7,t_tinker_tools
 ON=@Dclick
 	src.time 
 	return 1
+
+
+[typedef t_phase_moongate]
+
+on=@step
+var.p=<morep>
+forchars 20
+	IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
+		p = <var.p>
+		fix
+	endif
+ENDIF
+src.p = <var.p>
+src.fix
+return 0
+
+[ITEMDEF i_moongate_brittanian]
+ID=i_moongate_blue
+type=t_phase_moongate
+
+ON=@create
+timer=60
+
+ON=@timer 
+IF (<sector.light> > 10)
+	attr=(<attr>&~attr_invis)
+	type = t_phase_moongate
+ELSEIF (<sector.light> < 10)
+	type = t_normal
+	attr |= attr_invis
+	timer=60
+	RETURN 1
+ENDIF
+call f_pos_chk <p>
+if ((<var0.mins> >= 31) && (<dlocal.hours> == 0)) || ((<dlocal.hours> >= 1) && (<dlocal.hours> <= 12))
+	IF (<dVar0.phase>==1)
+		MOREP=4466,1283,6,0 //moonglow
+	ELSEIF (<dVar0.phase>==2)
+		MOREP=1336,1998,6,0 //britain
+	ELSEIF (<dVar0.phase>==3)
+		MOREP=1499,3770,6,0 //jhelom
+	ELSEIF (<dVar0.phase>==4)
+		MOREP=772,752,6,0 //yew
+	ELSEIF (<dVar0.phase>==5)
+		MOREP=2700,692,6,0 //minoc
+	ELSEIF (<dVar0.phase>==6)
+		MOREP=1828,2949,-19,0 //trinsic
+	ELSEIF (<dVar0.phase>==7)
+		MOREP=643,2066,6,0 //skara brae
+	ELSEIF (<dVar0.phase>==8)
+		MOREP=3563,2140,35,0 //magincia
+	ENDIF
+elseif ((<var0.mins> <= 30) && (<dlocal.hours> == 23)) || ((<dlocal.hours> >= 12) && (<dlocal.hours> <= 23))
+	IF (<dVar0.phase2>==1)
+		MOREP=4466,1283,6,0 //moonglow
+	ELSEIF (<dVar0.phase2>==2)
+		MOREP=1336,1998,6,0 //britain
+	ELSEIF (<dVar0.phase2>==3)
+		MOREP=1499,3770,6,0 //jhelom
+	ELSEIF (<dVar0.phase2>==4)
+		MOREP=772,752,6,0 //yew
+	ELSEIF (<dVar0.phase2>==5)
+		MOREP=2700,692,6,0 //minoc
+	ELSEIF (<dVar0.phase2>==6)
+		MOREP=1828,2949,-19,0 //trinsic
+	ELSEIF (<dVar0.phase2>==7)
+		MOREP=643,2066,6,0 //skara brae
+	ELSEIF (<dVar0.phase2>==8)
+		MOREP=3563,2140,35,0 //magincia
+	ENDIF
+ELSE
+	MOREP=3563,2139,35,0 //shrine
+endif
+timer=60
+return 1
+
 
 [ITEMDEF i_puddle]
 ID=i_blood_pool_large

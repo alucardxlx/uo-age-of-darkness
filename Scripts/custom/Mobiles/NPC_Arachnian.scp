@@ -101,8 +101,8 @@ on=@create
      exp={2100 2999} //Level 3
 
 ON=@NpcRestock
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 4}
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 4}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 4}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 4}
 
 
 [chardef 098]
@@ -161,9 +161,9 @@ on=@create
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 5}
 
 
 [chardef 048]
@@ -244,7 +244,7 @@ on=@create
 
 on=@death
      item={ wooden_treasure_chest 1 magic_box 2 }
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
-     item={ random_food 2 random_potion 2 random_gem 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 5}
+     item={ random_food 2 random_potion 2 random_jewel 1 0 2 },{1 5}
 
 [eof]

@@ -5,6 +5,7 @@ type=t_reagent
 value=6
 pile=1
 weight=.1
+tdata1=100
 category=provisions - alchemy & magic
 subsection=reagents - Necromancy
 description=Batwing
