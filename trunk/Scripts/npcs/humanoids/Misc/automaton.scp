@@ -96,7 +96,7 @@ bloodcolor=-1
 
 category=Civilization
 subsection=Miscellaneous
-description=Automaton
+description=Automaton (female)
 
 on=@Create
  npc=brain_human
