@@ -48,7 +48,9 @@
 - ADDED: Raging Grizzly Bear, and Grizzly Bear files.\line - ADDED: Blade Spirits and Energy Vortex added and revised.\par
 \par
 10-03-2010, Anarch Cassius\par
-- MODIFIED: sphere_msgs.scp; Attempting to eliminate grey unfiltered speech for NPCs. Speech phrases now absent will need to be added to speech and other events.\par
+- MODIFIED: sphere_msgs.scp; Attempting to eliminate grey unfiltered\par
+  speech for NPCs. Speech phrases now absent will need to be added to\par
+  speech and other events.\par
 \f1\fs20\par
 \f0\fs17 10-04-2010, Anarch Cassius\par
 - MODIFIED: sphere_serv_triggers.scp ; fixed error message.\par
@@ -58,7 +60,8 @@
 - MODIFIED: NPC orc ; minor adjustments, added proper poison resist like PCs.\par
 \par
 10-05-2010, Anarch Cassius\par
-- MODIFIED: e_npc_abilities.scp, e_npc_attack_events.scp, Monsters_General.scp,sphere_d_npc_defs_undiscovered.scp ; added Mind Whipper and mind whip ability\par
+- MODIFIED: e_npc_abilities.scp, e_npc_attack_events.scp, Monsters_General.scp,\par
+  sphere_d_npc_defs_undiscovered.scp ; added Mind Whipper and mind whip ability\par
 - MODIFIED: Monsters_daemons.scp ; adjusted stats somewhat\par
 \par
 10-05-2010, Khaos\par
@@ -102,13 +105,16 @@
 - MODIFIED: Updated Spheretables.scp used with new subfolders.\par
 \par
 10-10-2010, Anarch Cassius\par
-- DELETED: Custom\\sphere_item_vegetation.scp and Custom\\sphereitem_seed.scp ; these were for an older farming prototype that was abadoned\par
+- DELETED: Custom\\sphere_item_vegetation.scp and Custom\\sphereitem_seed.scp;\par
+  these were for an older farming prototype that was abadoned\par
 - DELETED: Custom\\sphere_types.scp ; merged with Custom_region.scp\par
 - MODIFIED: Custom\\Custom_skills.scp ; tweaks to certain skill balance\par
 - MODIFIED: Custom\\System_characters.scp ; fixed loot of orcs' heads\par
-- MODIFIED: Custom\\System_combat.scp ; added test for nearby lights, more work to come\par
+- MODIFIED: Custom\\System_combat.scp ; added test for nearby lights,\par
+  more work to come\par
 - MODIFIED: Vend.scp ; Larger stock for healers\par
-- MODIFIED: Custom\\Mobiles ; Lots of work, high moverates and more of them, tweaks to several npcs\par
+- MODIFIED: Custom\\Mobiles ; Lots of work, high moverates and more of them,\par
+  tweaks to several npcs\par
 \par
 10-12-2010, Khaos\par
 - DELETED: sphere_artifacts_champion_unique.scp; for soon to be\line   obvious reasons listed below.\line - ADDED: Folders "ML Craftable Artifacts", "Champion Artifacts",\line   and "ML Minor Artifacts".\line - ADDED: All three folders contain all artifact weapons created\line   for those categories listed in uoguide. Casey; you need to fix\line   the tags and update like 5 items MOVES. Also they don't contain\line   t_propriedes. I merely scripted the default info to be edited.\line - ADDED: Folder "Magic Weapons", "Magic Armors", and "ML\line   Craftables" as a sub folder.\line - ADDED: All craftable magic weapons and some items from ML\line   expansion.\par
@@ -142,7 +148,8 @@
 \par
 10-18-2010, Anarch Cassius\par
 - Updates to most Mobiles\par
-- MODIFIED: System_Characters.scp ; improved level up mechanism and began enforcing stat caps on NPCs\par
+- MODIFIED: System_Characters.scp ; improved level up mechanism and began\par
+  enforcing stat caps on NPCs\par
 - ADD: Skillmenu_carpentry.scp ; only basic test version at the moment.\par
 \par
 10-20-2010, Khaos\par
@@ -155,12 +162,13 @@
 - More updates to new carpentry and lumberjacking systems.\par
 \par
 10-21-2010, Anarch Cassius\par
-- MERGED: System_moongates.scp to System_season as it is entirely dependant on that system and a short script.\par
+- MERGED: System_moongates.scp to System_season as it is entirely dependant on that system\par
+  and a short script.\par
 - MERGED: NPC_ai_healer.scp to general AI files.\par
 - UPDATED: NPC_Arachnian.scp fixed random_gem for random_jewel.\par
 - UPDATED: NPC_Human.scp added bank managers who sell bank box upgrades.\par
 - UPDATED: Custom_region.scp fixed birch trees yielding other logs.\par
-- UPDATED: System_Combat.scp penalty for damaged weapons altered, now a bit harsher for newbs but less severe at high levels.\par
+- UPDATED: System_Combat.scp penalty for damaged weapons altered, now a bit harsher for\line   newbs but less severe at high levels.\par
 - UPDATED: System_Characters.scp, Item_Misc.scp reduced log out linger time\par
 - UPDATED: Item_Containers.scp, added GM privledge to overload\par
 \par
@@ -170,5 +178,10 @@
 - ADDED/FIXED: Implemented a container check in @ItemSell on player events. If the\par
   container contains any items it will stop the sale.\par
 - REMOVED: Last update apparently restored two files I moved. I deleted them for\line   consistency issues.\par
+\par
+10-30-2010\par
+- ADDED/MOVED/UPDATED: All NPCs with ID of human mobile types were separated from the main\par
+  file in spherechar_evil.scp and moved to respective files and folders.\par
+- MOVED: Some of the NPC files to new folders and reorganized the folders some more.\par
 }
  
