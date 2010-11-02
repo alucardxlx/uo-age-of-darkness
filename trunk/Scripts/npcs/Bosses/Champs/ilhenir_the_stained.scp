@@ -1,0 +1,55 @@
+[CHARDEF c_champ_ilhenir_the_stained]
+ID=c_interred_grizzle
+NAME=Ihenir the Stained
+CAN=mt_walk|mt_usehands
+MOVERATE=100
+DAM=11,18
+ARMOR=55,65
+ICON=i_pet_interred_grizzle
+SOUND=snd_monster_daemon1
+RESOURCES=2 i_ribs_raw
+FOODTYPE=30 t_meat_raw
+AVERSIONS=t_trap
+DESIRES=t_coin,t_gem,t_magic
+BLOODCOLOR=0
+
+TEVENTS=//spawns acid pools that do fire dmg as you stand in them and dmgs armor.
+
+CATEGORY=Monsters
+SUBSECTION=Champions
+DESCRIPTION=Ilhenir the Stained
+
+ON=@Create
+ NPC=brain_undead
+ COLOR=0
+
+ FAME=11000
+ KARMA=-11000
+
+ //TAG.FIREDAMAGE=20
+ //TAG.ENERGYDAMAGE=20
+
+ RESFIRE={ 50 60 }
+ RESCOLD={ 55 65 }
+ RESPOISON={ 70 90 }
+ RESENERGY={ 65 75 }
+
+ OSTR={ 1100 1350 }
+ ODEX={ 80 160 }
+ OINT={ 500 750 }
+ MAXHITS={ 9000 9000 }
+ MAXSTAM=<ODEX>
+ MAXMANA=<OINT>
+
+ WRESTLING={ 100.0 120.0 }
+ TACTICS={ 100.0 120.0 }
+ MAGICRESISTANCE={ 100.0 120.0 }
+ ANATOMY={ 100.0 120.0 }
+ POISONING={ 0.0 20.0 }
+ MAGERY={ 100.0 100.0 }
+ EVALUATINGINTEL={ 100.0 100.0 }
+ MEDITATION={ 100.0 100.0 }
+ NECROMANCY={ 100.0 120.0 }
+ PARRYING={ 90.0 110.0 }
+
+ ITEM=i_gold, {  }
