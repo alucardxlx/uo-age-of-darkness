@@ -1,4 +1,4 @@
-[CHARDEF c_monstrous_interred_grizzle]
+[CHARDEF c_peerless_monstrous_interred_grizzle]
 ID=c_interred_grizzle
 NAME=monstrous interred grizzle
 CAN=mt_walk|mt_usehands
@@ -15,7 +15,7 @@ BLOODCOLOR=0
 
 TEVENTS=//spawns acid pools that do fire dmg as you stand in them and dmgs armor.
 
-CATEGORY=Monsters
+CATEGORY=Bosses
 SUBSECTION=Peerless
 DESCRIPTION=Monstrous Interred Grizzle
 
