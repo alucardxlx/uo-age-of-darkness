@@ -1,0 +1,57 @@
+[chardef c_corgul_the_soulbinder]
+id=c_titan
+name=Corgul the Soulbinder
+can=mt_walk|mt_male|mt_usehands
+moverate=100
+dam=19,24
+armor=85
+icon=i_pet_titan
+sound=snd_monster_daemon1
+resources=2 i_ribs_raw
+foodtype=30 t_meat_raw,t_fish,t_food
+aversions=t_trap
+desires=t_gem,e_notoriety,t_coin,t_wand,t_magic
+bloodcolor=0
+
+tevents=//teleports to players, dismounts, periodic area dmg
+
+category=Bosses
+subsection=High Seas
+description=Corgul the Soulbinder
+
+ON=@Create
+ color=0
+ npc=brain_monster
+
+ fame=20000
+ karma=-20000
+
+//tag.firedamage=10
+//tag.colddamage=30
+//tag.poisondamage=40
+//tag.energydamage=10
+
+ //modar={ 80 80 }
+ resfire={ 80 90 }
+ rescold={ 90 95 }
+ respoison={ 80 90 }
+ resenergy={ 80 90 }
+
+ ostr={ 800 900 }
+ odex={ 120 165 }
+ oint={ 300 400 }
+ maxhits={ 75000 75000 }
+ maxstam=<odex>
+ maxmana={ 4000 4000 }
+
+ wrestling={ 120.0 130.0 }
+ tactics={ 120.0 130.0 }
+ magicresistance={ 120.0 130.0 }
+ anatomy={ 10.0 50.0 }
+ magery={ 100.0 120.0 }
+ evaluatingintel={ 110.0 120.0 }
+ meditation={ 30.0 60.0 }
+ necromancy={ 100.0 120.0 }
+ mysticism={ 100.0 120.0 }
+
+//Necro Spells

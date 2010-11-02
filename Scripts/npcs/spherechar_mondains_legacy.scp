@@ -128,42 +128,7 @@ ON=@NpcRestock
 	ITEMNEWBIE=i_spellbook
 	ADDSPELL=s_harm
 
-//Monstrous Interred Grizzle
-[chardef 259]
-defname=c_monstrous_interred_grizzle
-name=Monstrous Interred Grizzle
-//SOUND=snd_monster_daemon1
-ICON=i_worldgem_bit
-RESLEVEL=5
-RESDISPDNHUE=33
-RESDISPDNID=c_man
-DAM=10,30
-ARMOR=25
-RESOURCES=15 i_ribs_raw, 8 i_reag_bone
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
-CATEGORY=New Monsters
-SUBSECTION=ML
-DESCRIPTION=Monstrous Interred Grizzle
 
-ON=@Create
-	NPC=brain_monster
-	FAME={100 3000}
-	KARMA={-5000 -6999}
-	STR={80 120}
-	MAXHITS=180
-	INT={100 230}
-	DEX={100 120}
-	PARRYING={60.0 80.0}
-	MAGICRESISTANCE={50.0 70.0}
-	MAGERY={60.0 75.0}
-	TACTICS={60.0 90.0}
-	WRESTLING={60.0 90.0}
-
-ON=@NpcRestock
-	ITEM=random_jewel,{1 4}
-	ITEM=i_gold,{80 130}
 
 //It needs the correct Number
 //Travesty
