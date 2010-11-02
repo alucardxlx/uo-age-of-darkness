@@ -15,7 +15,7 @@ BLOODCOLOR=0
 
 TEVENTS=//spawns acid pools that do fire dmg as you stand in them and dmgs armor.
 
-CATEGORY=Monsters
+CATEGORY=Bosses
 SUBSECTION=Champions
 DESCRIPTION=Ilhenir the Stained
 
