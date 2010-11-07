@@ -1289,8 +1289,12 @@ Local.Str = <Eval <Str>/5>
 Local.Lumberjacking = <Qval <Weapon.Type>==t_weapon_axe ? <Eval ((<Lumberjacking>+<Skillmod Lumberjacking>)/50) + <Qval 999 < <Lumberjacking> ? 10 : 0>> : 0>
 Local.Mining = <Qval <Weapon.Type>==t_weapon_mace_pick ? <Eval ((<Mining>+<Skillmod Mining>)/50) + <Qval 999 < <Mining> ? 10 : 0>> : 0>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy> + <Local.Lumberjacking> + <Local.Mining> + <Local.Str> + <TAG0.DAMINCREASE>>
-Local.Bonus -= <Qval <Weapon> ? <MulDiv <Weapon.hits>,100,<Weapon.maxhits>> : 0>
-Return <Qval (<Local.Bonus> > 10) ? <MulDiv <Local.Dam>,<Local.Bonus>,100> : <MulDiv <Local.Dam>,10,100> >
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Serv.Log +++<MulDiv <Local.Dam>,<Local.Bonus>,100> (<Name>)+++
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
 
 [Function CombatSys_FireDamageBonus]
 Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
@@ -1298,8 +1302,12 @@ Local.Dam = <Eval (<Local.Dam>*<Tag0.firedamage>)/100>
 Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
 Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
-Local.Bonus -= <Qval <Weapon> ? <MulDiv <Weapon.hits>,100,<Weapon.maxhits>> : 0>
-Return <Qval (<Local.Bonus> > 10) ? <MulDiv <Local.Dam>,<Local.Bonus>,100> : <MulDiv <Local.Dam>,10,100> >
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
 
 [Function CombatSys_ColdDamageBonus]
 Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
@@ -1307,8 +1315,12 @@ Local.Dam = <Eval (<Local.Dam>*<Tag0.colddamage>)/100>
 Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
 Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy> + <TAG0.DAMINCREASE>>
-Local.Bonus -= <Qval <Weapon> ? <MulDiv <Weapon.hits>,100,<Weapon.maxhits>> : 0>
-Return <Qval (<Local.Bonus> > 10) ? <MulDiv <Local.Dam>,<Local.Bonus>,100> : <MulDiv <Local.Dam>,10,100> >
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
 
 [Function CombatSys_PoisonDamageBonus]
 Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
@@ -1316,8 +1328,12 @@ Local.Dam = <Eval (<Local.Dam>*<Tag0.poisondamage>)/100>
 Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
 Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
-Local.Bonus -= <Qval <Weapon> ? <MulDiv <Weapon.hits>,100,<Weapon.maxhits>> : 0>
-Return <Qval (<Local.Bonus> > 10) ? <MulDiv <Local.Dam>,<Local.Bonus>,100> : <MulDiv <Local.Dam>,10,100> >
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
 
 [Function CombatSys_EnergyDamageBonus]
 Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
@@ -1325,8 +1341,12 @@ Local.Dam = <Eval (<Local.Dam>*<Tag0.energydamage>)/100>
 Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
 Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
-Local.Bonus -= <Qval <Weapon> ? <MulDiv <Weapon.hits>,100,<Weapon.maxhits>> : 0>
-Return <Qval (<Local.Bonus> > 10) ? <MulDiv <Local.Dam>,<Local.Bonus>,100> : <MulDiv <Local.Dam>,10,100> >
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
 
 
 

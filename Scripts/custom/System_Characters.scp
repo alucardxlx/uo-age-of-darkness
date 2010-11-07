@@ -1,3 +1,32 @@
+[function resetspawns]
+foritems 6144
+ if <type> == t_spawn_char
+  USE 0
+ endif
+endfor
+
+[function setspawns]
+foritems 6144
+ if <type> == t_spawn_char
+	if <timer> < 1
+	  USE 0
+	endif
+ endif
+endfor
+
+
+[function findspawns]
+foritems 6144
+ if <type> == t_spawn_char
+	if <more> == 0
+	  src.p = <P>
+	  src.fix
+	  return
+	endif
+ endif
+endfor
+
+
 [defname stat_locks]
 lock_up 0
 lock_down 1
@@ -36,7 +65,7 @@ lock_locked 2
 [EVENTS e_Level_up]
 on=@LogOut
 SRC.SYSMESSAGE Hi
-ARGN1=3000
+ARGN1=6000
 ARGN2=0
 IF (<SRC.TAG0.LOGOUT>)
 	ARGN1=<SRC.TAG.LOGOUT>
@@ -91,6 +120,17 @@ If <Act.Can>&0100
 	Endif
 Endif
 
+
+
+ON=@ItemSell
+IF (<ACT.TYPE> == t_container)
+ FORCONT <act.uid> 0	//Looking for ANY item in the container.
+  IF <IsItem>
+   SMSGL -1,500196	//You may not sell containers unless they are empty
+   RETURN 1		//Stop the sale.
+  ENDIF
+ ENDFOR
+ENDIF
 
 
 ON=@MOUNT

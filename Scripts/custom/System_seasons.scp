@@ -401,6 +401,9 @@ src.sysmessage It is <def.day_<dlocal.day>> <dlocal.date><local.suffix> of <stra
 [FUNCTION f_dl_minus]
 	if (<eval <var0.hours>> < <args>)
 		local.day = <eval <var0.day>-1>
+		if (<local.day> == 0)
+			local.day = 28
+		endif
 		call adj_cal_bckwd <dlocal.day>
 	else
 		call cal_today
@@ -563,7 +566,7 @@ if (<p.m> < 2)
 	elif (<p.x> < 4875)
 		call f_dl_plus 14
 		local.meridian = 9
-		<QVAL (<eval <var0.hours>> < 15)? local.hours = <eval <var0.hours>+9>:local.hours = <eval <var0.hours>+9>>
+		<QVAL (<eval <var0.hours>> < 15)? local.hours = <eval <var0.hours>+9>:local.hours = <eval <var0.hours>-15>>
 	elif (<p.x> < 5100) 
 		call f_dl_plus 11
 		local.meridian = 12
@@ -743,6 +746,11 @@ else
 			call f_barometer
 			local.weatherchance = <eval (<local.barometer>+((<p.y>+2000)/200))>
 		endif
+	elif (<p.m>==5) // Tel Mur map 
+		local.temp = <fval (((<eval ((<p.y>+1000)/200)>*1.8)+32.0)  + <streat <streat <def.month_<eval <var0.month>>>>>) - <eval <local.fromhigh>*10>>
+		tag0.temp = <local.temp>	
+		call f_barometer
+		local.weatherchance = <eval (<local.barometer>+((<p.y>+1000)/200))>
 	endif
 endif
 
@@ -880,6 +888,7 @@ if (<eval <local.temp>> < 360)
 		return 0
 	else
 		sector.snow
+		f_make_snow
 		return 1
 	endif
 else
@@ -887,6 +896,7 @@ else
 		return 0
 	else
 		sector.rain
+		f_make_rain
 		return 1
 	endif
 endif
@@ -997,6 +1007,11 @@ else
 	return 1
 endif
 
+[FUNCTION f_moon]
+say <var.phase>
+say <var.phase2>
+
+
 [REGIONTYPE e_region_enviro]
 ON=@CliPeriodic
 	src.f_environ_calc
@@ -1006,7 +1021,8 @@ ON=@CliPeriodic
 ON=@Environchange 
 		if <isplayer>
 			src.region.events +e_region_enviro //replaces line below
-			//f_environ_calc
+			call f_pos_chk <src.p>
+			call f_light_manager <local.hours>
 			if <def.tempaffect>
 				if !(<restest 1 i_tempaffect>)
 					serv.newitem i_tempaffect

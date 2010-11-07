@@ -244,7 +244,7 @@ FINDLAYER(29).CURRENCY
 VAR.BANKCURRENCY=<VAR.CURRENCY>
 CURRENCY
 DIALOG d_purse
-SYSMESSAGE=The priority number determines which kinds of currency will be used first. The lower the priority number, the sooner it will be used. Two items set up on the same priority level will be taken up in the order listed in the menu.
+SYSMESSAGE=The priority number determines which kinds of currency will be used first. The lower the priority number, the sooner it will be used. Two items set up on the same priority level will be used in the order listed in the menu.
 SYSMESSAGE=The priority number is also your preference when receiving change. Change will be given in currencies with higher priorities before being given in lower priority currencies.
 
 

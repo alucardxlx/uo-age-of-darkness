@@ -51,6 +51,7 @@ on=@create
      str={76 95}
      dex={96 118}
      int={34 41}
+     TAG0.MODHITS = 8
 
      anatomy={54.6 65.0}
      parrying={75.0 80.0}
@@ -79,7 +80,7 @@ armor=15
 resources=2 i_ribs_raw
 can=mt_walk|mt_usehands|mt_nonhum
 foodtype=t_meat_raw, t_food, t_fruit
-desires=t_coin, t_gem, t_ore, c_headless, t_meat_raw, t_food, t_fruit
+desires=t_coin, t_gem, t_ore, t_meat_raw, t_food, t_fruit, c_gazer, c_gazer_larva, c_zorn, c_headless
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tevents=e_swarm
@@ -127,7 +128,7 @@ RESLEVEL=2
 RESDISPDNHUE=78
 ARMOR=26
 CAN=MT_WALK|MT_FLY|mt_nonhum
-desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn
+desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn, c_headless
 moverate=0
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
@@ -185,7 +186,7 @@ armor=36
 moverate=0
 resources=4 i_ribs_raw
 can=MT_WALK|MT_FLY|mt_nonhum
-desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn
+desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn, c_headless
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
@@ -211,6 +212,7 @@ on=@create
 	STR={82 105}
 	DEX={93 115}
 	INT={170 205}
+	TAG0.MODHITS = 16
 	TAG0.MODMANA = 16
 
 	exp={ 3600 6900 }
@@ -505,8 +507,8 @@ on=@create
      rescold=25
 
      TIMERF 1, NONMOVERNUDGE
-     fame=250
-     karma=-750
+     fame={ 250 600 }
+     karma= { -750 -800 }
 
 [chardef c_ice_corpser]
 defname=c_ice_corpser
@@ -543,8 +545,8 @@ on=@Create
  color=0480
  nightsight=1
 
- fame=2000
- karma=-2000
+ fame={ 2000 2250 }
+ karma= { -2000 -2750 }
  EXP={ 550 700 } //Level 1
 
  resenergy=25
@@ -553,7 +555,7 @@ on=@Create
 
  ostr={ 195 270 }
  odex={ 32 68 }
- oint={ 32 60 }
+ oint={ 27 30 }
  TAG0.MODHITS = 8
 
 
@@ -562,6 +564,7 @@ on=@Create
  magicresistance={ 25.0 40.0 }
  hiding={ 80.0 90.0 }
  parrying={ 25.0 45.0 }
+
 
 [chardef 02f]
 defname=c_reaper
@@ -647,7 +650,7 @@ RESDISPDNID=c_reaper
 FOODTYPE=55 i_kindling  
 desires=t_scroll, t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_reagent, t_potion
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=9
+tag.slots_needed=99
 tag.override.range=3
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=45
@@ -667,7 +670,7 @@ on=@create
      str={162 191}
      dex={76 85}
      int={220 239}
-     TAG0.MODHITS = 32
+     TAG0.MODHITS = 64
 
      EXP={ 520000 640000 } //Level 11
 
@@ -689,8 +692,8 @@ on=@create
      respoison=35
      rescold=35
 
-     fame={ 8000 9000 }
-     karma={ -6000 -8000 }
+     fame={ 8000 9950 }
+     karma={ -6000 -8950 }
 
      TAG.RANDCAST=40
      TAG.QUICKCAST = 25
@@ -701,7 +704,7 @@ on=@create
 ON=@NpcRestock
      ITEM={ random_scroll 2 Undead_backpack 1 0 1 }
      item={ Metal_Treasure_Chest 2 Metal_Treasure_Chest_brass 1 }
-     item={ Magic_box 1 Magic_bag 2 Treasure_pouch 1 0 1 }
+     item={ Magic_box 1 magic_crate_large 1 0 1 }
 
 
 [chardef 04d]
@@ -818,7 +821,7 @@ moverate=10
 resources=8 i_reag_bone
 foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
 TEVENTS=e_Level_up_NPC
-desires=t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit, c_zorn, c_gazer, c_gazer_larva
+desires=t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit, c_zorn, c_gazer, c_gazer_larva, c_headless
 ANIM=0FFC78C7F
 tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
@@ -1091,7 +1094,7 @@ on=@create
      str={238 265}
      dex={67 77}
      int={37 49}
-     TAG0.MODHITS = 16
+     TAG0.MODHITS = 32
 
      resfire=15
      respoison=80
@@ -1150,7 +1153,7 @@ on=@create
      str={105 125}
      dex={65 85}
      int={195 215}
-     TAG0.MODHITS = 8
+     TAG0.MODHITS = 16
 
 	givelang 1
 
@@ -1298,6 +1301,7 @@ EXP={ 2010 3000 } //Level 3
 STR={89 104}
 DEX={39 57}
 INT={10 15}
+TAG0.MODHITS = 16
 
 WRESTLING={55.0 71.5}
 TACTICS={54.0 67.0}

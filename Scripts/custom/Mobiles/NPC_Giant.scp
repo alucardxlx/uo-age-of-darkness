@@ -35,9 +35,6 @@ tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
 
-TAG.FF_GROUP=8 //Minax
-TAG.FF_FOE=7 //Shadowlords, Magincia and Britannia
-
 category=AoD Monsters
 subsection=Giants
 description=Ogre
