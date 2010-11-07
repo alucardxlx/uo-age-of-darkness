@@ -101,6 +101,8 @@ on=@create
      npc=brain_monster
      fame={2500 4999}
      karma={-2500 -4999}
+     TAG.NPCAI.Rank=3
+     SetDemon
 
      str={149 171}
      dex={123 150}
@@ -151,7 +153,7 @@ bloodcolor=colors_brown
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=48
+tag.wrestlingspeed=46
 TAG.MANUEVER1=3
 TAG.MANUEVER2=4
 TAG.MANUEVER3=6
@@ -163,6 +165,8 @@ description=earth elemental
 
 on=@create
      npc=brain_monster
+     TAG.NPCAI.Rank=5
+     SetUndead
 
      str={221 244}
      dex={76 94}
@@ -253,7 +257,7 @@ desires=r_caves
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=48
+tag.wrestlingspeed=46
 tag.colddamage=50
 TAG.MANUEVER1=3
 TAG.MANUEVER2=4

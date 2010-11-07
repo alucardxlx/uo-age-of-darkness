@@ -49,6 +49,7 @@ on=@create
      TAG.NPCAI.Rank=8
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={190 225}
      dex={85 110}
@@ -122,6 +123,7 @@ on=@create
      TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={78 98}
      dex={80 94}
@@ -181,6 +183,7 @@ description=Zombie
 on=@create
      npc=brain_undead
      SetUndead
+     nightsight=1
 
      str={67 88}
      dex={34 48}

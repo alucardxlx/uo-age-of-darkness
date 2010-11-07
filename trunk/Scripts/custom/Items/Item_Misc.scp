@@ -67,7 +67,7 @@ IF (<src.skillcheck CAMPING 50>)
 	new.p = <p> // place the pit to where i am
 	new.timer = 5
 	new.tag.burnleft = ((<SRC.CAMPING>+<src.skillmod camping>)/2)
-	new.tag.logout = (10*300)-((<SRC.CAMPING>+<SRC.SKILLMOD CAMPING>)*3)
+	new.tag.logout = (10*600)-((<SRC.CAMPING>+<SRC.SKILLMOD CAMPING>)*6)
 	IF <eval <new.tag.logout>> < 10
 		new.tag.logout=10
 	endif

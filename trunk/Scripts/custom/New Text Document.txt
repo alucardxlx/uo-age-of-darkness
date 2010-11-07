@@ -1,3 +1,6 @@
+tailoer, alchemist, Mages sell menu
+
+
 Well potion use and bandage use should be implemented. As well as switching weapon AI's. Probably implement targetting priorities too (Who do I attack? Should I switch targets?).
 
 Targeting Priorities

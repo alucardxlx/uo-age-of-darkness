@@ -175,10 +175,6 @@ TAG.MANUEVER2=9
 TAG.MANUEVER3=11
 TEVENTS=e_combat_move_intel
 
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
-
 category=AoD Monsters
 subsection=Daemons
 description=Hell Hound
@@ -243,6 +239,7 @@ TEVENTS=e_combat_move_intel
 
 on=@create
 	nightsight=1
+     color=0480
      npc=brain_monster
      TAG.NPCAI.Rank=2
      SetDemon
@@ -298,10 +295,6 @@ TAG.MANUEVER1=23
 TAG.MANUEVER2=4
 TAG.MANUEVER3=9
 TEVENTS=e_combat_move_intel
-
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
@@ -435,9 +428,6 @@ TAG.MANUEVER2=5
 TAG.MANUEVER3=11
 TEVENTS=e_combat_move_intel
 
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
@@ -509,9 +499,6 @@ TAG.MANUEVER2=4
 TAG.MANUEVER3=9
 TEVENTS=e_combat_move_intel
 
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
@@ -580,10 +567,6 @@ TAG.MANUEVER1=23
 TAG.MANUEVER2=4
 TAG.MANUEVER3=9
 TEVENTS=e_combat_move_intel
-
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
@@ -654,10 +637,6 @@ TAG.MANUEVER1=23
 TAG.MANUEVER2=4
 TAG.MANUEVER3=9
 TEVENTS=e_combat_move_intel
-
-TAG.FF_GROUP=4 //Shadowlords
-TAG.FF_ALLY=4 //Shadowlords
-TAG.FF_FOE=11 //Minax, Magincia and Britannia
 
 category=AoD Monsters
 subsection=Daemons
