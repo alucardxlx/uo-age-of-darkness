@@ -1,0 +1,60 @@
+[COMMENT ROTTING_CORPSE]
+These very tough undead are extremely resistant to magic. Trinsic was cleared very quickly, repeatedly, with just 2 or 3 Rotting Corpses. I can`t even speculate about hit points, other than to say I went hand-to-hand with it for longer than it takes to kill a daemon. When killed, the rotting corpse leaves a locked and trapped chest that cannot be taken from it`s corpse. Lockpicks or the Magic Unlock spell can open the lock which is trapped with a level 1 explosion trap.
+
+After the Trinsic occupation, the rotting corpse vanished from the lands only to re-appear in Covetous and later Ilshernar. These new Rotting Corpses are not able to dispel and do note carry chests.
+
+Possibly the most enduring monster on Sosaria. Practically immune to magic the only way to beat one is with steel or large pets. While it does not have a hugely damaging melee attack the risk of level 5 poison is enough to warrant a 10 for its OR... Beware any who gets within its deadly grasp... 
+
+[CHARDEF 09B]
+DEFNAME=c_rotting_corpse
+NAME=rotting corpse
+CAN=MT_WALK
+MOVERATE=100
+DAM=8,10
+ARMOR=35,45
+SOUND=snd_MONSTER_zombie1
+ICON=i_pet_rotting_corpse
+ANIM=078c7f
+RESOURCES=10 t_eerie_stuff
+FOODTYPE=20 t_meat_raw
+AVERSIONS=t_TRAP
+DESIRES=i_gold,t_meat_raw,t_corpse
+BLOODCOLOR=colors_green
+
+TEVENTS=e_undead
+TEVENTS=//immune to level 5 poison, can inflict level 5
+
+CATEGORY=Monsters
+SUBSECTION=Undead
+DESCRIPTION=Rotting Corpse
+
+ON=@Create
+ NPC=brain_undead
+
+ FAME=12500
+ KARMA=-12500
+ //ALIGNMENT=EVIL
+
+ RESFIRE={ 20 30 }
+ RESCOLD={ 50 70 }
+ RESPOISON={ 40 50 }
+ RESENERGY={ 20 30 }
+
+ OSTR={ 301 350 }
+ ODEX={ 75 75 }
+ OINT={ 151 200 }
+ MAXHITS={ 1200 1200 }
+ MAXSTAM={ 150 150 }
+ MAXMANA={ 0 0 }
+
+ WRESTLING={ 90.0 100.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 250.0 250.0 }
+ PARRYING={ 90.0 100.0 }
+ ANATOMY={ 0.0 0.0 }
+ POISONING={ 100.0 120.0 }
+
+ON=@NPCRestock
+ ITEM=i_gold,{ 1000 1250 }
+ ITEM={ ttm_lvl5 1 0 24 }
+// ITEM=random_magic_items
