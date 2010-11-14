@@ -46,7 +46,6 @@ description=Wyvern
 on=@create
      npc=brain_animal
 	nightsight=1
-     TAG.NPCAI.Rank=1
 	setDragon
 
      str={171 191}
@@ -100,7 +99,6 @@ on=@create
      npc=brain_animal
      name="#NAMES_DRAGON"
 	nightsight=1
-     TAG.NPCAI.Rank=2
 	setDragon
 
      str={241 260}
@@ -163,7 +161,6 @@ on=@create
      npc=brain_animal
      name="#NAMES_DRAGON"
 	nightsight=1
-     TAG.NPCAI.Rank=2
 	setDragon
 
      str={241 260}
@@ -347,7 +344,6 @@ on=@create
      npc=brain_animal
      name="#names_dragon"
 	nightsight=1
-     TAG.NPCAI.Rank=5
 	setDragon
 
      str={251 260}
@@ -422,7 +418,6 @@ on=@create
      npc=brain_animal
      name="#names_dragon"
 	nightsight=1
-     TAG.NPCAI.Rank=5
 	setDragon
 
      str={251 260}
@@ -498,7 +493,6 @@ on=@create
      name="#names_dragon"
 	color=04f2
 	nightsight=1
-     TAG.NPCAI.Rank=5
 	setDragon
 
      str={251 260}
@@ -576,7 +570,6 @@ on=@create
      npc=brain_animal
      name="#NAMES_DRAGON"
 	nightsight=1
-     TAG.NPCAI.Rank=5
 	setDragon
 
      str={161 180}
@@ -712,7 +705,6 @@ ON=@Create
 	EXP={ 16500 20500 } //Level 6
 
 	nightsight=1
-	TAG.NPCAI.Rank=1
 	setDragon
 
 	STR={152 170}
@@ -823,7 +815,6 @@ on=@create
      npc=brain_animal
      name="#names_dragon"
 	nightsight=1
-     TAG.NPCAI.Rank=6
 	setDragon
 
      str={269 286}
@@ -900,7 +891,6 @@ on=@create
      name="#names_dragon"
      npc=brain_animal
 	nightsight=1
-     TAG.NPCAI.Rank=6
 	setDragon
 
      str={269 286}

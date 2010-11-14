@@ -328,22 +328,6 @@ ON=*refresh*
 				L  Them red potions are made from black pearls.
 			ENDDO
 		ENDIF
-ON=*garlic*
-ON=*black potion*
-ON=*blind*
-		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
-			DORAND 3
-				L  It takes garlic to create a good potion of blindness.
-				L  The black potion is easily made from garlic.
-				L  The black potion, the one that causes blindness, is made from garlic.
-			ENDDO
-		ELSE
-			DORAND 3
-				L  It takes some garlic to make a good potion of blindness.
-				L  The black potion is made from garlic. Real easy to make.
-				L  The black potion, the one that causes blindness, is made from garlic.
-			ENDDO
-		ENDIF
 ON=*ginsing*
 ON=*yellow potion*
 ON=*heal*

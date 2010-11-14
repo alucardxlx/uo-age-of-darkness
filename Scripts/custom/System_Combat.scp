@@ -98,7 +98,6 @@ DOSWITCH <ARGN1>
       SYSMESSAGE @021 Ability in Use: None
       IF <FINDLAYER(2).BASEID>==i_elven_composite_longbow
          FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=i_arrow_x
-         SERV.LOG ammoanim=<FINDLAYER(2).TAG.OVERRIDE.AMMOANIM>
       ENDIF
       EVENTS = -e_weaponskill
       TAG.WeaponSkillEnabled=
@@ -1200,7 +1199,6 @@ ON=@ItemEquipTest
 [Function CombatSys_HitSpeed]
 Local.Hitspeed=<Eval (150000 / ((<Dex> + 100) * (<Qval <Weapon> ? <Weapon.Speed> : <Qval <serv.chardef.<id>.tag0.wrestlingspeed> ? <serv.chardef.<id>.tag.wrestlingspeed> : 50>>)))>
 Local.Hitspeed -= <EVAL (<Local.Hitspeed>*<TAG0.SWINGINCREASE>)/100>
-Serv.Log Hit Speed (<Name>): <eval <Local.Hitspeed>>
 Return <eval <Local.Hitspeed>>
 
 [Function CombatSys_HitChance]
@@ -1209,9 +1207,7 @@ Local.Hitchance += <QVAL <TAG0.HITCHANCEINCREASE> ? <EVAL (<Local.Hitchance>*<TA
 if (<sector.light> > 4) && (<NIGHTSIGHT>==0) && !(<FINDLAYER.2.TYPE>==T_LIGHT_LIT) && !(<ISNEARTYPE T_LIGHT_LIT 3>)
 	Local.Hitchance -= <sector.light>
 	sysmessage You have trouble fighting in this darkness.
-	Serv.Log Darkness: - <sector.light>% ::: UO:R
 endif
-Serv.Log Hit Chance: <EVAL <Local.Hitchance>>% ::: UO:R
 Return <Qval Rand(101) <= <EVAL <Local.Hitchance>> ? 0 : -100>
 
 
@@ -1224,7 +1220,6 @@ Ref1=<Shield>
 Local.Chance=<Eval (<Parrying>+<Skillmod Parrying>)>
 Local.Chance += <QVAL <TAG0.PARRYINCREASE> ? <EVAL (<Local.Chance>*<TAG0.PARRYINCREASE>)/100> : 0>
 Local.Chance = (<Local.Chance>/20)
-Serv.Log Block UO:R (<Name>): <Eval <Local.Chance>>%
 Return <Eval <Local.Chance>>
 Endif
 Return 0
@@ -1238,9 +1233,7 @@ Ref1.Trigger @Block,<def.TAT_AS_ARGO>,<Uid>
 Ref1.Hits -= <QVAL <r10> ? 0 : 1>
 Ref1.Update
 Src.Sound 329
-Serv.Log +++Blocked! (<Src.Name>)+++
 
-<QVAL <Weapon> ? <weapon.speed> : 0>
 [Function CombatSys_BlockChance_Weapon]
 Return <Qval Rand(101) < <Src.CombatSys_BlockChance_UOR_Weapon> ? 1 : 0>
 
@@ -1252,11 +1245,9 @@ If !(<Weapon.type>==T_WEAPON_MACE_PICK) && !(<Weapon.type>==T_WEAPON_BOW) && !(<
 	Local.Chance = <MulDiv <Local.Chance>,<Qval <Weapon> ? <Weapon.Speed> : <Qval <serv.chardef.<id>.tag0.wrestlingspeed> ? <serv.chardef.<id>.tag.wrestlingspeed> : 50>>,100>
 	IF (<Weapon.twohands>) || !(<Weapon>)
 		Local.Chance = (<Local.Chance>/20)
-		Serv.Log WeaponBlock UO:R (<Name>): <Eval <Local.Chance>>%
 		Return <Eval <Local.Chance>>
 	ELSE
 		Local.Chance = (<Local.Chance>/40)
-		Serv.Log WeaponBlock UO:R (<Name>): <Eval <Local.Chance>>%
 		Return <Eval <Local.Chance>>
 	ENDIF
 Endif
@@ -1277,7 +1268,6 @@ ELSE
 	SRC.SYSMESSAGE @88,,1 You parry the blow unarmed.
 ENDIF
 Src.Sound 329
-Serv.Log +++Blocked! (<Src.Name>)+++
 
 
 
@@ -1290,10 +1280,35 @@ Local.Lumberjacking = <Qval <Weapon.Type>==t_weapon_axe ? <Eval ((<Lumberjacking
 Local.Mining = <Qval <Weapon.Type>==t_weapon_mace_pick ? <Eval ((<Mining>+<Skillmod Mining>)/50) + <Qval 999 < <Mining> ? 10 : 0>> : 0>
 Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy> + <Local.Lumberjacking> + <Local.Mining> + <Local.Str> + <TAG0.DAMINCREASE>>
 Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF !(<ISEMPTY <WEAPON.TAG0.SLAYERGROUP>>) 
+	IF (STRMATCH(*<SRC.obody>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>))
+		IF !(<R2>)
+			SRC.EFFECT 3,i_fx_glow,16,20
+			Local.Bonus += 100
+		ENDIF
+	ENDIF
+ENDIF
+IF !(<ISEMPTY <TAG0.HUNTERGROUP>>) 
+	IF (STRMATCH(*<SRC.obody>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>))
+		IF !(<R2>)
+			SRC.EFFECT 3,i_fx_glow,16,20
+			Local.Bonus += 50+(<LEVEL>*5)
+		ENDIF
+	ENDIF
+ENDIF
+IF (<TAG0.ENEMYOFONE>) 
+	IF (<eval <SRC.ID>> == <eval <TAG0.ENEMYOFONE>>)
+		Local.Bonus += 100
+	ENDIF
+ENDIF
+IF (<SRC.TAG0.ENEMYOFONE>) 
+	IF !(<eval <ID>> == <eval <SRC.TAG0.ENEMYOFONE>>)
+		Local.Bonus += 100
+	ENDIF
+ENDIF
 IF (<Local.Bonus> < 10)
 	Local.Bonus = 10
 ENDIF
-Serv.Log +++<MulDiv <Local.Dam>,<Local.Bonus>,100> (<Name>)+++
 Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
 
 [Function CombatSys_FireDamageBonus]
@@ -1351,8 +1366,6 @@ Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
 
 
 [Function CombatSys_AOS_Velocity]
-Serv.Log Chance: <Weapon.dTag0.Velocity>%
-Serv.Log Bonus Dam: <Distance <Src.Uid>>
 Return <Qval Rand(101) < <Weapon.Tag0.Velocity> ? <Distance <Src.Uid>> : 0>
 
 
@@ -1475,35 +1488,6 @@ Local.Dam = <MulDiv <Argv[0]>,<Ref1.TAG0.DAMAGERETURN>,100>
 If <Local.Dam> > 0
 	Damage <Eval <Local.Dam>> 00090 <Ref1.Uid>
 Endif
-
-[Function CombatSys_SlayerWeapons]
-IF !(<ISEMPTY <WEAPON.TAG0.SLAYERGROUP>>) 
-	IF (STRMATCH(*<SRC.obody>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>))
-		IF !(<R2>)
-			SRC.EFFECT 3,i_fx_glow,16,20
-			Return <Eval <Argv[0]>>
-		ENDIF
-	ENDIF
-ENDIF
-IF !(<ISEMPTY <TAG0.HUNTERGROUP>>) 
-	IF (STRMATCH(*<SRC.obody>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>))
-		IF !(<R2>)
-			SRC.EFFECT 3,i_fx_glow,16,20
-			Return <Eval (<Argv[0]>*(50+(<LEVEL>*5)))/100>
-		ENDIF
-	ENDIF
-ENDIF
-IF (<TAG0.ENEMYOFONE>) 
-	IF (<eval <SRC.ID>> == <eval <TAG0.ENEMYOFONE>>)
-		Return <Eval <Argv[0]>>
-	ENDIF
-ENDIF
-IF (<SRC.TAG0.ENEMYOFONE>) 
-	IF !(<eval <ID>> == <eval <SRC.TAG0.ENEMYOFONE>>)
-		Return <Eval <Argv[0]>>
-	ENDIF
-ENDIF
-RETURN 0
 
 [Function f_Consecrate_weapon_check]
 IF (<src.CombatSys_PhysicalResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_ColdResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_PoisonResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_EnergyResist> >= <src.CombatSys_FireResist>)
@@ -2376,7 +2360,6 @@ IF (<CombatSys_HitChance>==0>)
 
 Local.Dam = <CombatSys_DamageBonus>
 Local.Dam += <CombatSys_AOS_Velocity>
-Local.Dam += <CombatSys_SlayerWeapons <Local.Dam>>
 IF <TAG0.Consecrate>
 	Argn2 = <f_Consecrate_weapon_check <Argn2>>
 Endif
@@ -2405,31 +2388,21 @@ IF (<CombatSys_BlockChance>)
 	Local.ShieldBlock=<QVAL <Src.Findlayer.2.Armor> ? <MulDiv <Src.Findlayer.2.Armor.High>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
 	Local.ShieldBlock= <Eval ((Rand(<Local.ShieldBlock>))+(Rand(<Local.ShieldBlock>)))/2>
 	Local.Dam=<CombatSys_Max <Eval <Local.Dam> +- <Local.ShieldBlock>>, 0>
-	Serv.Log Shield Block Damage Reduction: <eval <Local.ShieldBlock>>
-	Serv.Log Dam after block reduction: <Local.Dam>
 	IF (<Local.FireDam> > 0)
 		Local.ShieldFireRes=<QVAL <Src.Findlayer.2.Tag0.FireRes> ? <MulDiv <Src.Findlayer.2.Tag0.FireRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
 		Local.FireDam=<CombatSys_Max <Eval <Local.FireDam> +- <Local.ShieldFireRes>>, 0>
-		Serv.Log Shield Block Fire Damage Reduction: <eval <Local.ShieldFireRes>>
-		Serv.Log Fire Dam after block reduction: <eval <Local.FireDam>>
 	ENDIF
 	IF (<Local.ColdDam> > 0)
 		Local.ShieldColdRes=<QVAL <Src.Findlayer.2.Tag0.ColdRes> ? <MulDiv <Src.Findlayer.2.Tag0.ColdRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
 		Local.ColdDam=<CombatSys_Max <Eval <Local.ColdDam> +- <Local.ShieldColdRes>>, 0>
-		Serv.Log Shield Block Cold Damage Reduction: <eval <Local.ShieldColdRes>>
-		Serv.Log Cold Dam after block reduction: <eval <Local.ColdDam>>
 	ENDIF
 	IF (<Local.PoisonDam> > 0)
 		Local.ShieldPoisonRes=<QVAL <Src.Findlayer.2.Tag0.PoisonRes> ? <MulDiv <Src.Findlayer.2.Tag0.PoisonRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
 		Local.PoisonDam=<CombatSys_Max <Eval <Local.PoisonDam> +- <Local.ShieldPoisonRes>>, 0>
-		Serv.Log Shield Block Poison Damage Reduction: <eval <Local.ShieldPoisonRes>>
-		Serv.Log Poison Dam after block reduction: <eval <Local.PoisonDam>>
 	ENDIF
 	IF (<Local.EnergyDam> > 0)
 		Local.ShieldEnergyRes=<QVAL <Src.Findlayer.2.Tag0.EnergyRes> ? <MulDiv <Src.Findlayer.2.Tag0.EnergyRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
 		Local.EnergyDam=<CombatSys_Max <Eval <Local.EnergyDam> +- <Local.ShieldEnergyRes>>, 0>
-		Serv.Log Shield Block Energy Damage Reduction: <eval <Local.ShieldEnergyRes>>
-		Serv.Log Energy Dam after block reduction: <eval <Local.EnergyDam>>
 	ENDIF
 ENDIF
 IF (<CombatSys_BlockChance_Weapon>)
@@ -2437,45 +2410,33 @@ IF (<CombatSys_BlockChance_Weapon>)
 	Local.WeaponBlock=<Qval <Src.Weapon> ? <eval {<Src.Weapon.GetDam>}> : <Eval {<serv.chardef.<src.id>.dam>}>>
 	Local.WeaponBlock=<Eval ((Rand(<Local.WeaponBlock>))+(Rand(<Local.WeaponBlock>)))/2>
 	Local.Dam=<CombatSys_Max <Eval <Local.Dam> +- <Local.WeaponBlock>>, 0>
-	Serv.Log Weapon Block Damage Reduction: <eval <Local.WeaponBlock>>
-	Serv.Log Dam after block reduction: <Local.Dam>
 ENDIF
 
 
 Local.Location=<eval <Src.f_Get_Hit_Location>>
 Local.Armor = <Src.CombatSys_PhysicalResist <Local.Location>>
-Serv.Log Armor: <eval <Local.Armor>>
 Local.Dam = <eval <Local.Dam>-<Local.Armor>>
 Local.Dam = <CombatSys_Max <Local.Dam>,0>
-Serv.Log Dam after armor reduction: <Local.Dam>
 
 IF (<Local.FireDam> > 0)
 	Local.FireRes = <Src.CombatSys_FireResist <Local.Location>>
-	Serv.Log FireRes: <eval <Local.FireRes>>
 	Local.FireDam = <eval <Local.FireDam>-<Local.FireRes>>
 	Local.FireDam = <CombatSys_Max <Local.FireDam>,0>
-	Serv.Log Fire Dam after armor reduction: <eval <Local.FireDam>>
 ENDIF
 IF (<Local.ColdDam> > 0)
 	Local.ColdRes = <Src.CombatSys_ColdResist <Local.Location>>
-	Serv.Log ColdRes: <eval <Local.ColdRes>>
 	Local.ColdDam = <eval <Local.ColdDam>-<Local.ColdRes>>
 	Local.ColdDam = <CombatSys_Max <Local.ColdDam>,0>
-	Serv.Log Cold Dam after armor reduction: <eval <Local.ColdDam>>
 ENDIF
 IF (<Local.PoisonDam> > 0)
 	Local.PoisonRes = <Src.CombatSys_PoisonResist <Local.Location>>
-	Serv.Log PoisonRes: <eval <Local.PoisonRes>>
 	Local.PoisonDam = <eval <Local.PoisonDam>-<Local.PoisonRes>>
 	Local.PoisonDam = <CombatSys_Max <Local.PoisonDam>,0>
-	Serv.Log Poison Dam after armor reduction: <eval <Local.PoisonDam>>
 ENDIF
 IF (<Local.EnergyDam> > 0)
 	Local.EnergyRes = <Src.CombatSys_EnergyResist <Local.Location>>
-	Serv.Log EnergyRes: <eval <Local.EnergyRes>>
 	Local.EnergyDam = <eval <Local.EnergyDam>-<Local.EnergyRes>>
 	Local.EnergyDam = <CombatSys_Max <Local.EnergyDam>,0>
-	Serv.Log Energy Dam after armor reduction: <eval <Local.EnergyDam>>
 ENDIF
 
 Weapon.Hits -= <QVAL <r14> ? 0 : 1>

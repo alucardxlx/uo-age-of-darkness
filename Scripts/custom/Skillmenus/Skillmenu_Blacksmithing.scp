@@ -73,18 +73,20 @@ if <cont> != <src.findlayer.21>
 src.sysmessage @,,2 1042010
 elif <src.mining> >= <eval <skillmake.1.value>-100>
 	if <src.isneartype t_forge 2>
-		if <r> <= <eval (((<src.mining> - <skillmake.1.value>)*2)+50)>
-		serv.newitem <tdata1>
-		new.amount <eval ((<amount>*(<src.mining>/10))/100)>
+		if <src.skillcheck mining <eval <skillmake.1.value>/10>>
+			serv.newitem <tdata1>
+			new.amount <eval (((5*(<src.mining>-<skillmake.1.value>)))/100)>
 			if <new.amount> < 1
-			new.amount = 1
+				new.amount = 1
+			elif  <new.amount> > <amount>
+				new.amount = <amount>
 			endif
-		src.sysmessage <def.smelt_fail>
-		src.consume <new.amount> <baseid>
-		new.cont <src.findlayer.21>
-		else
-		src.sysmessage <def.smelt_success>
-		src.consume 1 <baseid>
+			if (((<src.mining>-<skillmake.1.value>)) > 1000)
+				local.bonus = <new.amount>*(<src.mining>-<skillmake.1.value>)/1000
+			endif
+			src.consume <new.amount> <baseid>
+			new.amount += <local.bonus>
+			new.bounce
 		endif
 	else
 	src.sysmessage <def.smelt_noforge>
@@ -418,7 +420,7 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
 			local.one = <eval (<new.armor.hi> * (<cont.armslore> + 250))>
 			local.two = <eval (<local.one> / 5000)>
-			new.modar = <dlocal.two>
+			new.modar += <dlocal.two>
 			new.tag0.modvalue += <EVAL <CONT.ARMSLORE>/50>+5
 		ELSEIF (<NEW.ISWEAPON>)	
 			NEW.tag0.DAMINCREASE += <EVAL <CONT.ARMSLORE>/50>+5

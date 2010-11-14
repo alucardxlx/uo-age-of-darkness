@@ -3,7 +3,7 @@
 //DEFNAME=i_ARROW_SHAFTS
 DEFNAME=i_arrow_shaft
 TYPE=T_SHAFT
-RESOURCES=i_log
+RESOURCES=i_board
 REPLICATE=1
 SKILLMAKE=1.8 BOWCRAFT
 WEIGHT=.1
@@ -99,8 +99,8 @@ ENDIF
 
 [ITEMDEF 01022]
 DEFNAME=i_arrow_fletching
-RESOURCES=4 i_FEATHER, 4 i_log
-SKILLMAKE=BOWCRAFT 0.1
+RESOURCES=4 i_FEATHER, 4 i_board
+SKILLMAKE=TINKERING 10.1
 TYPE=T_weapon_mace_pick
 VALUE=43
 WEIGHT=.1
@@ -127,13 +127,17 @@ RETURN 1
 [DEFNAME def_skmenu_Bowcraft]
 skmenu_Bowcraft_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
 skmenu_Bowcraft_subres_0 i_board
-skmenu_Bowcraft_subres_1 i_board_oak
-skmenu_Bowcraft_subres_2 i_board_yew
-skmenu_Bowcraft_subres_3 i_board_walnut
-skmenu_Bowcraft_subres_4 i_board_heartwood
-skmenu_Bowcraft_subres_5 i_board_bloodwood
-skmenu_Bowcraft_subres_6 i_board_frostwood
-skmenu_Bowcraft_subres_7 i_board_sunwood
+skmenu_Bowcraft_subres_1 i_board_willow
+skmenu_Bowcraft_subres_2 i_board_cyprus
+skmenu_Bowcraft_subres_3 i_board_cedar
+skmenu_Bowcraft_subres_4 i_board_oak
+skmenu_Bowcraft_subres_5 i_board_yew
+skmenu_Bowcraft_subres_6 i_board_walnut
+skmenu_Bowcraft_subres_7 i_board_mahogany
+skmenu_Bowcraft_subres_8 i_board_heartwood
+skmenu_Bowcraft_subres_9 i_board_bloodwood
+skmenu_Bowcraft_subres_10 i_board_frostwood
+skmenu_Bowcraft_subres_11 i_board_sunwood
 
 skmenu_Bowcraft_0_name BOWS
 skmenu_Bowcraft_0_0 i_bow
@@ -277,7 +281,7 @@ WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.HI
 				NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 				local.one = <eval (<new.armor.hi> * ((<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
 				local.two = <eval (<local.one> / 5000)>
-				new.modar = <dlocal.two>
+				new.modar += <dlocal.two>
 				new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 				CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 			ELSEIF (<NEW.ISWEAPON>)	
@@ -387,7 +391,7 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield) || (<NEW.TYPE>==t_clothing)
 			local.one = <eval (<new.armor.hi> * (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
 			local.two = <eval (<local.one> / 5000)>
-			new.modar = <dlocal.two>
+			new.modar += <dlocal.two>
 			new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 			CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 		ELSEIF (<NEW.ISWEAPON>)	

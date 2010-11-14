@@ -100,7 +100,6 @@ ON=*I*sale*
 	SDIALOG D_SELL
 	FACE
 
-
 ON=*buy*
 ON=*supplies*
 ON=*wares*

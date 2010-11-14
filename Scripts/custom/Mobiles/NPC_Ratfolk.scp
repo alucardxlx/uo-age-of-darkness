@@ -40,6 +40,8 @@ ON=@Create
 	INT={36 60}
 
 	givelang 11
+	TAG.NPCAI.Rank=1
+	SetRatman
 
 	PARRYING={50.0 70.0}
 	MAGICRESISTANCE={35.0 60.0}
@@ -81,6 +83,8 @@ on=@create
      npc=brain_monster
      fame={100 300}
      karma={-2000 -2999}
+     TAG.NPCAI.Rank=2
+     SetRatman
 
      STR={96 120}
      dex={102 129}
@@ -115,13 +119,6 @@ on=@npcrestock
      item=i_potion_healgreat
      ITEM={ Magic_bag 2 Treasure_Bag 1 0 3}
      ITEM={ ttm_LVL1 2 ttm_LVL2 1 0 60 }
-
-on=@hit
-     if (<hitpoints> < 60) && (<restest 1 i_potion_healgreat>)
-          spelleffect s_greater_heal,100.0
-          consume i_potion_healgreat
-     endif
-
 
 
 [eof]

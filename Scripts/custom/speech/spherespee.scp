@@ -109,18 +109,20 @@ ON=Farewell
 DEFAULT=I do not understand thee.
 ON=BUY
 	GETMARKUP
-	BUY
-	REMOVEFROMVIEW
-	UPDATE
-	sdialog D_BUY
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
+	SDIALOG D_BUY
 	FACE
+
 ON=SELL
 	GETMARKUP
-	SELL
-	REMOVEFROMVIEW
-	UPDATE
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
 	SDIALOG D_SELL
 	FACE
+
 ON=Hi
 ON=Hello
 ON=Hail
@@ -190,19 +192,20 @@ L If it's dead, I can cook it.  Maybe even half dead.
 DEFAULT=I do not understand thee.
 ON=BUY
 	GETMARKUP
-	BUY
-	REMOVEFROMVIEW
-	UPDATE
-	sdialog D_BUY
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
+	SDIALOG D_BUY
 	FACE
-ON=SELL
 
+ON=SELL
 	GETMARKUP
-	SELL
-	REMOVEFROMVIEW
-	UPDATE
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
 	SDIALOG D_SELL
 	FACE
+
 ON=Hail
 ON=Hi
 ON=Greet
@@ -299,19 +302,20 @@ ON=MASTER
 DEFAULT=I do not understand thee.
 ON=BUY
 	GETMARKUP
-	BUY
-	REMOVEFROMVIEW
-	UPDATE
-	sdialog D_BUY
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
+	SDIALOG D_BUY
 	FACE
-ON=SELL
 
+ON=SELL
 	GETMARKUP
-	SELL
-	REMOVEFROMVIEW
-	UPDATE
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
 	SDIALOG D_SELL
 	FACE
+
 ON=Hail
 ON=Hi
 ON=Greet

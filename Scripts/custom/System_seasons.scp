@@ -916,12 +916,12 @@ else
 endif
 
 [FUNCTION f_make_rain]
-if (<sector.weather>==0)
+if (<sector.weather>==0) && (<Serv.MaxSectorComplexity> > (<Sector.complexity>/3))
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else
 		serv.newitem=i_puddle
-		new.movenear <UID>,11
+		new.movenear <UID>,24
 		timerf {10 20}, f_make_rain
 	endif
 else
@@ -929,12 +929,12 @@ else
 endif
 
 [FUNCTION f_make_snow]
-if (<sector.weather>==2) 
+if (<sector.weather>==2)  && (<Serv.MaxSectorComplexity> > (<Sector.complexity>/3))
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else
 		serv.newitem i_snow_pile
-		new.movenear <uid>,11
+		new.movenear <uid>,24
 		timerf {10 20}, f_make_snow
 	endif
 else
@@ -1297,7 +1297,7 @@ ID=i_blood_pool_large
 NAME=puddle
 
 ON=@Create
-timer={120 360}
+timer=(<SERV.DecayTimer>*60)
 color=91
 attr=attr_move_never|attr_can_decay
 dorand 5
@@ -1314,7 +1314,11 @@ if !<argn>
 endif
 
 ON=@Timer
-remove
+if !(<sector.weather>==0)
+	remove
+else
+	timer=(<SERV.DecayTimer>*60)
+endif
 return 1
 
 [ITEMDEF i_snow_pile]
@@ -1324,7 +1328,7 @@ NAME=snow
 ON=@Create
 color=0481
 attr=attr_move_never|attr_can_decay
-timer={180 480}
+timer=(<SERV.DecayTimer>*60)
 dorand 5
 	dispid=0122a
 	dispid=0122b
@@ -1339,7 +1343,11 @@ if !<argn>
 endif
 
 ON=@Timer
-remove
+if !(<sector.weather>==2)
+	remove
+else
+	timer=(<SERV.DecayTimer>*60)
+endif
 return 1
 
 [ITEMDEF i_lightning_memory]

@@ -1,125 +1,72 @@
 TITLE=Sphere World Script
-VERSION=0.56b
-TIME=334095547
-SAVECOUNT=10033
+VERSION=0.56b-Nightly
+TIME=348942494
+SAVECOUNT=10847
 
 [TIMERF]
-CurTick=3
+CurTick=5
 
 [GLOBALS]
-+="ranU87"
 aantal=03
-argn1=0ec
-argn2=040010279
-bankcurrency="CURRENCY"
-bet=03
-betflag=02
-buytotal=0295
-caterpillarattract=00
-caterpillarresist=031
-ccolor=04
-chance="-= 0"
-clientcount=01
-color1=0186d
+argn1=01c0
+argn2=04000c80f
+ccolor=03
+color1=0186e
 color2=01870
 color3=0186c
-colord1=01869
-colord2=01869
-colord3=01869
-colord4=01869
-colord5=01869
-consumeprior=05
+colord1=0186e
+colord2=0186d
+colord3=01870
+colord4=0186c
+colord5=01870
 counter=01
 cplace=04
-currency="CURRENCY"
-currencyindex=02
-currencyindex2=02
+currencyindex=013
+currencyindex2=0f
 currencypriorindex=013
-currencytotal=085
-cycle=045
-damagepercent="0.460000"
-date=01c
-day=06
-divide=01
-enough=01
-equipmeleeweapon.oldarchery="86.7"
-even=00
-exp=08
-expmsg="a little"
-firstcol=01870
-found=0ffff2d4e
+currencytotal=05f77
+cycle=02
+damagepercent="0.974359"
+date=012
+day=04
+exp=088
+firstcol=0186e
 gestate.oldact=04fffffff
-halfrange=02
-hours=0c
-index=039
-intline=0938
-left=0d2b2
-link=00
-listtotal=025c3
-lunar=08c8
-lunar2=023e
-magicinc=0352
-manatest=00
-mins=01b
+hours=014
+index=011
+lunar=06bb
+lunar2=02b
+mins=0c
 month=01
-multiplier=02
-newchar=00
-newgold=050
-newobj=011fa1
-obj=00
-owner=015bec
-p="012d49,012d4a"
-petshrunk=0d859
-petuid=0e4fc
-phase=01
+newobj=0d8f4
+p="1336,1998,6"
+phase=03
 phase2=01
-plant_care="looking fine to you."
-pos="5437,1184"
-rand=014
-randcast=014
-rollmsg=014
-rollvalue=014
-rune.01="Corp"
-season="winter"
-skillmodcalc=0816500
-slugattract=00
-slugresist=0f
-songlevel=02
-suid=0bdd2
-take=0f
-text1=05
-text2=05
-thirdrange=03
-timemins="0.000030"
-totalgold=044818
-tree="i_tree_oak"
-tree_uid=040007db6
+pos="6514,866,1"
+suid=0136d2
+text1=03
+text2=04
+tree="i_tree_walnut"
 tsize=01f4
 tsize1=01f4
-uid=00
-vend=00
-wager=028
-water_color=04
-water_text="Watered"
-x=012d49
-x1=05
-x2=00
-x3=04
-x4=04
+x=05
+x1=04
+x2=07
+x3=03
+x4=07
 xpos=05a
 xpos1=05a
 xpos2=0140
 xpos3=014a
 xpos4=015e
 xpos5=0172
-y=012d4a
-y1=0f
-y2=00
-y3=04
-y4=05
-year=029
-yield=00
-zombie=0b449
+y=07
+y1=01
+y2=0f
+y3=03
+y4=07
+year=02a
+zombie=01087
 
 [WS a_world]
 NAME=Felucca
@@ -166,6 +113,9 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_entrance_from_vesper_cemetary_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_entrance_nrong_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_great_southern_bog_1]
@@ -290,6 +240,9 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_destard_level_3_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_destard_level_2_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_destard_level_1_1]

@@ -1299,43 +1299,6 @@ on=@create
 
 
 
-
-[CHARDEF 832]
-DEFNAME=c_phoenix
-NAME=phoenix
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_fly
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-ANIM=0FFFFFFFF
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-Taming=38.0
-
-
 [CHARDEF 270]
 DEFNAME=c_fat
 NAME=fat
@@ -1532,38 +1495,6 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
-
-[CHARDEF 740]
-DEFNAME=c_shadow_dweller
-NAME=shadow dweller
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
 
 [CHARDEF 713]
 DEFNAME=c_Abyssal_Infernal
@@ -1769,71 +1700,6 @@ NAME=mite
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
-[CHARDEF 724]
-DEFNAME=c_kobold
-NAME=kobold
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-[CHARDEF 725]
-DEFNAME=c_homonculous
-NAME=homonculous
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
 MOVERATE=2
 RESOURCES=1 i_bird_raw, 30 i_feather
 FOODTYPE=30 t_crops, t_fruit, t_grain

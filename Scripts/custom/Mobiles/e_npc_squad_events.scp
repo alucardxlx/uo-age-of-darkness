@@ -217,3 +217,110 @@ return 0
 
 
 [eof]
+
+
+[FUNCTION f_faction_highlight]
+local.uid=<uid>
+local.body=<body>
+FORCLIENTS 14
+	if <memoryfindtype.memory_guild>
+		if <memoryfindtype.memory_guild.link.align>==1
+		  highlight 05,<local.uid>,<local.body>
+		elseif <memoryfindtype.memory_guild.link.align>==2
+		  highlight 02,<local.uid>,<local.body>
+		endif
+	endif
+ENDFOR
+
+[EVENTS e_enemy_npc]
+
+ON=@CLIENTTOOLTIP
+say ctt
+IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
+ VAR.GUILDSTONEUID=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
+ NEWITEM=i_memory
+ ACT.TYPE=t_eq_script
+ ACT.CONT=<UID>
+ ACT.TYPE=t_eq_memory_obj
+ ACT.COLOR=0400
+ ACT.LINK=<VAR.GUILDSTONEUID>
+ VAR.GUILDSTONEUID=
+ELSE
+ENDIF
+
+
+ON=@CLIcK
+say cl
+IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
+ VAR.GUILDSTONEUID=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
+ NEWITEM=i_memory
+ ACT.TYPE=t_eq_script
+ ACT.CONT=<UID>
+ ACT.TYPE=t_eq_memory_obj
+ ACT.COLOR=0400
+ ACT.LINK=<VAR.GUILDSTONEUID>
+ VAR.GUILDSTONEUID=
+ELSE
+ENDIF
+
+
+ON=@DCLIcK
+say dcl
+IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
+ OBJ=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
+ OBJ.JoinAsMember <UID>
+ENDIF
+//src.highlight 05,<uid>,<body>
+
+ON=@NPCActFight
+say action2
+local.uid=<uid>
+local.body=<body>
+FORCHARS 24
+	IF <ISPLAYER>
+		highlight 05,<local.uid>,<local.body>
+	ENDIF
+ENDFOR
+
+
+[EVENTS e_ally_npc]
+
+ON=@CLIENTTOOLTIP
+src.highlight 02,<uid>,<body>
+
+ON=@CLIcK
+src.highlight 02,<uid>,<body>
+
+ON=@DCLIcK
+src.highlight 02,<uid>,<body>
+
+
+ON=@HIT
+IF <SRC.ISPLAYER>
+src.highlight 02,<uid>,<body>
+ENDIF
+
+ON=@gethit
+IF <SRC.ISPLAYER>
+src.highlight 02,<uid>,<body>
+ENDIF
+
+ON=@SPELLCAST
+IF <ACT.ISPLAYER>
+act.highlight 02,<uid>,<body>
+ENDIF
+
+ON=@ATTACK
+IF <SRC.ISPLAYER>
+src.highlight 02,<uid>,<body>
+ENDIF
+
+
+[FUNCTION highlight]
+tag.color <argv[0]>
+tag.bodytype <argv[2]>
+changehue <argv[1]>
+
+[FUNCTION changehue]
+sendpacket 077 D<ARGS> W<tag.bodytype> W<uid.<args>.p.x> W<uid.<args>.p.y> <hval <UID.<ARGS>.P.Z>> <hval <UID.<ARGS>.DIR>> W<UID.<ARGS>.COLOR> 00 <tag.color> 
+

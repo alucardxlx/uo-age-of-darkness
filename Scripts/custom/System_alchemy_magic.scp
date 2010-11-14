@@ -11,6 +11,62 @@
 //
 VERSION=0.56b
 
+[FUNCTION f_reag_cliloc]
+IF (<ARGS> == 0f78)
+	LOCAL.CLILOC = 1023960
+ELIF (<ARGS> == 0f79)
+	LOCAL.CLILOC = 1023961
+ELIF (<ARGS> == 0f7a)
+	LOCAL.CLILOC = 1023962
+ELIF (<ARGS> == 0f7b)
+	LOCAL.CLILOC = 1023963
+ELIF (<ARGS> == 0f7c)
+	LOCAL.CLILOC = 1023964
+ELIF (<ARGS> == 0f7d)
+	LOCAL.CLILOC = 1023965
+ELIF (<ARGS> == 0f7e)
+	LOCAL.CLILOC = 1023966
+ELIF (<ARGS> == 0f7f)
+	LOCAL.CLILOC = 1023967
+ELIF (<ARGS> == 0f80)
+	LOCAL.CLILOC = 1023968
+ELIF (<ARGS> == 0f81)
+	LOCAL.CLILOC = 1023969
+ELIF (<ARGS> == 0f82)
+	LOCAL.CLILOC = 1023970
+ELIF (<ARGS> == 0f83)
+	LOCAL.CLILOC = 1023971
+ELIF (<ARGS> == 0f84)
+	LOCAL.CLILOC = 1023972
+ELIF (<ARGS> == 0f85)
+	LOCAL.CLILOC = 1023973
+ELIF (<ARGS> == 0f86)
+	LOCAL.CLILOC = 1023974
+ELIF (<ARGS> == 0f87)
+	LOCAL.CLILOC = 1023975
+ELIF (<ARGS> == 0f88)
+	LOCAL.CLILOC = 1023976
+ELIF (<ARGS> == 0f89)
+	LOCAL.CLILOC = 1023977
+ELIF (<ARGS> == 0f8a)
+	LOCAL.CLILOC = 1023978
+ELIF (<ARGS> == 0f8b)
+	LOCAL.CLILOC = 1023979
+ELIF (<ARGS> == 0f8c)
+	LOCAL.CLILOC = 1023980
+ELIF (<ARGS> == 0f8d)
+	LOCAL.CLILOC = 1023981
+ELIF (<ARGS> == 0f8e)
+	LOCAL.CLILOC = 1023982
+ELIF (<ARGS> == 0f8f)
+	LOCAL.CLILOC = 1023984
+ELIF (<ARGS> == 0f90)
+	LOCAL.CLILOC = 1023985
+ELSE
+	LOCAL.CLILOC = 1023986
+ENDIF
+RETURN <EVAL <LOCAL.CLILOC>>
+
 
 [ITEMDEF 0efa]
 DEFNAME=i_spellbook
@@ -496,19 +552,19 @@ dhtmlgump 60 10 140 20 0 0 <def.center> <def.BFONT_DGRAY> <SERV.SPELL(<tag0.spel
 dhtmlgump 110 30 80 40 0 0 <def.small><def.BFONT_black><RUNES <tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>>
 xmfhtmlgump 55 80 140 20 3001017  0 0 
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.1.KEY>>)
-dhtmlgump 60 95 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.1.KEY>).name>
+xmfhtmlgump 60 95 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.1.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.2.KEY>>)
-dhtmlgump 60 110 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.2.KEY>).name>
+xmfhtmlgump 60 110 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.2.KEY>).id>>  0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.3.KEY>>)
-dhtmlgump 60 125 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.3.KEY>).name>
+xmfhtmlgump 60 125 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.3.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.4.KEY>>)
-dhtmlgump 60 140 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.4.KEY>).name>
+xmfhtmlgump 60 140 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.4.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.5.KEY>>)
-dhtmlgump 60 155 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.5.KEY>).name>
+xmfhtmlgump 60 155 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>>>).RESOURCES.5.KEY>).id>> 0 0
 ENDIF
 xmfhtmlgump 125 80 140 20 3000309  0 0 
 dhtmlgump 160 80 140 20 0 0 <def.BFONT_DGRAY> <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>>>).MANAUSE>
@@ -521,19 +577,19 @@ dhtmlgump 190 10 140 20 0 0 <def.center> <def.BFONT_DGRAY> <SERV.SPELL(<tag0.spe
 dhtmlgump 270 30 80 40 0 0 <def.small><def.BFONT_black><RUNES <tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>>
 xmfhtmlgump 215 80 140 20 3001017 0 0
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.1.KEY>>)
-dhtmlgump 220 95 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.1.KEY>).name>
+xmfhtmlgump 220 95 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>+1>>).RESOURCES.1.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.2.KEY>>)
-dhtmlgump 220 110 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.2.KEY>).name>
+xmfhtmlgump 220 110 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>+1>>).RESOURCES.2.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.3.KEY>>)
-dhtmlgump 220 125 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.3.KEY>).name>
+xmfhtmlgump 220 125 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>+1>>).RESOURCES.3.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.4.KEY>>)
-dhtmlgump 220 140 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.4.KEY>).name>
+xmfhtmlgump 220 140 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>+1>>).RESOURCES.4.KEY>).id>> 0 0
 ENDIF
 IF !(<ISEMPTY <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.5.KEY>>)
-dhtmlgump 220 155 140 20 0 0 <def.BFONT_DGRAY> <serv.itemdef(<SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).RESOURCES.5.KEY>).name>
+xmfhtmlgump 220 155 140 20 <f_reag_cliloc <serv.itemdef(<SERV.SPELL(<tag0.spell_<EVAL <LOCAL.SPELLPLACE>+1>>).RESOURCES.5.KEY>).id>> 0 0
 ENDIF
 xmfhtmlgump 285 80 140 20 3000309 0 0
 dhtmlgump 320 80 140 20 0 0 <def.BFONT_DGRAY> <SERV.SPELL(<tag0.spell_<eval <LOCAL.SPELLPLACE>+1>>).MANAUSE>
@@ -3388,23 +3444,6 @@ ON=@Create
 	MOREY=50
 
 
-//Sorcery
-
-[ITEMDEF i_scroll_warmth]
-ID=01f32
-RESOURCES=i_scroll_blank, i_reag_sulfur_ash,i_reag_obsidian
-SKILLMAKE=INSCRIPTION 30.0, NECROMANCY 20.0
-TYPE=T_SCROLL
-WEIGHT=0.5
-//CIRCLE=1
-CATEGORY=Provisions - Alchemy & Magic
-SUBSECTION=Scrolls - 1st Circle
-DESCRIPTION=Magic Arrow Scroll
-
-ON=@Create
-	ATTR=ATTR_MAGIC
-	MOREX=s_warmth
-	MOREY=30
 
 
 [ITEMDEF i_rune_detect_trap]
@@ -3826,60 +3865,6 @@ fix
 return 1
 
 
-[spell 700]
-defname=s_warmth
-name=Warmth
-sound=1482
-runes=IF
-cast_time=1.0
-resources=i_reag_sulfur_ash,i_reag_obsidian
-rune_item=i_rune_warmth
-scroll_item=i_scroll_warmth
-flags=SPELLFLAG_TARG_CHAR | SPELLFLAG_FX_TARG | spellflag_good
-effect_id=i_fx_bless_effect
-effect=10,25
-duration=2*60,6*60
-manause=6
-skillreq=Necromancy 20.0
-INTERRUPT=100.0,30.0
-
-ON=@effect
-IF (<ARGO.TYPE>==t_potion)
-	obj=<src>
-ELSE
-	obj=<src.act>
-endif
-if <obj.findid.i_wamth_timer>
-	obj.rescold -= <obj.findid.i_wamth_timer.tag.rescold>
-	obj.findid.i_wamth_timer.remove
-endif
-local.lo=<strarg <serv.spell.<argn1>.effect>>
-local.hi=<streat <serv.spell.<argn1>.effect>>
-src.newitem i_wamth_timer
-new.tag.rescold = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
-local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
-local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
-new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
-new.LINK=<obj>
-trysrc <obj> new.equip
-
-
-[itemdef i_warmth_timer]
-ID=i_memory
-name=Warmth Timer
-TYPE=t_eq_script
-
-on=@create
-ATTR=attr_invis|attr_decay
-
-on=@equip
-link.rescold += <tag0.rescold>
-timer = <tag.timer>
-
-on=@timer
-link.rescold -= <tag0.rescold>
-remove
-return 1
 
 
 [spell 801]

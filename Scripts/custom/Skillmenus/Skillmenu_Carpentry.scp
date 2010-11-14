@@ -10,15 +10,20 @@ if !(<src.restest 1 i_saw>) && !(<src.restest 1 i_saw_dovetail>)
 	return 1
 endif
 if <src.lumberjacking> >= <eval <skillmake.1.value>-100>
-	if <r> <= <eval (((<src.lumberjacking> - <skillmake.1.value>)*2)+50)>
+	if <src.skillcheck lumberjacking <eval <skillmake.1.value>/10>>
 		serv.newitem <tdata1>
-		new.amount <eval ((<amount>*(<src.mining>/10))/100)>
+		new.amount <eval (((5*(<src.lumberjacking>-<skillmake.1.value>)))/100)>
 		if <new.amount> < 1
 			new.amount = 1
+		elif  <new.amount> > <amount>
+			new.amount = <amount>
 		endif
-		src.sysmessage <def.smelt_fail>
+		if (((<src.lumberjacking>-<skillmake.1.value>)) > 1000)
+			local.bonus = <new.amount>*(<src.lumberjacking>-<skillmake.1.value>)/1000
+		endif
 		src.consume <new.amount> <baseid>
-		new.cont <src.findlayer.21>
+		new.amount += <local.bonus>
+		new.bounce
 	else
 		src.sysmessage You waste a log.
 		src.consume 1 <baseid>
@@ -28,18 +33,36 @@ else
 endif
 return 1
 
+[ITEMDEF 01e7f]
+// chair - rough board stool/nightstand
+DEFNAME=i_chair_stool_BOARD_ROUGH
+SKILLMAKE=CARPENTRY 10.0
+RESOURCES=8 i_board, 1 i_nails
+
+[ITEMDEF 011fc]
+DEFNAME=i_chair_stool_bamboo
+TYPE=T_CHAIR
+FLIP=1
+SKILLMAKE=CARPENTRY 40.0
+RESOURCES=4 i_bamboo
+WEIGHT=3
+CATEGORY=Decoration - Furniture
+SUBSECTION=Chairs
+DESCRIPTION=Foot Stool
+
+
 [ITEMDEF 01028]
 //DEFNAME2=dovetail
 //DEFNAME2=dovetail_saw
 DEFNAME=i_saw_dovetail
-RESOURCES=3 i_ingot_iron,1 i_log
+RESOURCES=3 i_ingot_iron,1 i_board
 TYPE=T_WEAPON_MACE_PICK
-WEIGHT=1
+WEIGHT=2
 DUPELIST=01029
 CATEGORY=Items by Professions
 SUBSECTION=Carpenter
 DESCRIPTION=Dovetail Saw
-SKILLMAKE=TINKERING 33.2,t_tinker_tools
+SKILLMAKE=TINKERING 30.8
 
 ON=@CREATE
 	HITPOINTS=50
@@ -55,7 +78,8 @@ RETURN 1
 [ITEMDEF 0102a]
 //Hammer
 DEFNAME=i_hammer
-RESOURCES=4 i_ingot_iron
+RESOURCES=3 i_ingot_iron,1 i_board
+SKILLMAKE=TINKERING 30.8
 WEIGHT=2
 TYPE=T_WEAPON_MACE_PICK
 FLIP=1
@@ -63,6 +87,94 @@ CATEGORY=Items by Professions
 SUBSECTION=Carpenter
 DESCRIPTION=Hammer
 DUPELIST=0102b
+
+ON=@CREATE
+	HITPOINTS=50
+
+ON=@DCLICK
+IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
+	SRC.SYSMESSAGE You must wait to perform another action.
+	RETURN 1
+ENDIF
+DIALOG d_skillmenu_Carpentry
+RETURN 1
+
+
+[ITEMDEF 010e4]
+DEFNAME=i_knife_draw
+RESOURCES=2 i_ingot_iron
+SKILLMAKE=TINKERING 30.8
+WEIGHT=2
+TYPE=T_WEAPON_MACE_PICK
+FLIP=1
+CATEGORY=Items by Professions
+SUBSECTION=Carpenter
+DESCRIPTION=Draw Knife
+
+ON=@CREATE
+	HITPOINTS=50
+
+ON=@DCLICK
+IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
+	SRC.SYSMESSAGE You must wait to perform another action.
+	RETURN 1
+ENDIF
+DIALOG d_skillmenu_Carpentry
+RETURN 1
+
+
+[ITEMDEF 010e5]
+DEFNAME=i_froe
+RESOURCES=2 i_ingot_iron
+SKILLMAKE=TINKERING 30.8
+WEIGHT=2
+TYPE=T_WEAPON_MACE_PICK
+CATEGORY=Items by Professions
+SUBSECTION=Carpenter
+DESCRIPTION=Froe
+
+ON=@CREATE
+	HITPOINTS=50
+
+ON=@DCLICK
+IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
+	SRC.SYSMESSAGE You must wait to perform another action.
+	RETURN 1
+ENDIF
+DIALOG d_skillmenu_Carpentry
+RETURN 1
+
+[ITEMDEF 010e6]
+DEFNAME=i_inshave
+RESOURCES=2 i_ingot_iron
+WEIGHT=1
+TYPE=T_WEAPON_MACE_PICK
+SKILLMAKE=TINKERING 30.8
+CATEGORY=Items by Professions
+SUBSECTION=Carpenter
+DESCRIPTION=Inshave
+
+ON=@CREATE
+	HITPOINTS=50
+
+ON=@DCLICK
+IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
+	SRC.SYSMESSAGE You must wait to perform another action.
+	RETURN 1
+ENDIF
+DIALOG d_skillmenu_Carpentry
+RETURN 1
+
+[ITEMDEF 010e7]
+DEFNAME=i_scorp
+RESOURCES=2 i_ingot_iron
+SKILLMAKE=TINKERING 30.8
+WEIGHT=2
+TYPE=T_WEAPON_MACE_PICK
+CATEGORY=Items by Professions
+SUBSECTION=Carpenter
+DESCRIPTION=Scorp
+
 
 ON=@CREATE
 	HITPOINTS=50
@@ -86,7 +198,6 @@ DUPELIST=0102d
 SKILLMAKE=TINKERING 30.7,t_tinker_tools
 RESOURCES=3 i_board,1 i_ingot_iron
 
-
 ON=@CREATE
 	HITPOINTS=50
 
@@ -101,26 +212,26 @@ RETURN 1
 
 [ITEMDEF 0102e]
 DEFNAME=i_nails
-WEIGHT=2
+WEIGHT=1
 TYPE=t_normal
 CATEGORY=Items by Professions
 SUBSECTION=Carpenter
 DESCRIPTION=Nails
 DUPELIST=0102f
 RESOURCES=1 i_ingot_iron
-SKILLMAKE=carpentry 5.0
+SKILLMAKE=TINKERING 10.8
 
 
 [ITEMDEF 01030]
 DEFNAME=i_plane_jointing
-RESOURCES=4 i_log
-WEIGHT=1
+RESOURCES=4 i_board
+WEIGHT=2
 TYPE=T_WEAPON_MACE_PICK
 CATEGORY=Items by Professions
 SUBSECTION=Carpenter
 DESCRIPTION=Jointing Plane
 DUPELIST=01031
-SKILLMAKE=TINKERING 30.8,t_tinker_tools
+SKILLMAKE=TINKERING 30.8
 
 
 ON=@CREATE
@@ -136,8 +247,8 @@ RETURN 1
 
 [ITEMDEF 01032]
 DEFNAME=i_plane_smoothing
-RESOURCES=4 i_log
-WEIGHT=1
+RESOURCES=4 i_board
+WEIGHT=2
 TYPE=T_WEAPON_MACE_PICK
 CATEGORY=Items by Professions
 SUBSECTION=Carpenter
@@ -160,36 +271,30 @@ RETURN 1
 [ITEMDEF 01034]
 DEFNAME=i_saw
 WEIGHT=2
-TYPE=T_WEAPON_MACE_PICK
-RESOURCES=5 i_ingot_iron, 1 i_log
+TYPE=T_normal
+RESOURCES=5 i_ingot_iron, 1 i_board
 SKILLMAKE=TINKERING 31.3,t_tinker_tools
 CATEGORY=Items by Professions
 SUBSECTION=Carpenter
 DESCRIPTION=Saw
 DUPELIST=01035
 
-ON=@CREATE
-	HITPOINTS=50
-
-ON=@DCLICK
-IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
-	SRC.SYSMESSAGE You must wait to perform another action.
-	RETURN 1
-ENDIF
-DIALOG d_skillmenu_Carpentry
-RETURN 1
 
 
 [DEFNAME def_skmenu_carpentry]
 skmenu_carpentry_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
 skmenu_carpentry_subres_0 i_board
-skmenu_carpentry_subres_1 i_board_yew
-skmenu_carpentry_subres_2 i_board_oak
-skmenu_carpentry_subres_3 i_board_willow
-skmenu_carpentry_subres_4 i_board_heartwood
-skmenu_carpentry_subres_5 i_board_bloodwood
-skmenu_carpentry_subres_6 i_board_frostwood
-skmenu_carpentry_subres_7 i_board_sunwood
+skmenu_carpentry_subres_1 i_board_willow
+skmenu_carpentry_subres_2 i_board_cyprus
+skmenu_carpentry_subres_3 i_board_cedar
+skmenu_carpentry_subres_4 i_board_oak
+skmenu_carpentry_subres_5 i_board_yew
+skmenu_carpentry_subres_6 i_board_walnut
+skmenu_carpentry_subres_7 i_board_mahogany
+skmenu_carpentry_subres_8 i_board_heartwood
+skmenu_carpentry_subres_9 i_board_bloodwood
+skmenu_carpentry_subres_10 i_board_frostwood
+skmenu_carpentry_subres_11 i_board_sunwood
 
 skmenu_carpentry_0_name WEAPONS
 skmenu_carpentry_0_0 i_club
@@ -204,10 +309,65 @@ skmenu_carpentry_1_name SHIELDS
 skmenu_carpentry_1_0 i_shield_wood
 skmenu_carpentry_1_1 i_shield_kite_wood
 
-skmenu_carpentry_2_name WOOD
-skmenu_carpentry_2_0 i_board
-skmenu_carpentry_2_1 i_shield_tear
+skmenu_carpentry_2_name CONTAINERS
+skmenu_carpentry_2_0 i_crate_small
+skmenu_carpentry_2_1 i_crate_md
+skmenu_carpentry_2_2 i_crate_lg
+skmenu_carpentry_2_3 i_tub_empty
+skmenu_carpentry_2_4 i_keg_small
+skmenu_carpentry_2_5 i_barrel_open
+skmenu_carpentry_2_6 i_barrel
+skmenu_carpentry_2_7 i_box_wood
+skmenu_carpentry_2_8 i_box_brass
+skmenu_carpentry_2_9 i_chest_wooden_brass
+skmenu_carpentry_2_10 i_chest_metal
+skmenu_carpentry_2_11 i_chest_metal_brass
+skmenu_carpentry_2_12 i_ornate_elven_chest_wood
+skmenu_carpentry_2_13 i_ornate_elven_chest_metal
+skmenu_carpentry_2_14 i_footlocker_wooden
+skmenu_carpentry_2_15 i_chest_wooden_plain
+skmenu_carpentry_2_16 i_chest_wooden_ornate
+skmenu_carpentry_2_17 i_chest_wooden_gilded
+skmenu_carpentry_2_18 i_chest_wooden_finished
+skmenu_carpentry_2_19 i_chest_gargoyle
+skmenu_carpentry_2_20 i_bureau
+skmenu_carpentry_2_21 i_bureau_2
+skmenu_carpentry_2_22 i_drawer
+skmenu_carpentry_2_23 i_drawer_2
+skmenu_carpentry_2_24 i_armoire_lt
+skmenu_carpentry_2_25 i_armoire_dk
+skmenu_carpentry_2_26 i_shelf_wooden
+skmenu_carpentry_2_27 i_bookcase_full
+skmenu_carpentry_2_28 i_bookshelf_arcane
+skmenu_carpentry_2_29 i_cabinet_short
+skmenu_carpentry_2_30 i_cabinet_tall
 
+skmenu_carpentry_3_name ARMORS
+skmenu_carpentry_3_0 i_woodland_chest
+skmenu_carpentry_3_1 i_woodland_leggings
+skmenu_carpentry_3_2 i_woodland_arms
+skmenu_carpentry_3_3 i_woodland_gauntlets
+skmenu_carpentry_3_4 i_woodland_gorget
+skmenu_carpentry_3_5 i_helm_raven
+skmenu_carpentry_3_6 i_helm_vulture
+skmenu_carpentry_3_7 i_helm_hawk
+
+skmenu_carpentry_4_name FURNITURE
+skmenu_carpentry_4_0 i_chair_stool_bamboo
+skmenu_carpentry_4_1 i_chair_stool
+skmenu_carpentry_4_2 i_chair_wood
+skmenu_carpentry_4_3 i_chair_stool_bar
+skmenu_carpentry_4_4 i_bench_wood_dark
+skmenu_carpentry_4_5 i_chair_wood_rough_dark
+skmenu_carpentry_4_6 i_chair_throne
+skmenu_carpentry_4_7 i_chair_wood_fancy_cushion
+skmenu_carpentry_4_8 i_chair_wood_cushion
+skmenu_carpentry_4_9 i_chair_wood_bamboo
+skmenu_carpentry_4_10 i_chair_elven_ornate
+skmenu_carpentry_4_11 i_chair_elven_cozy
+skmenu_carpentry_4_12 i_chair_ter_mur
+skmenu_carpentry_4_13 i_dress_form
+skmenu_carpentry_4_14 i_chair_stool_BOARD_ROUGH
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -330,7 +490,7 @@ WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.HI
 				NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 				local.one = <eval (<new.armor.hi> * ((<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
 				local.two = <eval (<local.one> / 5000)>
-				new.modar = <dlocal.two>
+				new.modar += <dlocal.two>
 				new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 				CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 			ELSEIF (<NEW.ISWEAPON>)	
@@ -440,7 +600,7 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield) || (<NEW.TYPE>==t_clothing)
 			local.one = <eval (<new.armor.hi> * (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
 			local.two = <eval (<local.one> / 5000)>
-			new.modar = <dlocal.two>
+			new.modar += <dlocal.two>
 			new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 			CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 		ELSEIF (<NEW.ISWEAPON>)	

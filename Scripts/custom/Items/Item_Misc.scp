@@ -631,12 +631,12 @@ DESCRIPTION=Hallucination orb
 //Scripted By Cep 9-01-02
 [ITEMDEF i_powder_keg]
 DEFNAME=i_powder_keg
-ID=0fae
+ID=i_keg_small
 Name=powder keg
 type=t_normal
-SKILLMAKE=TINKERING 86.5,t_tinker_tools
-RESOURCES=1 i_barrel, 8 i_reag_sulfur_ash, 8 i_reag_brimstone
-WEIGHT=12
+SKILLMAKE=TINKERING 87.5
+RESOURCES=1 i_keg_small, 8 i_reag_sulfur_ash, 8 i_reag_brimstone
+WEIGHT=10
 VALUE=140
 
 on=@create
@@ -670,7 +670,7 @@ return 1
 else
 NEWITEM=new_ex
 NEW.LINK=<more2>
-NEW.morex=30 // damage
+NEW.morex={20 30} // damage
 NEW.morey=090 // wFlags DAMAGE_GENERAL
 NEW.morez=03 // iDist
 NEW.p=<p>
@@ -688,7 +688,6 @@ id=i_fx_explode
 on=@create
 more2=0
 morep=0,0,0
-timer=10
 attr=02
 type=t_explosion
 
