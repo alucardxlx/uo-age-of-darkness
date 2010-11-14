@@ -323,6 +323,16 @@ skmenu_Tailoring_4_0 i_apron_half
 skmenu_Tailoring_4_1 i_apron_full
 skmenu_Tailoring_4_2 i_obi
 
+skmenu_Tailoring_5_name CONTAINERS
+skmenu_Tailoring_5_0 i_pouch
+skmenu_Tailoring_5_1 i_bag
+skmenu_Tailoring_5_2 i_backpack
+skmenu_Tailoring_5_3 i_basket_2
+skmenu_Tailoring_5_4 i_basket
+skmenu_Tailoring_5_5 i_basket_square
+skmenu_Tailoring_5_6 i_basket_bushel
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MAIN FUNCTIONS
 //Here there are the "core" functions that control the crafting procedure. 
@@ -442,7 +452,7 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
 			local.one = <eval (<new.armor.hi> * (<cont.armslore> + 250))>
 			local.two = <eval (<local.one> / 5000)>
-			new.modar = <dlocal.two>
+			new.modar += <dlocal.two>
 			new.tag0.modvalue += <EVAL <CONT.ARMSLORE>/50>+5
 		ELSEIF (<NEW.ISWEAPON>)	
 			NEW.tag0.DAMINCREASE += <EVAL <CONT.ARMSLORE>/50>+5

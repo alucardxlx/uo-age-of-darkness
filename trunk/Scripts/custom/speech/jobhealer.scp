@@ -302,6 +302,7 @@ ON=*resurrection*
 			ENDDO
 		ENDIF
 	ENDIF
+
 ON=*buy*
 	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
 		DORAND 3
@@ -329,6 +330,7 @@ ON=*buy*
 			ENDDO
 		ENDIF
 	ENDIF
+
 ON=*potions*
 ON=*potion*
 	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )

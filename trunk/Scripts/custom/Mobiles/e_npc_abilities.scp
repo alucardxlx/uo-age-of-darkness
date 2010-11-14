@@ -276,6 +276,8 @@ ON=@HIT
 	     Src.Damage_Loc_<eval <Local.Location>>
 	     Src.Damage_Loc_<eval <Local.Location>>
 	     Src.Damage_Loc_<eval <Local.Location>>
+	     Src.Damage_Loc_<eval <Local.Location>>
+	     Src.Damage_Loc_<eval <Local.Location>>
 	     SRC.SYSMESSAGE You are splashed with acid from <NAME>'s attack.
      endif
 

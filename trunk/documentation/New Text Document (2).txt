@@ -1,0 +1,388 @@
+Minotaur: dismount, whirlwind
+Rune Beetle: bleed
+Flesh render: dismout
+impaler: bleed, mortal wound
+Dark Father: crushing blow
+
+[ITEMDEF i_fang_ractus]
+ID=i_kryss
+NAME=Fang of Ractus
+REQSTR=10
+//TEVENTS=T_PROPRIEDADES
+TAG.HITCHANCEINCREASE=10
+TAG.DAMINCREASE=35
+TAG.HITCHANCEDECREASE=5
+TAG.HITPOISONAREA=20
+TAG.SPELLCHANNELING=1
+
+ON=@Create
+HITPOINTS=150
+COLOR=COLORS_GREEN
+
+
+[ITEMDEF i_oak_leaf_cloak]
+ID=i_hooded_shroud
+NAME=Embroidered Oak Leaf Cloak
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.SKILLINCREASE=Stealth
+TAG.SKILLINCREASEVALUE=50
+
+ON=@Create
+COLOR=colors_green
+HITPOINTS=150
+
+[ITEMDEF i_Djinn_Ring]
+ID=i_ring_gold
+NAME=Djinn's Ring
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.MODINT=5
+TAG.MAGICDAMINCREASE=10
+TAG.FASTERCASTING=20
+
+ON=@Create
+COLOR=04ac
+
+
+
+
+[ITEMDEF i_oblivion_needle]
+ID=i_dagger
+NAME=Oblivion's Needle
+REQSTR=10
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.HITCHANCEINCREASE=20
+TAG.HITCHANCEDECREASE=20
+TAG.DAMINCREASE=40
+TAG.STAMLEECH=50
+TAG.STAMINCREASE=20
+
+ON=@Create
+HITPOINTS=150
+COLOR=33
+
+[ITEMDEF i_necromancer_shroud]
+ID=i_hooded_shroud
+NAME=Necromancer Shroud
+//TEVENTS=T_PROPRIEDADES
+ARMOR=8
+
+ON=@Create
+COLOR=colors_black
+HITPOINTS=150
+
+
+[ITEMDEF i_orc_chief_helm]
+ID=i_helm_orc
+NAME=orc Chief Helm
+REQSTR=30
+//TEVENTS=T_PROPRIEDADES
+TAG.HITSREGENERATION=3
+TAG.HITSINCREASE=30
+ARMOR=80
+
+ON=@Create
+COLOR=colors_green
+HITPOINTS=150
+
+[ITEMDEF i_royal_guard_survival_knife]
+ID=i_knife_butcher
+NAME=Royal Guard Survival Knife
+TAG.ENCHANCEPOTIONS=25
+TAG.DAMINCREASE=20
+TAG.LIFELEECH=20
+TAG.USEBESTWEAPONSKILL=1
+
+ON=@Create
+HITPOINTS=150
+
+[ITEMDEF i_samaritan_robe]
+ID=i_robe
+NAME=Samaritan Robe
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.HITSINCREASE=5
+TAG.SKILLINCREASE=Healing
+TAG.SKILLINCREASEVALUE=50
+ARMOR=8
+REQSTR=15
+
+ON=@Create
+COLOR=colors_green
+HITPOINTS=150
+
+
+[ITEMDEF i_calm]
+ID=i_halberd
+NAME=Calm
+REQSTR=95
+//TEVENTS=T_PROPRIEDADES
+TAG.SWINGINCREASE=20
+TAG.DAMINCREASE=50
+TAG.USEBESTWEAPONSKILL=1
+TAG.MANALEECH=100
+TAG.SPELLCHANNELING=1
+
+ON=@Create
+HITPOINTS=150
+
+[ITEMDEF i_subdue]
+ID=i_scyth
+NAME=Subdue
+REQSTR=45
+//TEVENTS=T_PROPRIEDADES
+TAG.SWINGINCREASE=20
+TAG.DAMINCREASE=50
+TAG.USEBESTWEAPONSKILL=1
+TAG.MANALEECH=100
+TAG.HITCHANCEINCREASE=10
+TAG.SPELLCHANNELING=1
+
+ON=@Create
+HITPOINTS=150
+
+[ITEMDEF i_shroud_deceit]
+ID=i_hooded_shroud
+NAME=Shroud of Deceit
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.MANAINCREASE=10
+TAG.SKILLINCREASE=MagicResistance
+TAG.SKILLINCREASEVALUE=100
+ARMOR=6
+REQSTR=15
+WEIGHT=0
+
+ON=@Create
+COLOR=colors_black
+HITPOINTS=150
+
+
+[ITEMDEF i_pacify]
+ID=i_pike
+NAME=Pacify
+REQSTR=50
+//TEVENTS=T_PROPRIEDADES
+TAG.HITCHANCEINCREASE=10
+TAG.SWINGINCREASE=20
+TAG.DAMINCREASE=50
+TAG.uSEBESTWEAPONSKILL=1
+TAG.MANALEECH=100
+TAG.SPELLCHANNELING=1
+
+ON=@Create
+HITPOINTS=150
+
+[ITEMDEF i_gladiator_collar]
+ID=i_platemail_gorget
+NAME=Gladiator's Collar
+REQSTR=45
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.HITSINCREASE=10
+TAG.HITCHANCEINCREASE=10
+TAG.DAMINCREASE=10
+ARMOR=80
+
+ON=@Create
+COLOR=colors_o_rose
+HITPOINTS=150
+
+
+[ITEMDEF i_gauntlets_anger]
+ID=i_platemail_gloves
+NAME=Gauntlets of Anger
+REQSTR=70
+//TEVENTS=T_PROPRIEDADES
+TEVENTS=t_status_bonus
+TAG.HITCHANCEDECREASE=10
+TAG.HITSINCREASE=8
+TAG.HITSREGENERATION=2
+ARMOR=90
+
+ON=@Create
+COLOR=colors_green
+HITPOINTS=150
+
+
+// Corpse exploder
+
+
+IF (<ISNEARTYPE T_CORPSE 10>)
+	IF (<R20> == 1)
+	REF1=<UID>
+		FORITEMS 10
+			IF (<BASEID> == i_corpse) && (!(<LOCAL.JAEXPLODIU>))
+			F_EXPLODECORPSE <REF1.UID>
+			F_EXPLODECORPSE_DROPALL
+			LOCAL.JAEXPLODIU=1
+			ENDIF
+		ENDFOR
+	ENDIF
+ENDIF
+[FUNCTION F_EXPLODECORPSE]
+REF1=<UID>
+FORCLIENTS 5
+DAMAGE 33 <DEF.DAM_GOD> <ARGN1>
+SPELLEFFECT S_POISON,100.0,<ARGN1>
+ENDFOR
+
+[FUNCTION F_EXPLODECORPSE_DROPALL]
+LOCAL.OLDNEW=<NEW>
+SERV.NEWITEM i_flesh_head
+NEW.P=<P>
+NEW.ATTR=ATTR_DECAY
+NEW.UPDATE
+SERV.NEWITEM i_flesh_torso
+NEW.P=<P>
+NEW.ATTR=ATTR_DECAY
+NEW.MOVE S
+NEW.UPDATE
+SERV.NEWITEM i_flesh_leg
+NEW.P=<P>
+NEW.ATTR=ATTR_DECAY
+NEW.MOVE E
+NEW.UPDATE
+SERV.NEWITEM i_flesh_leg
+NEW.P=<P>
+NEW.ATTR=ATTR_DECAY
+NEW.MOVE N
+NEW.UPDATE
+REMOVE
+FORCONT <UID> 0
+DROP
+ENDFOR
+NEW=<LOCAL.OLDNEW>
+
+
+ON=@NpcLookAtChar
+IF (<FLOATVAL 0.08> > <RANDOMDOUBLE>)
+	IF (0<SRC.ISFIGHTINGME <UID>>)
+		IF !(<SRC.ISEVENT.E_PEACEMAKED>)
+		FLOAT.CHANCE=<FLOATVAL (50+(2*(((<PEACEMAKING>/2)+(<MUSICIANSHIP>/2))-<SRC.BARDDIFF <UID>>)))/100>
+			IF (<FLOAT.CHANCE> >= <RANDOMDOUBLE>)
+			SRC.TIMERF 1,F_CHECK_PEACEDDISTANCE
+			SRC.TAG.PEACED.PLAYER=<UID>
+			SRC.EVENTS +E_PEACEMAKED
+			SRC.FLAGS &= ~statf_war
+			SRC.REMOVEALLMEMS memory_war_targ
+				IF (!(<SRC.ISPLAYER>))
+				SRC.ACTION=06d
+				ELSE
+				SRC.ACTION=-1
+				ENDIF
+			SOUND 1419
+			REMOVEALLMEMS memory_war_targ
+			FLAGS &= ~statf_war
+			REF1=<UID>
+				FORCLIENTS 8
+				REF1.ATTACK <UID>
+				REF1.GOTO <P>
+				ENDFOR
+			ENDIF
+		ELSE
+		RETURN 1
+		ENDIF
+	ENDIF
+ENDIF
+
+
+ON=@NpcLookAtChar
+IF (<FLOATVAL 0.25> > <RANDOMDOUBLE>)
+	IF (<SRC.ISPLAYER>) || (<SRC.MEMORYFINDTYPE.memory_ipet.LINK.ISPLAYER>)
+	LOCAL.NEW=<NEW>
+	SERV.NEWITEM=i_potion_explosiongreat
+	NEW.P=<SRC.P>
+	NEW.MOREX=4
+	NEW.MOREZ=1
+	NEW.TIMER=1
+	NEW.LINK=<UID>
+	NEW=<LOCAL.NEW>
+	ENDIF
+ENDIF
+
+New Item Properties
+
+Blood Drinker
+
+ÅE         Allows an attacker to gain life from using the bleed attack
+
+ÅE         Damage done through the bleed attack is directly transferred to the attackerÅfs health
+
+ 
+
+Battle Lust
+
+ÅE         Significant damage received from mobs will be added to the attackerÅfs Battle Lust, causing them to do more damage to all mobs theyÅfre aggressing
+
+ÅE         This damage bonus is further modified by how many opponents theyÅfre aggressed against
+
+ÅE         Damage bonus is 15% per opponent, with a cap of 45% in PvP and 90% in PvE
+
+ÅE         Lust is gained every two seconds
+
+ÅE         Lust decays at a rate of one point every six seconds
+
+ 
+
+Damage Eaters
+
+ÅE         Converts a small portion of damage dealt to the player (damage must be the same type as the eater) back to health
+
+ÅE         Stacks with other eaters of the same type, capped at 30%
+
+ÅE         The Ågdamage allÅh type of eater is capped at 18%
+
+ 
+
+Casting Focus
+
+ÅE         A chance to resist interruptions while casting spells
+
+ 
+
+Hit Curse
+
+ÅE         Functions similarly to the spell ÅgCurseÅh, but has a thirty second cooldown
+
+ 
+
+Hit Fatigue
+
+ÅE         Reduces the targetÅfs stamina by a percent of the damage dealt by the attack that triggers the effect
+
+ 
+
+Hit Mana Drain
+
+ÅE         Reduces the targetÅfs mana by a percent of the damage dealt by the attack that triggers the effect
+
+ 
+
+Reactive Paralyze
+
+ÅE         A chance to paralyze an attacker if the player parries their blow
+
+ 
+
+Resonance
+
+ÅE         Chance to resist spell-casting interruption if the damage received is the same type as the resonance
+
+ 
+
+Soul Charge
+
+ÅE         A chance to convert a percentage of damage dealt to the player into mana
+
+ 
+
+Splintering Weapon
+
+ÅE         A glass shard breaks off from the weapon, striking the victim to cause a bleed effect and forced walking
+
+ÅE         Stacks with the regular bleed effect to cause additional damage and extend the duration of the special attack
+
+ 

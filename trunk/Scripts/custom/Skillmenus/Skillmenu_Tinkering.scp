@@ -79,7 +79,7 @@ SKILLMAKE=TINKERING 40.7
 
 [ITEMDEF 0104d]
 DEFNAME=i_clock_frame
-RESOURCES=6 i_log
+RESOURCES=6 i_board
 WEIGHT=2
 //TYPE=T_CLOCK
 CATEGORY=Items by Professions
@@ -90,7 +90,7 @@ SKILLMAKE=TINKERING 20.4
 
 [ITEMDEF 0104f]
 DEFNAME=i_clock_parts
-RESOURCES=2 i_axel_and_gears, 1 i_gears, 1 i_spring, 1 i_ingot_iron
+RESOURCES=2 i_axel_and_gears, 1 i_gears, 1 i_spring, 2 i_ingot_iron
 WEIGHT=1
 //TYPE=T_CLOCK
 CATEGORY=Items by Professions
@@ -133,13 +133,13 @@ SKILLMAKE=TINKERING 14.8
 [ITEMDEF 01057]
 DEFNAME=i_sextant
 TYPE=T_SEXTANT
-RESOURCES=i_sextant_parts
+RESOURCES=i_sextant_parts, i_gears
 WEIGHT=2
 CATEGORY=Items by Professions
 SUBSECTION=Tinker
 DESCRIPTION=Sextant
 DUPELIST=01058
-SKILLMAKE=TINKERING 22.7, CARTOGRAPHY 22.7
+SKILLMAKE=TINKERING 23.7
 
 [ITEMDEF 01059]
 DEFNAME=i_sextant_parts
@@ -169,7 +169,7 @@ CATEGORY=Items by Professions
 SUBSECTION=Tinker
 DESCRIPTION=Springs
 DUPELIST=0105e
-SKILLMAKE=TINKERING 23.7
+SKILLMAKE=TINKERING 33.7
 
 [ITEMDEF 0100e]
 DEFNAME=i_key_copper
@@ -298,7 +298,7 @@ DUPEITEM=01c19
 
 [ITEMDEF 01eb6]
 DEFNAME=i_toolkit_empty
-RESOURCES=2 i_hide, i_ingot_iron
+RESOURCES=2 i_hide,4 i_board
 SKILLMAKE=TINKERING 80.0
 WEIGHT=3
 CATEGORY=Items by Professions
@@ -307,7 +307,7 @@ DESCRIPTION=Empty Tool Kit
 
 [ITEMDEF 01eb7]
 DEFNAME=i_toolcase_empty
-RESOURCES=2 i_hide, i_ingot_iron
+RESOURCES=2 i_hide,4 i_board
 SKILLMAKE=TINKERING 80.0
 WEIGHT=3
 CATEGORY=Items by Professions
@@ -316,7 +316,7 @@ DESCRIPTION=Empty Tool Case
 
 [ITEMDEF 01eb8]
 DEFNAME=i_toolkit
-RESOURCES=i_TOOLKIT_EMPTY, 4 i_ingot_iron,1 i_log
+RESOURCES=i_TOOLKIT_EMPTY, 4 i_ingot_iron,4 i_board
 SKILLMAKE=TINKERING 50.0
 WEIGHT=6
 TYPE=t_carpentry
@@ -330,7 +330,7 @@ DUPEITEM=01eb8
 
 [ITEMDEF 01eba]
 DEFNAME=i_toolcase
-RESOURCES=i_TOOLCASE_EMPTY, 4 i_ingot_iron,1 i_log
+RESOURCES=i_toolcase_empty,4 i_ingot_iron,4 i_board
 SKILLMAKE=TINKERING 50.0
 WEIGHT=6
 TYPE=t_carpentry
@@ -367,14 +367,7 @@ RETURN 1
 
 [DEFNAME def_skmenu_tinkering]
 skmenu_tinkering_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
-skmenu_tinkering_subres_0 i_log
-skmenu_tinkering_subres_1 i_log_ancientwood
-skmenu_tinkering_subres_2 i_log_stonewood
-skmenu_tinkering_subres_3 i_log_darkwood
-skmenu_tinkering_subres_4 i_log_heartwood
-skmenu_tinkering_subres_5 i_log_bloodwood
-skmenu_tinkering_subres_6 i_log_frostwood
-skmenu_tinkering_subres_7 i_log_sunwood
+skmenu_tinkering_subres_0 i_board
 
 skmenu_tinkering_0_name PARTS
 skmenu_tinkering_0_0 i_axel
@@ -395,34 +388,51 @@ skmenu_tinkering_0_14 i_wire_silver
 skmenu_tinkering_0_15 i_wire_gold
 skmenu_tinkering_0_16 i_beads
 skmenu_tinkering_0_17 i_rope
-skmenu_tinkering_0_18 i_game_board
+skmenu_tinkering_0_18 i_nails
+skmenu_tinkering_0_19 i_toolkit_empty
+skmenu_tinkering_0_20 i_toolcase_empty
 
-skmenu_tinkering_1_name CONTAINERS
-skmenu_tinkering_1_0 i_box_wood
-skmenu_tinkering_1_1 i_box_brass
-skmenu_tinkering_1_2 i_chest_wooden_brass
-skmenu_tinkering_1_3 i_chest_metal
-skmenu_tinkering_1_4 i_chest_metal_brass
-skmenu_tinkering_1_5 i_keg_small
-skmenu_tinkering_1_6 i_keg_potion
-skmenu_tinkering_1_7 i_barrel_open
-skmenu_tinkering_1_8 i_barrel
+skmenu_tinkering_1_name TOOLS
+skmenu_tinkering_1_0 i_shovel
+skmenu_tinkering_1_1 i_saw
+skmenu_tinkering_1_2 i_saw_dovetail
+skmenu_tinkering_1_3 i_plane_jointing
+skmenu_tinkering_1_4 i_plane_moulding
+skmenu_tinkering_1_5 i_plane_smoothing
+skmenu_tinkering_1_6 i_froe
+skmenu_tinkering_1_7 i_scorp
+skmenu_tinkering_1_8 i_inshave
+skmenu_tinkering_1_9 i_knife_draw
+skmenu_tinkering_1_10 i_hammer
+skmenu_tinkering_1_11 i_scissors
+skmenu_tinkering_1_12 i_sewing_kit
+skmenu_tinkering_1_13 i_tinker_tools
+skmenu_tinkering_1_14 i_arrow_fletching
+skmenu_tinkering_1_15 i_tongs
+skmenu_tinkering_1_16 i_FISHING_POLE
+skmenu_tinkering_1_17 i_lockpick
+skmenu_tinkering_1_18 i_lockpick_set
+skmenu_tinkering_1_19 i_mortar_pestle
 
-skmenu_tinkering_2_name TOOLS
-skmenu_tinkering_2_0 i_shovel
-skmenu_tinkering_2_1 i_saw
-skmenu_tinkering_2_2 i_saw_dovetail
-skmenu_tinkering_2_3 i_plane_jointing
-skmenu_tinkering_2_4 i_plane_moulding
-skmenu_tinkering_2_5 i_plane_smoothing
-skmenu_tinkering_2_6 i_lockpick
-skmenu_tinkering_2_7 i_lockpick_set
-skmenu_tinkering_2_8 i_mortar_pestle
-skmenu_tinkering_2_9 i_scissors
-skmenu_tinkering_2_10 i_sewing_kit
-skmenu_tinkering_2_11 i_tinker_tools
-skmenu_tinkering_2_12 i_toolkit
-skmenu_tinkering_2_13 i_flour_sifter
+skmenu_tinkering_2_name UTENSILS
+skmenu_tinkering_2_0 i_fork
+skmenu_tinkering_2_1 i_spoon
+skmenu_tinkering_2_2 i_knife
+skmenu_tinkering_2_3 i_plate
+skmenu_tinkering_2_4 i_tray
+skmenu_tinkering_2_5 i_kettle
+skmenu_tinkering_2_6 i_frypan
+skmenu_tinkering_2_7 i_pot
+skmenu_tinkering_2_8 i_skull_mug
+skmenu_tinkering_2_9 i_mug_ceramic
+skmenu_tinkering_2_10 i_goblet
+skmenu_tinkering_2_11 i_mug_pewter
+skmenu_tinkering_2_12 i_goblet_2
+skmenu_tinkering_2_13 i_spittoon
+skmenu_tinkering_2_14 i_flour_sifter
+skmenu_tinkering_2_15 i_bowl_wood
+skmenu_tinkering_2_16 i_bowl_wood_lg
+skmenu_tinkering_2_17 i_bowl_pewter
 
 skmenu_tinkering_3_name JEWELRY
 skmenu_tinkering_3_0 i_elven_glasses
@@ -456,16 +466,10 @@ skmenu_tinkering_6_3 i_abacus
 skmenu_tinkering_6_4 i_candle
 skmenu_tinkering_6_5 i_lantern
 skmenu_tinkering_6_6 i_powder_keg
-skmenu_tinkering_6_7 i_backgammon_game
+skmenu_tinkering_6_7 i_keg_potion
 skmenu_tinkering_6_8 i_dice_cup
-skmenu_tinkering_6_9 i_bottle_empty
-skmenu_tinkering_6_10 i_PITCHER
-skmenu_tinkering_6_11 i_skull_mug
-skmenu_tinkering_6_12 i_mug_ceramic
-skmenu_tinkering_6_13 i_goblet
-skmenu_tinkering_6_14 i_mug_pewter
-skmenu_tinkering_6_15 i_goblet_2
-skmenu_tinkering_6_16 i_spittoon
+skmenu_tinkering_6_9 i_game_board
+skmenu_tinkering_6_10 i_backgammon_game
 
 
 

@@ -126,18 +126,17 @@ ENDWHILE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 [DEFNAME def_skmenu_materials]
 skmenu_subres_i_board_skill 0.0
-skmenu_subres_i_board_birch_skill 15
-skmenu_subres_i_board_willow_skill 30
-skmenu_subres_i_board_cyprus_skill 45
-skmenu_subres_i_board_cedar_skill 60
-skmenu_subres_i_board_oak_skill 80
-skmenu_subres_i_board_yew_skill 100
-skmenu_subres_i_board_walnut_skill 120
-skmenu_subres_i_board_mahogany_skill 140
-skmenu_subres_i_board_heartwood_skill 170
-skmenu_subres_i_board_bloodwood_skill 200
-skmenu_subres_i_board_frostwood_skill 230
-skmenu_subres_i_board_sunwood_skill 260
+skmenu_subres_i_board_willow_skill 40
+skmenu_subres_i_board_cyprus_skill 65
+skmenu_subres_i_board_cedar_skill 80
+skmenu_subres_i_board_oak_skill 100
+skmenu_subres_i_board_yew_skill 120
+skmenu_subres_i_board_walnut_skill 150
+skmenu_subres_i_board_mahogany_skill 180
+skmenu_subres_i_board_heartwood_skill 240
+skmenu_subres_i_board_bloodwood_skill 280
+skmenu_subres_i_board_frostwood_skill 320
+skmenu_subres_i_board_sunwood_skill 360
 
 skmenu_subres_i_ingot_iron_skill 00
 skmenu_subres_i_ingot_rusty_skill 25
@@ -171,7 +170,7 @@ NAME=Rusty <NAME>
 COLOR=color_o_rusty
 HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,15,100>
 	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.POISONDAMAGE += 25
@@ -187,7 +186,7 @@ COLOR=color_o_oldcopper
 tag0.LOWERREQS -= 20
 HITPOINTS -= <MulDiv <HITPOINTS>,25,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,30,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,30,100>
 	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.POISONDAMAGE += 25
@@ -202,7 +201,7 @@ NAME=dull copper <NAME>
 COLOR=color_o_dullcopper
 tag0.LOWERREQS -= 20
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,15,100>
 ELSEIF (<ISWEAPON>)
 tag0.DAMINCREASE -= 15
 ENDIF
@@ -216,7 +215,7 @@ COLOR=color_o_copper
 tag0.LOWERREQS -= 20
 HITPOINTS -= <MulDiv <HITPOINTS>,20,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,15,100>
 	tag0.SKILLBOOST1=MAGICRESISTANCE
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.SKILLBOOST1AMT=50
@@ -247,7 +246,7 @@ COLOR=color_o_bronze
 tag0.LOWERREQS -= 30
 HITPOINTS -= <MulDiv <HITPOINTS>,10,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,10,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,10,100>
 ELSEIF (<ISWEAPON>)
 tag0.DAMINCREASE -= 10
 ENDIF
@@ -261,7 +260,7 @@ COLOR=color_o_corrodedbronze
 tag0.LOWERREQS -= 30
 HITPOINTS -= <MulDiv <HITPOINTS>,25,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,25,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,25,100>
 	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.POISONDAMAGE += 25
@@ -293,7 +292,7 @@ NAME=silver <NAME>
 COLOR=color_o_silver
 HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,10,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,10,100>
 	tag0.SKILLBOOST1=MAGICRESISTANCE
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.SKILLBOOST1AMT=100
@@ -324,7 +323,7 @@ COLOR=color_o_gold
 HITPOINTS -= <MulDiv <HITPOINTS>,15,100>
 tag0.LOWERREQS += 10
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> - <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <modar> - <MulDiv <ARMOR.HIGH>,20,100>
 	tag0.SKILLBOOST1=MAGICRESISTANCE
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.SKILLBOOST1AMT=200
@@ -370,7 +369,7 @@ COLOR=color_o_agapite
 HITPOINTS += <MulDiv <HITPOINTS>,15,100>
 tag0.LOWERREQS += 5
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.DAMINCREASE += 20
@@ -386,7 +385,7 @@ COLOR=color_o_verite
 HITPOINTS += <MulDiv <HITPOINTS>,15,100>
 tag0.LOWERREQS += 5
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 	tag0.RESPOISON += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.DAMINCREASE += 20
@@ -402,7 +401,7 @@ COLOR=color_o_valorite
 tag0.LOWERREQS += 10
 HITPOINTS += <MulDiv <HITPOINTS>,20,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,40,100>
+	modar += <MulDiv <ARMOR.HIGH>,40,100>
 ELSEIF (<ISWEAPON>)
 tag0.DAMINCREASE += 40
 ENDIF
@@ -417,7 +416,7 @@ COLOR=color_o_bloodrock
 tag0.LOWERREQS += 20
 HITPOINTS += <MulDiv <HITPOINTS>,20,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.MODHITS=10
 	ELSEIF (<LAYER>==13) || (<TYPE>==t_shield)
@@ -448,11 +447,11 @@ tag0.LOWERREQS -= 10
 HITPOINTS += <MulDiv <HITPOINTS>,20,100>
 IF (<TYPE>==t_shield)
 	tag0.spellchannel=1
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISARMOR>)
 	tag0.magearmor=1
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 	tag0.RESENERGY += <MulDiv <ARMOR.HIGH>,30,100>
 ELSEIF (<ISWEAPON>)
 tag0.spellchannel=1
@@ -470,7 +469,7 @@ COLOR=color_o_blackrock
 tag0.LOWERREQS += 25
 HITPOINTS += <MulDiv <HITPOINTS>,30,100>
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,50,100>
+	modar += <MulDiv <ARMOR.HIGH>,50,100>
 	tag0.SKILLBOOST1=MAGICRESISTANCE
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.SKILLBOOST1AMT=100
@@ -501,7 +500,7 @@ COLOR=color_o_aurichalcum
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
 tag0.LOWERREQS += 10
 IF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <modar> + <MulDiv <ARMOR.HIGH>,10,100>
+	modar += <modar> + <MulDiv <ARMOR.HIGH>,10,100>
 	tag0.SKILLBOOST1=MAGICRESISTANCE
 	IF (<LAYER>==13) && (<TAG0.COVERARMS>)
 		tag0.SKILLBOOST1AMT=200
@@ -613,19 +612,6 @@ more2=i_dough_dragon
 
 [FUNCTION f_material_i_board]
 
-[FUNCTION f_material_i_board_birch]
-TAG0.MATERIAL=i_board_birch
-tag.basematerial=i_board
-NAME=birch <NAME>
-COLOR=color_o_birch
-IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
-	TAG.VELOCITY += 12
-ELSEIF (<ISWEAPON>)
-	TAG0.SWINGINCREASE += 20
-ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
-ENDIF
-new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
 
 [FUNCTION f_material_i_board_cyprus]
 TAG0.MATERIAL=i_board_cyprus
@@ -634,6 +620,7 @@ NAME=cypress <NAME>
 COLOR=color_o_cyprus
 HITPOINTS += <MulDiv <HITPOINTS>,40,100>
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
 
 [FUNCTION f_material_i_board_cedar]
 TAG0.MATERIAL=i_board_cedar
@@ -644,9 +631,10 @@ HITPOINTS += <MulDiv <HITPOINTS>,20,100>
 IF (<ISWEAPON>)
 	TAG0.DAMINCREASE += 10
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,10,100>
 ENDIF
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
 
 [FUNCTION f_material_i_board_willow]
 TAG0.MATERIAL=i_board_willow
@@ -663,16 +651,33 @@ IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
 ELSEIF (<ISWEAPON>)
 	TAG0.SWINGINCREASE += 15
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <MulDiv <ARMOR.HIGH>,15,100>
 ENDIF
 new.tag0.modvalue += (5*<RESOURCES.1.VAL>)
+
+
+[FUNCTION f_material_i_board_oak]
+TAG0.MATERIAL=i_board_oak
+tag.basematerial=i_board
+NAME=oak <NAME>
+COLOR=color_o_oak
+tag0.LOWERREQS += 10
+HITPOINTS += <MulDiv <HITPOINTS>,30,100>
+IF (<ISWEAPON>)
+	TAG0.DAMINCREASE += 15
+ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
+	modar += <MulDiv <ARMOR.HIGH>,15,100>
+ENDIF
+new.tag0.modvalue += (9*<RESOURCES.1.VAL>)
+
 
 [FUNCTION f_material_i_board_yew]
 TAG0.MATERIAL=i_board_yew
 tag.basematerial=i_board
 NAME=yew <NAME>
 COLOR=color_o_yew
-HITPOINTS += <MulDiv <HITPOINTS>,10,100>
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+tag0.LOWERREQS += 20
 IF (<ISWEAPON>)
 	TAG0.DAMINCREASE += 25
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
@@ -680,31 +685,38 @@ ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
 ENDIF
 new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
 
-[FUNCTION f_material_i_board_oak]
-TAG0.MATERIAL=i_board_oak
+
+[FUNCTION f_material_i_board_walnut]
+TAG0.MATERIAL=i_board_walnut
 tag.basematerial=i_board
-NAME=oak <NAME>
-COLOR=color_o_oak
-HITPOINTS += <MulDiv <HITPOINTS>,30,100>
-IF (<ISWEAPON>)
-	TAG0.DAMINCREASE += 15
+NAME=walnut <NAME>
+COLOR=color_o_walnut
+HITPOINTS += <MulDiv <HITPOINTS>,20,100>
+IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
+	TAG.VELOCITY += 12
+ELSEIF (<ISWEAPON>)
+	TAG0.SWINGINCREASE += 20
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <MulDiv <ARMOR.HIGH>,20,100>
 ENDIF
-new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (12*<RESOURCES.1.VAL>)
+
 
 [FUNCTION f_material_i_board_mahogany]
 TAG0.MATERIAL=i_board_mahogany
 tag.basematerial=i_board
 NAME=mahogany <NAME>
 COLOR=color_o_mahogany
-HITPOINTS += <MulDiv <HITPOINTS>,40,100>
+HITPOINTS += <MulDiv <HITPOINTS>,25,100>
+tag0.LOWERREQS += 10
 IF (<ISWEAPON>)
 	TAG0.DAMINCREASE += 10
+	TAG0.SWINGINCREASE += 15
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,10,100>
+	modar += <MulDiv <ARMOR.HIGH>,25,100>
 ENDIF
-new.tag0.modvalue += (10*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (14*<RESOURCES.1.VAL>)
+
 
 [FUNCTION f_material_i_board_heartwood]
 TAG0.MATERIAL=i_board_heartwood
@@ -715,18 +727,18 @@ HITPOINTS += <MulDiv <HITPOINTS>,15,100>
 IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
 	TAG.DAMINCREASE += 10 
 	IF (<TAG0.OVERRIDE.RANGE>)
-		TAG.OVERRIDE.RANGE += 6
+		TAG.OVERRIDE.RANGE += 5
 	ELSE 
-		TAG.OVERRIDE.RANGE=(<RANGE>+6)
+		TAG.OVERRIDE.RANGE=(<RANGE>+5)
 	ENDIF
 ELSEIF (<ISWEAPON>)
 	TAG0.DAMINCREASE += 15
 	TAG0.MANALEECH += 15
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,15,100>
+	modar += <MulDiv <ARMOR.HIGH>,15,100>
 	tag0.RESPOISON += <MulDiv <ARMOR.HIGH>,20,100>
 ENDIF
-new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (18*<RESOURCES.1.VAL>)
 
 
 [FUNCTION f_material_i_board_bloodwood]
@@ -745,7 +757,7 @@ IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
 ELSEIF (<ISWEAPON>)
 	TAG0.LIFELEECH += 25 
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,40,100>
+	modar += <MulDiv <ARMOR.HIGH>,40,100>
 ENDIF
 new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
 
@@ -757,19 +769,19 @@ NAME=frostwood <NAME>
 COLOR=color_o_frostwood
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
 IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
-	TAG0.COLDDAMAGE += 20
+	TAG0.COLDDAMAGE += 25
 	IF (<TAG0.OVERRIDE.RANGE>)
 		TAG.OVERRIDE.RANGE += 3
 	ELSE 
 		TAG0.OVERRIDE.RANGE=(<RANGE>+3)
 	ENDIF
 ELSEIF (<ISWEAPON>)
-	TAG0.COLDDAMAGE += 30
+	TAG0.COLDDAMAGE += 35
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,15,100>
-	tag0.RESCOLD += <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,25,100>
 ENDIF
-new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (22*<RESOURCES.1.VAL>)
 	
 [FUNCTION f_material_i_board_sunwood]
 TAG0.MATERIAL=i_board_sunwood
@@ -778,16 +790,16 @@ NAME=sunwood <NAME>
 COLOR=color_o_sunwood
 HITPOINTS += <MulDiv <HITPOINTS>,10,100>
 IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
-	TAG0.FIREDAMAGE += 20
+	TAG0.FIREDAMAGE += 25
 	IF (<TAG0.OVERRIDE.RANGE>)
 		TAG.OVERRIDE.RANGE += 3
 	ELSE 
 		TAG0.OVERRIDE.RANGE=(<RANGE>+3)
 	ENDIF
 ELSEIF (<ISWEAPON>)
-	TAG0.FIREDAMAGE += 30
+	TAG0.FIREDAMAGE += 35
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)
-	modar = <MulDiv <ARMOR.HIGH>,15,100>
-	tag0.RESFIRE += <MulDiv <ARMOR.HIGH>,20,100>
+	modar += <MulDiv <ARMOR.HIGH>,15,100>
+	tag0.RESCOLD += <MulDiv <ARMOR.HIGH>,25,100>
 ENDIF
-new.tag0.modvalue += (20*<RESOURCES.1.VAL>)
+new.tag0.modvalue += (22*<RESOURCES.1.VAL>)

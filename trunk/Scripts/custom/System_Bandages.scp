@@ -39,8 +39,8 @@ HealSys_Brain_6 = i_new_bandageheal  //Vendor
 HealSys_Brain_7 = i_new_bandageheal  //Beggar
 HealSys_Brain_8 = i_new_bandageheal  //Animal Trainer
 HealSys_Brain_9 = i_new_bandageheal  //Thief
-HealSys_Brain_10 = 0  //Monster
-HealSys_Brain_11 = 0  //Berserk
+HealSys_Brain_10 = i_new_bandageheal  //Monster
+HealSys_Brain_11 = i_new_bandageheal  //Berserk
 HealSys_Brain_12 = 0  //Undead
 HealSys_Brain_13 = i_new_bandagevet  //Dragon
 HealSys_Brain_14 = i_new_bandageheal  //Vendor Offduty
@@ -249,7 +249,7 @@ VetSys_Max_VetHealthDivide = 100
 VetSys_HealLoss = 35
 
 //The amount of damage a monster/player must deal to interrupt healing (This is checked before armor)
-VetSys_InterruptMonster = 26
+VetSys_InterruptMonster = 19
 VetSys_InterruptPlayer = 19
 
 

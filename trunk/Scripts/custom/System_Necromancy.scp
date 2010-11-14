@@ -576,7 +576,7 @@ if (<ISEMPTY <src.weapon.tag.realcolor>>)
 endif
 src.weapon.color=0493
 serv.newitem i_curse_weapon
-new.timer=(<eval <argn2>+(<src.spiritspeak>/4)>/50)+3
+new.timer=(<eval <argn2>+(<src.spiritspeak>/2)>/40)+2
 new.equip <src>
 
 [itemdef i_curse_weapon]

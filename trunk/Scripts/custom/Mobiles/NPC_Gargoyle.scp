@@ -46,7 +46,7 @@ TEVENTS=e_combat_move_intel
 
 ON=@Create
 	npc=brain_human
-	SetGarg
+	SetGargoyle
 	name="#NAMES_GARGOYLE"
 	FAME={1000 2000}
 	KARMA={-1500 -2000}
@@ -91,7 +91,7 @@ TEVENTS=e_combat_move_intel
 
 ON=@Create
 	npc=brain_human
-	SetGarg
+	SetGargoyle
 	name="#NAMES_GARGOYLE"
 	FAME={1500 2500}
 	KARMA={1500 2000}
@@ -115,7 +115,7 @@ DEFNAME=c_gargoyle_brute
 name="brute gargoyle"
 icon=i_pet_gargoyle_lbr
 can=mt_walk|mt_fly|mt_usehands
-ARMOR=18
+ARMOR=20
 DAM=5,12
 moverate=0
 resdispid=c_gargoyle
@@ -141,8 +141,8 @@ description=Brute Gargoyle
 
 on=@create
      name="#NAMES_GARGOYLE"
-     npc=brain_npc
-     SetGarg
+     npc=brain_monster
+     SetGargoyle
      fame={2500 3500}
      KARMA={-1500 -2000}
      resfire=32
@@ -174,7 +174,7 @@ icon=i_pet_gargoyle_lbr
 ANIM=03F8C7F
 can=mt_walk|mt_run|mt_usehands|mt_nonhum
 dam=4,11
-armor=32
+armor=24
 moverate=0
 resources=
 foodtype=15 t_meat_raw
@@ -183,7 +183,6 @@ aversions=t_trap,r_civilization
 tag.slots_needed=5
 Tag.BeastClass=Beast_Magic
 tag.firedamage=50
-tag.wrestlingspeed=44
 TAG.MANUEVER1=1
 TAG.MANUEVER2=9
 TAG.MANUEVER3=13
@@ -194,7 +193,7 @@ description=fiery gargoyle
 
 on=@create
      npc=brain_monster
-     SetGarg
+     SetGargoyle
 
      str={182 204}
      dex={100 121}
@@ -207,8 +206,8 @@ on=@create
      anatomy={75.8 84.3}
      magery={92.7 100.0}
 
-     resfire=50
-     respoison=100
+     resfire=100
+     respoison=24
 
      EXP={ 8050 11000 } //Level 5
 
@@ -221,7 +220,6 @@ on=@create
      EVENTS=+e_intel_char_magery_user
 
 on=@death
-     newloot=loot_fire_gargoyle
      src.newitem=i_fx_explode
      src.act.type=t_explosion
      src.act.attr=attr_move_never | attr_can_decay

@@ -53,16 +53,16 @@ ON=@NPCLookAtChar
    RETURN
  ENDIF
 
- IF ( <TAG0.NPCAI.Enemy> & <SRC.TAG0.NPCAI.Race> ) //If my target's race is in my hates
+ IF ( <hval <DEF.race.<TAG.NPCAI.Race>.Enemy>> & <SRC.TAG0.NPCAI.Race> ) //If my target's race is in my hates
        IF ( <ISEVENT.e_squad_member> )
 	 	AlertSquad
        ENDIF
        ATTACK 
        f_warcry
        RETURN 0
- ELIF ( <TAG0.NPCAI.Ally> &<SRC.TAG0.NPCAI.Race> ) //If my target is a friendly
+ ELIF ( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> &<SRC.TAG0.NPCAI.Race> ) //If my target is a friendly
      IF (<SRC.FLAGS>&statf_war) && !(<npc> == brain_healer) //If ally is fighting
-	 If (<TAG0.NPCAI.Ally> &<SRC.ATTACKER.last.TAG0.NPCAI.Race>) || (<SRC.ATTACKER.last>==0) //and they have a valid target
+	 If (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>> &<SRC.ATTACKER.last.TAG0.NPCAI.Race>) || (<SRC.ATTACKER.last>==0) //and they have a valid target
 		return 0
 	 elif <FriendlySpellCheck>
 		return 0
@@ -91,18 +91,18 @@ endif
 
  IF (<KARMA> > 0) //If my karma is good
    IF (<SRC.KARMA> < -1000) //If my target's karma is bad
-     IF !( <TAG0.NPCAI.Ally> & <SRC.TAG0.NPCAI.Race> )
+     IF !( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race> )
          ATTACK
          f_warcry
      ENDIF
-   ELIF ( ((<TAG0.NPCAI.Ally>)&(<SRC.TAG0.NPCAI.Race>)) || (<SRC.KARMA> > 0) ) //If my target's karma is good or an ally
+   ELIF ( ((<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>)) || (<SRC.KARMA> > 0) ) //If my target's karma is good or an ally
      If <FriendlySpellCheck>
 		return 0
      endif
    ENDIF
 
  ELIF (<KARMA> < -1000) //If my karma is bad
-   IF !(<TAG0.NPCAI.Ally> & <SRC.TAG0.NPCAI.Race>) && !(<SRC.NPC> == brain_animal)
+   IF !(<hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race>) && !(<SRC.NPC> == brain_animal)
          ATTACK
          f_warcry
    ELSE
@@ -112,7 +112,7 @@ endif
    ENDIF
 
  ELSE //If my karma is neutral
-   IF ( (<TAG0.NPCAI.Ally>)&(<SRC.TAG0.NPCAI.Race>) ) //If my target is an ally
+   IF ( (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>) ) //If my target is an ally
      If <FriendlySpellCheck>
 		return 0
      endif
@@ -187,9 +187,9 @@ endif
 
 ON=@NPCSeeNewPlayer
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return
 endif
-   IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
+   IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
       RETURN 0
    ENDIF
 If <npccast_magery_defense>
@@ -199,11 +199,13 @@ RETURN 0
 
 
 on=@NPCActFight
+Tag.target = <src>
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+25))
-      RETURN 0
+IF (<EVAL {1 300}> > (<TAG0.RANDCAST>+25) )
+      TIMERF 1, ATTACK <SRC>
+      RETURN
 ENDIF
 //check evalint here
 TAG.MAGE=0
@@ -255,68 +257,31 @@ return 0
 
 on=@Attack
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+25))
-      RETURN 0
-ENDIF
-//check evalint here
-TAG.MAGE=0
-IF (<ATTACKER> > 0)
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MAXMANA> >= 40) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
-	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
-		If (<npccast_magery_anticaster>)
-			return 1
-		endif
-	ELSE //otherwise just find a good unfrozen target if possible
-		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
-			OBJ=<attacker.max>
-		ELIF !(<attacker.last.FLAGS>&statf_freeze) && !(<attacker.last.uid>==<uid>)
-			OBJ=<attacker.last>
-		ELIF !(<TAG.MAGE>==1) && !(<attacker.max.uid>==<uid>)
-			OBJ=<attacker.max>
-		ELIF !(<TAG.MAGE>==1)
-			OBJ=<attacker.last>
-		ENDIF
-	ENDIF
-ELSE
-	OBJ=<SRC>
-ENDIF
-	If !(<R3>) || (<OBJ.FLAGS>&statf_freeze)
-		if <npccast_magery_heavy_offense> 
-			return 1
-		elif <npccast_magery_summon>
-			return 1
-		endif
-	endif
-	if <npccast_magery_offense>
-		return 1
-	elif <npccast_magery_defense>
-		return 1
-	endif
-return 0
-
 
 ON=@SpellFail
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
 
 ON=@SpellSuccess
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
+
 
 ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 0
+	return
 endif
 TAG.NEARBY=0
 IF (<ATTACKER> > 0)
@@ -330,51 +295,51 @@ IF (<ATTACKER> > 0)
 	        Local.i ++
 	EndWhile
 ENDIF
-IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
+IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+15))
 	IF (<SRC.FLAGS>&statf_conjured)
 		IF !(<R3>)
 			IF (<npccancast s_mass_dispel>)
 				npccast s_mass_dispel,<src>
-				return 1
+				return
 			ENDIF
 		ENDIF
 		IF (<npccancast s_dispel>)
 			npccast s_dispel,<src>
-			return 1
+			return
 		ENDIF
 	ENDIF
 	If !(<R3>)
 		If <npccast_magery_defense> 
-			return 1
+			return
 		endif
 	endif
 	if <npccast_magery_healing>
-		return 1
+		return
 	elif <npccast_magery_offense>
-		return 1
+		return
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 	IF (<SRC.FLAGS>&statf_conjured)
 		IF !(<R3>)
 			IF (<npccancast s_mass_dispel>)
 				npccast s_mass_dispel,<src>
-				return 1
+				return
 			ENDIF
 		ENDIF
 		IF (<npccancast s_dispel>)
 			npccast s_dispel,<src>
-			return 1
+			return
 		ENDIF
 	ENDIF
 	If !(<R3>)
 		If <npccast_magery_defense> 
-			return 1
+			return
 		endif
 	endif
 	if <npccast_magery_healing>
-		return 1
+		return
 	elif <npccast_magery_offense>
-		return 1
+		return
 	endif
 ENDIF
 RETURN 0
@@ -382,12 +347,12 @@ RETURN 0
 
 ON=@ENVIRONCHANGE
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return
+	return 0
 endif
    IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
       RETURN 0
    ENDIF
-IF (<FINDID(i_rune_poison).morey> > 500)
+IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
 	IF (<npccancast s_cure>)
 		npccast s_cure,<uid>
 		return 1
@@ -427,7 +392,7 @@ IF (<ATTACKER> > 0)
 		ENDIF
 	        Local.i ++
 	EndWhile
-	IF (<TAG0.NEARBY>==1) || (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
+	IF (<TAG0.NEARBY>==1) || (<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 		RETURN 0
 	ENDIF
 	FOR <EVAL <ATTACKER>>
@@ -483,7 +448,7 @@ return
 
 
 [FUNCTION npccast_magery_healing]
-	IF (<FINDID(i_rune_poison).morey> > 500)
+	IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
 		IF (<npccancast s_cure>)
 			npccast s_cure,<uid>
 			return 1
@@ -501,7 +466,7 @@ return
 	return 0
 
 [FUNCTION npccast_magery_healing_ally]
-	IF (<OBJ.FINDID(i_rune_poison).morey> > 500)
+	IF (<OBJ.FINDID(i_rune_poison)>) || (<OBJ.FINDID(i_memory_poison_new)>)
 		IF (<npccancast s_cure>)
 			npccast s_cure,<obj>
 			return 1
@@ -737,10 +702,11 @@ RETURN 0
 
 
 on=@NPCActFight
+Tag.target = <src>
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return 0
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
+IF (<EVAL {1 300}>>(<TAG0.RANDCAST>+20))
       RETURN 0
 ENDIF
 IF (<ATTACKER> > 0)
@@ -766,37 +732,27 @@ return 0
 
 on=@Attack
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
-      RETURN 0
-ENDIF
-IF (<ATTACKER> > 0)
-	IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
-		OBJ=<attacker.max>
-	ELIF !(<attacker.last.FLAGS>&statf_freeze) && !(<attacker.last.uid>==<uid>)
-		OBJ=<attacker.last>
-	ELIF !(<attacker.max.uid>==<uid>)
-		OBJ=<attacker.max>
-	ELSE
-		OBJ=<attacker.last>
-	ENDIF
-ELSE
-	OBJ=<SRC>
-ENDIF
-	if <npccast_chivalry_offense>
-		return 1
-	elif <npccast_chivalry_defense>
-		return 1
-	endif
-return 0
 
 
 ON=@SpellFail
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
 
 ON=@SpellSuccess
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
 
 ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
@@ -817,24 +773,24 @@ ENDIF
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+30))
 	If !(<R2>)
 		If <npccast_chivalry_defense> 
-			return 1
+			return
 		endif
 	endif
 	if <npccast_chivalry_healing>
-		return 1
+		return
 	elif <npccast_chivalry_offense>
-		return 1
+		return
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
 	If !(<R3>)
 		If <npccast_chivalry_defense> 
-			return 1
+			return
 		endif
 	endif
 	if <npccast_chivalry_healing>
-		return 1
+		return
 	elif <npccast_chivalry_offense>
-		return 1
+		return
 	endif
 ENDIF
 RETURN 0
@@ -842,27 +798,27 @@ RETURN 0
 
 ON=@ENVIRONCHANGE
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return
+	return 0
 endif
    IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
       RETURN 0
    ENDIF
-IF (<FINDID(i_rune_poison).morey> > 500)
+IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
 	IF (<npccancast s_cure>)
 		npccast s_cure,<uid>
-		return 1
+		return
 	ENDIF
 ENDIF
 IF (<HITS> < <MAXHITS>)
 	If (<R3>)
 		IF (<npccancast s_greater_heal>)
 			npccast s_greater_heal,<uid>
-			return 1
+			return
 		endif
 	endif	
 	IF (<npccancast s_heal>)
 		npccast s_heal,<uid>
-		return 1
+		return
 	ENDIF
 ENDIF
 IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
@@ -873,7 +829,7 @@ RETURN
 
 ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 
+	return 0
 endif
 IF (<ATTACKER> > 0)
 	IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
@@ -904,7 +860,7 @@ return
 
 
 [FUNCTION npccast_chivalry_healing]
-	IF (<FINDID(i_rune_poison).morey> > 500)
+	IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
 		IF (<npccancast s_transmute_poison>) && (<R3>)
 			npccast s_transmute_poison,<uid>
 			return 1
@@ -922,7 +878,7 @@ return
 	return 0
 
 [FUNCTION npccast_chivalry_healing_ally]
-	IF (<OBJ.FINDID(i_rune_poison).morey> > 500)
+	IF (<OBJ.FINDID(i_rune_poison)>) || (<OBJ.FINDID(i_memory_poison_new)>)
 		IF (<npccancast s_transmute_poison>) && (<R3>)
 			npccast s_transmute_poison,<obj>
 			return 1
@@ -979,7 +935,7 @@ ON=@NPCSeeNewPlayer
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return 0
 endif
-   IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
+   IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
       RETURN 0
    ENDIF
 IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>)
@@ -1001,10 +957,11 @@ return
 
 
 on=@NPCActFight
+Tag.target = <src>
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return 0
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+25))
+IF (<EVAL {1 300}>>(<TAG0.RANDCAST>+25))
       RETURN 0
 ENDIF
 //check evalint here
@@ -1049,64 +1006,31 @@ ENDIF
 		return 1
 	endif
 return 0
+
 
 
 on=@Attack
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
-	return 1
+	return
 endif
-IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+25))
-      RETURN 0
-ENDIF
-//check evalint here
-TAG.MAGE=0
-IF (<ATTACKER> > 0)
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MAXMANA> >= 40) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
-	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
-		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
-			npccast s_mind_rot,<obj>
-			return 1
-		endif
-	ELSE //otherwise just find a good unfrozen target if possible
-		IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
-			OBJ=<attacker.max>
-		ELIF !(<attacker.last.FLAGS>&statf_freeze) && !(<attacker.last.uid>==<uid>)
-			OBJ=<attacker.last>
-		ELIF !(<TAG.MAGE>==1) && !(<attacker.max.uid>==<uid>)
-			OBJ=<attacker.max>
-		ELIF !(<TAG.MAGE>==1)
-			OBJ=<attacker.last>
-		ENDIF
-	ENDIF
-ELSE
-	OBJ=<SRC>
-ENDIF
-	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
-		npccast s_curse_weapon
-		return 1
-	endif
-	if <npccast_necro_offense>
-		return 1
-	endif
-return 0
-
 
 ON=@SpellFail
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
 
 ON=@SpellSuccess
 	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
 
 ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
@@ -1127,18 +1051,18 @@ ENDIF
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R2>)
 		npccast s_curse_weapon
-		return 1
+		return
 	endif
 	if <npccast_necro_offense>
-		return 1
+		return
 	endif
 ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R3>)
 		npccast s_curse_weapon
-		return 1
+		return
 	endif
 	if <npccast_necro_offense>
-		return 1
+		return
 	endif
 ENDIF
 RETURN 0
@@ -1252,17 +1176,19 @@ ENDIF
  IF (<SERV.SPELL.<LOCAL.SPELL>.MANAUSE> > <MANA>)
 	RETURN 1
  ENDIF
- SAY <RUNES <LOCAL.SPELL>>
+ IF (<EVAL STRLEN(<SERV.SPELL(<LOCAL.SPELL>).RUNES>)> > 0)
+	 SAY <RUNES <LOCAL.SPELL>>
+ ENDIF
  IF !(<LOCAL.SKILL>)
   LOCAL.SKILL = 25
  ENDIF
  TAG.LASTCASTING=<eval (<SERV.TIME>+<SERV.SPELL.<LOCAL.SPELL>.CAST_TIME>)>
 
 // Set spell target
-IF (<ARGV> > 2)
+IF (<ARGV> > 2) //use coords if given
     ACT = 0
     ACTP = <ARGV[1]>, <ARGV[2]>, <ARGV[3]>, <ARGV[4]>
-ELIF (<SERV.SPELL.<LOCAL.SPELL>.FLAGS> & spellflag_targ_xyz)
+ELIF (<SERV.SPELL.<LOCAL.SPELL>.FLAGS> & spellflag_targ_xyz) //use coords for ground targ spells regardless
     ACTP = <ACT.P>
     ACT = 0
 ELSE
@@ -1282,112 +1208,6 @@ ENDIF
  ACTPRV = <UID>
  ACTARG1 = <LOCAL.SPELL>
  ACTION = <LOCAL.SKILL>
- ACTPRI = 100
  RETURN 1
-
-[FUNCTION f_faction_highlight]
-local.uid=<uid>
-local.body=<body>
-FORCLIENTS 14
-	if <memoryfindtype.memory_guild>
-		if <memoryfindtype.memory_guild.link.align>==1
-		  highlight 05,<local.uid>,<local.body>
-		elseif <memoryfindtype.memory_guild.link.align>==2
-		  highlight 02,<local.uid>,<local.body>
-		endif
-	endif
-ENDFOR
-
-[EVENTS e_enemy_npc]
-
-ON=@CLIENTTOOLTIP
-say ctt
-IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
- VAR.GUILDSTONEUID=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
- NEWITEM=i_memory
- ACT.TYPE=t_eq_script
- ACT.CONT=<UID>
- ACT.TYPE=t_eq_memory_obj
- ACT.COLOR=0400
- ACT.LINK=<VAR.GUILDSTONEUID>
- VAR.GUILDSTONEUID=
-ELSE
-ENDIF
-
-
-ON=@CLIcK
-say cl
-IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
- VAR.GUILDSTONEUID=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
- NEWITEM=i_memory
- ACT.TYPE=t_eq_script
- ACT.CONT=<UID>
- ACT.TYPE=t_eq_memory_obj
- ACT.COLOR=0400
- ACT.LINK=<VAR.GUILDSTONEUID>
- VAR.GUILDSTONEUID=
-ELSE
-ENDIF
-
-
-ON=@DCLIcK
-say dcl
-IF (<SRC.MEMORYFINDTYPE.memory_guild.LINK>)
- OBJ=<SRC.MEMORYFINDTYPE.memory_guild.LINK>
- OBJ.JoinAsMember <UID>
-ENDIF
-//src.highlight 05,<uid>,<body>
-
-ON=@NPCActFight
-say action2
-local.uid=<uid>
-local.body=<body>
-FORCHARS 24
-	IF <ISPLAYER>
-		highlight 05,<local.uid>,<local.body>
-	ENDIF
-ENDFOR
-
-
-[EVENTS e_ally_npc]
-
-ON=@CLIENTTOOLTIP
-src.highlight 02,<uid>,<body>
-
-ON=@CLIcK
-src.highlight 02,<uid>,<body>
-
-ON=@DCLIcK
-src.highlight 02,<uid>,<body>
-
-
-ON=@HIT
-IF <SRC.ISPLAYER>
-src.highlight 02,<uid>,<body>
-ENDIF
-
-ON=@gethit
-IF <SRC.ISPLAYER>
-src.highlight 02,<uid>,<body>
-ENDIF
-
-ON=@SPELLCAST
-IF <ACT.ISPLAYER>
-act.highlight 02,<uid>,<body>
-ENDIF
-
-ON=@ATTACK
-IF <SRC.ISPLAYER>
-src.highlight 02,<uid>,<body>
-ENDIF
-
-
-[FUNCTION highlight]
-tag.color <argv[0]>
-tag.bodytype <argv[2]>
-changehue <argv[1]>
-
-[FUNCTION changehue]
-sendpacket 077 D<ARGS> W<tag.bodytype> W<uid.<args>.p.x> W<uid.<args>.p.y> <hval <UID.<ARGS>.P.Z>> <hval <UID.<ARGS>.DIR>> W<UID.<ARGS>.COLOR> 00 <tag.color> 
 
 [EOF]

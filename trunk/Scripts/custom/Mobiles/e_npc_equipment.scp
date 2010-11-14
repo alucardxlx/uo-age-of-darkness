@@ -64,6 +64,8 @@ ON=@EnvironChange
      SRC.EQUIPARMOR
      SRC.EQUIPWEAPON
 
+
+
 [EVENTS e_npc_weapon_switcher]
 
 ON=@NPCActFight
@@ -87,6 +89,20 @@ ON=@NPCActFight
 
 ON=@GETHIT
    LOCAL.UID = 0
+   IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
+      LOCAL.UID=<FINDID(i_potion_CureGreat)>
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_Cure)>
+      ENDIF
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_CureLess)>
+      ENDIF
+      //We found one, use it
+      IF (<LOCAL.UID>!=0)
+         TRYSRC <UID> USEITEM <LOCAL.UID>
+	 RETURN
+      ENDIF
+   ENDIF
    IF (<HITS> <= (<MAXHITS>/3))
       //Check for pots
       LOCAL.UID=<FINDID(i_potion_HealGreat)>
@@ -99,28 +115,55 @@ ON=@GETHIT
       //We found one, use it
       IF (<LOCAL.UID>!=0)
          TRYSRC <UID> USEITEM <LOCAL.UID>
+	 RETURN
+      ENDIF
+   ENDIF
+RETURN
+
+ON=@EnvironChange
+   LOCAL.UID = 0
+   IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>)
+      LOCAL.UID=<FINDID(i_potion_CureGreat)>
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_Cure)>
+      ENDIF
+      IF (<LOCAL.UID>==0)
+	LOCAL.UID=<FINDID(i_potion_CureLess)>
+      ENDIF
+      //We found one, use it
+      IF (<LOCAL.UID>!=0)
+         TRYSRC <UID> USEITEM <LOCAL.UID>
+	 RETURN
       ENDIF
    ENDIF
 RETURN 0
 
-ON=@EnvironChange
-   LOCAL.UID = 0
-   //If not full health then use it
-   IF ((<HITS>)<(<MAXHITS>/4))
-      //Check for pots
-      LOCAL.UID=<FINDID(i_potion_HealGreat)>
-      IF (<LOCAL.UID>==0)
-	LOCAL.UID=<FINDID(i_potion_Heal)>
-      ENDIF
-      IF (<LOCAL.UID>==0)
-	LOCAL.UID=<FINDID(i_potion_HealLess)>
-      ENDIF
-      //We found one, use it
-      IF (<LOCAL.UID>!=0)
-         UID.<LOCAL.UID>.DCLICK
-      ENDIF
+[function f_bandage]
+IF !(<FINDID(i_new_bandageheal)>) && !(<FINDID(i_new_bandagevet)>) 
+   IF (<FINDID(i_rune_poison)>) || (<FINDID(i_memory_poison_new)>) || (<HITS> <= (<MAXHITS>/2))
+	If <Def0.HealSys_UseHealSys> && <Restest 1 i_bandage>
+		Ref1 = <Uid>
+		Consume i_new_bandageheal
+		Consume i_new_bandagevet
+		Local.HealItem=<Ref1.GetBandageItem>
+		If <Serv.Itemdef.<Local.HealItem>>
+			Serv.Newitem = <Local.HealItem>
+			New.Link = <Ref1.Uid>
+			Equip <New.Uid>
+			Consume	i_bandage
+		Endif
+		Return 1
+	Endif
    ENDIF
-RETURN 0
+ENDIF
+
+[EVENTS e_npc_intel_bandage_user]
+
+ON=@GETHIT
+	f_bandage
+
+ON=@EnvironChange
+	f_bandage
 
 [FUNCTION f_equip_melee_weapon]
  VAR.EquipMeleeWeapon.OldArchery=<ARCHERY>

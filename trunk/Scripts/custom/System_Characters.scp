@@ -452,7 +452,6 @@ Skillgain Tactics <Src.Tactics>+<Src.SkillMod Tactics>
 
 Argn1 = <CombatSys_DamageBonus>
 Argn1 += <CombatSys_AOS_Velocity>
-Argn1 += <CombatSys_SlayerWeapons <Argn1>>
 Argn1 += <f_combat_manuever_hit <Argn1>>
 IF <TAG0.Consecrate>
 	Argn2 = <f_Consecrate_weapon_check <Argn2>>
@@ -919,7 +918,6 @@ Skillgain Tactics <Src.Tactics>+<Src.SkillMod Tactics>
 
 Argn1 = <CombatSys_DamageBonus>
 Argn1 += <CombatSys_AOS_Velocity>
-Argn1 += <CombatSys_SlayerWeapons <Argn1>>
 Argn1 += <f_combat_manuever_hit <Argn1>>
 IF <TAG0.Consecrate>
 	Argn2 = <f_Consecrate_weapon_check <Argn2>>

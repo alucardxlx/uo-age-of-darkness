@@ -21,6 +21,7 @@ ICON=i_pet_LIZMAN
 ANIM=078c7f
 DAM=3,9
 ARMOR=14
+MOVERATE=0
 RESOURCES=4 i_ribs_raw, 4 i_hide
 CAN=MT_WALK|MT_RUN|MT_USEHANDS
 FOODTYPE=45 t_meat_raw
@@ -40,6 +41,8 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={36 60}
+	TAG.NPCAI.Rank=1
+	SetLizardman
 
 	PARRYING={55.0 75.0}
 	MagicResistance={35.0 60.0}
@@ -57,6 +60,7 @@ ICON=i_pet_LIZMAN
 ANIM=078c7f
 DAM=3,9
 ARMOR=14
+MOVERATE=0
 RESOURCES=4 i_ribs_raw, 4 i_hide
 CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_FEMALE
 FOODTYPE=45 t_meat_raw
@@ -76,6 +80,8 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={36 60}
+	TAG.NPCAI.Rank=1
+	SetLizardman
 
 	PARRYING={55.0 75.0}
 	MagicResistance={35.0 60.0}
@@ -94,6 +100,7 @@ ICON=i_pet_LIZMAN
 ANIM=078c7f
 DAM=3,9
 ARMOR=14
+MOVERATE=0
 RESOURCES=4 i_ribs_raw, 4 i_hide
 CAN=MT_WALK|MT_RUN|MT_USEHANDS
 FOODTYPE=45 t_meat_raw
@@ -111,6 +118,8 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={86 110}
+	TAG.NPCAI.Rank=2
+	SetLizardman
 
 	PARRYING={55.0 75.0}
 	MagicResistance={35.0 60.0}

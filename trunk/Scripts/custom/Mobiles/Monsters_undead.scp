@@ -46,7 +46,6 @@ subsection=Undead
 description=Dracolich
 
 on=@create
-     TAG.NPCAI.Rank=8
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -120,7 +119,6 @@ TAG.MANUEVER2=3
 TAG.MANUEVER3=9
 
 on=@create
-     TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -285,7 +283,6 @@ subsection=Undead
 description=Skeletal Mage
 
 on=@create
-     TAG.NPCAI.Rank=2
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -346,7 +343,6 @@ subsection=Undead
 description=Skeletal Knight
 
 on=@create
-     TAG.NPCAI.Rank=4
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -407,7 +403,6 @@ subsection=Undead
 description=Spectre
 
 on=@create
-     TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -473,7 +468,6 @@ subsection=Undead
 description=Mummy
 
 on=@create
-     TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -532,7 +526,6 @@ subsection=Undead
 description=Lich
 
 on=@create
-     TAG.NPCAI.Rank=6
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -619,7 +612,6 @@ subsection=Undead
 description=Banshee
 
 ON=@Create 
-     TAG.NPCAI.Rank=4
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -833,7 +825,6 @@ subsection=Undead
 description=Zombie Lord
 
 on=@create
-     TAG.NPCAI.Rank=6
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -925,7 +916,7 @@ RESDISPDNHUE=33
 RESDISPDNID=c_man
 DAM=15,19
 ARMOR=45
-MOVEREATE=30
+MOVERATE=30
 RESOURCES=2 i_reag_fertile_dirt, 2 i_reag_bone
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
@@ -945,7 +936,6 @@ subsection=Undead
 DESCRIPTION=Interred Grizzle
 
 ON=@Create 
-     TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -1004,7 +994,6 @@ subsection=Undead
 DESCRIPTION=Undead Gargoyle
 
 ON=@CREATE
-     TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -1065,7 +1054,6 @@ subsection=Undead
 DESCRIPTION=Yao Guai
 
 on=@create
-     TAG.NPCAI.Rank=1
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -1079,17 +1067,17 @@ TAG0.MODHITS = 16
 MagicResistance={59.0 70.0}
 Tactics={60.0 76.0}
 Wrestling={80.0 93.0}
-Magery={61.0 77.0}
+Necromancy={61.0 77.0}
 Anatomy={78.0 90.0}
 Meditation={78.0 90.0}
-EvaluatingIntel={78.0 90.0}
+SpiritSpeak={78.0 90.0}
 
 Fame={2000 2500}
 Karma={-2000 -2500}
 EXP={ 8500 10500 } //Level 5
 
 TAG.RANDCAST=15
-EVENTS=+e_intel_char_magery_user
+EVENTS=+e_intel_char_necro_user
 
 rescold=15
 resenergy=15
@@ -1119,7 +1107,6 @@ subsection=monsters
 description=shadowlord - lbr
 
 on=@create
-     TAG.NPCAI.Rank=5
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -1157,7 +1144,6 @@ SUBSECTION=Wildlife
 DESCRIPTION=Turkey
 
 ON=@CREATE
-     TAG.NPCAI.Rank=8
      npc=brain_undead
      SetUndead
      nightsight=1
@@ -1201,14 +1187,13 @@ subsection=Undead
 description=Ghost
 
 on=@create
-     TAG.NPCAI.Rank=3
      npc=brain_undead
      SetUndead
      nightsight=1
 
      str={99 119}
-     dex={98 115}
-     int={74 90}
+     dex={98 118}
+     int={74 95}
 
      tactics={65.2 79.6}
      wrestling={71.3 78.8}
@@ -1237,6 +1222,65 @@ on=@create
 
 ON=@NpcRestock
      ITEM={ Magic_bag 2 Undead_backpack 1 0 3}
+
+
+
+[CHARDEF 740]
+DEFNAME=c_wraith
+NAME=wraith
+dam=10,13
+armor=38
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+RESOURCES=
+FOODTYPE=
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_gem,i_gold,t_potion,t_scroll
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+description=Wraith
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={128 145}
+     dex={89 105}
+     int={139 156}
+
+     tactics={65.2 79.6}
+     wrestling={71.3 78.8}
+     chivalry={79.0 82.0}
+     necromancy={39.5 56.0}
+     spiritspeak={63.0 79.0}
+     hiding={79.0 81.0}
+     stealth={79.0 81.0}
+
+	givelang 1
+
+     fame={4250 5300}
+     karma={-2000 -6500}
+     EXP={ 4050 4950 } //Level 4
+
+     resfire=24
+     rescold=24
+     resenergy=24
+     respoison=100
+
+     TAG.RANDCAST = 35
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_necro_user
+     EVENTS=+e_intel_char_chivalry_user
 
 
 [eof]

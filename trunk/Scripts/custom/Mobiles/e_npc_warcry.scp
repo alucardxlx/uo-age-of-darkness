@@ -26,7 +26,7 @@ ELIF ( <TAG0.NPCAI.Race> == racef_pirate )
 	   SAY Your money AND your life!
 	   SAY Don't make this difficult.
 	   SAY I'll take your booty from your cold dead hands.
-	   EMOTE grins
+	   EMOTE grin
 	   SAY Arrr!
 	   SAY Another day, another plundering.
 	ENDDO

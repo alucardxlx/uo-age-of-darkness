@@ -28,17 +28,23 @@ ID=c_SKELETON 2
 ID=c_patchwork_SKELETON 
 ID=c_ZOMBIE 2
 ID=c_deformed_ZOMBIE
-ID=099
+ID=c_ghoul
+ID=c_mound_maggots
 
 [SPAWN 08002]
 DEFNAME=SPAWN_Undead_Medium
 CATEGORY=AoD Spawn Groups
 SUBSECTION=Undead
 DESCRIPTION=Medium Undead
-ID=c_skeleton_knight
-ID=c_skeleton_mage
-ID=c_liche
+ID=c_skeleton_knight 2
+ID=c_skeleton_mage 2
+ID=c_wraith
 ID=c_mummy
+ID=c_skeletal_mount
+ID=c_undead_gargoyle 2
+ID=c_yao_guai
+ID=c_shade
+ID=c_ghost 2
 
 [SPAWN 08003]
 DEFNAME=SPAWN_Undead_Strong
@@ -47,6 +53,8 @@ SUBSECTION=Undead
 DESCRIPTION=Strong Undead
 ID=c_zombie_lord
 ID=c_dracolich
+ID=c_lich
+ID=c_interred_grizzle
 
 [SPAWN 08007]
 DEFNAME=SPAWN_LesserDragons
@@ -118,8 +126,7 @@ ID=C_rat_giant
 ID=C_SNOW_LEOPARD
 ID=C_polar_bear
 
-[SPAWN 0800e]
-DEFNAME=SPAWN_WaterCreatures
+[SPAWN SPAWN_WaterCreatures]
 CATEGORY=AoD Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Water Creatures
@@ -129,8 +136,7 @@ ID=c_sea_serpent 3
 ID=c_kraken
 ID=c_elem_water 4
 
-[SPAWN 0800f]
-DEFNAME=SPAWN_WOLF_PACK
+[SPAWN SPAWN_WOLF_PACK]
 CATEGORY=AoD Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Wolf Pack
@@ -138,8 +144,7 @@ ID=c_timber_wolf 2
 ID=c_gray_wolf
 ID=c_white_wolf
 
-[SPAWN 08010]
-DEFNAME=SPAWN_ForestAnimals
+[SPAWN SPAWN_ForestAnimals]
 CATEGORY=Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Forest Animals
@@ -161,8 +166,7 @@ ID=c_songbird 3
 ID=c_raven 2
 ID=c_spider_giant
 
-[SPAWN 08011]
-DEFNAME=SPAWN_FarmAnimals
+[SPAWN SPAWN_FarmAnimals]
 CATEGORY=Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Farm Animals
@@ -180,8 +184,7 @@ ID=c_PIG 2
 ID=c_GOAT 2
 ID=c_turkey
 
-[SPAWN 08012]
-DEFNAME=SPAWN_JungleCreatures
+[SPAWN SPAWN_JungleCreatures]
 CATEGORY=Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Jungle Creatures
@@ -191,23 +194,38 @@ ID=c_PARROT 2
 ID=c_SNAKE_giant
 ID=c_komodo_dragon
 ID=c_bullfrog 2
-ID=c_rat
+ID=c_rat 2
 ID=c_rat_giant
 ID=c_toad_giant
+ID=c_scorpion_giant
+ID=c_Slime 2
+ID=c_harpy
 
-[SPAWN 08013]
-DEFNAME=SPAWN_SwampCreatures
+[SPAWN SPAWN_SwampCreatures]
 CATEGORY=Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Swamp Creatures
-ID=c_bullfrog
+ID=c_bullfrog 2
 ID=c_rat
 ID=c_rat_giant
 ID=c_SNAKE 2
 ID=c_SNAKE_giant
 ID=C_toad_giant
-ID=c_ALLIGATOR 2
+ID=c_ALLIGATOR
 ID=c_Slime 2
+ID=c_rotworm 2
+
+[SPAWN SPAWN_DesertCreatures]
+CATEGORY=Spawn Groups
+SUBSECTION=Animals
+DESCRIPTION=Desert Creatures
+ID=c_ant_lion
+ID=c_rat
+ID=c_rat_giant
+ID=c_SNAKE 2
+ID=c_SNAKE_giant
+ID=C_scorpion_giant
+ID=c_rabbit 2
 
 [SPAWN 08014]
 DEFNAME=SPAWN_Villagers

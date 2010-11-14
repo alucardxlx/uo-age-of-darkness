@@ -36,7 +36,7 @@ ON=*
 			dorand 4
 				L Busy fighting, Speak with me later.
 				L Not now fool I'm fighting.
-				L I said I'm busy!
+				L I'm busy!
 				L I will have to kill you too if you don't leave me alone!
 			enddo
 		ENDIF

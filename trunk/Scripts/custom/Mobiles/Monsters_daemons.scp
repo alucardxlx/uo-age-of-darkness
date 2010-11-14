@@ -49,7 +49,6 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_greater_daemon"
-     TAG.NPCAI.Rank=5
      SetDemon
 
      str={151 175}
@@ -121,7 +120,6 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_daemon"
-     TAG.NPCAI.Rank=4
      SetDemon
 
      str={291 306}
@@ -182,7 +180,6 @@ description=Hell Hound
 on=@create
 	nightsight=1
      npc=brain_monster
-     TAG.NPCAI.Rank=2
      SetDemon
 
         str={108 139}
@@ -241,7 +238,6 @@ on=@create
 	nightsight=1
      color=0480
      npc=brain_monster
-     TAG.NPCAI.Rank=2
      SetDemon
 
         str={108 139}
@@ -329,7 +325,6 @@ on=@create
 
      npc=brain_monster
      name="#names_daemon"
-     TAG.NPCAI.Rank=3
      SetDemon
 
      fame={4000 6000}
@@ -374,7 +369,6 @@ description=Imp
 on=@create
 	nightsight=1
      npc=brain_monster
-     TAG.NPCAI.Rank=1
      SetDemon
 
      str={91 114}
@@ -437,7 +431,6 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_succubus"
-     TAG.NPCAI.Rank=4
      SetDemon
 
      str={206 235}
@@ -514,7 +507,6 @@ on=@create
      TAG0.MODHITS = 16
      TAG0.MODMANA = 16
 
-     TAG.NPCAI.Rank=3
      SetDemon
 
      EXP={ 65000 81000 } //Level 8
@@ -577,7 +569,6 @@ on=@create
 
      npc=brain_monster
      name="#names_greater_daemon"
-     TAG.NPCAI.Rank=5
      SetDemon
 
      str={247 260}
@@ -646,7 +637,6 @@ on=@create
 	nightsight=1
      name="#names_greater_daemon"
      npc=brain_monster
-     TAG.NPCAI.Rank=6
      SetDemon
 
      str={257 270}
@@ -717,7 +707,6 @@ on=@create
 	nightsight=1
      npc=brain_monster
      name="#names_greater_daemon"
-     TAG.NPCAI.Rank=5
      SetDemon
 
      str={280 305}
@@ -774,7 +763,7 @@ description=efreet - lbr
 on=@create
 	nightsight=1
      npc=brain_monster
-     TAG.NPCAI.Rank=3
+     color=0489
      SetDemon
 
      str={118 134}
@@ -801,7 +790,7 @@ on=@create
 
      EXP={ 8050 11000 } //Level 5
 
-     TAG.RANDCAST=35
+     TAG.RANDCAST=30
      TAG.QUICKCAST = 15
      TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
@@ -839,7 +828,7 @@ description=djinn - lbr
 on=@create
 	nightsight=1
      npc=brain_monster
-     TAG.NPCAI.Rank=4
+     color=081b
      SetDemon
 
      str={87 103}
@@ -911,7 +900,6 @@ ON=@Create
 	nightsight=1
 	NPC=brain_monster
 	name="#names_greater_daemon"
-	TAG.NPCAI.Rank=6
 	SetDemon
 
 	FAME={7000 9500} 

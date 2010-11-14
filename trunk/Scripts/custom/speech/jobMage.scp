@@ -93,7 +93,7 @@ ON=*relvinian*
 		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
 			DORAND 6
 				L  Relivinian was a mage driven mad by the Daemons he attempted to control. He became so afraid that others were attempting to steal his research that he fled Britain and drew upon his powers to create a magical maze pulled from all areas of the world to protect himself from watchful eyes.
-				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power soon after the destruction of Exodus, but vanished mysteriously ages ago.
+				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power and built a maze to protect himself from those he thought would condemn his research. He hasn't bee seen since.
 				L  It is said that Relvinian's goal was to summon Daemons to serve as slaves to the people of Britannia.  As thou might suspect, his foolish venture went gravely wrong.
 				L  I've heard Relvinian's maze contains naught but mages now.
 				L  Rumor has it that Relvinian's maze contains the power to heal those wounded in battle.
@@ -102,7 +102,7 @@ ON=*relvinian*
 		ELSE
 			DORAND 6
 				L  Relivinian was a mage driven mad by the Daemons he attempted to control. He became so afraid that others were attempting to steal his research that he fled Britain and drew upon his powers to create a magical maze pulled from all areas of the world to protect himself from watchful eyes.
-				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power soon after the destruction of Exodus, but vanished mysteriously ages ago.
+				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power and built a maze to protect himself from those he thought would condemn his research. He hasn't bee seen since.
 				L  It is said that Relvinian's goal was to summon Daemons to serve as slaves to the people of Britannia.  As thou might suspect, his foolish venture went gravely wrong.
 				L  I've heard Relvinian's maze contains naught but mages now.
 				L  Rumor has it that Relvinian's maze contains the power to heal those wounded in battle.
@@ -113,7 +113,7 @@ ON=*relvinian*
 		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
 			DORAND 6
 				L  Relivinian was a mage driven mad by the Daemons he attempted to control. He became so afraid that others were attempting to steal his research that he fled Britain and drew upon his powers to create a magical maze pulled from all areas of the world to protect himself from watchful eyes.
-				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power soon after the destruction of Exodus, but vanished mysteriously ages ago.
+				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power and built a maze to protect himself from those he thought would condemn his research. He hasn't bee seen since.
 				L  It is said that Relvinian's goal was to summon Daemons to serve as slaves to the people of Britannia.  As thou might suspect, his foolish venture went gravely wrong.
 				L  I've heard Relvinian's maze contains naught but mages now.
 				L  Rumor has it that Relvinian's maze contains the power to heal those wounded in battle.
@@ -122,7 +122,7 @@ ON=*relvinian*
 		ELSE
 			DORAND 6
 				L  Relivinian was a mage driven mad by the Daemons he attempted to control. He became so afraid that others were attempting to steal his research that he fled Britain and drew upon his powers to create a magical maze pulled from all areas of the world to protect himself from watchful eyes.
-				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus.  He grew in power soon after the destruction of Exodus, but vanished mysteriously ages ago.
+				L  Relvinian is an elf-spawn from the old days of Britannia before the coming of Exodus. He grew in power and built a maze to protect himself from those he thought would condemn his research. He hasn't bee seen since.
 				L  It is said that Relvinian's goal was to summon Daemons to serve as slaves to the people of Britannia.  As thou might suspect, his foolish venture went gravely wrong.
 				L  I've heard Relvinian's maze contains naught but mages now.
 				L  Rumor has it that Relvinian's maze contains the power to heal those wounded in battle.
