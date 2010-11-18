@@ -156,7 +156,7 @@ NAME=caravan leader
 ID=C_MAN
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
-moverate=0
+moverate=15 // This helps keep the caravan together really. The guy's a little slow, he's no fighter and walks all the time.
 
 TSPEECH=spk_human_prime
 TSPEECH=spk_needs

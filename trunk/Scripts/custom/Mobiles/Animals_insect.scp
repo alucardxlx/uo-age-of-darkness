@@ -17,13 +17,13 @@ VERSION=0.99w5
 
 [chardef 030]
 defname=c_scorpion_giant
-name="scorpion"
+name="giant scorpion"
 sound=snd_monster_gscorp1
 icon=i_pet_scorp
 anim=078c7f
 can=mt_walk|mt_run|mt_nonhum
 dam=7,11
-armor=27
+armor=26
 moverate=0
 resources=6 i_ribs_raw
 foodtype=55 t_meat_raw
@@ -33,7 +33,7 @@ tevents=e_carnivores3
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=3
 tag.wrestlingspeed=47
-Tag.BeastClass=Beast_Heavy
+Tag.BeastClass=Beast_Quick
 TAG.MANUEVER1=8
 TAG.MANUEVER2=4
 TAG.MANUEVER3=23
@@ -46,8 +46,8 @@ on=@create
      npc=brain_animal
      nightsight=1
 
-     str={82 108}
-     dex={78 94}
+     str={78 94}
+     dex={82 108}
      int={17 29}
 
      resenergy=8

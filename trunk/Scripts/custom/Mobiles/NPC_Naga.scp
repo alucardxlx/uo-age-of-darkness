@@ -17,8 +17,8 @@ VERSION=0.99w5
 
 
 [chardef 055]
-defname=c_ophidian_mage
-name="ophidian apprentice mage"
+defname=c_naga_mage
+name="naga apprentice mage"
 sound=snd_monster_ophidian_mage1
 icon=i_pet_ophid_mage
 anim=07fc7f
@@ -28,16 +28,12 @@ armor=40
 moverate=4
 resources=8 i_ribs_raw
 foodtype=5 t_meat_raw, 5 t_food
-desires=i_gold,t_reagent,t_web,i_reag_spider_silk,e_ophidian
+desires=i_gold,t_reagent,t_web,i_reag_spider_silk
 shelter=r_civilization
-tevents=e_ophidian
-tag.slayerweapon=terathan
-tag.slayerweapon2=ophidian_slaying
-tag.slayerweapon3=reptilian_death
 
 category=monsters
-subsection=ophidians
-description=ophidian mage (old)
+subsection=nagas
+description=naga mage (old)
 
 on=@create
      npc=brain_monster
@@ -73,22 +69,17 @@ on=@create
      addspell=s_lightning
 
 [chardef 089]
-defname=c_ophidian_knight
-name="ophidian knight-errant"
+defname=c_naga_knight
+name="naga knight-errant"
 sound=snd_monster_ophidian_warrior1
 icon=i_pet_ophidian_knight_lbr
 dam=10,25
 armor=40
 moverate=4
-resdispid=c_ophidian_warrior
 reslevel=3
-resdisphue=
 resources=10 i_ribs_raw
 can=mt_walk|mt_usehands|mt_run|mt_equip
 foodtype=15 t_meat_raw
-tag.slayerweapon=terathan
-tag.slayerweapon2=ophidian_slaying
-tag.slayerweapon3=reptilian_death
 
 category=monsters
 subsection=ophidians

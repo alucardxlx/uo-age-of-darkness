@@ -115,7 +115,7 @@ DESCRIPTION=Evil Omen
 DEFNAME=i_scroll_horrific_beast
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_blood_daemon, i_reag_batwing
+RESOURCES=i_scroll_blank, i_reag_blood_vial, i_reag_batwing
 SKILLMAKE=INSCRIPTION 50.0, NECROMANCY 40.0
 
 ON=@CREATE
@@ -132,7 +132,7 @@ DESCRIPTION=Horrific Beast
 DEFNAME=i_scroll_lich_form
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank,i_reag_grave, i_reag_nox, i_reag_blood_daemon
+RESOURCES=i_scroll_blank,i_reag_grave, i_reag_nox, i_reag_blood_vial
 SKILLMAKE=INSCRIPTION 80.0, NECROMANCY 70.0
 
 ON=@CREATE
@@ -149,7 +149,7 @@ DESCRIPTION=Lich transformation
 DEFNAME=i_scroll_mind_rot
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_batwing, i_reag_blood_daemon, i_reag_pig_iron
+RESOURCES=i_scroll_blank, i_reag_batwing, i_reag_blood_vial, i_reag_pig_iron
 SKILLMAKE=INSCRIPTION 40.0, NECROMANCY 30.0
 
 ON=@CREATE
@@ -200,7 +200,7 @@ DESCRIPTION=Poison Strike
 DEFNAME=i_scroll_strangle
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_blood_daemon, i_reag_nox
+RESOURCES=i_scroll_blank, i_reag_blood_vial, i_reag_nox
 SKILLMAKE=INSCRIPTION 75.0, NECROMANCY 65.0
 
 ON=@CREATE
@@ -285,7 +285,7 @@ DESCRIPTION=Wither
 DEFNAME=i_scroll_wraith_form
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_blood_daemon, i_reag_pig_iron
+RESOURCES=i_scroll_blank, i_reag_blood_vial, i_reag_pig_iron
 SKILLMAKE=INSCRIPTION 30.0, NECROMANCY 20.0
 
 ON=@CREATE

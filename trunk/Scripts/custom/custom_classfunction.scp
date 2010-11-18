@@ -3,21 +3,47 @@ VERSION=0.56
 [plevel 0]
 special
 explevel
+move1
+move2
+move3
 
-[plevel 5]
-forkill  
+[FUNCTION move1] 
+IF !<Weapon>
+	LOCAL.COMSKILL=WRESTLING
+ELSE
+	LOCAL.COMSKILL=<Weapon.skill>
+ENDIF
+IF (<I.<LOCAL.COMSKILL>> >= 500)
+	f_UseSkillBook <QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<ID>.Tag0.Manuever1>>
+ELSE
+	MESSAGE You are not skilled enough to perform this special move.
+ENDIF
 
-[FUNCTION forkill] 
-FORCHARS <args>
-	remove
-endfor
-return
+[FUNCTION move2] 
+IF !<Weapon>
+	LOCAL.COMSKILL=WRESTLING
+ELSE
+	LOCAL.COMSKILL=<Weapon.skill>
+ENDIF
+IF (<I.<LOCAL.COMSKILL>> >= 700)
+	f_UseSkillBook <QVAL <Weapon> ? <Weapon.tag0.Manuever2> : <serv.chardef.<ID>.Tag0.Manuever2>>
+ELSE
+	MESSAGE You are not skilled enough to perform this special move.
+ENDIF
 
-[FUNCTION fordel] 
-FORitems <args>
-	remove
-endfor
-return
+[FUNCTION move3] 
+IF !<Weapon>
+	LOCAL.COMSKILL=WRESTLING
+ELSE
+	LOCAL.COMSKILL=<Weapon.skill>
+ENDIF
+IF (<I.<LOCAL.COMSKILL>> >= 900)
+	f_UseSkillBook <QVAL <Weapon> ? <Weapon.tag0.Manuever3> : <serv.chardef.<ID>.Tag0.Manuever3>>
+ELSE
+	MESSAGE You are not skilled enough to perform this special move.
+ENDIF
+
+
 
 [FUNCTION SPECIAL] 
 

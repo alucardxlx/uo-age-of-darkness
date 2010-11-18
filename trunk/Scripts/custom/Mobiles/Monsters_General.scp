@@ -59,6 +59,10 @@ on=@create
      tactics={75.9 89.4}
      wrestling={73.1 80.6}
 
+     rescold=6
+     resfire=6
+
+
 	givelang 1
 
      fame={ 750 1500 }
@@ -133,7 +137,7 @@ moverate=0
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=48
+tag.wrestlingspeed=44
 TAG.MANUEVER1=8
 TAG.MANUEVER2=11
 TAG.MANUEVER3=7
@@ -225,7 +229,11 @@ on=@create
 	evaluatingintel={31.5 64.4}
 
 	respoison=12
-	     givelang 15
+	resenergy=6
+	rescold=6
+	resfire=6
+
+	givelang 15
 
 	EXP={ 8050 11000 } //Level 5
 
@@ -289,7 +297,7 @@ on=@create
      dex={56 61}
      int={16 20}
 
-     respoison=80
+     respoison=100
 
      parrying={15.0 21.0}
      magicresistance={15.1 19.9}
@@ -653,7 +661,7 @@ TEVENTS=e_Level_up_NPC
 tag.slots_needed=99
 tag.override.range=3
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=45
+tag.wrestlingspeed=44
 TAG.MANUEVER1=29
 TAG.MANUEVER2=16
 TAG.MANUEVER3=13
@@ -795,13 +803,16 @@ on=@create
      str={126 150}
      dex={56 75}
      int={21 30}
+     TAG0.MODHITS = 8
 
      parrying={58.0 73.0}
      magicresistance={55.7 69.3}
      tactics={60.8 80.0}
      wrestling={65.3 81.8}
 
-     resfire=80
+     resfire=100
+     respoison=6
+     resenergy=6
 
      taming=82.7
 
@@ -815,8 +826,8 @@ name="zorn"
 sound=snd_elementl_erthel1
 can=mt_walk|mt_nonhum|mt_ghost|mt_passwalls
 icon=i_pet_quagmire_lbr
-dam=8,13
-armor=30
+dam=10,14
+armor=38
 moverate=10
 resources=8 i_reag_bone
 foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
@@ -852,7 +863,11 @@ on=@create
      tactics={55.0 70.0}
      wrestling={70.0 98.0}
 
-     respoison=25
+     respoison=36
+     rescold=12
+     resenergy=24
+     resfire=12
+
 
      EXP={ 4050 5500 } //Level 4
 
@@ -1263,7 +1278,7 @@ tevents=e_carnivores3
 tevents=e_swarm
 tag.slots_needed=3
 tag.override.range=2
-tag.wrestlingspeed=43
+tag.wrestlingspeed=42
 Tag.BeastClass=Beast_Heavy
 TAG.MANUEVER1=2
 TAG.MANUEVER2=9
@@ -1402,6 +1417,7 @@ NPC=brain_monster
 STR={99 125}
 DEX={58 83}
 INT={215 247}
+TAG0.MODHITS = 8
 TAG0.MODMANA = 16
 
 nightsight=1
@@ -1627,4 +1643,136 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
-[eof]
+
+[CHARDEF c_mimic]
+NAME=mimic
+ID=C_plague_beast
+can=mt_walk|mt_nonhum
+dam=9,13
+armor=34
+moverate=0
+resources=
+TEVENTS=e_Level_up_NPC
+desires=i_gold,t_wand,t_gem,t_potion,t_scroll,t_food,t_fruit,t_meat_raw
+foodtype=40 t_food,t_fruit,t_meat_raw
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tevents=e_npc_intel_potion_user
+tevents=e_intel_char_looting
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=11
+TAG.MANUEVER2=5
+TAG.MANUEVER3=6
+tag.wrestlingspeed=44
+
+category=AoD Monsters
+subsection=General
+description=Mimic
+
+ON=@Create
+     NPC=brain_monster
+     COLOR=colors_skin
+     STR={153 179}
+     DEX={95 127}
+     INT={52 84}
+     TAG0.MODHITS = 16
+
+     resenergy=6
+     respoison=12
+     rescold=18
+     resfire=18
+
+     FAME={2500 3500}
+     KARMA={-3000 -5000}
+
+     anatomy={54.6 65.0}
+     parrying={70.0 85.0}
+     MAGICRESISTANCE={40.5 55.9}
+     TACTICS={69.3 84.5}
+     WRESTLING={78.4 93.7}
+
+     EXP={ 4050 5500 } //Level 4
+
+ON=@NpcRestock
+	ITEM={ RANDOM_SCROLL 1 RANDOM_JEWEL 2 RANDOM_POTION 2 0 2},{1 2}
+	ITEM={ RANDOM_SCROLL 1 RANDOM_JEWEL 2 RANDOM_POTION 2 0 2},{1 2}
+	ITEM={ RANDOM_JEWELRY 1 0 3 }
+	ITEM={ i_copper_coin 1 0 1 },{17 55}
+	ITEM={ i_silver_coin 1 0 2 },{3 13}
+	ITEM={ i_gold_coin 1 0 3 },{1 4}
+
+ON=@ENVIRONCHANGE
+IF !(<FLAGS>&statf_war) && !(<FLAGS>&statf_freeze)
+	SERV.NEWITEM { i_chest_gargoyle 1 i_crate_md 1 i_crate_lg 1 i_barrel 1 i_box_brass 2 i_box_wood 3 i_chest_metal 1 i_chest_metal_brass 1 i_chest_wooden_brass 2 i_ornate_elven_chest_wood 1 }
+	NEW.EVENTS +e_mimic_container
+	NEW.LINK=<UID> 
+	NEW.P=<P> 
+	FLAGS = <FLAGS> | 04 | 01 | 08 | 02000 //paralyzed, invulnerable and ghosted
+	P=<NEW.P> 
+	REMOVEFROMVIEW
+	NEW.UPDATE
+	RETURN
+ENDIF
+
+[TEMPLATE random_mimic_chest]
+CATEGORY=Item Templates
+SUBSECTION=Miscellaneous Templates
+DESCRIPTION=Mimic Containers
+
+ITEM={ i_chest_gargoyle 1 i_crate_md 1 i_crate_lg 1 i_barrel 1 i_box_brass 2 i_box_wood 3 i_chest_metal 1 i_chest_metal_brass 1 i_chest_wooden_brass 2 i_ornate_elven_chest_wood 1 }
+EVENTS +e_mimic_container
+
+
+
+[TYPEDEF e_mimic_container]
+
+ON=@Clienttooltip
+IF <MORE>==0 
+	ATTR=08010
+	MORE= <R6> + 1
+	MORE2= (<MORE>*(<R5>+1)) + <R5>
+ENDIF 
+src.addcliloc 1070722,<Name>
+src.addcliloc 1072225,<eval ((<Weight>)/10)+<More2>>
+SRC.AddCliloc 1072241,<eval <More>>,<GetItemLimit>,<eval <More2>>,<GetWeightLimit>
+return 1
+
+ON=@DCLICK
+	RevertMimic
+	RETURN 1
+
+ON=@PickUp_Ground
+	RevertMimic
+	RETURN 1
+
+ON=@DropOn_Self
+	ARGO.BOUNCE
+	RevertMimic
+	RETURN 1
+
+[Function RevertMimic]
+IF (<LINK>==04fffffff)
+	SERV.NEWNPC c_mimic
+	NEW.P=<P> 
+	NEW.UPDATE
+	NEW.EMOTE revert to true form
+	NEW.ATTACK
+	REMOVE
+	SRC.UPDATE
+	RETURN 1
+ELSE
+	LINK.FLAGS &= ~01 //vulnerable
+	LINK.FLAGS &= ~04 //unparalyzed
+	LINK.FLAGS &= ~08 //visible
+	LINK.FLAGS &= ~02000 //substaintial
+	LINK.UPDATE
+	LINK.EMOTE revert to true form
+	LINK.ATTACK
+	REMOVE
+	SRC.UPDATE
+	RETURN 1
+ENDIF	
+
+
+
+[EOF]

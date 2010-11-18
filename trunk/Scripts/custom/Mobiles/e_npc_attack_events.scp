@@ -182,7 +182,6 @@ endif
 ////////////////////////////// Magery //////////////////////////////
 
 
-
 [EVENTS e_intel_char_magery_user]
 
 ON=@NPCSeeNewPlayer
@@ -208,20 +207,8 @@ IF (<EVAL {1 300}> > (<TAG0.RANDCAST>+25) )
       RETURN
 ENDIF
 //check evalint here
-TAG.MAGE=0
 IF (<ATTACKER> > 0)
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MAXMANA> >= 40) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
+	NpcAntiMage
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		If (<npccast_magery_anticaster>)
 			return 1
@@ -283,18 +270,7 @@ ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return
 endif
-TAG.NEARBY=0
-IF (<ATTACKER> > 0)
-	local.i = 0
-	While ( <dlocal.i> < <ATTACKER> )
-        	OBJ=<ATTACKER.<dlocal.i>.UID>
-	        LOCAL.DISTANCE = <obj.distance>
-		IF (<LOCAL.DISTANCE> < 2)
-			TAG.NEARBY=1
-		ENDIF
-	        Local.i ++
-	EndWhile
-ENDIF
+npcNearCaster
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+15))
 	IF (<SRC.FLAGS>&statf_conjured)
 		IF !(<R3>)
@@ -370,7 +346,7 @@ IF (<HITS> < <MAXHITS>)
 		return 1
 	ENDIF
 ENDIF
-IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>) && (<MEDITATION> > 0)
 	SKILL MEDITATION
 ENDIF
 RETURN 
@@ -380,33 +356,12 @@ ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return
 endif
-TAG.NEARBY=0
-TAG.MAGE=0
 IF (<ATTACKER> > 0)
-	local.i = 0
-	While ( <dlocal.i> < <ATTACKER> )
-        	OBJ=<ATTACKER.<dlocal.i>.UID>
-	        LOCAL.DISTANCE = <OBJ.distance>
-		IF (<LOCAL.DISTANCE> < 2)
-			TAG.NEARBY=1
-		ENDIF
-	        Local.i ++
-	EndWhile
+	npcNearCaster
 	IF (<TAG0.NEARBY>==1) || (<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
 		RETURN 0
 	ENDIF
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<LOCAL._FOR>.MAXMANA> >= 50) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
+	npcAntiMage
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		If (<npccast_magery_anticaster>)
 			return 1
@@ -758,30 +713,7 @@ ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return 0
 endif
-TAG.NEARBY=0
-IF (<ATTACKER> > 0)
-	local.i = 0
-	While ( <dlocal.i> < <ATTACKER> )
-        	OBJ=<ATTACKER.<dlocal.i>.UID>
-	        LOCAL.DISTANCE = <obj.distance>
-		IF (<LOCAL.DISTANCE> < 2)
-			TAG.NEARBY=1
-		ENDIF
-	        Local.i ++
-	EndWhile
-ENDIF
-IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+30))
-	If !(<R2>)
-		If <npccast_chivalry_defense> 
-			return
-		endif
-	endif
-	if <npccast_chivalry_healing>
-		return
-	elif <npccast_chivalry_offense>
-		return
-	endif
-ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+40))
+IF !(<EVAL {1 100}>>(<TAG0.RANDCAST>+30))
 	If !(<R3>)
 		If <npccast_chivalry_defense> 
 			return
@@ -821,7 +753,7 @@ IF (<HITS> < <MAXHITS>)
 		return
 	ENDIF
 ENDIF
-IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>) && (<MEDITATION> > 0)
 	SKILL MEDITATION
 ENDIF
 RETURN
@@ -946,7 +878,7 @@ RETURN 0
 
 ON=@NPCLookAtItem
  IF (<ARGO.TYPE> == t_corpse) && !(<argo.MOREY>==1) && !(<argo.link.uid>)
-	IF !(<HITS> < (<MAXHITS>/2))
+	IF ((<HITS> > (<MAXHITS>/2)) || (<SPIRITSPEAK> <= 0)) && !(<FLAGS>&statf_conjured)
 	 obj=<argo>
 	 npccast s_animate_dead,<obj>
 	ELSE
@@ -965,20 +897,8 @@ IF (<EVAL {1 300}>>(<TAG0.RANDCAST>+25))
       RETURN 0
 ENDIF
 //check evalint here
-TAG.MAGE=0
 IF (<ATTACKER> > 0)
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MAXMANA> >= 40) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
+	npcAntiMage
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
 			npccast s_mind_rot,<obj>
@@ -1036,18 +956,7 @@ ON=@GetHit
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return 0
 endif
-TAG.NEARBY=0
-IF (<ATTACKER> > 0)
-	local.i = 0
-	While ( <dlocal.i> < <ATTACKER> )
-        	OBJ=<ATTACKER.<dlocal.i>.UID>
-	        LOCAL.DISTANCE = <obj.distance>
-		IF (<LOCAL.DISTANCE> < 2)
-			TAG.NEARBY=1
-		ENDIF
-	        Local.i ++
-	EndWhile
-ENDIF
+npcNearCaster
 IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
 	IF (<npccancast s_curse_weapon>) && (<weapon>) && !(<src.restest i_curse_weapon>) && !(<R2>)
 		npccast s_curse_weapon
@@ -1072,33 +981,12 @@ ON=@SPELLEFFECT
 IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
 	return
 endif
-TAG.NEARBY=0
-TAG.MAGE=0
 IF (<ATTACKER> > 0)
-	local.i = 0
-	While ( <dlocal.i> < <ATTACKER> )
-        	OBJ=<ATTACKER.<dlocal.i>.UID>
-	        LOCAL.DISTANCE = <OBJ.distance>
-		IF (<LOCAL.DISTANCE> < 2)
-			TAG.NEARBY=1
-		ENDIF
-	        Local.i ++
-	EndWhile
+	npcNearCaster
 	IF (<TAG0.NEARBY>==1) || (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
 		RETURN 0
 	ENDIF
-	FOR <EVAL <ATTACKER>>
-		IF (<ATTACKER.<LOCAL._FOR>.MAXMANA> >= 50) 
-			IF (<TAG.MAGE>==1)
-				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
-					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-				ENDIF
-			ELSE
-				TAG.MAGE=1
-				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
-			ENDIF
-		ENDIF
-	ENDFOR
+	npcAntiMage
 	IF (<TAG.MAGE>==1) && !(<OBJ.FLAGS>&statf_freeze) && !(<obj.uid>==<uid>) && !(<R2>) //hit an unfrozen mage with mana kill if possible
 		IF (<npccancast s_mind_rot>) && !(<obj.restest i_mind_rot>)
 			npccast s_mind_rot,<obj>
@@ -1126,7 +1014,7 @@ ENDIF
 return
 
 ON=@ENVIRONCHANGE
-IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>)
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>) && (<MEDITATION> > 0)
 	SKILL MEDITATION
 ENDIF
 
@@ -1157,8 +1045,197 @@ ENDIF
 return 0
 
 
+////////////////////////////// Sorcery //////////////////////////////
+
+
+[EVENTS e_intel_char_sorcery_user]
+
+ON=@NPCSeeNewPlayer
+IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
+	return 0
+endif
+   IF (<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
+      RETURN 0
+   ENDIF
+IF (<npccancast s_warmth>) && !(<restest i_warmth_timer>)
+	npccast s_warmth,<UID>
+	return 1
+endif
+RETURN 0
+
+ON=@NPCLookAtItem
+ IF (<ARGO.TYPE> == t_corpse) && !(<argo.MOREY>==1) && !(<argo.link.uid>)
+	IF (<HITS> < (<MAXHITS>/2)) && (<SPIRITSPEAK> > 0)
+	 skill 32 //spiritspeak
+	ENDIF
+
+ ENDIF
+return
+
+
+on=@NPCActFight
+Tag.target = <src>
+IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
+	return 0
+endif
+IF (<EVAL {1 300}>>(<TAG0.RANDCAST>+25))
+      RETURN 0
+ENDIF
+//check evalint here
+IF (<ATTACKER> > 0)
+	IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
+		OBJ=<attacker.max>
+	ELIF !(<attacker.last.FLAGS>&statf_freeze) && !(<attacker.last.uid>==<uid>)
+		OBJ=<attacker.last>
+	ELSE
+		OBJ=<src>
+	ENDIF
+ELSE
+	OBJ=<SRC>
+ENDIF
+	IF (<npccancast s_warmth>) && !(<restest i_warmth_timer>)
+		npccast s_warmth,<UID>
+		return 1
+	endif
+	if <npccast_sorcery_offense>
+		return 1
+	endif
+return 0
+
+
+
+on=@Attack
+IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
+	return
+endif
+
+ON=@SpellFail
+	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
+
+ON=@SpellSuccess
+	TAG.LASTCASTING=
+	IF <UID.<TAG0.TARGET>.HITS>
+		TIMERF 1, ATTACK <TAG.TARGET>
+	ELSE
+		TAG0.TARGET=
+	ENDIF
+	RETURN
+
+ON=@GetHit
+IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
+	return 0
+endif
+npcNearCaster
+IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
+	IF (<npccancast s_warmth>) && !(<restest i_warmth_timer>)
+		npccast s_warmth,<UID>
+		return 1
+	endif
+	if <npccast_sorcery_offense>
+		return 1
+	endif
+ELIF (<TAG0.NEARBY>==0) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+45))
+	IF (<npccancast s_warmth>) && !(<restest i_warmth_timer>)
+		npccast s_warmth,<UID>
+		return 1
+	endif
+	if <npccast_sorcery_offense>
+		return 1
+	endif
+ENDIF
+RETURN 0
+
+
+ON=@SPELLEFFECT
+IF !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>) || (<FLAGS>&statf_freeze)
+	return
+endif
+IF (<ATTACKER> > 0)
+	npcNearCaster
+	IF (<TAG0.NEARBY>==1) || (<EVAL {1 100}>>(<TAG0.RANDCAST>+50))
+		RETURN 0
+	ENDIF
+	IF !(<attacker.max.FLAGS>&statf_freeze) && !(<attacker.max.uid>==<uid>)
+		OBJ=<attacker.max>
+	ELIF !(<attacker.last.FLAGS>&statf_freeze) && !(<attacker.last.uid>==<uid>)
+		OBJ=<attacker.last>
+	ELSE
+		return
+	ENDIF
+	IF (<npccancast s_warmth>) && !(<restest i_warmth_timer>)
+		npccast s_warmth,<UID>
+		return 1
+	endif
+	if <npccast_sorcery_offense>
+		return 1
+	endif
+ENDIF
+return
+
+ON=@ENVIRONCHANGE
+IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>) && (<MEDITATION> > 0)
+	SKILL MEDITATION
+ENDIF
+
+
+[FUNCTION npccast_sorcery_offense]
+	IF (<I.UID> == <OBJ.UID>)
+		return 0
+	ENDIF
+	IF  (<npccancast s_summon_chaos_daemon>) && !(<R4>) && !(<FLAGS>&statf_conjured)
+		npccast s_summon_chaos_daemon,<obj>
+		return 1
+	ELIF (<npccancast s_detonation>) && (<attacker> > 1) && !(<R3>)
+		npccast s_detonation,<obj>
+		return 1
+	ELIF (<npccancast s_summon_djinn>) && !(<R3>) && !(<FLAGS>&statf_conjured)
+		npccast s_summon_djinn,<obj>
+		return 1
+	ELIF (<npccancast s_summon_efreet>) && !(<R3>) && !(<FLAGS>&statf_conjured)
+		npccast s_summon_efreet,<obj>
+		return 1
+	ELIF (<npccancast s_summon_hellhound>) && !(<R3>) && !(<FLAGS>&statf_conjured)
+		npccast s_summon_hellhound,<obj>
+		return 1
+	ENDIF
+return 0
+
 //////////////////////////////////////////////////////////////////////////
 
+[FUNCTION npcAntiMage]
+	TAG.MAGE=0
+	FOR <EVAL <ATTACKER>>
+		IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MAXMANA> >= 35) 
+			IF (<TAG.MAGE>==1)
+				IF (<ATTACKER.<EVAL <LOCAL._FOR>-1>.MANA> >= <OBJ.MANA>) 
+					OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
+				ENDIF
+			ELSE
+				TAG.MAGE=1
+				OBJ=<ATTACKER.<EVAL <LOCAL._FOR>-1>>>
+			ENDIF
+		ENDIF
+	ENDFOR
+
+[FUNCTION npcNearCaster]
+TAG.NEARBY=0
+IF (<ATTACKER> > 0)
+	local.i = 0
+	While ( <dlocal.i> < <ATTACKER> )
+        	OBJ=<ATTACKER.<dlocal.i>.UID>
+	        LOCAL.DISTANCE = <obj.distance>
+		IF (<LOCAL.DISTANCE> < 2) && !(<OBJ.UID> == <UID>)
+			TAG.NEARBY=1
+		ENDIF
+	        Local.i ++
+	EndWhile
+ENDIF
 
 [FUNCTION npccancast]
 LOCAL.SPELL = <EVAL <args>>

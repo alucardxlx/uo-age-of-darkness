@@ -3741,6 +3741,9 @@ local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
 local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
 new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
 new.LINK=<obj>
+IF (<ARGO.TYPE>==t_potion)
+	new.layer=44
+endif
 trysrc <obj> new.equip
 
 
@@ -3902,6 +3905,9 @@ local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
 local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
 new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
 new.LINK=<obj>
+IF (<ARGO.TYPE>==t_potion)
+	new.layer=44
+endif
 trysrc <obj> new.equip
 
 
@@ -3958,6 +3964,9 @@ local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
 local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
 new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
 new.LINK=<obj>
+IF (<ARGO.TYPE>==t_potion)
+	new.layer=44
+endif
 trysrc <obj> new.equip
 
 

@@ -1,31 +1,3 @@
-[function resetspawns]
-foritems 6144
- if <type> == t_spawn_char
-  USE 0
- endif
-endfor
-
-[function setspawns]
-foritems 6144
- if <type> == t_spawn_char
-	if <timer> < 1
-	  USE 0
-	endif
- endif
-endfor
-
-
-[function findspawns]
-foritems 6144
- if <type> == t_spawn_char
-	if <more> == 0
-	  src.p = <P>
-	  src.fix
-	  return
-	endif
- endif
-endfor
-
 
 [defname stat_locks]
 lock_up 0
@@ -33,34 +5,6 @@ lock_down 1
 lock_locked 2
 
 
-
-[FUNCTION f_guilded]
- SERV.NEWITEM=i_town_stone
- NEW.P=1,1
- NEW.MEMBER=<SRC.UID>,,1,<SRC.UID>,0,1
- NEW.MEMBER=<UID>,,1,<UID>,0,1
- NEW.TIMER=1
- NEW.ATTR=04002
- VAR.GUILDSTONEUID=<NEW.UID>
-
- SERV.NEWITEM=i_memory
- NEW.TYPE=t_eq_script
- NEW.CONT=<SRC.UID>
- NEW.TYPE=t_eq_memory_obj
- NEW.COLOR=0400
- NEW.LINK=<VAR.GUILDSTONEUID>
- NEW.CONT.FIX
-
- SERV.NEWITEM=i_memory
- NEW.TYPE=t_eq_script
- NEW.CONT=<UID>
- NEW.TYPE=t_eq_memory_obj
- NEW.COLOR=0400
- NEW.LINK=<VAR.GUILDSTONEUID>
- NEW.CONT.FIX
- 
-
- VAR.GUILDSTONEUID=
 
 [EVENTS e_Level_up]
 on=@LogOut
@@ -420,7 +364,7 @@ CONT=<SRC.FINDLAYER.21>
 IF (<SRC.TAG0.AUTORENEWINSURANCE>)
 SRC.TARGET_INSURE <UID>
 ENDIF
-LOCAL.INSUREGOLDGIVE += <EVAL ((<UID.VALUE>+<UID.TAG0.MODVALUE>)*<UID.AMOUNT>)/2>
+LOCAL.INSUREGOLDGIVE += <EVAL ((<UID.VALUE>+<UID.TAG0.MODVALUE>)*<UID.AMOUNT>)/3>
 ENDIF
 ENDFOR
 REF22=<SRC.ATTACKER.LAST>

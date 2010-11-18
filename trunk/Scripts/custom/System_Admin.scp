@@ -1,3 +1,60 @@
+[plevel 5]
+forkill  
+fordel
+
+[FUNCTION forkill] 
+FORCHARS <args>
+	remove
+endfor
+return
+
+[FUNCTION fordel] 
+FORitems <args>
+	remove
+endfor
+return
+
+[function resetspawns]
+foritems 6144
+ if <type> == t_spawn_char
+  USE 0
+ endif
+endfor
+
+[function setspawns]
+foritems 6144
+ if <type> == t_spawn_char
+	if <timer> < 1
+	  USE 0
+	endif
+ endif
+endfor
+
+
+[function findspawns]
+foritems 6144
+ if <type> == t_spawn_char
+	if <more> == 0
+	  src.p = <P>
+	  src.fix
+	  return
+	endif
+ endif
+endfor
+
+
+[function findispawns]
+foritems 6144
+ if <type> == t_spawn_item
+	if <more> == 0
+	  src.p = <P>
+	  src.fix
+	  return
+	endif
+ endif
+endfor
+
+
 // Crested 6/30/2008 10:53:28 PM, with GumpStudio
 // Exported SphereExporter ver 2.0.
 // Script ver 0.56/Revisions
