@@ -15,7 +15,7 @@ VERSION=0.56b
 [ITEMDEF i_abyssal_cloth]
 DEFNAME=i_abyssal_cloth
 ID=i_cloth
-NAME=Abyssal Cloth
+NAME=abyssal cloth
 TYPE=t_cloth
 WEIGHT=
 SKILLMAKE=tailoring 110.0, t_sewing_kit
@@ -27,6 +27,7 @@ SUBSECTION=Imbuing Ingredients
 DESCRIPTION=Abyssal Cloth
 
 ON=@Create
+ EVENTS=t_ingredient
  COLOR=0081B
 
 
@@ -35,8 +36,8 @@ ON=@Create
 //Used to add Mage Weapon property on items.
 [ITEMDEF 0573C]
 DEFNAME=i_archanic_rune_stone
-NAME=Archanic Rune Stone
-TYPE=t_normal
+NAME=archanic rune stone
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=tinkering 90.0, magery 80.0, t_tinker_tools
 RESOURCES=1 i_crystal_shards, 5 i_power_crystal
@@ -54,8 +55,8 @@ ON=@Create
 //Used to add Night Sight onto armor.
 [ITEMDEF 05748]
 DEFNAME=i_bottle_of_ichor
-NAME=Bottle of Ichor
-TYPE=t_normal
+NAME=bottle%s of ichor
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=alchemy 90.0, magery 75.0, t_mortar_pestle
 RESOURCES=1 i_darkglow_poison, 30 i_reag_spider_silk
@@ -74,8 +75,8 @@ ON=@Create
 //the Lowland Boura and Ruddy Boura
 [ITEMDEF 05742]
 DEFNAME=i_boura_pelt
-NAME=Boura Pelt
-TYPE=t_normal
+NAME=boura pelt%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -92,8 +93,8 @@ ON=@Create
 //floor and on the ground enar the Abyssal Infernal Champion Spawn.
 [ITEMDEF 05743]
 DEFNAME=i_chaga_mushroom
-NAME=Chaga Mushroom
-TYPE=t_normal
+NAME=chaga mushroom%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -109,8 +110,8 @@ ON=@Create
 //Can be found as loot on creatures in the Cavern of the Discarded
 [ITEMDEF 0573B]
 DEFNAME=i_crushed_glass
-NAME=Crushed Glass
-TYPE=t_normal
+NAME=crushed glass
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=blacksmithing 110.0
 RESOURCES=1 i_gem_blue_diamond, 5 i_glass_sword
@@ -130,8 +131,8 @@ ON=@Create
 //"You've found some strange crystal shards imbeded in the wood."
 [ITEMDEF 05738]
 DEFNAME=i_crystal_shards
-NAME=Crystal Shards
-TYPE=t_normal
+NAME=crystal shards
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -149,8 +150,8 @@ ON=@Create
 //Mining, rare.
 [ITEMDEF 05732]
 DEFNAME=i_crystalline_blackrock
-NAME=Crystalline Blackrock
-TYPE=t_normal
+NAME=crystalline blackrock%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 DUPELIST=05733,05734,05735
@@ -176,8 +177,8 @@ DUPEITEM=05732
 //Imbues Demon Slayer; can be found on fire daemons
 [ITEMDEF 05721]
 DEFNAME=i_daemon_claw
-NAME=Daemon Claw
-TYPE=t_normal
+NAME=daemon claw%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -193,8 +194,8 @@ ON=@Create
 //Cavern of the Discarded; and can be fished up at 80.0 skill.
 [ITEMDEF 0573A]
 DEFNAME=i_delicate_scales
-NAME=Delicate Scales
-TYPE=t_normal
+NAME=delicate scales
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -209,8 +210,8 @@ ON=@Create
 //Imbues Lower Requirements on items. Loot in Cavern of the Discarded.
 [ITEMDEF 05737]
 DEFNAME=i_elven_fletching
-NAME=Elven Fletching
-TYPE=t_normal
+NAME=elven fletching
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -228,8 +229,8 @@ ON=@Create
 //is required to unravel Enchanted Essence. 
 [ITEMDEF 02DB2]
 DEFNAME=i_enchanted_essence
-NAME=Enchanted Essence
-TYPE=t_normal
+NAME=enchanted essence
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -245,8 +246,8 @@ ON=@Create
 //
 [ITEMDEF 0571C]
 DEFNAME=i_essence_of_virtue
-NAME=Essence of Virtue
-TYPE=t_normal
+NAME=Essence%s of Virtue
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 DUPELIST=0571D,0571E,0571F
@@ -276,8 +277,8 @@ DUPEITEM=0571C
 [ITEMDEF i_essence_of_achievement]
 DEFNAME=i_essence_of_achievment
 ID=i_essence_of_virtue
-NAME=Essence of Achievement
-TYPE=t_normal
+NAME=Essence%s of Achievement
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -296,8 +297,8 @@ ON=@Create
 [ITEMDEF i_essence_of_balance]
 DEFNAME=i_essence_of_balance
 ID=i_essence_of_virtue
-NAME=Essence of Balance
-TYPE=t_normal
+NAME=Essence%s of Balance
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -314,8 +315,8 @@ ON=@Create
 [ITEMDEF i_essence_of_control]
 DEFNAME=i_essence_of_control
 ID=i_essence_of_virtue
-NAME=Essence of Control
-TYPE=t_normal
+NAME=Essence%s of Control
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -332,8 +333,8 @@ ON=@Create
 [ITEMDEF i_essence_of_diligence]
 DEFNAME=i_essence_of_diligence
 ID=i_essence_of_virtue
-NAME=Essence of Diligence
-TYPE=t_normal
+NAME=Essence%s of Diligence
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -350,8 +351,8 @@ ON=@Create
 [ITEMDEF i_essence_of_direction]
 DEFNAME=i_essence_of_direction
 ID=i_essence_of_virtue
-NAME=Essence of Direction
-TYPE=t_normal
+NAME=Essence%s of Direction
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -368,8 +369,8 @@ ON=@Create
 [ITEMDEF i_essence_of_feeling]
 DEFNAME=i_essence_of_feeling
 ID=i_essence_of_virtue
-NAME=Essence of Feeling
-TYPE=t_normal
+NAME=Essence%s of Feeling
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -386,8 +387,8 @@ ON=@Create
 [ITEMDEF i_essence_of_order]
 DEFNAME=i_essence_of_order
 ID=i_essence_of_virtue
-NAME=Essence of Order
-TYPE=t_normal
+NAME=Essence%s of Order
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -404,8 +405,8 @@ ON=@Create
 [ITEMDEF i_essence_of_passion]
 DEFNAME=i_essence_of_passion
 ID=i_essence_of_virtue
-NAME=Essence of Passion
-TYPE=t_normal
+NAME=Essence%s of Passion
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -422,8 +423,8 @@ ON=@Create
 [ITEMDEF i_essence_of_persistence]
 DEFNAME=i_essence_of_persistence
 ID=i_essence_of_virtue
-NAME=Essence of Persistence
-TYPE=t_normal
+NAME=Essence%s of Persistence
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -440,8 +441,8 @@ ON=@Create
 [ITEMDEF i_essence_of_precision]
 DEFNAME=i_essence_of_precision
 ID=i_essence_of_virtue
-NAME=Essence of Precision
-TYPE=t_normal
+NAME=Essence%s of Precision
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -458,8 +459,8 @@ ON=@Create
 [ITEMDEF i_essence_of_singularity]
 DEFNAME=i_essence_of_singularity
 ID=i_essence_of_virtue
-NAME=Essence of Singularity
-TYPE=t_normal
+NAME=Essence%s of Singularity
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -474,8 +475,8 @@ ON=@Create
 //LRC; loot on pixies, faery dragons, and wisps in the abyss
 [ITEMDEF 05745]
 DEFNAME=i_faery_dust
-NAME=Faery Dust
-TYPE=t_normal
+NAME=faery dust
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -490,8 +491,8 @@ ON=@Create
 //Faery Dragon
 [ITEMDEF 05726]
 DEFNAME=i_fey_wings
-NAME=Fey Wings
-TYPE=t_normal
+NAME=fey wings
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -507,8 +508,8 @@ ON=@Create
 //Goblins in SA
 [ITEMDEF 0572C]
 DEFNAME=i_goblin_blood
-NAME=Goblin Blood
-TYPE=t_normal
+NAME=goblin blood
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -523,8 +524,8 @@ ON=@Create
 //Reptile slayer, found on lava elementals
 [ITEMDEF 0572D]
 DEFNAME=i_lava_serpent_crust
-NAME=Lava Serpent Crust
-TYPE=t_normal
+NAME=lava serpent crust%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 DUPELIST=0572E,0572F,05730
@@ -549,8 +550,8 @@ DUPEITEM=0572D
 //loot in creatures from Cavern of the Discarded
 [ITEMDEF 05739]
 DEFNAME=i_lodestone
-NAME=lodestone
-TYPE=t_normal
+NAME=lodestone%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -565,8 +566,8 @@ ON=@Create
 //
 [ITEMDEF 02DB1]
 DEFNAME=i_magical_residue
-NAME=Magical Residue
-TYPE=t_normal
+NAME=magical residue
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -582,8 +583,8 @@ ON=@Create
 //Cavern of the Discarded
 [ITEMDEF 0573D]
 DEFNAME=i_powdered_iron
-NAME=Powdered Iron
-TYPE=t_normal
+NAME=powdered iron
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=blacksmithing 110.0
 RESOURCES=1 i_gem_white_pearl, 20 t_ingot
@@ -602,8 +603,8 @@ ON=@Create
 //loot on raptors
 [ITEMDEF 05747]
 DEFNAME=i_raptor_tooth
-NAME=Raptor Tooth
-TYPE=t_normal
+NAME=raptor tooth
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -619,8 +620,8 @@ ON=@Create
 //Loot from leather wolves and clan scratch savage wolves
 [ITEMDEF 05749]
 DEFNAME=i_reflective_wolf_eye
-NAME=Reflective Wolf Eye
-TYPE=t_normal
+NAME=reflective wolf eye%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -635,8 +636,8 @@ ON=@Create
 //
 [ITEMDEF 02DB3]
 DEFNAME=i_relic_fragment
-NAME=Relic Fragment
-TYPE=t_normal
+NAME=relic fragment%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -653,8 +654,8 @@ ON=@Create
 //Rare chance to get from gardening.
 [ITEMDEF 05736]
 DEFNAME=i_seed_of_renewal
-NAME=Seed of Renewal
-TYPE=t_normal
+NAME=seed%s of renewal
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -670,8 +671,8 @@ ON=@Create
 //Silver Serpents in Tomb of Kings
 [ITEMDEF 05744]
 DEFNAME=i_silver_snake_skin
-NAME=Silver Snake Skin
-TYPE=t_normal
+NAME=silver snake skin%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -687,8 +688,8 @@ ON=@Create
 //Loot from sliths
 [ITEMDEF 05746]
 DEFNAME=i_slith_tongue
-NAME=Slith Tongue
-TYPE=t_normal
+NAME=slith tongue%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -704,8 +705,8 @@ ON=@Create
 //Navrey night Eyes
 [ITEMDEF 05720]
 DEFNAME=i_spider_carapace
-NAME=Spider Carapace
-TYPE=t_normal
+NAME=spider carapace%s
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -721,8 +722,8 @@ ON=@Create
 //Undead guardians, Niporailem
 [ITEMDEF 05731]
 DEFNAME=i_undying_flesh
-NAME=Undying Flesh
-TYPE=t_normal
+NAME=undying flesh
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -737,8 +738,8 @@ ON=@Create
 //
 [ITEMDEF 05722]
 DEFNAME=i_vial_of_vitriol
-NAME=Vial of Vitriol
-TYPE=t_normal
+NAME=vial%s of vitriol
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=alchemy 90.0, magery 75.0
 RESOURCES=1 i_ingredient_parasitic_plant, 30 i_reag_nightshade
@@ -766,8 +767,8 @@ DUPEITEM=05722
 //Vile Tentacles
 [ITEMDEF 05727]
 DEFNAME=i_vile_tentacles
-NAME=Vile Tentacles
-TYPE=t_normal
+NAME=vile tentacles
+TYPE=t_ingredient
 WEIGHT=0.1
 VALUE=
 
@@ -784,8 +785,8 @@ ON=@Create
 //Void Orb
 [ITEMDEF 0573E]
 DEFNAME=i_void_orb
-NAME=Void Orb
-TYPE=t_normal
+NAME=void orb%s
+TYPE=t_ingredient
 WEIGHT=0.1
 SKILLMAKE=tinkering 90.0, magery 80.0
 RESOURCES=1 i_gem_dark_sapphire, 30 i_reag_black_pearl
