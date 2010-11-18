@@ -486,17 +486,17 @@ WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.HI
 				TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_carpentry_querymakersmark
 				LOCAL.NODIALOG=1
 			ENDIF
-			IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield) || (<NEW.TYPE>==t_clothing)
-				NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
-				local.one = <eval (<new.armor.hi> * ((<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
-				local.two = <eval (<local.one> / 5000)>
-				new.modar += <dlocal.two>
-				new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
+			NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			new.tag0.modvalue += <EVAL ((<CONT.ARMSLORE>+<cont.skillmod armslore>)*<NEW.VALUE>)/400>
+			IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
+				new.modar += <eval ((<new.armor.hi>+<new.modar>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+				new.resfire += <eval ((<new.resfire>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+				new.rescold += <eval ((<new.rescold>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+				new.respoison += <eval ((<new.respoison>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+				new.resenergy += <eval ((<new.resenergy>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
 				CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 			ELSEIF (<NEW.ISWEAPON>)	
-				NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
-				NEW.tag0.DAMINCREASE += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
-				new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
+				NEW.tag0.DAMINCREASE += <EVAL (<CONT.ARMSLORE>+<cont.skillmod armslore>+250)/40>
 				CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 			ENDIF
 			NEW.NAME=exceptional <NEW.NAME>
@@ -596,16 +596,17 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 			TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_carpentry_querymakersmark
 			LOCAL.NODIALOG=1
 		ENDIF
-		NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
-		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield) || (<NEW.TYPE>==t_clothing)
-			local.one = <eval (<new.armor.hi> * (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
-			local.two = <eval (<local.one> / 5000)>
-			new.modar += <dlocal.two>
-			new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
+		NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+		new.tag0.modvalue += <EVAL ((<CONT.ARMSLORE>+<cont.skillmod armslore>)*<NEW.VALUE>)/400>
+		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
+			new.modar += <eval ((<new.armor.hi>+<new.modar>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			new.resfire += <eval ((<new.resfire>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			new.rescold += <eval ((<new.rescold>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			new.respoison += <eval ((<new.respoison>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			new.resenergy += <eval ((<new.resenergy>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
 			CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 		ELSEIF (<NEW.ISWEAPON>)	
-			NEW.tag0.DAMINCREASE += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
-			new.tag0.modvalue += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
+			NEW.tag0.DAMINCREASE += <EVAL (<CONT.ARMSLORE>+<cont.skillmod armslore>+250)/40>
 			CONT.SKILLGAIN armslore <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 		ENDIF
 		NEW.NAME=exceptional <NEW.NAME>

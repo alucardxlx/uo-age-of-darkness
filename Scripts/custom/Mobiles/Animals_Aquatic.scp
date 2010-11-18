@@ -29,6 +29,7 @@ resources=8 i_ribs_raw
 can=mt_swim|mt_nonhum
 foodtype=t_fish
 desires=t_ship, c_dolphin, t_fish
+foodtype=65 t_fish
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=1
@@ -108,6 +109,50 @@ on=@create
      fame=100
      karma=25
      FOOD=15
+
+
+[CHARDEF 729]
+DEFNAME=c_giant_crab
+NAME=giant crab
+DAM=7,11
+ARMOR=28
+can=mt_walk|mt_swim|mt_nonhum
+MOVERATE=0
+RESOURCES=6 i_ribs_raw
+FOODTYPE=50 t_meat_raw, t_fish
+DESIRES=t_meat_raw, t_fish
+tevents=e_carnivores3
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=45
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=4
+TAG.MANUEVER2=5
+TAG.MANUEVER3=23
+
+category=AoD Animals
+subsection=Aquatic
+description=Giant Crab
+
+ON=@CREATE
+     npc=brain_animal
+     nightsight=1
+
+     resenergy=8
+
+     str={84 109}
+     dex={79 98}
+     int={10 19}
+
+	ANATOMY={29.0 45.0}
+	PARRYING={37.0 55.0}
+	WRESTLING={58.0 75.0}
+	TACTICS={56.0 72.0}
+	MAGICRESISTANCE={3.0 16.1}
+
+
+     fame={100 2000}
+
 
 [chardef 090]
 defname=c_sea_horse

@@ -11,19 +11,20 @@
 //*****************************************************************
 
 [DEFNAME NPC_AI_System_Options]
+
 //NPC AI System Options
 
 npcai_opt_formsquads  01 //NPCs will form squads (Boolean)
-npcai_opt_initializeRanks 01 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
 npcai_opt_stationarysquads 00 //Squads will not roam around (Boolean)
-
-npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
-npcai_opt_npcusepotions  01 //Faction NPCs will use potions (Boolean)
-npcai_opt_requiremtusehands 00 //Require MT_USEHANDS in order to heal self/use potions; event can still be added manually to exceptions (Boolean)
+npcai_opt_initializeRanks 01 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
 
 npcai_opt_initializeMagicAI 00 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
 npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
 npcai_opt_castbeneficialspells 01 //NPCs will cast helpful spells on others (Boolean)
+
+npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
+npcai_opt_npcusepotions  01 //Faction NPCs will use potions (Boolean)
+npcai_opt_requiremtusehands 00 //Require MT_USEHANDS in order to heal self/use potions; event can still be added manually to exceptions (Boolean)
 
 npcai_opt_switchfrombow  01 //Faction NPC archers will switch to a melee weapon when in close combat (Boolean)
 npcai_opt_npclooting  01 //Use NPC Looting system on Faction NPCs (Boolean)
@@ -35,10 +36,16 @@ npcai_opt_npclooting  01 //Use NPC Looting system on Faction NPCs (Boolean)
 [DEFNAME Race_Flags]
 racef_britannia  000000001 //Britannia
 race.01.Ally racef_britannia | racef_order | racef_elf
-race.01.Enemy racef_undead | racef_minax | racef_orc | racef_goblin | racef_troll | racef_pirate | racef_demon | racef_minotaur | racef_shadowlords | racef_ant | racef_magincia | racef_ratman | racef_lizardman | racef_gargoyle
+race.01.Enemy racef_undead | racef_minax | racef_orc | racef_goblin | racef_troll | racef_pirate | racef_demon | racef_minotaur | racef_shadowlords | racef_magincia | racef_ratman | racef_lizardman | racef_gargoyle
 
 racef_shadowlords  000000002 //Shadowlords
+race.02.Ally racef_shadowlords
+race.02.Enemy racef_dragon | racef_minax | racef_pirate | racef_elf | racef_britannia | racef_magincia | racef_gargoyle | racef_order | racef_chaos
+
 racef_minax   000000004 //Minax
+race.04.Ally racef_minax | racef_goblin | racef_troll | racef_minotaur
+race.04.Enemy racef_dragon | racef_shadowlords | racef_undead | racef_elf | racef_britannia | racef_magincia | racef_gargoyle | racef_order | racef_chaos
+
 racef_magincia  000000008 //Magincia
 racef_chaos  000000010 //Chaos Ophidians
 racef_order  000000020 //Order Ophidians
@@ -47,19 +54,19 @@ racef_tokuno  000000080 //Tokuno
 
 racef_elf  000000100 //Elf Races
 race.0100.Ally racef_elf | racef_dragon | racef_britannia
-race.0100.Enemy racef_undead | racef_minax | racef_orc | racef_goblin | racef_demon | racef_minotaur | racef_shadowlords | racef_ant | racef_ratman
+race.0100.Enemy racef_undead | racef_minax | racef_orc | racef_goblin | racef_demon | racef_minotaur | racef_shadowlords | racef_ratman
 
 racef_orc  000000200 //Orc Race
 race.0200.Ally racef_orc | racef_troll | racef_goblin
-race.0200.Enemy racef_britannia | racef_magincia | racef_order | racef_elf | racef_undead | racef_dragon | racef_ant | racef_lizardman | racef_ratman | racef_gargoyle
+race.0200.Enemy racef_britannia | racef_magincia | racef_order | racef_elf | racef_undead | racef_dragon | racef_lizardman | racef_ratman | racef_gargoyle
 
 racef_undead  000000400 //Undead creatures and earth elementals
 race.0400.Ally racef_undead | racef_demon | racef_ratman
-race.0400.Enemy racef_minax | racef_britannia | racef_shadowlords | racef_magincia | racef_chaos | racef_order | racef_orc | racef_minotaur | racef_elf | racef_pirate | racef_dragon | racef_goblin | racef_ant | racef_lizardman | racef_cyclops | racef_troll | racef_commoner | racef_gargoyle
+race.0400.Enemy racef_minax | racef_britannia | racef_magincia | racef_chaos | racef_order | racef_orc | racef_minotaur | racef_elf | racef_pirate | racef_dragon | racef_goblin | racef_lizardman | racef_cyclops | racef_troll | racef_commoner | racef_gargoyle
 
 racef_pirate  000000800 //Pirates and thieves guilds
 race.0800.Ally racef_pirate | racef_chaos
-race.0800.Enemy racef_undead | racef_demon | racef_britannia | racef_shadowlords | racef_magincia | racef_order | racef_commoner | racef_ant | racef_gargoyle | racef_elf
+race.0800.Enemy racef_undead | racef_demon | racef_britannia | racef_shadowlords | racef_magincia | racef_order | racef_commoner | racef_gargoyle | racef_elf
 
 racef_commoner  000001000 //Neutral humanoids
 race.01000.Ally racef_britannia | racef_magincia | racef_order | racef_elf
@@ -67,39 +74,39 @@ race.01000.Enemy racef_undead | racef_pirate | racef_demon
 
 racef_dragon  000002000 //Dragon Races
 race.02000.Ally racef_dragon | racef_elf | racef_lizardman | racef_cyclops | racef_gargoyle | racef_minotaur
-race.02000.Enemy racef_shadowlords | racef_orc | racef_undead | racef_demon | racef_goblin | racef_ant | racef_ratman | racef_pirate
+race.02000.Enemy racef_minax | racef_shadowlords | racef_orc | racef_undead | racef_demon | racef_goblin | racef_ratman | racef_pirate
 
 racef_demon  000004000 //Demon Races and fire elementals
 race.04000.Ally racef_demon | racef_undead | racef_ratman | racef_troll
 race.04000.Enemy racef_britannia | racef_elf | racef_order | racef_dragon | racef_lizardman | racef_magincia | racef_cyclops
 
 racef_goblin  000008000 //Goblin Race
-race.08000.Ally racef_goblin | racef_orc | racef_minax
-race.08000.Enemy racef_britannia | racef_elf | racef_order | racef_undead | racef_dragon | racef_ant | racef_lizardman | racef_ratman | racef_magincia
+race.08000.Ally racef_goblin | racef_orc | racef_minax | racef_troll
+race.08000.Enemy racef_britannia | racef_elf | racef_order | racef_undead | racef_dragon | racef_lizardman | racef_ratman | racef_magincia
 
 racef_ant  000010000 //Ant Race
 race.010000.Ally racef_ant
 race.010000.Enemy 0fffeffff //All races except ant race
 
 racef_lizardman  000020000 //Lizardman Race
-race.020000.Ally racef_lizardman | racef_minotaur | racef_cyclops | racef_dragon | racef_magincia
-race.020000.Enemy racef_britannia | racef_orc | racef_elf | racef_order | racef_undead | racef_demon | racef_ant | racef_ratman
+race.020000.Ally racef_lizardman | racef_minotaur | racef_cyclops | racef_dragon
+race.020000.Enemy racef_britannia | racef_orc | racef_elf | racef_order | racef_undead | racef_demon | racef_ratman
 
 racef_ratman  000040000 //Ratman Race
 race.040000.Ally racef_demon | racef_ratman | racef_undead
-race.040000.Enemy racef_britannia | racef_orc | racef_elf | racef_chaos | racef_order | racef_dragon | racef_ant | racef_lizardman | racef_magincia
+race.040000.Enemy racef_britannia | racef_orc | racef_elf | racef_chaos | racef_order | racef_dragon | racef_lizardman | racef_magincia
 
 racef_cyclops  000080000 //Cyclops Race
-race.080000.Ally racef_cyclops | racef_minotaur | racef_lizardman | racef_dragon
-race.080000.Enemy racef_britannia | racef_elf | racef_chaos | racef_order | racef_undead | racef_ant | racef_magincia | racef_demon
+race.080000.Ally racef_cyclops | racef_minotaur | racef_lizardman | racef_dragon | racef_troll
+race.080000.Enemy racef_undead | racef_ratman | racef_demon
 
 racef_minotaur  000100000 //Minotaur Race
-race.0100000.Ally racef_minotaur | racef_cyclops | racef_troll | racef_orc | racef_goblin | racef_minax | racef_lizardman
-race.0100000.Enemy racef_britannia | racef_elf | racef_chaos | racef_order | racef_undead | racef_dragon | racef_ant | racef_magincia
+race.0100000.Ally racef_minotaur | racef_cyclops | racef_troll | racef_orc | racef_goblin | racef_minax | racef_lizardman | racef_dragon
+race.0100000.Enemy racef_britannia | racef_elf | racef_chaos | racef_order | racef_undead | racef_magincia
 
 racef_troll  000200000 //Troll Race
-race.0200000.Ally racef_troll | racef_minotaur | racef_orc | racef_goblin | racef_minax | racef_demon
-race.0200000.Enemy racef_britannia | racef_shadowlords | racef_chaos | racef_order | racef_undead | racef_dragon | racef_ant | racef_magincia
+race.0200000.Ally racef_troll | racef_minotaur | racef_orc | racef_goblin | racef_minax | racef_demon | racef_cyclops
+race.0200000.Enemy racef_britannia | racef_chaos | racef_order | racef_undead | racef_magincia
 
 racef_gargoyle   000400000 //Gargoyle Race
 race.0400000.Ally racef_dragon | racef_gargoyle
@@ -107,7 +114,7 @@ race.0400000.Enemy racef_undead | racef_demon | racef_orc | racef_goblin | racef
 
 racef_arachnian 000800000 //Arachnian ferals
 race.0800000.Ally racef_arachnian
-race.0800000.Enemy 0ff7fffff
+race.0800000.Enemy 0ff7fffff //All races except arachnian race
 
 
 racef_notdefined 001000000 //This race not yet defined

@@ -1336,8 +1336,8 @@ STEALTH={10.0 25.0}
 
 
 [CHARDEF 283]
-DEFNAME=c_flayer
-NAME=flayer
+DEFNAME=c_bird_black
+NAME=bird
 DAM=3,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_usehands
@@ -1496,40 +1496,6 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
-[CHARDEF 713]
-DEFNAME=c_Abyssal_Infernal
-NAME=abyssal infernal
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
-
 [CHARDEF 714]
 DEFNAME=c_iron_beetle
 NAME=iron beetle
@@ -1629,39 +1595,6 @@ STEALTH={10.0 25.0}
 
 
 
-[CHARDEF 717]
-DEFNAME=c_clockwork_scorpion
-NAME=clockwork scorpion
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
 [CHARDEF 720]
 DEFNAME=c_salamander
 NAME=salamander
@@ -1725,72 +1658,6 @@ TACTICS={20.0 40.0}
 MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
-
-[CHARDEF 692]
-DEFNAME=c_weapon
-NAME=weapon
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-[CHARDEF 705]
-DEFNAME=c_golem
-NAME=golem
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
 
 
 [CHARDEF 726]
@@ -1865,40 +1732,6 @@ STEALTH={10.0 25.0}
 [CHARDEF 728]
 DEFNAME=c_medusa
 NAME=medusa
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
-
-[CHARDEF 729]
-DEFNAME=c_mimic
-NAME=mimic
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
@@ -2139,75 +1972,6 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
-
-
-
-[CHARDEF 739]
-DEFNAME=c_leather_wolf
-NAME=leather wolf
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-
-
-
-[CHARDEF 829]
-DEFNAME=c_colosus
-NAME=colosus
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
 
 
 [eof]

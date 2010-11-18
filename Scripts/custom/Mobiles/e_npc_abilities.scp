@@ -254,18 +254,18 @@ ENDIF
 [EVENTS e_mind_whip] 
 
 on=@NPCActFight
-     if (rand(5) == 1) && (<mana> > 18)
+     if (rand(5) == 1) && (<mana> > 15)
 		FOR 3
-			DORAND 5
+			DORAND 4
 				src.spelleffect s_Hallucination,1000
-				src.spelleffect s_feeblemind,1000
+				//src.spelleffect s_feeblemind,1000
 				src.spelleffect s_mana_drain,1000
 				src.spelleffect s_pain_spike,1000
 				src.spelleffect s_paralyze,1000
 			enddo
 		ENDFOR
-		mana -= 18
-		food += 6
+		mana -= 15
+		food += 5
 		src.emote reel from a mind whip
 	endif
 

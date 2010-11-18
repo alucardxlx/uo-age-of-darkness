@@ -47,7 +47,7 @@ DUPELIST=012b7,012b8,012b9,012ba,012bb,012bc,012bd,012be,012bf,012c0,012c1,012c2
 defname=i_board
 resources=i_log
 skillmake=01 carpentry
-value=2
+value=3
 weight=1
 type=t_board
 category=items - resources
@@ -58,7 +58,7 @@ dupelist=01bd8,01bd9,01bda,01bdb,01bdc
 [itemdef i_log_birch]
 id=i_log
 NAME=birch log%s
-value=9
+value=3
 TYPE=T_LOG
 TDATA1=i_board
 WEIGHT=2
@@ -72,8 +72,8 @@ color=color_o_birch
 ID=01bd7
 resources=i_log_cedar
 name=cedar board%s
-skillmake=30.0 carpentry, t_carpentry
-value=9
+SKILLMAKE=LUMBERJACKING 10.1
+value=4
 type=t_board
 
 category=Items - resources
@@ -87,11 +87,11 @@ ON=@create
 [itemdef i_log_cedar]
 id=i_log
 NAME=cedar log%s
-value=9
+value=4
 TYPE=T_LOG
 WEIGHT=2
 TDATA1=i_board_cedar
-SKILLMAKE=LUMBERJACKING 0.1
+SKILLMAKE=LUMBERJACKING 10.1
 
 on=@create
 color=color_o_cedar
@@ -101,8 +101,8 @@ color=color_o_cedar
 ID=01bd7
 resources=i_log_cyprus
 name=cyprus board%s
-skillmake=30.0 carpentry, t_carpentry
-value=9
+SKILLMAKE=LUMBERJACKING 10.1
+value=4
 type=t_board
 
 category=Items - resources
@@ -116,10 +116,10 @@ ON=@create
 [itemdef i_log_cyprus]
 id=i_log
 NAME=cyprus log%s
-value=9
+value=4
 TYPE=T_LOG
 TDATA1=i_board_cyprus
-SKILLMAKE=LUMBERJACKING 0.1
+SKILLMAKE=LUMBERJACKING 10.1
 WEIGHT=2
 
 on=@create
@@ -130,8 +130,8 @@ color=color_o_cyprus
 ID=01bd7
 resources=i_log_willow
 name=willow board%s
-skillmake=30.0 carpentry, t_carpentry
-value=9
+SKILLMAKE=LUMBERJACKING 10.1
+value=4
 type=t_board
 
 category=Items - resources
@@ -144,10 +144,10 @@ ON=@create
 [itemdef i_log_willow]
 ID=01bdd
 name=willow log%s
-value=9
+value=4
 type=t_log
 TDATA1=i_board_willow
-SKILLMAKE=LUMBERJACKING 0.1
+SKILLMAKE=LUMBERJACKING 10.1
 
 category=Items - resources
 subsection=new wood
@@ -161,8 +161,8 @@ ON=@create
 ID=01bd7
 resources=i_log_mahogany
 name=walnut board%s
-skillmake=40.0 carpentry, t_carpentry
-value=12
+SKILLMAKE=LUMBERJACKING 40.0
+value=9
 type=t_board
 
 category=Items - resources
@@ -175,7 +175,7 @@ ON=@create
 [itemdef i_log_mahogany]
 id=i_log
 NAME=mahogany log%s
-VALUE=2
+VALUE=9
 TYPE=T_LOG
 WEIGHT=2
 TDATA1=i_board_mahogany
@@ -188,8 +188,8 @@ color=color_o_mahogany
 ID=01bd7
 resources=i_log_walnut
 name=walnut board%s
-skillmake=40.0 carpentry, t_carpentry
-value=12
+SKILLMAKE=LUMBERJACKING 40.0
+value=9
 type=t_board
 
 
@@ -205,11 +205,11 @@ ON=@create
 [itemdef i_log_walnut]
 id=i_log
 NAME=walnut log%s
-VALUE=2
+VALUE=9
 TYPE=T_LOG
 WEIGHT=2
 TDATA1=i_board_walnut
-SKILLMAKE=LUMBERJACKING 30.0
+SKILLMAKE=LUMBERJACKING 40.0
 
 
 on=@create
@@ -219,8 +219,8 @@ color=color_o_walnut
 ID=01bd7
 resources=i_log_oak
 name=oak board%s
-skillmake=40.0 carpentry, t_carpentry
-value=12
+SKILLMAKE=LUMBERJACKING 30.0
+value=7
 type=t_board
 
 
@@ -234,7 +234,7 @@ ON=@create
 [itemdef i_log_oak]
 ID=01bdd
 name=oak log%s
-value=12
+value=7
 type=t_log
 TDATA1=i_board_oak
 SKILLMAKE=LUMBERJACKING 30.0
@@ -250,8 +250,8 @@ ON=@create
 ID=01bd7
 resources=i_log_yew
 name=yew board%s
-skillmake=20.0 carpentry, t_carpentry
-value=18
+SKILLMAKE=LUMBERJACKING 30.0
+value=7
 type=t_board
 
 category=Items - resources
@@ -264,10 +264,10 @@ ON=@create
 [itemdef i_log_yew]
 ID=01bdd
 name=yew log%s
-value=18
+value=7
 type=t_log
 TDATA1=i_board_yew
-SKILLMAKE=LUMBERJACKING 40.0
+SKILLMAKE=LUMBERJACKING 30.0
 
 category=Items - resources
 subsection=new wood
@@ -280,7 +280,7 @@ ON=@create
 ID=01bd7
 resources=i_log_heartwood
 name=heartwood board%s
-skillmake=60.0 carpentry, t_carpentry
+SKILLMAKE=LUMBERJACKING 50.0
 value=36
 type=t_board
 
@@ -297,7 +297,7 @@ name=heartwood log%s
 value=36
 type=t_log
 TDATA1=i_board_heartwood
-SKILLMAKE=LUMBERJACKING 70.0
+SKILLMAKE=LUMBERJACKING 50.0
 
 category=Items - resources
 subsection=new wood
@@ -311,7 +311,7 @@ ON=@create
 ID=01bd7
 resources=i_log_bloodwood
 name=bloodwood board%s
-skillmake=60.0 carpentry, t_carpentry
+SKILLMAKE=LUMBERJACKING 50.0
 value=36
 type=t_board
 
@@ -328,7 +328,7 @@ name=bloodwood log%s
 value=36
 type=t_log
 TDATA1=i_board_bloodwood
-SKILLMAKE=LUMBERJACKING 70.0
+SKILLMAKE=LUMBERJACKING 50.0
 
 category=Items - resources
 subsection=new wood
@@ -341,7 +341,7 @@ ON=@create
 ID=01bd7
 resources=i_log_frostwood
 name=frostwood board%s
-skillmake=60.0 carpentry, t_carpentry
+SKILLMAKE=LUMBERJACKING 50.0
 value=36
 type=t_board
 SKILLMAKE=LUMBERJACKING 70.0
@@ -358,7 +358,7 @@ name=frostwood log%s
 value=36
 type=t_log
 TDATA1=i_board_frostwood
-SKILLMAKE=LUMBERJACKING 70.0
+SKILLMAKE=LUMBERJACKING 50.0
 
 category=Items - resources
 subsection=new wood
@@ -371,7 +371,7 @@ ON=@create
 ID=01bd7
 resources=i_log_sunwood
 name=sunwood board%s
-skillmake=60.0 carpentry, t_carpentry
+SKILLMAKE=LUMBERJACKING 50.0
 value=60
 type=t_board
 
@@ -388,7 +388,7 @@ name=sunwood log%s
 value=60
 type=t_log
 TDATA1=i_board_sunwood
-SKILLMAKE=LUMBERJACKING 70.0
+SKILLMAKE=LUMBERJACKING 50.0
 
 category=Items - resources
 subsection=new wood
@@ -1278,6 +1278,214 @@ AMOUNT=9,30
 REGEN=60*60*24
 REAP=i_hay_sheaf
 
+
+[REGIONTYPE r_default t_sand]
+// Default sand area resources
+RESOURCES=25.0 mr_nothing
+RESOURCES=50.0 mr_sand
+
+[REGIONTYPE r_default_grass t_grass]
+// Default grass area resources
+// Can be eaten by animals?
+RESOURCES=1.0 mr_grass
+
+ON=@REGPERIODIC
+src.SFX={025,1,026,1,027,1,010,1,011,1,012,1,013,1}
+
+
+
+[REGIONTYPE r_default]
+// Unclaimed regions.
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
+
+[REGIONTYPE r_brit]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_britain1,midi_britain2
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_britain1,midi_britain2
+
+
+[REGIONTYPE r_Yew]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_Yew
+ENDIF
+
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Yew
+
+[REGIONTYPE r_Trinsic]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_Trinsic
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Trinsic
+
+[REGIONTYPE r_minoc]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_minoc
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_minoc
+
+[REGIONTYPE r_moonglow]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_moonglow
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_moonglow
+
+[REGIONTYPE r_paws]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_paws
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_paws
+
+[REGIONTYPE r_cove]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_cove
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_cove
+
+
+
+
+
+
+
+[REGIONTYPE r_Jhelom]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_Jhelom
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Jhelom
+
+
+[REGIONTYPE r_Skara_brae]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_skarabra
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_skarabra
+
+
+[REGIONTYPE r_brit_castle]
+// Lord brit castle.
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_LBCastle,midi_Castle
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_LBCastle,midi_Castle
+
+
+[REGIONTYPE r_guard_tower]
+// Guard tower.
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_ForestA
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_ForestA
+
+[REGIONTYPE r_black_castle]
+// Lord Blackthorne's Castle
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_BtCastle
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_BtCastle
+
+[REGIONTYPE r_bucs_den]
+// Bucs den
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_BucsDen
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_BucsDen
+
+
+
+[REGIONTYPE r_spooky]
+
+[REGIONTYPE r_dungeon]
+// Dungeon sounds same day or night.
+// Shadow ore is only found here.
+ON=@REGPERIODIC
+src.SFX={021f,1,0243,1,0244,1,0245,1}
+
+
+[REGIONTYPE r_plains]
+// Plains night and day.
+
+ON=@CLIPERIODIC
+src.SFX={0a,1,0b,1}
+
+
+[REGIONTYPE r_forests]
+// Forest Day and night.
+
+ON=@CLIPERIODIC
+IF <src.sector.ISNIGHTTIME>
+src.SFX={00,2,01,2,02,2,07d,1}
+ELSE
+src.SFX={08,10,09,10,0219,1,07d,1}
+ENDIF
+
+
+[REGIONTYPE r_jungle]
+// Jungle Day and night.
+
+ON=@CLIPERIODIC
+IF <src.sector.ISNIGHTTIME>
+src.SFX={0c,2,0d,2,0b3,1}
+ELSE
+src.SFX={03,2,04,2,05,2,0b3,1}
+ENDIF
+
+
+[REGIONTYPE r_swamp]
+// Swamp Day and night.
+// Never anything to mine here.
+ON=@CLIPERIODIC
+src.SFX={0e,10,0f,10,022,1,023,1,024,1,0267,1}
+
+
+
+
+
 [REGIONTYPE r_default_rock t_rock]
 // Random rocks
 RESOURCES=250.0 mr_nothing
@@ -1450,7 +1658,6 @@ RESOURCES=1.0 mr_map_bottle
 RESOURCES=0.5 mr_map_bottle_old
 
 
-
 [defname lumberjacking_constants]
 
 logs.i_tree_trunk=mr_tree_dead //gives dead wood (reagent)
@@ -1505,7 +1712,7 @@ logs.i_tree_5=mr_tree_birch
 [REGIONRESOURCE mr_tree]
 // lumberjacking default
 // t_tree
-SKILL=0.0,80.0
+SKILL=0.0,70.0
 AMOUNT=9,30
 REAP=i_log_birch
 REAPAMOUNT=1,8
@@ -1526,42 +1733,56 @@ for x 0 <eval <obj.p.statics>-1>
 endfor
 
 [REGIONRESOURCE mr_tree_dead]
-skill=0.1,80.0
-amount=9,30
+skill=0.1,75.0
+amount=6,20
 REAP=i_reag_dead_wood
 REAPAMOUNT=1,5
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_tree_willow]
-skill=0.1,80.0
+skill=5.1,80.0
 AMOUNT=6,20
 REAP=i_log_willow
 REAPAMOUNT=1,5
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_tree_birch]
-skill=0.1,80.0
-AMOUNT=6,20
+SKILL=0.0,70.0
+AMOUNT=9,30
 REAP=i_log_birch
-REAPAMOUNT=1,5
+REAPAMOUNT=1,8
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_tree_cedar]
-skill=0.1,80.0
+skill=5.1,80.0
 AMOUNT=6,20
 REAP=i_log_cedar
 REAPAMOUNT=1,5
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_tree_cyprus]
-skill=0.1,80.0
+skill=5.1,80.0
 AMOUNT=6,20
 REAP=i_log_cyprus
 REAPAMOUNT=1,5
 REGEN=60*60*24
 
+[REGIONRESOURCE mr_tree_yew]
+SKILL=30.0,85.0
+AMOUNT=4,15
+REAP=i_log_yew
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_oak]
+SKILL=30.0,85.0
+AMOUNT=4,15
+REAP=i_log_oak
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
 [REGIONRESOURCE mr_tree_walnut]
-SKILL=30.0,80.0
+SKILL=40.0,90.0
 AMOUNT=4,15
 REAP=i_log_walnut
 REAPAMOUNT=1,4
@@ -1574,44 +1795,30 @@ REAP=i_log_mahogany
 REAPAMOUNT=1,4
 REGEN=60*60*24
 
-[REGIONRESOURCE mr_tree_yew]
-SKILL=40.0,90.0
-AMOUNT=4,15
-REAP=i_log_yew
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_oak]
-SKILL=30.0,80.0
-AMOUNT=4,15
-REAP=i_log_oak
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
 [REGIONRESOURCE mr_heartwood]
 SKILL=70.0,120.0
-AMOUNT=3,10
+AMOUNT=4,12
 REAP=i_log_heartwood
 REAPAMOUNT=1,3
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_sunwood]
 SKILL=70.0,120.0
-AMOUNT=3,10
+AMOUNT=4,12
 REAP=i_log_sunwood
 REAPAMOUNT=1,3
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_frostwood]
 SKILL=70.0,120.0
-AMOUNT=3,10
+AMOUNT=4,12
 REAP=i_log_frostwood
 REAPAMOUNT=1,3
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_bloodwood]
 SKILL=70.0,120.0
-AMOUNT=3,10
+AMOUNT=4,12
 REAP=i_log_bloodwood
 REAPAMOUNT=1,3
 REGEN=60*60*24

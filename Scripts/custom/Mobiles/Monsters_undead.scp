@@ -476,6 +476,7 @@ on=@create
      dex={61 76}
      int={38 50}
      TAG0.MODHITS = 32
+     TAG0.MODSTAM = 16
 
 	givelang 1
 

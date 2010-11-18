@@ -209,7 +209,7 @@ random_ore       { i_ore_iron 12 i_ore_copper 6 i_ore_silver 3 i_ore_gold 2 i_or
 random_ingot       { i_ingot_iron 10 i_ingot_copper 4 i_ingot_silver 3 i_ingot_gold 2 i_ingot_shadow 1 i_ingot_agapite 1 i_ingot_verite 1 i_ingot_valorite 1 i_ingot_rose 1  i_ingot_bloodrock 1 i_ingot_bronze 5 i_ingot_corroded_bronze 4 i_ingot_rusty 6 i_ingot_old_copper 4 i_ingot_dull_copper 3 }
 
 random_bone       { i_bone 4 i_bone_skull 1 i_bone_jaw 1 i_bone_spine 2 i_bone_pelvis 1 i_bone_ribcage 2 i_bone_shards 6 }
-random_trash      { i_hair_cut 1 i_sticks 2 i_leaves 1 i_horse_dung 2 i_eggshells 3 i_ribs_burned 2 i_wood_curls 2 i_bandage_bloody 3 i_book_damaged 1 }
+random_trash      { i_hair_cut 1 i_sticks 2 i_leaves 1 i_horse_dung 2 i_eggshells 3 i_ribs_burned 2 i_wood_curls 2 i_bandage_bloody 4 }
 
 //*******************************************************************
 // Chars

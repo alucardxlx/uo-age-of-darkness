@@ -1381,4 +1381,47 @@ else
 endif
 return 1
 
+
+[TYPEDEF t_light_mgr]
+ON=@DClick
+	if (<region.flags> & 080)
+		if !(<src.isgm>)
+			return 1
+		else
+			return 0
+		endif	
+	endif
+
+[ITEMDEF i_light_man]
+ID=i_gravestone
+NAME=Light Manager
+TYPE=t_script
+
+ON=@Create
+attr=attr_invis|attr_can_decay
+timerf 1,f_streetlight_mgr
+timerf 6, remove
+
+[FUNCTION f_streetlight_mgr]
+FORITEMS 7168 
+	if (<region.flags> & 080)
+		if (<sector.isdark>)
+			if (<type>==t_light_out)
+				type=t_light_lit
+				dispid=<typedef.defname>_lit
+				update
+			endif
+		else
+			if (<type>==t_light_lit)
+				local.defname=<eval strlen(<dispid>)>
+				local.defname=<eval <local.defname>-4>
+				type=t_light_out
+				dispid=<strsub 0 <dlocal.defname> <typedef.defname>>
+				update
+			endif
+		endif
+	endif
+endfor
+
+
 [EOF]

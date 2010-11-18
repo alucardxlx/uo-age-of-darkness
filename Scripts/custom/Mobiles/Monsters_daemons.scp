@@ -57,21 +57,21 @@ on=@create
      TAG0.MODHITS = 16
      TAG0.MODMANA = 32
 
-     swordsmanship={60.0 80.0}
-     parrying={65.0 75.0}
+     spiritspeak={65.0 75.0}
+     evaluatingintel={90.1 98.0}
      magery={99.0 100.0}
-     magicresistance={95.0 98.0}
+     magicresistance={85.0 88.0}
      tactics={60.0 80.0}
      wrestling={70.0 80.0}
-     meditation={90.9 98.1}
-     evaluatingintel={90.1 98.0}
+     meditation={70.9 88.1}
+     necromancy={90.1 98.0}
 
 	resfire=60
 	rescold=24
 	respoison=24
 	resenergy=24
 
-     fame={6000 8000}
+     fame={6500 9000}
      karma={-7000 -7999}
 
 	givelang 8
@@ -82,6 +82,7 @@ on=@create
      TAG.RANDCAST=45
      TAG.QUICKCAST = 25
      TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_sorcery_user
      EVENTS=+e_intel_char_magery_user
 
 
@@ -134,7 +135,7 @@ on=@create
 
 	givelang 8
 
-     magery={95.0 98.0}
+     necromancy={95.0 98.0}
      parrying={75.0 95.0}
      magicresistance={85.0 95.0}
      tactics={80.0 90.0}
@@ -148,7 +149,8 @@ on=@create
      EXP={ 129000 161000 } //Level 9
 
      TAG.RANDCAST=20
-     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
+
 
 
 [chardef 061]
@@ -207,7 +209,6 @@ on=@create
 
      TAG.RANDCAST=20
      EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_itens_com_props
 
 
 [CHARDEF 98]
@@ -266,7 +267,6 @@ on=@create
 
      TAG.RANDCAST=20
      EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_itens_com_props
 
 
 [chardef 02b]
@@ -307,7 +307,6 @@ on=@create
 
      meditation={27.3 50.8}
      evaluatingintel={27.3 50.8}
-     swordsmanship={70.0 90.0}
      parrying={65.0 75.0}
      anatomy={35.6 55.7}
      magery={96.9 99.1}
@@ -440,13 +439,14 @@ on=@create
      TAG0.MODMANA = 16
      TAG0.MODSTAM = 16
 
-     anatomy=100.0
-     magicresistance=100.0
+     anatomy={99.6 100.0}
+     magicresistance={83.8 89.0}
      tactics={83.8 89.0}
      wrestling={92.7 94.8}
      evaluatingintel={90.1 98.0}
      magery={99.6 100.0}
      meditation={90.9 98.1}
+     necromancy={55.9 68.1}
 
 
 	resfire=60
@@ -465,7 +465,7 @@ on=@create
      TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_itens_com_props
+     EVENTS=+e_intel_char_sorcery_user
 
 
 [chardef 10]
@@ -515,6 +515,7 @@ on=@create
      evaluatingintel={27.3 50.8}
      parrying={65.0 75.0}
      anatomy={35.6 55.7}
+     necromancy={35.6 55.7}
      magery={96.9 99.1}
      magicresistance=100.0
      tactics={90.1 99.7}
@@ -534,6 +535,7 @@ on=@create
      TAG.QUICKCAST = 15
      TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
 
 
 [chardef 026]
@@ -584,6 +586,7 @@ on=@create
      tactics={98.0 100.0}
      meditation={27.3 50.8}
      evaluatingintel={80.4 93.6}
+     necromancy={65.0 75.0}
      anatomy={35.6 55.7}
      magicresistance=100.0
      wrestling={91.2 99.7}
@@ -603,6 +606,7 @@ on=@create
      TAG.QUICKCAST = 15
      TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
 
 [chardef 028]
 defname=c_orcus
@@ -650,14 +654,15 @@ on=@create
      meditation={35.6 55.7}
      evaluatingintel={80.4 93.6}
      parrying={70.4 83.6}
+     necromancy={97.0 100.0}
      anatomy={65.0 75.0}
-     magicresistance=100.0
+     magicresistance={99.0 100.0}
      wrestling={96.2 100.0}
      magery={97.0 100.0}
      tactics={99.0 100.0}
 
 
-     fame={8500 10000}
+     fame={8500 11000}
      karma={-9000 -9999}
 
 	resfire=65
@@ -671,6 +676,7 @@ on=@create
      TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
 
 
 
@@ -729,7 +735,7 @@ on=@create
 
      EXP={ 260000 320000 } //Level 10
 
-     fame={6000 8000}
+     fame={9000 12000}
      karma={-7000 -7999}
 
 [chardef 083]
@@ -778,22 +784,23 @@ on=@create
 
 	givelang 1
 
-     parrying={65.0 75.0}
-     magery={67.7 77.6}
-     magicresistance={61.2 74.0}
+     anatomy={57.7 67.6}
+     parrying={65.0 85.0}
+     necromancy={49.7 59.6}
+     magicresistance={61.2 84.0}
      tactics={61.3 79.3}
      wrestling={64.9 79.8}
-     evaluatingintel={61.2 74.0}
 
-     fame={1100 3000}
+     fame={2100 4000}
      karma={-3000 -3999}
 
      EXP={ 8050 11000 } //Level 5
 
-     TAG.RANDCAST=30
+     TAG.RANDCAST=25
      TAG.QUICKCAST = 15
      TAG.SPELLPOWER = 15
-     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
+
 
 on=@death
      item={ magic_box 1 treasure_crate_small 1 0 1 }
@@ -845,10 +852,13 @@ on=@create
 
      evaluatingintel={80.4 93.6}
      parrying={65.0 75.0}
+     meditation={55.6 75.7}
      magery={87.7 97.6}
-     magicresistance={64.9 79.8}
+     magicresistance={74.9 89.8}
      tactics={61.2 74.0}
      wrestling={61.2 74.0}
+     necromancy={86.7 95.6}
+     spiritspeak={46.7 55.6}
 
 
      fame={3100 5000}
@@ -860,6 +870,8 @@ on=@create
      TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 25
      EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
+
 
 on=@death
      item={ magic_box 1 treasure_crate_large 1 0 1 }
@@ -929,6 +941,43 @@ ON=@Create
 
      TAG.RANDCAST=30
      EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
+
+
+
+[CHARDEF 713]
+DEFNAME=c_Abyssal_Infernal
+NAME=abyssal infernal
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
 
 
 [eof]

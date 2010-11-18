@@ -49,10 +49,12 @@ ON=@Start
 TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
 RETURN 2
 
+
+
 [EVENTS e_WeaponSkills]
 
 ON=@UserSpecialMove
-SRC.f_UseSkillBook <ARGN1>
+SRC.MESSAGE Use the commands .move1, .move2 and move3 to activate special moves.
 RETURN 0
 
 ON=@ItemUnequip
@@ -1064,14 +1066,14 @@ ON=@EQUIP
   CONT.FLAGS = <CONT.FLAGS> | 04 //paralyzed
   //CONT.EVENTS = +e_paralyzed
   CONT.EMOTE get paralyzed by the last attack
-  TIMERD = 1
+  TIMERD = 0.5
 
 ON=@TIMER
   IF <MORE1>
      CONT.ACTION = -1 //stop all actions
      CONT.FLAGS = <CONT.FLAGS> | 04 //paralyzed
      MORE1 -= 1
-     TIMERD = 1
+     TIMERD = 0.5
      RETURN 1
   ELSE
      REMOVE

@@ -56,18 +56,21 @@ IF (<ARGO.TYPE>==t_potion)
 ELSE
 	obj=<src.act>
 endif
-if <obj.findid.i_wamth_timer>
-	obj.rescold -= <obj.findid.i_wamth_timer.tag.rescold>
-	obj.findid.i_wamth_timer.remove
+if <obj.findid.i_warmth_timer>
+	obj.rescold -= <obj.findid.i_warmth_timer.tag.rescold>
+	obj.findid.i_warmth_timer.remove
 endif
 local.lo=<strarg <serv.spell.<argn1>.effect>>
 local.hi=<streat <serv.spell.<argn1>.effect>>
-src.newitem i_wamth_timer
+src.newitem i_warmth_timer
 new.tag.rescold = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
 local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
 local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
 new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
 new.LINK=<obj>
+IF (<ARGO.TYPE>==t_potion)
+	new.layer=44
+endif
 trysrc <obj> new.equip
 
 
@@ -94,7 +97,7 @@ defname=s_summon_hellhound
 name=Summon Hellhound
 sound=
 runes=KFX
-cast_time=5.0
+cast_time=6.0
 resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone
 rune_item=
 scroll_item=
@@ -102,7 +105,7 @@ flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
 effect_id=
 effect=
 duration=0.0
-manause=25
+manause=28
 skillreq=Necromancy 55.0
 interrupt=0.0
 
@@ -137,7 +140,7 @@ new.MORE2=1
 new.MOREP=40,816
 new.CONT=<OBJ.UID>
 new.LINK=<SRC.UID>
-new.TIMER=<eval (<src.spiritspeak>+<argn2>)/15>+{120 180}
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>)/15>+{120 180}
 new.ATTR=attr_decay
 
 [spell 163]
@@ -145,7 +148,7 @@ defname=s_summon_efreet
 name=Summon Efreet
 sound=
 runes=KFHX
-cast_time=8.0
+cast_time=7.0
 resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_brimstone,i_reag_obsidian
 rune_item=
 scroll_item=
@@ -153,7 +156,7 @@ flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
 effect_id=
 effect=
 duration=0.0
-manause=35
+manause=38
 skillreq=Necromancy 65.0
 interrupt=0.0
 
@@ -187,7 +190,7 @@ new.MORE2=1
 new.MOREP=40,816
 new.CONT=<OBJ.UID>
 new.LINK=<SRC.UID>
-new.TIMER=<eval (<src.spiritspeak>+<argn2>)/20>+{90 150}
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/20>+{90 150}
 new.ATTR=attr_decay
 
 
@@ -196,7 +199,7 @@ DEFNAME=s_detonation
 NAME=Detonation
 SOUND=snd_spell_explosion
 RUNES=VOF
-CAST_TIME=6.0
+CAST_TIME=5.0
 RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_brimstone, i_reag_pig_iron
 RUNE_ITEM=
 SCROLL_ITEM=
@@ -204,7 +207,7 @@ FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_T
 EFFECT_ID=0
 EFFECT=0
 DURATION=0
-MANAUSE=26
+MANAUSE=27
 SKILLREQ=Necromancy 75.0
 INTERRUPT=100.0,1.0
 
@@ -212,7 +215,7 @@ ON=@Success
 serv.NEWITEM i_detonation
 NEW.p=<act.p>
 NEW.TIMER=1
-LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/100)+{12 18})
+LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/90)+{15 20})
 FORCHARS 20
 	IF (<distance <new>> == 3)
 		damage (<local.damage>/4) 010 <SRC.UID>
@@ -241,7 +244,7 @@ defname=s_summon_djinn
 name=Summon Djinn
 sound=
 runes=KFOX
-cast_time=10.0
+cast_time=8.0
 resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone,i_reag_obsidian
 rune_item=
 scroll_item=
@@ -249,7 +252,7 @@ flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
 effect_id=
 effect=
 duration=0.0
-manause=40
+manause=44
 skillreq=Necromancy 75.0
 interrupt=0.0
 
@@ -283,7 +286,7 @@ new.MORE2=1
 new.MOREP=40,816
 new.CONT=<OBJ.UID>
 new.LINK=<SRC.UID>
-new.TIMER=<eval (<src.spiritspeak>+<argn2>)/25>+{60 120}
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/25>+{60 120}
 new.ATTR=attr_decay
 
 
@@ -292,15 +295,15 @@ defname=s_summon_chaos_daemon
 name=Summon Chaos Daemon
 sound=
 runes=KRFX
-cast_time=15.0
-resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone,i_reag_obsidian
+cast_time=10.0
+resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone,i_reag_obsidian, i_reag_brimstone
 rune_item=
 scroll_item=
 flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
 effect_id=
 effect=
 duration=0.0
-manause=45
+manause=52
 skillreq=Necromancy 90.0
 interrupt=0.0
 
@@ -334,7 +337,7 @@ new.MORE2=1
 new.MOREP=40,816
 new.CONT=<OBJ.UID>
 new.LINK=<SRC.UID>
-new.TIMER=<eval (<src.spiritspeak>+<argn2>)/30>+{30 90}
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/30>+{30 90}
 new.ATTR=attr_decay
 
 

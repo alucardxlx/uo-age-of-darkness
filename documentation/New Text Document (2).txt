@@ -3,6 +3,7 @@ Rune Beetle: bleed
 Flesh render: dismout
 impaler: bleed, mortal wound
 Dark Father: crushing blow
+raptor: bleed
 
 [ITEMDEF i_fang_ractus]
 ID=i_kryss
