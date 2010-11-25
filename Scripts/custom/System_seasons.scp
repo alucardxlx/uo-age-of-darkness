@@ -916,7 +916,7 @@ else
 endif
 
 [FUNCTION f_make_rain]
-if (<sector.weather>==0) && (<Serv.MaxSectorComplexity> > (<Sector.complexity>/3))
+if (<sector.weather>==0) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemComplexity>)
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else
@@ -929,7 +929,7 @@ else
 endif
 
 [FUNCTION f_make_snow]
-if (<sector.weather>==2)  && (<Serv.MaxSectorComplexity> > (<Sector.complexity>/3))
+if (<sector.weather>==2) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemComplexity>)
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else
@@ -1239,10 +1239,10 @@ ON=@create
 timer=60
 
 ON=@timer 
-IF (<sector.light> > 10)
+IF (<sector.light> > 8)
 	attr=(<attr>&~attr_invis)
 	type = t_phase_moongate
-ELSEIF (<sector.light> < 10)
+ELSEIF (<sector.light> < 8)
 	type = t_normal
 	attr |= attr_invis
 	timer=60

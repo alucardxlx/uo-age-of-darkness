@@ -166,7 +166,7 @@ random_circlets		  { i_circlet 1 i_circlet_gemmed 1 i_circlet_royal 1 }
 
 random_wearables           { random_clothing 1 random_jewelry 1 };
 random_clothing            { random_male_tops 1 random_female_tops 1 random_male_pants 1 random_female_pants 1 random_cloaks 1 random_boots 1 random_hats 1 random_belts 1 }
-random_jewelry             { random_necklace 2 random_bracelets 2 random_earrings 2 random_rings 1 random_circlets 1 i_elven_glasses 1}
+random_jewelry             { random_necklace 3 random_bracelets 2 random_earrings 3 random_rings 2 random_circlets 2 i_elven_glasses 1}
 
 //*******************************************************************
 // items - magic related items
@@ -175,6 +175,8 @@ random_jewelry             { random_necklace 2 random_bracelets 2 random_earring
 RANDOM_REAGENT         { i_reag_black_pearl 3 i_reag_blood_moss 6 i_reag_garlic 9 i_reag_ginseng 6 i_reag_mandrake_root 6 i_reag_nightshade 6 i_reag_sulfur_ash 6 i_reag_spider_silk 9 i_reag_batwing 6 i_reag_blackmoor 1 i_reag_blood_spawn 1 i_reag_blood_vial 6 i_reag_bone 6 i_reag_brimstone 6 i_reag_daemon_bone 1 i_reag_dragon_blood 1 i_reag_executioners_cap 3 i_reag_eye_of_newt 6 i_reag_obsidian 6 i_reag_pig_iron 6 i_reag_pumice 6 i_reag_serpent_scale 9 i_reag_dead_wood 9 i_reag_worm_heart 1 i_reag_fertile_dirt 9 }
 
 RANDOM_REAGENT_DARK         { i_reag_nightshade 3 i_reag_blackmoor 1 i_reag_blood_spawn 1 i_reag_blood_vial 6 i_reag_bone 6 i_reag_brimstone 6 i_reag_daemon_bone 1 i_reag_executioners_cap 3 i_reag_fertile_dirt 9 i_reag_batwing 6 i_reag_dead_wood 9 }
+RANDOM_REAGENT_sorcery      { i_reag_pig_iron 6 i_reag_brimstone 6 i_reag_daemon_bone 1 i_reag_sulfur_ash 6 i_reag_obsidian 6 i_reag_pumice 6 }
+RANDOM_REAGENT_necro        { i_reag_blackmoor 1 i_reag_blood_vial 6 i_reag_bone 6 i_reag_executioners_cap 3 i_reag_fertile_dirt 9 i_reag_dead_wood 9 }
 
 // Prices: Very Rare (1) 16 gp, Rare (3) 12 gp, Uncommon (6) 8 gp, Common (9) 4 gp
 
@@ -220,7 +222,180 @@ RATMEN                 { c_ratman 1 c_ratman_w_sword 1 c_ratman_w_mace 1 }
 SKELETONS              { c_skeleton 1 c_skeleton_w_sword 1 c_skeleton_w_axe 1}
 TROLLS                 { c_troll 1 c_troll_w_axe 1 c_troll_w_mace 1 }
 
+[DEFNAME DIALOG_COLORS]
+dcolor_white		16777215
+dcolor_red		15540260
 
+[DEFNAME SPELLWEAVING_SOUNDS]
+snd_spell_arcane_circle		1472
+snd_spell_gift_renewal		1481
+
+[DEFNAME MYSTICISM_SOUNDS]
+snd_spell_animated_weapon	1611
+snd_spell_bombard		1612
+snd_spell_cleansing_winds	1613
+snd_spell_eagle_strike		1614
+snd_spell_enchant		1615
+snd_spell_hail_storm		1616
+snd_spell_healing_stone		1617
+snd_spell_mass_sleep		1618
+snd_spell_nether_bolt		1620
+snd_spell_nether_cyclone	1621
+snd_spell_pure_magic		1622
+snd_spell_rising_colossus	1623
+snd_spell_sleep			1624
+snd_spell_spell_plague		1625
+snd_spell_spell_trigger		1626
+snd_spell_stone_form		1627
+
+[DEFNAME SA_GARGOYLE_SOUND]
+snd_gargoyle_female_a		1525 
+snd_gargoyle_female_d		1526
+snd_gargoyle_female_h		1527 
+snd_gargoyle_female_n		1528
+snd_gargoyle_male_a		1529 
+snd_gargoyle_male_d		1530
+snd_gargoyle_male_h		1531 
+snd_gargoyle_male_n		1532
+
+[DEFNAME SA_MONSTER_SOUND]
+snd_monster_medusa_a		1555 
+snd_monster_medusa_d		1556 
+snd_monster_medusa_h		1557 
+snd_monster_medusa_n		1558
+snd_monster_rotworm_a		1579
+snd_monster_rotworm_d		1580
+snd_monster_rotworm_h		1581
+snd_monster_rotworm_n		1582 
+snd_monster_slasher_of_veils_a	1587
+snd_monster_slasher_of_veils_d	1588
+snd_monster_slasher_of_veils_h	1589
+snd_monster_slasher_of_veils_n	1590
+snd_monster_stygian_dragon_a	1599
+snd_monster_stygian_dragon_d	1600
+snd_monster_stygian_dragon_h	1601
+snd_monster_stygian_dragon_n	1602
+snd_monster_chicken_lizard   1509
+snd_monster_medusa                 1555
+snd_monster_goblin                 1534
+snd_monster_gargoyle_undead  1607
+snd_monster_navreynighteyes  1563
+snd_monster_slith            1591
+snd_monster_skree            1583
+snd_monster_mimic                       1559
+snd_monster_dragon_faerie       1513
+snd_monster_dragon_wolf   1517
+snd_abyssal_infernal     1493
+snd_monster_elem_lava           1547
+snd_monster_maddening_horror 1551
+snd_monster_boura                       1505
+snd_death_beetle1                 1264
+snd_monster_stoneform           1595
+snd_monster_bloodworm   1501
+snd_monster_rotworm             1579
+snd_monster_raptor                 1571
+snd_monster_kepetch               1543
+snd_monster_homunculous   1542
+
+[DEFNAME MISC_SOUNDS]
+snd_quest_abandon		1460 
+snd_quest_accept		1461
+snd_quest_complete		1462 
+snd_quest_update		1463 
+snd_virtuecards_add_remove	1466
+snd_virtuecards_rightcombo	1467
+snd_virtuecards_wrongcombo	1468
+snd_gargoyle_pluck		1489 
+snd_imbue			1490
+snd_throw_h			1491
+snd_throw_m			1491 
+snd_mysticism			1619
+
+[DEFNAME NOTO_FLAGS]
+NotoGood		1
+NotoGuildSame		2
+NotoNeutral		3
+NotoCriminal		4
+NotoGuildWar		5
+NotoEvil		6
+
+[DEFNAME SPELL_FLAGS_NEW]
+spellflag_targ_player		0200004 // targ_char + targ_no_npc
+spellflag_targ_npc		0100004 // targ_char + targ_no_player
+
+[DEFNAME BUFF_ICONS]
+bufficon_sleep			1049
+bufficon_stoneform		1050
+bufficon_spellplague		1051
+bufficon_gargoyleberserk	1052 // i assume this is a new ability
+bufficon_gargoylefly		1054 // and this is the flying effect
+
+[DEFNAME BUFF_CLILOCS]
+buffcliloc_empty		1070722
+buffcliloc_poison_1		1017383
+buffcliloc_poison_2		1075633 // 1070722 //empty
+buffcliloc_nightsight_1		1075643
+buffcliloc_nightsight_2		1075644
+buffcliloc_deathstrike_1	1075645
+buffcliloc_deathstrike_2	1075646
+buffcliloc_evilomen_1		1075647
+buffcliloc_evilomen_1		1075648
+buffcliloc_enemyofone_1		1075653 // Enemy of One
+buffcliloc_enemyofone_2		1075654 // +~1_PERCENT~% damage to ~2_ARTICLE~ ~3_TEMPLATES~.<br>+~4_PERCENT~% damage from anything except ~2_ARTICLE~ ~3_TEMPLATES~ to you.
+buffcliloc_hidden_1		1075655
+buffcliloc_hidden_2		1075656
+buffcliloc_bloodoathcaster_1	1075659 // Blood Oath (caster)
+buffcliloc_bloodoathcaster_2	1075660 // +20% damage from ~1_TARGET~<br>Base damage from ~1_TARGET~ inflicted back on them.
+buffcliloc_bloodoathcurse_1	1075661 // Blood Oath (curse)
+buffcliloc_bloodoathcurse_2	1075662 // Any damage inflicted on ~1_CASTER~ is inflicted on you as well.
+buffcliloc_corpseskin_1		1075663 // Corpse Skin
+buffcliloc_corpseskin_2		1075664 // +10% physical resist.<br>+10% cold resist.<br>-15% fire resist.<br>-15% poison resist.
+buffcliloc_mindrot_1		1075665 // Mind Rot
+buffcliloc_mindrot_2		1075666 // +25% increased mana cost.
+buffcliloc_painspike_1		1075667 // Pain Spike
+buffcliloc_painspike_2		1075668 // +~1_DMG~ hit points when Pain Spike wears off.
+buffcliloc_giftofrenewal	1075796 // Gift of Renewal
+buffcliloc_giftofrenewal	1075797 // +~1_DMG~ hit points every 2 seconds
+buffcliloc_reactivearmor_1	1075812
+buffcliloc_reactivearmor_2	1075813
+buffcliloc_protection_1		1075814
+buffcliloc_protection_2		1075815
+buffcliloc_archprotection	1075816
+buffcliloc_archprotection	1070722 // empty!
+buffcliloc_magicreflection_1	1075817
+buffcliloc_magicreflection_1	1075818
+buffcliloc_incognito_1		1075819
+buffcliloc_incognito_2		1075820
+buffcliloc_disguised_1		1075821
+buffcliloc_disguised_2		1075820
+buffcliloc_animalform_1		1075822
+buffcliloc_animalform_2		1075823
+buffcliloc_polymorph_1		1075824
+buffcliloc_polymorph_2		1075820 // use 1070722 = empty or 1075823 = You are transformed into ~1_ARTICLE~ ~2_FORM~.
+buffcliloc_invisibility_1	1075825
+buffcliloc_invisibility_2	1075826
+buffcliloc_paralyze_1		1075827
+buffcliloc_paralyze_2		1075828
+buffcliloc_bleed_1		1075829
+buffcliloc_bleed_2		1075830
+buffcliloc_clumsy_1		1075831
+buffcliloc_clumsy_2		1075832
+buffcliloc_feeblemind_1		1075833
+buffcliloc_feeblemind_1		1075834
+buffcliloc_curse_1		1075835
+buffcliloc_curse_2		1075836 // 1075840
+buffcliloc_weaken_1		1075837
+buffcliloc_weaken_2		1075838
+buffcliloc_masscurse_1		1075839
+buffcliloc_masscurse_2		1075840
+buffcliloc_agility_1		1075841
+buffcliloc_agility_2		1075842
+buffcliloc_cunning_1		1075843
+buffcliloc_cunning_2		1075844
+buffcliloc_strength_1		1075845
+buffcliloc_strength_2		1075846
+buffcliloc_bless_1		1075847
+buffcliloc_bless_2		1075848
 
 
 [EOF]

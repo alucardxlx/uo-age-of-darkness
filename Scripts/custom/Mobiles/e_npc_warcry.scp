@@ -5,12 +5,20 @@ IF (RAND(10) > 1)
 	return 0
 ENDIF
 IF ( <TAG0.NPCAI.Race> == racef_undead )
-	DORAND 5
-	   EMOTE drool putrid slime
+	DORAND 4
 	   EMOTE gaze hungrily
 	   SAY Brains...
 	   SAY Join me.
 	   SAY I am eternal.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_daemon )
+	DORAND 6
+	   SAY Your world shall burn.
+	   SAY No mortal can defeat us.
+	   SAY Your flesh will sear.
+	   SAY Burn!
+	   SAY I shall claim your soul.
+	   SAY Pathetic wretches!
 	ENDDO
 ELIF ( <TAG0.NPCAI.Race> == racef_elf )
 	DORAND 5
@@ -49,9 +57,17 @@ IF ( <TAG0.NPCAI.Race> == racef_undead )
 	   EMOTE howl to allies
 	   EMOTE shriek with joy
 	   SAY Brains...
-	   SAY We come from the cold earth.
+	   SAY The Mountain King shall conquer.
 	   SAY The army of the dead grows.
 	   SAY I join the growing darkness.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_daemon )
+	DORAND 5
+	   SAY I serve the Daemon Lord's army.
+	   SAY For the Lord of Flame!
+	   SAY The mortals shall suffer.
+	   SAY All shall burn before us.
+	   SAY The Abyss' army shall never fall.
 	ENDDO
 ELIF ( <TAG0.NPCAI.Race> == racef_elf )
 	DORAND 5

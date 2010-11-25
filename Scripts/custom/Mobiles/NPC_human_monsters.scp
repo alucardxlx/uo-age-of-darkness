@@ -632,4 +632,153 @@ ON=@NPCRestock
 	CATEGORY=Civilized
 	SUBSECTION=Bandits (Evil)
 	DESCRIPTION=Bandit (female)
+
+[CHARDEF c_h_savage_rider_male]
+ID=c_man
+NAME="Savage Rider"
+ICON=i_pet_man
+CAN=MT_WALK|MT_EQUIP|MT_USEHANDS|MT_RUN
+DAM=15,30
+ARMOR=18
+MOVERATE=3
+RESDISPID=c_man
+RESLEVEL=3
+RESDISPHUE=
+RESOURCES=i_flesh_head, i_flesh_torso,i_flesh_right_arm, i_flesh_left_arm,i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food
+DESIRES=c_m_savage_rider_female,c_m_savage_rider_male
+AVERSIONS=r_civilization
+
+CATEGORY=humans
+SUBSECTION=NPCs & Uniques
+DESCRIPTION=Savage Rider (male) - LBR
+
+ON=@Create
+     NPC=brain_human
+     STR={151 170}
+     DEX={92 130}
+     INT={51 65}
+
+     PARRYING={71.0 80.0}
+     MAGICRESISTANCE={73.0 95.0}
+     TACTICS={73.0 95.0}
+     POISONING={60.0 83.0}
+     SWORDSMANSHIP={73.0 95.0}
+     FENCING={73.0 95.0}
+     MACEFIGHTING={73.0 95.0}
+
+     FAME={2000 2900}
+     KARMA={-2000 -2999}
+
+ON=@NpcRestock
+     ITEM=i_bone_leggings
+     ITEM=i_bone_arms
+     ITEM=i_spear_tribal
+     ITEM=i_mask_bear
+     //ITEM=i_mt_ridgeback_savage // not working, dunno why
+     ITEM=i_mt_horse_gray	// on horse.
+
+ON=@Death
+     NEWLOOT=loot_savage_rider
+     
+[CHARDEF c_h_savage_rider_female]
+ID=c_woman
+NAME="Savage Rider"
+ICON=i_pet_man
+CAN=MT_WALK|MT_EQUIP|MT_USEHANDS|MT_RUN
+DAM=15,30
+ARMOR=18
+MOVERATE=3
+RESDISPID=c_woman
+RESLEVEL=3
+RESDISPHUE=
+RESOURCES=i_flesh_head, i_flesh_torso,i_flesh_right_arm, i_flesh_left_arm,i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food
+DESIRES=c_m_savage_rider_male
+AVERSIONS=r_civilization
+
+CATEGORY=humans
+SUBSECTION=NPCs & Uniques
+DESCRIPTION=Savage Rider (female) - LBR
+
+ON=@Create
+     NPC=brain_human
+     STR={151 170}
+     DEX={92 130}
+     INT={51 65}
+
+     PARRYING={71.0 80.0}
+     MAGICRESISTANCE={73.0 95.0}
+     TACTICS={73.0 95.0}
+     POISONING={60.0 83.0}
+     SWORDSMANSHIP={73.0 95.0}
+     FENCING={73.0 95.0}
+     MACEFIGHTING={73.0 95.0}
+
+     FAME={2000 2900}
+     KARMA={-2000 -2999}
+
+ON=@NpcRestock
+     ITEM=i_bone_leggings
+     ITEM=i_bone_arms
+     ITEM=i_spear_tribal
+     ITEM=i_mask_bear
+     ITEM=i_mt_ridgeback_savage
+
+ON=@Death
+     NEWLOOT=loot_savage_rider
+
+[CHARDEF c_h_savage_shaman]
+NAME="Savage Shaman"
+ID=c_man
+ICON=i_pet_man
+CAN=MT_WALK|MT_EQUIP|MT_USEHANDS|MT_RUN
+DAM=10,20
+ARMOR=18
+MOVERATE=3
+RESDISPID=c_man
+RESLEVEL=3
+RESDISPHUE=
+RESOURCES=i_flesh_head, i_flesh_torso,i_flesh_right_arm, i_flesh_left_arm,i_flesh_left_leg, i_flesh_right_leg, i_blood_2
+FOODTYPE=15 t_food
+DESIRES=c_m_savage_rider_male
+AVERSIONS=r_civilization
+
+CATEGORY=humans
+SUBSECTION=NPCs & Uniques
+DESCRIPTION=Savage Shaman - LBR
+
+ON=@Create
+     NPC=brain_human
+     STR={126 145}
+     DEX={91 110}
+     INT={161 185}
+     NAME="#NAMES_SAVAGE_FEMALE"
+
+
+     PARRYING={61.0 70.0}
+     MAGICRESISTANCE={78.0 100.0}
+     TACTICS={63.0 85.0}
+     WRESTLING={63.0 85.0}
+     EVALUATINGINTEL={78.0 100.0}
+     MAGERY={73.0 95.0}
+     FENCING={63.0 85.0}
+     MACEFIGHTING={63.0 85.0}
+     SWORDSMANSHIP={63.0 85.0}
+
+     FAME={3000 3900}
+     KARMA={-2000 -2999}
+
+     ITEMNEWBIE=i_spellbook
+     MORE1=0ffffffff
+     MORE2=0ffffffff
+
+ON=@NpcRestock
+     ITEM=i_bone_leggings
+     ITEM=i_bone_arms
+     ITEM=i_mask_deer
+
+ON=@Death
+     NEWLOOT=loot_savage_shaman
+
 [eof]

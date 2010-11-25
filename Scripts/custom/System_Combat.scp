@@ -55,7 +55,7 @@ RETURN 2
 
 ON=@UserSpecialMove
 SRC.MESSAGE Use the commands .move1, .move2 and move3 to activate special moves.
-RETURN 0
+RETURN 1
 
 ON=@ItemUnequip
 IF (<SRC.ACT.LAYER>==1) //Hand
@@ -1083,19 +1083,28 @@ ON=@UnEquip
 	CONT.FLAGS &= ~04 //unparalyzed
 	//CONT.EVENTS = -e_paralyzed
 
+
 [ITEMDEF i_bleed_timer]
 NAME=bleed timer
 ID=0122a
 TYPE=t_eq_script
 LAYER=30
 WEIGHT=0
+
 ON=@CREATE
   ATTR=04002
   MORE1 = 6
+
 ON=@EQUIP
   ATTR=04002
   TIMER = 2
+
 ON=@TIMER
+  IF (<serv.chardef.<CONT.ID>.bloodcolor> == 0ffff)
+	LINK.SYSMESSAGE <CONT.NAME> has no vital fluids to spill.
+	REMOVE
+	RETURN
+  ENDIF
   IF ( <CONT> )
      IF ( <CONT.HITS> < 1 )
         MORE1 = 0

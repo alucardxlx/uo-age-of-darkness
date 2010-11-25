@@ -4,9 +4,9 @@ lock_up 0
 lock_down 1
 lock_locked 2
 
-
-
+//// PC Only
 [EVENTS e_Level_up]
+
 on=@LogOut
 SRC.SYSMESSAGE Hi
 ARGN1=6000
@@ -43,6 +43,7 @@ FORCONT <FINDLAYER.layer_bankbox>
 	ENDIF
 ENDFOR	
 src.events +e_environmental
+src.events +e_general_mob
 f_statcheck
 f_LoginMessage
 IF !(<RESTEST 1 i_focus_timer>)
@@ -76,19 +77,6 @@ IF (<ACT.TYPE> == t_container)
  ENDFOR
 ENDIF
 
-
-ON=@MOUNT
-IF <ARGO.HITS> < <ARGO.MAXHITS>
-	SYSMESSAGE You cannot ride a damaged creature.
-	RETURN 1
-ENDIF
-
-ON=@HitTry
-FACE <SRC>
-Tag.Hittry=<Serv.Time>
-
-Argn1 = <CombatSys_HitSpeed>
-ActDiff = <CombatSys_HitChance>
 
 
 ON=@SPELLBOOK
@@ -130,56 +118,6 @@ ELIF (<ARGN> == 450)
 SRC.SYSMESSAGE Combat Manuevers and special abilities
 ENDIF
 
-ON=@HUNGER
-IF (<SRC.FOOD> < (<SRC.MAXFOOD>/10))
-SRC.HITS -= (<SRC.MAXHITS>/3)
-IF (<SRC.HITS> < 0)
-SRC.HITS=0
-ENDIF
-SRC.STAM -= (<SRC.MAXSTAM>/3)
-IF (<SRC.STAM> < 0)
-SRC.STAM=0
-ENDIF
-SRC.MANA -= (<SRC.MAXMANA>/3)
-IF (<SRC.MANA> < 0)
-SRC.MANA=0
-ENDIF
-SRC.EMOTE weaken from starvation
-RETURN 0
-ENDIF
-
-on=@GAIN
-f_statcheck
-return
-
-
-on=@EXPCHANGE
-EXP += <argn1>
-IF (<argn2>) && (<argn1>)
-	sysmessage You have gained <expeval <argn1>> experience.
-ENDIF
-
-on=@EXPLEVELCHANGE
-return 1
-
-on=@SKILLGAIN
-f_statcheck
-if (<ARGN2>==0)
-ARGN2=1000
-endif
-return
-
-on=@callguards
-FORCHARS 64
-	IF (<NPC>==brain_guard)
-		P = <REF1.P>
-		ATTACK <REF1>
-		UPDATE
-		RETURN 1
-	ENDIF
-ENDFOR
-return 1
-
 
 ON=@StatChange
 IF (<TAG0.OVERRIDE.STATSUM>)
@@ -219,78 +157,6 @@ IF (<LOCAL.STATS> == <LOCAL.STATSUM>)
     RETURN 1
     ENDIF
 ENDIF
-
-on=@spelleffect
-f_statcheck
-If (<serv.spell.<argn1>.defname>==s_resurrection)
-  timerf 1,f_update_contp
-endif
-IF (<ARGO.TYPE>==t_potion)
-	ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.ENHANCEPOT>)/100>
-ELSE
-	IF !(<ARGO.TYPE>==t_scroll) && !(<ARGO.TYPE>==t_wand)
-		IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
-			SKILLGAIN EVALUATINGINTEL <ARGN2>
-			ARGN2 += <EVAL ((<SRC.EVALUATINGINTEL>+<SRC.SKILLMOD EVALUATINGINTEL>)/5)>
-		ENDIF
-		IF (<SRC.TAG0.MAGICPOW>)
-			ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.MAGICPOW>>)/100>
-		ENDIF
-	ENDIF
-ENDIF
-IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
-	SKILLGAIN MAGICRESISTANCE <ARGN2>
-	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
-	IF (<ARGN2> < 1)
-		I.EMOTE resist the spell completely
-		RETURN 1
-	ENDIF
-ENDIF
-
-ON=@SpellSelect
-	IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
-		IF (<SRC.FINDLAYER.1>)
-			IF !(<SRC.FINDLAYER.1.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.1.TAG0.SPELLCHANNEL>)
-				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
-				SRC.FINDLAYER.1.BOUNCE
-			ENDIF
-		ENDIF
-		IF (<SRC.FINDLAYER.2>)
-			IF !(<SRC.FINDLAYER.2.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.2.TAG0.SPELLCHANNEL>)
-				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
-				SRC.FINDLAYER.2.BOUNCE
-			ENDIF
-		ENDIF
-	ENDIF
-	IF !(<ARGN3>==2)
-		IF (<SRC.TAG0.REDUCEMANA>)
-			ARGN2 -= <EVAL (<ARGN2>*<SRC.TAG0.REDUCEMANA>)/100>  
-		ENDIF
-	ELSE
-		IF (<ARGO>==<uid>)
-			IF ((<R100>+1) > <SRC.TAG0.LRC>)
-			  SRC.CONSUME <SERV.SPELL.<ARGN1>.RESOURCES>
-			  SRC.MANA -= <ARGN2>
-			  RETURN 6
-			ELSE
-			  SRC.MANA -= <ARGN2>
-			  RETURN 6				
-			ENDIF
-		ENDIF
-	ENDIF
-	IF (<ARGO>==<uid>)
-		if  (<src.flags> & statf_freeze)
-		   src.sysmessage You can't cast spells while paralyzed.
-		   return 1
-		endif
-		SRC.TAG.CASTING=<SERV.SPELL(<ARGN1>).defname>
-		IF (<SRC.INBOOK>) || (<SRC.ISGM>)
-			ARGN1=1
-		ELSE
-			SRC.SYSMESSAGE The spell is not in your spellbook.
-			RETURN 1
-		ENDIF
-	ENDIF
 
 
 ON=@itemdclick
@@ -378,294 +244,10 @@ REF22.SYSMESSAGE @04ac,3,1 You received <EVAL <LOCAL.INSUREGOLDGIVE>>c for insur
 ENDIF
 ENDIF
 
-ON=@Hit
-FACE <SRC>
-Tag.Hit=<Serv.Time>
-ACTDIFF=0
-
-IF !<Weapon>
- Skillgain Wrestling <Src.CombatSys_UsedSkill>
-ELIF <Weapon.tag0.mageweapon>
- Skillgain <BestWeaponSkill 1> <Src.CombatSys_UsedSkill>
-ELIF <Weapon.tag0.UseBestWeaponSkill>
- Skillgain <BestWeaponSkill> <Src.CombatSys_UsedSkill>
-ELSE
- Skillgain <Weapon.Skill> <Src.CombatSys_UsedSkill>
-ENDIF
-Skillgain Tactics <Src.Tactics>+<Src.SkillMod Tactics>
-
-Argn1 = <CombatSys_DamageBonus>
-Argn1 += <CombatSys_AOS_Velocity>
-Argn1 += <f_combat_manuever_hit <Argn1>>
-IF <TAG0.Consecrate>
-	Argn2 = <f_Consecrate_weapon_check <Argn2>>
-Endif
-
-Local.FireDam = <CombatSys_FireDamageBonus>
-Local.ColdDam = <CombatSys_ColdDamageBonus>
-Local.PoisonDam = <CombatSys_PoisonDamageBonus>
-Local.EnergyDam = <CombatSys_EnergyDamageBonus>
-
-IF Rand(101) < <Weapon.Tag0.ChaosDamage>
-	Local.ChaosDam=<Argn1>
-	Argn1=0
-	DORAND 5
-		Argn1=<eval <Local.ChaosDam>>
-		Local.FireDam += <eval <Local.ChaosDam>>
-		Local.ColdDam += <eval <Local.ChaosDam>>
-		Local.PoisonDam += <eval <Local.ChaosDam>>
-		Local.EnergyDam += <eval <Local.ChaosDam>>
-	ENDDO
-ENDIF
-
-IF (<TAG0.BypassArmor>)
-TAG.BypassArmor=
-ELSE
-	
-//BlockChance
-IF (<CombatSys_BlockChance>)
-	CombatSys_Block 
-	Local.ShieldBlock=<QVAL <Src.Findlayer.2.Armor> ? <MulDiv <Src.Findlayer.2.Armor.High>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
-	Local.ShieldBlock= <Eval ((Rand(<Local.ShieldBlock>))+(Rand(<Local.ShieldBlock>)))/2>
-	Argn1=<CombatSys_Max <Eval <Argn1> +- <Local.ShieldBlock>>, 0>
-	IF (<Local.FireDam> > 0)
-		Local.ShieldFireRes=<QVAL <Src.Findlayer.2.Tag0.FireRes> ? <MulDiv <Src.Findlayer.2.Tag0.FireRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
-		Local.FireDam=<CombatSys_Max <Eval <Local.FireDam> +- <Local.ShieldFireRes>>, 0>
-	ENDIF
-	IF (<Local.ColdDam> > 0)
-		Local.ShieldColdRes=<QVAL <Src.Findlayer.2.Tag0.ColdRes> ? <MulDiv <Src.Findlayer.2.Tag0.ColdRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
-		Local.ColdDam=<CombatSys_Max <Eval <Local.ColdDam> +- <Local.ShieldColdRes>>, 0>
-	ENDIF
-	IF (<Local.PoisonDam> > 0)
-		Local.ShieldPoisonRes=<QVAL <Src.Findlayer.2.Tag0.PoisonRes> ? <MulDiv <Src.Findlayer.2.Tag0.PoisonRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
-		Local.PoisonDam=<CombatSys_Max <Eval <Local.PoisonDam> +- <Local.ShieldPoisonRes>>, 0>
-	ENDIF
-	IF (<Local.EnergyDam> > 0)
-		Local.ShieldEnergyRes=<QVAL <Src.Findlayer.2.Tag0.EnergyRes> ? <MulDiv <Src.Findlayer.2.Tag0.EnergyRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
-		Local.EnergyDam=<CombatSys_Max <Eval <Local.EnergyDam> +- <Local.ShieldEnergyRes>>, 0>
-	ENDIF
-ENDIF
-IF (<CombatSys_BlockChance_Weapon>)
-	CombatSys_Block_Weapon
-	Local.WeaponBlock=<Qval <Src.Weapon> ? <eval {<Src.Weapon.GetDam>}> : <Eval {<serv.chardef.<src.id>.dam>}>>
-	Local.WeaponBlock=<Eval ((Rand(<Local.WeaponBlock>))+(Rand(<Local.WeaponBlock>)))/2>
-	Argn1=<CombatSys_Max <Eval <Argn1> +- <Local.WeaponBlock>>, 0>
-ENDIF
 
 
-Local.Location=<eval <Src.f_Get_Hit_Location>>
-Local.Armor = <Src.CombatSys_PhysicalResist <Local.Location>>
-Argn1 = <eval <Argn1>-<Local.Armor>>
-Argn1 = <CombatSys_Max <Argn1>,0>
-
-
-IF (<TAG0.PierceArmor>)
-Src.Damage_Loc_<eval <Local.Location>>
-Src.Damage_Loc_<eval <Local.Location>>
-Src.Damage_Loc_<eval <Local.Location>>
-TAG.PierceArmor=
-ENDIF
-
-ENDIF //End armor bypass block
-
-IF (<Local.FireDam> > 0)
-	Local.FireRes = <Src.CombatSys_FireResist <Local.Location>>
-	Local.FireDam = <eval <Local.FireDam>-<Local.FireRes>>
-	Local.FireDam = <CombatSys_Max <Local.FireDam>,0>
-ENDIF
-IF (<Local.ColdDam> > 0)
-	Local.ColdRes = <Src.CombatSys_ColdResist <Local.Location>>
-	Local.ColdDam = <eval <Local.ColdDam>-<Local.ColdRes>>
-	Local.ColdDam = <CombatSys_Max <Local.ColdDam>,0>
-ENDIF
-IF (<Local.PoisonDam> > 0)
-	Local.PoisonRes = <Src.CombatSys_PoisonResist <Local.Location>>
-	Local.PoisonDam = <eval <Local.PoisonDam>-<Local.PoisonRes>>
-	Local.PoisonDam = <CombatSys_Max <Local.PoisonDam>,0>
-ENDIF
-IF (<Local.EnergyDam> > 0)
-	Local.EnergyRes = <Src.CombatSys_EnergyResist <Local.Location>>
-	Local.EnergyDam = <eval <Local.EnergyDam>-<Local.EnergyRes>>
-	Local.EnergyDam = <CombatSys_Max <Local.EnergyDam>,0>
-ENDIF
-
-Weapon.Hits -= <QVAL <r18> ? 0 : 1>
-Weapon.Update
-Src.Damage_Loc_<eval <Local.Location>>
-
-Local.Dam=<eval <Argn1> + <Local.FireDam> + <Local.ColdDam> + <Local.PoisonDam> + <Local.EnergyDam>>
-ARGN2 = <ARGN2> | 01 //god
-Src.Damage <Local.Dam> <Argn2> <Uid>
-
-CombatSys_AOS_WeaponSpells
-CombatSys_AOS_WeaponLeech <Local.Dam>
-CombatSys_AOS_WepAttkDefMod
-CombatSys_AOS_AreaDamage
-CombatSys_AOS_PhysicalReflect <Argn1>,<Src.Uid>
-
-//damage
-If <Poisoning> && ((<NPC>==brain_animal) || (<NPC>==brain_monster))
-	Tag.Poisoning=<Poisoning>
-	Poisoning = 0
-Endif
-Src.Tag.Hit.Prevent = 1
-
-
-ON=@GetHit
-ACTDIFF=0
-If (<FLAGS>&statf_freeze) && !(<argn2>&dam_nounparalyze)
-     FLAGS = <FLAGS> ^ 04 //unparalyzed
-Endif
-If <Tag0.Hit.Prevent>
-	Tag.Hit.Prevent=
-	If <Src.Tag0.Poisoning>
-		Src.Poisoning=<Src.Tag0.Poisoning>
-	Endif
-Return 1
-Endif
-If !(<argn2>&dam_god)
-	If (<argn2>&dam_general)
-		Local.Location=0
-	ELSE
-		Local.Location=<eval <Src.f_Get_Hit_Location>>
-	ENDIF
-	IF (<argn2>&dam_fire)
-		Local.FireRes = <CombatSys_FireResist <Local.Location>>
-		Argn1 = <eval <Argn1>-<Local.FireRes>>
-		Argn1 = <CombatSys_Max <Argn1>,0>
-	ELIF (<argn2>&dam_cold_new) || (<argn2>&dam_cold_old)
-		Local.ColdRes = <CombatSys_ColdResist <Local.Location>>
-		Argn1 = <eval <Argn1>-<Local.ColdRes>>
-		Argn1 = <CombatSys_Max <Argn1>,0>
-	ELIF (<argn2>&dam_poison)
-		Local.PoisonRes = <CombatSys_PoisonResist <Local.Location>>
-		Argn1 = <eval <Argn1>-<Local.PoisonRes>>
-		Argn1 = <CombatSys_Max <Argn1>,0>
-	ELIF (<argn2>&dam_lightning) || (<argn2>&dam_energy)
-		Local.EnergyRes = <CombatSys_EnergyResist <Local.Location>>
-		Argn1 = <eval <Argn1>-<Local.EnergyRes>>
-		Argn1 = <CombatSys_Max <Argn1>,0>
-	ELSE
-		Local.Armor = <CombatSys_PhysicalResist <Local.Location>>
-		Argn1 = <eval <Argn1>-<Local.Armor>>
-		Argn1 = <CombatSys_Max <Argn1>,0>
-	ENDIF
-	ARGN2=01
-	Damage_Loc_<eval <Local.Location>>
-ENDIF
-if <isevent.e_evil_omen>
-	Argn1 += <Argn1>
-	events -e_evil_omen
-endif
-
-
-ON=@HitMiss
-FACE <SRC>
-If ((<Weapon.Type>==t_weapon_bow) || (<Weapon.Type>==t_weapon_xbow)) && !<r3>
-	NEWITEM <QVAL <Weapon.TAG0.OVERRIDE.AMMOTYPE> ? <Weapon.TAG.OVERRIDE.AMMOTYPE> : <Weapon.tdata3>>
-	NEW.MOVENEAR <src>,<r3>
-	NEW.TIMER=5*60
-	IF !(<new.CanSeeLOS>)
-		NEW.REMOVE
-	ENDIF
-	NEW.UPDATE
-ENDIF
-
-
-
-
-ON=@Block
-//Fires when you have blocked an attack.
-//Default = Shield Holder
-//Argo = Attacker
-Skillgain Parrying <Argo.CombatSys_UsedSkill>
-
-
-ON=@SpellCast 
-	IF (<SRC.TAG0.QUICKCAST>)
-		ARGN3 -= <EVAL (<ARGN3>*<SRC.TAG0.QUICKCAST>)/100> 
-	ENDIF
-
-
-
-[EVENTS e_flying]
-on=@npcactfollow
-run=<dir>
-
-on=@npcactfight
-run=<dir>
-
-
+//// NPC Only
 [EVENTS e_Level_up_NPC]
-
-on=@callguards
-FORCHARS 64
-	IF (<NPC>==brain_guard)
-		P = <REF1.P>
-		ATTACK <REF1>
-		UPDATE
-		RETURN 1
-	ENDIF
-ENDFOR
-return 1
-
-ON=@MOUNT
-IF <ARGO.HITS> < <ARGO.MAXHITS>
-	SYSMESSAGE You cannot ride a damaged creature.
-	RETURN 1
-ENDIF
-
-
-ON=@HUNGER
-f_statcheck
-IF (<SRC.npc> == brain_vendor) || (<SRC.npc> == brain_banker) || (<SRC.npc> == brain_healer)
-		RETURN 1
-endif
-IF (<SRC.FOOD> < (<SRC.MAXFOOD>/10))
-	SRC.HITS -= (<SRC.MAXHITS>/3)
-	IF (<SRC.HITS> < 0)
-		SRC.HITS=0
-	ENDIF
-	SRC.STAM -= (<SRC.MAXSTAM>/3)
-	IF (<SRC.STAM> < 0)
-		SRC.STAM=0
-	ENDIF
-	SRC.MANA -= (<SRC.MAXMANA>/3)
-	IF (<SRC.MANA> < 0)
-		SRC.MANA=0
-	ENDIF
-	SRC.EMOTE weaken from starvation
-	RETURN 0
-ENDIF
-
-on=@GAIN
-f_statcheck
-return
-
-on=@EXPCHANGE
-EXP += <argn1>
-IF (<argn2>) && (<argn1>)
-	sysmessage You have gained <expeval <argn1>> experience.
-ENDIF
-
-on=@EXPLEVELCHANGE
-return 1
-
-on=@SKILLGAIN
-f_statcheck
-if (<ARGN2>==0)
-ARGN2=1000
-endif
-return
-
-
-ON=@HitTry
-FACE <SRC>
-Tag.Hittry=<Serv.Time>
-
-Argn1 = <CombatSys_HitSpeed>
-ActDiff = <CombatSys_HitChance>
-
 
 ON=@Destroy
   if !(<ISEMPTY <TAG0.slots_needed>>)
@@ -735,93 +317,6 @@ on=@PetDesert
     TAG0.BOND=
 return
 
-ON=@SPELLEFFECT
-f_statcheck
-if (<ARGN> == 40) && !(<src.npc> == 0)
-	obj = <uid>
-	if !(<ISEMPTY <obj.TAG0.slots_needed>>)
-		local.slots = <obj.TAG0.slots_needed>
-	else
-		local.slots = 1
-	endif
-	IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>)
-		SRC.SYSMESSAGE You have too many followers.
-		HITS=0
-	ENDIF
-	SRC.CURFOLLOWER += <local.slots>
-endif
-IF (<ARGO.TYPE>==t_potion)
-	ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.ENHANCEPOT>)/100>
-ELSE
-	IF !(<ARGO.TYPE>==t_scroll) && !(<ARGO.TYPE>==t_wand)
-		IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
-			SKILLGAIN EVALUATINGINTEL <ARGN2>
-			ARGN2 += <EVAL ((<SRC.EVALUATINGINTEL>+<SRC.SKILLMOD EVALUATINGINTEL>)/5)>
-		ENDIF
-		IF (<SRC.TAG0.MAGICPOW>)
-			ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.MAGICPOW>>)/100>
-		ENDIF
-	ENDIF
-ENDIF
-IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
-	SKILLGAIN MAGICRESISTANCE <ARGN2>
-	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
-	IF (<ARGN2> < 1)
-		I.EMOTE resist the spell completely
-		RETURN 1
-	ENDIF
-ENDIF
-
-ON=@SpellSelect
-	IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
-		IF (<SRC.FINDLAYER.1>)
-			IF !(<SRC.FINDLAYER.1.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.1.TAG0.SPELLCHANNEL>)
-				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
-				SRC.FINDLAYER.1.BOUNCE
-			ENDIF
-		ENDIF
-		IF (<SRC.FINDLAYER.2>)
-			IF !(<SRC.FINDLAYER.2.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.2.TAG0.SPELLCHANNEL>)
-				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
-				SRC.FINDLAYER.2.BOUNCE
-			ENDIF
-		ENDIF
-	ENDIF
-	IF !(<ARGN3>==2)
-		IF (<SRC.TAG0.REDUCEMANA>)
-			ARGN2 -= <EVAL (<ARGN2>*<SRC.TAG0.REDUCEMANA>)/100>  
-		ENDIF
-	ELSE
-		IF (<ARGO>==<uid>)
-			IF ((<R100>+1) > <SRC.TAG0.LRC>)
-			  SRC.CONSUME <SERV.SPELL.<ARGN1>.RESOURCES>
-			  SRC.MANA -= <ARGN2>
-			  RETURN 6
-			ELSE
-			  SRC.MANA -= <ARGN2>
-			  RETURN 6				
-			ENDIF
-		ENDIF
-	ENDIF
-	IF (<ARGO>==<uid>)
-		if  (<src.flags> & statf_freeze)
-		   src.sysmessage You can't cast spells while paralyzed.
-		   return 1
-		endif
-		SRC.TAG.CASTING=<SERV.SPELL(<ARGN1>).defname>
-		IF (<SRC.INBOOK>) || (<SRC.ISGM>)
-			ARGN1=1
-		ELSE
-			SRC.SYSMESSAGE The spell is not in your spellbook.
-			RETURN 1
-		ENDIF
-	ENDIF
-
-
-ON=@ContextMenuRequest
-IF (<NPC> == 14)
-	return 1
-ENDIF
 
 ON=@ContextMenuSelect
 OBJ=<SRC.UID>
@@ -843,6 +338,84 @@ IF ((<ARGN> == 32) && (<src.tag.lang> != <tag.lang>))
 	FACE
 	RETURN 1
 ENDIF
+
+ON=@Environchange
+f_statcheck
+events +e_general_mob
+
+
+
+//// All mobs
+[EVENTS e_general_mob]
+
+on=@callguards
+FORCHARS 64
+	IF (<NPC>==brain_guard)
+		P = <REF1.P>
+		ATTACK <REF1>
+		UPDATE
+		RETURN 1
+	ENDIF
+ENDFOR
+return 1
+
+ON=@MOUNT
+IF <ARGO.HITS> < <ARGO.MAXHITS>
+	SYSMESSAGE You cannot ride a damaged creature.
+	RETURN 1
+ENDIF
+
+
+ON=@HUNGER
+f_statcheck
+IF (<SRC.npc> == brain_vendor) || (<SRC.npc> == brain_banker) || (<SRC.npc> == brain_healer)
+		RETURN 1
+endif
+IF (<SRC.FOOD> < (<SRC.MAXFOOD>/10))
+	SRC.HITS -= (<SRC.MAXHITS>/3)
+	IF (<SRC.HITS> < 0)
+		SRC.HITS=0
+	ENDIF
+	SRC.STAM -= (<SRC.MAXSTAM>/3)
+	IF (<SRC.STAM> < 0)
+		SRC.STAM=0
+	ENDIF
+	SRC.MANA -= (<SRC.MAXMANA>/3)
+	IF (<SRC.MANA> < 0)
+		SRC.MANA=0
+	ENDIF
+	SRC.EMOTE weaken from starvation
+	RETURN 0
+ENDIF
+
+on=@GAIN
+f_statcheck
+return
+
+on=@EXPCHANGE
+EXP += <argn1>
+IF (<argn2>) && (<argn1>)
+	sysmessage You have gained <expeval <argn1>> experience.
+ENDIF
+
+on=@EXPLEVELCHANGE
+return 1
+
+on=@SKILLGAIN
+f_statcheck
+if (<ARGN2>==0)
+ARGN2=1000
+endif
+return
+
+
+ON=@HitTry
+FACE <SRC>
+Tag.Hittry=<Serv.Time>
+
+Argn1 = <CombatSys_HitSpeed>
+ActDiff = <CombatSys_HitChance>
+
 
 ON=@Hit
 FACE <SRC>
@@ -1031,7 +604,7 @@ FACE <SRC>
 If ((<Weapon.Type>==t_weapon_bow) || (<Weapon.Type>==t_weapon_xbow)) && !<r3>
 	NEWITEM <QVAL <Weapon.TAG0.OVERRIDE.AMMOTYPE> ? <Weapon.TAG.OVERRIDE.AMMOTYPE> : <Weapon.tdata3>>
 	NEW.MOVENEAR <src>,<r3>
-	NEW.TIMER=5*60
+	NEW.TIMER=<Serv.DecayTimer>
 	IF !(<new.CanSeeLOS>)
 		NEW.REMOVE
 	ENDIF
@@ -1053,7 +626,92 @@ ON=@SpellCast
 		ARGN3 -= <EVAL (<ARGN3>*<SRC.TAG0.QUICKCAST>)/100> 
 	ENDIF
 
+ON=@SPELLEFFECT
+f_statcheck
+if (<ARGN> == 40) && !(<src.npc> == 0)
+	obj = <uid>
+	if !(<ISEMPTY <obj.TAG0.slots_needed>>)
+		local.slots = <obj.TAG0.slots_needed>
+	else
+		local.slots = 1
+	endif
+	IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>)
+		SRC.SYSMESSAGE You have too many followers.
+		HITS=0
+	ENDIF
+	SRC.CURFOLLOWER += <local.slots>
+endif
+IF (<ARGO.TYPE>==t_potion)
+	ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.ENHANCEPOT>)/100>
+ELSE
+	IF !(<ARGO.TYPE>==t_scroll) && !(<ARGO.TYPE>==t_wand)
+		IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
+			SKILLGAIN EVALUATINGINTEL <ARGN2>
+			ARGN2 += <EVAL ((<SRC.EVALUATINGINTEL>+<SRC.SKILLMOD EVALUATINGINTEL>)/5)>
+		ENDIF
+		IF (<SRC.TAG0.MAGICPOW>)
+			ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.MAGICPOW>>)/100>
+		ENDIF
+	ENDIF
+ENDIF
+IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
+	SKILLGAIN MAGICRESISTANCE <ARGN2>
+	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
+	IF (<ARGN2> < 1)
+		I.EMOTE resist the spell completely
+		RETURN 1
+	ENDIF
+ENDIF
 
+ON=@SpellSelect
+	IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
+		IF (<SRC.FINDLAYER.1>)
+			IF !(<SRC.FINDLAYER.1.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.1.TAG0.SPELLCHANNEL>)
+				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
+				SRC.FINDLAYER.1.BOUNCE
+			ENDIF
+		ENDIF
+		IF (<SRC.FINDLAYER.2>)
+			IF !(<SRC.FINDLAYER.2.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.2.TAG0.SPELLCHANNEL>)
+				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
+				SRC.FINDLAYER.2.BOUNCE
+			ENDIF
+		ENDIF
+	ENDIF
+	IF !(<ARGN3>==2)
+		IF (<SRC.TAG0.REDUCEMANA>)
+			ARGN2 -= <EVAL (<ARGN2>*<SRC.TAG0.REDUCEMANA>)/100>  
+		ENDIF
+	ELSE
+		IF (<ARGO>==<uid>)
+			IF ((<R100>+1) > <SRC.TAG0.LRC>)
+			  SRC.CONSUME <SERV.SPELL.<ARGN1>.RESOURCES>
+			  SRC.MANA -= <ARGN2>
+			  RETURN 6
+			ELSE
+			  SRC.MANA -= <ARGN2>
+			  RETURN 6				
+			ENDIF
+		ENDIF
+	ENDIF
+	IF (<ARGO>==<uid>)
+		if  (<src.flags> & statf_freeze)
+		   src.sysmessage You can't cast spells while paralyzed.
+		   return 1
+		endif
+		SRC.TAG.CASTING=<SERV.SPELL(<ARGN1>).defname>
+		IF (<SRC.INBOOK>) || (<SRC.ISGM>)
+			ARGN1=1
+		ELSE
+			SRC.SYSMESSAGE The spell is not in your spellbook.
+			RETURN 1
+		ENDIF
+	ENDIF
+
+
+
+
+//// Functions
 
 [FUNCTION expeval]
 local.expmsg= a little
@@ -1065,6 +723,7 @@ ELSEIF ( <ARGV[0]> > 96)
 local.expmsg = some 
 ENDIF
 RETURN <local.expmsg>
+
 
 
 

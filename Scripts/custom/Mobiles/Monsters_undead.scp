@@ -17,13 +17,13 @@ VERSION=0.99w5
 
 
 [chardef 068]
-defname=c_dracolich
-name=dracolich
+defname=c_dragon_skeleton
+name=skeleton dragon
 sound=snd_monster_dragon_skeleton
 icon=i_pet_dragon
 can=mt_walk|mt_run|mt_nonhum
 dam=14,16
-armor=55
+armor=50
 moverate=10
 resources=8 i_reag_bone
 foodtype=80 i_reag_bone
@@ -35,7 +35,7 @@ TEVENTS=e_Level_up_NPC
 tag.slots_needed=8
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=44
+tag.wrestlingspeed=43
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=13
 TAG.MANUEVER2=7
@@ -43,7 +43,7 @@ TAG.MANUEVER3=27
 
 category=AoD Monsters
 subsection=Undead
-description=Dracolich
+description=Skeleton Dragon
 
 on=@create
      npc=brain_undead
@@ -61,16 +61,16 @@ on=@create
      magicresistance={98.4 99.7}
      tactics={98.1 98.6}
      wrestling={98.4 99.7}
-     evaluatingintel={98.4 99.7}
+     evaluatingintel={68.4 79.7}
      magery={98.4 99.7}
-     meditation={98.4 99.7}
-     necromancy={75.0 95.0}
+     meditation={74.4 84.7}
+     necromancy={65.0 75.0}
 
      EXP={ 260000 320000 } //Level 10
 
-     resfire=45
-     rescold=25
-     resenergy=25
+     resfire=48
+     rescold=24
+     resenergy=24
      respoison=100
 
      fame={7000 8500}
@@ -99,8 +99,8 @@ name="ghoul"
 sound=snd_monster_zombie1
 icon=i_pet_ghoul_lbr
 can=mt_walk
-dam=9,13
-armor=19
+dam=9,12
+armor=18
 ANIM=078C7F
 moverate=0
 resources=2 i_reag_bone
@@ -138,8 +138,8 @@ on=@create
 
 	givelang 1
 
-     rescold=18
-     resenergy=18
+     rescold=16
+     resenergy=16
      respoison=100
 
      fame={500 1500}
@@ -157,8 +157,8 @@ sound=snd_monster_zombie1
 icon=i_pet_zombie
 anim=078c7f
 can=mt_walk
-dam=6,8
-armor=10
+dam=6,9
+armor=11
 moverate=40
 foodtype=i_flesh_brain
 resources=2 i_reag_bone
@@ -210,8 +210,8 @@ sound=snd_monster_skletn1
 icon=i_pet_skeleton
 anim=078c7f
 can=mt_walk|mt_usehands|mt_equip
-dam=5,7
-armor=8
+dam=5,8
+armor=9
 moverate=0
 resources=4 i_reag_bone
 TEVENTS=e_Level_up_NPC
@@ -245,10 +245,11 @@ on=@create
      swordsmanship={45.4 54.5}
      macefighting={45.4 54.5}
 
-resfire=18
-rescold=18
-resenergy=18
-respoison=100
+     resfire=12
+     rescold=12
+     resenergy=12
+     respoison=100
+
 
      fame={250 300}
      karma={-1000 -1500}
@@ -263,8 +264,8 @@ defname=c_skeleton_mage
 name="skeletal mage"
 icon=i_pet_skeleton_mage_lbr
 can=mt_walk|mt_usehands|mt_equip
-dam=5,7
-armor=12
+dam=5,8
+armor=9
 moverate=0
 resources=4 i_reag_bone
 TEVENTS=e_Level_up_NPC
@@ -289,7 +290,7 @@ on=@create
 
      str={91 106}
      dex={96 109}
-     int={160 185}
+     int={150 175}
      TAG0.MODHITS = 8
 
      parrying={55.0 65.0}
@@ -305,12 +306,13 @@ on=@create
      fame={1250 1300}
      karma={-2000 -2500}
 
-     resfire=18
-     rescold=18
-     resenergy=18
+     resfire=12
+     rescold=12
+     resenergy=12
      respoison=100
 
      TAG.RANDCAST=40
+     TAG.QUICKCAST = 10
      EVENTS=+e_intel_char_magery_user
 
 	EXP={ 2050 3950 } //Level 3
@@ -324,7 +326,7 @@ defname=c_skeleton_knight
 name="skeletal knight"
 icon=i_pet_skeleton_knight_lbr
 can=mt_walk|mt_usehands|mt_equip
-dam=6,8
+dam=5,8
 armor=28
 moverate=0
 resources=4 i_reag_bone
@@ -347,7 +349,7 @@ on=@create
      SetUndead
      nightsight=1
 
-     str={152 179}
+     str={152 169}
      dex={106 128}
      int={36 58}
      TAG0.MODHITS = 8
@@ -366,10 +368,11 @@ on=@create
      karma={-2000 -2500}
      EXP={ 2050 3950 } //Level 3
 
-     resfire=18
-     rescold=18
-     resenergy=18
+     resfire=12
+     rescold=12
+     resenergy=12
      respoison=100
+
 
 ON=@NpcRestock
      ITEM=RANDOM_SHIELD
@@ -427,12 +430,13 @@ on=@create
      karma={-2000 -2500}
      EXP={ 1050 1950 } //Level 2
 
-     resfire=15
-     rescold=15
-     resenergy=15
+     resfire=16
+     rescold=16
+     resenergy=12
      respoison=100
 
      TAG.RANDCAST=30
+     TAG.QUICKCAST = 10
      EVENTS=+e_intel_char_magery_user
 
 
@@ -447,7 +451,7 @@ sound=snd_monster_zombie1
 icon=i_pet_mummy_lbr
 can=mt_walk
 dam=14,18
-armor=48
+armor=46
 ANIM=078C7F
 moverate=60
 bloodcolor=-1
@@ -455,7 +459,7 @@ resources=2 i_reag_bone
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll,t_reagent
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=6
 Tag.BeastClass=Beast_Heavy
 tag.wrestlingspeed=38
 TEVENTS=e_combat_move_intel
@@ -486,8 +490,8 @@ on=@create
      wrestling={73.1 82.5}
      anatomy={55.3 76.6}
 
-     resenergy=18
-     rescold=18
+     resenergy=16
+     rescold=16
      respoison=100
 
      EXP={ 16500 20500 } //Level 6
@@ -507,7 +511,7 @@ name="lich"
 sound=snd_monster_liche1
 icon=i_pet_lich
 anim=07bc7f
-dam=12,16
+dam=9,13
 armor=35
 moverate=0
 bloodcolor=-1
@@ -515,7 +519,7 @@ resources=2 i_reag_bone
 can=MT_EQUIP|mt_walk|mt_usehands
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll, c_zombie, c_skeleton,t_reagent
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=6
 Tag.BeastClass=Beast_Magic
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=27
@@ -556,8 +560,8 @@ on=@create
 
      EXP={ 16500 20500 } //Level 6
 
-     resenergy=18
-     rescold=18
+     resenergy=16
+     rescold=16
      respoison=100
 
      fame={4000 5000}
@@ -594,9 +598,9 @@ defname=c_banshee
 NAME=banshee
 SOUND=snd_monster_zombie1
 ICON=i_pet_wailingbanshee
-DAM=12,16
+DAM=9,13
 moverate=0
-ARMOR=30
+ARMOR=38
 bloodcolor=-1
 CAN=MT_WALK|MT_FLY|mt_passwalls
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll,c_elf_male,c_elf_female,c_man,c_woman
@@ -625,9 +629,9 @@ ON=@Create
 	INT={106 129}
         TAG0.MODMANA = 16
 
-     resfire=15
-     resenergy=15
-     rescold=15
+     resfire=16
+     resenergy=12
+     rescold=16
      respoison=100
 
 	givelang 2
@@ -640,10 +644,10 @@ ON=@Create
 	stealth={79.0 95.0}
 	hiding={79.0 95.0}
 
-	EXP={ 2050 3950 } //Level 3
+	EXP={ 4050 5950 } //Level 4
 
      TAG.RANDCAST=30
-     TAG.SPELLPOWER = 10
+     TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_necro_user
 
 
@@ -655,8 +659,8 @@ defname=c_patchwork_skeleton
 NAME=patchwork skeleton
 SOUND=snd_monster_skletn1
 ICON=i_pet_patchwork_sklt
-DAM=4,6
-ARMOR=5
+DAM=5,7
+ARMOR=6
 moverate=20
 bloodcolor=-1
 resources=2 i_reag_bone
@@ -688,9 +692,9 @@ ON=@Create
      tactics={30.1 44.2}
      wrestling={49.4 57.5}
 
-     resfire=12
-     rescold=12
-     resenergy=12
+     resfire=8
+     rescold=8
+     resenergy=8
      respoison=100
 
      fame={100 200}
@@ -699,17 +703,18 @@ ON=@Create
 ON=@NpcRestock
      ITEM={ Undead_pouch 2 Undead_backpack 1 0 4}
 
+
 [chardef 319]
 defname=c_mound_maggots
 NAME=mound of maggots
 SOUND=snd_monster_slime1
 ICON=i_pet_mound_maggots
-DAM=5,7
-moverate=40
+DAM=9,13
+moverate=30
 bloodcolor=colors_green
-ARMOR=13
+ARMOR=17
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll, c_zombie, c_skeleton
+desires=t_wand,t_food,t_gem,t_coin,t_potion,t_scroll
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=3
 Tag.BeastClass=Beast_Heavy
@@ -729,7 +734,7 @@ ON=@Create
      SetUndead
      nightsight=1
 
-     str={71 86}
+     str={91 116}
      dex={46 63}
      int={16 27}
      TAG0.MODHITS = 16
@@ -740,10 +745,11 @@ ON=@Create
      wrestling={49.4 57.5}
      poisoning={35.4 48.2}
 
-     resenergy=15
-     rescold=15
+     resenergy=12
+     rescold=12
      respoison=100
 
+	EXP={ 2050 3950 } //Level 3
      fame={200 300}
      karma=-1000
 
@@ -752,8 +758,8 @@ defname=c_deformed_zombie
 NAME=deformed zombie
 SOUND=snd_monster_zombie1
 ICON=i_pet_gorefiend
-DAM=5,7
-ARMOR=6
+DAM=6,8
+ARMOR=7
 moverate=50
 resources=2 i_reag_bone
 CAN=MT_USEHANDS|MT_WALK|MT_RUN|mt_nonhum
@@ -804,7 +810,7 @@ sound=snd_monster_zombie1
 icon=i_pet_rotting_corpse_lbr
 can=mt_walk
 dam=13,17
-armor=45
+armor=48
 moverate=40
 resources=2 i_reag_bone
 foodtype=20 t_meat_raw
@@ -813,7 +819,7 @@ aversions=t_trap
 tevents=e_undead
 bloodcolor=colors_green
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=6
+tag.slots_needed=7
 Tag.BeastClass=Beast_Heavy
 tag.wrestlingspeed=42
 TEVENTS=e_combat_move_intel
@@ -916,17 +922,17 @@ RESLEVEL=5
 RESDISPDNHUE=33
 RESDISPDNID=c_man
 DAM=15,19
-ARMOR=45
+ARMOR=46
 MOVERATE=30
 RESOURCES=2 i_reag_fertile_dirt, 2 i_reag_bone
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 CAN=MT_WALK|MT_RUN|MT_USEHANDS
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=6
+tag.slots_needed=7
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=42
+tag.wrestlingspeed=38
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=9
 TAG.MANUEVER2=4
@@ -975,16 +981,17 @@ ON=@NpcRestock
 [CHARDEF 722]
 DEFNAME=c_undead_gargoyle
 NAME=undead gargoyle
-DAM=6,8
-ARMOR=12
+SOUND=snd_monster_gargoyle_undead
+DAM=9,13
+ARMOR=22
 CAN=mt_walk|mt_run|mt_equip|mt_usehands
 MOVERATE=0
 RESOURCES=2 i_reag_bone
 AVERSIONS=t_TRAP,t_eerie_stuff
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=3
+tag.slots_needed=4
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=45
+tag.wrestlingspeed=50
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=4
 TAG.MANUEVER2=9
@@ -999,9 +1006,10 @@ ON=@CREATE
      SetUndead
      nightsight=1
 
-     str={85 102}
+     str={95 112}
      dex={73 91}
      int={89 105}
+     TAG0.MODHITS = 8
 
      magicresistance={66.7 79.4}
      tactics={55.2 69.6}
@@ -1014,11 +1022,12 @@ ON=@CREATE
 
      fame={1850 2400}
      karma={-2000 -2500}
-     EXP={ 1050 1950 } //Level 2
 
-     resfire=15
-     rescold=15
-     resenergy=15
+     EXP={ 2050 2950 } //Level 3
+
+     resfire=20
+     rescold=16
+     resenergy=16
      respoison=100
 
      TAG.RANDCAST=35
@@ -1037,14 +1046,14 @@ SOUND=snd_rav_lion
 RESDISPDNID=c_dog
 RESLEVEL=3
 RESDISPDNHUE=33
-ARMOR=18
+ARMOR=24
 can=mt_walk|mt_run|mt_nonhum
-DAM=15,18
+DAM=12,15
 ICON=i_pet_ravlion
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=42
+tag.wrestlingspeed=40
 TEVENTS=e_combat_move_intel
 TAG.MANUEVER1=9
 TAG.MANUEVER2=2
@@ -1059,7 +1068,6 @@ on=@create
      SetUndead
      nightsight=1
 
-
 Str={175 190}
 Dex={135 165}
 Int={67 89}
@@ -1073,15 +1081,15 @@ Anatomy={78.0 90.0}
 Meditation={78.0 90.0}
 SpiritSpeak={78.0 90.0}
 
-Fame={2000 2500}
+Fame={3000 4500}
 Karma={-2000 -2500}
 EXP={ 8500 10500 } //Level 5
 
 TAG.RANDCAST=15
 EVENTS=+e_intel_char_necro_user
 
-rescold=15
-resenergy=15
+rescold=14
+resenergy=14
 respoison=100
 
 
@@ -1131,6 +1139,7 @@ on=@create
 [CHARDEF 830]
 DEFNAME=c_primeval_lich
 NAME=primeval lich
+sound=snd_monster_liche1
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
@@ -1214,7 +1223,7 @@ on=@create
 
      resfire=18
      rescold=18
-     resenergy=18
+     resenergy=12
      respoison=100
 
      TAG.RANDCAST=25
@@ -1270,16 +1279,16 @@ on=@create
 
      fame={4250 5300}
      karma={-2000 -6500}
-     EXP={ 4050 4950 } //Level 4
+     EXP={ 8050 9950 } //Level 5
 
      resfire=24
      rescold=24
-     resenergy=24
+     resenergy=12
      respoison=100
 
      TAG.RANDCAST = 35
      TAG.QUICKCAST = 10
-     TAG.SPELLPOWER = 25
+     TAG.SPELLPOWER = 20
      EVENTS=+e_intel_char_necro_user
      EVENTS=+e_intel_char_chivalry_user
 

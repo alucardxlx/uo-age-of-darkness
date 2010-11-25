@@ -1,3 +1,56 @@
+[ITEMDEF 090D]
+DEFNAME=i_dungeon_fountain
+Name=strange fountain
+
+ON=@CREATE
+	attr=attr_move_never
+	MORE1=10 //10 drinks per refill
+	TIMER=10*60 //10 minutes between change and refill water
+	more2=<R5> //stores the effect
+
+
+ON=@DCLICK
+IF (<MORE1> > 0)
+	DOSWITCH <more2>
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is sweet.
+			SRC.SPELLEFFECT s_heal,1000
+		END
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is sour.
+			SRC.SPELLEFFECT s_harm,1000
+		END
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is minty.
+			SRC.SPELLEFFECT s_cure,1000
+		END
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is bitter.
+			SRC.SPELLEFFECT s_poison,1000
+		END
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is salty.
+			SRC.SPELLEFFECT s_bless,1000
+		END
+		BEGIN
+			SRC.MESSAGE You drink from the fountain, the water is spicy.
+			SRC.SPELLEFFECT s_curse,1000
+		END
+	ENDDO
+	MORE1 -=1
+	return 1
+ELSE
+	SRC.MESSAGE The fountain's waters are too low to drink.
+	return 1
+ENDIF
+
+ON=@TIMER
+	EMOTE refill
+	MORE1=10
+	TIMER=10*60
+	more2=<R6>
+	RETURN 1
+
 [ITEMDEF 0fac]
 //fire pit
 DEFNAME=i_fire_pit

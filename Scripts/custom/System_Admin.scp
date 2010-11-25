@@ -1,6 +1,9 @@
 [plevel 5]
 forkill  
 fordel
+setspawns
+findspawns
+findispawns
 
 [FUNCTION forkill] 
 FORCHARS <args>
@@ -23,8 +26,8 @@ endfor
 
 [function setspawns]
 foritems 6144
- if <type> == t_spawn_char
-	if <timer> < 1
+ if (<type> == t_spawn_char) || (<type> == t_spawn_item) 
+	if (<timer> == -1)
 	  USE 0
 	endif
  endif
@@ -122,6 +125,14 @@ button 165 336 1146 1144 1 0 0
 
 [DIALOG d_default button]
 ON=0
+
+
+[FUNCTION SKILLMOD]
+FLOAT.SKILLMODCALC=<fval (<STR>*<serv.SKILL.<ARGS>.bonus_str>)+(<DEX>*<serv.SKILL.<ARGS>.bonus_dex>)+(<INT>*<serv.SKILL.<ARGS>.bonus_int>)>
+FLOAT.SKILLMODCALC *= <serv.SKILL.<ARGS>.bonus_stats>
+FLOAT.SKILLMODCALC /= 1000
+RETURN <eval <FLOAT.SKILLMODCALC>/1000000>
+
 
 ON=1
 

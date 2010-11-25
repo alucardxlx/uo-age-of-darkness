@@ -762,9 +762,9 @@ TAG.MANUEVER2=20
 TAG.MANUEVER3=13
 TEVENTS=e_combat_move_intel
 
-category=monsters
-subsection=elementals
-description=efreet - lbr
+category=AoD Monsters
+subsection=Daemons
+description=Efreet
 
 on=@create
 	nightsight=1
@@ -828,9 +828,9 @@ TAG.MANUEVER2=20
 TAG.MANUEVER3=13
 TEVENTS=e_combat_move_intel
 
-category=monsters
-subsection=elementals
-description=djinn - lbr
+category=AoD Monsters
+subsection=Daemons
+description=Djinn
 
 on=@create
 	nightsight=1
@@ -904,8 +904,8 @@ TAG.MANUEVER3=23
 TEVENTS=e_combat_move_intel
 TEVENTS=e_food_steal
 
-CATEGORY=New Monsters
-SUBSECTION=ML
+category=AoD Monsters
+subsection=Daemons
 DESCRIPTION=Glutton Daemon
 
 ON=@Create 
@@ -957,8 +957,8 @@ FOODTYPE=30 t_crops, t_fruit, t_grain
 SHELTER=r_farm, r_forest
 tag.wrestlingspeed=40
 
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
+category=AoD Monsters
+subsection=Daemons
 DESCRIPTION=Turkey
 
 ON=@CREATE
@@ -976,6 +976,53 @@ TACTICS={20.0 40.0}
 MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
+
+[chardef 308]
+defname=c_bone_daemon
+NAME=bone daemon
+SOUND=snd_monster_skletn1
+ICON=i_pet_bonedaemon
+DAM=16,19
+ARMOR=38
+moverate=10
+CAN=MT_USEHANDS|MT_WALK|mt_nonhum
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Heavy
+TAG.MANUEVER1=4
+TAG.MANUEVER2=11
+TAG.MANUEVER3=9
+tag.wrestlingspeed=42
+
+
+category=AoD Monsters
+subsection=Daemons
+description=Bone Daemon
+
+ON=@Create 
+	NPC=brain_monster
+
+	FAME={2500 3000} 
+     karma={-1000 -3000}
+
+	STR={218 235} 
+	DEX={90 125} 
+	INT={60 75}
+	TAG0.MODHITS = 32
+        TAG0.MODSTAM = 32
+
+     EXP={ 16050 21000 } //Level 6
+
+     respoison=100
+     rescold=28
+     resfire=48
+     resenergy=48
+
+	PARRYING={70.0 80.0}
+	MAGICRESISTANCE={85.0 95.0}
+	TACTICS={80.0 90.0}
+	WRESTLING=100.0
 
 
 

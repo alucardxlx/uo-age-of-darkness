@@ -51,7 +51,7 @@ on=@Attack
 [EVENTS e_undead_spawns]
 
 ON=@NPCActFollow
-IF !(<R15>)
+IF !(<R15>) && (<Serv.MaxComplexity> > <Sector.complexity>)
 SERV.NEWITEM i_unholy_bone
 NEW.P=<P>
 NEW.TIMER=20
@@ -147,7 +147,7 @@ ON=@DEATHCORPSE
   NEW.SOUND 55
   NEW.EFFECT 2 01ec6 0 16 0 0 0
   NEW.attr=<NEW.ATTR>|attr_decay 
-  NEW.TIMER=600 //this should probably be called from .ini but I'm lazy now
+  NEW.TIMER=<Serv.DecayTimer>
 
 [FUNCTION RAIN_GOLD]
   NEWITEM=i_gold_coin,<ARGS>
@@ -160,7 +160,7 @@ ON=@DEATHCORPSE
   NEW.SOUND 55
   NEW.EFFECT 2 01ec6 0 16 0 0 0
   NEW.attr=<NEW.ATTR>|attr_decay 
-  NEW.TIMER=600 //this should probably be called from .ini but I'm lazy now
+  NEW.TIMER=<Serv.DecayTimer>
 
 [FUNCTION RAIN_SILVER]
   NEWITEM=i_silver_coin,<ARGS>
@@ -173,7 +173,7 @@ ON=@DEATHCORPSE
   NEW.SOUND 55
   NEW.EFFECT 2 01ec6 0 16 0 0 0
   NEW.attr=<NEW.ATTR>|attr_decay 
-  NEW.TIMER=600 //this should probably be called from .ini but I'm lazy now
+  NEW.TIMER=<Serv.DecayTimer>
 
 [FUNCTION RAIN_COPPER]
   NEWITEM=i_copper_coin,<ARGS>
@@ -186,7 +186,7 @@ ON=@DEATHCORPSE
   NEW.SOUND 55
   NEW.EFFECT 2 01ec6 0 16 0 0 0
   NEW.attr=<NEW.ATTR>|attr_decay 
-  NEW.TIMER=600 //this should probably be called from .ini but I'm lazy now
+  NEW.TIMER=<Serv.DecayTimer>
 
 [EVENTS e_combat_move_intel]
 ON=@NPCActFight
@@ -216,7 +216,7 @@ ENDIF
 //Put a TAG.SPAWN equal to the id of the creature to spawn
 //Otherwise it defaults to spawning one of its own kind
 ON=@NPCActFight
-IF !(<R10>) && (<STAM> >= 20) && (<HITS> > 20)
+IF !(<R10>) && (<STAM> >= 20) && (<HITS> > 20) && (<Serv.MaxComplexity> > <Sector.complexity>)
 	SERV.NEWNPC <QVAL <TAG0.SPAWN> ? <TAG.SPAWN> : <ID>>
 	NEW.P=<P>
 	NEW.HOME=<NEW.P>
@@ -228,8 +228,8 @@ ENDIF
 
 [EVENTS e_dividing]
 on=@gethit
-	//	say <Hval <argn2>>
-     if (rand(2) == 1) && (<ARGN2> & dam_slash) && (<food> > 5)
+     if (<ARGN2> & dam_slash)
+ 	if (rand(2) == 1) && (<Serv.MaxComplexity> > <Sector.complexity>) && (<food> > 5)
           serv.newnpc=<ID>
           new.p=<p>
           new.home=<p>
@@ -240,6 +240,7 @@ on=@gethit
           new.fix
           emote "divide"
           return 1
+	endif
      endif
 
 [EVENTS e_corpse_eater]
@@ -252,13 +253,12 @@ IF (<ACT.TYPE> == t_corpse) && !(<ACT.MOREY>)
 ENDIF
 
 [EVENTS e_mind_whip] 
-
 on=@NPCActFight
      if (rand(5) == 1) && (<mana> > 15)
 		FOR 3
 			DORAND 4
 				src.spelleffect s_Hallucination,1000
-				//src.spelleffect s_feeblemind,1000
+				src.spelleffect s_feeblemind,1000
 				src.spelleffect s_mana_drain,1000
 				src.spelleffect s_pain_spike,1000
 				src.spelleffect s_paralyze,1000
@@ -338,7 +338,8 @@ ON=@DClick
 
 [EVENTS e_layeggsincorpse]
 ON=@ItemStep
- IF ( (<ACT.BASEID>==i_corpse) && !((<FLAGS>)&(statf_war)) && (((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)>(0)) || ((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)==(-1))) ) && !(<ACT.MOREY>)
+ IF ( (<ACT.BASEID>==i_corpse)
+ IF (<Serv.MaxComplexity> > <Sector.complexity>) && (((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)>(0)) || ((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)==(-1))) ) && !(<ACT.MOREY>)
    ACT.MOREY=1
    ACT.COLOR=0481
    NEWITEM i_spawn_egg   //Create a spawning egg
@@ -367,6 +368,7 @@ ON=@ItemStep
    ENDIF
    ACT.P=<P>   //Set egg's position to egg layers position
    ACT.TIMER={<EVAL (<TAG.NPCAI.LEIC.GestationTime>/2)> <EVAL ((<TAG.NPCAI.LEIC.GestationTime>/2)*3)>} //Set egg timer around average gestation time
+ ENDIF
  ENDIF
  RETURN 1
 
@@ -398,6 +400,15 @@ IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> 
 		ENDDO
 	ELSE
 		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+	ENDIF
+	IF (<Tag0.WeaponSkillEnabled> == 5) && !(<SRC.Weapon>)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 6) && !(<SRC.Flags> & statf_onhorse)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 9) && (<SRC.Hits> > (<SRC.MaxHits>/2))
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 2) && (<serv.chardef.<SRC.ID>.bloodcolor> == 0ffff)
+		TAG.WeaponSkillEnabled=0
 	ENDIF
 ENDIF
 
@@ -432,6 +443,15 @@ IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> 
 	ELSE
 		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
 	ENDIF
+	IF (<Tag0.WeaponSkillEnabled> == 5) && !(<SRC.Weapon>)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 6) && !(<SRC.Flags> & statf_onhorse)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 9) && (<SRC.Hits> > (<SRC.MaxHits>/2))
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 2) && (<serv.chardef.<SRC.ID>.bloodcolor> == 0ffff)
+		TAG.WeaponSkillEnabled=0
+	ENDIF
 ENDIF
 
 
@@ -462,6 +482,15 @@ IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && (<WRESTLING> 
 		ENDDO
 	ELSE
 		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<body>.Tag0.Manuever1>>
+	ENDIF
+	IF (<Tag0.WeaponSkillEnabled> == 5) && !(<SRC.Weapon>)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 6) && !(<SRC.Flags> & statf_onhorse)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 9) && (<SRC.Hits> > (<SRC.MaxHits>/2))
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 2) && (<serv.chardef.<SRC.ID>.bloodcolor> == 0ffff)
+		TAG.WeaponSkillEnabled=0
 	ENDIF
 ENDIF
 

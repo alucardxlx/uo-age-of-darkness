@@ -23,7 +23,7 @@ sound=snd_monster_harpy1
 icon=i_pet_harpy
 anim=03f8c7f
 dam=7,11
-armor=20
+armor=21
 moverate=0
 can=mt_walk|mt_fly|mt_female
 resources=2 i_ribs_raw, 30 i_feather
@@ -61,7 +61,7 @@ on=@create
 
      rescold=6
      resfire=6
-
+     resenergy=6
 
 	givelang 1
 
@@ -80,7 +80,7 @@ sound=snd_monster_headls1
 icon=i_pet_headless
 anim=078c7f
 dam=6,10
-armor=15
+armor=14
 resources=2 i_ribs_raw
 can=mt_walk|mt_usehands|mt_nonhum
 foodtype=t_meat_raw, t_food, t_fruit
@@ -135,7 +135,7 @@ CAN=MT_WALK|MT_FLY|mt_nonhum
 desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn, c_headless
 moverate=0
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=4
+tag.slots_needed=3
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=44
 TAG.MANUEVER1=8
@@ -265,7 +265,7 @@ sound=snd_monster_slime1
 icon=i_pet_slime
 anim=060c7f
 can=mt_walk|mt_nonhum
-dam=2,6
+dam=4,6
 armor=8
 moverate=40
 foodtype=30 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
@@ -293,7 +293,7 @@ on=@create
 
      color={2207 2212}
 
-     str={47 58}
+     str={47 68}
      dex={56 61}
      int={16 20}
 
@@ -312,11 +312,11 @@ on=@create
 [chardef c_acid_slug]
 id=c_rotworm
 name="acid slug"
-sound=snd_monster_slime1
+sound=snd_monster_rotworm
 icon=i_pet_slime
 anim=060c7f
 can=mt_walk|mt_nonhum
-dam=8,10
+dam=8,11
 armor=21
 moverate=30
 foodtype=t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
@@ -366,7 +366,7 @@ on=@create
 defname=c_frostooze
 name="frost ooze"
 sound=snd_monster_slime1
-dam=3,7
+dam=5,7
 armor=8
 resdispid=c_slime
 reslevel=3
@@ -394,7 +394,7 @@ on=@create
 	nightsight=1
      npc=brain_monster
 
-     str={57 68}
+     str={57 78}
      dex={66 71}
      int={16 20}
 
@@ -411,7 +411,7 @@ on=@create
 
      taming=53.1
 
-     EVENTS=+e_dividing
+     //EVENTS=+e_dividing
 
 [chardef 081]
 defname=c_swamp_tentacles
@@ -485,7 +485,7 @@ TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=48
+tag.wrestlingspeed=46
 TAG.MANUEVER1=9
 TAG.MANUEVER2=13
 TAG.MANUEVER3=15
@@ -537,7 +537,7 @@ TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=48
+tag.wrestlingspeed=46
 TAG.MANUEVER1=9
 TAG.MANUEVER2=13
 TAG.MANUEVER3=15
@@ -580,7 +580,7 @@ name="reaper"
 sound=snd_monster_reaper1
 icon=i_pet_reaper
 anim=078c7f
-dam=10,14
+dam=11,14
 armor=30
 moverate=0
 resources=6 i_reag_dead_Wood, 4 i_log
@@ -720,7 +720,7 @@ defname=c_kraken
 name="kraken"
 sound=snd_monster_corpsr1
 icon=i_pet_kraken_lbr
-dam=16,20
+dam=15,17
 armor=40
 moverate=0
 ANIM=078C7F
@@ -730,10 +730,10 @@ foodtype=t_food_raw, t_fish
 desires=t_food_raw
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=6
+tag.slots_needed=7
 tag.override.range=3
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=48
+tag.wrestlingspeed=43
 TAG.MANUEVER1=13
 TAG.MANUEVER2=7
 TAG.MANUEVER3=29
@@ -761,19 +761,20 @@ on=@create
      anatomy={79.5 85.8}
      wrestling={74.8 86.2}
 
-     rescold=30
-     respoison=30
+     resenergy=12
+     rescold=32
+     respoison=32
 
-     fame=5000
-     karma=-5000
+     fame={5000 6500}
+     karma={-4000 -5500}
 
 [chardef 0ce]
 defname=c_lava_lizard
 name="lava lizard"
 sound=snd_monster_lavalizard1
 icon=i_pet_croc
-dam=7,11
-armor=40
+dam=7,12
+armor=34
 ANIM=01FFF
 moverate=10
 resources=6 i_ribs_raw, 12 i_hide
@@ -827,7 +828,7 @@ sound=snd_elementl_erthel1
 can=mt_walk|mt_nonhum|mt_ghost|mt_passwalls
 icon=i_pet_quagmire_lbr
 dam=10,14
-armor=38
+armor=40
 moverate=10
 resources=8 i_reag_bone
 foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
@@ -882,8 +883,8 @@ name="etherial warrior"
 sound=snd_monster_ethereal
 icon=i_pet_warrior_ethereal_lbr
 can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
-dam=15,19
-armor=50
+dam=7,12
+armor=35
 ANIM=078C7F
 moverate=0
 resources=5 i_ribs_raw
@@ -924,10 +925,10 @@ on=@create
 
 	EXP={ 33500 41900 } //Level 7
 
-     respoison=30
-     resfire=30
-     rescold=30
-     resenergy=30
+     respoison=24
+     resfire=24
+     rescold=24
+     resenergy=24
 
      fame={2000 2999}
      karma={4000 4999}
@@ -950,8 +951,8 @@ name=Ethereal Lord
 sound=snd_monster_ethereal
 icon=i_pet_warrior_ethereal_lbr
 can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
-dam=17,21
-armor=60
+dam=8,14
+armor=45
 ANIM=078C7F
 moverate=0
 resources=5 i_ribs_raw
@@ -959,7 +960,7 @@ foodtype=3 t_food, t_fruit
 desires=e_notoriety,t_wand,t_corpse,t_gem,t_coin
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=7
+tag.slots_needed=8
 Tag.BeastClass=Beast_Magic
 tag.energydamage=50
 TAG.MANUEVER1=17
@@ -994,10 +995,10 @@ on=@create
 
 	EXP={ 1100000 1350000 } //Level 12
 
-     respoison=40
-     resfire=40
-     rescold=40
-     resenergy=40
+     respoison=36
+     resfire=36
+     rescold=36
+     resenergy=36
 
      fame={5000 5999}
      karma={6000 6999}
@@ -1021,7 +1022,7 @@ sound=snd_elementl_erthel1
 icon=i_pet_plague_beast_lbr
 can=mt_walk|mt_usehands|mt_nonhum
 dam=11,15
-armor=35
+armor=36
 moverate=40
 resources=6 i_ribs_raw,
 foodtype=5 t_meat_raw
@@ -1032,7 +1033,7 @@ TEVENTS=e_Level_up_NPC
 //TEVENTS=e_corpse_eater
 tag.slots_needed=6
 Tag.BeastClass=Beast_Magic
-tag.wrestlingspeed=44
+tag.wrestlingspeed=45
 TAG.MANUEVER1=8
 TAG.MANUEVER2=11
 TAG.MANUEVER3=2
@@ -1050,7 +1051,7 @@ on=@create
      str={264 282}
      dex={46 59}
      int={85 99}
-     TAG0.MODHITS = 16
+     TAG0.MODHITS = 32
 
      parrying={85.0 100.0}
      magicresistance={85.0 95.0}
@@ -1061,10 +1062,11 @@ on=@create
      spiritspeak={55.0 69.0}
 
 
-     EXP={ 16500 20500 } //Level 6
+     EXP={ 32500 36500 } //Level 7
 
      respoison=100
-     rescold=30
+     rescold=32
+     resenergy=6
 
      fame={2000 2900}
      karma={-5000 -5999}
@@ -1077,8 +1079,8 @@ defname=c_bog_thing
 name="bog thing"
 sound=snd_monster_reaper1
 icon=i_pet_bog_thing_lbr
-dam=8,12
-armor=28
+dam=11,13
+armor=32
 moverate=40
 resdispid=c_corpser
 reslevel=3
@@ -1109,17 +1111,20 @@ on=@create
      str={238 265}
      dex={67 77}
      int={37 49}
-     TAG0.MODHITS = 32
+     TAG0.MODHITS = 48
+     TAG0.MODSTAM = 32
 
-     resfire=15
-     respoison=80
+     rescold=16
+     resfire=6
+     resenergy=6
+     respoison=100
 
      parrying={55.0 65.0}
      magicresistance={90.5 94.0}
      tactics={73.9 79.8}
      wrestling={71.2 80.6}
 
-     EXP={ 4050 5500 } //Level 4
+     EXP={ 8050 9500 } //Level 4
 
      fame={2900 4000}
      karma={-3000 -4999}
@@ -1132,8 +1137,8 @@ name="sphinx"
 sound=snd_animals_lion1
 icon=i_pet_sphinx_lbr
 can=mt_walk|mt_run|mt_nonhum
-dam=15,19
-armor=50
+dam=11,14
+armor=45
 moverate=10
 resdispid=c_a_cougar
 reslevel=3
@@ -1144,7 +1149,7 @@ aversions=r_civilization
 shelter=r_desert,r_caves
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
+tag.slots_needed=6
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=48
 TAG.MANUEVER1=27
@@ -1153,9 +1158,6 @@ TAG.MANUEVER3=9
 tevents=e_npc_intel_potion_user
 tevents=e_intel_char_looting
 TEVENTS=e_combat_move_intel
-
-TAG.FF_GROUP=2 //Magincia
-TAG.FF_FOE=13 //Minax, Shadowlords and Britannia
 
 category=undiscovered
 subsection=monsters
@@ -1200,8 +1202,9 @@ on=@death
 [CHARDEF 732]
 DEFNAME=c_rotworm
 NAME=rotworm
+sound=snd_monster_rotworm
 DAM=7,11
-ARMOR=12
+ARMOR=13
 CAN=mt_walk|mt_run|mt_nonhum
 MOVERATE=30
 resources=1 i_ribs_raw
@@ -1236,7 +1239,7 @@ subsection=General
 description=Rotworm
 
 ON=@CREATE
-	nightsight=1
+nightsight=1
 respoison=8
 rescold=8
 resenergy=8
@@ -1246,7 +1249,7 @@ NPC=brain_monster
 FAME={ 50 150 }
 KARMA=( -500 -600 }
 
-STR={34 49}
+STR={39 54}
 DEX={49 67}
 INT={10 15}
 
@@ -1264,8 +1267,9 @@ Taming=49.6
 [CHARDEF 287]
 DEFNAME=c_bloodworm
 NAME=bloodworm
+sound=snd_monster_bloodworm
 DAM=10,14
-ARMOR=18
+ARMOR=22
 CAN=mt_walk|mt_run|mt_nonhum
 MOVERATE=30
 resources=3 i_ribs_raw
@@ -1312,7 +1316,7 @@ FAME={ 1550 1750 }
 KARMA=( -600 -700 }
 EXP={ 2010 3000 } //Level 3
 
-STR={89 104}
+STR={99 114}
 DEX={39 57}
 INT={10 15}
 TAG0.MODHITS = 16
@@ -1326,6 +1330,7 @@ HIDING={60.0 68.5}
 STEALTH={50.0 57.9}
 
 Taming=69.6
+
 
 //By OuPMaN (davidcrma) & Curlor
 //Edited by Anarch Cassius
@@ -1394,7 +1399,8 @@ endif
 [CHARDEF 721]
 DEFNAME=c_mind_whipper
 NAME=mind whipper
-DAM=13,16
+sound=snd_monster_maddening_horror
+DAM=11,13
 ARMOR=32
 CAN=mt_walk|mt_run|mt_usehands
 MOVERATE=0
@@ -1417,7 +1423,7 @@ NPC=brain_monster
 STR={99 125}
 DEX={58 83}
 INT={215 247}
-TAG0.MODHITS = 8
+TAG0.MODHITS = 16
 TAG0.MODMANA = 16
 
 nightsight=1
@@ -1453,8 +1459,8 @@ defname=c_scalis
 name=#names_scalis the Enforcer
 can=mt_swim|mt_male|mt_usehands
 moverate=25
-dam=19,23
-armor=80
+dam=16,18
+armor=75
 icon=i_pet_man
 sound=snd_monster_daemon1
 resources=30 i_ribs_raw
@@ -1466,7 +1472,7 @@ tag.colddamage=30
 tag.energydamage=30
 tag.slots_needed=99
 tag.override.range=2
-tag.wrestlingspeed=45
+tag.wrestlingspeed=42
 Tag.BeastClass=Beast_Heavy
 TEVENTS=e_Level_up_NPC
 TEVENTS=e_combat_move_intel

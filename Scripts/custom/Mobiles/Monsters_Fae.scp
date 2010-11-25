@@ -204,8 +204,7 @@ on=@create
      TAG.QUICKCAST = 40
      EVENTS=+e_intel_char_magery_user
 
-
-[chardef 723]
+[CHARDEF 334]
 defname=c_gremlin
 NAME=gremlin
 SOUND=snd_monster_harpy1
@@ -214,6 +213,108 @@ DAM=3,6
 ARMOR=10
 moverate=0
 CAN=MT_USEHANDS|MT_WALK|MT_RUN
+foodtype=100 t_food,t_fruit
+DESIRES=t_coin,t_food,t_fruit,c_gremlin,t_corpse,t_gem
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TEVENTS=e_food_steal
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=12
+
+category=AoD Monsters
+subsection=Fae
+description=Gremlin
+
+ON=@Create 
+	NPC=brain_monster
+	nightsight=1
+
+
+	FAME={10 100} 
+	KARMA={-1000 -1099} 
+	//COLOR={04f7 04f8}
+
+	STR={38 59}
+	INT={15 34}
+	DEX={91 115} 
+
+	givelang 2
+
+	STEALTH={40.0 60.0}
+	HIDING={40.0 60.0}
+	MAGICRESISTANCE={40.0 70.0}
+	TACTICS={40.0 60.0}
+	WRESTLING={50.0 70.0}
+
+ON=@NpcRestock
+	ITEM={ Fae_Pouch 1 0 3}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_BOTTLE 1 0 2}
+
+[chardef 723]
+defname=c_goblin
+NAME=goblin
+SOUND=snd_monster_harpy1
+ICON=i_pet_gibberling
+DAM=3,6
+ARMOR=10
+moverate=0
+CAN=MT_USEHANDS|MT_WALK|MT_RUN
+foodtype=100 t_food,t_fruit
+DESIRES=t_coin,t_food,t_fruit,c_gremlin,t_corpse,t_gem
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TEVENTS=e_food_steal
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=12
+
+category=AoD Monsters
+subsection=Fae
+description=Gremlin
+
+ON=@Create 
+	NPC=brain_monster
+	nightsight=1
+
+
+	FAME={10 100} 
+	KARMA={-1000 -1099} 
+	//COLOR={04f7 04f8}
+
+	STR={38 59}
+	INT={15 34}
+	DEX={91 115} 
+
+	givelang 2
+
+	STEALTH={40.0 60.0}
+	HIDING={40.0 60.0}
+	MAGICRESISTANCE={40.0 70.0}
+	TACTICS={40.0 60.0}
+	WRESTLING={50.0 70.0}
+
+ON=@NpcRestock
+	ITEM={ Fae_Pouch 1 0 3}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
+	ITEM={ RANDOM_BOTTLE 1 0 2}
+
+[chardef 335]
+defname=c_goblin_mage
+NAME=gremlin
+SOUND=snd_monster_harpy1
+ICON=i_pet_gibberling
+DAM=3,6
+ARMOR=10
+moverate=0
+CAN=MT_USEHANDS|MT_WALK|MT_RUN|Mt_EQUIP|MT_USEHANDS
 foodtype=100 t_food,t_fruit
 DESIRES=t_coin,t_food,t_fruit,c_gremlin,t_corpse,t_gem
 TEVENTS=e_Level_up_NPC
@@ -985,8 +1086,6 @@ description=Faerie Dragon
 ON=@CREATE
 	NPC=brain_dragon
 	nightsight=1
-     TAG.NPCAI.Rank=3
-	setElf
 	SetDragon
 
 	FAME={1450 2450}

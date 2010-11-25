@@ -81,7 +81,6 @@ DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_s
 foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
 DAM=2,8
 ARMOR=4
-
 AVERSIONS=t_TRAP,t_eerie_stuff
 JOB=1
 TSPEECH=spk_orc_prime

@@ -14,11 +14,14 @@
 
 //NPC AI System Options
 
+npcai_opt_karma_PC  01 //Faction NPCs will react to PCs based on karma if not in allied or enemy faction
+npcai_opt_karma_NPC  01 //Faction NPCs will react to NPCs based on karma if not in allied or enemy faction
+
 npcai_opt_formsquads  01 //NPCs will form squads (Boolean)
 npcai_opt_stationarysquads 00 //Squads will not roam around (Boolean)
 npcai_opt_initializeRanks 01 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
 
-npcai_opt_initializeMagicAI 00 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
+npcai_opt_initializeMagicAI 01 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
 npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
 npcai_opt_castbeneficialspells 01 //NPCs will cast helpful spells on others (Boolean)
 
@@ -26,12 +29,11 @@ npcai_opt_npcbandageself 01 //Faction NPCs will bandage themselves (Boolean)
 npcai_opt_npcusepotions  01 //Faction NPCs will use potions (Boolean)
 npcai_opt_requiremtusehands 00 //Require MT_USEHANDS in order to heal self/use potions; event can still be added manually to exceptions (Boolean)
 
-npcai_opt_switchfrombow  01 //Faction NPC archers will switch to a melee weapon when in close combat (Boolean)
+npcai_opt_switchfrombow  01 //Faction NPC archers will switch to and from melee weapons depending on range (Boolean)
 npcai_opt_npclooting  01 //Use NPC Looting system on Faction NPCs (Boolean)
 
-//npcai_opt_lowbodycount  01 //Keeps the body count low of NPCs that were slain by Faction NPCs (Boolean)
+//npcai_opt_lowbodycount  00 //Keeps the body count low of NPCs that were slain by Faction NPCs (Boolean)
 //npcai_opt_clickrecognition 01 //Uses race based click recognition of NPCs (Boolean)
-
 
 [DEFNAME Race_Flags]
 racef_britannia  000000001 //Britannia
