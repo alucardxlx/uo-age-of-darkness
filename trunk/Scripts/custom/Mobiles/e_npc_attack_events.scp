@@ -89,36 +89,67 @@ if (<npc> == brain_healer)
 	endif
 endif
 
+IF (<EVAL npcai_opt_karma_NPC>) || (<EVAL npcai_opt_karma_PC>) 
+
  IF (<KARMA> > 0) //If my karma is good
-   IF (<SRC.KARMA> < -1000) //If my target's karma is bad
+   IF (<SRC.KARMA> < -1000) //If my target's karma is bad attack
      IF !( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race> )
+	IF (<EVAL npcai_opt_karma_NPC>) && <SRC.BRAIN>
          ATTACK
          f_warcry
+	ELIF (<EVAL npcai_opt_karma_PC>) && !<SRC.BRAIN>
+         ATTACK
+         f_warcry
+	ENDIF
      ENDIF
-   ELIF ( ((<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>)) || (<SRC.KARMA> > 0) ) //If my target's karma is good or an ally
-     If <FriendlySpellCheck>
-		return 0
-     endif
+   ELIF ( ((<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>)) || (<SRC.KARMA> > 0) ) //If my target's karma is good or an ally buff
+	IF (<EVAL npcai_opt_karma_NPC>) && <SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ELIF (<EVAL npcai_opt_karma_PC>) && !<SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ENDIF
    ENDIF
-
- ELIF (<KARMA> < -1000) //If my karma is bad
-   IF !(<hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race>) && !(<SRC.NPC> == brain_animal)
+ ELIF (<KARMA> < -1000) //If my karma is bad 
+   IF (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race>) //buff allies
+	IF (<EVAL npcai_opt_karma_NPC>) && <SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ELIF (<EVAL npcai_opt_karma_PC>) && !<SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ENDIF
+   ELIF !(<SRC.NPC> == brain_animal) //attack non-animal, non-allies
+     IF !( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <SRC.TAG0.NPCAI.Race> )
+	IF (<EVAL npcai_opt_karma_NPC>) && <SRC.BRAIN>
          ATTACK
          f_warcry
-   ELSE
-     If <FriendlySpellCheck>
-		return 0
-     endif
+	ELIF (<EVAL npcai_opt_karma_PC>) && !<SRC.BRAIN>
+         ATTACK
+         f_warcry
+	ENDIF
+     ENDIF
    ENDIF
-
  ELSE //If my karma is neutral
-   IF ( (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>) ) //If my target is an ally
-     If <FriendlySpellCheck>
-		return 0
-     endif
+   IF ( (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>>)&(<SRC.TAG0.NPCAI.Race>) ) //If my target is an ally buff
+	IF (<EVAL npcai_opt_karma_NPC>) && <SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ELIF (<EVAL npcai_opt_karma_PC>) && !<SRC.BRAIN>
+	     If <FriendlySpellCheck>
+			return 0
+	     endif
+	ENDIF
    ENDIF
-
  ENDIF
+
+ENDIF
  RETURN
 
 
@@ -1286,5 +1317,125 @@ ENDIF
  ACTARG1 = <LOCAL.SPELL>
  ACTION = <LOCAL.SKILL>
  RETURN 1
+
+
+[Function RUNES]
+LOCAL.LENGTH = <EVAL STRLEN(<SERV.SPELL(<args>).RUNES>)>
+LOCAL.CURRUNE=0
+local.RUNESTRING="0"
+WHILE (<eval <LOCAL.CURRUNE>> <= <eval <LOCAL.LENGTH>>)
+	IF (strmatch(*0*,<LOCAL.runestring>))
+	IF (strmatch(A,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="An "
+	ELSEIF (strmatch(B,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Bet "
+	ELSEIF (strmatch(C,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Corp "
+	ELSEIF (strmatch(D,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Des "
+	ELSEIF (strmatch(E,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Ex "
+	ELSEIF (strmatch(F,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Flam "
+	ELSEIF (strmatch(G,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Grav "
+	ELSEIF (strmatch(H,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Hur "
+	ELSEIF (strmatch(I,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="In "
+	ELSEIF (strmatch(J,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Jux "
+	ELSEIF (strmatch(K,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Kal "
+	ELSEIF (strmatch(L,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Lor "
+	ELSEIF (strmatch(M,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Mani "
+	ELSEIF (strmatch(N,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Nox "
+	ELSEIF (strmatch(O,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Ort "
+	ELSEIF (strmatch(P,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Por "
+	ELSEIF (strmatch(Q,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Quas "
+	ELSEIF (strmatch(R,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Rel "
+	ELSEIF (strmatch(S,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Sanct "
+	ELSEIF (strmatch(T,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Tym "
+	ELSEIF (strmatch(U,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Uus "
+	ELSEIF (strmatch(V,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Vas "
+	ELSEIF (strmatch(W,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Wis "
+	ELSEIF (strmatch(X,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Xen "
+	ELSEIF (strmatch(Y,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Ylem "
+	ELSEIF (strmatch(Z,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="Zu "
+	ENDIF
+	ELSE
+	IF (strmatch(A,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>An "
+	ELSEIF (strmatch(B,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Bet "
+	ELSEIF (strmatch(C,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Corp "
+	ELSEIF (strmatch(D,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Des "
+	ELSEIF (strmatch(E,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Ex "
+	ELSEIF (strmatch(F,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Flam "
+	ELSEIF (strmatch(G,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Grav "
+	ELSEIF (strmatch(H,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Hur "
+	ELSEIF (strmatch(I,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>In "
+	ELSEIF (strmatch(J,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Jux "
+	ELSEIF (strmatch(K,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Kal "
+	ELSEIF (strmatch(L,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Lor "
+	ELSEIF (strmatch(M,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Mani "
+	ELSEIF (strmatch(N,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Nox "
+	ELSEIF (strmatch(O,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Ort "
+	ELSEIF (strmatch(P,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Por "
+	ELSEIF (strmatch(Q,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Quas "
+	ELSEIF (strmatch(R,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Rel "
+	ELSEIF (strmatch(S,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Sanct "
+	ELSEIF (strmatch(T,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Tym "
+	ELSEIF (strmatch(U,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Uus "
+	ELSEIF (strmatch(V,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Vas "
+	ELSEIF (strmatch(W,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Wis "
+	ELSEIF (strmatch(X,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Xen "
+	ELSEIF (strmatch(Y,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Ylem "
+	ELSEIF (strmatch(Z,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
+		local.RUNESTRING="<local.RUNESTRING>Zu "
+	ENDIF
+	ENDIF
+	LOCAL.CURRUNE += 1
+ENDWHILE
+RETURN <local.RUNESTRING>
+
 
 [EOF]

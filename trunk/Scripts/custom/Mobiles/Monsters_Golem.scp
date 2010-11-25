@@ -2,10 +2,10 @@
 [chardef 02f0]
 defname=c_clockwork_golem
 name="clockwork golem"
-sound=snd_monster_titan1
+sound=snd_monster_stoneform
 icon=i_pet_golem_lbr
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-dam=13,17
+dam=13,15
 armor=41
 moverate=40
 resources=
@@ -20,7 +20,7 @@ TAG.MANUEVER1=4
 TAG.MANUEVER2=11
 TAG.MANUEVER3=3
 TEVENTS=e_combat_move_intel
-tag.wrestlingspeed=42
+tag.wrestlingspeed=41
 
 category=AoD Monsters
 subsection=Golem/Artificial
@@ -105,11 +105,11 @@ on=@create
 [chardef 043]
 defname=c_stone_gargoyle
 name="stone gargoyle"
-sound=snd_monster_gargyl1
+sound=snd_monster_stoneform
 icon=i_pet_garg
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-dam=11,15
-armor=45
+dam=13,15
+armor=44
 moverate=50
 resdispid=c_m_gargoyle_stone
 ANIM=03F8C7F
@@ -119,7 +119,7 @@ desires=c_stone_gargoyle,c_stone_harpy
 aversions=r_civilization
 tag.slots_needed=4
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=36
+tag.wrestlingspeed=37
 TAG.MANUEVER1=4
 TAG.MANUEVER2=11
 TAG.MANUEVER3=3
@@ -156,10 +156,10 @@ on=@create
 [chardef 049]
 defname=c_stone_harpy
 name="stone harpy"
-sound=snd_monster_harpy1
+sound=snd_monster_stoneform
 icon=i_pet_harpy_stone_lbr
 can=mt_fly|mt_walk|mt_nonhum
-dam=10,14
+dam=12,14
 armor=42
 moverate=50
 resdispid=c_harpy
@@ -171,7 +171,7 @@ desires=c_stone_gargoyle,c_stone_harpy
 aversions=r_water,r_civilization
 tag.slots_needed=4
 Tag.BeastClass=Beast_Heavy
-tag.wrestlingspeed=38
+tag.wrestlingspeed=40
 TAG.MANUEVER1=4
 TAG.MANUEVER2=11
 TAG.MANUEVER3=3
@@ -208,7 +208,7 @@ on=@create
 [chardef 030b]
 defname=c_mud_golem
 name="mud golem"
-sound=snd_monster_orc1
+sound=snd_monster_stoneform
 icon=i_pet_bogling_lbr
 dam=7,10
 armor=20
@@ -301,55 +301,10 @@ ON=@Create
 	TACTICS={75.0 85.0}
 	WRESTLING={75.0 85.0}
 
-[chardef 308]
-defname=c_bone_golem
-NAME=bone golem
-SOUND=snd_monster_skletn1
-ICON=i_pet_bonedaemon
-DAM=16,19
-ARMOR=38
-moverate=10
-CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-TEVENTS=e_Level_up_NPC
-tag.slots_needed=6
-Tag.BeastClass=Beast_Heavy
-TAG.MANUEVER1=4
-TAG.MANUEVER2=11
-TAG.MANUEVER3=9
-tag.wrestlingspeed=42
-
-category=AoD Monsters
-subsection=Golem/Artificial
-description=Bone Golem
-
-ON=@Create 
-	NPC=brain_monster
-
-	FAME={2500 3000} 
-     karma={-1000 -3000}
-
-	STR={218 235} 
-	DEX={90 125} 
-	INT={60 75}
-	TAG0.MODHITS = 32
-        TAG0.MODSTAM = 32
-
-     EXP={ 16050 21000 } //Level 6
-
-     respoison=100
-     rescold=28
-     resfire=48
-     resenergy=48
-
-	PARRYING={70.0 80.0}
-	MAGICRESISTANCE={85.0 95.0}
-	TACTICS={80.0 90.0}
-	WRESTLING=100.0
-
 [CHARDEF 705]
 DEFNAME=c_stone_golem
 NAME=stone golem
+sound=snd_monster_stoneform
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
 dam=13,17
 armor=46
@@ -401,8 +356,9 @@ ON=@CREATE
 [CHARDEF c_earth_golem]
 ID=c_stone_golem
 NAME=earth golem
-dam=12,16
-armor=40
+sound=snd_monster_stoneform
+dam=12,14
+armor=42
 moverate=30
 resources=
 foodtype=i_ingot_iron
@@ -451,9 +407,10 @@ ON=@CREATE
 [CHARDEF c_ice_golem]
 ID=c_stone_golem
 NAME=ice golem
+sound=snd_monster_stoneform
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-dam=11,15
-armor=44
+dam=11,14
+armor=41
 moverate=40
 resources=
 foodtype=i_ingot_iron
@@ -505,9 +462,10 @@ ON=@CREATE
 [CHARDEF c_iron_golem]
 ID=c_stone_golem
 NAME=iron golem
+sound=snd_monster_stoneform
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
-dam=14,18
-armor=52
+dam=13,16
+armor=48
 moverate=35
 resources=
 foodtype=i_ingot_iron
@@ -534,13 +492,12 @@ ON=@CREATE
      str={266 283}
      dex={68 86}
      int={41 57}
-     TAG0.MODHITS = 32
-     TAG0.MODSTAM = 32
+     TAG0.MODHITS = 16
+     TAG0.MODSTAM = 16
 
      respoison=100
      rescold=48
-     resfire=32
-     resenergy=8
+     resfire=24
 
      anatomy={59.0 79.6}
      parrying={58.9 83.9}
@@ -552,7 +509,6 @@ ON=@CREATE
 
      FAME={5100 7500} 
      karma={-4000 -5999}
-
 
 
 
@@ -628,6 +584,7 @@ STEALTH={10.0 25.0}
 [CHARDEF 829]
 DEFNAME=c_colosus
 NAME=colosus
+sound=snd_monster_stoneform
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands

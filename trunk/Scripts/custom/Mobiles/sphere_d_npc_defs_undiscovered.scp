@@ -24,49 +24,147 @@ VERSION=0.99w5
 //****************************************************************************
 // FILE LAST UPDATED: Sunday, April 9 2006
 // by Rattlehead, few changes & fixes by ClouD_BR & Ellessar
-VERSION=0.56b
+VERSION=0.56bv
 
+[CHARDEF 07C]
+DEFNAME=c_m_evil_mage
+NAME="Evil Mage"
+ICON=i_pet_mage_evil_lbr
+CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_USEHANDS
+DAM=15,23
+ARMOR=40
+MOVERATE=3
+ANIM=078C7F
+RESDISPID=c_h_evilmage
+RESLEVEL=3
+RESDISPHUE=
+RESOURCES=2 i_ribs_raw
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+SHELTER=r_house
+AVERSIONS=t_TRAP,r_civilization
 
-[chardef 755]
-defname=c_destroyer_gargoyle
-name=Destroyer Gargoyle
-SOUND=snd_monster_gargyl1
-ICON=i_pet_GARG
-ARMOR=50
-DAM=31,64
-CAN=MT_WALK|MT_USEHANDS|MT_EQUIP|MT_FLY
-FOODTYPE=1 t_meat_raw
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-RESDISPDNID=c_man
-RESLEVEL=2
-RESDISPDNHUE=0ad
-CATEGORY=New Monsters
-SUBSECTION=LBR
-DESCRIPTION=Destroyer Gargoyle
-MOVERATE=30
+TSPEECH=spk_human_prime
+TSPEECH=jobMageEvil
+TSPEECH=jobMage
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_human_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+
+CATEGORY=humans
+SUBSECTION=NPCs & Uniques
+DESCRIPTION=Evil Mage (Male) - LBR
 
 ON=@Create
-	NPC=brain_monster
-	FAME=8000
-	KARMA=-8000
-	STR={760 850}
-	MAXHITS=485
-	INT={152 200}
-	DEX={102 150}
-	MAGICRESISTANCE={120.0 160.0}
-	MAGERY={91.0 100.0}
-	EVALUATINGINTEL={91.0 100.0}
-	MEDITATION={91.0 100.0}
-	TACTICS={90.0 100.0}
-	WRESTLING={90.0 100.0}
-	ANATOMY={50.0 100.0}
-	ITEMNEWBIE=i_spellbook
-	ADDCIRCLE 8,1
+     NAME="#NAMES_HUMAN_MALE"
+     NPC=brain_human
+     COLOR=colors_skin
+     FAME={499 899}
+     KARMA={-3000 -5999}
+     STR={71 95}
+     DEX={81 95}
+     INT={96 145}
+     EVALUATINGINTEL={55.0 78.0}
+     INSCRIPTION={76.0 90.0}
+     MAGERY={86.0 100.0}
+     WRESTLING={50.0 60.0}
+     MAGICRESISTANCE={45.0 68.0}
+     MEDITATION={75.0 100.0}
+     TACTICS={45.0 75.0}
 
-ON=@NpcRestock
-	ITEM=i_gold,{750 950}
-	ITEM=random_scroll
-	ITEM=random_scroll
+     ITEMNEWBIE=i_spellbook
+     ADDSPELL=s_fireball
+     ADDSPELL=s_explosion
+     ADDSPELL=s_harm
+     ADDSPELL=s_lightning
+     ADDSPELL=s_mana_drain
+     ADDSPELL=s_teleport
+
+ON=@Death
+     NEWLOOT=loot_mage_evil
+
+[CHARDEF 07D]
+DEFNAME=c_m_evil_mage_lord
+NAME="Evil Mage Lord"
+ICON=i_pet_mage_evil_boss_lbr
+CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_USEHANDS
+DAM=15,36
+ARMOR=45
+MOVERATE=3
+ANIM=078C7F
+RESDISPID=c_h_evilarchmage_m
+RESLEVEL=
+RESDISPHUE=
+RESOURCES=2 i_ribs_raw
+FOODTYPE=15 t_food, t_fruit
+DESIRES=i_gold,e_notoriety
+SHELTER=r_house
+AVERSIONS=t_TRAP,r_civilization
+
+TSPEECH=spk_human_prime
+TSPEECH=jobMageEvil
+TSPEECH=jobMage
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_human_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+
+CATEGORY=humans
+SUBSECTION=NPCs & Uniques
+DESCRIPTION=Evil Mage Lord - LBR
+
+ON=@Create
+     NAME="#NAMES_HUMAN_MALE"
+     NPC=brain_human
+     COLOR=colors_skin
+     FAME={2499 4899}
+     KARMA={-3000 -5999}
+     STR={144 195}
+     DEX={100 198}
+     INT={245 385}
+     EVALUATINGINTEL={55.0 78.0}
+     INSCRIPTION={76.0 90.0}
+     MAGERY={98.0 100.0}
+     WRESTLING={70.0 90.0}
+     MAGICRESISTANCE={85.0 98.0}
+     MEDITATION={75.0 100.0}
+     TACTICS={45.0 75.0}
+
+     ITEMNEWBIE=i_spellbook
+     ADDSPELL=s_explosion
+     ADDSPELL=s_flamestrike
+     ADDSPELL=s_meteor_swarm
+     ADDSPELL=s_harm
+     ADDSPELL=s_poison
+     ADDSPELL=s_lightning
+     ADDSPELL=s_mind_blast
+     ADDSPELL=s_energy_bolt
+     ADDSPELL=s_paralyzation_field
+     ADDSPELL=s_chain_lightning
+     ADDSPELL=s_mana_vampire
+     ADDSPELL=s_earthquake
+     ADDSPELL=s_energy_vortex
+     ADDSPELL=s_summon_daemon
+     ADDSPELL=s_Hallucination
+     ADDSPELL=s_teleport
+
+ON=@Death
+     NEWLOOT=loot_evil_mage_lord
 
 [CHARDEF 0302]
 defname=c_meer_mage
@@ -212,6 +310,7 @@ ON=@Create
 ON=@NpcRestock
 	ITEM=i_gold,{50 100}
 
+
 [chardef 174]
 defname=c_abyss_lord
 name=Abyss Lord
@@ -290,87 +389,6 @@ ON=@NpcRestock
 
 
 
-[chardef 198]
-defname=c_orderlord
-name="doppleganger"
-sound=snd_monster_mimic
-icon=i_pet_doppleganger_lbr
-can=mt_walk|mt_fly
-dam=15,25
-armor=40
-moverate=3
-resdispid=c_elem_earth
-reslevel=3
-resdisphue=color_gray_dk
-resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
-foodtype=9 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold
-aversions=r_civilization
-ANIM=0FFC78C7F
-
-
-category=AoD Monsters
-subsection=General
-description=doppleganger
-
-on=@create
-     npc=brain_monster
-
-     str={85 90}
-     dex={75 95}
-     int={75 90}
-
-     parrying={90.0 100.0}
-     magery={90.0 100.0}
-     magicresistance={60.0 80.0}
-     tactics={90.0 100.0}
-     wrestling={90.0 100.0}
-
-     peacemaking=
-
-     karma={-5000 -5999}
-     fame={450 650}
-
-[chardef 197]
-defname=c_chaoslord
-name="doppleganger"
-sound=snd_monster_mimic
-icon=i_pet_doppleganger_lbr
-can=mt_walk|mt_fly
-dam=15,25
-armor=40
-moverate=3
-resdispid=c_elem_earth
-reslevel=3
-resdisphue=color_gray_dk
-resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
-foodtype=9 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold
-aversions=r_civilization
-ANIM=0FFC78C7F
-
-
-category=AoD Monsters
-subsection=General
-description=doppleganger
-
-on=@create
-     npc=brain_monster
-
-     str={85 90}
-     dex={75 95}
-     int={75 90}
-
-     parrying={90.0 100.0}
-     magery={90.0 100.0}
-     magicresistance={60.0 80.0}
-     tactics={90.0 100.0}
-     wrestling={90.0 100.0}
-
-     peacemaking=
-
-     karma={-5000 -5999}
-     fame={450 650}
 
 [chardef 689]
 defname=c_timelord
@@ -1040,141 +1058,8 @@ ON=@Create
 ON=@NpcRestock
 	ITEM=random_jewel,{1 4}
 	ITEM=i_gold,{80 130}
-	//Minotaur
 
-	//Changeling
-	////////////////////////
-	////RACES///////////////
-	//Elfs
-
-[CHARDEF 605]
-DEFNAME=c_elf_male
-Name=Elf Male
-ICON=i_pet_MAN
-RESLEVEL=5
-RESDISPDNHUE=0410
-RESDISPDNID=c_man
-CAN=MT_EQUIP|MT_WALK|MT_SWIM|MT_RUN|MT_USEHANDS
-RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
-FOODTYPE=15 t_food, t_fruit
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-BLOODCOLOR=0
-TSPEECH=spk_human_prime
-TSPEECH=spk_human_default
-TEVENTS=e_Human_HearUnk
-DESCRIPTION=Elf Man
-SUBSECTION=Miscellaneous
-CATEGORY=Civilized
-
-ON=@Create
-	NPC=brain_human
-	COLOR=colors_skin
-	FENCING={15.0 38.0}
-	PARRYING={15.0 38.0}
-	SWORDSMANSHIP={15.0 38.0}
-	WRESTLING={15.0 38.0}
-	MACEFIGHTING={15.0 38.0}
-	MAGICRESISTANCE={15.0 38.0}
-	TACTICS={15.0 38.0}
-	resenergy=10
-
-
-[CHARDEF 606]
-DEFNAME=c_elf_female
-Name=Elf Female
-ICON=i_pet_woman
-RESLEVEL=5
-RESDISPDNHUE=0410
-RESDISPDNID=c_woman
-CAN=MT_EQUIP|MT_WALK|MT_SWIM|MT_RUN|MT_FEMALE|MT_USEHANDS
-RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
-FOODTYPE=15 t_food, t_fruit
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-BLOODCOLOR=0
-TSPEECH=spk_human_prime
-TSPEECH=spk_human_default
-TEVENTS=e_Human_HearUnk
-DESCRIPTION=Elf Woman
-SUBSECTION=Miscellaneous
-CATEGORY=Civilized
-
-ON=@Create
-	NPC=brain_human
-	COLOR=colors_skin
-	FENCING={15.0 38.0}
-	PARRYING={15.0 38.0}
-	SWORDSMANSHIP={15.0 38.0}
-	WRESTLING={15.0 38.0}
-	MACEFIGHTING={15.0 38.0}
-	MAGICRESISTANCE={15.0 38.0}
-	TACTICS={15.0 38.0}
-	resenergy=10
-
-[CHARDEF 607]
-DEFNAME=c_elf_ghost_man
-Name=Elf male Ghost
-ICON=i_pet_MAN
-RESLEVEL=5
-RESDISPDNHUE=0
-RESDISPDNID=c_ghost_man
-CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_GHOST
-RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
-FOODTYPE=15 t_food, t_fruit
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-BLOODCOLOR=0
-TSPEECH=spk_human_prime
-TSPEECH=spk_human_default
-TEVENTS=e_Human_HearUnk
-DESCRIPTION=Elf Ghost Man
-SUBSECTION=Miscellaneous
-CATEGORY=Civilized
-
-ON=@Create
-	NPC=brain_human
-	COLOR=colors_skin
-	FENCING={15.0 38.0}
-	PARRYING={15.0 38.0}
-	SWORDSMANSHIP={15.0 38.0}
-	WRESTLING={15.0 38.0}
-	MACEFIGHTING={15.0 38.0}
-	MAGICRESISTANCE={15.0 38.0}
-	TACTICS={15.0 38.0}
-
-[CHARDEF 608]
-DEFNAME=c_elf_ghost_woman
-Name=Elf Female Ghost
-ICON=i_pet_woman
-RESLEVEL=5
-RESDISPDNHUE=0
-RESDISPDNID=c_ghost_woman
-CAN=MT_EQUIP|MT_WALK|MT_RUN|MT_GHOST|MT_FEMALE
-RESOURCES=i_flesh_head, i_flesh_torso, i_flesh_right_arm, i_flesh_left_arm, i_flesh_left_leg, i_flesh_right_leg, i_blood_2
-FOODTYPE=15 t_food, t_fruit
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-BLOODCOLOR=0
-TSPEECH=spk_human_prime
-TSPEECH=spk_human_default
-TEVENTS=e_Human_HearUnk
-DESCRIPTION=Elf Ghost Woman
-SUBSECTION=Miscellaneous
-CATEGORY=Civilized
-
-ON=@Create
-	NPC=brain_human
-	COLOR=colors_skin
-	FENCING={15.0 38.0}
-	PARRYING={15.0 38.0}
-	SWORDSMANSHIP={15.0 38.0}
-	WRESTLING={15.0 38.0}
-	MACEFIGHTING={15.0 38.0}
-	MAGICRESISTANCE={15.0 38.0}
-	TACTICS={15.0 38.0}
-	// Second Part //
-	//By Rattlehead
+/Changeling
 
 [chardef 280]  
 name=Minotaur Captain
@@ -1496,37 +1381,6 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
-[CHARDEF 714]
-DEFNAME=c_iron_beetle
-NAME=iron beetle
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
 
 
 [CHARDEF 715]
@@ -1601,38 +1455,6 @@ NAME=salamander
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-[CHARDEF 334]
-DEFNAME=c_mite
-NAME=mite
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run
 MOVERATE=2
 RESOURCES=1 i_bird_raw, 30 i_feather
 FOODTYPE=30 t_crops, t_fruit, t_grain
@@ -1973,6 +1795,69 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
+[CHARDEF 1069]
+DEFNAME=c_death_hound
+NAME=death hound
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 1070]
+DEFNAME=c_werewolf
+NAME=werewolf
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
 
 [eof]
 

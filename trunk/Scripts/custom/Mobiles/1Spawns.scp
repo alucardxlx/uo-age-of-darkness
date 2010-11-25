@@ -1,22 +1,3 @@
-//****************************************************************************
-// SPHERE by : Menasoft ©1997-2002
-// www.sphereserver.com
-// All SPHERE script files and formats are copyright Menasoft & Partners.
-// This file may be freely edited for personal use, but may not be distributed
-// in whole or in part, in any format without express written permission from
-// Menasoft & Partners.  All donations and contributions
-// become the property of Menasoft & Partners.
-//
-// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
-//****************************************************************************
-// FILE LAST UPDATED: Wednesday, July 24, 2002
-//
-VERSION=0.99u
-
-
-//****************************************************************************
-// Random Spawn, T2A critters included are just alterations to old art (colors, stats). T2A is not needed.
-// WEIGHT= need not add up to any special value. purely relative weight
 
 [SPAWN 08001]
 DEFNAME=SPAWN_Undead_Weak
@@ -24,10 +5,10 @@ CATEGORY=AoD Spawn Groups
 SUBSECTION=Undead
 DESCRIPTION=Weak Undead
 ID=c_SPECTRE
-ID=c_SKELETON 2
-ID=c_patchwork_SKELETON 
-ID=c_ZOMBIE 2
-ID=c_deformed_ZOMBIE
+ID=c_SKELETON 3
+ID=c_patchwork_SKELETON 2
+ID=c_ZOMBIE 4
+ID=c_deformed_ZOMBIE 2
 ID=c_ghoul
 ID=c_mound_maggots
 
@@ -37,14 +18,13 @@ CATEGORY=AoD Spawn Groups
 SUBSECTION=Undead
 DESCRIPTION=Medium Undead
 ID=c_skeleton_knight 2
-ID=c_skeleton_mage 2
+ID=c_skeleton_mage 3
 ID=c_wraith
-ID=c_mummy
 ID=c_skeletal_mount
 ID=c_undead_gargoyle 2
-ID=c_yao_guai
-ID=c_shade
 ID=c_ghost 2
+ID=c_yao_guai
+ID=c_banshee
 
 [SPAWN 08003]
 DEFNAME=SPAWN_Undead_Strong
@@ -52,16 +32,18 @@ CATEGORY=AoD Spawn Groups
 SUBSECTION=Undead
 DESCRIPTION=Strong Undead
 ID=c_zombie_lord
-ID=c_dracolich
-ID=c_lich
+ID=c_dragon_skeleton
+ID=c_mummy
+ID=c_lich 2
 ID=c_interred_grizzle
+//ID=c_shade
 
 [SPAWN 08007]
 DEFNAME=SPAWN_LesserDragons
 CATEGORY=AoD Spawn Groups
 SUBSECTION=Monsters
 DESCRIPTION=Lesser Dragons
-ID=c_wyvern 2
+ID=c_wyvern 5
 ID=c_BASILISK
 ID=c_CHIMERA
 ID=c_DRAKE_GREEN 2
@@ -227,62 +209,6 @@ ID=c_SNAKE_giant
 ID=C_scorpion_giant
 ID=c_rabbit 2
 
-[SPAWN 08014]
-DEFNAME=SPAWN_Villagers
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Villagers
-ID=C_H_BEGGER_F
-ID=C_H_BEGGER
-ID=C_H_MAYOR_F
-ID=C_H_MAYOR
-ID=C_H_NOBLE_F
-ID=C_H_NOBLE
-ID=C_H_PEASANT_F
-WEIGHT=5
-ID=C_H_PEASANT
-WEIGHT=5
-ID=C_H_THIEF_F
-WEIGHT=2
-ID=C_H_THIEF
-WEIGHT=2
-ID=C_H_FIGHTER_F
-ID=C_H_FIGHTER
-ID=C_H_MERCENARY_F
-ID=C_H_MERCENARY
-ID=C_H_WARRIOR_F
-ID=C_H_WARRIOR
-ID=C_H_ACTOR_F
-ID=C_H_ACTOR
-ID=C_H_ARTIST
-ID=C_H_ARTIST_F
-ID=C_H_BARD_F
-ID=C_H_BARD
-ID=C_H_SCULPTOR_F
-ID=C_H_SCULPTOR
-
-[SPAWN 08015]
-DEFNAME=SPAWN_Brigands
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Brigands
-ID=C_H_BRIGAND_F
-WEIGHT=5
-ID=C_H_BRIGAND
-WEIGHT=5
-ID=C_H_EVILMAGE_F
-WEIGHT=2
-ID=C_H_EVILMAGE
-WEIGHT=2
-ID=C_H_THIEF_F
-WEIGHT=4
-ID=C_H_THIEF
-WEIGHT=4
-ID=C_H_GYPSY_F
-ID=C_H_GYPSY
-ID=C_H_PIRATE_F
-ID=C_H_PIRATE
-
 [SPAWN 08016]
 DEFNAME=SPAWN_ForestMonsters
 CATEGORY=Spawn Groups
@@ -305,6 +231,8 @@ ID=C_SWAMP_TENTACLES 2
 ID=c_slime 3
 ID=c_bog_thing 1
 ID=c_acid_slug 2
+ID=c_rotworm 2
+ID=c_bloodworm
 
 [SPAWN 08018]
 DEFNAME=SPAWN_JungleMonsters
@@ -314,7 +242,196 @@ DESCRIPTION=Jungle Monsters
 ID=C_SILVER_SERPENT 2
 ID=c_corpser 2
 ID=c_SLIME 3
+ID=c_headless 4
 ID=c_harpy 
+
+[SPAWN 08035]
+DEFNAME=SPAWN_Goblins
+CATEGORY=Spawn Groups
+SUBSECTION=Nasties
+DESCRIPTION=Goblins
+ID=c_m_goblin 8
+ID=c_m_goblin_CHIEF
+ID=c_m_goblin_MAGE 2
+
+[SPAWN 0803f]
+DEFNAME=SPAWN_RatMen
+CATEGORY=Spawn Groups
+SUBSECTION=Monsters
+DESCRIPTION=RatMen
+ID=c_ratman
+ID=c_ratwoman
+
+[SPAWN 08040]
+DEFNAME=SPAWN_Daemons
+CATEGORY=Spawn Groups
+SUBSECTION=Monsters
+DESCRIPTION=Daemons
+ID=c_DAEMON 6
+ID=c_hellhound 8
+ID=c_balron
+ID=c_imp 4
+ID=c_succubus
+ID=c_chaos_daemon
+ID=c_daemon_magus
+ID=c_moloch
+
+[SPAWN 08049]
+DEFNAME=SPAWN_CityAnimals
+CATEGORY=Spawn Groups
+SUBSECTION=Animals
+DESCRIPTION=City Animals
+ID=c_bird 5
+ID=c_cat 3
+ID=c_dog 3
+ID=c_rat 2
+ID=c_squirrel 2
+ID=c_rat_sewer
+
+[SPAWN SPAWN_CaveAnimals]
+CATEGORY=Spawn Groups
+SUBSECTION=Animals
+DESCRIPTION=Cave Animals
+ID=c_mongbat_subteranean 3
+ID=c_spider_giant
+ID=c_scorpion_giant
+ID=c_rat_giant
+ID=c_rat 4
+ID=c_snake_giant
+ID=c_toad_giant 2
+
+[SPAWN SPAWN_CaveMonsters]
+CATEGORY=Spawn Groups
+SUBSECTION=Monsters
+DESCRIPTION=Cave Monsters
+ID=c_headless 4
+ID=C_OGRE 2
+ID=c_slime 4
+ID=c_ETTIN
+ID=c_cyclops
+ID=c_xorn
+ID=c_wyvern
+ID=c_troll 3
+ID=c_gazer
+ID=c_gazer_larva 3
+ID=c_harpy 2
+ID=c_acid_slug 2
+
+
+[SPAWN SPAWN_MagicMonsters]
+CATEGORY=Spawn Groups
+SUBSECTION=Monsters
+DESCRIPTION=Magic Monsters
+ID=c_elem_air
+ID=c_elem_water
+ID=c_elem_fire
+ID=c_elem_earth
+ID=c_wisp
+ID=c_gazer
+ID=c_gazer_larva 2
+
+
+[SPAWN 08054]
+DEFNAME=SPAWN_Guards
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Guards
+ID=c_h_GUARD_F
+ID=c_h_GUARD
+
+[SPAWN 08036]
+DEFNAME=SPAWN_Performers
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Performers
+ID=C_H_ACTOR_F
+ID=C_H_ACTOR
+ID=C_H_ARTIST
+ID=C_H_ARTIST_F
+ID=C_H_BARD_F
+ID=C_H_BARD
+
+[SPAWN 08037]
+DEFNAME=SPAWN_Jewelers
+CATEGORY=Spawn Groups
+SUBSECTION=Shopkeepers
+DESCRIPTION=Jewelers
+ID=C_H_JEWELER_F
+ID=C_H_JEWELER
+
+[SPAWN 08038]
+DEFNAME=SPAWN_Tinkers
+CATEGORY=Spawn Groups
+SUBSECTION=Shopkeepers
+DESCRIPTION=Tinkers
+ID=C_H_TINKER_F
+ID=C_H_TINKER
+
+[SPAWN 08039]
+DEFNAME=SPAWN_Mercenaries
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Mercenaries
+ID=C_H_FIGHTER_F
+ID=C_H_FIGHTER
+ID=C_H_MERCENARY_F
+ID=C_H_MERCENARY
+ID=C_H_PALADIN_F
+ID=C_H_PALADIN
+ID=C_H_RANGER_F
+ID=C_H_RANGER
+ID=C_H_WARRIOR_F
+ID=C_H_WARRIOR
+ID=C_H_WEAPONSTRAINER_F
+ID=C_H_WEAPONSTRAINER
+
+[SPAWN 0803a]
+DEFNAME=SPAWN_Bakers
+CATEGORY=Spawn Groups
+SUBSECTION=Shopkeepers
+DESCRIPTION=Bakers
+ID=C_H_BAKER_F
+ID=C_H_BAKER
+
+[SPAWN 0803b]
+DEFNAME=SPAWN_Tanners
+CATEGORY=Spawn Groups
+SUBSECTION=Shopkeepers
+DESCRIPTION=Tanners
+ID=C_H_TANNER_F 5
+ID=C_H_TANNER 5
+ID=C_H_FURTRADER_F
+ID=C_H_FURTRADER
+
+[SPAWN 0803c]
+DEFNAME=SPAWN_MaginciaTownMembers
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Magincia Town Members
+ID=C_H_MAGINCIA_COUNCIL_F 3
+ID=C_H_MAGINCIA_COUNCIL 3
+ID=C_H_MAGINCIA_SERVANT_F
+ID=C_H_MAGINCIA_SERVANT
+
+[SPAWN 0803d]
+DEFNAME=SPAWN_Religious
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Religious
+ID=C_H_MONK_F
+ID=C_H_MONK
+ID=C_H_PRIEST
+ID=C_H_PRIESTESS_F
+ID=C_H_CASHUAL
+ID=C_H_CASHUAL_F
+
+[SPAWN 0803e]
+DEFNAME=SPAWN_Millers
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Millers
+ID=C_H_MILLER_F
+ID=C_H_MILLER
 
 [SPAWN 08019]
 DEFNAME=SPAWN_Alchemists
@@ -562,265 +679,6 @@ ID=C_H_THIEF
 ID=C_H_BEGGER_F
 ID=C_H_BEGGER
 
-[SPAWN 08035]
-DEFNAME=SPAWN_Goblins
-CATEGORY=Spawn Groups
-SUBSECTION=Nasties
-DESCRIPTION=Goblins
-ID=c_m_goblin 8
-ID=c_m_goblin_CHIEF
-ID=c_m_goblin_MAGE 2
-
-[SPAWN 08036]
-DEFNAME=SPAWN_Performers
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Performers
-ID=C_H_ACTOR_F
-ID=C_H_ACTOR
-ID=C_H_ARTIST
-ID=C_H_ARTIST_F
-ID=C_H_BARD_F
-ID=C_H_BARD
-
-[SPAWN 08037]
-DEFNAME=SPAWN_Jewelers
-CATEGORY=Spawn Groups
-SUBSECTION=Shopkeepers
-DESCRIPTION=Jewelers
-ID=C_H_JEWELER_F
-ID=C_H_JEWELER
-
-[SPAWN 08038]
-DEFNAME=SPAWN_Tinkers
-CATEGORY=Spawn Groups
-SUBSECTION=Shopkeepers
-DESCRIPTION=Tinkers
-ID=C_H_TINKER_F
-ID=C_H_TINKER
-
-[SPAWN 08039]
-DEFNAME=SPAWN_Mercenaries
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Mercenaries
-ID=C_H_FIGHTER_F
-ID=C_H_FIGHTER
-ID=C_H_MERCENARY_F
-ID=C_H_MERCENARY
-ID=C_H_PALADIN_F
-ID=C_H_PALADIN
-ID=C_H_RANGER_F
-ID=C_H_RANGER
-ID=C_H_WARRIOR_F
-ID=C_H_WARRIOR
-ID=C_H_WEAPONSTRAINER_F
-ID=C_H_WEAPONSTRAINER
-
-[SPAWN 0803a]
-DEFNAME=SPAWN_Bakers
-CATEGORY=Spawn Groups
-SUBSECTION=Shopkeepers
-DESCRIPTION=Bakers
-ID=C_H_BAKER_F
-ID=C_H_BAKER
-
-[SPAWN 0803b]
-DEFNAME=SPAWN_Tanners
-CATEGORY=Spawn Groups
-SUBSECTION=Shopkeepers
-DESCRIPTION=Tanners
-ID=C_H_TANNER_F 5
-ID=C_H_TANNER 5
-ID=C_H_FURTRADER_F
-ID=C_H_FURTRADER
-
-[SPAWN 0803c]
-DEFNAME=SPAWN_MaginciaTownMembers
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Magincia Town Members
-ID=C_H_MAGINCIA_COUNCIL_F 3
-ID=C_H_MAGINCIA_COUNCIL 3
-ID=C_H_MAGINCIA_SERVANT_F
-ID=C_H_MAGINCIA_SERVANT
-
-[SPAWN 0803d]
-DEFNAME=SPAWN_Religious
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Religious
-ID=C_H_MONK_F
-ID=C_H_MONK
-ID=C_H_PRIEST
-ID=C_H_PRIESTESS_F
-ID=C_H_CASHUAL
-ID=C_H_CASHUAL_F
-
-[SPAWN 0803e]
-DEFNAME=SPAWN_Millers
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Millers
-ID=C_H_MILLER_F
-ID=C_H_MILLER
-
-[SPAWN 0803f]
-DEFNAME=SPAWN_RatMen
-CATEGORY=Spawn Groups
-SUBSECTION=Monsters
-DESCRIPTION=RatMen
-ID=c_ratman_w_mace
-ID=c_ratman
-ID=c_ratman_w_sword
-
-[SPAWN 08040]
-DEFNAME=SPAWN_Daemons
-CATEGORY=Spawn Groups
-SUBSECTION=Monsters
-DESCRIPTION=Daemons
-ID=c_DAEMON 10
-ID=c_DAEMON_W_SWORD 3
-ID=c_m_balron
-ID=c_GARGOYLE 5
-ID=c_m_gargoyle_stone 2
-
-[SPAWN 08041]
-DEFNAME=SPAWN_Deceit2
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Deceit 2
-ID=c_elem_air
-ID=c_elem_earth 2
-ID=c_elem_fire
-ID=c_rat_giant 10
-ID=c_headless 10
-ID=c_lizardman 2
-ID=c_lizardman_mace 2
-ID=c_lizardman_spear 2
-ID=c_mongbat 7
-ID=c_scorpion_giant 4
-ID=c_skeleton 2
-ID=c_skeleton_w_axe 2
-ID=c_skeleton_w_sword 2
-ID=c_ZOMBIE 8
-ID=c_spectre 4
-
-[SPAWN 08042]
-DEFNAME=SPAWN_Deceit3
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Deceit 3
-ID=c_gazer
-ID=c_scorpion_giant 3
-ID=c_spider_giant 3
-ID=c_ratman_w_mace 3
-ID=c_ratman 3
-ID=c_ratman_w_sword 3
-ID=c_snake_giant 2
-ID=c_ZOMBIE 5
-ID=c_spectre 3
-
-[SPAWN 08043]
-DEFNAME=SPAWN_Deceit4
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Deceit 4
-ID=c_DAEMON
-ID=c_DAEMON_W_SWORD
-ID=c_DRAGON_GREEN
-ID=c_DRAGON_RED
-ID=c_DRAGON_SMALL_BLACK 3
-ID=c_DRAGON_SMALL_RED 3
-ID=c_m_wyvern 3
-ID=c_elem_air 2
-ID=c_elem_earth 2
-ID=c_elem_fire 2
-ID=c_spectre 4
-ID=c_liche 2
-
-[SPAWN 08044]
-CATEGORY=Spawn Groups
-SUBSECTION=Humans
-DESCRIPTION=Rogues
-DEFNAME=SPAWN_Rogues
-ID=C_H_PIRATE_F 3
-ID=C_H_PIRATE 3
-ID=C_H_BRIGAND_F 2
-ID=C_H_BRIGAND 2
-ID=C_H_THIEF_F 3
-ID=C_H_THIEF 3
-
-[SPAWN 08045]
-DEFNAME=SPAWN_Despise1
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Despise 1
-ID=c_ZOMBIE
-ID=c_headless
-ID=c_mongbat
-ID=c_slime
-ID=c_m_goblin
-ID=c_rat_giant
-
-[SPAWN 08046]
-DEFNAME=SPAWN_Despise2
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Despise 2
-ID=c_ZOMBIE
-ID=c_skeleton
-ID=c_skeleton_w_axe
-ID=c_spectre 2
-ID=c_ORC
-ID=c_orc_w_club
-ID=c_ratman_w_mace
-ID=c_ratman
-ID=c_lizardman
-ID=c_lizardman_spear
-ID=c_lizardman_mace
-ID=c_spider_giant
-ID=c_scorpion_giant
-ID=c_m_goblin
-ID=c_m_goblin_CHIEF
-
-[SPAWN 08047]
-DEFNAME=SPAWN_Despise3
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Despise 3
-ID=c_ORC
-ID=c_orc_lord 2
-ID=c_m_goblin_MAGE 2
-ID=C_OGRE
-ID=c_troll
-ID=c_ETTIN_W_AXE
-ID=c_scorpion_giant
-ID=c_snake_giant
-ID=c_spider_giant
-ID=c_spectre
-ID=c_skeleton_w_sword
-ID=c_skeleton_w_axe
-
-[SPAWN 08048]
-DEFNAME=SPAWN_Fishermen
-CATEGORY=Spawn Groups
-SUBSECTION=Shopkeepers
-DESCRIPTION=Fishermen
-ID=C_H_FISHER
-ID=C_H_FISHER_F
-
-[SPAWN 08049]
-DEFNAME=SPAWN_CityAnimals
-CATEGORY=Spawn Groups
-SUBSECTION=Animals
-DESCRIPTION=City Animals
-ID=c_bird 5
-ID=c_cat 3
-ID=c_dog 3
-ID=c_rat 2
-ID=c_squirrel 2
-ID=c_rat_sewer
 
 [SPAWN 0804a]
 DEFNAME=SPAWN_Miners
@@ -848,126 +706,80 @@ DESCRIPTION=Veterinarians
 ID=C_H_VET_F
 ID=C_H_VET
 
-[SPAWN 0804d]
-DEFNAME=SPAWN_Destard1
+[SPAWN 08048]
+DEFNAME=SPAWN_Fishermen
 CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Destard 1
-ID=c_dragon_small_black
-ID=c_dragon_small_red
-ID=c_dragon_green
-ID=c_dragon_red
-ID=c_m_wyvern
-ID=c_headless
-ID=c_orc_lord
-ID=c_m_orc_mage
-ID=c_lizardman
-ID=c_m_goblin_chief
-ID=c_elem_earth
-ID=c_ettin_w_axe
-ID=c_ogre
+SUBSECTION=Shopkeepers
+DESCRIPTION=Fishermen
+ID=C_H_FISHER
+ID=C_H_FISHER_F
 
-[SPAWN 0804e]
-DEFNAME=SPAWN_Destard2
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Destard 2
-ID=c_DRAGON_GREEN
-ID=c_DRAGON_RED
-ID=c_DRAGON_SMALL_BLACK
-ID=c_DRAGON_SMALL_RED
-ID=c_m_wyvern
-ID=c_ETTIN_W_AXE
-ID=c_troll
-ID=C_OGRE
-
-[SPAWN 0804f]
-DEFNAME=SPAWN_Destard3
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Destard 3
-ID=c_DRAGON_GREEN 4
-ID=c_DRAGON_RED 4
-ID=c_DRAGON_SMALL_BLACK 2
-ID=c_DRAGON_SMALL_RED 2
-ID=c_m_wyvern 2
-ID=c_m_dragon_wyrm
-
-[SPAWN 08050]
-DEFNAME=SPAWN_Shame1
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Shame 1
-ID=c_headless
-ID=c_slime
-ID=c_mongbat
-ID=c_ORC
-ID=c_orc_w_club
-ID=c_ratman
-ID=c_lizardman
-ID=c_lizardman_mace
-ID=c_ratman_w_sword
-ID=c_m_goblin
-
-[SPAWN 08051]
-DEFNAME=SPAWN_Shame2
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Shame 2
-ID=c_lizardman_mace
-ID=c_lizardman_spear
-ID=c_orc_lord
-ID=C_OGRE
-ID=c_m_goblin_CHIEF
-ID=c_m_goblin_MAGE
-ID=c_slime
-ID=c_spider_giant
-
-[SPAWN 08052]
-DEFNAME=SPAWN_Shame3
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Shame 3
-ID=c_m_wyvern
-ID=c_DRAGON_SMALL_RED
-ID=c_DRAGON_SMALL_BLACK
-ID=c_elem_air
-ID=c_elem_earth
-ID=c_ETTIN
-ID=c_ETTIN_W_AXE
-ID=C_OGRE
-ID=c_troll
-ID=c_troll_w_mace
-ID=c_troll_w_axe
-ID=c_scorpion_giant
-ID=c_snake_giant
-ID=c_spider_giant
-ID=c_gazer
-ID=c_orc_lord
-ID=c_m_orc_mage
-
-[SPAWN 08053]
-DEFNAME=SPAWN_Shame4
-CATEGORY=Spawn Groups
-SUBSECTION=Dungeons
-DESCRIPTION=Shame 4
-ID=c_elem_water
-ID=c_ETTIN_W_AXE 3
-ID=c_ETTIN_W_AXE
-ID=c_troll
-ID=c_troll_w_mace
-ID=c_troll_w_axe
-ID=c_elem_air
-ID=c_snake_giant
-ID=c_gazer
-
-[SPAWN 08054]
-DEFNAME=SPAWN_Guards
+[SPAWN 08044]
 CATEGORY=Spawn Groups
 SUBSECTION=Humans
-DESCRIPTION=Guards
-ID=c_h_GUARD_F
-ID=c_h_GUARD
+DESCRIPTION=Rogues
+DEFNAME=SPAWN_Rogues
+ID=C_H_PIRATE_F 3
+ID=C_H_PIRATE 3
+ID=C_H_BRIGAND_F 2
+ID=C_H_BRIGAND 2
+ID=C_H_THIEF_F 3
+ID=C_H_THIEF 3
 
+[SPAWN 08014]
+DEFNAME=SPAWN_Villagers
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Villagers
+ID=C_H_BEGGER_F
+ID=C_H_BEGGER
+ID=C_H_MAYOR_F
+ID=C_H_MAYOR
+ID=C_H_NOBLE_F
+ID=C_H_NOBLE
+ID=C_H_PEASANT_F
+WEIGHT=5
+ID=C_H_PEASANT
+WEIGHT=5
+ID=C_H_THIEF_F
+WEIGHT=2
+ID=C_H_THIEF
+WEIGHT=2
+ID=C_H_FIGHTER_F
+ID=C_H_FIGHTER
+ID=C_H_MERCENARY_F
+ID=C_H_MERCENARY
+ID=C_H_WARRIOR_F
+ID=C_H_WARRIOR
+ID=C_H_ACTOR_F
+ID=C_H_ACTOR
+ID=C_H_ARTIST
+ID=C_H_ARTIST_F
+ID=C_H_BARD_F
+ID=C_H_BARD
+ID=C_H_SCULPTOR_F
+ID=C_H_SCULPTOR
+
+[SPAWN 08015]
+DEFNAME=SPAWN_Brigands
+CATEGORY=Spawn Groups
+SUBSECTION=Humans
+DESCRIPTION=Brigands
+ID=C_H_BRIGAND_F
+WEIGHT=5
+ID=C_H_BRIGAND
+WEIGHT=5
+ID=C_H_EVILMAGE_F
+WEIGHT=2
+ID=C_H_EVILMAGE
+WEIGHT=2
+ID=C_H_THIEF_F
+WEIGHT=4
+ID=C_H_THIEF
+WEIGHT=4
+ID=C_H_GYPSY_F
+ID=C_H_GYPSY
+ID=C_H_PIRATE_F
+ID=C_H_PIRATE
 
 [EOF]

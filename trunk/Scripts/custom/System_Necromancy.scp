@@ -166,7 +166,7 @@ DESCRIPTION=Mind Rot
 DEFNAME=i_scroll_pain_spike
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_blood_vial,i_reag_Executioners_cap
+RESOURCES=i_scroll_blank, i_reag_Executioners_cap
 SKILLMAKE=INSCRIPTION 30.0, NECROMANCY 20.0
 
 ON=@CREATE
@@ -852,7 +852,7 @@ NAME=Pain Spike
 SOUND=snd_spell_dispel_field
 RUNES=IJ
 CAST_TIME=1
-RESOURCES=i_reag_blood_vial,i_reag_Executioners_cap
+RESOURCES=i_reag_Executioners_cap
 RUNE_ITEM=i_rune_pain_spike
 SCROLL_ITEM=i_scroll_pain_spike
 FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
@@ -1480,6 +1480,7 @@ IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
 	SRC.SYSMESSAGE You have too many followers.
 	HITS=0
 ENDIF
+OBJ.TAG.NPCAI.RACE=<SRC.TAG0.NPCAI.RACE>
 SRC.CURFOLLOWER += <local.slots>
 SRC.act.p=<VAR.POS>
 SRC.ACT.FIX
@@ -1827,124 +1828,6 @@ ELSE
 	RETURN 0
 
 ENDIF
-
-[Function RUNES]
-LOCAL.LENGTH = <EVAL STRLEN(<SERV.SPELL(<args>).RUNES>)>
-LOCAL.CURRUNE=0
-local.RUNESTRING="0"
-WHILE (<eval <LOCAL.CURRUNE>> <= <eval <LOCAL.LENGTH>>)
-	IF (strmatch(*0*,<LOCAL.runestring>))
-	IF (strmatch(A,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="An "
-	ELSEIF (strmatch(B,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Bet "
-	ELSEIF (strmatch(C,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Corp "
-	ELSEIF (strmatch(D,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Des "
-	ELSEIF (strmatch(E,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Ex "
-	ELSEIF (strmatch(F,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Flam "
-	ELSEIF (strmatch(G,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Grav "
-	ELSEIF (strmatch(H,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Hur "
-	ELSEIF (strmatch(I,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="In "
-	ELSEIF (strmatch(J,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Jux "
-	ELSEIF (strmatch(K,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Kal "
-	ELSEIF (strmatch(L,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Lor "
-	ELSEIF (strmatch(M,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Mani "
-	ELSEIF (strmatch(N,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Nox "
-	ELSEIF (strmatch(O,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Ort "
-	ELSEIF (strmatch(P,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Por "
-	ELSEIF (strmatch(Q,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Quas "
-	ELSEIF (strmatch(R,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Rel "
-	ELSEIF (strmatch(S,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Sanct "
-	ELSEIF (strmatch(T,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Tym "
-	ELSEIF (strmatch(U,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Uus "
-	ELSEIF (strmatch(V,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Vas "
-	ELSEIF (strmatch(W,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Wis "
-	ELSEIF (strmatch(X,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Xen "
-	ELSEIF (strmatch(Y,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Ylem "
-	ELSEIF (strmatch(Z,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="Zu "
-	ENDIF
-	ELSE
-	IF (strmatch(A,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>An "
-	ELSEIF (strmatch(B,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Bet "
-	ELSEIF (strmatch(C,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Corp "
-	ELSEIF (strmatch(D,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Des "
-	ELSEIF (strmatch(E,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Ex "
-	ELSEIF (strmatch(F,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Flam "
-	ELSEIF (strmatch(G,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Grav "
-	ELSEIF (strmatch(H,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Hur "
-	ELSEIF (strmatch(I,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>In "
-	ELSEIF (strmatch(J,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Jux "
-	ELSEIF (strmatch(K,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Kal "
-	ELSEIF (strmatch(L,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Lor "
-	ELSEIF (strmatch(M,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Mani "
-	ELSEIF (strmatch(N,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Nox "
-	ELSEIF (strmatch(O,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Ort "
-	ELSEIF (strmatch(P,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Por "
-	ELSEIF (strmatch(Q,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Quas "
-	ELSEIF (strmatch(R,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Rel "
-	ELSEIF (strmatch(S,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Sanct "
-	ELSEIF (strmatch(T,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Tym "
-	ELSEIF (strmatch(U,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Uus "
-	ELSEIF (strmatch(V,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Vas "
-	ELSEIF (strmatch(W,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Wis "
-	ELSEIF (strmatch(X,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Xen "
-	ELSEIF (strmatch(Y,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Ylem "
-	ELSEIF (strmatch(Z,<STRSUB <eval <LOCAL.CURRUNE>> 1 <SERV.SPELL(<args>).RUNES>>))
-		local.RUNESTRING="<local.RUNESTRING>Zu "
-	ENDIF
-	ENDIF
-	LOCAL.CURRUNE += 1
-ENDWHILE
-RETURN <local.RUNESTRING>
 
 [Function f_COPYBOOK]
 OBJ=<src.tag0.SPELLBOOK>

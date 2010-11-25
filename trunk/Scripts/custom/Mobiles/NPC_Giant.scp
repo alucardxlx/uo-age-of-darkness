@@ -31,6 +31,7 @@ foodtype=95 t_meat_raw,t_food,t_fruit
 desires=c_ogre, t_arock
 aversions=t_trap,r_civilization
 TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=47
 tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
@@ -42,7 +43,6 @@ description=Ogre
 on=@create
      name="#names_ogre"
      npc=brain_monster
-     TAG.NPCAI.Rank=2
      SetOrc
 
      givelang 6
@@ -53,9 +53,11 @@ on=@create
      TAG0.MODHITS = 16
      TAG0.MODSTAM = 8
 
+     resenergy 6
+     respoison 6
 
      parrying={45.0 55.0}
-     magicresistance={56.3 69.8}
+     magicresistance={46.3 59.8}
      tactics={60.5 69.1}
      wrestling={74.1 81.3}
 
@@ -84,6 +86,7 @@ resdisphue=
 resources=10 i_ribs_raw
 foodtype=95 t_meat_raw,t_food,t_fruit
 desires=c_ogre
+tag.wrestlingspeed=47
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
@@ -100,7 +103,6 @@ description=Artic Ogre
 on=@create
      npc=brain_monster
      name=#names_ogre
-     TAG.NPCAI.Rank=4
      SetOrc
 
      givelang 6
@@ -118,8 +120,10 @@ on=@create
      wrestling={93.1 98.2}
 
      rescold 30
+     resenergy 6
+     respoison 6
 
-     fame={3000 4999}
+     fame={4000 5999}
      karma={-4000 -4999}
      EXP={ 8050 8950 } //Level 5
 
@@ -144,6 +148,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 tag.override.range=2
+tag.wrestlingspeed=47
 Tag.BeastClass=Beast_Heavy
 
 category=AoD Monsters
@@ -154,7 +159,6 @@ description=Troll
 on=@create
      npc=brain_monster
      name=#names_troll
-     TAG.NPCAI.Rank=1
      SetTroll
 
      str={157 184}
@@ -169,10 +173,12 @@ on=@create
      givelang 6
 
      parrying={45.0 60.0}
-     magicresistance={45.1 53.8}
+     magicresistance={35.1 53.8}
      tactics={50.1 68.8}
      wrestling={60.3 71.3}
 
+     resenergy 6
+     respoison 6
 
      fame={2100 3000}
      karma={-3000 -3999}
@@ -197,6 +203,7 @@ foodtype=85 t_meat_raw,t_food,t_fruit
 desires=i_gold
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=47
 tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
@@ -208,7 +215,6 @@ description=Ice Troll
 on=@create
      npc=brain_monster
      name=#names_troll
-     TAG.NPCAI.Rank=2
      SetTroll
 
      givelang 6
@@ -223,6 +229,8 @@ on=@create
      TAG.OVERRIDE.REGENVAL_0 = 2
 
      rescold 30
+     resenergy 6
+     respoison 6
 
      magicresistance={55.1 63.8}
      tactics={60.1 78.8}
@@ -241,7 +249,7 @@ id=c_titan
 name="titan"
 icon=i_pet_titan_lbr
 sound=snd_monster_titan1
-dam=11,13
+dam=12,14
 armor=40
 moverate=20
 resdispid=c_titan
@@ -255,6 +263,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tevents=e_intel_potion_user
 tevents=e_intel_char_looting
+tag.wrestlingspeed=46
 tag.slots_needed=5
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
@@ -317,6 +326,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 tag.override.range=2
+tag.wrestlingspeed=47
 Tag.BeastClass=Beast_Heavy
 
 category=AoD Monsters
@@ -326,7 +336,6 @@ description=Cyclops
 on=@create
      npc=brain_monster
      name=#names_ogre
-     TAG.NPCAI.Rank=1
      SetCyclops
 
      givelang 6
@@ -343,6 +352,9 @@ on=@create
      tactics={73.8 87.6}
      wrestling={70.6 85.9}
      macefighting={60.6 75.9}
+
+     resenergy 6
+     respoison 6
 
      fame={500 2500}
      karma={2500 -4000}
@@ -369,6 +381,7 @@ aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=5
 tag.override.range=2
+tag.wrestlingspeed=46
 Tag.BeastClass=Beast_Heavy
 
 category=AoD Monsters
@@ -378,7 +391,6 @@ description=Ettin
 on=@create
      npc=brain_monster
      name=#names_ogre
-     TAG.NPCAI.Rank=3
      SetTroll
 
      givelang 6
@@ -390,8 +402,11 @@ on=@create
      TAG0.MODHITS = 32
      TAG0.MODSTAM = 8
 
+     resenergy 10
+     respoison 10
+
      parrying={47.0 63.5}
-     magicresistance={62.3 72.9}
+     magicresistance={52.3 72.9}
      tactics={75.6 90.9}
      wrestling={78.8 92.6}
      macefighting={68.8 82.6}
@@ -407,20 +422,21 @@ ON=@NpcRestock
 
 [chardef 263] 
 defname=c_Minotaur
-name=Minotaur
+name=minotaur
 //SOUND=snd_monster_daemon1
 ICON=i_worldgem_bit
 RESLEVEL=5
 RESDISPDNHUE=33
 RESDISPDNID=c_man
 dam=11,14
-ARMOR=20
+ARMOR=24
 RESOURCES=15 i_ribs_raw 
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 can=mt_walk|mt_run|mt_usehands
 foodtype=95 t_meat_raw,t_food,t_fruit
 TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=46
 tag.slots_needed=4
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
@@ -431,12 +447,12 @@ DESCRIPTION=Minotaur
 
 ON=@Create 
 	NPC=brain_monster
-	FAME={100 1201} 
+	FAME={1100 2201} 
 	KARMA={-5000 -6999} 
+	EXP={ 4050 4950 } //Level 4
 
 	givelang 6
 	name=#names_troll
-	TAG.NPCAI.Rank=1
 	SetMinotaur
 
 	STR={142 179}
@@ -447,6 +463,10 @@ ON=@Create
 	MAGICRESISTANCE={70.0 85.0}
 	TACTICS={65.0 85.0}
 	WRESTLING={65.0 85.0}
+
+     resenergy 6
+     respoison 6
+
 
 ON=@NpcRestock
      Item={ Treasure_bag 2 Treasure_pouch 2 Giant_bag 1 0 1}
@@ -459,8 +479,8 @@ ICON=i_worldgem_bit
 RESLEVEL=5
 RESDISPDNHUE=33
 RESDISPDNID=c_man
-DAM=8,10
-ARMOR=15
+DAM=10,12
+ARMOR=16
 RESOURCES=8 i_ribs_raw
 DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
@@ -468,6 +488,7 @@ CAN=MT_WALK|MT_RUN|MT_USEHANDS
 foodtype=95 t_meat_raw,t_food,t_fruit
 TEVENTS=e_Level_up_NPC
 tevents=e_intel_char_looting
+tag.wrestlingspeed=46
 tag.slots_needed=3
 tag.override.range=2
 Tag.BeastClass=Beast_Heavy
@@ -478,18 +499,21 @@ DESCRIPTION=Troglodyte
 
 ON=@Create 
 	NPC=brain_monster
-	FAME={1500 3000} 
+	FAME={1000 2000} 
 	KARMA={-5000 -6999} 
 
 	givelang 6
 	name=#names_ogre
 
-	STR={80 110}
+	STR={98 123}
 	INT={30 40} 
 	DEX={70 100} 
 
+     resenergy 6
+     respoison 6
+
 	PARRYING={60.0 95.0}
-	MAGICRESISTANCE={55.0 70.0}
+	MAGICRESISTANCE={35.0 50.0}
 	TACTICS={60.0 75.0}
 	WRESTLING={60.0 75.0}
 

@@ -101,7 +101,7 @@ Lang_18=""
 Lang_19=""
 
 Lang_20="Insectesse"
-//This is the langauge of Arachnians and Solens
+//This is the langauge of Arachnians and Myrmidex
 
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 //IMPORTANT: If you wish to change the syllables of a langauge, make sure
@@ -118,12 +118,12 @@ L_1_1=" Blan"
 L_1_2=" Cor"
 L_1_3=" Ehn"
 L_1_4=" Das"
-L_1_5=" Ust"
+L_1_5=" SUt"
 L_1_6=" End"
 L_1_7=" Ferm"
-L_1_8=" Plouf"
+L_1_8=" Plof"
 L_1_9=" Wel"
-L_1_10=" Korm"
+L_1_10=" Kom"
 L_1_11=" Lam"
 L_1_12=" Nurt"
 L_1_13=" Gol"

@@ -1,15 +1,15 @@
 TITLE=Sphere World Script
 VERSION=0.56b-Nightly
-TIME=348942494
-SAVECOUNT=10847
+TIME=357043005
+SAVECOUNT=11228
 
 [TIMERF]
-CurTick=5
+CurTick=2
 
 [GLOBALS]
 aantal=03
-argn1=01c0
-argn2=04000c80f
+argn1=0190
+argn2=04000a8ce
 ccolor=03
 color1=0186e
 color2=01870
@@ -19,34 +19,36 @@ colord2=0186d
 colord3=01870
 colord4=0186c
 colord5=01870
+consumeprior=06
 counter=01
 cplace=04
 currencyindex=013
-currencyindex2=0f
+currencyindex2=01
 currencypriorindex=013
-currencytotal=05f77
-cycle=02
-damagepercent="0.974359"
-date=012
-day=04
-exp=088
+currencytotal=0f1
+cycle=016
+damagepercent="0.100000"
+date=0e
+day=07
+equipmeleeweapon.oldarchery="70.6"
+exp=012
 firstcol=0186e
 gestate.oldact=04fffffff
-hours=014
-index=011
-lunar=06bb
-lunar2=02b
-mins=0c
-month=01
-newobj=0d8f4
-p="1336,1998,6"
-phase=03
-phase2=01
-pos="6514,866,1"
-suid=0136d2
+hours=0b
+index=06
+lunar=01ed
+lunar2=01ed
+mins=02a
+month=02
+newobj=0ec7c
+p="1473,1620,20"
+phase=01
+phase2=05
+pos="1386,1504,10"
+suid=0cf62
 text1=03
 text2=04
-tree="i_tree_walnut"
+tree="i_tree_4"
 tsize=01f4
 tsize1=01f4
 x=05
@@ -449,13 +451,13 @@ TAG.restockvendors=015180
 TAG.vendormarkup=05
 
 [WS a_towntrinsic]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_trinsic
 TAG.inflation=06e
 TAG.restockvendors=0e100
 TAG.vendormarkup=014
 
 [WS a_townskarabrae]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_skara_brae
 TAG.bbsid=040003e4c
 TAG.inflation=05a
 TAG.restockvendors=02a300
@@ -486,7 +488,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townjhelom]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_jhelom
 TAG.inflation=069
 TAG.vendormarkup=014
 
@@ -494,7 +496,7 @@ TAG.vendormarkup=014
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_towncove]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_cove
 TAG.inflation=055
 TAG.restockvendors=03f480
 TAG.vendormarkup=014
@@ -551,7 +553,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townmoonglow]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_moonglow
 
 [WS a_minoc_territory_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
@@ -560,7 +562,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townminoc]
-EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro,r_minoc
 TAG.restockvendors=015180
 TAG.vendormarkup=0a
 
