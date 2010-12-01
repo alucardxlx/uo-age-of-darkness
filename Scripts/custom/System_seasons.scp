@@ -916,7 +916,7 @@ else
 endif
 
 [FUNCTION f_make_rain]
-if (<sector.weather>==0) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemComplexity>)
+if (<sector.weather>==0) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemCount>)
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else
@@ -929,7 +929,7 @@ else
 endif
 
 [FUNCTION f_make_snow]
-if (<sector.weather>==2) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemComplexity>)
+if (<sector.weather>==2) && ((<Serv.MaxSectorComplexity>/2) > <Sector.ItemCount>)
  	if (<flags> & statf_indoors) || (<serv.map(<p.x>,<p.y>,<p.z>,<p.m>).type>==t_water)
 		return 1
 	else

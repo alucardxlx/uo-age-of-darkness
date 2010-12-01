@@ -50,7 +50,7 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
-Taming=38.0
+tag.taming=38.0
 
 
 [CHARDEF 254]
@@ -88,7 +88,7 @@ on=@create
 	Wrestling={10.0 11.0}
 	Anatomy={5.0 6.0}
 
-	Taming=30.0
+	tag.taming=30.0
 
 	Fame=35
 	Karma=10
@@ -131,7 +131,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={4.2 6.4}
 
-     taming=0.1
+     tag.taming=0.1
      Peacemaking=0.1
 
      fame=10
@@ -175,7 +175,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={14.2 16.4}
 
-     taming=5.1
+     tag.taming=5.1
      Peacemaking=0.1
 
      fame=10
@@ -219,7 +219,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={14.2 16.4}
 
-     taming=4.1
+     tag.taming=4.1
      Peacemaking=0.1
 
      fame=30
@@ -264,7 +264,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={14.2 16.4}
 
-     taming=8.1
+     tag.taming=8.1
      peacemaking=0.1
 
      fame=30
@@ -309,7 +309,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={14.2 16.4}
 
-     taming=8.1
+     tag.taming=8.1
      Peacemaking=0.1
 
      fame=30
@@ -353,7 +353,7 @@ on=@create
      tactics={4.0 6.0}
      wrestling={4.2 6.4}
 
-     taming=4.1
+     tag.taming=4.1
      Peacemaking=0.1
 
      fame=30
@@ -399,7 +399,7 @@ on=@create
      tactics={30.2 45.6}
      wrestling={33.9 42.3}
 
-     taming=41.7
+     tag.taming=41.7
      Peacemaking=0.1
      FOOD=15
 

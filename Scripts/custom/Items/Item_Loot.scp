@@ -465,8 +465,7 @@ ITEM={ I_pickaxe 1 0 2 }
 // add more variance of tools to this and others
 
 
-[TEMPLATE 101533]
-DEFNAME=Treasure_Box
+[TEMPLATE Treasure_Box]
 CATEGORY=Item Templates
 SUBSECTION=Loot Templates
 DESCRIPTION=Treasure Box
@@ -653,8 +652,7 @@ ITEM={ RANDOM_WEAPON 2 0 1 }
 ITEM={ RANDOM_POLE_ARMS 2 0 1 }
 ITEM={ RANDOM_SWORD 2 0 1 }
 ITEM={ RANDOM_MISSILE 2 0 1 }
-ITEM={ Quiver 2 0 1 }
-ITEM={ Quiver 2 0 1 }
+ITEM={ Quiver_pouch 2 0 1 }
 
 [TEMPLATE Bread_Basket]
 CATEGORY=Item Templates
@@ -761,12 +759,10 @@ CATEGORY=Item Templates
 SUBSECTION=Town Templates
 DESCRIPTION=Sewer Barrel
 CONTAINER=i_barrel_open
-ITEM={ I_bottle_empty 1 random_trash 3 0 3 }
-ITEM={ I_bottle_empty 1 random_trash 3 0 3 }
-ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
-ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
-ITEM={ RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 4 }
-ITEM={ RANDOM_MISSILES 1 0 4 }
+ITEM={ RANDOM_MISSILES 1 I_bottle_empty 1 random_trash 3 RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 5 }
+ITEM={ RANDOM_MISSILES 1 I_bottle_empty 1 random_trash 3 RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 5 }
+ITEM={ RANDOM_MISSILES 1 I_bottle_empty 1 random_trash 3 RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 5 }
+ITEM={ RANDOM_MISSILES 1 I_bottle_empty 1 random_trash 3 RANDOM_JEWELRY 1 random_body_parts 1 random_reagent_dark 2 random_fishing_junk 1 0 5 }
 ITEM={ 0e22 1 0 5 }
 ITEM={ { 010ee 010f3 } 1 0 1 }
 ITEM={ { 010ee 010f3 } 1 0 1 }

@@ -103,7 +103,6 @@ ON=@Create
 	JOB=0
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=1
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -172,7 +171,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=1
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -243,7 +241,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=3
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -312,7 +309,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=3
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -382,7 +378,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=1
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -458,7 +453,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=1
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -532,7 +526,6 @@ ON=@Create
 	NAME=#NAMES_ORC
 	NPC=brain_human
 	COLOR=colors_orc
-	TAG.NPCAI.Rank=5
 	SetOrc
 	TAG.RACE=ORC
 	TAG.RESPOISON=10
@@ -562,7 +555,6 @@ ON=@Create
 
 	TAG.RANDCAST=15
 	EVENTS=+e_intel_char_magery_user
-	TAG.NPCAI.FighterType=1
 
 ON=@NPCRestock
 	ITEM={ i_boots_calf 3 i_sandals 2 i_boots_fur 3 }
@@ -638,7 +630,6 @@ ON=@Create
 
 	TAG.RANDCAST=15
 	EVENTS=+e_intel_char_magery_user
-	TAG.NPCAI.FighterType=1
 
 ON=@NPCRestock
 	ITEM={ i_boots_calf 3 i_sandals 2 i_boots_fur 3 }

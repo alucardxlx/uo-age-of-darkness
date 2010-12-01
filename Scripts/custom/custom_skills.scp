@@ -1154,6 +1154,32 @@ ON=@Fail
 ON=@Abort
 	SRC.SYSMESSAGE You decide not to sew anymore for now.
 
+
+[DEFNAME Taming_Messages]
+scp.taming_tameself		"@,,1 You are your own master."
+scp.taming_notchar		"@,,2 502801"	// You can't tame that!
+scp.taming_notameable		"@,,2 1049655"	// That creature cannot be tamed.
+scp.taming_alreadytamed		"@,,2 502804"	// That animal looks tame already.
+scp.taming_onlymale		"@,,2 1049653"	// That creature can only be tamed by males.
+scp.taming_onlyfemale		"@,,2 1049652"	// That creature can only be tamed by females.
+scp.taming_onlyelf		"@03b2,,2 502801"	// You can't tame that!
+scp.taming_nochance		"@,,2 502806"	// You have no chance of taming this creature.
+scp.taming_manyfollowers	"@,,2 1049611"	// You have too many followers to tame that creature.
+scp.taming_manyowners		"@,,2 1005615"	// This animal has had too many owners and is too upset for you to tame.
+scp.taming_mustsubdue		"@,,2 1054025"	// You must subdue this creature before you can tame it!
+scp.taming_ontame		"@,,2 502802"	// Someone else is already taming this.
+scp.taming_getanger		"@,,2 502805"	// You seem to anger the beast!
+scp.taming_started		"@059,,2 1010597"	// *You start to tame the creature.*
+scp.taming_hestarted		"@059,,2 1010598"	// *begins taming a creature.*
+scp.taming_failed		"@,,2 502798"	// You fail to tame the creature.
+scp.taming_toofaraway		"@,,2 502795"	// You are too far away to continue taming.
+scp.taming_abort		"You give up trying to tame the creature."
+scp.taming_youdead		"@,,2 502796"	// You are dead, and cannot continue taming.
+scp.taming_cantseelos		"@,,2 1049654"	// You do not have a clear path to the animal you are taming, and must cease your attempt.
+scp.taming_isangry		"@,,2 502794"	// The animal is too angry to continue taming.
+scp.taming_player		"@,,2 502801"	// You can't tame that!
+scp.taming_subdued		"@,,2 1080057"	// * The creature has been beaten into subjugation! *
+
 [SKILL 35]
 DEFNAME=Skill_Taming
 KEY=Taming
@@ -1169,105 +1195,191 @@ BONUS_INT=80
 BONUS_STATS=50
 ADV_RATE=1.0,30.0,75.0
 
-ON=@Start
-IF (<SRC.TARG.MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)
-	SRC.SYSMESSAGE That is already your pet!
-	RETURN 1
-ENDIF
-  if (<src.targ.tag0.slots_needed>)
+on=@wait
+sysmessage @,,1 Tame which animal?
+targetf f_start_taming
+return 1
+
+
+[function f_start_taming]
+if <argo.uid> == <uid>
+	sysmessage <def.scp.taming_tameself>
+	return 1
+elif <argo.isplayer>
+	sysmessage <def.scp.taming_player>
+	return 1
+elif !<argo.ischar>
+	sysmessage <def.scp.taming_notchar>
+	return 1
+elif !<argo.tag0.taming>
+	argo.message <def.scp.taming_notameable>
+	return 1
+elif <argo.owner>
+	argo.message <def.scp.taming_alreadytamed>
+	return 1
+elif (<argo.tag0.taming> > <taming>)
+	argo.message <def.scp.taming_nochance>
+	return 1
+elif <argo.tag0.beingtamed>
+	argo.message <def.scp.taming_ontame>
+	return 1
+elif <argo.can_anger_on_tame> && !<argo.isevent.e_peacemaked>
+	if <r1,100> <= 95
+	argo.message <def.scp.taming_getanger>
+	argo.face <uid>
+	argo.attack <uid>
+	f_skill_delay <getargv 2 <def.skill.35.waittime>>
+	return 1
+	endif
+endif
+if (<src.targ.tag0.slots_needed>)
     local.slots = <src.targ.tag.slots_needed>
-  else
+else
     local.slots = 1
-  endif
+endif
 IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>)
 	SRC.SYSMESSAGE You have too many followers.
 	RETURN 1
 ENDIF
-IF (<SRC.TAMING> < (<SRC.TARG.TAMING>-50))
-	SRC.SYSMESSAGE This creature is beyond your ability to tame.
-	RETURN 1
-ENDIF
-src.tag.taming=<src.targ.uid>
+message <def.scp.taming_started>
+forplayers
+	if <uid> != <src.uid>
+	trysrc <uid> uid.<src.uid>.message <def.scp.taming_he_started>
+	endif
+endfor
+tag.totame = <argo.uid>
+argo.tag.beingtamed = 1
+serv.newitem i_tamefix
+new.link = <argo.uid>
+new.tag.starttime = <serv.time>
+equip <new>
+new.more1 = {4 5}
+return 1
 
-ON=@Success
-  obj=<src.tag.taming>
-  if (<obj.tag0.slots_needed>)
-    local.slots = <obj.tag.slots_needed>
-  else
+
+[itemdef i_tamefix]
+id=i_memory
+type=t_eq_script
+name=tamefix
+
+on=@equip
+timer=3
+
+on=@timer
+if <more1>
+	if <cont.distance <link>> > 3
+		link.message <def.scp.taming_toofaraway>
+		cont.tamingfail <link>
+		remove
+		return 1
+	elif <cont.flags>&statf_dead
+		link.message <def.scp.taming_youdead>
+		cont.tamingfail <link>
+		remove
+		return 1
+	elif !(<cont.canseelos <link>>)
+		link.message <def.scp.taming_cantseelos>
+		cont.tamingfail <link>
+		remove
+		return 1
+	elif <link.attacker>
+		if <eval (<serv.time> - (<link.attacker.last.elapsed> * 10))> > <tag0.starttime>
+		link.message <def.scp.taming_isangry>
+		cont.tamingfail <link>
+		remove
+		return 1
+		endif
+	endif
+cont.say @,,2 { {502790 502793} 1 {1005608 1005613} 1 {1010593 1010596} 1 }
+cont.face <link>
+more1 --
+timer = {2 3}
+cont.skillgain animallore <eval (<link.tag.taming> / 10)>
+cont.SKILLGAIN taming <eval (<link.tag.taming> / 10)>
+else
+	if <r> <= <cont.tamingsuccesschance <link>>
+		link.removeallmemories
+		link.makemypet <cont>,<dtag0.paralyzed>
+	else
+		cont.tamingfail <link>
+		cont.sysmessage <def.scp.taming_failed>
+	endif
+remove
+endif
+return 1
+
+[function removeallmemories]
+while (<findid.i_memory>)
+	findid(i_memory).remove
+endwhile
+
+[function makemypet]
+ref1=<argv[0]>
+serv.newitem i_memory
+new.attr=04
+new.more1=04
+new.more2=<serv.time>
+new.morep=<p>
+new.color=memory_ipet
+new.timer=-1
+new.link=<ref1>
+new.cont=<uid>
+flags |= statf_pet
+tag.beingtamed=
+home = -1,-1
+if !(<tag0.owner.<ref1>>)
+	ref1.sysmessage @,,2 502799 // It seems to accept you as master.
+	ref1.skillgain animallore <eval (<tag.taming> / 10)>
+	ref1.SKILLGAIN taming <eval (<tag.taming> / 10)>
+else
+	ref1.sysmessage @,,2 502797 // That wasn't even challenging.
+endif
+if !(<tag0.owner.<ref1>>)
+	tag.owner.<ref1> = 1
+endif
+if (<tag0.slots_needed>)
+    local.slots = <tag.slots_needed>
+else
     local.slots = 1
-  endif
-  CURFOLLOWER += <local.slots>
-  SKILLGAIN taming <EVAL <obj.TAMING>>
-  obj.EMOTE loose some wild instincts
-  obj.STR -= (<obj.STR>/10)
-  obj.DEX -= (<obj.DEX>/10)
-  obj.INT -= (<obj.INT>/10)
-  obj.EXP -= (<obj.EXP>/2)
-	IF (<SRC.TARG.LEVEL> > 0)
-	  obj.TAG.NEXTLEVEL -= (<SRC.TARG.TAG.NEXTLEVEL>/2)
-	  obj.LEVEL -= 1
-	ENDIF
-obj.0 -= (<obj.0>/10)
-obj.1 -= (<obj.1>/10)
-obj.2 -= (<obj.2>/10)
-obj.3 -= (<obj.3>/10)
-obj.4 -= (<obj.4>/10)
-obj.5 -= (<obj.5>/10)
-obj.6 -= (<obj.6>/10)
-obj.7 -= (<obj.7>/10)
-obj.8 -= (<obj.8>/10)
-obj.9 -= (<obj.9>/10)
-obj.10 -= (<obj.10>/10)
-obj.11 -= (<obj.11>/10)
-obj.12 -= (<obj.12>/10)
-obj.13 -= (<obj.13>/10)
-obj.14 -= (<obj.14>/10)
-obj.15 -= (<obj.15>/10)
-obj.16 -= (<obj.16>/10)
-obj.17 -= (<obj.17>/10)
-obj.18 -= (<obj.18>/10)
-obj.19 -= (<obj.19>/10)
-obj.20 -= (<obj.20>/10)
-obj.21 -= (<obj.21>/10)
-obj.22 -= (<obj.22>/10)
-obj.23 -= (<obj.23>/10)
-obj.24 -= (<obj.24>/10)
-obj.25 -= (<obj.25>/10)
-obj.26 -= (<obj.26>/10)
-obj.27 -= (<obj.27>/10)
-obj.28 -= (<obj.28>/10)
-obj.29 -= (<obj.29>/10)
-obj.30 -= (<obj.30>/10)
-obj.31 -= (<obj.31>/10)
-obj.32 -= (<obj.32>/10)
-obj.33 -= (<obj.33>/10)
-obj.34 -= (<obj.34>/10)
-obj.36 -= (<obj.36>/10)
-obj.37 -= (<obj.37>/10)
-obj.38 -= (<obj.38>/10)
-obj.39 -= (<obj.39>/10)
-obj.40 -= (<obj.40>/10)
-obj.41 -= (<obj.41>/10)
-obj.42 -= (<obj.42>/10)
-obj.43 -= (<obj.43>/10)
-obj.44 -= (<obj.44>/10)
-obj.45 -= (<obj.45>/10)
-obj.46 -= (<obj.46>/10)
-obj.47 -= (<obj.47>/10)
-obj.48 -= (<obj.48>/10)
-obj.49 -= (<obj.49>/10)
-obj.50 -= (<obj.50>/10)
-obj.51 -= (<obj.51>/10)
-obj.52 -= (<obj.52>/10)
-obj.53 -= (<obj.53>/10)
-obj.54 -= (<obj.54>/10)
-src.tag.taming=
+endif
+ref1.CURFOLLOWER += <local.slots>
+EMOTE loose some wild instincts
+STR -= (<obj.STR>/10)
+DEX -= (<obj.DEX>/10)
+INT -= (<obj.INT>/10)
+EXP -= (<obj.EXP>/2)
+IF (<LEVEL> > 0)
+	  TAG.NEXTLEVEL -= (<SRC.TARG.TAG.NEXTLEVEL>/2)
+	  LEVEL -= 1
+ENDIF
+for 0 57
+	<dlocal._for> -= (<I.<dlocal._for>>/10)
+endfor
+ref1.tag.totame=
+update
 
-ON=@Fail
-	obj=<src.tag.taming>
-	SKILLGAIN taming <EVAL <obj.TAMING>>
-	SRC.MESSAGE @,,2 502798
-	src.tag.taming=
+[function tamingfail]
+ref1=<args>
+ref1.tag.beingtamed=
+tag.totame=
+skillgain animallore <eval (<ref1.tag.taming> / 20)>
+SKILLGAIN taming <eval (<ref1.tag.taming> / 20)>
+
+[function can_anger_on_tame]
+//if (<baseid> == c_m_hiryu) || (<baseid> == c_m_nightmare) || (<baseid> == c_armored_swamp_dragon) || (<baseid> == c_swamp_dragon) || (<body> == c_dragon_red) || (<body> == c_dragon_green) || (<body> == c_dragon_small_black) || (<body> == c_dragon_small_red)
+return 0
+//else
+//return 0
+//endif
+
+[function tamingsuccesschance]
+ref1=<args>
+doswitch <ref1.tag0.owner.<uid>>
+	local.successchance=<eval (((<taming> - <ref1.tag.taming>) + 1) * 2)>
+	local.successchance=1000
+enddo
+return <dlocal.successchance>
+
 
 
 [SKILL 36]
@@ -1369,7 +1481,7 @@ SRC.CTAG.TRACKEDHUMANS
 	TRY SRC.CTAG.TRACKEDANIMALS.<EVAL <LOCAL._FOR>>
 	ENDFOR
 SRC.CTAG.TRACKEDANIMALS
-	FORCHARS <EVAL ((<TRACKING>*3)/100)+15>
+	FORCHARS <EVAL (((<TRACKING>+<SKILLMOD Tracking>)*3)/100)+15>
 		IF (<UID> != <SRC>)
 			IF !(<ISGM>)
 				If (<src.tracking> == 0)

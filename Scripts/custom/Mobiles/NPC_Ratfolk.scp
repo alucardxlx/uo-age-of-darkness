@@ -1,124 +1,171 @@
-//****************************************************************************
-// SPHERE by : Menasoft ©1997-2002
-// www.sphereserver.com
-// All SPHERE script files and formats are copyright Menasoft & Partners.
-// This file may be freely edited for personal use, but may not be distributed
-// in whole or in part, in any format without express written permission from
-// Menasoft & Partners.  All donations and contributions
-// become the property of Menasoft & Partners.
-//
-// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
-//****************************************************************************
-// FILE LAST UPDATED: Saturday, January 4, 2003
-//
-VERSION=0.99w5
-
-//// NPC's ORC ////
+//// NPC's Ratman////
 
 [CHARDEF 02a]
 DEFNAME=c_ratman
-NAME=#NAMES_RATMAN the Rat Man
+name=ratman
 SOUND=snd_MONSTER_RATMAN1
 ICON=i_pet_RATMAN
 ANIM=078c7f
-DAM=3,6
-ARMOR=14
-CAN=MT_WALK|MT_RUN|MT_USEHANDS
+DAM=8,11
+ARMOR=15
+MOVERATE=0
+CAN=MT_WALK|MT_RUN
 RESOURCES=6 i_ribs_raw,2 i_fur_light
-FOODTYPE=15 t_meat_raw,i_cheese_wheel
-//SHELTER=r_caves,r_dungeon,r_swamp,r_desert
-DESIRES=c_ratman,c_ratman_w_sword,c_ratman_w_mace
-CATEGORY=Monsters
+foodtype=55 t_meat_raw,t_food,t_fruit
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+desires=t_meat_raw,t_food,t_coin,t_gem,t_potion,t_scroll,t_fruit,t_note
+tag.slots_needed=3
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=2
+
+category=AoD Monsters
 SUBSECTION=Ratmen
 DESCRIPTION=Rat Man
 
 ON=@Create
+	nightsight=1
+	NAME=#NAMES_RATMAN
 	NPC=brain_monster
 	COLOR=08000|RAND(COLOR_DYE_HIGH) // shirt color
-	STR={96 120}
-	DEX={81 100}
-	INT={36 60}
+
+	STR={81 100}
+	DEX={96 125}
+	INT={16 30}
 
 	givelang 11
-	TAG.NPCAI.Rank=1
 	SetRatman
 
+	ANATOMY={50.0 70.0}
 	PARRYING={50.0 70.0}
-	MAGICRESISTANCE={35.0 60.0}
+	MAGICRESISTANCE={25.0 50.0}
 	TACTICS={50.0 75.0}
-	WRESTLING={50.0 75.0}
+	WRESTLING={56.0 78.0}
 
-	FAME={100 300}
+
+	FAME={100 800}
 	KARMA={-2000 -2999}
-	//ALIGNMENT=EVIL
+	EXP={1000 1500} //Level 2
 
 ON=@NPCRestock
-     ITEM={ Supply_backpack 2 Treasure_Backpack 1 0 3}
+     ITEM={ Supply_backpack 2 Treasure_pouch 2 Filth_pouch 3 0 3}
+     ITEM={ I_cheese_wheel 1 i_cheese_wedge 2 random_food 1 i_copper_coin 2 i_silver_coin 1 random_body_parts 1 RANDOM_JEWEL 1 RANDOM_JEWELRY 1 0 8 }
+
+
+[CHARDEF c_ratman_thief]
+ID=c_ratman
+name=ratman thief
+SOUND=snd_MONSTER_RATMAN1
+ICON=i_pet_RATMAN
+ANIM=078c7f
+DAM=8,11
+ARMOR=15
+MOVERATE=0
+CAN=MT_WALK|MT_RUN
+RESOURCES=6 i_ribs_raw,2 i_fur_light
+foodtype=55 t_meat_raw,t_food,t_fruit
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+desires=t_meat_raw,t_food,t_coin,t_gem,t_potion,t_scroll,t_fruit,t_note
+tag.slots_needed=3
+Tag.BeastClass=Beast_Quick
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=2
+
+category=AoD Monsters
+SUBSECTION=Ratmen
+DESCRIPTION=Rat Man thief
+
+ON=@Create
+	nightsight=1
+	NAME=#NAMES_RATMAN
+	NPC=brain_thief
+	COLOR=08000|RAND(COLOR_DYE_HIGH) // shirt color
+
+	STR={71 90}
+	DEX={116 145}
+	INT={16 30}
+
+	givelang 11
+	SetRatman
+
+	PARRYING={56.0 78.0}
+	MAGICRESISTANCE={15.0 40.0}
+	TACTICS={45.0 65.0}
+	WRESTLING={56.0 78.0}
+	STEALING={56.0 78.0}
+	HIDING={56.0 78.0}
+	STEALTH={56.0 78.0}
+
+	FAME={600 1200}
+	KARMA={-2000 -2999}
+	EXP={2000 2500} //Level 3
+
+ON=@NPCRestock
+     ITEM={ Rogue_backpack 2 Filth_pouch 2 Treasure_pouch 3 0 3}
+     ITEM={ I_cheese_wheel 1 i_cheese_wedge 2 random_food 1 i_copper_coin 2 i_silver_coin 1 random_body_parts 1 RANDOM_JEWEL 1 RANDOM_JEWELRY 1 0 8 }
 
 
 [chardef 08f]
 defname=c_ratman_shaman
-name=#NAMES_RATMAN
+name=ratman shaman
 sound=snd_monster_ratman1
 icon=i_pet_ratman_lbr
-DAM=3,6
-ARMOR=14
-moverate=3
+DAM=8,11
+ARMOR=15
+MOVERATE=0
 resdispid=c_m_ratman_shaman
 reslevel=3
 resdisphue=
 resources=6 i_ribs_raw,2 i_fur_light
-can=mt_walk|mt_run|mt_usehands
-foodtype=15 t_meat_raw,i_cheese_wheel
-shelter=r_caves,r_dungeon,r_swamp_rock,r_desert
-desires=c_ratman,c_ratman_w_sword,c_ratman_w_mace
+can=mt_walk|mt_run
+foodtype=55 t_meat_raw,t_food,t_fruit
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+desires=t_meat_raw,t_food,t_coin,t_gem,t_potion,t_scroll,t_fruit,t_note
+tag.slots_needed=3
+Tag.BeastClass=Beast_Magic
+TAG.MANUEVER1=5
+TAG.MANUEVER2=1
+TAG.MANUEVER3=2
 
-
-category=monsters
-subsection=ratmen
-description=ratman shaman - lbr
+category=AoD Monsters
+SUBSECTION=Ratmen
+description=Rat Man shaman
 
 on=@create
+     nightsight=1
      name="#names_ratman"
      npc=brain_monster
-     fame={100 300}
+     COLOR=08000|RAND(COLOR_DYE_HIGH) // shirt color
+
+     fame={2100 2300}
      karma={-2000 -2999}
-     TAG.NPCAI.Rank=2
+     EXP={4000 4500} //Level 4
+
+     STR={78 97}
+     dex={82 109}
+     int={97 119}
+
+     givelang 11
      SetRatman
 
-     STR={96 120}
-     dex={102 129}
-     int={187 209}
-
-	givelang 11
-
-     evaluatingintel={70.2 79.5}
+     evaluatingintel={60.2 79.5}
      magery={74.5 82.7}
-     parrying={50.0 80.0}
+     meditation={64.5 82.7}
+     parrying={54.2 80.0}
      magicresistance={66.0 89.4}
-     tactics={50.3 75.0}
-     wrestling={55.3 76.7}
+     tactics={40.3 65.0}
+     wrestling={45.3 66.7}
 
-     peacemaking=36.0
-
-     itemnewbie=i_spellbook
-     addspell=s_clumsy
-     addspell=s_feeblemind
-     addspell=s_magic_arrow
-     addspell=s_weaken
-     addspell=s_harm
-     addspell=s_fireball
-     addspell=s_poison
-     addspell=s_curse
-     addspell=s_poison_field
-     addspell=s_lightning
 
 on=@npcrestock
-     item=i_potion_healgreat
-     item=i_potion_healgreat
-     item=i_potion_healgreat
-     ITEM={ Magic_bag 2 Treasure_Bag 1 0 3}
-     ITEM={ ttm_LVL1 2 ttm_LVL2 1 0 60 }
-
+     ITEM={ Magic_backpack 2 Treasure_Backpack 1 Magic_bag 3 }
+     ITEM={ I_cheese_wheel 1 i_cheese_wedge 2 random_food 1 i_copper_coin 2 i_silver_coin 1 random_body_parts 1 RANDOM_JEWEL 1 RANDOM_JEWELRY 1 0 8 }
+     item=i_potion_healgreat,{2 5}
+     item=i_potion_curegreat,{2 3}
 
 [eof]

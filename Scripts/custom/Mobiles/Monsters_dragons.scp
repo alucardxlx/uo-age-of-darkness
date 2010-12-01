@@ -24,6 +24,7 @@ sound=snd_monster_dragon1
 dam=10,13
 armor=34
 ANIM=03F8C7F
+bloodcolor=68
 moverate=0
 resources=10 i_ribs_raw, 12 i_hide, 6 i_thing
 foodtype=75 t_meat_raw
@@ -59,7 +60,7 @@ on=@create
      wrestling={71.0 92.6}
      poisoning={76.1 93.4}
 
-     taming=89.3
+     tag.taming=89.3
 
      fame=4000
      karma=-4000
@@ -77,6 +78,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=11,14
 armor=38
 moverate=0
+bloodcolor=68
 resources=14 i_ribs_raw,6 i_reag_dragon_blood,16 i_dragon_scale_green
 foodtype=75 t_meat_raw,t_gem
 desires=t_coin
@@ -110,7 +112,7 @@ on=@create
      tactics={65.4 88.5}
      wrestling={68.8 81.7}
 
-     taming=93.3
+     tag.taming=93.3
 
      resfire=30
 
@@ -137,6 +139,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=11,14
 armor=38
 moverate=0
+bloodcolor=68
 resources=14 i_ribs_raw,6 i_reag_dragon_blood,16 i_dragon_scale_red
 foodtype=75 t_meat_raw,t_gem
 desires=t_coin
@@ -171,7 +174,7 @@ on=@create
      tactics={65.4 88.5}
      wrestling={68.8 81.7}
 
-     taming=93.3
+     tag.taming=93.3
 
      resfire=30
 
@@ -199,6 +202,7 @@ can=mt_swim|mt_nonhum
 dam=12,15
 armor=44
 moverate=0
+bloodcolor=68
 resources=10 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 8 i_hide
 foodtype=120 t_meat_raw,t_fish
 desires=t_ship,t_meat_raw,t_fish
@@ -232,7 +236,7 @@ on=@create
      tactics={80.4 86.6}
      wrestling={84.0 89.7}
 
-     taming=95.3
+     tag.taming=95.3
 
      fame=5000
      karma=-5000
@@ -256,6 +260,7 @@ can=mt_swim|mt_nonhum
 dam=12,15
 armor=44
 moverate=0
+bloodcolor=68
 resources=10 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 8 i_hide
 foodtype=120 t_meat_raw,t_fish
 desires=t_ship,t_meat_raw,t_fish
@@ -291,7 +296,7 @@ on=@create
      tactics={80.4 86.6}
      wrestling={84.0 89.7}
 
-     taming=95.3
+     tag.taming=95.3
 
      fame=5000
      karma=-5000
@@ -315,6 +320,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=13,15
 armor=45
 moverate=0
+bloodcolor=68
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_green
 foodtype=120 t_meat_raw,t_gem
 desires=t_coin
@@ -355,7 +361,7 @@ on=@create
      magery={80.9 90.9}
      meditation={55.0 95.0}
 
-     taming=99.1
+     tag.taming=99.1
 
      fame={5000 7000}
      karma={-6000 -7000}
@@ -390,6 +396,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=13,15
 armor=45
 moverate=0
+bloodcolor=68
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_red
 foodtype=120 t_meat_raw,t_gem
 desires=t_coin
@@ -429,7 +436,7 @@ on=@create
      magery={80.9 90.9}
      meditation={55.0 95.0}
 
-     taming=99.1
+     tag.taming=99.1
 
      fame={5000 7000}
      karma={-6000 -7000}
@@ -464,6 +471,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=13,15
 armor=45
 moverate=0
+bloodcolor=68
 resources=18 i_ribs_raw,8 i_reag_dragon_blood,24 i_dragon_scale_white
 foodtype=120 t_meat_raw
 desires=t_coin
@@ -504,7 +512,7 @@ on=@create
      magery={80.9 90.9}
      meditation={55.0 95.0}
 
-     taming=99.1
+     tag.taming=99.1
 
      fame={5000 7000}
      karma={-6000 -7000}
@@ -539,6 +547,7 @@ can=mt_walk|mt_fly|mt_nonhum
 dam=13,15
 armor=40
 moverate=0
+bloodcolor=68
 resources=16 i_ribs_raw, 8 i_reag_serpent_scale, 8 i_reag_dragon_blood, 12 i_hide
 // add dragon's orb
 foodtype=120 t_food, t_meat_raw, t_gem
@@ -581,7 +590,7 @@ on=@create
      magery={88.6 95.7}
      meditation={88.6 95.7}
 
-     taming=114.3
+     tag.taming=114.3
 
      fame={7500 9500}
      karma={5000 6000}
@@ -616,6 +625,7 @@ can=mt_walk|mt_run|mt_nonhum
 dam=11,14
 armor=20
 moverate=0
+bloodcolor=68
 resources=12 i_ribs_raw, 10 i_hide, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood
 foodtype=80 t_food, t_fruit, t_meat_raw
 desires=r_plains
@@ -652,7 +662,7 @@ on=@create
      tactics={45.9 55.0}
      wrestling={51.0 59.4}
 
-     taming=89.1
+     tag.taming=89.1
 
      fame={2500 3500}
      KARMA={-3000 -3999} 
@@ -671,7 +681,8 @@ ICON=i_worldgem_bit
 RESLEVEL=5
 DAM=12,14
 ARMOR=38
-moverate=10
+moverate=0
+bloodcolor=68
 RESOURCES=15 i_ribs_raw, 6 i_reag_serpent_scale, 6 i_reag_dragon_blood, 10 i_hide
 DESIRES=t_coin,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
@@ -712,7 +723,7 @@ ON=@Create
 	TACTICS={78.0 89.0}
 	WRESTLING={82.0 91.0}
 
-	taming=93.9
+	tag.taming=93.9
 
 
 	respoison=30
@@ -730,6 +741,7 @@ ICON=i_pet_dragon
 DAM=10,12
 ARMOR=27
 moverate=0
+bloodcolor=68
 RESOURCES=12 i_ribs_raw, 6 i_hide, 4 i_reag_serpent_scale, 6 i_reag_dragon_blood, 2 i_fur_dark
 CAN=MT_WALK|MT_RUN|mt_nonhum
 RESLEVEL=5
@@ -772,7 +784,7 @@ on=@create
 
 	EXP={ 2050 3950 } //Level 3
 
-     taming=92.5
+     tag.taming=92.5
 
 
 [chardef 031e]
@@ -782,7 +794,8 @@ sound=snd_monster_dragon1
 icon=i_pet_dragon
 dam=16,19
 armor=65
-moverate=30
+moverate=20
+bloodcolor=68
 resources=19 i_ribs_raw,20 i_hide,8 i_reag_dragon_blood
 can=mt_walk|mt_nonhum
 foodtype=200 t_meat_raw
@@ -859,7 +872,8 @@ anim=03f9c7f
 can=mt_walk|mt_nonhum
 dam=16,19
 armor=65
-moverate=30
+moverate=20
+bloodcolor=68
 resources=19 i_ribs_raw, 8 i_reag_dragon_blood, 20 i_hide
 foodtype=200 t_meat_raw,t_gem
 desires=t_coin
@@ -941,8 +955,8 @@ SOUND=snd_monster_dragon1
 CAN=MT_WALK|MT_FLY
 DAM=33,55
 ARMOR=85
-DESIRES=r_dungeon_abyss,i_gold,t_gem,t_wand,t_potion,t_scroll,t_reagent,t_artifa
-ct
+bloodcolor=68
+DESIRES=r_dungeon_abyss,i_gold,t_gem,t_wand,t_potion,t_scroll,t_reagent,t_artifact
 AVERSIONS=t_trap,r_civilization,e_carnivores3
 FOODTYPE=100 t_meat_raw
 RESOURCES=25 i_ribs_raw,80 i_hide,20 i_reag_dragon_blood,20 i_reag_dragon_bone
@@ -985,11 +999,11 @@ SOUND=snd_monster_dragon1
 CAN=MT_WALK|MT_FLY
 DAM=33,55
 ARMOR=85
-DESIRES=r_dungeon_abyss,i_gold,t_gem,t_wand,t_potion,t_scroll,t_reagent,t_artifa
-ct
+bloodcolor=68
+DESIRES=r_dungeon_abyss,i_gold,t_gem,t_wand,t_potion,t_scroll,t_reagent,t_artifact
 AVERSIONS=t_trap,r_civilization,e_carnivores3
 FOODTYPE=100 t_meat_raw
-RESOURCES=25 i_ribs_raw,80 i_hide,20 i_reag_dragon_blood,20 i_reag_dragon_bone
+RESOURCES=25 i_ribs_raw,80 i_hide
 MOVERATE=100
 TAG.SlayerGroup=DRAGON,REPTILE
 TAG.PhysicalDamagePercent=25

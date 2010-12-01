@@ -200,7 +200,7 @@ on=@create
 	resenergy=12
 	respoison=12
 
-	taming=88.5
+	tag.taming=88.5
 
 	fame={800 1800}
 	karma={-3000 -3999}
@@ -260,7 +260,7 @@ on=@create
 	resenergy=12
 	respoison=12
 
-	taming=88.5
+	tag.taming=88.5
 
 	fame={800 1800}
 	karma={-3000 -3999}
@@ -388,7 +388,7 @@ on=@create
 	respoison=24
 	resenergy=24
 
-
+	tag.taming=86.7
      EXP={ 1050 1450 } //Level 2
 
      fame={100 300}

@@ -14,6 +14,19 @@
 VERSION=0.99w5
 //Khaos: 134 ANIMAL 20 alligator unhued, komodo dragon in 3d.
 
+//048d icelight
+//0498 blue dark
+//04f1 cold wapon
+
+//Bloods
+//None -1
+//Red (Common Vertebrates/Hemoglobin) 0
+//Green (Dragons/Chlorocruorin?) 68
+//Violet-Pink (Worms,Klingons/Hemerythrin) 23
+//Blue (Mollusc/haemocyanin) 307
+//Pale yellowish (Arthropod/Hemolymph) 765
+
+
 //// NPC's GENERAL ////
 
 [chardef 01e]
@@ -67,6 +80,7 @@ on=@create
 
      fame={ 750 1500 }
      karma={ -2000 -2500 }
+     EXP={500 550} //Level 1
 
 ON=@NpcRestock
      ITEM={ Filth_pouch 2 Treasure_pouch 2 Treasure_Bag 1 0 2}
@@ -78,6 +92,7 @@ defname=c_headless
 name="headless one"
 sound=snd_monster_headls1
 icon=i_pet_headless
+bloodcolor=23
 anim=078c7f
 dam=6,10
 armor=14
@@ -128,6 +143,7 @@ SOUND=snd_monster_gazer1
 ICON=i_pet_swarm
 DAM=6,9
 RESDISPDNID=c_gazer
+bloodcolor=23
 RESLEVEL=2
 RESDISPDNHUE=78
 ARMOR=26
@@ -185,6 +201,7 @@ name="gazer"
 sound=snd_monster_gazer1
 icon=i_pet_gazer
 anim=06007f
+bloodcolor=23
 dam=7,12
 armor=36
 moverate=0
@@ -268,6 +285,7 @@ can=mt_walk|mt_nonhum
 dam=4,6
 armor=8
 moverate=40
+bloodcolor=2207
 foodtype=30 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_slime,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 TEVENTS=e_Level_up_NPC
@@ -303,9 +321,9 @@ on=@create
      magicresistance={15.1 19.9}
      tactics={47.7 57.8}
      wrestling={49.2 60.5}
-     poisoning={40.7 59.6}
+     poisoning={30.7 54.6}
 
-     taming=33.1
+     tag.taming=33.1
 
      EVENTS=+e_dividing
 
@@ -319,6 +337,7 @@ can=mt_walk|mt_nonhum
 dam=8,11
 armor=21
 moverate=30
+bloodcolor=307
 foodtype=t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_acid_slug,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 TEVENTS=e_Level_up_NPC
@@ -359,7 +378,7 @@ on=@create
      tactics={49.7 64.8}
      wrestling={49.2 64.5}
 
-     taming=69.1
+     tag.taming=69.1
 
 
 [chardef 05e]
@@ -373,6 +392,7 @@ reslevel=3
 resdisphue=0480
 moverate=40
 can=mt_walk|mt_nonhum
+bloodcolor=color_ice
 foodtype=50 t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 desires=c_frostooze,t_meat_raw,t_garbage,t_leather,t_food,t_fruit,t_cloth,t_crops
 TEVENTS=e_Level_up_NPC
@@ -409,7 +429,7 @@ on=@create
      fame={100 500}
      karma={-100 -199}
 
-     taming=53.1
+     tag.taming=53.1
 
      //EVENTS=+e_dividing
 
@@ -424,6 +444,7 @@ dam=9,12
 armor=28
 moverate=0
 resdispid=c_swamp_tentacles
+bloodcolor=-1
 TEVENTS=e_Level_up_NPC
 aversions=r_civilization
 tag.slots_needed=4
@@ -478,6 +499,7 @@ can=mt_nonmover|mt_nonhum
 dam=10,13
 armor=26
 moverate=0
+bloodcolor=-1
 foodtype=24 t_meat_raw
 aversions=r_civilization
 desires=t_meat_raw, t_corpse
@@ -526,6 +548,7 @@ can=mt_nonmover|mt_nonhum
 moverate=0
 dam=10,13
 armor=26
+bloodcolor=-1
 icon=i_pet_corpser
 sound=snd_monster_corpsr1
 resources=
@@ -583,6 +606,7 @@ anim=078c7f
 dam=11,14
 armor=30
 moverate=0
+bloodcolor=-1
 resources=6 i_reag_dead_Wood, 4 i_log
 foodtype=t_meat_raw
 can=mt_nonhum
@@ -650,6 +674,7 @@ ICON=020fa
 DAM=14,18 
 ARMOR=48
 moverate=60
+bloodcolor=-1
 resources=9 i_reag_dead_Wood, 6 i_log
 CAN=MT_WALK|mt_nonhum
 RESLEVEL=5
@@ -724,6 +749,7 @@ dam=15,17
 armor=40
 moverate=0
 ANIM=078C7F
+bloodcolor=307
 resources=10 t_eerie_stuff
 can=mt_swim|mt_nonhum
 foodtype=t_food_raw, t_fish
@@ -815,7 +841,7 @@ on=@create
      respoison=6
      resenergy=6
 
-     taming=82.7
+     tag.taming=82.7
 
      fame={2500 4999}
      karma={-2500 -4999}
@@ -830,6 +856,7 @@ icon=i_pet_quagmire_lbr
 dam=10,14
 armor=40
 moverate=10
+bloodcolor=23
 resources=8 i_reag_bone
 foodtype=75 t_meat_raw, t_gem, t_ore, t_ingot, t_food, t_fruit
 TEVENTS=e_Level_up_NPC
@@ -1024,6 +1051,7 @@ can=mt_walk|mt_usehands|mt_nonhum
 dam=11,15
 armor=36
 moverate=40
+bloodcolor=695
 resources=6 i_ribs_raw,
 foodtype=5 t_meat_raw
 desires=c_plague_beast
@@ -1085,6 +1113,7 @@ moverate=40
 resdispid=c_corpser
 reslevel=3
 resdisphue=
+bloodcolor=-1
 resources=6 i_reag_fertile_dirt, 6 i_reag_dead_wood, 4 i_log
 foodtype=75 t_meat_raw
 can=mt_walk|mt_nonhum
@@ -1216,6 +1245,7 @@ TEVENTS=e_Level_up_NPC
 tevents=e_carnivores2
 tevents=e_swarm
 tag.slots_needed=2
+bloodcolor=307
 Tag.BeastClass=Beast_Quick
 TAG.MANUEVER1=2
 TAG.MANUEVER2=9
@@ -1260,7 +1290,7 @@ ANATOMY={10.0 19.0}
 HIDING={60.0 68.5}
 STEALTH={50.0 57.9}
 
-Taming=49.6
+tag.taming=49.6
 
 
 
@@ -1272,6 +1302,7 @@ DAM=10,14
 ARMOR=22
 CAN=mt_walk|mt_run|mt_nonhum
 MOVERATE=30
+bloodcolor=307
 resources=3 i_ribs_raw
 FOODTYPE=60 t_meat_raw,t_garbage,t_blood
 desires=t_meat_raw,c_rotworm,c_bloodworm,t_garbage,t_blood,t_corpse
@@ -1329,7 +1360,7 @@ ANATOMY={20.0 39.0}
 HIDING={60.0 68.5}
 STEALTH={50.0 57.9}
 
-Taming=69.6
+tag.taming=69.6
 
 
 //By OuPMaN (davidcrma) & Curlor
@@ -1347,6 +1378,7 @@ RESDISPDNID=c_deathwatch_beetle
 CAN=mt_equip|mt_walk|mt_run|mt_usehands
 DAM=15,20
 ARMOR=56
+bloodcolor=765
 FOODTYPE=45 t_ore,t_ingot
 TEvents=t_weapon_mace_pick
 TEVENTS=e_Level_up_NPC
@@ -1373,7 +1405,7 @@ MINING={94.0 108.5}
 TACTICS={82.6 97.7}
 MAGICRESISTANCE={120.4 129.6}
 ANATOMY={80.4 89.5}
-TAMING=71.1
+tag.taming=71.1
 
 KARMA=-8500
 FAME=8500
@@ -1404,6 +1436,7 @@ DAM=11,13
 ARMOR=32
 CAN=mt_walk|mt_run|mt_usehands
 MOVERATE=0
+bloodcolor=307
 FOODTYPE=30 t_magic //actually mental energy from the mind whip
 tag.slots_needed=6
 Tag.BeastClass=Beast_Magic
@@ -1461,6 +1494,7 @@ can=mt_swim|mt_male|mt_usehands
 moverate=25
 dam=16,18
 armor=75
+bloodcolor=307
 icon=i_pet_man
 sound=snd_monster_daemon1
 resources=30 i_ribs_raw
@@ -1579,7 +1613,6 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
-Taming=38.0
 
 
 

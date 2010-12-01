@@ -11,7 +11,7 @@ IF ( <TAG0.NPCAI.Race> == racef_undead )
 	   SAY Join me.
 	   SAY I am eternal.
 	ENDDO
-ELIF ( <TAG0.NPCAI.Race> == racef_daemon )
+ELIF ( <TAG0.NPCAI.Race> == racef_demon )
 	DORAND 6
 	   SAY Your world shall burn.
 	   SAY No mortal can defeat us.
@@ -61,7 +61,7 @@ IF ( <TAG0.NPCAI.Race> == racef_undead )
 	   SAY The army of the dead grows.
 	   SAY I join the growing darkness.
 	ENDDO
-ELIF ( <TAG0.NPCAI.Race> == racef_daemon )
+ELIF ( <TAG0.NPCAI.Race> == racef_demon )
 	DORAND 5
 	   SAY I serve the Daemon Lord's army.
 	   SAY For the Lord of Flame!
@@ -102,7 +102,7 @@ ENDIF
 
 [FUNCTION f_leadershout]
 IF RAND(10)<=5
- DORAND 8
+ DORAND 11
    SAY All troops attack!
    SAY Over here quick!
    SAY We shall wipe your kind from the planet!
@@ -111,6 +111,9 @@ IF RAND(10)<=5
    SAY To battle!
    SAY Onward for our people!
    EMOTE signal to allies
+   SAY Destroy them all!
+   SAY Do not hestitate.
+   EMOTE point to enemies
   ENDDO
 ENDIF
 

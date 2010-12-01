@@ -9,6 +9,16 @@
 //**   -e_npc_weapon_switcher events
 //*****************************************************************
 
+[EVENTS e_intel_char]
+ON=@CharAttack
+ IF !(<FLAGS>&statf_war)
+	ATTACK
+ ENDIF
+return
+
+ON=@ItemStep
+//field check
+return
 
 [EVENTS e_intel_char_looting]
 
@@ -32,12 +42,12 @@ ON=@NPCLookAtItem
 return
 
 ON=@ItemStep
-IF !(<FLAGS> & statf_conjured)
+IF !(<FLAGS>&statf_conjured)
 	IF (<ACT.TYPE> == t_corpse) || (<ACT.TYPE> == t_container)
 	    IF (<ACT.FCOUNT> > 0)
 		  local.item=<r<ACT.FCOUNT>>
 		  obj=<ACT.FINDCONT.<local.item>.uid>
-		  IF (STRMATCH(*<obj.type>*,<serv.chardef(<body>).desires>)) || (STRMATCH(*<obj.id>*,<serv.chardef(<body>).desires>))
+		  IF (STRMATCH(*<obj.type>*,"<serv.chardef(<id>).desires>")) || (STRMATCH(*<obj.id>*,"<serv.chardef(<id>).desires>"))
 			    IF !(<ACT.FINDCONT.<local.item>.ATTR> & attr_newbie)
 				    TRYSRC <UID> ACT.FINDCONT.<local.item>.BOUNCE
 				    ACT.TAG0.LOOTED.<UID> -= 1

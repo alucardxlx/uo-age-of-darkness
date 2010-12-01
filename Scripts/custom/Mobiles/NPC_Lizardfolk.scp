@@ -41,7 +41,6 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={36 60}
-	TAG.NPCAI.Rank=1
 	SetLizardman
 
 	PARRYING={55.0 75.0}
@@ -80,7 +79,6 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={36 60}
-	TAG.NPCAI.Rank=1
 	SetLizardman
 
 	PARRYING={55.0 75.0}
@@ -118,7 +116,6 @@ ON=@Create
 	STR={96 120}
 	DEX={86 105}
 	INT={86 110}
-	TAG.NPCAI.Rank=2
 	SetLizardman
 
 	PARRYING={55.0 75.0}

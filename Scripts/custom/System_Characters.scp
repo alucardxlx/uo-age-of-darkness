@@ -42,8 +42,8 @@ FORCONT <FINDLAYER.layer_bankbox>
 		SRC.DCLICK <UID>
 	ENDIF
 ENDFOR	
-src.events +e_environmental
-src.events +e_general_mob
+events +e_environmental
+events +e_general_mob
 f_statcheck
 f_LoginMessage
 IF !(<RESTEST 1 i_focus_timer>)
@@ -560,7 +560,7 @@ If <Tag0.Hit.Prevent>
 	If <Src.Tag0.Poisoning>
 		Src.Poisoning=<Src.Tag0.Poisoning>
 	Endif
-Return 1
+	Return 1
 Endif
 If !(<argn2>&dam_god)
 	If (<argn2>&dam_general)
