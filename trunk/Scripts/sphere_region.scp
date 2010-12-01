@@ -94,41 +94,80 @@ RESOURCES=1.5 mr_amber
 [REGIONTYPE r_default]
 // Unclaimed regions.
 ON=@ENTER
-SRC.midilist=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
+IF !<SRC.NPC>
+	SRC.midilist=midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains
+ENDIF
 
 ON=@CLIPERIODIC
 SRC.midilist=midi_britain1,midi_ForestA,midi_JungleA,midi_MountainA,midi_Plains,midi_Victory
 
 [REGIONTYPE r_brit]
 ON=@ENTER
-SRC.midilist=midi_britain1,midi_britain2
+IF !<SRC.NPC>
+	SRC.midilist=midi_britain1,midi_britain2
+ENDIF
 
 ON=@CLIPERIODIC
 SRC.midilist=midi_britain1,midi_britain2
-
 
 
 [REGIONTYPE r_Yew]
 ON=@ENTER
-SRC.midilist=midi_Yew
+IF !<SRC.NPC>
+	SRC.midilist=midi_Yew
+ENDIF
+
 
 ON=@CLIPERIODIC
 SRC.midilist=midi_Yew
 
+[REGIONTYPE r_Trinsic]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_Trinsic
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Trinsic
+
+
+[REGIONTYPE r_Jhelom]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_Jhelom
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_Jhelom
+
+
+[REGIONTYPE r_Skara_brae]
+ON=@ENTER
+IF !<SRC.NPC>
+	SRC.midilist=midi_skarabra
+ENDIF
+
+ON=@CLIPERIODIC
+SRC.midilist=midi_skarabra
 
 
 [REGIONTYPE r_brit_castle]
 // Lord brit castle.
 ON=@ENTER
-SRC.midilist=midi_LBCastle
+IF !<SRC.NPC>
+	SRC.midilist=midi_LBCastle,midi_Castle
+ENDIF
 
 ON=@CLIPERIODIC
-SRC.midilist=midi_LBCastle
+SRC.midilist=midi_LBCastle,midi_Castle
+
 
 [REGIONTYPE r_guard_tower]
 // Guard tower.
 ON=@ENTER
-SRC.midilist=midi_ForestA
+IF !<SRC.NPC>
+	SRC.midilist=midi_ForestA
+ENDIF
 
 ON=@CLIPERIODIC
 SRC.midilist=midi_ForestA
@@ -136,7 +175,9 @@ SRC.midilist=midi_ForestA
 [REGIONTYPE r_black_castle]
 // Lord Blackthorne's Castle
 ON=@ENTER
-SRC.midilist=midi_BtCastle
+IF !<SRC.NPC>
+	SRC.midilist=midi_BtCastle
+ENDIF
 
 ON=@CLIPERIODIC
 SRC.midilist=midi_BtCastle
@@ -144,12 +185,8 @@ SRC.midilist=midi_BtCastle
 [REGIONTYPE r_bucs_den]
 // Bucs den
 ON=@ENTER
-IF <SRC.KILLS> > 5
-SRC.MESSAGE Welcome to Bucs Den <SRC.NAME> You are a murderer and you feel at home here
-SRC.midilist=midi_BucsDen
-RETURN 0
-ELSE
-SRC.midilist=midi_BucsDen
+IF !<SRC.NPC>
+	SRC.midilist=midi_BucsDen
 ENDIF
 
 ON=@CLIPERIODIC
@@ -179,13 +216,14 @@ src.SFX={021f,1,0243,1,0244,1,0245,1}
 
 [REGIONTYPE r_plains]
 // Plains night and day.
-ON=@REGPERIODIC
+
+ON=@CLIPERIODIC
 src.SFX={0a,1,0b,1}
 
 [REGIONTYPE r_forests]
 // Forest Day and night.
 
-ON=@REGPERIODIC
+ON=@CLIPERIODIC
 IF <src.sector.ISNIGHTTIME>
 src.SFX={00,2,01,2,02,2,07d,1}
 ELSE
@@ -194,7 +232,8 @@ ENDIF
 
 [REGIONTYPE r_jungle]
 // Jungle Day and night.
-ON=@REGPERIODIC
+
+ON=@CLIPERIODIC
 IF <src.sector.ISNIGHTTIME>
 src.SFX={0c,2,0d,2,0b3,1}
 ELSE
@@ -204,7 +243,7 @@ ENDIF
 [REGIONTYPE r_swamp t_rock]
 // Swamp Day and night.
 // Never anything to mine here.
-ON=@REGPERIODIC
+ON=@CLIPERIODIC
 src.SFX={0e,10,0f,10,022,1,023,1,024,1,0267,1}
 
 [EOF]

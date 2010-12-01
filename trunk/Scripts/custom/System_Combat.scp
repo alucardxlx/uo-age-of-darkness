@@ -356,7 +356,7 @@ ELSEIF <TAG0.WeaponSkillEnabled> == 8
   ENDIF
   EMOTE use Infectious Strike!
   SRC.SOUND snd_spell_poison
-  IF (<POISONING> >= 100)
+  IF (<POISONING> >= 1000)
 	  src.New_Poison 4,<Uid>
   ELSEIF (<POISONING> >= 750)
 	  src.New_Poison 3,<Uid>

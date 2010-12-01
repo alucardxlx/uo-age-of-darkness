@@ -10,6 +10,13 @@
 //**  
 //*****************************************************************
 
+// Known issues
+// Orc drafting
+// mistargeting magics?
+// loop lockup?
+// mage timer problem
+// caster re-equipping
+
 [DEFNAME NPC_AI_System_Options]
 
 //NPC AI System Options
@@ -216,7 +223,7 @@ racef_notdefined 080000000 //This race not yet defined
 
 
 [FUNCTION SetBasics]
-IF !(<NPC> == brain_vendor) && !(<NPC> == brain_healer) && !(<NPC> == brain_banker)
+IF !(<NPC> == brain_vendor) && !(<NPC> == brain_healer) && !(<NPC> == brain_banker) && !(<NPC> == brain_thief)
 	TAG.NPCAI.ONPC=<NPC>
 	NPC=14  //Setting NPC to 14 keeps them from attacking when not wanted
 endif
@@ -244,13 +251,13 @@ IF (<EVAL npcai_opt_initializeRandCast>)
 ENDIF
 IF (<EVAL npcai_opt_initializeMagicAI>)
 	IF (<CHIVALRY> > 0)
-		EVENTS +e_npc_intel_chivalry_user
+		EVENTS +e_intel_char_chivalry_user
 	ENDIF
 	IF (<NECROMANCY> > 0)
-		EVENTS +e_npc_intel_necro_user
+		EVENTS +e_intel_char_necro_user
 	ENDIF
 	IF (<MAGERY> > 0)
-		EVENTS +e_npc_intel_magery_user
+		EVENTS +e_intel_char_magery_user
 	ENDIF
 ENDIF
 IF (<CAN> & mt_usehands) || !(<EVAL npcai_opt_requiremtusehands>)

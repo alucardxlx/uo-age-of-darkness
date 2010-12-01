@@ -61,7 +61,7 @@ on=@create
      magery={31.1 49.9}
      evaluatingintel={31.1 49.9}
 
-     taming=97.5
+     tag.taming=97.5
 
      EXP={ 33500 41900 } //Level 7
 
@@ -128,7 +128,7 @@ on=@create
      magery={75.6 99.5}
      meditation={59.1 70.0}
 
-     taming=97.5
+     tag.taming=97.5
 
      EXP={ 33500 41900 } //Level 7
 
@@ -402,7 +402,7 @@ on=@create
      wrestling={83.8 91.3}
      chivalry={72.7 94.0}
 
-     taming=97.5
+     tag.taming=97.5
 
      EXP={ 33500 41900 } //Level 7
 
@@ -1056,7 +1056,7 @@ on=@create
 	tactics={89.0 95.0}
 	anatomy={49.0 67.0}
 
-     taming=90.5
+     tag.taming=90.5
 
 
 [CHARDEF 718]
@@ -1107,7 +1107,7 @@ ON=@CREATE
 	respoison=25
 	resenergy=12
 
-	taming=86.3
+	tag.taming=86.3
 	EXP={ 2050 2950 } //Level 3
 
      TAG.RANDCAST=45

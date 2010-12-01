@@ -58,7 +58,7 @@ on=@create
      wrestling={67.6 76.0}
      poisoning={83.4 95.1}
 
-     taming=67.1
+     tag.taming=67.1
 
      fame={100 2000}
 
@@ -106,7 +106,7 @@ on=@create
      hiding={59.0 76.0}
      stealth={59.0 76.0}
 
-     taming=59.1
+     tag.taming=59.1
 
      fame={1 1249}
 
@@ -200,7 +200,7 @@ on=@create
         rescold=60
         resenergy=8
 
-        taming=90.1
+        tag.taming=90.1
 
 	fame={100 2000}
 
@@ -254,7 +254,7 @@ on=@create
      hiding={59.0 76.0}
      stealth={59.0 76.0}
 
-     taming=83.5
+     tag.taming=83.5
 
      fame={1000 2000}
 
@@ -300,7 +300,7 @@ on=@create
      tactics={65.0 81.0}
      wrestling={75.0 89.0}
 
-     taming=85.9
+     tag.taming=85.9
 
      resenergy=8
 
@@ -347,7 +347,7 @@ on=@create
      hiding={78.5 93.0}
      stealth={78.5 93.0}
 
-     taming=72.0
+     tag.taming=72.0
 
         resfire=8 
         resenergy=8 

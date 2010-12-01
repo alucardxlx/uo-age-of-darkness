@@ -56,7 +56,7 @@ on=@create
      tactics={20.8 36.2}
      wrestling={23.6 38.5}
 
-     taming=30.1
+     tag.taming=30.1
      peacemaking=10.1
 
      fame=250
@@ -103,7 +103,7 @@ on=@create
 
 	rescold=12
 
-     taming=35.1
+     tag.taming=35.1
      peacemaking=0.1
 
      fame=100
@@ -190,7 +190,7 @@ on=@create
      tactics={20.0 23.0}
      wrestling={31.0 43.0}
 
-     taming=90.0
+     tag.taming=90.0
      peacemaking=10.0
 
      karma=100

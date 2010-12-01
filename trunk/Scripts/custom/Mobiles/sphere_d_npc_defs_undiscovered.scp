@@ -311,255 +311,6 @@ ON=@NpcRestock
 	ITEM=i_gold,{50 100}
 
 
-[chardef 174]
-defname=c_abyss_lord
-name=Abyss Lord
-SOUND=snd_monster_daemon1
-ICON=i_pet_wailingbanshee
-DAM=10,20
-ARMOR=40
-RESOURCES=15 i_ribs_raw,10 i_hide
-CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
-FOODTYPE=40 t_meat_raw
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-AVERSIONS=e_carnivores3
-RESDISPDNID=c_woman
-RESLEVEL=2
-RESDISPDNHUE=33
-CATEGORY=New Monsters
-SUBSECTION=LBR
-DESCRIPTION=Abyss Lord
-MOVERATE=40
-
-ON=@Create
-	NPC=brain_monster
-	FAME={100 3000}
-	KARMA={-5000 -6999}
-	STR={200 300}
-	MAXHITS=800
-	INT={130 200}
-	DEX={40 60}
-	PARRYING={60.0 95.0}
-	MAGICRESISTANCE={50.0 70.0}
-	TACTICS=70.0
-	WRESTLING={65.0 80.0}
-	MAGERY=1000
-	ITEMNEWBIE=i_spellbook
-	ADDCIRCLE 8,1
-
-ON=@NpcRestock
-	ITEM=i_gold,{700 1100}
-	ITEM=random_weapon
-
-[chardef 189]
-defname=c_orc_brute
-name=Orc Brute
-SOUND=snd_monster_orc1
-ICON=i_pet_orc
-DAM=82,111
-ARMOR=45
-RESOURCES=15 i_ribs_raw
-CAN=MT_WALK|MT_USEHANDS|MT_RUN
-FOODTYPE=1 t_meat_raw
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-RESDISPDNID=c_man
-RESLEVEL=2
-RESDISPDNHUE=33
-CATEGORY=New Monsters
-SUBSECTION=LBR
-DESCRIPTION=Orc Brute
-
-ON=@Create
-	NPC=brain_monster
-	FAME=10000
-	KARMA=-10000
-	STR={767 945}
-	MAXHITS={476 552}
-	INT={46 70}
-	DEX={66 75}
-	MAGICRESISTANCE={125.0 140.0}
-	TACTICS={90.0 100.0}
-	WRESTLING={90.0 100.0}
-
-ON=@NpcRestock
-	ITEM=i_gold,{750 950}
-	ITEM=i_ore_shadow,{10 25}
-	ITEM=i_ingot_iron,{10 20}
-	ITEM=random_weapon
-
-
-
-
-[chardef 689]
-defname=c_timelord
-name="doppleganger"
-sound=snd_monster_mimic
-icon=i_pet_doppleganger_lbr
-can=mt_walk|mt_fly
-dam=15,25
-armor=40
-moverate=3
-resdispid=c_elem_earth
-reslevel=3
-resdisphue=color_gray_dk
-resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
-foodtype=9 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold
-aversions=r_civilization
-ANIM=0FFC78C7F
-
-
-category=AoD Monsters
-subsection=General
-description=doppleganger
-
-on=@create
-     npc=brain_monster
-
-     str={85 90}
-     dex={75 95}
-     int={75 90}
-
-     parrying={90.0 100.0}
-     magery={90.0 100.0}
-     magicresistance={60.0 80.0}
-     tactics={90.0 100.0}
-     wrestling={90.0 100.0}
-
-     peacemaking=
-
-     karma={-5000 -5999}
-     fame={450 650}
-
-[chardef 704]
-defname=c_shadow_lord
-name="doppleganger"
-sound=snd_monster_mimic
-icon=i_pet_doppleganger_lbr
-can=mt_walk|mt_fly
-dam=15,25
-armor=40
-moverate=3
-resdispid=c_elem_earth
-reslevel=3
-resdisphue=color_gray_dk
-resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
-foodtype=9 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold
-aversions=r_civilization
-ANIM=0FFC78C7F
-
-
-category=AoD Monsters
-subsection=General
-description=doppleganger
-
-on=@create
-     npc=brain_monster
-
-     str={85 90}
-     dex={75 95}
-     int={75 90}
-
-     parrying={90.0 100.0}
-     magery={90.0 100.0}
-     magicresistance={60.0 80.0}
-     tactics={90.0 100.0}
-     wrestling={90.0 100.0}
-
-     peacemaking=
-
-     karma={-5000 -5999}
-     fame={450 650}
-
-
-
-
-[chardef 0309]
-defname=c_doppleganger
-name="doppleganger"
-sound=snd_monster_mimic
-icon=i_pet_doppleganger_lbr
-can=mt_walk|mt_fly
-dam=15,25
-armor=40
-moverate=3
-resdispid=c_elem_earth
-reslevel=3
-resdisphue=color_gray_dk
-resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
-foodtype=9 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold
-aversions=r_civilization
-ANIM=0FFC78C7F
-
-
-category=AoD Monsters
-subsection=General
-description=doppleganger
-
-on=@create
-     npc=brain_monster
-
-     str={85 90}
-     dex={75 95}
-     int={75 90}
-
-     parrying={90.0 100.0}
-     magery={90.0 100.0}
-     magicresistance={60.0 80.0}
-     tactics={90.0 100.0}
-     wrestling={90.0 100.0}
-
-     peacemaking=
-
-     karma={-5000 -5999}
-     fame={450 650}
-
-
-
-[chardef 244]
-defname=c_rune_beetle
-name=Rune Beetle
-SOUND=snd_rune_beetle
-ICON=i_pet_runebeetle
-RESDISPDNID=c_man
-RESLEVEL=3
-RESDISPDNHUE=33
-DAM=1,30
-ARMOR=45
-RESOURCES=15 i_ribs_raw
-CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
-FOODTYPE=40 t_meat_raw
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-AVERSIONS=e_carnivores3
-MOVERATE=40
-CATEGORY=New Monsters
-SUBSECTION=SE
-DESCRIPTION=Super Besouro
-
-ON=@Create
-	NPC=brain_monster
-	FAME={100 3000}
-	KARMA={-5000 -6999}
-	STR={200 300}
-	MAXHITS={300 1000}
-	INT={230 400}
-	DEX={50 80}
-	PARRYING={60.0 95.0}
-	MAGICRESISTANCE=1000
-	TACTICS=100.0
-	WRESTLING={95.0 100.0}
-
-ON=@NpcRestock
-	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
-	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
-	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
-	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
-	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
-	ITEM={ rich_gold_pile 1 }
-	ITEM=random_jewel,{1 4},R2
-	ITEM=i_gold,{2200 2900}
 
 ////////////////////////////
 
@@ -1020,6 +771,256 @@ Fame=2000
 Karma=-5000
 
 
+[chardef 174]
+defname=c_abyss_lord
+name=Abyss Lord
+SOUND=snd_monster_daemon1
+ICON=i_pet_wailingbanshee
+DAM=10,20
+ARMOR=40
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+RESDISPDNID=c_woman
+RESLEVEL=2
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Abyss Lord
+MOVERATE=40
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={200 300}
+	MAXHITS=800
+	INT={130 200}
+	DEX={40 60}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS=70.0
+	WRESTLING={65.0 80.0}
+	MAGERY=1000
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{700 1100}
+	ITEM=random_weapon
+
+[chardef 189]
+defname=c_orc_brute
+name=Orc Brute
+SOUND=snd_monster_orc1
+ICON=i_pet_orc
+DAM=82,111
+ARMOR=45
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_USEHANDS|MT_RUN
+FOODTYPE=1 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+RESDISPDNID=c_man
+RESLEVEL=2
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Orc Brute
+
+ON=@Create
+	NPC=brain_monster
+	FAME=10000
+	KARMA=-10000
+	STR={767 945}
+	MAXHITS={476 552}
+	INT={46 70}
+	DEX={66 75}
+	MAGICRESISTANCE={125.0 140.0}
+	TACTICS={90.0 100.0}
+	WRESTLING={90.0 100.0}
+
+ON=@NpcRestock
+	ITEM=i_gold,{750 950}
+	ITEM=i_ore_shadow,{10 25}
+	ITEM=i_ingot_iron,{10 20}
+	ITEM=random_weapon
+
+
+
+
+[chardef 689]
+defname=c_timelord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+[chardef 704]
+defname=c_shadow_lord
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+
+
+
+[chardef 0309]
+defname=c_doppleganger
+name="doppleganger"
+sound=snd_monster_mimic
+icon=i_pet_doppleganger_lbr
+can=mt_walk|mt_fly
+dam=15,25
+armor=40
+moverate=3
+resdispid=c_elem_earth
+reslevel=3
+resdisphue=color_gray_dk
+resources=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing
+foodtype=9 t_meat_raw
+desires=t_wand,t_corpse,t_gem,i_gold
+aversions=r_civilization
+ANIM=0FFC78C7F
+
+
+category=AoD Monsters
+subsection=General
+description=doppleganger
+
+on=@create
+     npc=brain_monster
+
+     str={85 90}
+     dex={75 95}
+     int={75 90}
+
+     parrying={90.0 100.0}
+     magery={90.0 100.0}
+     magicresistance={60.0 80.0}
+     tactics={90.0 100.0}
+     wrestling={90.0 100.0}
+
+     peacemaking=
+
+     karma={-5000 -5999}
+     fame={450 650}
+
+
+
+[chardef 244]
+defname=c_rune_beetle
+name=Rune Beetle
+SOUND=snd_rune_beetle
+ICON=i_pet_runebeetle
+RESDISPDNID=c_man
+RESLEVEL=3
+RESDISPDNHUE=33
+DAM=1,30
+ARMOR=45
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=40 t_meat_raw
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+MOVERATE=40
+CATEGORY=New Monsters
+SUBSECTION=SE
+DESCRIPTION=Super Besouro
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={200 300}
+	MAXHITS={300 1000}
+	INT={230 400}
+	DEX={50 80}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE=1000
+	TACTICS=100.0
+	WRESTLING={95.0 100.0}
+
+ON=@NpcRestock
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_monster_backpack 1 filthy_rich_monster_backpack 3 }
+	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
+	ITEM={ rich_gold_pile 1 filthy_rich_gold_pile 3 }
+	ITEM={ rich_gold_pile 1 }
+	ITEM=random_jewel,{1 4},R2
+	ITEM=i_gold,{2200 2900}
+
 //// NPC's UNDISCOVERED ////
 //Looking for dire wolf, gray wolf, hellcat
 
@@ -1122,7 +1123,7 @@ ON=@NpcRestock
 
 [chardef 284]  
 name=Armor Steed
-defname=c_m_armor_steed
+defname=c_armor_steed
 ICON=i_pet_horse 
 DAM=10,15 
 ARMOR=20 
@@ -1250,6 +1251,8 @@ ANATOMY={54.0 87.9}
 PARRYING={50.0 85.0}
 MAGICRESISTANCE={70.0 90.0}
 MEDITATION={70.0 90.0}
+
+
 
 [CHARDEF 719]
 DEFNAME=c_dragon_wolf
@@ -1859,7 +1862,69 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
+[CHARDEF 741]
+DEFNAME=c_slasher_daemon
+NAME=slasher daemon
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+[CHARDEF 826]
+DEFNAME=c_stygian_dragon
+NAME=stygian dragon
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
 [eof]
 
-741	MONSTER		10000	0 # 	Slasher of Veils
-826	MONSTER		10008	0 # 	Stygian Dragon

@@ -56,7 +56,7 @@ on=@create
      tactics={42.1 56.0}
      wrestling={48.6 61.5}
 
-     taming=61.9
+     tag.taming=61.9
 
      fame={150 500}
 
@@ -105,7 +105,7 @@ on=@create
 
      color=colors_snake
 
-     taming=65.3
+     tag.taming=65.3
 
      fame=250
 
@@ -156,7 +156,7 @@ on=@create
      wrestling={65.2 81.0}
      poisoning={68.4 89.7}
 
-     taming=70.1
+     tag.taming=70.1
 
      respoison=12
      resfire=12
@@ -206,7 +206,7 @@ on=@create
      wrestling={87.8 98.2}
      poisoning={95.0 99.7}
 
-     taming=89.1
+     tag.taming=89.1
 
      respoison=21
      resfire=18
@@ -256,7 +256,7 @@ on=@create
      wrestling={23.3 33.7}
      poisoning={50.3 69.6}
 
-     taming=39.1
+     tag.taming=39.1
      peacemaking=0.1
 
      respoison=8
@@ -304,7 +304,7 @@ on=@create
      tactics={41.3 58.3}
      wrestling={44.5 61.0}
 
-     taming=53.1
+     tag.taming=53.1
 
      respoison=12
      rescold=16
@@ -354,7 +354,7 @@ on=@create
      respoison=8
      rescold=10
 
-     taming=40.0
+     tag.taming=40.0
 
 [chardef 0bb]
 defname=c_ridgeback
@@ -396,7 +396,7 @@ on=@create
      tactics={33.6 41.8}
      wrestling={40.8 48.4}
 
-     taming=83.1
+     tag.taming=83.1
      Peacemaking=0.1
 
      fame=300
@@ -445,7 +445,7 @@ on=@create
      tactics={27.2 37.9}
      wrestling={37.3 48.2}
 
-     taming=69.1
+     tag.taming=69.1
 
 	respoison=14
 	resfire=14
@@ -495,7 +495,7 @@ on=@create
      tactics={30.6 41.9}
      wrestling={37.9 47.9}
 
-     taming=74.1
+     tag.taming=74.1
 
 	respoison=12
 	resfire=12
@@ -541,7 +541,7 @@ on=@create
      tactics={79.9 92.1}
      wrestling={81.3 93.4}
 
-     taming=79.1
+     tag.taming=79.1
 
 	respoison=18
 	resfire=18
@@ -594,7 +594,7 @@ on=@create
      wrestling={23.3 33.7}
      anatomy={14.8 19.9}
 
-     taming=49.1
+     tag.taming=49.1
 
      fame={50 100}
 
