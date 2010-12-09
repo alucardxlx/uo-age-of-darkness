@@ -391,6 +391,8 @@ BONUS_STATS=50
 ADV_RATE=1.7,40.0,100.0
 VALUES=1,20,80
 
+ON=@Fail
+	SRC.MESSAGE You cook the food.
 
 ON=@Fail
 	SRC.MESSAGE You ruin the food.
@@ -649,26 +651,210 @@ ON=@Abort
 	SRC.SYSMESSAGE You give up trying to persuade that to move.
 
 
+
 [SKILL 21]
 DEFNAME=Skill_Hiding
 KEY=Hiding
 TITLE=Rogue
 PROMPT_MSG=
 DELAY=2.0
-STAT_STR=500
-STAT_INT=500
-STAT_DEX=500
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=90
 BONUS_STR=0
-BONUS_DEX=70
-BONUS_INT=30
-BONUS_STATS=50
-ADV_RATE=1.7,40.0,100.0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=25
+ADV_RATE=10000.0
 
-ON=@Fail
-MESSAGE @,,2 501241
+on=@Wait
+if (<src.tag0.skilldone_hiding>==1)
+  SRC.SYSMESSAGE You can't use hiding again yet.
+  return 1
+else
+  src.tag.skilldone_hiding = 1
+  src.timerf 3 f_clear_skilldone hiding
+endif
+f_start_hiding
+return 1
 
-ON=@Abort
-MESSAGE @,,2 501241
+
+[function f_start_hiding]
+if (<action> == skill_magery) || (<action> == skill_necromancy) ||  (<action> == skill_chivalry) || (<action> == skill_spellweaving) || (<action> == skill_mysticism) // do bushido and ninjitsu count as spell casting?
+	sysmessage <def.scp.hiding_spellactive>
+	return 1
+endif
+local.range = <eval (18 - (<hiding> / 100))>
+forchars <dlocal.range>
+	if (<memoryfindtype.memory_war_targ.link> == <src>) && (<canseelos <src>>)
+		local.combat = 1
+	endif
+endfor
+if <local.combat>
+	sysmessage <def.scp.hiding_activecombat>
+	return 1
+endif
+if !<r0,<eval ((<hiding> / 100) - 1)>> // we might need a better success chance formula
+	local.fail = 1
+else
+	skillgain hiding <eval (<hiding> / 10)>
+endif
+if <local.fail>
+	skillgain hiding <eval (<hiding> / 7) +1>
+	sysmessage <def.scp.hiding_fail>
+else
+	sysmessage <def.scp.hiding_success>
+	f_hide
+endif
+
+[function f_hide]
+addbuff 1012,1075655,1075656,0,0
+removefromview
+flags |= statf_hidden
+events +e_skill_hiding
+update
+
+[function f_reveal]
+if <flags>&statf_hidden
+sysmessage <def.scp.hiding_reveal>
+endif
+flags &= ~statf_hidden
+events -e_skill_hiding
+events -e_skill_stealth
+dspeech -spk_hidden
+tag.stepstealth =
+removebuff 1012
+update
+
+[events e_skill_hiding]
+on=@stepstealth
+if <flags>&statf_onhorse
+	f_reveal
+endif
+f_start_stealth
+argn1 = 0
+events -e_skill_hiding
+
+on=@skillstart
+if !((<argn1> == detectinghidden) || (<argn1> == itemid) || (<argn1> == anatomy) || (<argn1> == armslore) || (<argn1> == animallore) || (<argn1> == evaluatingintel) || (<argn1> == forensics) || (<argn1> == poisoning) || (<argn1> == tracking) || (<argn1> == snooping) || (<argn1> == stealing)) 
+f_reveal
+endif
+
+on=@skillwait
+if !((<argn1> == detectinghidden) || (<argn1> == itemid) || (<argn1> == anatomy) || (<argn1> == armslore) || (<argn1> == animallore) || (<argn1> == evaluatingintel) || (<argn1> == forensics) || (<argn1> == poisoning) || (<argn1> == tracking) || (<argn1> == snooping) || (<argn1> == stealing)) 
+f_reveal
+endif
+
+on=@personalspace
+src.sysmessage <def.scp.hiding_shoveinvis>
+return 0
+
+on=@spelleffect
+if <argn1> == s_reveal
+	local.divisor = <eval (<hiding> + <stealth>)>
+	if <local.divisor> > 0
+		local.chance = <eval ((50 * (<src.magery> + <src.detectinghidden>)) / <local.divisor>)>
+	else
+		local.chance = 1000
+	endif
+	if <local.chance> > <r1000>
+		f_reveal
+	else
+		return 1
+	endif
+endif
+
+[speech spk_hidden]
+on=*
+f_reveal
+
+[SKILL 47]
+DEFNAME=SKILL_STEALTH
+KEY=Stealth
+TITLE=Rogue
+PROMPT_MSG=
+DELAY=2.0
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=90
+BONUS_STR=0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=25
+ADV_RATE=10000.0
+
+ON=@Wait
+f_start_stealth
+return 1
+
+[function f_start_stealth]
+if !<flags>&statf_hidden
+	sysmessage <def.scp.stealth_nothidden>
+	f_reveal
+else
+	//if <f_armor_rating> >= 42
+	//	sysmessage <def.scp.stealth_armorcheck>
+	//	f_reveal
+	//else
+		if <r1,1000> > <r1,(<stealth>+<skillmod stealth>)> // we might need a better success chance formula
+			sysmessage <def.scp.stealth_fail>
+			skillgain stealth <eval (<stealth> / 7) + 1>
+			f_reveal
+		else
+			sysmessage <def.scp.stealth_success>
+			skillgain stealth <eval (<stealth> / 10)>
+			f_stealth
+		endif
+	//endif
+endif
+
+[function f_stealth]
+addbuff 1012,1075655,1075656,0,0
+tag.stepstealth = <eval (<stealth>+<skillmod stealth>) / 5.0>
+events +e_skill_stealth
+flags |= statf_hidden
+dspeech +spk_hidden
+update
+
+[events e_skill_stealth]
+on=@stepstealth
+if <flags>&statf_onhorse
+	f_reveal
+endif
+tag0.stepstealth -= <qval (<flags>&statf_fly) ? 2:1>
+if <tag0.stepstealth> <= 0
+	f_start_stealth
+endif
+argn1 = 0
+
+on=@skillstart
+if !((<argn1> == detectinghidden) || (<argn1> == itemid) || (<argn1> == anatomy) || (<argn1> == armslore) || (<argn1> == animallore) || (<argn1> == evaluatingintel) || (<argn1> == forensics) || (<argn1> == poisoning) || (<argn1> == tracking) || (<argn1> == snooping) || (<argn1> == stealing)) 
+f_reveal
+endif
+
+on=@skillwait
+if !((<argn1> == detectinghidden) || (<argn1> == itemid) || (<argn1> == anatomy) || (<argn1> == armslore) || (<argn1> == animallore) || (<argn1> == evaluatingintel) || (<argn1> == forensics) || (<argn1> == poisoning) || (<argn1> == tracking) || (<argn1> == snooping) || (<argn1> == stealing)) 
+f_reveal
+endif
+
+on=@personalspace
+src.sysmessage <def.scp.hiding_shoveinvis>
+return 1
+
+on=@spelleffect
+if <argn1> == s_reveal
+local.divisor = <eval (<hiding> + <stealth>)>
+	if <local.divisor> > 0
+	local.chance = <eval ((50 * (<src.magery> + <src.detectinghidden>)) / <local.divisor>)>
+	else
+	local.chance = 1000
+	endif
+	if <local.chance> > <r1000>
+	f_reveal
+	else
+	return 1
+	endif
+endif
 
 [SKILL 22]
 DEFNAME=SKILL_PROVOCATION
@@ -1041,6 +1227,7 @@ DEFNAME=SKILL_SPIRITSPEAK
 KEY=SpiritSpeak
 TITLE=Medium
 PROMPT_MSG=
+FLAGS=
 DELAY=2.0
 STAT_STR=500
 STAT_INT=500
@@ -1058,8 +1245,8 @@ SRC.MESSAGE @,,2 502443
 
 ON=@PreStart
 IF (<HITS> >= <MAXHITS>)
-SYSMESSAGE @55 You don't need to heal.
-RETURN 1
+	SYSMESSAGE @55 You don't need to heal.
+	RETURN 1
 ENDIF
 
 ON=@Success
@@ -1067,7 +1254,7 @@ IF (<HITS> >= <MAXHITS>)
 SYSMESSAGE @55 You don't need to heal.
 RETURN 1
 ENDIF
-skillgain SpiritSpeak 20
+skillgain SpiritSpeak <SpiritSpeak>
 FORITEMS 3
 IF (<TYPE>==t_corpse)
 IF (<CANSEELOS>)
@@ -1155,31 +1342,6 @@ ON=@Abort
 	SRC.SYSMESSAGE You decide not to sew anymore for now.
 
 
-[DEFNAME Taming_Messages]
-scp.taming_tameself		"@,,1 You are your own master."
-scp.taming_notchar		"@,,2 502801"	// You can't tame that!
-scp.taming_notameable		"@,,2 1049655"	// That creature cannot be tamed.
-scp.taming_alreadytamed		"@,,2 502804"	// That animal looks tame already.
-scp.taming_onlymale		"@,,2 1049653"	// That creature can only be tamed by males.
-scp.taming_onlyfemale		"@,,2 1049652"	// That creature can only be tamed by females.
-scp.taming_onlyelf		"@03b2,,2 502801"	// You can't tame that!
-scp.taming_nochance		"@,,2 502806"	// You have no chance of taming this creature.
-scp.taming_manyfollowers	"@,,2 1049611"	// You have too many followers to tame that creature.
-scp.taming_manyowners		"@,,2 1005615"	// This animal has had too many owners and is too upset for you to tame.
-scp.taming_mustsubdue		"@,,2 1054025"	// You must subdue this creature before you can tame it!
-scp.taming_ontame		"@,,2 502802"	// Someone else is already taming this.
-scp.taming_getanger		"@,,2 502805"	// You seem to anger the beast!
-scp.taming_started		"@059,,2 1010597"	// *You start to tame the creature.*
-scp.taming_hestarted		"@059,,2 1010598"	// *begins taming a creature.*
-scp.taming_failed		"@,,2 502798"	// You fail to tame the creature.
-scp.taming_toofaraway		"@,,2 502795"	// You are too far away to continue taming.
-scp.taming_abort		"You give up trying to tame the creature."
-scp.taming_youdead		"@,,2 502796"	// You are dead, and cannot continue taming.
-scp.taming_cantseelos		"@,,2 1049654"	// You do not have a clear path to the animal you are taming, and must cease your attempt.
-scp.taming_isangry		"@,,2 502794"	// The animal is too angry to continue taming.
-scp.taming_player		"@,,2 502801"	// You can't tame that!
-scp.taming_subdued		"@,,2 1080057"	// * The creature has been beaten into subjugation! *
-
 [SKILL 35]
 DEFNAME=Skill_Taming
 KEY=Taming
@@ -1228,7 +1390,6 @@ elif <argo.can_anger_on_tame> && !<argo.isevent.e_peacemaked>
 	argo.message <def.scp.taming_getanger>
 	argo.face <uid>
 	argo.attack <uid>
-	f_skill_delay <getargv 2 <def.skill.35.waittime>>
 	return 1
 	endif
 endif
@@ -1349,7 +1510,7 @@ DEX -= (<obj.DEX>/10)
 INT -= (<obj.INT>/10)
 EXP -= (<obj.EXP>/2)
 IF (<LEVEL> > 0)
-	  TAG.NEXTLEVEL -= (<SRC.TARG.TAG.NEXTLEVEL>/2)
+	  TAG.NEXTLEVEL -= (<TAG.NEXTLEVEL>/2)
 	  LEVEL -= 1
 ENDIF
 for 0 57
@@ -1414,14 +1575,18 @@ IF (<TARG.TYPE>==t_potion)
 	TARG.NAME=<LOCAL.POTENCY> <SERV.SPELL.<TARG.MORE1>.NAME> potion
 	TARG.FIX
 ENDIF
+SRC.MESSAGE It tastes like <TARG.NAME>.
 RETURN
+
 
 ON=@Fail
 	SRC.MESSAGE You cannot identify the substance.
 	SKILLGAIN TasteID 30
+	return
 
 ON=@Abort
 	SRC.MESSAGE You stop trying to identify the substance.
+	return
 
 [SKILL 37]
 DEFNAME=Skill_Tinkering
@@ -1455,7 +1620,7 @@ BONUS_STATS=50
 ADV_RATE=1.7,40.0,100.0
 
 ON=@Select
-if (<src.tag0.skilldone_tracking>=1)
+if (<src.tag0.skilldone_tracking>==1)
   SRC.SYSMESSAGE You can't use tracking again yet.
   return 1
 else
@@ -1670,26 +1835,6 @@ ON=@Fail
 
 ON=@Abort
 	SRC.SYSMESSAGE You stop concentrating.
-
-[SKILL 47]
-DEFNAME=SKILL_STEALTH
-KEY=Stealth
-TITLE=Rogue
-PROMPT_MSG=
-DELAY=2.0
-STAT_STR=500
-STAT_INT=500
-STAT_DEX=500
-BONUS_STR=0
-BONUS_DEX=70
-BONUS_INT=30
-BONUS_STATS=50
-ADV_RATE=1.7,40.0,100.0
-EFFECT=100,150
-
-ON=@Select
-	SRC.SYSMESSAGE This skill is used when moving while hiding. It does not need to be activated.
-	RETURN 1
 
 [SKILL 48]
 DEFNAME=SKILL_REMOVE_TRAP
@@ -1952,5 +2097,50 @@ LOCAL.VAL=1000000
 ENDIF
 FLOAT.RANDOM=<FLOATVAL <R<dLOCAL.VAL>>/1000000>
 RETURN <FLOAT.RANDOM>
+
+[DEFNAME Skill_Messages]
+
+scp.skill_youaredead		"@,,2 500949"	// You can't do that when you're dead.
+scp.skill_mustwait		"@,,2 500118"	// You must wait a few moments to use another skill.
+scp.hiding_fail			"@,,2 501241"		// You fail to hide.
+scp.hiding_abort		"@,,2 501241"		// You fail to hide.
+scp.hiding_spellactive		"@,,2 501238"		// You are busy doing something else and cannot hide.
+scp.hiding_activecombat		"@022,,2 501237"	// You can't seem to hide right now.
+scp.hiding_success		"@01f4,,2 501240"	// You have hidden yourself well.
+scp.hiding_fail			"@022,,2 501241"	// You fail to hide.
+scp.hiding_reveal		"@,,2 501242"		// You are no longer hidden.
+scp.hiding_shoveinvis		"@,,2 1019041"		// You shove something invisible out of the way.
+
+
+scp.stealth_nothidden		"@,,2 502725" // You must hide first
+scp.stealth_reqhiding		"@,,2 502726" // You are not hidden well enough.  Become better at hiding.
+scp.stealth_armorcheck		"@,,2 502727" // You could not hope to move quietly wearing this much armor.
+scp.stealth_success		"@,,2 502730" // You begin to move quietly.
+scp.stealth_fail		"@,,2 502731" // You fail in your attempt to move unnoticed.
+
+scp.taming_tameself		"@,,1 You are your own master."
+scp.taming_notchar		"@,,2 502801"	// You can't tame that!
+scp.taming_notameable		"@,,2 1049655"	// That creature cannot be tamed.
+scp.taming_alreadytamed		"@,,2 502804"	// That animal looks tame already.
+scp.taming_onlymale		"@,,2 1049653"	// That creature can only be tamed by males.
+scp.taming_onlyfemale		"@,,2 1049652"	// That creature can only be tamed by females.
+scp.taming_onlyelf		"@03b2,,2 502801"	// You can't tame that!
+scp.taming_nochance		"@,,2 502806"	// You have no chance of taming this creature.
+scp.taming_manyfollowers	"@,,2 1049611"	// You have too many followers to tame that creature.
+scp.taming_manyowners		"@,,2 1005615"	// This animal has had too many owners and is too upset for you to tame.
+scp.taming_mustsubdue		"@,,2 1054025"	// You must subdue this creature before you can tame it!
+scp.taming_ontame		"@,,2 502802"	// Someone else is already taming this.
+scp.taming_getanger		"@,,2 502805"	// You seem to anger the beast!
+scp.taming_started		"@059,,2 1010597"	// *You start to tame the creature.*
+scp.taming_hestarted		"@059,,2 1010598"	// *begins taming a creature.*
+scp.taming_failed		"@,,2 502798"	// You fail to tame the creature.
+scp.taming_toofaraway		"@,,2 502795"	// You are too far away to continue taming.
+scp.taming_abort		"You give up trying to tame the creature."
+scp.taming_youdead		"@,,2 502796"	// You are dead, and cannot continue taming.
+scp.taming_cantseelos		"@,,2 1049654"	// You do not have a clear path to the animal you are taming, and must cease your attempt.
+scp.taming_isangry		"@,,2 502794"	// The animal is too angry to continue taming.
+scp.taming_player		"@,,2 502801"	// You can't tame that!
+scp.taming_subdued		"@,,2 1080057"	// * The creature has been beaten into subjugation! *
+
 
 [EOF]

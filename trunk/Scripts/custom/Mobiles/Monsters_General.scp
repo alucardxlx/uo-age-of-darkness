@@ -21,8 +21,8 @@ VERSION=0.99w5
 //Bloods
 //None -1
 //Red (Common Vertebrates/Hemoglobin) 0
-//Green (Dragons/Chlorocruorin?) 68
-//Violet-Pink (Worms,Klingons/Hemerythrin) 23
+//Green (Dragons/Chlorocruorin?) 63
+//Violet (Gazers,Zorns,relatives/Hemerythrin) 23
 //Blue (Mollusc/haemocyanin) 307
 //Pale yellowish (Arthropod/Hemolymph) 765
 
@@ -142,10 +142,8 @@ name="gazer larva"
 SOUND=snd_monster_gazer1
 ICON=i_pet_swarm
 DAM=6,9
-RESDISPDNID=c_gazer
 bloodcolor=23
 RESLEVEL=2
-RESDISPDNHUE=78
 ARMOR=26
 CAN=MT_WALK|MT_FLY|mt_nonhum
 desires=t_coin, t_gem, t_jewelry, c_gazer, c_gazer_larva, c_zorn, c_headless
@@ -203,7 +201,7 @@ icon=i_pet_gazer
 anim=06007f
 bloodcolor=23
 dam=7,12
-armor=36
+armor=34
 moverate=0
 resources=4 i_ribs_raw
 can=MT_WALK|MT_FLY|mt_nonhum
@@ -330,7 +328,7 @@ on=@create
 [chardef c_acid_slug]
 id=c_rotworm
 name="acid slug"
-sound=snd_monster_rotworm
+sound=snd_monster_acid_slug
 icon=i_pet_slime
 anim=060c7f
 can=mt_walk|mt_nonhum
@@ -387,9 +385,6 @@ name="frost ooze"
 sound=snd_monster_slime1
 dam=5,7
 armor=8
-resdispid=c_slime
-reslevel=3
-resdisphue=0480
 moverate=40
 can=mt_walk|mt_nonhum
 bloodcolor=color_ice
@@ -437,13 +432,12 @@ on=@create
 defname=c_swamp_tentacles
 name="swamp tentacles"
 icon=i_pet_tentacles_lbr
-sound=snd_monster_corpsr1
+sound=snd_monster_swamp_tentacles
 can=mt_nonmover|mt_nonhum
 foodtype=t_meat_raw
 dam=9,12
-armor=28
+armor=26
 moverate=0
-resdispid=c_swamp_tentacles
 bloodcolor=-1
 TEVENTS=e_Level_up_NPC
 aversions=r_civilization
@@ -497,7 +491,7 @@ icon=i_pet_corpser
 anim=06147f
 can=mt_nonmover|mt_nonhum
 dam=10,13
-armor=26
+armor=24
 moverate=0
 bloodcolor=-1
 foodtype=24 t_meat_raw
@@ -547,7 +541,7 @@ name=ice corpser
 can=mt_nonmover|mt_nonhum
 moverate=0
 dam=10,13
-armor=26
+armor=24
 bloodcolor=-1
 icon=i_pet_corpser
 sound=snd_monster_corpsr1
@@ -604,7 +598,7 @@ sound=snd_monster_reaper1
 icon=i_pet_reaper
 anim=078c7f
 dam=11,14
-armor=30
+armor=28
 moverate=0
 bloodcolor=-1
 resources=6 i_reag_dead_Wood, 4 i_log
@@ -672,14 +666,12 @@ name=reaper elder
 defname=c_reaper_elder
 ICON=020fa 
 DAM=14,18 
-ARMOR=48
+ARMOR=44
 moverate=60
 bloodcolor=-1
 resources=9 i_reag_dead_Wood, 6 i_log
 CAN=MT_WALK|mt_nonhum
 RESLEVEL=5
-RESDISPDNHUE=33
-RESDISPDNID=c_reaper
 FOODTYPE=55 i_kindling  
 desires=t_scroll, t_coin, t_gem, t_wand, c_reaper, C_reaper_elder, t_reagent, t_potion
 TEVENTS=e_Level_up_NPC
@@ -746,7 +738,7 @@ name="kraken"
 sound=snd_monster_corpsr1
 icon=i_pet_kraken_lbr
 dam=15,17
-armor=40
+armor=38
 moverate=0
 ANIM=078C7F
 bloodcolor=307
@@ -800,7 +792,7 @@ name="lava lizard"
 sound=snd_monster_lavalizard1
 icon=i_pet_croc
 dam=7,12
-armor=34
+armor=32
 ANIM=01FFF
 moverate=10
 resources=6 i_ribs_raw, 12 i_hide
@@ -854,7 +846,7 @@ sound=snd_elementl_erthel1
 can=mt_walk|mt_nonhum|mt_ghost|mt_passwalls
 icon=i_pet_quagmire_lbr
 dam=10,14
-armor=40
+armor=38
 moverate=10
 bloodcolor=23
 resources=8 i_reag_bone
@@ -911,7 +903,7 @@ sound=snd_monster_ethereal
 icon=i_pet_warrior_ethereal_lbr
 can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
 dam=7,12
-armor=35
+armor=33
 ANIM=078C7F
 moverate=0
 resources=5 i_ribs_raw
@@ -979,7 +971,7 @@ sound=snd_monster_ethereal
 icon=i_pet_warrior_ethereal_lbr
 can=mt_walk|mt_run|mt_equip|mt_fly|mt_usehands
 dam=8,14
-armor=45
+armor=41
 ANIM=078C7F
 moverate=0
 resources=5 i_ribs_raw
@@ -1049,7 +1041,7 @@ sound=snd_elementl_erthel1
 icon=i_pet_plague_beast_lbr
 can=mt_walk|mt_usehands|mt_nonhum
 dam=11,15
-armor=36
+armor=34
 moverate=40
 bloodcolor=695
 resources=6 i_ribs_raw,
@@ -1108,16 +1100,13 @@ name="bog thing"
 sound=snd_monster_reaper1
 icon=i_pet_bog_thing_lbr
 dam=11,13
-armor=32
+armor=30
 moverate=40
-resdispid=c_corpser
 reslevel=3
-resdisphue=
 bloodcolor=-1
 resources=6 i_reag_fertile_dirt, 6 i_reag_dead_wood, 4 i_log
 foodtype=75 t_meat_raw
 can=mt_walk|mt_nonhum
-shelter=r_jungle,r_swamp_rock,r_forests
 desires=r_foliage
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
@@ -1167,15 +1156,13 @@ sound=snd_animals_lion1
 icon=i_pet_sphinx_lbr
 can=mt_walk|mt_run|mt_nonhum
 dam=11,14
-armor=45
+armor=41
 moverate=10
-resdispid=c_a_cougar
 reslevel=3
 resdisphue=color_gray_dk
 resources=5 i_ribs_raw
 foodtype=3 t_food, t_fruit
 aversions=r_civilization
-shelter=r_desert,r_caves
 ANIM=0FFC78C7F
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=6
@@ -1372,12 +1359,9 @@ tag.taming=69.6
 DEFNAME=c_iron_beetle
 NAME=Iron Beetle
 ICON=i_pet_runebeetle
-RESLEVEL=4
-RESDISPDNHUE=0410
-RESDISPDNID=c_deathwatch_beetle
 CAN=mt_equip|mt_walk|mt_run|mt_usehands
 DAM=15,20
-ARMOR=56
+ARMOR=52
 bloodcolor=765
 FOODTYPE=45 t_ore,t_ingot
 TEvents=t_weapon_mace_pick
@@ -1433,7 +1417,7 @@ DEFNAME=c_mind_whipper
 NAME=mind whipper
 sound=snd_monster_maddening_horror
 DAM=11,13
-ARMOR=32
+ARMOR=30
 CAN=mt_walk|mt_run|mt_usehands
 MOVERATE=0
 bloodcolor=307
@@ -1493,7 +1477,7 @@ name=#names_scalis the Enforcer
 can=mt_swim|mt_male|mt_usehands
 moverate=25
 dam=16,18
-armor=75
+armor=70
 bloodcolor=307
 icon=i_pet_man
 sound=snd_monster_daemon1
@@ -1514,9 +1498,9 @@ TAG.MANUEVER1=2
 TAG.MANUEVER2=23
 TAG.MANUEVER3=29
 
-category=Monsters
-subsection=Sea Creatures
-description=Scalis
+category=AoD Monsters
+subsection=General
+description=Scalis Enforcer
 
 ON=@Create
 color=0
@@ -1526,10 +1510,10 @@ fame=20000
 karma=-20000
 EXP={ 16500000 16700000 } //Level 16
 
-resfire=70
-rescold=80
-respoison=70
-resenergy=70
+resfire=60
+rescold=70
+respoison=60
+resenergy=60
 
 ostr={ 295 320 }
 odex={ 110 145 }
@@ -1573,12 +1557,6 @@ ON=@GetHit
  new.p <src.p>
  new.attack <src.uid>
 
-[names names_scalis]
-2
-Osiredon
-Scalis
-
-
 
 [CHARDEF 832]
 DEFNAME=c_phoenix
@@ -1591,11 +1569,11 @@ RESOURCES=1 i_bird_raw, 30 i_feather
 FOODTYPE=30 t_crops, t_fruit, t_grain
 SHELTER=r_farm, r_forest
 tag.wrestlingspeed=40
-ANIM=0FFFFFFFF
+TEVENTS=e_fire_defense
 
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
+category=AoD Monsters
+subsection=General
+description=Phoenix
 
 ON=@CREATE
 NPC=brain_animal
@@ -1686,6 +1664,7 @@ STEALTH={10.0 25.0}
 [CHARDEF c_mimic]
 NAME=mimic
 ID=C_plague_beast
+SOUND=snd_monster_mimic_old
 can=mt_walk|mt_nonhum
 dam=9,13
 armor=34
@@ -1812,6 +1791,11 @@ ELSE
 	RETURN 1
 ENDIF	
 
+
+[names names_scalis]
+2
+Osiredon
+Scalis
 
 
 [EOF]

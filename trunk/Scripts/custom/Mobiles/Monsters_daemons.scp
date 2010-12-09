@@ -16,141 +16,144 @@ VERSION=0.99w5
 //// NPC's DAEMONS ////
 
 
-[chardef 0310]
-defname=c_daemon_magus
-name="daemon magus"
-sound=snd_monster_daemon1
-icon=i_pet_demon_arcane_lbr
-can=mt_walk|mt_usehands
-dam=9,12
-armor=30
-moverate=20
-resources=4 i_ribs_raw, 6 i_reag_daemon_bone
-desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
-foodtype=15 t_meat_raw
-aversions=r_civilization
-ANIM=0FFC78C7F
+[chardef 083]
+defname=c_efreet
+name="efreet"
+icon=i_pet_efreet_lbr
+sound=snd_monster_new_fire
+dam=9,13
+armor=27
+moverate=0
+resdispid=c_m_efreet
+reslevel=3
+resdisphue=
+resources=8 t_magic
+can=mt_walk|mt_fly|mt_run|mt_nonhum
+shelter=r_mountains
+desires=r_mountains
 TEVENTS=e_Level_up_NPC
-tag.slots_needed=7
-tag.override.range=2
+tag.slots_needed=5
 Tag.BeastClass=Beast_Magic
 tag.firedamage=50
+tag.wrestlingspeed=46
 TAG.MANUEVER1=27
-TAG.MANUEVER2=9
-TAG.MANUEVER3=3
+TAG.MANUEVER2=20
+TAG.MANUEVER3=13
 TEVENTS=e_combat_move_intel
-
 
 category=AoD Monsters
 subsection=Daemons
-description=Daemon Magus
+description=Efreet
 
 on=@create
 	nightsight=1
      npc=brain_monster
-     name="#names_greater_daemon"
+     color=0489
      SetDemon
 
-     str={151 175}
-     dex={66 85}
-     int={201 225}
+     str={118 134}
+     dex={101 113}
+     int={157 175}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 16
+
+     resfire=80
+     resenergy=30
+     respoison=30
+
+	givelang 1
+
+     anatomy={57.7 67.6}
+     parrying={65.0 85.0}
+     necromancy={49.7 59.6}
+     magicresistance={61.2 84.0}
+     tactics={61.3 79.3}
+     wrestling={64.9 79.8}
+
+     fame={2100 4000}
+     karma={-3000 -3999}
+
+     EXP={ 8050 11000 } //Level 5
+
+     TAG.RANDCAST=25
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 15
+     EVENTS=+e_intel_char_sorcery_user
+
+
+on=@death
+     item={ magic_box 1 treasure_crate_small 1 0 1 }
+
+[chardef c_djinn]
+id=c_efreet
+name="djinn"
+icon=i_pet_efreet_lbr
+sound=snd_monster_djinn
+dam=11,15
+armor=44
+moverate=0
+resdispid=c_m_efreet
+reslevel=3
+resdisphue=
+resources=8 t_magic
+can=mt_walk|mt_fly|mt_run
+desires=r_mountains
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
+TAG.MANUEVER1=27
+TAG.MANUEVER2=20
+TAG.MANUEVER3=13
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Daemons
+description=Djinn
+
+on=@create
+	nightsight=1
+     npc=brain_monster
+     color=081b
+     SetDemon
+
+     str={87 103}
+     dex={81 93}
+     int={228 244}
      TAG0.MODHITS = 16
      TAG0.MODMANA = 32
 
-     spiritspeak={65.0 75.0}
-     evaluatingintel={90.1 98.0}
-     magery={99.0 100.0}
-     magicresistance={85.0 88.0}
-     tactics={60.0 80.0}
-     wrestling={70.0 80.0}
-     meditation={70.9 88.1}
-     necromancy={90.1 98.0}
-
 	resfire=60
-	rescold=24
-	respoison=24
-	resenergy=24
-
-     fame={6500 9000}
-     karma={-7000 -7999}
-
+	rescold=30
+	respoison=30
+	resenergy=30
 	givelang 8
 
+     evaluatingintel={80.4 93.6}
+     parrying={65.0 75.0}
+     meditation={55.6 75.7}
+     magery={87.7 97.6}
+     magicresistance={74.9 89.8}
+     tactics={61.2 74.0}
+     wrestling={61.2 74.0}
+     necromancy={86.7 95.6}
+     spiritspeak={46.7 55.6}
 
-     EXP={ 129000 161000 } //Level 9
+
+     fame={3100 5000}
+     karma={-3000 -3999}
+
+     EXP={ 16500 20500 } //Level 6
 
      TAG.RANDCAST=45
-     TAG.QUICKCAST = 25
+     TAG.QUICKCAST = 20
      TAG.SPELLPOWER = 25
-     EVENTS=+e_intel_char_sorcery_user
      EVENTS=+e_intel_char_magery_user
-
-
-[chardef 0318]
-defname=c_chaos_daemon
-name="chaos daemon"
-sound=snd_monster_daemon1
-icon=i_pet_demon_chaos_lbr
-can=mt_walk|mt_fly|mt_usehands
-dam=13,15
-armor=44
-moverate=20
-resources=4 i_ribs_raw, 6 i_reag_daemon_bone
-foodtype=15 t_meat_raw
-desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
-aversions=r_civilization
-TEVENTS=e_Level_up_NPC
-ANIM=0FFC78C7F
-tag.slots_needed=7
-tag.override.range=2
-Tag.BeastClass=Beast_Heavy
-tag.firedamage=20
-tag.colddamage=20
-tag.poisondamage=20
-tag.energydamage=20
-TAG.MANUEVER1=3
-TAG.MANUEVER2=9
-TAG.MANUEVER3=4
-TEVENTS=e_combat_move_intel
-
-category=undiscovered
-subsection=daemons
-description=chaos daemon - lbr
-
-on=@create
-	nightsight=1
-     npc=brain_monster
-     name="#names_daemon"
-     SetDemon
-
-     str={291 306}
-     dex={90 120}
-     int={41 54}
-     TAG0.MODHITS = 32
-
-	resfire=60
-	rescold=24
-	respoison=24
-	resenergy=24
-
-	givelang 8
-
-     necromancy={95.0 98.0}
-     parrying={75.0 95.0}
-     magicresistance={85.0 95.0}
-     tactics={80.0 90.0}
-     wrestling={75.0 90.0}
-     anatomy={75.0 90.0}
-
-
-     fame={6000 8000}
-     karma={-6000 -6999}
-
-     EXP={ 129000 161000 } //Level 9
-
-     TAG.RANDCAST=20
      EVENTS=+e_intel_char_sorcery_user
 
+
+on=@death
+     item={ magic_box 1 treasure_crate_large 1 0 1 }
 
 
 [chardef 061]
@@ -158,13 +161,13 @@ defname=c_hellhound
 name="hell hound"
 sound=snd_animals_wolf1
 icon=i_pet_hellhound_lbr
-dam=10,14
-armor=30
+dam=9,12
+armor=28
 moverate=0
 can=mt_walk|mt_nonhum|mt_run
 TEVENTS=e_Level_up_NPC
 resources=4 i_ribs_raw, 4 i_reag_daemon_bone, 2 i_fur_dark
-foodtype=t_meat_raw
+foodtype=60 t_meat_raw
 desires=c_hellhound,c_daemon,c_balron
 tag.slots_needed=5
 Tag.BeastClass=Beast_Heavy
@@ -220,9 +223,10 @@ SOUND=snd_animals_dog1
 ICON=i_pet_dog
 RESDISPDNHUE=2
 CAN=MT_WALK|MT_RUN
-DAM=10,14
-Armor=30
+dam=9,12
+Armor=28
 moverate=0
+FOODTYPE=60 t_meat_raw
 CATEGORY=New Monsters
 SUBSECTION=SE
 DESCRIPTION=Ice Hound
@@ -275,17 +279,18 @@ name="ice fiend"
 sound=snd_monster_daemon1
 icon=i_pet_daemon_ice_lbr
 dam=9,12
-armor=44
+armor=40
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 can=mt_fly|mt_walk
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
-aversions=r_civilization,r_water
+aversions=r_civilization,t_water
 ANIM=03FBC7F
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=6
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
 tag.colddamage=50
 TAG.MANUEVER1=23
 TAG.MANUEVER2=4
@@ -349,12 +354,13 @@ moverate=0
 resources=2 i_ribs_raw, 2 i_hide, 2 i_reag_daemon_bone, 2 i_reag_batwing
 can=mt_fly|mt_walk
 ANIM=078C7F
-foodtype=9 t_meat_raw
+foodtype=40 t_meat_raw
 desires=c_imp
-aversions=r_civilization,r_water
+aversions=r_civilization,t_water
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=4
 Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
 tag.firedamage=50
 TAG.MANUEVER1=27
 TAG.MANUEVER2=5
@@ -404,17 +410,18 @@ name="succubus"
 sound=snd_monster_succubus
 icon=i_pet_harpy
 can=mt_walk|mt_usehands|mt_fly
-dam=11,15
-armor=46
+dam=10,13
+armor=42
 moverate=10
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
-foodtype=5 t_meat_raw
+FOODTYPE=60 t_meat_raw, t_food, t_drink
 ANIM=078C7F
 desires=c_succubus,t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=7
 Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
 tag.poisondamage=50
 TAG.MANUEVER1=27
 TAG.MANUEVER2=5
@@ -476,16 +483,17 @@ icon=i_pet_daemon
 anim=03fbc7f
 can=mt_equip|mt_walk|mt_fly|mt_usehands
 dam=9,12
-armor=44
+armor=40
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
 aversions=r_civilization
-foodtype=t_meat_raw, i_reag_blood_vial
+FOODTYPE=70 t_meat_raw, t_food, t_drink
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=6
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
 tag.firedamage=50
 TAG.MANUEVER1=23
 TAG.MANUEVER2=4
@@ -544,88 +552,19 @@ name="balron"
 sound=snd_monster_daemon1
 icon=i_pet_daemon_gate_lbr
 can=mt_walk|mt_fly|mt_usehands
-dam=11,15
-armor=48
+dam=11,14
+armor=56
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
-foodtype=15 t_meat_raw
+FOODTYPE=70 t_meat_raw, t_food, t_drink
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
 aversions=r_civilization
-TEVENTS=e_Level_up_NPC
-ANIM=03FBC7F
-tag.slots_needed=7
-tag.override.range=2
-Tag.BeastClass=Beast_Magic
-tag.firedamage=50
-TAG.MANUEVER1=23
-TAG.MANUEVER2=4
-TAG.MANUEVER3=9
-TEVENTS=e_combat_move_intel
-
-category=AoD Monsters
-subsection=Daemons
-description=Balron
-
-on=@create
-     nightsight=1
-
-     npc=brain_monster
-     name="#names_greater_daemon"
-     SetDemon
-
-     str={247 260}
-     dex={81 91}
-     int={147 164}
-     TAG0.MODHITS = 32
-     TAG0.MODMANA = 32
-
-     EXP={ 520000 640000 } //Level 11
-
-     magery={95.0 100.0}
-     parrying={65.0 75.0}
-     tactics={98.0 100.0}
-     meditation={27.3 50.8}
-     evaluatingintel={80.4 93.6}
-     necromancy={65.0 75.0}
-     anatomy={35.6 55.7}
-     magicresistance=100.0
-     wrestling={91.2 99.7}
-
-
-     fame={6000 8000}
-     karma={-6000 -6999}
-
-	resfire=60
-	rescold=24
-	respoison=24
-	resenergy=24
-
-	givelang 8
-
-     TAG.RANDCAST=30
-     TAG.QUICKCAST = 15
-     TAG.SPELLPOWER = 20
-     EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_intel_char_sorcery_user
-
-[chardef 028]
-defname=c_orcus
-name="orcus"
-sound=snd_monster_daemon1
-icon=i_pet_daemon_elder_lbr
-dam=13,17
-armor=60
-moverate=20
-resources=4 i_ribs_raw, 6 i_reag_daemon_bone
-can=mt_equip|mt_walk|mt_fly|mt_usehands
-desires=c_daemon,t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
-aversions=r_water,r_mountains
-foodtype=t_meat_raw, i_reag_blood_vial
 TEVENTS=e_Level_up_NPC
 ANIM=03FBC7F
 tag.slots_needed=99
 tag.override.range=2
 Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
 tag.firedamage=50
 tag.poisondamage=50
 TAG.MANUEVER1=23
@@ -635,7 +574,7 @@ TEVENTS=e_combat_move_intel
 
 category=AoD Monsters
 subsection=Daemons
-description=Orcus
+description=Balron
 
 on=@create
 	nightsight=1
@@ -679,18 +618,226 @@ on=@create
      EVENTS=+e_intel_char_sorcery_user
 
 
+[chardef 0310]
+defname=c_daemon_magus
+name="daemon magus"
+sound=snd_monster_arcane_daemon
+icon=i_pet_demon_arcane_lbr
+can=mt_walk|mt_usehands
+dam=9,12
+armor=28
+moverate=20
+resources=4 i_ribs_raw, 6 i_reag_daemon_bone
+desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
+FOODTYPE=70 t_meat_raw, t_food, t_drink
+aversions=r_civilization
+ANIM=0FFC78C7F
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=7
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
+tag.firedamage=50
+TAG.MANUEVER1=27
+TAG.MANUEVER2=9
+TAG.MANUEVER3=3
+TEVENTS=e_combat_move_intel
+
+
+category=AoD Monsters
+subsection=Daemons
+description=Daemon Magus
+
+on=@create
+	nightsight=1
+     npc=brain_monster
+     name="#names_greater_daemon"
+     SetDemon
+
+     str={151 175}
+     dex={66 85}
+     int={201 225}
+     TAG0.MODHITS = 16
+     TAG0.MODMANA = 32
+
+     spiritspeak={65.0 75.0}
+     evaluatingintel={90.1 98.0}
+     magery={99.0 100.0}
+     magicresistance={85.0 88.0}
+     tactics={60.0 80.0}
+     wrestling={70.0 80.0}
+     meditation={70.9 88.1}
+     necromancy={90.1 98.0}
+
+	resfire=60
+	rescold=24
+	respoison=24
+	resenergy=24
+
+     fame={6500 9000}
+     karma={-7000 -7999}
+
+	givelang 8
+
+
+     EXP={ 129000 161000 } //Level 9
+
+     TAG.RANDCAST=45
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_sorcery_user
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 0318]
+defname=c_chaos_daemon
+name="chaos daemon"
+sound=snd_monster_new_daemon
+icon=i_pet_demon_chaos_lbr
+can=mt_walk|mt_fly|mt_usehands
+dam=10,13
+armor=40
+moverate=20
+resources=4 i_ribs_raw, 6 i_reag_daemon_bone
+FOODTYPE=70 t_meat_raw, t_food, t_drink
+desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+ANIM=0FFC78C7F
+tag.slots_needed=7
+tag.override.range=2
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=46
+tag.firedamage=20
+tag.colddamage=20
+tag.poisondamage=20
+tag.energydamage=20
+TAG.MANUEVER1=3
+TAG.MANUEVER2=9
+TAG.MANUEVER3=4
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Daemons
+description=Chaos Daemon
+
+on=@create
+	nightsight=1
+     npc=brain_monster
+     name="#names_daemon"
+     SetDemon
+
+     str={291 306}
+     dex={90 120}
+     int={41 54}
+     TAG0.MODHITS = 32
+
+	resfire=60
+	rescold=24
+	respoison=24
+	resenergy=24
+
+	givelang 8
+
+     necromancy={95.0 98.0}
+     parrying={75.0 95.0}
+     magicresistance={85.0 95.0}
+     tactics={80.0 90.0}
+     wrestling={75.0 90.0}
+     anatomy={75.0 90.0}
+
+
+     fame={6000 8000}
+     karma={-6000 -6999}
+
+     EXP={ 129000 161000 } //Level 9
+
+     TAG.RANDCAST=20
+     EVENTS=+e_intel_char_sorcery_user
+
+
+[chardef 028]
+defname=c_orcus
+name="orcus"
+sound=snd_monster_daemon1
+icon=i_pet_daemon_elder_lbr
+dam=10,13
+armor=44
+moverate=20
+resources=4 i_ribs_raw, 6 i_reag_daemon_bone
+can=mt_equip|mt_walk|mt_fly|mt_usehands
+desires=c_daemon,t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
+aversions=t_water,r_mountains
+FOODTYPE=70 t_meat_raw, t_food, t_drink
+TEVENTS=e_Level_up_NPC
+ANIM=03FBC7F
+tag.slots_needed=7
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=46
+tag.firedamage=50
+TAG.MANUEVER1=23
+TAG.MANUEVER2=4
+TAG.MANUEVER3=9
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Daemons
+description=Orcus
+
+on=@create
+     nightsight=1
+
+     npc=brain_monster
+     name="#names_greater_daemon"
+     SetDemon
+
+     str={247 260}
+     dex={81 91}
+     int={147 164}
+     TAG0.MODHITS = 32
+     TAG0.MODMANA = 32
+
+     EXP={ 520000 640000 } //Level 11
+
+     magery={95.0 100.0}
+     parrying={65.0 75.0}
+     tactics={98.0 100.0}
+     meditation={27.3 50.8}
+     evaluatingintel={80.4 93.6}
+     necromancy={65.0 75.0}
+     anatomy={35.6 55.7}
+     magicresistance=100.0
+     wrestling={91.2 99.7}
+
+
+     fame={6000 8000}
+     karma={-6000 -6999}
+
+	resfire=60
+	rescold=24
+	respoison=24
+	resenergy=24
+
+	givelang 8
+
+     TAG.RANDCAST=30
+     TAG.QUICKCAST = 15
+     TAG.SPELLPOWER = 20
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
 
 [chardef 0311]
 defname=c_moloch
 name=moloch
-sound=snd_monster_daemon1
+sound=snd_monster_new_daemon
 icon=i_pet_demon_moloch_lbr
 can=mt_walk|mt_usehands
-dam=16,19
-armor=50
+dam=9,12
+armor=46
 moverate=30
 resources=6 i_ribs_raw, 6 i_reag_daemon_bone
-foodtype=15 t_meat_raw
+FOODTYPE=75 t_meat_raw, t_food, t_drink
 desires=t_wand,t_corpse,t_gem,i_gold,t_potion,t_scroll
 aversions=r_civilization
 ANIM=0FFC78C7F
@@ -699,7 +846,7 @@ tag.override.range=2
 Tag.BeastClass=Beast_Heavy
 TEVENTS=e_Level_up_NPC
 tag.firedamage=50
-tag.wrestlingspeed=54
+tag.wrestlingspeed=48
 TAG.MANUEVER1=13
 TAG.MANUEVER2=7
 TAG.MANUEVER3=9
@@ -712,7 +859,7 @@ description=Moloch
 on=@create
 	nightsight=1
      npc=brain_monster
-     name="#names_greater_daemon"
+     name="#names_daemon"
      SetDemon
 
      str={280 305}
@@ -738,211 +885,39 @@ on=@create
      fame={9000 12000}
      karma={-7000 -7999}
 
-[chardef 083]
-defname=c_efreet
-name="efreet"
-icon=i_pet_efreet_lbr
-sound=snd_elementl_airelem1
-dam=10,14
-armor=29
-moverate=0
-resdispid=c_m_efreet
-reslevel=3
-resdisphue=
-resources=8 t_magic
-can=mt_walk|mt_fly|mt_run|mt_nonhum
-shelter=r_mountains
-desires=r_mountains
-TEVENTS=e_Level_up_NPC
-tag.slots_needed=5
-Tag.BeastClass=Beast_Magic
-tag.firedamage=50
-TAG.MANUEVER1=27
-TAG.MANUEVER2=20
-TAG.MANUEVER3=13
-TEVENTS=e_combat_move_intel
-
-category=AoD Monsters
-subsection=Daemons
-description=Efreet
-
-on=@create
-	nightsight=1
-     npc=brain_monster
-     color=0489
-     SetDemon
-
-     str={118 134}
-     dex={101 113}
-     int={157 175}
-     TAG0.MODHITS = 16
-     TAG0.MODMANA = 16
-
-     resfire=80
-     resenergy=30
-     respoison=30
-
-	givelang 1
-
-     anatomy={57.7 67.6}
-     parrying={65.0 85.0}
-     necromancy={49.7 59.6}
-     magicresistance={61.2 84.0}
-     tactics={61.3 79.3}
-     wrestling={64.9 79.8}
-
-     fame={2100 4000}
-     karma={-3000 -3999}
-
-     EXP={ 8050 11000 } //Level 5
-
-     TAG.RANDCAST=25
-     TAG.QUICKCAST = 15
-     TAG.SPELLPOWER = 15
-     EVENTS=+e_intel_char_sorcery_user
 
 
-on=@death
-     item={ magic_box 1 treasure_crate_small 1 0 1 }
+[CHARDEF 1069]
+DEFNAME=c_death_hound
+NAME=death hound
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=70 t_meat_raw, t_food, t_drink
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
 
-[chardef c_djinn]
-id=c_efreet
-name="djinn"
-icon=i_pet_efreet_lbr
-sound=snd_elementl_airelem1
-dam=11,15
-armor=48
-moverate=0
-resdispid=c_m_efreet
-reslevel=3
-resdisphue=
-resources=8 t_magic
-can=mt_walk|mt_fly|mt_run
-desires=r_mountains
-TEVENTS=e_Level_up_NPC
-tag.slots_needed=6
-Tag.BeastClass=Beast_Magic
-tag.firedamage=50
-TAG.MANUEVER1=27
-TAG.MANUEVER2=20
-TAG.MANUEVER3=13
-TEVENTS=e_combat_move_intel
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
 
-category=AoD Monsters
-subsection=Daemons
-description=Djinn
+ON=@CREATE
+NPC=brain_animal
 
-on=@create
-	nightsight=1
-     npc=brain_monster
-     color=081b
-     SetDemon
+FAME=45
+KARMA=0
 
-     str={87 103}
-     dex={81 93}
-     int={228 244}
-     TAG0.MODHITS = 16
-     TAG0.MODMANA = 32
+STR={30 45}
+DEX={38 53}
+INT={15 20}
 
-	resfire=60
-	rescold=30
-	respoison=30
-	resenergy=30
-	givelang 8
-
-     evaluatingintel={80.4 93.6}
-     parrying={65.0 75.0}
-     meditation={55.6 75.7}
-     magery={87.7 97.6}
-     magicresistance={74.9 89.8}
-     tactics={61.2 74.0}
-     wrestling={61.2 74.0}
-     necromancy={86.7 95.6}
-     spiritspeak={46.7 55.6}
-
-
-     fame={3100 5000}
-     karma={-3000 -3999}
-
-     EXP={ 16500 20500 } //Level 6
-
-     TAG.RANDCAST=45
-     TAG.QUICKCAST = 20
-     TAG.SPELLPOWER = 25
-     EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_intel_char_sorcery_user
-
-
-on=@death
-     item={ magic_box 1 treasure_crate_large 1 0 1 }
-
-
-
-[chardef 256] 
-defname=c_glutton_daemon
-name=Glutton Daemon
-SOUND=snd_monster_daemon1
-ICON=i_pet_glutton
-RESLEVEL=5
-RESDISPDNHUE=33
-RESDISPDNID=c_man
-DAM=12,16
-ARMOR=64
-moverate=60
-RESOURCES=8 i_ribs_raw, 8 i_reag_daemon_bone
-DESIRES=i_gold,e_notoriety
-AVERSIONS=t_TRAP,t_eerie_stuff
-CAN=MT_WALK|MT_USEHANDS
-tag.slots_needed=99
-TEVENTS=e_Level_up_NPC
-tag.override.range=3
-Tag.BeastClass=Beast_Heavy
-tag.poisondamage=100
-TAG.MANUEVER1=8
-TAG.MANUEVER2=9
-TAG.MANUEVER3=23
-TEVENTS=e_combat_move_intel
-TEVENTS=e_food_steal
-
-category=AoD Monsters
-subsection=Daemons
-DESCRIPTION=Glutton Daemon
-
-ON=@Create 
-	nightsight=1
-	NPC=brain_monster
-	name="#names_greater_daemon"
-	SetDemon
-
-	FAME={7000 9500} 
-	KARMA={-6000 -7999} 
-
-     str={269 283}
-     dex={59 78}
-     int={149 169}
-     TAG0.MODHITS = 512
-
-     EXP={ 1100000 1350000 } //Level 12
-
-	resfire=65
-	rescold=45
-	respoison=65
-	resenergy=30
-	givelang 8
-
-
-	POISONING={95.0 100.0}
-	PARRYING={95.0 100.0}
-	MAGICRESISTANCE={90.0 100.0}
-	ANATOMY={70.0 85.0}
-	MAGERY={70.0 85.0}
-	TACTICS={95.0 100.0}
-	WRESTLING={95.0 100.0}
-
-     TAG.RANDCAST=30
-     EVENTS=+e_intel_char_magery_user
-     EVENTS=+e_intel_char_sorcery_user
-
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
 
 
 [CHARDEF 713]
@@ -951,9 +926,10 @@ NAME=abyssal infernal
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+SOUND=snd_abyssal_infernal
 MOVERATE=2
 RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
+FOODTYPE=70 t_meat_raw, t_food, t_drink
 SHELTER=r_farm, r_forest
 tag.wrestlingspeed=40
 
@@ -977,12 +953,13 @@ MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
+
 [chardef 308]
 defname=c_bone_daemon
 NAME=bone daemon
-SOUND=snd_monster_skletn1
+SOUND=snd_monster_bone_daemon
 ICON=i_pet_bonedaemon
-DAM=16,19
+DAM=13,17
 ARMOR=38
 moverate=10
 CAN=MT_USEHANDS|MT_WALK|mt_nonhum
@@ -1025,6 +1002,216 @@ ON=@Create
 	WRESTLING=100.0
 
 
+[chardef 174]
+defname=c_abyss_lord
+name=Abyss Lord
+SOUND=snd_monster_daemon1
+ICON=i_pet_wailingbanshee
+DAM=10,20
+ARMOR=40
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
+FOODTYPE=70 t_meat_raw, t_food, t_drink
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
+AVERSIONS=e_carnivores3
+RESDISPDNID=c_woman
+RESLEVEL=2
+RESDISPDNHUE=33
+CATEGORY=New Monsters
+SUBSECTION=LBR
+DESCRIPTION=Abyss Lord
+MOVERATE=40
+
+ON=@Create
+	NPC=brain_monster
+	FAME={100 3000}
+	KARMA={-5000 -6999}
+	STR={200 300}
+	MAXHITS=800
+	INT={130 200}
+	DEX={40 60}
+	PARRYING={60.0 95.0}
+	MAGICRESISTANCE={50.0 70.0}
+	TACTICS=70.0
+	WRESTLING={65.0 80.0}
+	MAGERY=1000
+	ITEMNEWBIE=i_spellbook
+	ADDCIRCLE 8,1
+
+ON=@NpcRestock
+	ITEM=i_gold,{700 1100}
+	ITEM=random_weapon
+
+
+
+[chardef 256] 
+defname=c_glutton_daemon
+name=Glutton Daemon
+SOUND=snd_monster_parox
+ICON=i_pet_glutton
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=10,12
+ARMOR=60
+moverate=60
+RESOURCES=8 i_ribs_raw, 8 i_reag_daemon_bone
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_USEHANDS
+tag.slots_needed=99
+TEVENTS=e_Level_up_NPC
+tag.override.range=3
+Tag.BeastClass=Beast_Heavy
+tag.poisondamage=100
+TAG.MANUEVER1=8
+TAG.MANUEVER2=9
+TAG.MANUEVER3=23
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TEVENTS=e_food_steal
+
+category=AoD Monsters
+subsection=Daemons
+DESCRIPTION=Glutton Daemon
+
+ON=@Create 
+	nightsight=1
+	NPC=brain_monster
+	name="#names_greater_daemon"
+	SetDemon
+
+	FAME={17000 19500} 
+	KARMA={-16000 -17999} 
+
+     str={269 283}
+     dex={59 78}
+     int={149 169}
+     TAG0.MODHITS = 512
+     TAG0.MODSTAM = 32
+
+     EXP={ 1100000 1350000 } //Level 12
+
+	resfire=70
+	rescold=45
+	respoison=70
+	resenergy=30
+	givelang 8
+
+	FOCUS={35.0 40.0}
+	POISONING={105.0 110.0}
+	PARRYING={95.0 100.0}
+	MAGICRESISTANCE={110.0 120.0}
+	ANATOMY={80.0 95.0}
+	MAGERY={80.0 95.0}
+	TACTICS={105.0 110.0}
+	WRESTLING={105.0 110.0}
+
+     TAG.RANDCAST=30
+     EVENTS=+e_intel_char_magery_user
+
+
+
+[CHARDEF 1071]
+DEFNAME=c_daemon_royal
+NAME=daemon royal
+dam=12,15
+armor=58
+CAN=mt_walk|mt_run|mt_nonhum
+sound=snd_monster_stygian_dragon_a
+MOVERATE=0
+RESOURCES=8 i_ribs_raw, 8 i_reag_daemon_bone
+FOODTYPE=80 t_meat_raw, t_food, t_drink
+tag.slots_needed=99
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.firedamage=50
+tag.poisondamage=50
+TAG.MANUEVER1=23
+TAG.MANUEVER2=4
+TAG.MANUEVER3=9
+tag.wrestlingspeed=46
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Daemons
+DESCRIPTION=Daemon Royal
+
+ON=@CREATE
+	nightsight=1
+     name="#names_greater_daemon"
+     npc=brain_monster
+     SetDemon
+
+     str={257 275}
+     dex={81 96}
+     int={183 204}
+     TAG0.MODHITS = 512
+     TAG0.MODMANA = 64
+     TAG0.MODSTAM = 64
+
+     EXP={ 8500000 10450000 } //Level 15
+
+     anatomy={40.9 58.1}
+     spiritspeak={45.0 55.0}
+     meditation={40.9 58.1}
+     evaluatingintel={85.0 88.0}
+     magery={99.0 110.0}
+     magicresistance={90.1 98.0}
+     tactics={94.4 110.0}
+     wrestling={95.9 110.0}
+     parrying={45.0 55.0}
+     necromancy={100.1 108.0}
+
+     fame={16500 21000}
+     karma={-19000 -19999}
+
+	resfire=70
+	rescold=28
+	respoison=70
+	resenergy=28
+
+	givelang 8
+
+     TAG.RANDCAST=30
+     TAG.QUICKCAST = 30
+     TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
+
+
+[CHARDEF 741]
+DEFNAME=c_slasher_daemon
+NAME=slasher daemon
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+sound=snd_monster_stygian_dragon_a
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=80 t_meat_raw, t_food, t_drink
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+category=AoD Monsters
+subsection=Daemons
+DESCRIPTION=Slasher Daemon
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
 
 
 [eof]

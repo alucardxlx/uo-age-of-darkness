@@ -1098,7 +1098,7 @@ respoison=100
 [chardef 092]
 defname=c_shade
 name="shade"
-sound=snd_monster_shadowlord
+sound=snd_monster_shadow
 icon=i_pet_nameless_one_lbr
 dam=11,13
 armor=42
@@ -1198,7 +1198,7 @@ STEALTH={10.0 25.0}
 [chardef 02ec]
 defname=c_ghost
 name="ghost"
-sound=snd_monster_ghost1
+sound=snd_monster_new_ghost
 icon=i_pet_ghoul
 anim=078c7f
 dam=9,12

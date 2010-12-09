@@ -112,7 +112,7 @@ on=@create
 [chardef 041] //cold cat
 defname=c_snow_leopard
 name="snow leopard"
-sound=snd_animals_panther1
+sound=snd_animal_leopard
 icon=i_pet_panther
 dam=6,8
 armor=13

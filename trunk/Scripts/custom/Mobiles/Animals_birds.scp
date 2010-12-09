@@ -132,7 +132,6 @@ on=@create
      wrestling={4.2 6.4}
 
      tag.taming=0.1
-     Peacemaking=0.1
 
      fame=10
      karma=5
@@ -176,7 +175,6 @@ on=@create
      wrestling={14.2 16.4}
 
      tag.taming=5.1
-     Peacemaking=0.1
 
      fame=10
      karma=5
@@ -220,7 +218,6 @@ on=@create
      wrestling={14.2 16.4}
 
      tag.taming=4.1
-     Peacemaking=0.1
 
      fame=30
      karma=5
@@ -265,7 +262,6 @@ on=@create
      wrestling={14.2 16.4}
 
      tag.taming=8.1
-     peacemaking=0.1
 
      fame=30
      karma=5
@@ -310,7 +306,6 @@ on=@create
      wrestling={14.2 16.4}
 
      tag.taming=8.1
-     Peacemaking=0.1
 
      fame=30
      karma=5
@@ -354,7 +349,6 @@ on=@create
      wrestling={4.2 6.4}
 
      tag.taming=4.1
-     Peacemaking=0.1
 
      fame=30
      karma=5
@@ -400,7 +394,5 @@ on=@create
      wrestling={33.9 42.3}
 
      tag.taming=41.7
-     Peacemaking=0.1
-     FOOD=15
 
 [eof]

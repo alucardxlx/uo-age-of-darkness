@@ -701,7 +701,7 @@ ID=i_bottle_red
 TYPE=T_POTION
 NAME=Lesser Innoculation
 TDATA1=i_bottle_empty
-RESOURCES=i_reag_blood, i_bottle_EMPTY
+RESOURCES=i_reag_blood_vial, i_bottle_EMPTY
 SKILLMAKE=ALCHEMY 10.1
 
 ON=@Create
@@ -715,7 +715,7 @@ NAME=Innoculation
 ID=i_bottle_red
 TYPE=T_POTION
 TDATA1=i_bottle_empty
-RESOURCES=i_reag_blood 3, i_bottle_EMPTY
+RESOURCES=i_reag_blood_vial 3, i_bottle_EMPTY
 SKILLMAKE=ALCHEMY 35.1
 
 ON=@Create
@@ -729,7 +729,7 @@ NAME=Greater Innoculation
 ID=i_bottle_red
 TYPE=T_POTION
 TDATA1=i_bottle_empty
-RESOURCES=i_reag_blood 6, i_bottle_EMPTY
+RESOURCES=i_reag_blood_vial 6, i_bottle_EMPTY
 SKILLMAKE=ALCHEMY 75.1
 
 ON=@Create

@@ -22,6 +22,7 @@ sound=snd_monster_gscorp1
 icon=i_pet_scorp
 anim=078c7f
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 dam=7,11
 armor=26
 moverate=0
@@ -60,7 +61,7 @@ on=@create
 
      tag.taming=67.1
 
-     fame={100 2000}
+     fame={200 2000}
 
 [chardef 01c]
 defname=c_spider_giant
@@ -73,6 +74,7 @@ armor=19
 moverate=0
 resources=6 i_reag_spider_silk
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 foodtype=55 t_meat_raw, t_fruit
 desires=t_meat_raw, t_fruit,c_spider_lord,c_spider_Giant
 tevents=e_carnivores2
@@ -108,7 +110,7 @@ on=@create
 
      tag.taming=59.1
 
-     fame={1 1249}
+     fame={100 1249}
 
 [CHARDEF 738]
 DEFNAME=c_ant_giant
@@ -116,6 +118,7 @@ NAME=giant ant
 DAM=6,9
 ARMOR=13
 CAN=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 moverate=0
 resources=6 i_ribs_raw
 foodtype=35 t_meat_raw,t_garbage,t_food,t_fruit
@@ -158,6 +161,7 @@ ANATOMY={20.9 39.7}
 defname=c_frostspider
 name="frost spider"
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 sound=snd_monster_gispidr1
 icon=i_pet_spider_frost_lbr
 ANIM=078C7F
@@ -200,7 +204,7 @@ on=@create
         rescold=60
         resenergy=8
 
-        tag.taming=90.1
+        tag.taming=85.1
 
 	fame={100 2000}
 
@@ -212,6 +216,7 @@ name="giant black widow"
 sound=snd_monster_gispidr1
 icon=i_pet_spider_blackwidow_lbr
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 dam=8,12
 armor=24
 moverate=0
@@ -254,7 +259,7 @@ on=@create
      hiding={59.0 76.0}
      stealth={59.0 76.0}
 
-     tag.taming=83.5
+     tag.taming=81.5
 
      fame={1000 2000}
 
@@ -266,6 +271,7 @@ name="giant beetle"
 sound=snd_monster_gscorp1
 icon=i_pet_beetle_giant_lbr
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 dam=11,14
 armor=36
 moverate=0
@@ -316,6 +322,7 @@ dam=7,11
 armor=20
 moverate=0
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 foodtype=60 t_meat_raw
 desires=t_meat_raw
 ANIM=0FFC78C7F
@@ -357,15 +364,16 @@ on=@create
 [chardef 0b]
 defname=c_dread_spider
 name="dread spider"
-sound=snd_monster_gispidr1
+sound=snd_monster_dread_spider
 icon=i_pet_spider_dread_lbr
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 dam=10,12
 armor=34
 moverate=0
 resources=8 i_reag_spider_silk
 foodtype=95 t_meat_raw
-desires=t_meat_raw,c_dread_spider,c_spider_lord
+desires=t_meat_raw,c_spider_lord
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 ANIM=078C7F
@@ -381,7 +389,7 @@ subsection=arachnids
 description=dread spider
 
 on=@create
-     npc=brain_monster
+     npc=brain_animal
 	nightsight=1
 
      str={138 150}
@@ -402,6 +410,8 @@ on=@create
      stealth={69.0 86.0}
      poisoning={83.4 95.1}
 
+     tag.taming=88.5
+
      fame={3200 5000}
      karma={-3000 -5999}
      exp={ 16100 19800 } // Level 5
@@ -413,17 +423,19 @@ on=@create
 [chardef 173]
 defname=c_spider_lord
 name=Spider Lord
-sound=snd_monster_gispidr1
+sound=snd_monster_dread_spider
 icon=i_pet_spider_dread_lbr
 can=mt_walk|mt_run|mt_nonhum
+bloodcolor=765
 dam=12,14
 armor=42
 moverate=0
 resources=12 i_reag_spider_silk
 foodtype=65 t_meat_raw
-desires=c_dread_spider,t_meat_raw,c_spider_lord,c_frostspider,c_spider_Giant
+desires=t_meat_raw
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
+TEVENTS=e_swarm
 ANIM=078C7F
 Tag.BeastClass=Beast_Magic
 tag.wrestlingspeed=52
@@ -437,7 +449,7 @@ subsection=arachnids
 description=spider lord
 
 on=@create
-     npc=brain_monster
+     npc=brain_animal
      nightsight=1
 
      str={188 200}
@@ -456,6 +468,9 @@ on=@create
 
      resenergy=12
      respoison=12
+
+     tag.taming=95.9
+
 
      fame={5200 7000}
      karma={-3000 -4999}
