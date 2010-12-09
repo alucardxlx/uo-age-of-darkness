@@ -9,6 +9,40 @@
 //**   -e_npc_weapon_switcher events
 //*****************************************************************
 
+[EVENTS e_combat_medusa]
+ON=@GetHit
+   IF (RAND(2)==1)   //switch from archery to melee when necessary (but not always perfectly)
+      IF (<FINDLAYER(2).TYPE>==t_weapon_bow)||(<FINDLAYER(2).TYPE>==t_weapon_xbow)
+         IF (<DISTANCE><2)
+            FINDLAYER.2.CONT=<FINDLAYER.21.UID>  // put bow in pack
+            IF (<FINDTYPE.t_weapon_fence>)
+               FINDTYPE.t_weapon_fence.CONT=<UID>
+            ELSEIF (<FINDTYPE.t_weapon_axe>)
+               FINDTYPE.t_weapon_axe.CONT=<UID>
+            ELSEIF (<FINDTYPE.t_weapon_mace_sharp>)
+               FINDTYPE.t_weapon_mace_sharp.CONT=<UID>
+            ELSEIF (<FINDTYPE.t_weapon_mace_pick>)
+               FINDTYPE.t_weapon_mace_pick.CONT=<UID>
+            ELSEIF (<FINDTYPE.t_weapon_mace_smith>)
+               FINDTYPE.t_weapon_mace_smith.CONT=<UID>
+            ELSEIF (<FINDTYPE.t_weapon_sword>)
+               FINDTYPE.t_weapon_sword.CONT=<UID>
+            ENDIF
+         ENDIF
+      ELSEIF !(<FINDLAYER(2).TYPE>==t_weapon_bow)
+         IF (<DISTANCE>>1)
+            FINDLAYER.1.CONT=<FINDLAYER.21.UID>  // put sword in pack
+            IF (<FINDTYPE.t_weapon_xbow>)
+               FINDTYPE.t_weapon_xbow.CONT=<UID>
+//               SERV.NEWITEM i_xbolt,5,<FINDLAYER.21.UID>
+            ELSE
+               FINDTYPE.t_weapon_bow.CONT=<UID>
+//               SERV.NEWITEM i_arrow,5,<FINDLAYER.21.UID>
+            ENDIF
+         ENDIF
+      ENDIF
+   ENDIF
+
 [EVENTS e_intel_char]
 ON=@CharAttack
  IF !(<FLAGS>&statf_war)

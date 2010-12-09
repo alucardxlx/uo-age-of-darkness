@@ -28,7 +28,7 @@ npcai_opt_formsquads  01 //NPCs will form squads (Boolean)
 npcai_opt_stationarysquads 00 //Squads will not roam around (Boolean)
 npcai_opt_initializeRanks 01 //Automatically generate ranks for NPCs. Leave 0 if assigning manually. (Boolean)
 
-npcai_opt_initializeMagicAI 01 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
+npcai_opt_initializeMagicAI 00 //Automatically place appropriate caster events on magic using Faction NPCs (Boolean)
 npcai_opt_initializeRandCast 00 //Automatically generate casting likelihood modifer for NPCs. Leave 0 if assigning manually (Boolean)
 npcai_opt_castbeneficialspells 01 //NPCs will cast helpful spells on others (Boolean)
 
@@ -225,7 +225,7 @@ racef_notdefined 080000000 //This race not yet defined
 [FUNCTION SetBasics]
 IF !(<NPC> == brain_vendor) && !(<NPC> == brain_healer) && !(<NPC> == brain_banker) && !(<NPC> == brain_thief)
 	TAG.NPCAI.ONPC=<NPC>
-	NPC=14  //Setting NPC to 14 keeps them from attacking when not wanted
+	NPC=20  //Setting NPC to 14 keeps them from attacking when not wanted
 endif
 TIMERF 1, SetBasicsCont
 IF (<EVAL npcai_opt_npclooting>)

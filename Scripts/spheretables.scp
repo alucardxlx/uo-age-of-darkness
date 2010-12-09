@@ -21,58 +21,19 @@ scripts/sphere_book.scp
 scripts/sphere_backward_compatibility.scp
 scripts/sphere_events_human.scp
 scripts/sphere_events_npcs.scp
-//scripts/npcs/
-//scripts/npcs/champions/
 scripts/sphere_admin.scp
 scripts/sphere_dialog.scp
-// -----------------------------------
 scripts/items/sphere_item_resources.scp
 scripts/items/
-//scripts/items/armors/
-//scripts/items/armors/colored/
-//scripts/items/armors/sets/
 scripts/items/building/
 scripts/items/crafting/
 scripts/items/decoration/
-//scripts/items/multis/
 scripts/items/profession/
 scripts/items/resources/
-//scripts/items/weapons/
-// -----------------------------------
-scripts/sphere_region_resources.scp
-scripts/sphere_region.scp
-// -----------------------------------
-scripts/maps/sphere_map0.scp
-scripts/maps/sphere_map0_ml.scp
-scripts/maps/sphere_map1.scp
-scripts/maps/sphere_map2.scp
-scripts/maps/sphere_map3.scp
-scripts/maps/sphere_map4.scp
-scripts/maps/sphere_map5.scp
-scripts/maps/sphere_map_points0.scp
-scripts/maps/sphere_map_points0_ml.scp
-scripts/maps/sphere_map_points1.scp
-scripts/maps/sphere_map_points2.scp
-scripts/maps/sphere_map_points3.scp
-scripts/maps/sphere_map_points4.scp
-scripts/maps/sphere_map_points5.scp
-// -----------------------------------
-scripts/sphere_menu.scp
-scripts/sphere_name.scp
-scripts/sphere_skillmenu.scp
-scripts/sphere_spawns.scp
-scripts/sphere_speech.scp
 scripts/skills/
 scripts/sphere_skills.scp
-//scripts/spells/
-scripts/sphere_newb.scp
-scripts/sphere_template.scp
-scripts/sphere_template_loot.scp
-scripts/sphere_template_vend.scp
-scripts/sphere_triggers.scp
-scripts/sphere_serv_triggers.scp
-//scripts/speech/
-// -----------------------------------
+scripts/custom/Items/Item_reagents.scp
+scripts/custom/System_alchemy_magic.scp
 scripts/custom/
 scripts/custom/mobiles/
 scripts/custom/speech/
@@ -93,17 +54,35 @@ scripts/custom/System_Magic_Properties.scp
 scripts/custom/System_Followers.scp
 scripts/custom/System_Necromancy.scp
 scripts/custom/Custom_speech.scp
-// -----------------------------------
-//scripts/add-on/
-//scripts/add-on/champions/
-//scripts/add-on/crafting/
-//scripts/add-on/enchants/
-//scripts/add-on/override/
-//scripts/add-on/quests/
-//scripts/add-on/skillmenu/
-//scripts/add-on/skills/
-//scripts/add-on/treasures/
 
+
+scripts/Custom/Custom_defs.scp
+scripts/maps/sphere_map0.scp
+scripts/maps/sphere_map0_ml.scp
+scripts/maps/sphere_map1.scp
+scripts/maps/sphere_map2.scp
+scripts/maps/sphere_map3.scp
+scripts/maps/sphere_map4.scp
+scripts/maps/sphere_map5.scp
+scripts/maps/sphere_map_points0.scp
+scripts/maps/sphere_map_points0_ml.scp
+scripts/maps/sphere_map_points1.scp
+scripts/maps/sphere_map_points2.scp
+scripts/maps/sphere_map_points3.scp
+scripts/maps/sphere_map_points4.scp
+scripts/maps/sphere_map_points5.scp
+
+scripts/sphere_menu.scp
+scripts/sphere_name.scp
+scripts/sphere_skillmenu.scp
+scripts/sphere_speech.scp
+//scripts/spells/
+scripts/sphere_newb.scp
+scripts/sphere_template.scp
+scripts/sphere_triggers.scp
+scripts/sphere_serv_triggers.scp
+
+//scripts/speech/
 
 [OBSCENE]
 

@@ -177,18 +177,6 @@ RETURN
 
 ////////////////////////////// Magery //////////////////////////////
 
-[FUNCTION ActivateCaster]
-IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
-	return
-endif
-TIMER = 0
-IF <UID.<TAG0.TARGET>.HITS>
-	TRYSRC <TAG.TARGET> ATTACK
-ELSE
-	TAG0.TARGET=
-ENDIF
-return
-
 
 [EVENTS e_intel_char_magery_user]
 
@@ -210,9 +198,16 @@ Tag.target = <src>
 IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return 1
 endif
-IF (<EVAL {1 300}> > (<TAG0.RANDCAST>+25) )
-      Timerf 1, ActivateCaster
-      RETURN
+IF (<distance> < 3)
+	IF (<EVAL {1 300}> > (<TAG0.RANDCAST>+25) )
+	      RETURN
+	ENDIF
+ELSE
+	IF (<EVAL {1 200}> > (<TAG0.RANDCAST>+25) )
+	      FACE <SRC>
+	      WALK <DIR>
+	      RETURN
+	ENDIF
 ENDIF
 //check evalint here
 IF (<ATTACKER> > 0)
@@ -249,13 +244,19 @@ ENDIF
 	elif <npccast_magery_defense>
 		return 1
 	endif
-Timerf 1, ActivateCaster
 return
 
 on=@Attack
+Tag.target = <src>
 IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return 1
 endif
+IF (<distance> < 3)
+	      FACE <SRC>
+	      WALK <DIR>
+	      RETURN
+	ENDIF
+ENDIF
 
 ON=@SpellFail
 	TAG.LASTCASTING=

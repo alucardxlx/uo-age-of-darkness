@@ -61,7 +61,7 @@ on=@create
      magery={31.1 49.9}
      evaluatingintel={31.1 49.9}
 
-     tag.taming=97.5
+     tag.taming=96.5
 
      EXP={ 33500 41900 } //Level 7
 
@@ -128,7 +128,8 @@ on=@create
      magery={75.6 99.5}
      meditation={59.1 70.0}
 
-     tag.taming=97.5
+     tag.taming=96.5
+     TAG.ALTCONTROL=spellweaving
 
      EXP={ 33500 41900 } //Level 7
 
@@ -207,14 +208,15 @@ on=@create
 [CHARDEF 334]
 defname=c_gremlin
 NAME=gremlin
-SOUND=snd_monster_harpy1
+sound=snd_monster_pixie1
 ICON=i_pet_gibberling
-DAM=3,6
+DAM=4,7
 ARMOR=10
 moverate=0
 CAN=MT_USEHANDS|MT_WALK|MT_RUN
-foodtype=100 t_food,t_fruit
-DESIRES=t_coin,t_food,t_fruit,c_gremlin,t_corpse,t_gem
+foodtype=100 t_food, t_fruit, t_booze, t_potion, t_meat_raw
+desires=t_coin, t_gem, t_food, t_fruit, t_booze, t_potion, t_meat_raw, c_gremlin
+tevents=e_swarm
 TEVENTS=e_Level_up_NPC
 tag.slots_needed=2
 Tag.BeastClass=Beast_Quick
@@ -232,28 +234,29 @@ ON=@Create
 	NPC=brain_monster
 	nightsight=1
 
-
 	FAME={10 100} 
-	KARMA={-1000 -1099} 
-	//COLOR={04f7 04f8}
+	KARMA={-100 -599} 
+	COLOR= 08000|{04f7 04f8}
 
 	STR={38 59}
-	INT={15 34}
-	DEX={91 115} 
+	INT={11 24}
+	DEX={71 105} 
 
 	givelang 2
 
 	STEALTH={40.0 60.0}
 	HIDING={40.0 60.0}
-	MAGICRESISTANCE={40.0 70.0}
-	TACTICS={40.0 60.0}
-	WRESTLING={50.0 70.0}
+	STEALING={42.0 65.7}
+	MAGICRESISTANCE={42.0 65.7}
+	TACTICS={27.4 49.0}
+	WRESTLING={41.0 62.0}
 
 ON=@NpcRestock
-	ITEM={ Fae_Pouch 1 0 3}
+	ITEM={ Fae_Pouch 1 Food_basket 1 Bread_basket 1 Veggie_basket 1 0 5 }
 	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
 	ITEM={ RANDOM_FOOD 2 0 1},{1 4}
 	ITEM={ RANDOM_BOTTLE 1 0 2}
+
 
 [chardef 723]
 defname=c_goblin
@@ -402,7 +405,8 @@ on=@create
      wrestling={83.8 91.3}
      chivalry={72.7 94.0}
 
-     tag.taming=97.5
+     tag.taming=96.5
+     TAG.ALTCONTROL=chivalry
 
      EXP={ 33500 41900 } //Level 7
 
@@ -543,7 +547,7 @@ on=@create
 [chardef 065]
 defname=c_centaur
 name="centaur"
-sound=snd_monster_centaur
+sound=snd_centaur
 icon=i_pet_centaur_lbr
 can=mt_walk|mt_run
 dam=9,14
@@ -1057,6 +1061,7 @@ on=@create
 	anatomy={49.0 67.0}
 
      tag.taming=90.5
+     TAG.ALTCONTROL=spellweaving
 
 
 [CHARDEF 718]
@@ -1108,6 +1113,8 @@ ON=@CREATE
 	resenergy=12
 
 	tag.taming=86.3
+	TAG.ALTCONTROL=spellweaving
+
 	EXP={ 2050 2950 } //Level 3
 
      TAG.RANDCAST=45

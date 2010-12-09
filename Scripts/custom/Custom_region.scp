@@ -1265,6 +1265,120 @@ AMOUNT=9,30
 REGEN=60*60*24
 REAP=i_hay_sheaf
 
+[REGIONRESOURCE mr_tree]
+// lumberjacking default
+// t_tree
+SKILL=0.0,70.0
+AMOUNT=9,30
+REAP=i_log_birch
+REAPAMOUNT=1,8
+REGEN=60*60*24
+
+on=@resourcefound
+obj=<argo.uid>
+call f_findtree
+if <def.logs.<var.tree>>
+	obj.more1=<def.logs.<var.tree>>
+endif
+
+[function f_findtree]
+for x 0 <eval <obj.p.statics>-1>
+	if (<obj.p.statics.<local.x>.type>==t_tree) && (<def.logs.<obj.p.statics.<local.x>.baseid>>)
+		var.tree=<obj.p.statics.<local.x>.baseid>
+	endif
+endfor
+
+[REGIONRESOURCE mr_tree_dead]
+skill=0.1,75.0
+amount=6,20
+REAP=i_reag_dead_wood
+REAPAMOUNT=1,5
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_willow]
+skill=5.1,80.0
+AMOUNT=6,20
+REAP=i_log_willow
+REAPAMOUNT=1,5
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_birch]
+SKILL=0.0,70.0
+AMOUNT=9,30
+REAP=i_log_birch
+REAPAMOUNT=1,8
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_cedar]
+skill=5.1,80.0
+AMOUNT=6,20
+REAP=i_log_cedar
+REAPAMOUNT=1,5
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_cyprus]
+skill=5.1,80.0
+AMOUNT=6,20
+REAP=i_log_cyprus
+REAPAMOUNT=1,5
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_yew]
+SKILL=30.0,85.0
+AMOUNT=4,15
+REAP=i_log_yew
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_oak]
+SKILL=30.0,85.0
+AMOUNT=4,15
+REAP=i_log_oak
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_walnut]
+SKILL=40.0,90.0
+AMOUNT=4,15
+REAP=i_log_walnut
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_tree_mahogany]
+SKILL=40.0,90.0
+AMOUNT=4,15
+REAP=i_log_mahogany
+REAPAMOUNT=1,4
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_heartwood]
+SKILL=70.0,120.0
+AMOUNT=4,12
+REAP=i_log_heartwood
+REAPAMOUNT=1,3
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_sunwood]
+SKILL=70.0,120.0
+AMOUNT=4,12
+REAP=i_log_sunwood
+REAPAMOUNT=1,3
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_frostwood]
+SKILL=70.0,120.0
+AMOUNT=4,12
+REAP=i_log_frostwood
+REAPAMOUNT=1,3
+REGEN=60*60*24
+
+[REGIONRESOURCE mr_bloodwood]
+SKILL=70.0,120.0
+AMOUNT=4,12
+REAP=i_log_bloodwood
+REAPAMOUNT=1,3
+REGEN=60*60*24
+
 
 [REGIONTYPE r_default t_sand]
 // Default sand area resources
@@ -1695,120 +1809,6 @@ logs.i_tree_3=mr_tree_birch
 logs.i_tree_4=mr_tree_birch
 logs.i_tree_5=mr_tree_birch
 
-
-[REGIONRESOURCE mr_tree]
-// lumberjacking default
-// t_tree
-SKILL=0.0,70.0
-AMOUNT=9,30
-REAP=i_log_birch
-REAPAMOUNT=1,8
-REGEN=60*60*24
-
-on=@resourcefound
-obj=<argo.uid>
-call f_findtree
-if <def.logs.<var.tree>>
-	obj.more1=<def.logs.<var.tree>>
-endif
-
-[function f_findtree]
-for x 0 <eval <obj.p.statics>-1>
-	if (<obj.p.statics.<local.x>.type>==t_tree) && (<def.logs.<obj.p.statics.<local.x>.baseid>>)
-		var.tree=<obj.p.statics.<local.x>.baseid>
-	endif
-endfor
-
-[REGIONRESOURCE mr_tree_dead]
-skill=0.1,75.0
-amount=6,20
-REAP=i_reag_dead_wood
-REAPAMOUNT=1,5
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_willow]
-skill=5.1,80.0
-AMOUNT=6,20
-REAP=i_log_willow
-REAPAMOUNT=1,5
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_birch]
-SKILL=0.0,70.0
-AMOUNT=9,30
-REAP=i_log_birch
-REAPAMOUNT=1,8
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_cedar]
-skill=5.1,80.0
-AMOUNT=6,20
-REAP=i_log_cedar
-REAPAMOUNT=1,5
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_cyprus]
-skill=5.1,80.0
-AMOUNT=6,20
-REAP=i_log_cyprus
-REAPAMOUNT=1,5
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_yew]
-SKILL=30.0,85.0
-AMOUNT=4,15
-REAP=i_log_yew
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_oak]
-SKILL=30.0,85.0
-AMOUNT=4,15
-REAP=i_log_oak
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_walnut]
-SKILL=40.0,90.0
-AMOUNT=4,15
-REAP=i_log_walnut
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_tree_mahogany]
-SKILL=40.0,90.0
-AMOUNT=4,15
-REAP=i_log_mahogany
-REAPAMOUNT=1,4
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_heartwood]
-SKILL=70.0,120.0
-AMOUNT=4,12
-REAP=i_log_heartwood
-REAPAMOUNT=1,3
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_sunwood]
-SKILL=70.0,120.0
-AMOUNT=4,12
-REAP=i_log_sunwood
-REAPAMOUNT=1,3
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_frostwood]
-SKILL=70.0,120.0
-AMOUNT=4,12
-REAP=i_log_frostwood
-REAPAMOUNT=1,3
-REGEN=60*60*24
-
-[REGIONRESOURCE mr_bloodwood]
-SKILL=70.0,120.0
-AMOUNT=4,12
-REAP=i_log_bloodwood
-REAPAMOUNT=1,3
-REGEN=60*60*24
 
 
 

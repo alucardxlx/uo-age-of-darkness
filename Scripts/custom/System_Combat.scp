@@ -1104,6 +1104,19 @@ ON=@TIMER
 	LINK.SYSMESSAGE <CONT.NAME> has no vital fluids to spill.
 	REMOVE
 	RETURN
+  ELIF !<R5>
+	serv.newitem i_blood_pool_large
+	dorand 5
+		new.dispid=0122a
+		new.dispid=0122b
+		new.dispid=0122c
+		new.dispid=0122d
+		new.dispid=0122e
+	enddo
+	serv.new.movenear <uid>,1
+	serv.new.timer=<SERV.DecayTimer>
+	serv.new.color=<serv.chardef.<CONT.ID>.bloodcolor>
+	serv.new.attr=04002
   ENDIF
   IF ( <CONT> )
      IF ( <CONT.HITS> < 1 )
@@ -1144,6 +1157,8 @@ ON=@TIMER
      ENDDO
   ENDIF
   RETURN 1
+
+
 
 [ITEMDEF i_elven_composite_forcebow]
 ID=i_elven_composite_longbow

@@ -92,7 +92,8 @@ DEFNAME=c_h_bandit_f
 NAME=Bandit
 ID=C_WOMAN
 moverate=0
-CAN=MT_EQUIP|MT_USEHANDS|MT_WALK|mt_runDESIRES=i_gold,e_notoriety
+CAN=MT_EQUIP|MT_USEHANDS|MT_WALK|mt_run
+DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 TSPEECH=jobBrigand

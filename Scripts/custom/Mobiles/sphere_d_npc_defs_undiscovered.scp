@@ -771,46 +771,6 @@ Fame=2000
 Karma=-5000
 
 
-[chardef 174]
-defname=c_abyss_lord
-name=Abyss Lord
-SOUND=snd_monster_daemon1
-ICON=i_pet_wailingbanshee
-DAM=10,20
-ARMOR=40
-RESOURCES=15 i_ribs_raw,10 i_hide
-CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP
-FOODTYPE=40 t_meat_raw
-DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman
-AVERSIONS=e_carnivores3
-RESDISPDNID=c_woman
-RESLEVEL=2
-RESDISPDNHUE=33
-CATEGORY=New Monsters
-SUBSECTION=LBR
-DESCRIPTION=Abyss Lord
-MOVERATE=40
-
-ON=@Create
-	NPC=brain_monster
-	FAME={100 3000}
-	KARMA={-5000 -6999}
-	STR={200 300}
-	MAXHITS=800
-	INT={130 200}
-	DEX={40 60}
-	PARRYING={60.0 95.0}
-	MAGICRESISTANCE={50.0 70.0}
-	TACTICS=70.0
-	WRESTLING={65.0 80.0}
-	MAGERY=1000
-	ITEMNEWBIE=i_spellbook
-	ADDCIRCLE 8,1
-
-ON=@NpcRestock
-	ITEM=i_gold,{700 1100}
-	ITEM=random_weapon
-
 [chardef 189]
 defname=c_orc_brute
 name=Orc Brute
@@ -894,7 +854,7 @@ on=@create
 [chardef 704]
 defname=c_shadow_lord
 name="doppleganger"
-sound=snd_monster_mimic
+sound=snd_monster_shadowlord
 icon=i_pet_doppleganger_lbr
 can=mt_walk|mt_fly
 dam=15,25
@@ -1798,73 +1758,10 @@ HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
 
 
-[CHARDEF 1069]
-DEFNAME=c_death_hound
-NAME=death hound
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
 
 [CHARDEF 1070]
 DEFNAME=c_werewolf
 NAME=werewolf
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
-
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
-
-ON=@CREATE
-NPC=brain_animal
-
-FAME=45
-KARMA=0
-
-STR={30 45}
-DEX={38 53}
-INT={15 20}
-
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
-
-[CHARDEF 741]
-DEFNAME=c_slasher_daemon
-NAME=slasher daemon
 DAM=1,6
 ARMOR=10
 CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
@@ -1925,6 +1822,40 @@ TACTICS={20.0 40.0}
 MAGICRESISTANCE={0.0 10.0}
 HIDING={10.0 25.0}
 STEALTH={10.0 25.0}
+
+
+[CHARDEF 432]
+DEFNAME=c_riding_boura
+NAME=stygian dragon
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=2
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+NPC=brain_animal
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
 
 [eof]
 

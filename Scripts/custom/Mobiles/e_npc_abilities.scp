@@ -68,6 +68,117 @@ ACTP = <P>
 ACTION = 45
 RETURN
 
+[EVENTS e_vicious_bite]
+ON=@Hit
+   IF ((<MANA> >= 10) && (RAND(5)==0) && !(<SRC.FINDID.i_mem_vicious_bite>))
+          MANA -= 10
+          SRC.NEWITEM=i_mem_vicious_bite,1,<SRC>
+          NEW.LINK=<UID>
+          NEW.MORE1=5
+          NEW.TIMER=20
+          SRC.SYSMESSAGELOC color_text,1112472//"You've suffered a vicious bite!"
+   ENDIF
+
+
+[ITEMDEF i_mem_vicious_bite]
+ID=i_pet_kepetch
+NAME=Vicious bite memory
+TYPE=t_eq_script
+LAYER=layer_special
+WEIGHT=0
+
+ON=@Create
+   ATTR=attr_decay|attr_can_decay
+   TIMER=2
+
+ON=@Timer
+   IF (<MORE1> > 0)
+          MORE1 -= 1
+          CONT.Damage {5 10} <DEF.dam_poison> <LINK>
+          CONT.SYSMESSAGELOC color_text,1112473//"Your vicious wound is festering!"
+          TIMER=20
+          RETURN 1
+   ENDIF
+
+
+[EVENTS e_norwegian_blue]
+ON=@DeathCorpse
+   DORAND 21
+      ARGO.SAY 'E's dead...
+      ARGO.SAY He's resting...
+      ARGO.SAY It's stone dead
+      ARGO.SAY 'e's stunned!
+      ARGO.SAY definitely deceased...
+      ARGO.SAY ...tired and shagged out following a prolonged squawk
+      ARGO.SAY ...pining for the fjords
+      ARGO.SAY 'E's bleedin' demised!
+      ARGO.SAY 'E's passed on!
+      ARGO.SAY This parrot is no more!
+      ARGO.SAY He has ceased to be!
+      ARGO.SAY 'E's expired and gone to meet 'is maker!
+      ARGO.SAY 'E's a stiff!
+      ARGO.SAY Bereft of life
+      ARGO.SAY 'e rests in peace!
+      ARGO.SAY ...pushing up the daisies!
+      ARGO.SAY 'Is metabolic processes are now 'istory!
+      ARGO.SAY 'E's off the twig!
+      ARGO.SAY 'E's kicked the bucket...
+      ARGO.SAY 'e's shuffled off 'is mortal coil...
+      ARGO.SAY run down the curtain and joined the bleedin' choir invisibile!!
+      ARGO.SAY THIS IS AN EX-PARROT!!
+   ENDDO
+
+[EVENTS e_fire_defense]
+ON=@GetHit
+   //Fire Aura Defense
+   IF (RAND(3)==0) && (<MANA> >= 20)
+      MANA -= 20
+      LOCAL.TMP=<OBJ>
+      OBJ=<UID>
+      FORCHARS 2
+            DAMAGE {10 20} <DEF.dam_fire> <OBJ>
+            SYSMESSAGELOC color_text,1008112//"The intense heat is damaging you!"
+      ENDFOR
+      OBJ=<LOCAL.TMP>
+   ENDIF
+
+
+on=@death
+     src.newitem=i_fx_explode
+     lastnew.type=t_explosion
+     lastnew.attr=attr_move_never | attr_can_decay
+     lastnew.link=<uid>
+     lastnew.morex={15 25} // damage
+     lastnew.morey=090 // wflags damage_general
+     lastnew.morez=3 // idist
+     lastnew.p=<p>
+     lastnew.timer=1 // immediate decay
+
+
+[EVENTS e_flaming_goo]
+
+ON=@Death
+   LOCAL.TMP=<OBJ>
+   OBJ=<UID>
+   FORCHARS 4
+         DAMAGE <R10,20> <DEF.dam_fire> <OBJ>
+         EFFECT 3,i_fx_explode,1,16,0
+         SYSMESSAGELOC color_text,1112366//"The flammable goo covering you bursts into flame!"
+   ENDFOR
+   SYSMESSAGELOC color_text,1112365//"Flammable goo sprays into the air!"
+   OBJ=<LOCAL.TMP>
+
+ON=@Hit
+   //Flammable Goo
+   IF (RAND(5)==0)
+      IF (<MANA> >= 8)
+         SRC.SYSMESSAGELOC color_text,1112366//"The flammable goo covering you bursts into flame!"
+         MANA -= 8
+         SRC.DAMAGE <R10,20> <DEF.dam_fire> <OBJ>
+         SRC.EFFECT 3,i_fx_explode,1,16,0
+      ENDIF
+
+
 
 [EVENTS e_swarm]
 on=@Attack
@@ -359,7 +470,7 @@ ON=@DClick
  ENDIF
  IF !( (<SECTOR.COMPLEXITY>)>((<SERV.MAXCOMPLEXITY>)*(1)) ) //If sector is not too busy
    VAR.GESTATE.OldACT=<LINK.ACT> //Temporary ACT storage
-   LINK.NEWNPC { <LINK.TAG.NPCAI.LEIC.Type1> <EVAL <LINK.TAG.NPCAI.LEIC.Weight1>> <LINK.TAG.NPCAI.LEIC.Type2> <EVAL <LINK.TAG.NPCAI.LEIC.Weight2>> <LINK.TAG.NPCAI.LEIC.Type3> <EVAL <LINK.TAG.NPCAI.LEIC.Weight3>> <LINK.TAG.NPCAI.LEIC.Type4> <EVAL <LINK.TAG.NPCAI.LEIC.Weight4>> <LINK.TAG.NPCAI.LEIC.Type5> <EVAL <LINK.TAG.NPCAI.LEIC.Weight5>> } //Generate an NPC
+   LINK.NEWNPC { <LINK.tag0.NPCAI.LEIC.Type1> <EVAL <LINK.tag0.NPCAI.LEIC.Weight1>> <LINK.tag0.NPCAI.LEIC.Type2> <EVAL <LINK.tag0.NPCAI.LEIC.Weight2>> <LINK.tag0.NPCAI.LEIC.Type3> <EVAL <LINK.tag0.NPCAI.LEIC.Weight3>> <LINK.tag0.NPCAI.LEIC.Type4> <EVAL <LINK.tag0.NPCAI.LEIC.Weight4>> <LINK.tag0.NPCAI.LEIC.Type5> <EVAL <LINK.tag0.NPCAI.LEIC.Weight5>> } //Generate an NPC
    //LINK.ACT.FLAGS=<LINK.ACT.FLAGS>|010000000
    LINK.ACT.P=<P> //Set new NPC's position to that of the egg
    LINK.ACT.UPDATE //Update the new NPC
@@ -370,7 +481,7 @@ ON=@DClick
 
 [EVENTS e_layeggsincorpse]
 ON=@ItemStep
- IF ( (<ACT.BASEID>==i_corpse)
+ IF (<ACT.BASEID>==i_corpse) && !(<ACT.MOREY>==1)
  IF (<Serv.MaxComplexity> > <Sector.complexity>) && (((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)>(0)) || ((<EVAL <TAG.NPCAI.LEIC.TotalQuantity>>)==(-1))) ) && !(<ACT.MOREY>)
    ACT.MOREY=1
    ACT.COLOR=0481
