@@ -1569,6 +1569,7 @@ RESOURCES=1 i_bird_raw, 30 i_feather
 FOODTYPE=30 t_crops, t_fruit, t_grain
 SHELTER=r_farm, r_forest
 tag.wrestlingspeed=40
+ANIM=03a0c1f
 TEVENTS=e_fire_defense
 
 category=AoD Monsters

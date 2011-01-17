@@ -353,6 +353,15 @@ IF !<TAG0.WeaponSkillEnabled> && !(<FINDID.i_combatmove_timer>) && !<R6>
 	ELIF (<I.<LOCAL.COMSKILL>> >= 500)
 		TAG.WeaponSkillEnabled=<QVAL <Weapon> ? <Weapon.tag0.Manuever1> : <serv.chardef.<ID>.Tag0.Manuever1>>
 	ENDIF
+	IF (<Tag0.WeaponSkillEnabled> == 5) && !(<SRC.Weapon>)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 6) && !(<SRC.Flags> & statf_onhorse)
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 9) && (<SRC.Hits> > (<SRC.MaxHits>/2))
+		TAG.WeaponSkillEnabled=0
+	ELIF (<Tag0.WeaponSkillEnabled> == 2) && (<serv.chardef.<SRC.ID>.bloodcolor> == 0ffff)
+		TAG.WeaponSkillEnabled=0
+	ENDIF
 ENDIF
 
 [EVENTS e_spawn_minion]
@@ -397,9 +406,9 @@ ENDIF
 
 [EVENTS e_mind_whip] 
 on=@NPCActFight
-     if (rand(5) == 1) && (<mana> > 15)
+     if (rand(5) == 1) && (<mana> > 16)
 		FOR 3
-			DORAND 4
+			DORAND 5
 				src.spelleffect s_Hallucination,1000
 				src.spelleffect s_feeblemind,1000
 				src.spelleffect s_mana_drain,1000
@@ -407,7 +416,7 @@ on=@NPCActFight
 				src.spelleffect s_paralyze,1000
 			enddo
 		ENDFOR
-		mana -= 15
+		mana -= 16
 		food += 5
 		src.emote reel from a mind whip
 	endif
@@ -431,7 +440,7 @@ IF <SRC.WEAPON> && (rand(5) == 1)
    IF (<SRC.WEAPON.MORE1L> <= 0) 
     SRC.WEAPON.REMOVE 
     SRC.MESSAGE Your weapon melts in your grasp. 
-    SRC.SYSMESSAGE You weapon was destroyed by the the acid damage from hitting <NAME>. 
+    SRC.SYSMESSAGE Your weapon was destroyed by the the acid damage from hitting <NAME>. 
    ENDIF 
   UPDATE 
   RETURN 0 

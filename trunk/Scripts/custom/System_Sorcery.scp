@@ -163,18 +163,23 @@ interrupt=0.0
 ON=@success
 SRC.newnpc=c_efreet
 obj = <new.uid>
+obj.p=<src.P>
+obj.FIX
   if (<obj.TAG0.slots_needed>)
     local.slots = <obj.TAG0.slots_needed>
   else
     local.slots = 1
   endif
 IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
+	//IF (<SRC.RESTEST i_reag_daemon_bone>)
+	//	SRC.SYSMESSAGE You cannot control the creature and it is summoned rogue.
+	//	SRC.CONSUME 1 i_reag_daemon_bone
+	//	RETURN
+	//ENDIF
 	SRC.SYSMESSAGE You have too many followers.
 	HITS=0
 ENDIF
 SRC.CURFOLLOWER += <local.slots>
-obj.p=<src.P>
-obj.FIX
 obj.tag.npcai.race=<src.tag0.npcai.race>
 obj.flags=00c000000
 newitem=i_memory

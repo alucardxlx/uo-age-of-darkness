@@ -53,6 +53,14 @@ ON=@EQUIP
 COLOR=<SRC.COLOR>
 RETURN
 
+[CHARDEF 0b9]
+DEFNAME=c_orc_body
+NAME=orc
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+SOUND=snd_MONSTER_ORC1
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink,t_drink
+DAM=2,8
+
 [CHARDEF c_orc_male]
 ID=0190
 SOUND=snd_MONSTER_ORC1
