@@ -65,7 +65,8 @@ If <Act.Can>&0100
 	Endif
 Endif
 
-
+ON=@UserWarMode
+ ARGN2 = 1
 
 ON=@ItemSell
 IF (<ACT.TYPE> == t_container)
@@ -347,6 +348,17 @@ events +e_general_mob
 
 //// All mobs
 [EVENTS e_general_mob]
+
+on=@ItemEquipTest
+IF <act.TAG0.Item.Gargoyle>
+	IF (<BODY> != c_gargoyle_male) && (<BODY> != c_garg_ghost_man)
+		RETURN 1
+	ENDIF
+ELSE
+	IF (<BODY> == c_gargoyle_male) || (<BODY> == c_garg_ghost_man)
+		RETURN 1
+	ENDIF
+ENDIF
 
 on=@callguards
 FORCHARS 64

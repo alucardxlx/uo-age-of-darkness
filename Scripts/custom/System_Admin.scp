@@ -58,6 +58,24 @@ foritems 6144
 endfor
 
 
+[function weedkill]
+//used this to remove old crops so I can begin spawning the ones that use the scripted farming system
+//kept here for refrence if we want to do a similair wipe in the future.
+foritems 6144
+ if <type> == t_spawn_item
+	if (<serv.itemdef(<More>).type> == t_foliage) || (<serv.itemdef(<More>).type> == t_crops)
+	  remove
+	  serv.log removed
+	endif
+ endif
+ if (<type> == t_foliage) || (<type> == t_crops)
+	  remove
+	  serv.log removed
+	endif
+ endif
+endfor
+
+
 // Crested 6/30/2008 10:53:28 PM, with GumpStudio
 // Exported SphereExporter ver 2.0.
 // Script ver 0.56/Revisions

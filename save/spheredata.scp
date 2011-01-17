@@ -1,15 +1,15 @@
 TITLE=Sphere World Script
 VERSION=0.56b-Nightly
-TIME=357043005
-SAVECOUNT=11228
+TIME=379622219
+SAVECOUNT=12142
 
 [TIMERF]
-CurTick=2
+CurTick=9
 
 [GLOBALS]
 aantal=03
 argn1=0190
-argn2=04000a8ce
+argn2=0400141b6
 ccolor=03
 color1=0186e
 color2=01870
@@ -19,33 +19,32 @@ colord2=0186d
 colord3=01870
 colord4=0186c
 colord5=01870
-consumeprior=06
 counter=01
 cplace=04
 currencyindex=013
 currencyindex2=01
 currencypriorindex=013
-currencytotal=0f1
-cycle=016
-damagepercent="0.100000"
-date=0e
+currencytotal=0766
+cycle=02d
+damagepercent="0.300000"
+date=07
 day=07
-equipmeleeweapon.oldarchery="70.6"
-exp=012
+equipmeleeweapon.oldarchery="80.1"
+exp=0e
 firstcol=0186e
 gestate.oldact=04fffffff
-hours=0b
+hours=011
 index=06
-lunar=01ed
-lunar2=01ed
-mins=02a
-month=02
+lunar=0343
+lunar2=0343
+mins=018
+month=05
 newobj=0ec7c
-p="1473,1620,20"
-phase=01
-phase2=05
-pos="1386,1504,10"
-suid=0cf62
+p="1499,3770,6"
+phase=05
+phase2=07
+pos="6525,873"
+suid=014dcc
 text1=03
 text2=04
 tree="i_tree_4"
@@ -93,14 +92,17 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 [WS a_hythloth_entrance_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
+[WS a_exit_from_eapua_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
 [WS a_trinsic_stablery_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_shop2_e_1]
-NAME=Buried Treasure Bank
+NAME=Shop2 E
 
 [WS a_britain_barracks_1]
-NAME=Rogues' Guild
+NAME=Britain Barracks
 
 [WS a_yew_orcfort_outpost_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,r_guard_tower,e_region_enviro
@@ -191,6 +193,9 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_cove_graveyard_1]
+EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
+
+[WS a_passage_from_brit_sewers_1]
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_ice_dungeon_orc_fort_1]
@@ -326,7 +331,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default_rock,e_region_enviro
 
 [WS a_quality_fletching_1]
-NAME=Iolo's Bows
+NAME=Quality Fletching
 
 [WS a_warehouse_c_1]
 NAME=Warehouse C
@@ -414,7 +419,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_townwind]
-NAME=Dawn
+NAME=Wind
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_sunspot_beach_1]
@@ -464,7 +469,7 @@ TAG.restockvendors=02a300
 TAG.vendormarkup=0a
 
 [WS a_occlo_7]
-NAME=New Magincia
+NAME=Occlo
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 TAG.inflation=05a
 TAG.vendormarkup=0f
@@ -529,7 +534,7 @@ TAG.sign=04000b113
 TAG.vendormarkup=0f
 
 [WS a_yew_ter]
-NAME=Spiritwood
+NAME=Yew Territory
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_northern_territory_1]
@@ -625,7 +630,7 @@ EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_ml_dungeon_4]
-FLAGS=08000
+FLAGS=0a000
 EVENTS=r_default,r_default_rock,r_default_water,r_default_tree,r_default_grass,e_region_enviro
 
 [WS a_ml_dungeon_5]

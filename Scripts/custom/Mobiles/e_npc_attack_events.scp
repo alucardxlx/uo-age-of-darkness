@@ -18,7 +18,7 @@
 
 ON=@NPCLookAtChar
  IF (0<MEMORYFINDTYPE(MEMORY_IPET)>) || (<SRC.ISGM>) || (<FLAGS>&statf_war) || (<FLAGS>&statf_freeze) || !(<EVAL <TAG0.LASTCASTING>> < <EVAL <SERV.TIME>>)
-   RETURN 1
+   RETURN
  ENDIF
 
  IF ( <hval <DEF.race.<TAG.NPCAI.Race>.Enemy>> & <SRC.TAG0.NPCAI.Race> ) //If my target's race is in my hates
@@ -180,6 +180,7 @@ RETURN
 
 [EVENTS e_intel_char_magery_user]
 
+
 ON=@NPCSeeNewPlayer
 IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return
@@ -198,14 +199,14 @@ Tag.target = <src>
 IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return 1
 endif
-IF (<distance> < 3)
-	IF (<EVAL {1 300}> > (<TAG0.RANDCAST>+25) )
+IF (<distance> <= <range>)
+	IF (<EVAL {1 200}> > (<TAG0.RANDCAST>+30) )
 	      RETURN
 	ENDIF
 ELSE
-	IF (<EVAL {1 200}> > (<TAG0.RANDCAST>+25) )
-	      FACE <SRC>
-	      WALK <DIR>
+	IF (<EVAL {1 100}> > (<TAG0.RANDCAST>+30) )
+	      GO <SRC>
+	      TIMERF 1, GO <SRC>
 	      RETURN
 	ENDIF
 ENDIF
@@ -251,15 +252,11 @@ Tag.target = <src>
 IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return 1
 endif
-IF (<distance> < 3)
-	      FACE <SRC>
-	      WALK <DIR>
-	      RETURN
-	ENDIF
-ENDIF
+RETURN
 
 ON=@SpellFail
 	TAG.LASTCASTING=
+	TAG.SPELLCASTING=
 	IF <UID.<TAG0.TARGET>.HITS>
 		TIMERF 1, TRYSRC <TAG.TARGET> ATTACK
 	ELSE
@@ -269,6 +266,7 @@ ON=@SpellFail
 
 ON=@SpellSuccess
 	TAG.LASTCASTING=
+	TAG.SPELLCASTING=
 	IF <UID.<TAG0.TARGET>.HITS>
 		TIMERF 1, TRYSRC <TAG.TARGET> ATTACK
 	ELSE
@@ -282,7 +280,7 @@ IF (<EVAL <TAG0.LASTCASTING>>) || (<FLAGS>&statf_freeze)
 	return
 endif
 npcNearCaster
-IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+15))
+IF (<TAG0.NEARBY>==1) && !(<EVAL {1 100}>>(<TAG0.RANDCAST>+20))
 	IF (<SRC.FLAGS>&statf_conjured)
 		IF !(<R3>)
 			IF (<npccancast s_mass_dispel>)
@@ -361,6 +359,7 @@ IF !(<FLAGS>&statf_war) && (<MANA> < <MAXMANA>) && (<MEDITATION> > 0)
 	SKILL MEDITATION
 ENDIF
 RETURN 
+
 
 
 ON=@SPELLEFFECT
@@ -1271,6 +1270,7 @@ ENDIF
   LOCAL.SKILL = 25
  ENDIF
  TAG.LASTCASTING=<eval (<SERV.TIME>+<SERV.SPELL.<LOCAL.SPELL>.CAST_TIME>)>
+ TAG.SPELLCASTING=<LOCAL.SPELL>
 
 // Set spell target
 IF (<ARGV> > 2) //use coords if given
