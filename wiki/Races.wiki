@@ -1,0 +1,11 @@
+#summary Player Races of AoD
+
+=Races=
+
+==Humans==
+
+==Elves==
+
+==Orcs==
+
+==Gargoyles==
