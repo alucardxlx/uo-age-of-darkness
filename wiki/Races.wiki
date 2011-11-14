@@ -4,8 +4,16 @@
 
 ==Humans==
 
+*+8 Hit Points*
+*+50.0 Skill Maximum*
+
 ==Elves==
+*+8 Mana*
+*+10 Energy Resistance*
+*+50.0 Skill Maximum*
 
 ==Orcs==
+*+8 Stamina*
+*+10 Poison Resistance*
 
 ==Gargoyles==
