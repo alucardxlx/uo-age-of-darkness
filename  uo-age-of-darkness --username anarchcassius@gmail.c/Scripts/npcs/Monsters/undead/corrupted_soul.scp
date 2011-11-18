@@ -1,0 +1,45 @@
+[chardef c_corrupted_soul]
+id=03ca
+name=corrupted soul
+can=mt_walk|mt_run|mt_ghost
+moverate=100
+dam=4,40
+armor=60,75
+icon=i_pet_man
+sound=snd_monster_ghost1
+resources=
+foodtype=
+aversions=t_trap
+desires=e_living
+bloodcolor=-1
+
+category=Monsters
+subsection=Undead
+description=Corrupted Soul
+
+on=@Create
+ npc=brain_undead
+ color=	//shadow color
+ flags=statf_summoned
+
+ fame=5000
+ karma=-5000
+
+ resfire={ 20 50 }
+ rescold={ 70 100 }
+ respoison={ 0 0 }
+ resenergy={ 50 60 }
+
+ ostr={ 100 115 }
+ odex={ 100 115 }
+ oint={ 200 215 }
+ maxhits={ 60 70 }
+
+ wrestling={ 80.0 90.0 }
+ tactics={ 80.0 90.0 }
+ magicresistance={ 80.0 90.0 }
+ anatomy={ 0.0 0.0 }
+ parrying={ 80.0 90.0 }
+
+on=@NPCRestock
+ item={ i_thread_of_fate 1 0 19 }

@@ -1,0 +1,348 @@
+
+[itemdef 0f0f]
+//star sapphire
+defname=i_gem_star_sapphire
+type=t_gem
+value=35
+weight=1
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 1 (dark blue)
+
+[itemdef 0f10]
+//emerald
+defname=i_gem_emerald
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=emerald 1
+
+[itemdef 0f11]
+//sapphire (gem)
+defname=i_gem_sapphire
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 1 (light blue)
+
+[itemdef 0f12]
+//sapphire
+defname=i_gem_sapphire_2
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 2 (dark blue)
+
+[itemdef 0f13]
+//ruby
+defname=i_gem_ruby
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 1
+
+[itemdef 0f14]
+//ruby
+defname=i_gem_ruby_2
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 2
+
+[itemdef 0f15]
+//citrine
+defname=i_gem_citrine
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 1
+
+[itemdef 0f16]
+//amethyst (gem)
+defname=i_gem_amethyst
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 1
+
+[itemdef 0f17]
+//amethyst
+defname=i_gem_amethyst_2
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 2
+
+[itemdef 0f18]
+//tourmaline (gem)
+defname=i_gem_tourmaline
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 1
+
+[itemdef 0f19]
+//sapphire
+defname=i_gem_sapphire_3
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 3
+
+[itemdef 0f1a]
+//ruby (gem)
+defname=i_gem_ruby_3
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 3
+
+[itemdef 0f1b]
+//star sapphire
+defname=i_gem_star_sapphire_2
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 2 (shining blue)
+
+[itemdef 0f1c]
+//ruby
+defname=i_gem_ruby_4
+type=t_gem
+value=40
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 4 (small)
+
+[itemdef 0f1d]
+//ruby
+defname=i_gem_ruby_5
+value=40
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 5 (small) (darkened)
+
+[itemdef 0f1e]
+//tourmaline
+defname=i_gem_tourmaline_2
+type=t_gem
+value=25
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 2
+
+[itemdef 0f1f]
+//sapphire
+defname=i_gem_sapphire_4
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=sapphire 4
+
+[itemdef 0f20]
+//tourmaline
+defname=i_gem_tourmaline_3
+type=t_gem
+value=20
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 3 (shining green)
+
+[itemdef 0f21]
+//star sapphire
+defname=i_gem_star_sapphire_3
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=star sapphire 3 (big)
+
+[itemdef 0f22]
+//amethyst (gem) (large)
+defname=i_gem_amethyst_3
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 1
+
+[itemdef 0f23]
+//citrine (gem)
+defname=i_gem_citrine_2
+value=50
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 2 (big)
+
+[itemdef 0f24]
+//citrine
+defname=i_gem_citrine_3
+value=50
+type=t_gem
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 3 (big)
+
+[itemdef 0f25]
+//piece of amber (gem)
+defname=i_gem_amber
+type=t_gem
+value=10
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=piece of amber
+
+[itemdef 0f26]
+//diamond (gem)
+defname=i_gem_diamond
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 1 (dark) (small)
+
+[itemdef 0f27]
+//diamond
+defname=i_gem_diamond_2
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 2 (dark) (big)
+
+[itemdef 0f28]
+//diamond
+defname=i_gem_diamond_3
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 3 (light) (small)
+
+[itemdef 0f29]
+//diamond
+defname=i_gem_diamond_4
+type=t_gem
+value=55
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 4 (light) (big)
+
+[itemdef 0f2a]
+//ruby
+defname=i_gem_ruby_6
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 6 (big)
+
+[itemdef 0f2b]
+//ruby
+// defname2=gem25
+defname=i_gem_ruby_7
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=ruby 7 (big)
+
+[itemdef 0f2c]
+//citrine
+// defname2=gem26
+defname=i_gem_citrine_4
+type=t_gem
+weight=0.5
+value=30
+category=provisions - jewels and jewelry
+subsection=jewels
+description=citrine 4
+
+[itemdef 0f2d]
+//tourmaline
+// defname2=gem27
+defname=i_gem_tourmaline_4
+type=t_gem
+value=30
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=tourmaline 4 (big)
+
+[itemdef 0f2e]
+//amethyst (large)
+// defname2=gem28
+defname=i_gem_amethyst_4
+type=t_gem
+value=35
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=amethyst 4
+
+[itemdef 0f2f]
+//emerald (gem)
+// defname2=gem29
+defname=i_gem_emerald_2
+type=t_gem
+value=45
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=emerald (big)
+
+[itemdef 0f30]
+//diamond
+// defname2=gem30
+defname=i_gem_diamond_5
+type=t_gem
+value=50
+weight=0.5
+category=provisions - jewels and jewelry
+subsection=jewels
+description=diamond 5 (big)
+
+[eof]

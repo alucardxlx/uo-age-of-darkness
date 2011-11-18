@@ -1,0 +1,162 @@
+[CHARDEF 032]
+DEFNAME=c_skeleton
+NAME=skeleton
+CAN=MT_WALK
+MOVERATE=100
+DAM=3,7
+ARMOR=15,20
+SOUND=snd_MONSTER_SKLETN1
+ICON=i_pet_SKELETON
+ANIM=078c7f
+RESOURCES=8 i_reag_bone
+FOODTYPE=
+//SHELTER=r_spooky
+DESIRES=t_bone,i_gold
+BLOODCOLOR=-1
+
+TEVENTS=e_undead
+TEVENTS=//immune to level 1 poison
+
+CATEGORY=Monsters
+SUBSECTION=Undead
+DESCRIPTION=Skeleton
+
+ON=@Create
+ NPC=brain_undead
+
+ FAME=450
+ KARMA=-450
+ //ALIGNMENT=EVIL
+
+ RESFIRE={ 5 10 }
+ RESCOLD={ 25 40 }
+ RESPOISON={ 25 35 }
+ RESENERGY={ 5 15 }
+
+ OSTR={ 56 80 }
+ ODEX={ 56 75 }
+ OINT={ 16 40 }
+ MAXHITS={ 34 48 }
+ MAXSTAM=<ODEX>
+ MAXMANA=<OINT>
+
+ WRESTLING={ 45.0 55.0 }
+ TACTICS={ 45.0 60.0 }
+ MAGICRESISTANCE={ 45.0 60.0 }
+ PARRYING={ 45.0 55.0 }
+
+ON=@NPCRestock
+// ITEM=loot_SKELETON
+ ITEM=i_gold,{ 25 50 }
+ ITEM=random_bone_armor
+
+
+[CHARDEF 038]
+DEFNAME=c_skeleton_axeman
+NAME=skeleton
+CAN=MT_WALK|MT_USEHANDS|MT_RUN
+MOVERATE=100
+DAM=3,7
+ARMOR=15,20
+SOUND=snd_MONSTER_SKLETN1
+ICON=i_pet_SKELETON
+ANIM=078c7f
+RESOURCES=8 i_reag_bone
+FOODTYPE=
+DESIRES=t_bone,i_gold
+//SHELTER=r_spooky
+BLOODCOLOR=-1
+
+TEVENTS=e_undead
+TEVENTS=//immune to level 1 poison
+
+CATEGORY=Monsters
+SUBSECTION=Undead
+DESCRIPTION=Skeleton Axeman
+
+ON=@Create
+ NPC=brain_undead
+
+ FAME=450
+ KARMA=-450
+ //ALIGNMENT=EVIL
+
+ RESFIRE={ 5 10 }
+ RESCOLD={ 25 40 }
+ RESPOISON={ 25 35 }
+ RESENERGY={ 5 15 }
+
+ OSTR={ 56 80 }
+ ODEX={ 56 75 }
+ OINT={ 16 40 }
+ MAXHITS={ 34 48 }
+ MAXSTAM=<ODEX>
+ MAXMANA=<OINT>
+
+ WRESTLING={ 45.0 55.0 }
+ TACTICS={ 45.0 60.0 }
+ MAGICRESISTANCE={ 45.0 60.0 }
+ PARRYING={ 45.0 55.0 }
+
+ON=@NPCRestock
+// ITEM=loot_SKELETON
+ ITEM=i_gold,{ 25 50 }
+ ITEM=random_bone_armor
+ ITEM=i_axe_battle
+// ITEM={ meager_undead_backpack 1 average_undead_backpack 2 0 1 }
+
+
+[CHARDEF 039]
+DEFNAME=c_skeleton_swordsman
+NAME=skeleton
+CAN=MT_WALK|MT_USEHANDS|MT_EQUIP
+MOVERATE=100
+DAM=3,7
+ARMOR=15,20
+SOUND=snd_MONSTER_SKLETN1
+ICON=i_pet_SKELETON
+ANIM=078c7f
+RESOURCES=8 i_reag_bone
+DESIRES=t_bone,i_gold
+FOODTYPE=
+//SHELTER=r_spooky
+BLOODCOLOR=-1
+
+TEVENTS=e_undead
+TEVENTS=//immune to level 1 poison
+
+CATEGORY=Monsters
+SUBSECTION=Undead
+DESCRIPTION=Skeleton Swordsman
+
+ON=@Create
+ NPC=brain_undead
+
+ FAME=450
+ KARMA=-450
+ //ALIGNMENT=EVIL
+
+ RESFIRE={ 5 10 }
+ RESCOLD={ 25 40 }
+ RESPOISON={ 25 35 }
+ RESENERGY={ 5 15 }
+
+ OSTR={ 56 80 }
+ ODEX={ 56 75 }
+ OINT={ 16 40 }
+ MAXHITS={ 34 48 }
+ MAXSTAM=<ODEX>
+ MAXMANA=<OINT>
+
+ WRESTLING={ 45.0 55.0 }
+ TACTICS={ 45.0 60.0 }
+ MAGICRESISTANCE={ 45.0 60.0 }
+ PARRYING={ 45.0 55.0 }
+
+ON=@NPCRestock
+// ITEM=loot_SKELETON
+ ITEM=i_gold,{ 25 50 }
+ ITEM=random_bone_armor
+ ITEM=i_shield_wood
+ ITEM=i_CUTLASS
+// ITEM={ meager_undead_backpack 1 average_undead_backpack 2 }

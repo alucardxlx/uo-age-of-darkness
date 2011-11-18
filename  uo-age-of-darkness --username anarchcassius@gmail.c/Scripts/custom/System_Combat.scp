@@ -1,0 +1,2485 @@
+//****************************************************************************
+// SPHERE by : Menasoft 1997-2005 www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// Combat system based on script created by pyrosmapes, khaos, and others
+// Combat moves based on script created by RanXerox
+
+[SKILL 31]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 40]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 41]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 42]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 43]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 52]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 53]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+[SKILL 57]
+ON=@Start
+TIMERD = <EVAL <CombatSys_HitSpeed> / 2>
+RETURN 2
+
+
+
+[EVENTS e_WeaponSkills]
+
+ON=@UserSpecialMove
+SRC.MESSAGE Use the commands .move1, .move2 and move3 to activate special moves.
+RETURN 1
+
+ON=@ItemUnequip
+IF (<SRC.ACT.LAYER>==1) //Hand
+IF <SRC.ISPLAYER>
+	SRC.SENDPACKET (0bf 00 05 00 021)
+ENDIF
+SRC.f_UseSkillBook 0
+ENDIF
+IF (<SRC.ACT.LAYER>==2) //Hand
+IF <SRC.ISPLAYER>
+	SRC.SENDPACKET (0bf 00 05 00 021)
+ENDIF
+SRC.f_UseSkillBook 0
+ENDIF
+
+[FUNCTION f_endmove]
+IF <ISPLAYER>
+	SENDPACKET (0bf 00 05 00 021)
+ENDIF
+f_UseSkillBook 0
+NEWITEM i_combatmove_timer
+EQUIP <NEW>
+
+[ITEMDEF i_combatmove_timer]
+NAME=performed combat move timer
+ID=01e2e
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+
+ON=@Equip
+   ATTR = 04002
+   TIMER = 3
+
+ON=@Timer
+   REMOVE
+
+[FUNCTION f_UseSkillBook]
+
+DOSWITCH <ARGN1>
+   BEGIN //ARGV[0]=0
+      SYSMESSAGE @021 Ability in Use: None
+      IF <FINDLAYER(2).BASEID>==i_elven_composite_longbow
+         FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=i_arrow_x
+      ENDIF
+      EVENTS = -e_weaponskill
+      TAG.WeaponSkillEnabled=
+      RETURN
+   END
+   SYSMESSAGE @039 Ability in Use: Armor Ignore
+   SYSMESSAGE @039 Ability in Use: Bleed Attack
+   SYSMESSAGE @039 Ability in Use: Concussion Blow
+   SYSMESSAGE @039 Ability in Use: Crushing Blow
+   SYSMESSAGE @039 Ability in Use: Disarm
+   SYSMESSAGE @039 Ability in Use: Dismount
+   SYSMESSAGE @039 Ability in Use: Double Strike
+   SYSMESSAGE @039 Ability in Use: Infecting
+   SYSMESSAGE @039 Ability in Use: Mortal Strike
+   SYSMESSAGE @039 Ability in Use: Moving Shot
+   SYSMESSAGE @039 Ability in Use: Paralyzing Blow
+   SYSMESSAGE @039 Ability in Use: Shadow Strike
+   SYSMESSAGE @039 Ability in Use: Whirlwind Attack
+   SYSMESSAGE @039 Ability in Use: Riding Swipe
+   SYSMESSAGE @039 Ability in Use: Frenzied Whirlwind
+   SYSMESSAGE @039 Ability in Use: Block
+   SYSMESSAGE @039 Ability in Use: Defence Mastery
+   SYSMESSAGE @039 Ability in Use: Nerve Strike
+   SYSMESSAGE @039 Ability in Use: Talon Strike
+   SYSMESSAGE @039 Ability in Use: Feint
+   SYSMESSAGE @039 Ability in Use: Dual wield
+   SYSMESSAGE @039 Ability in Use: Double Shot
+   SYSMESSAGE @039 Ability in Use: Armor Pierce
+   SYSMESSAGE @039 Ability in Use: BladeWeave
+   SYSMESSAGE @039 Ability in Use: Force Arrow
+   SYSMESSAGE @039 Ability in Use: Lightning Arrow
+   SYSMESSAGE @039 Ability in Use: Psychic Attack
+   SYSMESSAGE @039 Ability in Use: Serpent Arrow
+   SYSMESSAGE @039 Ability in Use: Force of Nature
+ENDDO
+EVENTS = +e_weaponskill
+TAG.WeaponSkillEnabled = <ARGN1>
+
+[EVENTS e_weaponskill]
+ON=@ItemUnequip
+// Disable special attack when a weapon is unequiped.
+IF (<SRC.ACT.LAYER>==1) //Hand
+   SRC.SENDPACKET (0bf 00 05 00 021)
+   SRC.f_UseSkillBook 0
+ENDIF
+IF (<SRC.ACT.LAYER>==2) //Hand
+   SRC.SENDPACKET (0bf 00 05 00 021)
+   SRC.f_UseSkillBook 0
+ENDIF
+
+[FUNCTION f_combat_manuever_hit]
+// SRC   is the person doing the hitting
+// ACT   is the person getting hit
+// ARGO  is the item being used to attack with.  To look at this item, do
+//       not use UID.<ARGO>.BLAH, instead, it is ARGO.BLAH, as ARGO acts
+//       like ACT or OBJ.
+// ARGN1 is the amount of damage to be done. This value can be rewritten.
+// ARGN2 is the type of damage done
+//
+// NOTE: ARGN1 is the max possible damage to be done ... the target armor
+//       and other possible damage reducing effects will alter the actual
+//       damage result.
+
+IF <TAG0.WeaponSkillEnabled> == 1
+  // Armor Ignore - This special move allows the skilled warrior to bypass
+  // his targets physical resistance, for one shot only. The Armor Ignore
+  // shot does slightly less damage than normal. Against a heavily armored
+  // opponent, this ability is a big win, but when used against a very
+  // lightly armored foe, it might be better to use a standard strike. 
+  // Stam Cost: 20-30 (-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Armor Ignore!
+  TAG.BypassArmor=1
+  f_endmove
+  RETURN <Eval (<Argv[0]>>/-10)>  //adds -10% damage
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 2
+  // Bleed Attack - Make your opponent bleed profusely with this wicked
+  // use of your weapon.  When successful, the target will bleed for
+  // several seconds, taking damage as time passes for up to ten seconds.
+  // The rate of damage slows down as time passes, and the blood loss can
+  // be completely staunched with the use of bandages.  Applies a total of
+  // 15-31 physical damage to the target over the next 10 seconds.  This
+  // damage is not reduced by armor and can only be avoided through
+  // healing with bandages.
+  // Stam Cost: 20-30 (-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Bleed Attack!
+  SRC.NEWITEM i_bleed_timer
+  NEW.LINK = <UID>
+  SRC.EQUIP <NEW>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 3
+  // Concussion Blow - This devastating strike is most effective against
+  // those who are in good health and whose reserves of mana are low, or
+  // vice versa.  Applies 5-30 additional physical damage that cannot
+  // be reduced by physical resistance or other defenses.
+  // Stam Cost: 20-30 (-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Concussion Blow!
+  LOCAL.TargetHealthRatio = (<SRC.HITS>*100) / <SRC.MAXHITS>
+  LOCAL.TargetManaRatio = (<SRC.MANA>*100) / <SRC.MAXMANA>
+  LOCAL.ExtraDamage = <LOCAL.TargetHealthRatio> - <LOCAL.TargetManaRatio>
+  IF ( <LOCAL.ExtraDamage> < 0 ) // Make sure it is a positive integer
+     LOCAL.ExtraDamage -= <LOCAL.ExtraDamage> * 2
+  ENDIF
+  LOCAL.Extradamage = 5 + (<LOCAL.ExtraDamage> / 4)
+  SYSMESSAGE @032 Extra <EVAL <LOCAL.ExtraDamage>> damage!
+  Src.Damage <LOCAL.ExtraDamage> 0001 <Uid>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 4
+  // Crushing Blow - Also known as the Haymaker, this attack increases the
+  // damage done by a weapon reaching its mark by 50%.  Additional damage
+  // is applied as physical damage.
+  // Stam Cost: 15-25(-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (25 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Crushing Blow!
+  f_endmove
+  RETURN <Eval (<Argv[0]>/2)>
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 5
+  // Disarm - This attack allows you to disarm your foe.  A successful
+  // Disarm leaves the victim unable to re-arm another weapon for 5
+  // seconds.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Disarm!
+  IF <SRC.FINDLAYER(1)>
+     SRC.FINDLAYER(1).BOUNCE
+     SRC.SYSMESSAGE @032 You have been disarmed by <NAME>!
+     SYSMESSAGE @032 You have disarmed <SRC.NAME>!
+  ENDIF
+  IF <SRC.FINDLAYER(2)>
+     SRC.FINDLAYER(2).BOUNCE
+     SRC.SYSMESSAGE @032 You have been disarmed by <NAME>!
+     SYSMESSAGE @032 You have disarmed <SRC.NAME>!
+  ENDIF
+  SRC.NEWITEM i_disarmed_timer
+  SRC.EQUIP <NEW>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 6
+  // Dismount - Perfect for the foot-soldier, the Dismount special attack
+  // can unseat a mounted opponent. If it works, the target will be knocked off his own mount
+  // and will take some extra damage from the fall.  Inflicts 15-25
+  // additional physical damage. 
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<SRC.FLAGS> & statf_onhorse))
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Dismount!
+  SRC.DISMOUNT
+  SRC.EMOTE knocked off mount!
+  SRC.DAMAGE {15 25} dam_physical <UID>
+  SRC.NEWITEM i_dismounted_timer
+  SRC.EQUIP <NEW>
+  f_endmove
+  
+ELSEIF <TAG0.WeaponSkillEnabled> == 7
+  // Double Strike - The highly skilled warrior can use this special
+  // attack to make two quick swings in succession. Landing both blows
+  // would be devastating!
+  // Stam Cost: 15-25 (-5 tactics -5 armorslore)
+  IF (<Weapon.type>==T_WEAPON_BOW) || (<Weapon.type>==T_WEAPON_XBOW)
+	IF <WEAPON.TAG0.OVERRIDE.AMMOTYPE>
+		IF !(<I.RESTEST 2 <WEAPON.TAG.OVERRIDE.AMMOTYPE>>)
+			RETURN 0
+		ENDIF
+	ELIF !(<I.RESTEST 2 <WEAPON.TDATA3>>)
+		RETURN 0
+	ENDIF
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (25 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Double Strike!
+  IF (<Weapon.type>==T_WEAPON_BOW) || (<Weapon.type>==T_WEAPON_XBOW)
+	IF <WEAPON.TAG0.OVERRIDE.AMMOTYPE>
+		CONSUME 1 <WEAPON.TAG.OVERRIDE.AMMOTYPE>)
+	ELSE
+		CONSUME 1 <WEAPON.TDATA3>)
+	ENDIF
+  ENDIF
+  Combat_ExtraHit
+  f_endmove
+  
+ELSEIF <TAG0.WeaponSkillEnabled> == 8
+  // Infectious Strike - A poisonous attack that does not require poison.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  // Mana Cost: 5-10 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Infectious Strike!
+  SRC.SOUND snd_spell_poison
+  IF (<POISONING> >= 1000)
+	  src.New_Poison 4,<Uid>
+  ELSEIF (<POISONING> >= 750)
+	  src.New_Poison 3,<Uid>
+  ELSEIF (<POISONING> >= 500)
+	  src.New_Poison 2,<Uid>
+  ELSEIF (<POISONING> >= 250)
+	  src.New_Poison 1,<Uid>
+  ELSE
+	  src.New_Poison 0,<Uid>
+  ENDIF
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 9
+  // Mortal Strike - The assassins friend.  A successful Mortal Strike
+  // will render its victim unable to heal any damage for several seconds.
+  // Use a gruesome follow-up to finish off your foe.  Lasts for 10 seconds
+  // Does not prevent curing poison or stopping bleeding.
+  // Stam Cost: 20-30 (-5 armslore -5 tactics)
+  IF (<SRC.FINDID.i_blockheal_timer>)
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Mortal Strike!
+  SRC.SOUND snd_spell_paralyze
+  SRC.NEWITEM = i_blockheal_timer
+  SRC.EQUIP <NEW>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 10
+  // Moving Shot - Available on some crossbows, this special move allows
+  // archers to fire while on the move. This shot is somewhat less
+  // accurate than normal, but the ability to fire while running is a
+  // clear advantage.
+  // Stam Cost: 5-15 (-5 armslore -5 tactics)
+  IF (<FINDID.i_archercanmove_timer>)
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (15 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Moving Shot!
+  NEWITEM = i_archercanmove_timer
+  EQUIP <NEW>
+  f_endmove
+  // FIXME: Not sure how OSI does this, but I made the timer last 10-15
+  // seconds.
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 11
+  // Paralyzing Blow - A successful Paralyzing Blow will leave the
+  // target stunned, unable to move, attack, or cast spells, for a
+  // few seconds.  Duration is 5 seconds. The duration is not broken
+  // by combat damage the way the paralyze spell is.
+  // Stam Cost: 20-30 (-5 tactics -5 armorslore)
+  IF (<SRC.FINDID.i_parablow_timer>)
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Paralyzing Blow!
+  SRC.SOUND snd_spell_paralyze
+  SRC.NEWITEM = i_parablow_timer
+  SRC.EQUIP <NEW>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 12
+  // Shadow Strike - Weapon hit does an extra 25% damage, and hides the
+  // attacker instantly if Hiding check is succesful.
+  // Stam Cost: 10-20 (-5 armslore -5 tactics)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Shadow Strike!
+  FLAGS = <FLAGS> &~ 020         //disables war mode
+  NEWITEM = i_shadow_timer
+  EQUIP <NEW> 
+  f_endmove
+  RETURN <Eval (<Argv[0]>/4)>
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 13
+  // Whirlwind Attack - A godsend to a warrior surrounded, the Whirlwind
+  // Attack allows the fighter to strike at all nearby targets in one
+  // mighty spinning swing. 
+  // Stam Cost: 10-20 (-5 tactics -5 armslore)
+  LOCAL.ManaUsed = <EVAL (15 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Whirlwind Attack!
+  OBJ=<Uid>
+  LOCAL.PTARGET=<SRC.Uid>
+  Forchars 2
+	If ((<Uid> != <OBJ.Uid>) && ((<Uid> != <LOCAL.PTARGET>)
+		If <OBJ.IsHostile <Uid>>
+			DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 2> dam_physical <OBJ.UID>
+		Endif
+	Endif
+  Endfor
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 14
+  // Riding Swipe - If you are on foot, dismounts your opponent and damage
+  // the mount (which must be healed before ridden again).
+  //If you are mounted, it damages and stuns the mounted opponent.
+  // Stam Cost: 20-30 (-5 tactics -5 armslore)
+  IF !( <SRC.FLAGS> & statf_onhorse )
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Riding Swipe!
+  f_endmove
+  IF <FLAGS> & statf_onhorse
+     SRC.SOUND snd_spell_paralyze
+     SRC.FLAGS = <SRC.FLAGS> | 04 //paralyzed
+	 SRC.TIMERF 4,SRC.FLAGS = <SRC.FLAGS> &~04 //unparalyzed
+	 RETURN <Eval (<Argv[0]>/4)>
+ ELSE
+     SRC.FINDLAYER.25.DAMAGE {15 25} dam_physical <UID>
+     SRC.DISMOUNT
+     SRC.EMOTE knocked off mount!
+  ENDIF
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 15
+  // Frenzied Whirlwind - A quick attack to all enemies in range of your
+  // weapon that causes damage over time.
+  // Stam Cost: 20-30 (-5 tactics -5 armslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Frenzied Whirlwind!
+  SRC.TIMERF 1,DAMAGE <Eval {<CombatSys_DamageBonus>} / 3> dam_physical <UID>
+  SRC.TIMERF 2,DAMAGE <Eval {<CombatSys_DamageBonus>} / 3> dam_physical <UID>
+  OBJ=<Uid>
+  LOCAL.PTARGET=<SRC.Uid>
+  Forchars 2
+	If ((<Uid> != <OBJ.Uid>) && ((<Uid> != <LOCAL.PTARGET>)
+		If <OBJ.IsHostile <Uid>>
+			DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 3> dam_physical <OBJ.UID>
+			TIMERF 1,DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 3> dam_physical <OBJ.UID>
+			TIMERF 2,DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 3> dam_physical <OBJ.UID>
+		Endif
+	Endif
+  Endfor
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 16
+  // Block - Raises your defenses for a short time.
+  IF (<FINDID.i_block_timer>)
+	return 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL 20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Block!
+  NEWITEM i_block_timer
+  EQUIP <NEW>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 17
+  // Defense Mastery - Raises your physical resistance for a short time
+  // while lowering your ability to inflict damage.  Requires Bushido or
+  // Ninjitsu skill.
+  IF (<FINDID.i_defense_mastery_timer>)
+	return 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL 20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Defense Mastery!
+  NEWITEM i_defense_mastery_timer
+  EQUIP <NEW>
+  f_endmove
+  
+ELSEIF <TAG0.WeaponSkillEnabled> == 18
+  // Nerve Strike - Does damage and paralyzes your opponent for a short
+  // time.
+  // Mana Cost: 20-30 (-5 swordsmanship -5 parrying)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Nerve Strike!
+  IF (<R1000> < <QVAL <Weapon> ? ((<TACTICS>+<ARMSLORE>)/2) : ((<TACTICS>+<WRESTLING>)/2)>)
+	   SRC.SOUND snd_spell_paralyze
+       SRC.FLAGS = <SRC.FLAGS> | 04 //paralyzed
+	   SRC.TIMERF 4,SRC.FLAGS = <SRC.FLAGS> &~04 //paralyzed
+  ENDIF
+  SRC.DAMAGE <Eval (<Argv[0]>/4)> dam_god <UID>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 19
+  // Talon Strike - Attack with increased damage with additional damage
+  // over time.  Requires Ninjitsu skill.
+  // Mana Cost: 20-30 (-5 bushido -5 parrying)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Talon Strike!
+  f_endmove
+  SRC.TIMERF 2,DAMAGE <Eval {<CombatSys_DamageBonus>} / 5> dam_god <UID>
+  SRC.TIMERF 4,DAMAGE <Eval {<CombatSys_DamageBonus>} / 5> dam_god <UID>
+  RETURN <Eval (<Argv[0]>/5)>
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 20
+  // Feint - Gain a defensive advantage over your primary opponent for a
+  // short time. 
+  // Stam Cost: 15-25(-5 tactics -5 armorslore)
+  IF (<SRC.FINDID.i_feint_timer>)
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (25 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Feint!
+  Newitem=i_feint_timer
+  Src.Equip <New.Uid>
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 21
+  // Dual Wield - Attack faster as you swing with both weapons.  
+  // Stam Cost:20-30 (-5 tactics -5 armorslore)
+  IF (<FINDID.i_dual_wield_timer>)
+	return 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL 30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Dual Wield!
+  NEWITEM i_dual_wield_timer
+  EQUIP <NEW>
+  f_endmove
+  
+ELSEIF <TAG0.WeaponSkillEnabled> == 22
+  // Double Shot - Send two arrows flying at your opponent if your are
+  // mounted.
+  // Stam Cost:20-30 (-5 tactics -5 armorslore)
+  IF <WEAPON.TAG0.OVERRIDE.AMMOTYPE>
+		IF !(<I.RESTEST 2 <WEAPON.TAG.OVERRIDE.AMMOTYPE>>)
+			RETURN 0
+		ENDIF
+  ELIF !(<I.RESTEST 2 <WEAPON.TDATA3>>)
+		RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Double Shot!
+  IF <WEAPON.TAG0.OVERRIDE.AMMOTYPE>
+		CONSUME 1 <WEAPON.TAG.OVERRIDE.AMMOTYPE>)
+  ELSE
+		CONSUME 1 <WEAPON.TDATA3>)
+  ENDIF
+  f_endmove
+  IF (<CombatSys_HitChance>==0>)
+	RETURN <Eval (<Argv[0]>/4)*3>
+  ELSE
+	RETURN 0
+  ENDIF
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 23
+  // Armor Pierce - Send an arrow flying with the chance to pierce your
+  // opponents armor for additional damage.  Requires Bushido or Ninjitsu
+  // skill.
+  // Mana Cost: 20-30 (-5 tactics -5 armslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>)
+     STAM -= <LOCAL.ManaUsed>
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Armor Pierce!
+  SRC.DAMAGE <Eval (<Argv[0]>/3)> dam_god <UID>
+  TAG.PierceArmor=1
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 24
+  // Bladeweave - The Warrior becomes one with their weapon, allowing
+  // it to guide their hand.  The effects of this attack are unpredictable,
+  // but effective.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  // Mana Cost: 5-10 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Bladeweave!
+  F_endmove
+  DOSWITCH <R3> // 4 possiblities
+     BEGIN
+		SRC.DAMAGE <Eval (<Argv[0]>/2)> { dam_poison 1 dam_cold 1 dam_lightning 1 dam_fire 1 } <UID>
+     END
+     BEGIN
+        SRC.DAMAGE <Eval (<Argv[0]>/4)> dam_god <UID>
+     END
+     BEGIN
+	   SRC.SOUND snd_spell_paralyze
+       SRC.FLAGS = <SRC.FLAGS> | 04 //paralyzed
+	   SRC.TIMERF 4,SRC.FLAGS = <SRC.FLAGS> &~04 //paralyzed
+     END
+     BEGIN
+	   SRC.TIMERF 1,DAMAGE <Eval {<CombatSys_DamageBonus>} / 3> dam_physical <UID>
+	   SRC.TIMERF 2,DAMAGE <Eval {<CombatSys_DamageBonus>} / 3> dam_physical <UID>
+     END
+  ENDDO
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 25
+   // Force Arrow - The archer focuses their will into an arrow of pure
+   // force, dazing their enemy.
+  // Stam Cost: 5-15 (-5 tactics -5 armorslore)
+  // Mana Cost: 2-7 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (15 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  IF !<FINDLAYER(2).TAG0.OVERRIDE.AMMOANIM>
+	FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=i_arrow_x
+	TIMERd 1,FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=
+  ENDIF
+  SRC.HitLowerDefense
+  EMOTE use Force Arrow!
+  f_endmove
+   
+ELSEIF <TAG0.WeaponSkillEnabled> == 26
+  // Lightning Arrow - A charged arrow that arcs lightning into its
+  // targets allied.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  // Mana Cost: 5-10 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Lightning Arrow!
+  SRC.SOUND = snd_spell_lightning
+  IF !<FINDLAYER(2).TAG0.OVERRIDE.AMMOANIM>
+	FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=i_arrow_x
+	TIMERd 1,FINDLAYER(2).TAG.OVERRIDE.AMMOANIM=
+  ENDIF
+  f_endmove
+  EFFECT 1,1
+  SRC.DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 3> dam_lightning <OBJ.UID>
+  OBJ=<Uid>
+  LOCAL.PTARGET=<SRC.Uid>
+  Forchars 2
+	If ((<Uid> != <OBJ.Uid>) && ((<Uid> != <LOCAL.PTARGET>)
+		If <OBJ.IsHostile <Uid>>
+			DAMAGE <Eval {<OBJ.CombatSys_DamageBonus>} / 3> dam_lightning <OBJ.UID>
+			EFFECT 1,1
+		Endif
+	Endif
+  Endfor
+  
+ELSEIF <TAG0.WeaponSkillEnabled> == 27
+  // Psychic Attack - Temporarily enchants the attackers weapon with
+  // deadly psychic energy, allowing it to damage the defenders mind and
+  // their ability to inflict damage with magic.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  // Mana Cost: 5-10 (-2.5 tactics -2.5 armorslore)
+  IF (<SRC.FINDID.i_psychic_attack_timer>)
+     RETURN 0
+  ENDIF
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Psychic Attack!
+  Newitem=i_psychic_attack_timer
+  Src.Equip <New.Uid>
+  SRC.EFFECT=3,i_FX_SPARKLE_2,6,15,1 // Sparkle effect
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 28
+  // Serpent Arrow - Fires a snake at the target, poisoning them in
+  // addition to normal damage with a successful hit.  The archer must
+  // be skilled in poisoning and nimble of hand to achieve success.
+  // Stam Cost: 20-30 (-5 tactics -5 armorslore)
+  // Mana Cost: 10-15 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (30 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Serpent Arrow!
+  SRC.SOUND snd_spell_poison
+  IF (<POISONING> >= 100)
+	  src.New_Poison 4,<Uid>
+  ELSEIF (<POISONING> >= 750)
+	  src.New_Poison 3,<Uid>
+  ELSEIF (<POISONING> >= 500)
+	  src.New_Poison 2,<Uid>
+  ELSEIF (<POISONING> >= 250)
+	  src.New_Poison 1,<Uid>
+  ELSE
+	  src.New_Poison 0,<Uid>
+  ENDIF
+  SRC.NEWNPC c_snake
+  NEW.P = <SRC.P>
+  NEW.ATTACK <SRC>  // FIXME: The new snake should probably be forced to attack the target
+  f_endmove
+
+ELSEIF <TAG0.WeaponSkillEnabled> == 29
+  // Force of Nature - Enfuses the attacker with nature's fury, granting
+  // them unparalleled strength.  This dangerous channeling causes leafy
+  // vines to violently erupt from beneath the attackers skin, dealing
+  // substantial physical and poison damage to them.
+  // Stam Cost: 10-20 (-5 tactics -5 armorslore)
+  // Mana Cost: 5-10 (-2.5 tactics -2.5 armorslore)
+  LOCAL.ManaUsed = <EVAL (20 - ( (<TACTICS>/200) + (<ARMSLORE>/200) )>
+  IF (<FINDID.i_combatmove_timer>)
+     LOCAL.MANAUSED += <LOCAL.MANAUSED>
+  ENDIF
+  IF (<STAM> >= <LOCAL.ManaUsed>) && (<MANA> >= (<LOCAL.ManaUsed>/2))
+     STAM -= <LOCAL.ManaUsed>
+     MANA -= (<LOCAL.ManaUsed>/2)
+  ELSE
+     RETURN 0
+  ENDIF
+  EMOTE use Force of Nature!
+  DAMAGE {10 20} dam_poison <UID>
+  f_endmove
+  RETURN <Eval (<Argv[0]>/3)*2>
+
+ENDIF
+return 0
+
+[ITEMDEF i_archercanmove_timer]
+NAME=archer canmove timer
+ID=01e2e
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@Equip
+   ATTR = 04002
+   TIMER = 15
+   CONT.FLAGS = <CONT.FLAGS>|statf_archercanmove
+
+ON=@Timer
+   REMOVE
+
+ON=@UnEquip
+   CONT.FLAGS = <CONT.FLAGS>&~statf_archercanmove
+   CONT.SYSMESSAGE You must remain stationary to continue firing.
+
+[Itemdef i_dual_wield_timer]
+ID=i_memory
+TYPE=t_eq_script
+Name=Dual Wield
+
+ON=@Equip
+Timer=10
+Src.Tag.SWINGINCREASE = <Eval <Src.Tag0.SWINGINCREASE> + 40>
+Src.Sysmessage You attack rapidly with both weapons.
+
+ON=@UnEquip
+Src.Tag.SWINGINCREASE = <Eval <Src.Tag0.SWINGINCREASE> +- 40>
+Src.Sysmessage Your attack speed returns to normal.
+
+ON=@Timer
+Remove
+Return 1
+
+[Itemdef i_defense_mastery_timer]
+ID=i_memory
+TYPE=t_eq_script
+Name=Defense Mastery
+
+ON=@Equip
+Timer=15
+Src.Tag.HITCHANCEDECREASE = <Eval <Src.Tag0.HITCHANCEDECREASE> + 30>
+Src.Sysmessage Your chance to dodge is increased.
+
+ON=@UnEquip
+Src.Tag.HITCHANCEDECREASE = <Eval <Src.Tag0.HITCHANCEDECREASE> +- 30>
+Src.Sysmessage Your chance to dodge returns to normal.
+
+ON=@Timer
+Remove
+Return 1
+
+   
+[Itemdef i_block_timer]
+ID=i_memory
+TYPE=t_eq_script
+Name=Block
+
+ON=@Equip
+Timer=15
+Src.Tag.ParryIncrease = <Eval <Src.Tag0.ParryIncrease> + 35>
+Src.Sysmessage Your chance to block is increased.
+
+ON=@UnEquip
+Src.Tag.ParryIncrease = <Eval <Src.Tag0.ParryIncrease> +- 35>
+Src.Sysmessage Your chance to block returns to normal.
+
+ON=@Timer
+Remove
+Return 1
+
+[ITEMDEF i_shadow_timer]
+NAME=shadow timer
+ID=0213f
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@Equip
+   ATTR=04002
+   TIMER=1
+ON=@Timer
+   CONT.ACTION = -1 //stop attack
+   CONT.FLAGS = <CONT.FLAGS> | 0800000 //hides the attacker
+   CONT.UPDATE
+   REMOVE
+   
+
+
+[Itemdef i_psychic_attack_timer]
+ID=i_memory
+TYPE=t_eq_script
+Name=Psychic Attack Timer
+
+ON=@Equip
+Timer=10
+Src.Tag.MagicPow = <Eval <Src.Tag0.MagicPow> +- 35>
+
+ON=@UnEquip
+Src.Tag.MagicPow = <Eval <Src.Tag0.MagicPow> + 35>
+Src.Sysmessage You recover from the Psychic Attack.
+
+ON=@Timer
+Remove
+Return 1
+
+[Itemdef i_feint_timer]
+ID=i_memory
+TYPE=t_eq_script
+Name=Feint Timer
+
+ON=@Equip
+Timer=5
+Src.Tag.HitChanceIncrease = <Eval <Src.Tag0.HitChanceIncrease> +- 40>
+
+ON=@UnEquip
+Src.Tag.HitChanceIncrease = <Eval <Src.Tag0.HitChanceIncrease> + 40>
+Src.Sysmessage You recover from the Feint.
+
+ON=@Timer
+Remove
+Return 1
+
+[ITEMDEF i_blockheal_timer]
+NAME=block heal timer
+ID=i_bandage
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@CREATE
+  ATTR=04002
+ON=@EQUIP
+  ATTR=04002
+  MORE1 = 10
+  ENDIF
+  CONT.EMOTE get hit with a mortal strike
+  TIMER=1
+  TAG.HEALTHCAP=<CONT.HITS>
+  
+ON=@TIMER
+IF (<CONT.HITS> > <TAG.HEALTHCAP>)
+	CONT.HITS=<TAG.HEALTHCAP>
+ELSE
+	TAG.HEALTHCAP=<CONT.HITS>
+ENDIF
+  IF <MORE1>
+     MORE1 -= 1
+     TIMER = 1
+     RETURN 1
+  ELSE
+     CONT.SYSMESSAGE @032 The mortal strike has worn off
+     REMOVE
+  ENDIF
+
+[ITEMDEF i_parablow_timer]
+NAME=paralyzing blow timer
+ID=01d8c
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@CREATE
+  ATTR=04002
+
+ON=@EQUIP
+  ATTR=04002
+  MORE1 = 5
+  CONT.FLAGS = <CONT.FLAGS> | 04 //paralyzed
+  //CONT.EVENTS = +e_paralyzed
+  CONT.EMOTE get paralyzed by the last attack
+  TIMERD = 0.5
+
+ON=@TIMER
+  IF <MORE1>
+     CONT.ACTION = -1 //stop all actions
+     CONT.FLAGS = <CONT.FLAGS> | 04 //paralyzed
+     MORE1 -= 1
+     TIMERD = 0.5
+     RETURN 1
+  ELSE
+     REMOVE
+  ENDIF
+
+ON=@UnEquip
+	CONT.FLAGS &= ~04 //unparalyzed
+	//CONT.EVENTS = -e_paralyzed
+
+
+[ITEMDEF i_bleed_timer]
+NAME=bleed timer
+ID=0122a
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+
+ON=@CREATE
+  ATTR=04002
+  MORE1 = 6
+
+ON=@EQUIP
+  ATTR=04002
+  TIMER = 2
+
+ON=@TIMER
+  IF (<serv.chardef.<CONT.ID>.bloodcolor> == 0ffff)
+	LINK.SYSMESSAGE <CONT.NAME> has no vital fluids to spill.
+	REMOVE
+	RETURN
+  ELIF !<R5>
+	serv.newitem i_blood_pool_large
+	dorand 5
+		new.dispid=0122a
+		new.dispid=0122b
+		new.dispid=0122c
+		new.dispid=0122d
+		new.dispid=0122e
+	enddo
+	serv.new.movenear <uid>,1
+	serv.new.timer=<SERV.DecayTimer>
+	serv.new.color=<serv.chardef.<CONT.ID>.bloodcolor>
+	serv.new.attr=04002
+  ENDIF
+  IF ( <CONT> )
+     IF ( <CONT.HITS> < 1 )
+        MORE1 = 0
+     ELSE
+        MORE1 -= 1
+     ENDIF
+     DOSWITCH <MORE1>
+        BEGIN // MORE1=0
+        CONT.SYSMESSAGE @032 The bleeding has stopped
+        REMOVE
+        END
+        BEGIN // MORE1=1
+        CONT.EMOTE bleeding slowly
+        CONT.DAMAGE {1 2} dam_god <LINK>
+        TIMER = 2
+        END
+        BEGIN // MORE1=2
+        CONT.EMOTE bleeding slowly
+        CONT.DAMAGE {2 4} dam_god <LINK>
+        TIMER = 2
+        END
+        BEGIN // MORE1=3
+        CONT.EMOTE bleeding moderately
+        CONT.DAMAGE {3 6} dam_god <LINK>
+        TIMER = 2
+        END
+        BEGIN // MORE1=4
+        CONT.EMOTE bleeding heavily
+        CONT.DAMAGE {4 9} dam_god <LINK>
+        TIMER = 2
+        END
+        BEGIN // MORE1=5
+        CONT.EMOTE bleeding profusely
+        CONT.DAMAGE {5 12} dam_god <LINK>
+        TIMER = 2
+        END
+     ENDDO
+  ENDIF
+  RETURN 1
+
+
+
+[ITEMDEF i_elven_composite_forcebow]
+ID=i_elven_composite_longbow
+TDATA3=i_arrow
+TDATA4=i_fx_energy_ray
+ON=@EQUIP
+  ID = i_bow
+  ID = 02d1e //i_elven_composite_longbow
+ON=@UNEQUIP
+  ID = i_bow
+  ID = 02d1e //i_elven_composite_longbow
+ON=@DCLICK
+  ID = i_bow
+  ID = 02d1e //i_elven_composite_longbow
+
+
+[ITEMDEF i_dismounted_timer]
+NAME=dismounted timer
+ID=0213f
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@Equip
+   ATTR=04002
+   TIMER=5
+   CONT.EVENTS = +e_dismounted
+ON=@Timer
+   CONT.EVENTS = -e_dismounted
+   REMOVE
+ON=@UnEquip
+   CONT.EVENTS = -e_dismounted
+
+   
+[EVENTS e_dismounted]
+ON=@MOUNT
+	SYSMESSAGE You have been dismounted and cannot ride yet.
+	RETURN 1
+
+[ITEMDEF i_disarmed_timer]
+NAME=disarmed timer
+ID=0213f
+TYPE=t_eq_script
+LAYER=30
+WEIGHT=0
+ON=@Equip
+   ATTR=04002
+   TIMER=5
+   CONT.EVENTS = +e_disarmed
+ON=@Timer
+   CONT.EVENTS = -e_disarmed
+   REMOVE
+ON=@UnEquip
+   CONT.EVENTS = -e_disarmed
+
+[EVENTS e_disarmed]
+ON=@ItemEquipTest
+	IF (<ACT.isweapon>) || (<ACT.TYPE> == t_shield) 
+		SYSMESSAGE You have been disarmed and cannot requip yet.
+		RETURN 1
+	ENDIF
+
+
+
+[Function CombatSys_HitSpeed]
+Local.Hitspeed=<Eval (150000 / ((<Dex> + 100) * (<Qval <Weapon> ? <Weapon.Speed> : <Qval <serv.chardef.<id>.tag0.wrestlingspeed> ? <serv.chardef.<id>.tag.wrestlingspeed> : 50>>)))>
+Local.Hitspeed -= <EVAL (<Local.Hitspeed>*<TAG0.SWINGINCREASE>)/100>
+Return <eval <Local.Hitspeed>>
+
+[Function CombatSys_HitChance]
+Local.Hitchance=<Eval ((<I.CombatSys_UsedSkill>*10) + 5000) / ((((<Src.Tactics>+<src.skillmod tactics>)/10) + 50) *2)>
+Local.Hitchance += <QVAL <TAG0.HITCHANCEINCREASE> ? <EVAL (<Local.Hitchance>*<TAG0.HITCHANCEINCREASE>)/100> : 0> - <QVAL <SRC.TAG0.HITCHANCEDECREASE> ? <EVAL (<Local.Hitchance>*<SRC.TAG0.HITCHANCEDECREASE>)/100> : 0>
+if (<sector.light> > 4) && (<NIGHTSIGHT>==0) && !(<FINDLAYER.2.TYPE>==T_LIGHT_LIT) && !(<ISNEARTYPE T_LIGHT_LIT 3>)
+	Local.Hitchance -= <sector.light>
+	sysmessage You have trouble fighting in this darkness.
+endif
+Return <Qval Rand(101) <= <EVAL <Local.Hitchance>> ? 0 : -100>
+
+
+[Function CombatSys_BlockChance]
+Return <Qval Rand(101) < <Src.CombatSys_BlockChance_UOR> ? 1 : 0>
+
+[Function CombatSys_BlockChance_UOR]
+If <Shield> && !(<FLAGS> & 04)
+Ref1=<Shield>
+Local.Chance=<Eval (<Parrying>+<Skillmod Parrying>)>
+Local.Chance += <QVAL <TAG0.PARRYINCREASE> ? <EVAL (<Local.Chance>*<TAG0.PARRYINCREASE>)/100> : 0>
+Local.Chance = (<Local.Chance>/20)
+Return <Eval <Local.Chance>>
+Endif
+Return 0
+
+[Function CombatSys_Block]
+SYSMESSAGE @34,,1 <SRC.NAME> parries the blow with <uid.<eval <src.shield>>.name>.
+SRC.SYSMESSAGE @88,,1 You parry the blow with <uid.<eval <src.shield>>.name>.
+Src.Trigger @Block,<def.TAT_AS_ARGO>,<Uid>
+Ref1=<Src.Shield>
+Ref1.Trigger @Block,<def.TAT_AS_ARGO>,<Uid>
+Ref1.Hits -= <QVAL <r10> ? 0 : 1>
+Ref1.Update
+Src.Sound 329
+
+[Function CombatSys_BlockChance_Weapon]
+Return <Qval Rand(101) < <Src.CombatSys_BlockChance_UOR_Weapon> ? 1 : 0>
+
+
+[Function CombatSys_BlockChance_UOR_Weapon]
+If !(<Weapon.type>==T_WEAPON_MACE_PICK) && !(<Weapon.type>==T_WEAPON_BOW) && !(<Weapon.type>==T_WEAPON_XBOW) && !(<Weapon.type>==T_WEAPON_AXE) && !(<FLAGS> & 04)
+	Local.Chance=<Eval (<Parrying>+<Skillmod Parrying>+<I.CombatSys_UsedSkill>)>
+	Local.Chance += <QVAL <TAG0.PARRYINCREASE> ? <EVAL (<Local.Chance>*<TAG0.PARRYINCREASE>)/100> : 0>
+	Local.Chance = <MulDiv <Local.Chance>,<Qval <Weapon> ? <Weapon.Speed> : <Qval <serv.chardef.<id>.tag0.wrestlingspeed> ? <serv.chardef.<id>.tag.wrestlingspeed> : 50>>,100>
+	IF (<Weapon.twohands>) || !(<Weapon>)
+		Local.Chance = (<Local.Chance>/20)
+		Return <Eval <Local.Chance>>
+	ELSE
+		Local.Chance = (<Local.Chance>/40)
+		Return <Eval <Local.Chance>>
+	ENDIF
+Endif
+Return 0
+
+
+[Function CombatSys_Block_Weapon]
+IF <Src.Weapon>
+	SYSMESSAGE @34,,1 <SRC.NAME> parries the blow with <src.Weapon.name>.
+	SRC.SYSMESSAGE @88,,1 You parry the blow with <src.Weapon.name>.
+	Src.Weapon.Hits -= <QVAL <r10> ? 0 : 1>
+	Src.Weapon.Update
+	Src.Trigger @Block,<def.TAT_AS_ARGO>,<Uid>
+	Ref1=<Src.Weapon>
+	Ref1.Trigger @Block,<def.TAT_AS_ARGO>,<Uid>
+ELSE
+	SYSMESSAGE @34,,1 <SRC.NAME> parries the blow unarmed.
+	SRC.SYSMESSAGE @88,,1 You parry the blow unarmed.
+ENDIF
+Src.Sound 329
+
+
+
+[Function CombatSys_DamageBonus]
+Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
+Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
+Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
+Local.Str = <Eval <Str>/5>
+Local.Lumberjacking = <Qval <Weapon.Type>==t_weapon_axe ? <Eval ((<Lumberjacking>+<Skillmod Lumberjacking>)/50) + <Qval 999 < <Lumberjacking> ? 10 : 0>> : 0>
+Local.Mining = <Qval <Weapon.Type>==t_weapon_mace_pick ? <Eval ((<Mining>+<Skillmod Mining>)/50) + <Qval 999 < <Mining> ? 10 : 0>> : 0>
+Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy> + <Local.Lumberjacking> + <Local.Mining> + <Local.Str> + <TAG0.DAMINCREASE>>
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF !(<ISEMPTY <WEAPON.TAG0.SLAYERGROUP>>) 
+	IF (STRMATCH(*<SRC.obody>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<WEAPON.TAG0.SLAYERGROUP>_SLAYER>))
+		IF !(<R2>)
+			SRC.EFFECT 3,i_fx_glow,16,20
+			Local.Bonus += 100
+		ENDIF
+	ENDIF
+ENDIF
+IF !(<ISEMPTY <TAG0.HUNTERGROUP>>) 
+	IF (STRMATCH(*<SRC.obody>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>)) || (STRMATCH(*<SRC.body>*,<DEF.<TAG0.HUNTERGROUP>_SLAYER>))
+		IF !(<R2>)
+			SRC.EFFECT 3,i_fx_glow,16,20
+			Local.Bonus += 50+(<LEVEL>*5)
+		ENDIF
+	ENDIF
+ENDIF
+IF (<TAG0.ENEMYOFONE>) 
+	IF (<eval <SRC.ID>> == <eval <TAG0.ENEMYOFONE>>)
+		Local.Bonus += 100
+	ENDIF
+ENDIF
+IF (<SRC.TAG0.ENEMYOFONE>) 
+	IF !(<eval <ID>> == <eval <SRC.TAG0.ENEMYOFONE>>)
+		Local.Bonus += 100
+	ENDIF
+ENDIF
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
+[Function CombatSys_FireDamageBonus]
+Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
+Local.Dam = <Eval (<Local.Dam>*<Tag0.firedamage>)/100>
+Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
+Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
+Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
+
+[Function CombatSys_ColdDamageBonus]
+Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
+Local.Dam = <Eval (<Local.Dam>*<Tag0.colddamage>)/100>
+Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
+Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
+Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy> + <TAG0.DAMINCREASE>>
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
+
+[Function CombatSys_PoisonDamageBonus]
+Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
+Local.Dam = <Eval (<Local.Dam>*<Tag0.poisondamage>)/100>
+Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
+Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
+Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
+
+[Function CombatSys_EnergyDamageBonus]
+Local.Dam = <Qval <Weapon> ? <eval {<Weapon.dam>}> : <Eval {<serv.chardef.<id>.dam>}>>
+Local.Dam = <Eval (<Local.Dam>*<Tag0.energydamage>)/100>
+Local.Tactics = <Eval ((<Tactics>+<Skillmod Tactics>)/10) + 50>
+Local.Anatomy = <Eval ((<Anatomy>+<Skillmod Anatomy>)/50)>
+Local.Bonus = <Eval <Local.Tactics> + <Local.Anatomy>>
+Local.Bonus -= <eval <Qval <Weapon> ? (100 - <MulDiv <Weapon.hits>,100,<Weapon.maxhits>>) : 0>>
+IF (<Local.Bonus> < 10)
+	Local.Bonus = 10
+ENDIF
+Return <MulDiv <Local.Dam>,<Local.Bonus>,100>
+
+
+
+
+[Function CombatSys_AOS_Velocity]
+Return <Qval Rand(101) < <Weapon.Tag0.Velocity> ? <Distance <Src.Uid>> : 0>
+
+
+[Function CombatSys_AOS_WeaponSpells]
+For Spell 0 4 
+	If Rand(101) < <WeaponSpellChance <Weapon.Tag0.Spell.<dLocal.Spell>>>
+		Local.SpellNum=<WeaponSpellNumber <Weapon.Tag0.Spell.<dLocal.Spell>>>
+		Src.Sound <Serv.Spell.<Local.SpellNum>.Sound>
+		Src.SpellEffect <Local.SpellNum>,1000,<Uid>
+	Endif
+	Local.Spell ++
+EndWhile
+
+[Function WeaponSpellChance]
+Return <Argv[0]>
+
+[Function WeaponSpellNumber]
+Return <Argv[1]>
+
+
+[Function CombatSys_AOS_WeaponLeech]
+Hits = <CombatSys_Min <Eval <Hits> + <Qval Rand(101) < <Tag0.LifeLeech>  ?  <Argv[0]> : 0>>, <MaxHits>>
+Mana = <CombatSys_Min <Eval <Mana> + <Qval Rand(101) < <Tag0.ManaLeech>  ?  <Argv[0]> : 0>>, <MaxMana>>
+Stam = <CombatSys_Min <Eval <Stam> + <Qval Rand(101) < <Tag0.StamLeech>  ?  <Argv[0]> : 0>>, <MaxStam>>
+
+[Function CombatSys_AOS_WepAttkDefMod]
+If Rand(101) < <Tag0.LowerAttack>
+Src.HitLowerAttack
+Endif
+If Rand(101) < <Tag0.LowerDefense>
+Src.HitLowerDefense
+Endif
+
+[Function HitLowerAttack]
+If <Restest i_hit_lower_attack>
+Findid.i_hit_lower_attack.Timer = <Eval {5 10}>
+Else
+Serv.Newitem=i_hit_lower_attack
+Equip <New.Uid>
+Endif
+
+[Itemdef i_hit_lower_attack]
+ID=i_memory
+TYPE=t_eq_script
+Name=Hit Lower Attack
+
+ON=@Equip
+Timer=<Eval {5 10}>
+Src.Tag.HitChanceIncrease = <Eval <Src.Tag0.HitChanceIncrease> +- 25>
+
+ON=@UnEquip
+Src.Tag.HitChanceIncrease = <Eval <Src.Tag0.HitChanceIncrease> + 25>
+
+ON=@Timer
+Remove
+Return 1
+
+[Function HitLowerDefense]
+If <Restest i_hit_lower_defense>
+Findid.i_hit_lower_defense.Timer = <Eval {5 10}>
+Else
+Serv.Newitem=i_hit_lower_defense
+Equip <New.Uid>
+Endif
+
+[Itemdef i_hit_lower_defense]
+ID=i_memory
+TYPE=t_eq_script
+Name=Hit Lower Defense
+
+ON=@Equip
+Timer=<Eval {5 10}>
+Src.Tag.HitChanceDecrease = <Eval <Src.Tag0.HitChanceDecrease> +- 25>
+
+ON=@UnEquip
+Src.Tag.HitChanceDecrease = <Eval <Src.Tag0.HitChanceDecrease> + 25>
+
+ON=@Timer
+Remove
+Return 1
+
+[DEFNAME AOS_AreaDamage]
+///DO NOT ALTER///
+AOS_AreaDamage_0 Physical
+AOS_AreaDamage_1 Fire
+AOS_AreaDamage_2 Cold
+AOS_AreaDamage_3 Poison
+AOS_AreaDamage_4 Energy
+
+[Function CombatSys_AOS_AreaDamage]
+For X 0 4
+	If Rand(101) < <Weapon.Tag0.HitArea.<Def0.AOS_AreaDamage_<dLocal.X>>>
+		Src.CombatSys_AOS_AreaDamage_Target <Uid>,<Local.X>
+	Endif
+Endfor
+
+
+[Function CombatSys_AOS_AreaDamage_Target]
+Ref1=<Argv[0]>
+Local.NoHit=<Uid>
+Local.X=<Argv[1]>
+Forchars 5
+	If ((<Uid> != <Ref1.Uid>) && (<Uid> != <Local.NoHit>))
+		If <Ref1.IsHostile <Uid>>
+			Local.Dam = <Eval {<Ref1.Weapon.GetDam>} / 3>
+			DoSwitch <Local.X>
+				Damage <Eval <Local.Dam>> 00082 <Ref1.Uid>
+				Damage <Eval <Local.Dam>> 00090 <Ref1.Uid>
+				Damage <Eval <Local.Dam>> 01280 <Ref1.Uid>
+				Damage <Eval <Local.Dam>> 00088 <Ref1.Uid>
+				Damage <Eval <Local.Dam>> 02080 <Ref1.Uid>
+			Enddo
+		Endif
+	Endif
+Endfor
+
+[Function CombatSys_AOS_PhysicalReflect]
+Ref1 = <Argv[1]>
+Local.Dam = <MulDiv <Argv[0]>,<Ref1.TAG0.DAMAGERETURN>,100>
+If <Local.Dam> > 0
+	Damage <Eval <Local.Dam>> 00090 <Ref1.Uid>
+Endif
+
+[Function f_Consecrate_weapon_check]
+IF (<src.CombatSys_PhysicalResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_ColdResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_PoisonResist> >= <src.CombatSys_FireResist>) && (<src.CombatSys_EnergyResist> >= <src.CombatSys_FireResist>)
+RETURN 010
+ELSEIF (<src.CombatSys_PhysicalResist> >= <src.CombatSys_ColdResist>) && (<src.CombatSys_FireResist> >= (src.CombatSys_ColdResist>) && (<src.CombatSys_PoisonResist> >= (src.CombatSys_ColdResist>) && (<src.CombatSys_EnergyResist> >= (src.CombatSys_ColdResist>)
+RETURN 01200
+ELSEIF (<src.CombatSys_PhysicalResist> >= <src.CombatSys_PoisonResist>) && (<src.CombatSys_FireResist> >= (src.CombatSys_PoisonResist>) && (<src.CombatSys_ColdResist> >= (src.CombatSys_PoisonResist>) && (<src.CombatSys_EnergyResist> >= (src.CombatSys_PoisonResist>)
+RETURN 08
+ELSEIF (<src.CombatSys_PhysicalResist> >= <src.CombatSys_EnergyResist>) && (<src.CombatSys_FireResist> >= <src.CombatSys_EnergyResist>) && (<src.CombatSys_ColdResist> >= <src.CombatSys_EnergyResist>) && (<src.CombatSys_PoisonResist> >= <src.CombatSys_EnergyResist>)
+RETURN 02020
+ENDIF
+Return <Eval <Argv[0]>>
+
+[Function CombatSys_PhysicalResist]
+If (<CAN>&(mt_equip))
+Local.Armor = <Get_Armor_Loc_<eval <Argv[0]>>>
+Else
+Local.Armor = <Eval <Armor> + <Modar>>
+Endif
+Return <Eval ((Rand(<Local.Armor>))+(Rand(<Local.Armor>)))/2>
+
+
+[Function CombatSys_FireResist]
+If (<CAN>&(mt_equip))
+Local.Armor = <Get_ResFire_Loc_<eval <Argv[0]>>>
+Else
+Local.Armor = <Eval <ResFire>>
+Endif
+Return <Eval ((Rand(<Local.Armor>))+(Rand(<Local.Armor>)))/2>
+
+[Function CombatSys_ColdResist]
+If (<CAN>&(mt_equip))
+Local.Armor = <Get_ResCold_Loc_<eval <Argv[0]>>>
+Else
+Local.Armor = <Eval <ResCold>>
+Endif
+Return <Eval ((Rand(<Local.Armor>))+(Rand(<Local.Armor>)))/2>
+
+[Function CombatSys_PoisonResist]
+If (<CAN>&(mt_equip))
+Local.Armor = <Get_ResPoison_Loc_<eval <Argv[0]>>>
+Else
+Local.Armor = <Eval <ResPoison>>
+Endif
+Return <Eval ((Rand(<Local.Armor>))+(Rand(<Local.Armor>)))/2>
+
+[Function CombatSys_EnergyResist]
+If (<CAN>&(mt_equip))
+Local.Armor = <Get_ResEnergy_Loc_<eval <Argv[0]>>>
+Else
+Local.Armor = <Eval <ResEnergy>>
+Endif
+Return <Eval ((Rand(<Local.Armor>))+(Rand(<Local.Armor>)))/2>
+
+[FUNCTION f_Get_Hit_Location]
+//Local.Height=<CombatSys_Min <Eval <Height>/5>,6>
+//DoSwitch <Local.Height>
+//Return <f_Hit_Loc_2 40,70,80,95,98>
+//Return <f_Hit_Loc_2 30,60,70,85,93>
+//Return <f_Hit_Loc_2 30,50,70,85,90>
+//Return <f_Hit_Loc_2 14,58,72,79,86>
+//Return <f_Hit_Loc_2 15,50,60,70,85>
+//Return <f_Hit_Loc_2 15,60,70,80,85>
+//Return <f_Hit_Loc_2 18,36,54,72,90>
+//Enddo
+Return <f_Hit_Loc_2 5,25,35,45,75,85,90>
+
+
+[Function f_Hit_Loc_2]
+local.rand=<r1,100>
+If <local.rand> <= <Argv[0]>
+ RETURN 1
+ELIF <local.rand> <= <Argv[1]>
+ RETURN 2
+ELIF <local.rand> <= <Argv[2]>
+ RETURN 3
+ELIF <local.rand> <= <Argv[3]>
+ RETURN 4
+ELIF <local.rand> <= <Argv[4]>
+ RETURN 5
+ELIF <local.rand> <= <Argv[5]>
+ RETURN 6
+ELIF <local.rand> <= <Argv[6]>
+ RETURN 7
+ELSE
+ RETURN 8
+ENDIF
+
+
+[Function Get_Protection]
+IF (<FINDID(i_rune_protection).MOREx>==15)
+local.lo=<eval <strarg <serv.spell.15.effect>>>
+local.hi=<eval <streat <serv.spell.15.effect>>>
+Local.Protect=<eval (<local.lo>+(((<local.hi>-<local.lo>)*<FINDID(i_rune_protection).MOREy>)/1000))>
+Return <Eval <Local.Protect>>
+ELSE
+Return 0
+ENDIF
+
+[Function Get_Stoneskin]
+IF (<FINDID(i_RUNE_ALCHEM_3).MOREX>==86)
+local.lo=<eval <strarg <serv.spell.86.effect>>>
+local.hi=<eval <streat <serv.spell.86.effect>>>
+Local.Protect=<eval (<local.lo>+(((<local.hi>-<local.lo>)*<FINDID(i_RUNE_ALCHEM_3).MOREy>)/1000))>
+Return <Eval <Local.Protect>>
+ELSE
+Return 0
+ENDIF
+
+[Function Get_Armor_Loc_0] // wholebody
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+If <Shield>
+Ref1=<Shield>
+Local.ArmorTotal += <QVAL <Ref1.Armor> ? <MulDiv <Eval <Ref1.Armor>+<Ref1.Modar>>,<MulDiv <Ref1.hits>,<Eval <Parrying>/20>,<Ref1.maxhits>>,100> : 0> //Shield
+Endif
+Local.ArmorTotal += <QVAL <Findlayer.3.Armor> ? <MulDiv <eval <Findlayer.3.Armor.High>+<Modar>>,<MulDiv <Findlayer.3.hits>,<QVAL <Findlayer.3.Tag0.CoverLegs>  ?  5 : 25>,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+Local.ArmorTotal += <QVAL <Findlayer.4.Armor> ? <MulDiv <eval <Findlayer.4.Armor.High>+<Modar>>,<MulDiv <Findlayer.4.hits>,<QVAL <Findlayer.4.Tag0.CoverFeet>  ?  20 : 25>,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.5.Armor> ? <MulDiv <eval <Findlayer.5.Armor.High>+<Modar>>,<MulDiv <Findlayer.5.hits>,<QVAL <Findlayer.5.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.6.Armor> ? <MulDiv <eval <Findlayer.6.Armor.High>+<Modar>>,<MulDiv <Findlayer.6.hits>,<QVAL <Findlayer.6.Tag0.CoverNeck>  ?  10 : 15>,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Local.ArmorTotal += <QVAL <Findlayer.7.Armor> ? <MulDiv <eval <Findlayer.7.Armor.High>+<Modar>>,<MulDiv <Findlayer.7.hits>,10,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Local.ArmorTotal += <QVAL <Findlayer.10.Armor> ? <MulDiv <eval <Findlayer.10.Armor.High>+<Modar>>,<MulDiv <Findlayer.10.hits>,5,<Findlayer.10.maxhits>>,100> : 0> //Neck
+Local.ArmorTotal += <QVAL <Findlayer.12.Armor> ? <MulDiv <eval <Findlayer.12.Armor.High>+<Modar>>,<MulDiv <Findlayer.12.hits>,20,<Findlayer.12.maxhits>>,100> : 0> //Half-apron/belt
+Local.ArmorTotal += <QVAL <Findlayer.13.Armor> ? <MulDiv <eval <Findlayer.13.Armor.High>+<Modar>>,<MulDiv <Findlayer.13.hits>,<QVAL <Findlayer.13.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.17.Armor> ? <MulDiv <eval <Findlayer.17.Armor.High>+<Modar>>,<MulDiv <Findlayer.17.hits>,<QVAL <Findlayer.17.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Local.ArmorTotal += <QVAL <Findlayer.19.Armor> ? <MulDiv <eval <Findlayer.19.Armor.High>+<Modar>>,<MulDiv <Findlayer.19.hits>,10,<Findlayer.19.maxhits>>,100> : 0> //Arms
+Local.ArmorTotal += <QVAL <Findlayer.20.Armor> ? <MulDiv <eval <Findlayer.20.Armor.High>+<Modar>>,<MulDiv <Findlayer.20.hits>,40,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.22.Armor> ? <MulDiv <eval <Findlayer.22.Armor.High>+<Modar>>,<MulDiv <Findlayer.22.hits>,70,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.23.Armor> ? <MulDiv <eval <Findlayer.23.Armor.High>+<Modar>>,<MulDiv <Findlayer.23.hits>,20,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_1] // Feet
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.3.Armor> ? <MulDiv <eval <Findlayer.3.Armor.High>+<Modar>>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+IF <Findlayer.4.Tag0.CoverFeet>
+	Local.ArmorTotal += <QVAL <Findlayer.4.Armor> ? <MulDiv <eval <Findlayer.4.Armor.High>+<Modar>>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_2] //Legs
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Armor> ? <MulDiv <eval <Findlayer.22.Armor.High>+<Modar>>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Armor> ? <MulDiv <eval <Findlayer.20.Armor.High>+<Modar>>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.4.Armor> ? <MulDiv <eval <Findlayer.4.Armor.High>+<Modar>>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.12.Armor> ? <MulDiv <eval <Findlayer.12.Armor.High>+<Modar>>,<MulDiv <Findlayer.12.hits>,100,<Findlayer.12.maxhits>>,100> : 0> //Belt/half-apron
+Local.ArmorTotal += <QVAL <Findlayer.23.Armor> ? <MulDiv <eval <Findlayer.23.Armor.High>+<Modar>>,<MulDiv <Findlayer.23.hits>,100,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+IF <Findlayer.3.Tag0.CoverLegs>
+	Local.ArmorTotal += <QVAL <Findlayer.3.Armor> ? <MulDiv <eval <Findlayer.3.Armor.High>+<Modar>>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_3]
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.7.Armor> ? <MulDiv <eval <Findlayer.7.Armor.High>+<Modar>>,<MulDiv <Findlayer.7.hits>,100,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_4] //arms
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Armor> ? <MulDiv <eval <Findlayer.22.Armor.High>+<Modar>>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Armor> ? <MulDiv <eval <Findlayer.20.Armor.High>+<Modar>>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.19.Armor> ? <MulDiv <eval <Findlayer.19.Armor.High>+<Modar>>,<MulDiv <Findlayer.19.hits>,100,<Findlayer.19.maxhits>>,100> : 0> //Arms
+IF <Findlayer.5.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.5.Armor> ? <MulDiv <eval <Findlayer.5.Armor.High>+<Modar>>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shoes
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.13.Armor> ? <MulDiv <eval <Findlayer.13.Armor.High>+<Modar>>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Shoes
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.17.Armor> ? <MulDiv <eval <Findlayer.17.Armor.High>+<Modar>>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_5] //chest
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Armor> ? <MulDiv <eval <Findlayer.22.Armor.High>+<Modar>>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.13.Armor> ? <MulDiv <eval <Findlayer.13.Armor.High>+<Modar>>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Armor> ? <MulDiv <eval <Findlayer.5.Armor.High>+<Modar>>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Armor> ? <MulDiv <eval <Findlayer.17.Armor.High>+<Modar>>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_6] //back
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Armor> ? <MulDiv <eval <Findlayer.22.Armor.High>+<Modar>>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Armor> ? <MulDiv <eval <Findlayer.20.Armor.High>+<Modar>>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.13.Armor> ? <MulDiv <eval <Findlayer.13.Armor.High>+<Modar>>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Armor> ? <MulDiv <eval <Findlayer.5.Armor.High>+<Modar>>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Armor> ? <MulDiv <eval <Findlayer.17.Armor.High>+<Modar>>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_7] //neck
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.10.Armor> ? <MulDiv <eval <Findlayer.10.Armor.High>+<Modar>>,<MulDiv <Findlayer.10.hits>,100,<Findlayer.10.maxhits>>,100> : 0> //Hands
+IF <Findlayer.6.Tag0.CoverNeck>
+	Local.ArmorTotal += <QVAL <Findlayer.6.Armor> ? <MulDiv <eval <Findlayer.6.Armor.High>+<Modar>>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Shoes
+ENDIF
+
+Return <dLocal.ArmorTotal>
+
+[Function Get_Armor_Loc_8] //head
+Local.ArmorTotal=<Eval <Src.Armor> + <Src.Modar> + <Src.Get_Protection> + <Src.Get_Stoneskin>>
+Local.ArmorTotal += <QVAL <Findlayer.6.Armor> ? <MulDiv <eval <Findlayer.6.Armor.High>+<Modar>>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+
+[Function Get_ResFire_Loc_0] // wholebody
+Local.ArmorTotal = <Eval <ResFire>>
+If <Shield>
+Ref1=<Shield>
+Local.ArmorTotal += <QVAL <Ref1.Tag0.ResFire> ? <MulDiv <Ref1.Tag0.ResFire>,<MulDiv <Ref1.hits>,<Eval <Parrying>/20>,<Ref1.maxhits>>,100> : 0> //Shield
+Endif
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.Resfire> ? <MulDiv <Findlayer.3.Tag0.ResFire>,<MulDiv <Findlayer.3.hits>,<QVAL <Findlayer.3.Tag0.CoverLegs>  ?  5 : 25>,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResFire> ? <MulDiv <Findlayer.4.Tag0.ResFire>,<MulDiv <Findlayer.4.hits>,<QVAL <Findlayer.4.Tag0.CoverFeet>  ?  20 : 25>,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResFire> ? <MulDiv <Findlayer.5.Tag0.ResFire>,<MulDiv <Findlayer.5.hits>,<QVAL <Findlayer.5.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResFire> ? <MulDiv <Findlayer.6.Tag0.ResFire>,<MulDiv <Findlayer.6.hits>,<QVAL <Findlayer.6.Tag0.CoverNeck>  ?  10 : 15>,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResFire> ? <MulDiv <Findlayer.7.Tag0.ResFire>,<MulDiv <Findlayer.7.hits>,10,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResFire> ? <MulDiv <Findlayer.10.Tag0.ResFire>,<MulDiv <Findlayer.10.hits>,5,<Findlayer.10.maxhits>>,100> : 0> //Neck
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResFire> ? <MulDiv <Findlayer.12.Tag0.ResFire>,<MulDiv <Findlayer.12.hits>,20,<Findlayer.12.maxhits>>,100> : 0> //Half-apron/belt
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResFire> ? <MulDiv <Findlayer.13.Tag0.ResFire>,<MulDiv <Findlayer.13.hits>,<QVAL <Findlayer.13.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResFire> ? <MulDiv <Findlayer.17.Tag0.ResFire>,<MulDiv <Findlayer.17.hits>,<QVAL <Findlayer.17.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResFire> ? <MulDiv <Findlayer.19.Tag0.ResFire>,<MulDiv <Findlayer.19.hits>,10,<Findlayer.19.maxhits>>,100> : 0> //Arms
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResFire> ? <MulDiv <Findlayer.20.Tag0.ResFire>,<MulDiv <Findlayer.20.hits>,40,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResFire> ? <MulDiv <Findlayer.22.Tag0.ResFire>,<MulDiv <Findlayer.22.hits>,70,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResFire> ? <MulDiv <Findlayer.23.Tag0.ResFire>,<MulDiv <Findlayer.23.hits>,20,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_1] // Feet
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResFire> ? <MulDiv <Findlayer.3.Tag0.ResFire>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+IF <Findlayer.4.Tag0.CoverFeet>
+	Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResFire> ? <MulDiv <Findlayer.4.Tag0.ResFire>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_2] //Legs
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResFire> ? <MulDiv <Findlayer.22.Tag0.ResFire>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResFire> ? <MulDiv <Findlayer.20.Tag0.ResFire>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResFire> ? <MulDiv <Findlayer.4.Tag0.ResFire>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResFire> ? <MulDiv <Findlayer.12.Tag0.ResFire>,<MulDiv <Findlayer.12.hits>,100,<Findlayer.12.maxhits>>,100> : 0> //Belt/half-apron
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResFire> ? <MulDiv <Findlayer.23.Tag0.ResFire>,<MulDiv <Findlayer.23.hits>,100,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+IF <Findlayer.3.Tag0.CoverLegs>
+	Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResFire> ? <MulDiv <Findlayer.3.Tag0.ResFire>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_3]
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResFire> ? <MulDiv <Findlayer.7.Tag0.ResFire>,<MulDiv <Findlayer.7.hits>,100,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_4] //arms
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResFire> ? <MulDiv <Findlayer.22.Tag0.ResFire>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResFire> ? <MulDiv <Findlayer.20.Tag0.ResFire>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResFire> ? <MulDiv <Findlayer.19.Tag0.ResFire>,<MulDiv <Findlayer.19.hits>,100,<Findlayer.19.maxhits>>,100> : 0> //Arms
+IF <Findlayer.5.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResFire> ? <MulDiv <Findlayer.5.Tag0.ResFire>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResFire> ? <MulDiv <Findlayer.13.Tag0.ResFire>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResFire> ? <MulDiv <Findlayer.17.Tag0.ResFire>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_5] //chest
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResFire> ? <MulDiv <Findlayer.22.Tag0.ResFire>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResFire> ? <MulDiv <Findlayer.13.Tag0.ResFire>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResFire> ? <MulDiv <Findlayer.5.Tag0.ResFire>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResFire> ? <MulDiv <Findlayer.17.Tag0.ResFire>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_6] //back
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResFire> ? <MulDiv <Findlayer.22.Tag0.ResFire>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResFire> ? <MulDiv <Findlayer.20.Tag0.ResFire>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResFire> ? <MulDiv <Findlayer.13.Tag0.ResFire>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResFire> ? <MulDiv <Findlayer.5.Tag0.ResFire>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResFire> ? <MulDiv <Findlayer.17.Tag0.ResFire>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_7] //neck
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResFire> ? <MulDiv <Findlayer.10.Tag0.ResFire>,<MulDiv <Findlayer.10.hits>,100,<Findlayer.10.maxhits>>,100> : 0> //Collar
+IF <Findlayer.6.Tag0.CoverNeck>
+	Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResFire> ? <MulDiv <Findlayer.6.Tag0.ResFire>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResFire_Loc_8] //head
+Local.ArmorTotal = <Eval <ResFire>>
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResFire> ? <MulDiv <Findlayer.6.Tag0.ResFire>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Return <dLocal.ArmorTotal>
+
+
+
+[Function Get_ResCold_Loc_0] // wholebody
+Local.ArmorTotal = <Eval <ResCold>>
+If <Shield>
+Ref1=<Shield>
+Local.ArmorTotal += <QVAL <Ref1.Tag0.ResCold> ? <MulDiv <Ref1.Tag0.ResCold>,<MulDiv <Ref1.hits>,<Eval <Parrying>/20>,<Ref1.maxhits>>,100> : 0> //Shield
+Endif
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResCold> ? <MulDiv <Findlayer.3.Tag0.ResCold>,<MulDiv <Findlayer.3.hits>,<QVAL <Findlayer.3.Tag0.CoverLegs>  ?  5 : 25>,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResCold> ? <MulDiv <Findlayer.4.Tag0.ResCold>,<MulDiv <Findlayer.4.hits>,<QVAL <Findlayer.4.Tag0.CoverFeet>  ?  20 : 25>,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResCold> ? <MulDiv <Findlayer.5.Tag0.ResCold>,<MulDiv <Findlayer.5.hits>,<QVAL <Findlayer.5.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResCold> ? <MulDiv <Findlayer.6.Tag0.ResCold>,<MulDiv <Findlayer.6.hits>,<QVAL <Findlayer.6.Tag0.CoverNeck>  ?  10 : 15>,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResCold> ? <MulDiv <Findlayer.7.Tag0.ResCold>,<MulDiv <Findlayer.7.hits>,10,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResCold> ? <MulDiv <Findlayer.10.Tag0.ResCold>,<MulDiv <Findlayer.10.hits>,5,<Findlayer.10.maxhits>>,100> : 0> //Neck
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResCold> ? <MulDiv <Findlayer.12.Tag0.ResCold>,<MulDiv <Findlayer.12.hits>,20,<Findlayer.12.maxhits>>,100> : 0> //Half-apron/belt
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResCold> ? <MulDiv <Findlayer.13.Tag0.ResCold>,<MulDiv <Findlayer.13.hits>,<QVAL <Findlayer.13.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResCold> ? <MulDiv <Findlayer.17.Tag0.ResCold>,<MulDiv <Findlayer.17.hits>,<QVAL <Findlayer.17.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResCold> ? <MulDiv <Findlayer.19.Tag0.ResCold>,<MulDiv <Findlayer.19.hits>,10,<Findlayer.19.maxhits>>,100> : 0> //Arms
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResCold> ? <MulDiv <Findlayer.20.Tag0.ResCold>,<MulDiv <Findlayer.20.hits>,40,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResCold> ? <MulDiv <Findlayer.22.Tag0.ResCold>,<MulDiv <Findlayer.22.hits>,70,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResCold> ? <MulDiv <Findlayer.23.Tag0.ResCold>,<MulDiv <Findlayer.23.hits>,20,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_1] // Feet
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResCold> ? <MulDiv <Findlayer.3.Tag0.ResCold>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+IF <Findlayer.4.Tag0.CoverFeet>
+	Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResCold> ? <MulDiv <Findlayer.4.Tag0.ResCold>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_2] //Legs
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResCold> ? <MulDiv <Findlayer.22.Tag0.ResCold>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResCold> ? <MulDiv <Findlayer.20.Tag0.ResCold>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResCold> ? <MulDiv <Findlayer.4.Tag0.ResCold>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResCold> ? <MulDiv <Findlayer.12.Tag0.ResCold>,<MulDiv <Findlayer.12.hits>,100,<Findlayer.12.maxhits>>,100> : 0> //Belt/half-apron
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResCold> ? <MulDiv <Findlayer.23.Tag0.ResCold>,<MulDiv <Findlayer.23.hits>,100,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+IF <Findlayer.3.Tag0.CoverLegs>
+	Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResCold> ? <MulDiv <Findlayer.3.Tag0.ResCold>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_3]
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResCold> ? <MulDiv <Findlayer.7.Tag0.ResCold>,<MulDiv <Findlayer.7.hits>,100,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_4] //arms
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResCold> ? <MulDiv <Findlayer.22.Tag0.ResCold>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResCold> ? <MulDiv <Findlayer.20.Tag0.ResCold>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResCold> ? <MulDiv <Findlayer.19.Tag0.ResCold>,<MulDiv <Findlayer.19.hits>,100,<Findlayer.19.maxhits>>,100> : 0> //Arms
+IF <Findlayer.5.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResCold> ? <MulDiv <Findlayer.5.Tag0.ResCold>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResCold> ? <MulDiv <Findlayer.13.Tag0.ResCold>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResCold> ? <MulDiv <Findlayer.17.Tag0.ResCold>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_5] //chest
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResCold> ? <MulDiv <Findlayer.22.Tag0.ResCold>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResCold> ? <MulDiv <Findlayer.13.Tag0.ResCold>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResCold> ? <MulDiv <Findlayer.5.Tag0.ResCold>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResCold> ? <MulDiv <Findlayer.17.Tag0.ResCold>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_6] //back
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResCold> ? <MulDiv <Findlayer.22.Tag0.ResCold>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResCold> ? <MulDiv <Findlayer.20.Tag0.ResCold>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResCold> ? <MulDiv <Findlayer.13.Tag0.ResCold>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResCold> ? <MulDiv <Findlayer.5.Tag0.ResCold>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResCold> ? <MulDiv <Findlayer.17.Tag0.ResCold>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_7] //neck
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResCold> ? <MulDiv <Findlayer.10.Tag0.ResCold>,<MulDiv <Findlayer.10.hits>,100,<Findlayer.10.maxhits>>,100> : 0> //Collar
+IF <Findlayer.6.Tag0.CoverNeck>
+	Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResCold> ? <MulDiv <Findlayer.6.Tag0.ResCold>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResCold_Loc_8] //head
+Local.ArmorTotal = <Eval <ResCold>>
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResCold> ? <MulDiv <Findlayer.6.Tag0.ResCold>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Return <dLocal.ArmorTotal>
+
+
+[Function Get_ResPoison_Loc_0] // wholebody
+Local.ArmorTotal = <Eval <ResPoison>>
+If <Shield>
+Ref1=<Shield>
+Local.ArmorTotal += <QVAL <Ref1.Tag0.ResPoison> ? <MulDiv <Ref1.Tag0.ResPoison>,<MulDiv <Ref1.hits>,<Eval <Parrying>/20>,<Ref1.maxhits>>,100> : 0> //Shield
+Endif
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResPoison> ? <MulDiv <Findlayer.3.Tag0.ResPoison>,<MulDiv <Findlayer.3.hits>,<QVAL <Findlayer.3.Tag0.CoverLegs>  ?  5 : 25>,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResPoison> ? <MulDiv <Findlayer.4.Tag0.ResPoison>,<MulDiv <Findlayer.4.hits>,<QVAL <Findlayer.4.Tag0.CoverFeet>  ?  20 : 25>,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResPoison> ? <MulDiv <Findlayer.5.Tag0.ResPoison>,<MulDiv <Findlayer.5.hits>,<QVAL <Findlayer.5.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResPoison> ? <MulDiv <Findlayer.6.Tag0.ResPoison>,<MulDiv <Findlayer.6.hits>,<QVAL <Findlayer.6.Tag0.CoverNeck>  ?  10 : 15>,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResPoison> ? <MulDiv <Findlayer.7.Tag0.ResPoison>,<MulDiv <Findlayer.7.hits>,10,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResPoison> ? <MulDiv <Findlayer.10.Tag0.ResPoison>,<MulDiv <Findlayer.10.hits>,5,<Findlayer.10.maxhits>>,100> : 0> //Neck
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResPoison> ? <MulDiv <Findlayer.12.Tag0.ResPoison>,<MulDiv <Findlayer.12.hits>,20,<Findlayer.12.maxhits>>,100> : 0> //Half-apron/belt
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResPoison> ? <MulDiv <Findlayer.13.Tag0.ResPoison>,<MulDiv <Findlayer.13.hits>,<QVAL <Findlayer.13.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResPoison> ? <MulDiv <Findlayer.17.Tag0.ResPoison>,<MulDiv <Findlayer.17.hits>,<QVAL <Findlayer.17.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResPoison> ? <MulDiv <Findlayer.19.Tag0.ResPoison>,<MulDiv <Findlayer.19.hits>,10,<Findlayer.19.maxhits>>,100> : 0> //Arms
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResPoison> ? <MulDiv <Findlayer.20.Tag0.ResPoison>,<MulDiv <Findlayer.20.hits>,40,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResPoison> ? <MulDiv <Findlayer.22.Tag0.ResPoison>,<MulDiv <Findlayer.22.hits>,70,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResPoison> ? <MulDiv <Findlayer.23.Tag0.ResPoison>,<MulDiv <Findlayer.23.hits>,20,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_1] // Feet
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResPoison> ? <MulDiv <Findlayer.3.Tag0.ResPoison>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+IF <Findlayer.4.Tag0.CoverFeet>
+	Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResPoison> ? <MulDiv <Findlayer.4.Tag0.ResPoison>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_2] //Legs
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResPoison> ? <MulDiv <Findlayer.22.Tag0.ResPoison>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResPoison> ? <MulDiv <Findlayer.20.Tag0.ResPoison>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResPoison> ? <MulDiv <Findlayer.4.Tag0.ResPoison>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResPoison> ? <MulDiv <Findlayer.12.Tag0.ResPoison>,<MulDiv <Findlayer.12.hits>,100,<Findlayer.12.maxhits>>,100> : 0> //Belt/half-apron
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResPoison> ? <MulDiv <Findlayer.23.Tag0.ResPoison>,<MulDiv <Findlayer.23.hits>,100,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+IF <Findlayer.3.Tag0.CoverLegs>
+	Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResPoison> ? <MulDiv <Findlayer.3.Tag0.ResPoison>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_3]
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResPoison> ? <MulDiv <Findlayer.7.Tag0.ResPoison>,<MulDiv <Findlayer.7.hits>,100,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_4] //arms
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResPoison> ? <MulDiv <Findlayer.22.Tag0.ResPoison>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResPoison> ? <MulDiv <Findlayer.20.Tag0.ResPoison>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResPoison> ? <MulDiv <Findlayer.19.Tag0.ResPoison>,<MulDiv <Findlayer.19.hits>,100,<Findlayer.19.maxhits>>,100> : 0> //Arms
+IF <Findlayer.5.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResPoison> ? <MulDiv <Findlayer.5.Tag0.ResPoison>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResPoison> ? <MulDiv <Findlayer.13.Tag0.ResPoison>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResPoison> ? <MulDiv <Findlayer.17.Tag0.ResPoison>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_5] //chest
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResPoison> ? <MulDiv <Findlayer.22.Tag0.ResPoison>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResPoison> ? <MulDiv <Findlayer.13.Tag0.ResPoison>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResPoison> ? <MulDiv <Findlayer.5.Tag0.ResPoison>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResPoison> ? <MulDiv <Findlayer.17.Tag0.ResPoison>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_6] //back
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResPoison> ? <MulDiv <Findlayer.22.Tag0.ResPoison>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResPoison> ? <MulDiv <Findlayer.20.Tag0.ResPoison>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResPoison> ? <MulDiv <Findlayer.13.Tag0.ResPoison>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResPoison> ? <MulDiv <Findlayer.5.Tag0.ResPoison>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResPoison> ? <MulDiv <Findlayer.17.Tag0.ResPoison>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_7] //neck
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResPoison> ? <MulDiv <Findlayer.10.Tag0.ResPoison>,<MulDiv <Findlayer.10.hits>,100,<Findlayer.10.maxhits>>,100> : 0> //Collar
+IF <Findlayer.6.Tag0.CoverNeck>
+	Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResPoison> ? <MulDiv <Findlayer.6.Tag0.ResPoison>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResPoison_Loc_8] //head
+Local.ArmorTotal = <Eval <ResPoison>>
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResPoison> ? <MulDiv <Findlayer.6.Tag0.ResPoison>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Return <dLocal.ArmorTotal>
+
+
+[Function Get_ResEnergy_Loc_0] // wholebody
+Local.ArmorTotal = <Eval <ResEnergy>>
+If <Shield>
+Ref1=<Shield>
+Local.ArmorTotal += <QVAL <Ref1.Tag0.ResEnergy> ? <MulDiv <Ref1.Tag0.ResEnergy>,<MulDiv <Ref1.hits>,<Eval <Parrying>/20>,<Ref1.maxhits>>,100> : 0> //Shield
+Endif
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResEnergy> ? <MulDiv <Findlayer.3.Tag0.ResEnergy>,<MulDiv <Findlayer.3.hits>,<QVAL <Findlayer.3.Tag0.CoverLegs>  ?  5 : 25>,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResEnergy> ? <MulDiv <Findlayer.4.Tag0.ResEnergy>,<MulDiv <Findlayer.4.hits>,<QVAL <Findlayer.4.Tag0.CoverFeet>  ?  20 : 25>,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResEnergy> ? <MulDiv <Findlayer.5.Tag0.ResEnergy>,<MulDiv <Findlayer.5.hits>,<QVAL <Findlayer.5.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResEnergy> ? <MulDiv <Findlayer.6.Tag0.ResEnergy>,<MulDiv <Findlayer.6.hits>,<QVAL <Findlayer.6.Tag0.CoverNeck>  ?  10 : 15>,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResEnergy> ? <MulDiv <Findlayer.7.Tag0.ResEnergy>,<MulDiv <Findlayer.7.hits>,10,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResEnergy> ? <MulDiv <Findlayer.10.Tag0.ResEnergy>,<MulDiv <Findlayer.10.hits>,5,<Findlayer.10.maxhits>>,100> : 0> //Neck
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResEnergy> ? <MulDiv <Findlayer.12.Tag0.ResEnergy>,<MulDiv <Findlayer.12.hits>,20,<Findlayer.12.maxhits>>,100> : 0> //Half-apron/belt
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResEnergy> ? <MulDiv <Findlayer.13.Tag0.ResEnergy>,<MulDiv <Findlayer.13.hits>,<QVAL <Findlayer.13.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResEnergy> ? <MulDiv <Findlayer.17.Tag0.ResEnergy>,<MulDiv <Findlayer.17.hits>,<QVAL <Findlayer.17.Tag0.CoverArms>  ?  40 : 50>,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResEnergy> ? <MulDiv <Findlayer.19.Tag0.ResEnergy>,<MulDiv <Findlayer.19.hits>,10,<Findlayer.19.maxhits>>,100> : 0> //Arms
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResEnergy> ? <MulDiv <Findlayer.20.Tag0.ResEnergy>,<MulDiv <Findlayer.20.hits>,40,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResEnergy> ? <MulDiv <Findlayer.22.Tag0.ResEnergy>,<MulDiv <Findlayer.22.hits>,70,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResEnergy> ? <MulDiv <Findlayer.23.Tag0.ResEnergy>,<MulDiv <Findlayer.23.hits>,20,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_1] // Feet
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResEnergy> ? <MulDiv <Findlayer.3.Tag0.ResEnergy>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+IF <Findlayer.4.Tag0.CoverFeet>
+	Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResEnergy> ? <MulDiv <Findlayer.4.Tag0.ResEnergy>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_2] //Legs
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResEnergy> ? <MulDiv <Findlayer.22.Tag0.ResEnergy>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResEnergy> ? <MulDiv <Findlayer.20.Tag0.ResEnergy>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.4.Tag0.ResEnergy> ? <MulDiv <Findlayer.4.Tag0.ResEnergy>,<MulDiv <Findlayer.4.hits>,100,<Findlayer.4.maxhits>>,100> : 0> //Pants
+Local.ArmorTotal += <QVAL <Findlayer.12.Tag0.ResEnergy> ? <MulDiv <Findlayer.12.Tag0.ResEnergy>,<MulDiv <Findlayer.12.hits>,100,<Findlayer.12.maxhits>>,100> : 0> //Belt/half-apron
+Local.ArmorTotal += <QVAL <Findlayer.23.Tag0.ResEnergy> ? <MulDiv <Findlayer.23.Tag0.ResEnergy>,<MulDiv <Findlayer.23.hits>,100,<Findlayer.23.maxhits>>,100> : 0> //Skirt/kilt
+IF <Findlayer.3.Tag0.CoverLegs>
+	Local.ArmorTotal += <QVAL <Findlayer.3.Tag0.ResEnergy> ? <MulDiv <Findlayer.3.Tag0.ResEnergy>,<MulDiv <Findlayer.3.hits>,100,<Findlayer.3.maxhits>>,100> : 0> //Shoes
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_3]
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.7.Tag0.ResEnergy> ? <MulDiv <Findlayer.7.Tag0.ResEnergy>,<MulDiv <Findlayer.7.hits>,100,<Findlayer.7.maxhits>>,100> : 0> //Hands
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_4] //arms
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResEnergy> ? <MulDiv <Findlayer.22.Tag0.ResEnergy>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResEnergy> ? <MulDiv <Findlayer.20.Tag0.ResEnergy>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.19.Tag0.ResEnergy> ? <MulDiv <Findlayer.19.Tag0.ResEnergy>,<MulDiv <Findlayer.19.hits>,100,<Findlayer.19.maxhits>>,100> : 0> //Arms
+IF <Findlayer.5.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResEnergy> ? <MulDiv <Findlayer.5.Tag0.ResEnergy>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResEnergy> ? <MulDiv <Findlayer.13.Tag0.ResEnergy>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResEnergy> ? <MulDiv <Findlayer.17.Tag0.ResEnergy>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_5] //chest
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResEnergy> ? <MulDiv <Findlayer.22.Tag0.ResEnergy>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResEnergy> ? <MulDiv <Findlayer.13.Tag0.ResEnergy>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResEnergy> ? <MulDiv <Findlayer.5.Tag0.ResEnergy>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResEnergy> ? <MulDiv <Findlayer.17.Tag0.ResEnergy>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_6] //back
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.22.Tag0.ResEnergy> ? <MulDiv <Findlayer.22.Tag0.ResEnergy>,<MulDiv <Findlayer.22.hits>,100,<Findlayer.22.maxhits>>,100> : 0> //Robe
+Local.ArmorTotal += <QVAL <Findlayer.20.Tag0.ResEnergy> ? <MulDiv <Findlayer.20.Tag0.ResEnergy>,<MulDiv <Findlayer.20.hits>,100,<Findlayer.20.maxhits>>,100> : 0> //Cape/cloak
+Local.ArmorTotal += <QVAL <Findlayer.13.Tag0.ResEnergy> ? <MulDiv <Findlayer.13.Tag0.ResEnergy>,<MulDiv <Findlayer.13.hits>,100,<Findlayer.13.maxhits>>,100> : 0> //Chest
+Local.ArmorTotal += <QVAL <Findlayer.5.Tag0.ResEnergy> ? <MulDiv <Findlayer.5.Tag0.ResEnergy>,<MulDiv <Findlayer.5.hits>,100,<Findlayer.5.maxhits>>,100> : 0> //Shirt
+Local.ArmorTotal += <QVAL <Findlayer.17.Tag0.ResEnergy> ? <MulDiv <Findlayer.17.Tag0.ResEnergy>,<MulDiv <Findlayer.17.hits>,100,<Findlayer.17.maxhits>>,100> : 0> //Tunic
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_7] //neck
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.10.Tag0.ResEnergy> ? <MulDiv <Findlayer.10.Tag0.ResEnergy>,<MulDiv <Findlayer.10.hits>,100,<Findlayer.10.maxhits>>,100> : 0> //Collar
+IF <Findlayer.6.Tag0.CoverNeck>
+	Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResEnergy> ? <MulDiv <Findlayer.6.Tag0.ResEnergy>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+ENDIF
+Return <dLocal.ArmorTotal>
+
+[Function Get_ResEnergy_Loc_8] //head
+Local.ArmorTotal = <Eval <ResEnergy>>
+Local.ArmorTotal += <QVAL <Findlayer.6.Tag0.ResEnergy> ? <MulDiv <Findlayer.6.Tag0.ResEnergy>,<MulDiv <Findlayer.6.hits>,100,<Findlayer.6.maxhits>>,100> : 0> //Helm
+Return <dLocal.ArmorTotal>
+
+
+
+
+[Function CombatSys_Max]
+RETURN <QVAL <ARGN2> < <ARGN1>? <ARGN1> : <ARGN2>>
+
+[Function CombatSys_Min]
+RETURN <QVAL <ARGN2> < <ARGN1>? <ARGN2> : <ARGN1>>
+
+[Function Shield]
+Return <Qval <Findlayer.2.Type>==t_shield ? <Findlayer.2.Uid> : 0>
+
+[Function GetDam]
+Return <MulDiv <Eval <Dam.Low>+<Modar>>,<MulDiv <hits>,100,<maxhits>>,100>,<MulDiv <Eval <Dam.High>+<Modar>>,<MulDiv <hits>,100,<maxhits>>,100>
+
+[FUNCTION IsArcheryWeapon]
+IF ((<TYPE> == t_weapon_bow) || (<TYPE> == t_weapon_xbow))
+ RETURN 1
+ENDIF
+RETURN 0
+
+[Function BestWeaponSkill]
+If <Argv[0]>
+	If (<Magery>+<Skillmod Magery>) > (<Weapon.skill>+<Skillmod <Weapon.skill>>)
+		Local.Skill = Magery + <Skillmod Magery>
+	Endif
+Else
+	Local.Skill = Fencing + <Skillmod Fencing>
+	If (<Archery>+<Skillmod Archery>) > <Local.Skill>
+		Local.Skill = Archery + <Skillmod Archery>
+	Endif
+	If (<MaceFighting>+<Skillmod MaceFighting>) > <Local.Skill>
+		Local.Skill = MaceFighting + <Skillmod Macefighting>
+	Endif
+	If (<Swordsmanship>+<Skillmod Swordsmanship>) > <Local.Skill>
+		Local.Skill = Swordsmanship + <Skillmod Swordsmanship>
+	Endif
+	If (<Bushido>+<Skillmod Bushido>) > <Local.Skill>
+		Local.Skill = Bushido + <Skillmod Bushido>
+	Endif
+	If (<Ninjitsu>+<Skillmod Ninjitsu>) > <Local.Skill>
+		Local.Skill = Ninjitsu + <Skillmod Ninjitsu>
+	Endif
+	If (<Throwing>+<Skillmod Throwing>) > <Local.Skill>
+		Local.Skill = Throwing + <Skillmod Throwing>
+	Endif
+Endif
+Return <Local.Skill>
+
+[Function CombatSys_UsedSkill]
+LOCAL.SKILL = <eval <Qval !<Weapon> ? (<Wrestling>+<SkillMod Wrestling>) : <Qval <Weapon.tag0.mageweapon> ? <BestWeaponSkill 1> : <Qval <Weapon.tag0.UseBestWeaponSkill> ? <BestWeaponSkill> : (<I.<Weapon.skill>>+<Skillmod <Weapon.skill>>)>>>>
+Return <LOCAL.SKILL>
+
+
+[Function ModSkill]
+If !<IsEmpty <Argv[0]>>
+If <IsNum <Argv[0]>>
+If <Serv.Skill.<Argv[0]>>
+Local.Amount = <Argv[1]>
+If <Eval <TAG0.OVERRIDE.SKILLSUM.AMOUNT> + <Local.Amount>> == 0
+TAG.OVERRIDE.SKILLSUM.AMOUNT = 
+Else
+TAG.OVERRIDE.SKILLSUM.AMOUNT = <Eval <TAG0.OVERRIDE.SKILLSUM.AMOUNT> + <Local.Amount>>
+Endif
+If <Eval <TAG0.OVERRIDE.SKILLSUM.AMOUNT>+<SkillClass.SkillSum>> == <SkillClass.SkillSum>
+TAG.OVERRIDE.SKILLSUM = 
+Else
+TAG.OVERRIDE.SKILLSUM = <Eval <TAG0.OVERRIDE.SKILLSUM.AMOUNT>+<SkillClass.SkillSum>>
+Endif
+If <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT> + <Local.Amount>> == 0
+TAG.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT = 
+Else
+TAG.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT = <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT> + <Local.Amount>>
+Endif
+If <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT>+<SkillClass.<Argv[0]>>> == <SkillClass.<Argv[0]>>
+TAG.OVERRIDE.SKILLCAP_<Eval <Argv[0]>> =
+Elif <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT>+<SkillClass.<Argv[0]>>> > 0
+TAG.OVERRIDE.SKILLCAP_<Eval <Argv[0]>> = <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT>+<SkillClass.<Argv[0]>>>
+Else
+TAG.OVERRIDE.SKILLCAP_<Eval <Argv[0]>> = 0
+Endif
+If <Local.Amount> > 0
+If <Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount> < 0
+Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount = <Eval <Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount> + <Local.Amount>>
+Local.Amount = 0
+Endif
+If <Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount> >= 0
+Local.Amount += <Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount>
+Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount =
+If <Eval <<Argv[0]>> + <Local.Amount>> < <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT>
+Local.Amount = <Eval <TAG0.OVERRIDE.SKILLCAP_<Eval <Argv[0]>>.AMOUNT> +- <<Argv[0]>>>
+Endif
+Try <Argv[0]> = <Eval <<Argv[0]>> + <Local.Amount>>
+Endif
+Else
+If <Eval <<Argv[0]>> + <Local.Amount>> < 0
+If <<Argv[0]>> > 0
+Local.Amount += <<Argv[0]>>
+Endif
+Tag.Override.Skill.<Eval <Argv[0]>>.NegAmount = <Eval <Tag0.Override.Skill.<Eval <Argv[0]>>.NegAmount> + <Local.Amount>>
+Try <Argv[0]> = 0
+Else
+Try <Argv[0]> = <Eval <Argv[0]> + <Local.Amount>>
+Endif
+Endif
+Endif
+Endif
+Endif
+
+[Function DamageLayer]
+IF <Findlayer.<Argv[0]>>
+Findlayer.<Argv[0]>.Hits -= <QVAL <r12> ? 0 : 1>
+Findlayer.<Argv[0]>.Update
+IF (<Findlayer.<Argv[0]>.Hits> == 0)
+	SYSMESSAGE Your <Findlayer.<Argv[0]>.Name> has been destroyed.
+	Findlayer.<Argv[0]>.REMOVE
+ENDIF
+ENDIF
+RETURN
+
+[Function GetArmorVal]
+Return <Eval (<Armor.High> * <Def0.Armor_Layer_Calc_<Layer>>) / 100>
+
+[Function Damage_Loc_0] // wholebody
+DamageLayer 1
+DamageLayer 2
+DamageLayer 3
+DamageLayer 4
+DamageLayer 5
+DamageLayer 6
+DamageLayer 7
+DamageLayer 8
+DamageLayer 9
+DamageLayer 10
+DamageLayer 12
+DamageLayer 13
+DamageLayer 14
+DamageLayer 17
+DamageLayer 18
+DamageLayer 20
+DamageLayer 22
+DamageLayer 23
+Return
+
+[Function Damage_Loc_1] // Feet
+DamageLayer 3
+IF <Findlayer.4.Tag0.CoverFeet>
+	DamageLayer 4
+ENDIF
+Return
+
+[Function Damage_Loc_2] //Legs
+DamageLayer 22
+DamageLayer 20
+DamageLayer 4
+DamageLayer 12
+DamageLayer 23
+IF <Findlayer.3.Tag0.CoverLegs>
+	DamageLayer 3
+ENDIF
+Return
+
+[Function Damage_Loc_3]
+DamageLayer 7
+Return
+
+[Function Damage_Loc_4] //arms
+DamageLayer 22
+DamageLayer 20
+DamageLayer 19
+IF <Findlayer.5.Tag0.CoverArms>
+	DamageLayer 5
+ENDIF
+IF <Findlayer.13.Tag0.CoverArms>
+	DamageLayer 13
+ENDIF
+IF <Findlayer.17.Tag0.CoverArms>
+	DamageLayer 17
+ENDIF
+Return
+
+[Function Damage_Loc_5] //chest
+DamageLayer 22
+DamageLayer 13
+DamageLayer 5
+DamageLayer 17
+Return
+
+[Function Damage_Loc_6] //back
+DamageLayer 22
+DamageLayer 13
+DamageLayer 5
+DamageLayer 17
+DamageLayer 20
+Return
+
+[Function Damage_Loc_7] //neck
+DamageLayer 10
+IF <Findlayer.6.Tag0.CoverNeck>
+	DamageLayer 6
+ENDIF
+Return
+
+[Function Damage_Loc_8] //head
+DamageLayer 6
+Return
+
+
+[Function GetGuild]
+If <NPC>
+Return <Qval <Owner> ? <Owner.Guild> : 0>
+Endif
+Return <Guild>
+
+[Function IsAttacking]
+Local.Attacked=<Argv[0]>
+FORCHARMEMORYTYPE memory_fight
+If <Link.Uid>==<Local.Attacked>
+Return 1
+Endif
+ENDFOR
+Return 0
+
+[Function IsHostile]
+Ref1=<Argv[0]>
+If ((<NPC>) && (!<Owner>))
+If ((<Ref1.NPC>) && (!<Ref1.Owner>))
+Return 0
+Endif
+Return 1
+Endif
+If <Ref1.IsInvul>
+Return 0
+Endif
+If ((<IsAttacking <Ref1.Uid>>) || (<Ref1.IsAttacking <Uid>>))
+Return 1
+Endif
+If ((<GetGuild>) && (<GetGuild>==<Ref1.GetGuild>))
+Return 0
+Endif
+If <IsEnemyGuild <Ref1.Uid>> 
+Return 1
+Endif
+If <Def0.Combat_Map_<Ref1.Map>_PvP>
+If (<Ref1.NOTOGETFLAG> > 2)
+Return 1
+Endif
+Return 0
+Else
+If <IsAttackable <Ref1.Uid>>
+Return 1
+Endif
+Return 0
+Endif
+Return 0
+
+[Function IsEnemyGuild]
+Ref1=<Argv[0]>
+Return <f_guildsys_isatwarwith <GetGuild>,<Ref1.GetGuild>>
+
+[Function IsInvul]
+If <Flags>&01
+Return 1
+Endif
+Return 0
+
+[Function IsAttackable]
+Ref1=<Argv[0]>
+If ((<NPC>) && (!<Owner>))
+Return 1
+Endif
+If <Ref1.IsAttacking <Uid>>
+Return 1
+Endif
+If <Ref1.IsInvul>
+Return 0
+Endif
+If <Def0.Combat_Map_<Ref1.Map>_PvP>
+Return 1
+Endif
+If <IsEnemyGuild <Ref1.Uid>> 
+Return 1
+Endif
+If ((<GetGuild>) && (<GetGuild>==<Ref1.GetGuild>))
+Return 1
+Endif
+If ((<Ref1.NPC>) && (!<Ref1.Owner>))
+Return 1
+Endif
+Return 0
+
+
+[Function Combat_ExtraHit]
+IF (<CombatSys_HitChance>==0>)
+
+Local.Dam = <CombatSys_DamageBonus>
+Local.Dam += <CombatSys_AOS_Velocity>
+IF <TAG0.Consecrate>
+	Argn2 = <f_Consecrate_weapon_check <Argn2>>
+Endif
+
+Local.FireDam = <CombatSys_FireDamageBonus>
+Local.ColdDam = <CombatSys_ColdDamageBonus>
+Local.PoisonDam = <CombatSys_PoisonDamageBonus>
+Local.EnergyDam = <CombatSys_EnergyDamageBonus>
+
+IF Rand(101) < <Weapon.Tag0.ChaosDamage>
+	Local.ChaosDam=<Local.Dam>
+	Local.Dam=0
+	DORAND 5
+		Local.Dam=<eval <Local.ChaosDam>>
+		Local.FireDam += <eval <Local.ChaosDam>>
+		Local.ColdDam += <eval <Local.ChaosDam>>
+		Local.PoisonDam += <eval <Local.ChaosDam>>
+		Local.EnergyDam += <eval <Local.ChaosDam>>
+	ENDDO
+ENDIF
+
+	
+//BlockChance
+IF (<CombatSys_BlockChance>)
+	CombatSys_Block 
+	Local.ShieldBlock=<QVAL <Src.Findlayer.2.Armor> ? <MulDiv <Src.Findlayer.2.Armor.High>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+	Local.ShieldBlock= <Eval ((Rand(<Local.ShieldBlock>))+(Rand(<Local.ShieldBlock>)))/2>
+	Local.Dam=<CombatSys_Max <Eval <Local.Dam> +- <Local.ShieldBlock>>, 0>
+	IF (<Local.FireDam> > 0)
+		Local.ShieldFireRes=<QVAL <Src.Findlayer.2.Tag0.FireRes> ? <MulDiv <Src.Findlayer.2.Tag0.FireRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.FireDam=<CombatSys_Max <Eval <Local.FireDam> +- <Local.ShieldFireRes>>, 0>
+	ENDIF
+	IF (<Local.ColdDam> > 0)
+		Local.ShieldColdRes=<QVAL <Src.Findlayer.2.Tag0.ColdRes> ? <MulDiv <Src.Findlayer.2.Tag0.ColdRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.ColdDam=<CombatSys_Max <Eval <Local.ColdDam> +- <Local.ShieldColdRes>>, 0>
+	ENDIF
+	IF (<Local.PoisonDam> > 0)
+		Local.ShieldPoisonRes=<QVAL <Src.Findlayer.2.Tag0.PoisonRes> ? <MulDiv <Src.Findlayer.2.Tag0.PoisonRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.PoisonDam=<CombatSys_Max <Eval <Local.PoisonDam> +- <Local.ShieldPoisonRes>>, 0>
+	ENDIF
+	IF (<Local.EnergyDam> > 0)
+		Local.ShieldEnergyRes=<QVAL <Src.Findlayer.2.Tag0.EnergyRes> ? <MulDiv <Src.Findlayer.2.Tag0.EnergyRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.EnergyDam=<CombatSys_Max <Eval <Local.EnergyDam> +- <Local.ShieldEnergyRes>>, 0>
+	ENDIF
+ENDIF
+IF (<CombatSys_BlockChance_Weapon>)
+	CombatSys_Block_Weapon
+	Local.WeaponBlock=<Qval <Src.Weapon> ? <eval {<Src.Weapon.GetDam>}> : <Eval {<serv.chardef.<src.id>.dam>}>>
+	Local.WeaponBlock=<Eval ((Rand(<Local.WeaponBlock>))+(Rand(<Local.WeaponBlock>)))/2>
+	Local.Dam=<CombatSys_Max <Eval <Local.Dam> +- <Local.WeaponBlock>>, 0>
+ENDIF
+
+
+Local.Location=<eval <Src.f_Get_Hit_Location>>
+Local.Armor = <Src.CombatSys_PhysicalResist <Local.Location>>
+Local.Dam = <eval <Local.Dam>-<Local.Armor>>
+Local.Dam = <CombatSys_Max <Local.Dam>,0>
+
+IF (<Local.FireDam> > 0)
+	Local.FireRes = <Src.CombatSys_FireResist <Local.Location>>
+	Local.FireDam = <eval <Local.FireDam>-<Local.FireRes>>
+	Local.FireDam = <CombatSys_Max <Local.FireDam>,0>
+ENDIF
+IF (<Local.ColdDam> > 0)
+	Local.ColdRes = <Src.CombatSys_ColdResist <Local.Location>>
+	Local.ColdDam = <eval <Local.ColdDam>-<Local.ColdRes>>
+	Local.ColdDam = <CombatSys_Max <Local.ColdDam>,0>
+ENDIF
+IF (<Local.PoisonDam> > 0)
+	Local.PoisonRes = <Src.CombatSys_PoisonResist <Local.Location>>
+	Local.PoisonDam = <eval <Local.PoisonDam>-<Local.PoisonRes>>
+	Local.PoisonDam = <CombatSys_Max <Local.PoisonDam>,0>
+ENDIF
+IF (<Local.EnergyDam> > 0)
+	Local.EnergyRes = <Src.CombatSys_EnergyResist <Local.Location>>
+	Local.EnergyDam = <eval <Local.EnergyDam>-<Local.EnergyRes>>
+	Local.EnergyDam = <CombatSys_Max <Local.EnergyDam>,0>
+ENDIF
+
+Weapon.Hits -= <QVAL <r14> ? 0 : 1>
+Weapon.Update
+Src.Damage_Loc_<eval <Local.Location>>
+
+Local.Dam=<eval <Local.Dam> + <Local.FireDam> + <Local.ColdDam> + <Local.PoisonDam> + <Local.EnergyDam>>
+ARGN2 = <ARGN2> | 01 //god
+Src.Damage <Local.Dam> <Argn2> <Uid>
+
+CombatSys_AOS_WeaponSpells
+CombatSys_AOS_WeaponLeech <Local.Dam>
+CombatSys_AOS_WepAttkDefMod
+CombatSys_AOS_AreaDamage
+CombatSys_AOS_PhysicalReflect <Local.Dam>,<Src.Uid>
+
+ENDIF
+
+
+[EOF]

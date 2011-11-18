@@ -1,0 +1,132 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+[CHARDEF 021]
+DEFNAME=c_lizardman
+NAME=lizardman
+SOUND=snd_MONSTER_LZRDMN1
+ICON=i_pet_LIZMAN
+ANIM=078c7f
+DAM=3,9
+ARMOR=14
+MOVERATE=0
+RESOURCES=4 i_ribs_raw, 4 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=45 t_meat_raw
+TEVENTS=e_Level_up_NPC
+
+DESIRES=i_gold,c_LIZARDMAN
+AVERSIONS=e_carnivores3
+CATEGORY=Monsters
+SUBSECTION=Lizardmen
+DESCRIPTION=Lizardman
+
+ON=@Create
+	NPC=brain_monster
+	FAME={300 1000}
+	NAME=#NAMES_LIZARDMAN
+	KARMA={-1000 -1999}
+	STR={96 120}
+	DEX={86 105}
+	INT={36 60}
+	SetLizardman
+
+	PARRYING={55.0 75.0}
+	MagicResistance={35.0 60.0}
+	TACTICS={55.0 80.0}
+	WRESTLING={50.0 70.0}
+
+ON=@NPCRestock
+     ITEM={ Treasure_backpack 1 Supply_backpack 1 Treasure_Pouch 1 0 2}
+
+[CHARDEF c_lizardwoman]
+ID=c_lizardman
+NAME=lizardwoman
+SOUND=snd_MONSTER_LZRDMN1
+ICON=i_pet_LIZMAN
+ANIM=078c7f
+DAM=3,9
+ARMOR=14
+MOVERATE=0
+RESOURCES=4 i_ribs_raw, 4 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_FEMALE
+FOODTYPE=45 t_meat_raw
+TEVENTS=e_Level_up_NPC
+
+DESIRES=i_gold,c_LIZARDMAN
+AVERSIONS=e_carnivores3
+CATEGORY=Monsters
+SUBSECTION=Lizardmen
+DESCRIPTION=Lizardman
+
+ON=@Create
+	NPC=brain_monster
+	NAME=#NAMES_LIZARDMAN
+	FAME={300 1000}
+	KARMA={-1000 -1999}
+	STR={96 120}
+	DEX={86 105}
+	INT={36 60}
+	SetLizardman
+
+	PARRYING={55.0 75.0}
+	MagicResistance={35.0 60.0}
+	TACTICS={55.0 80.0}
+	WRESTLING={50.0 70.0}
+
+ON=@NPCRestock
+     ITEM={ Treasure_backpack 1 Supply_backpack 1 Treasure_Pouch 1 0 2}
+
+
+[CHARDEF c_lizardman_shaman]
+ID=c_lizardman
+NAME=lizardman shaman
+SOUND=snd_MONSTER_LZRDMN1
+ICON=i_pet_LIZMAN
+ANIM=078c7f
+DAM=3,9
+ARMOR=14
+MOVERATE=0
+RESOURCES=4 i_ribs_raw, 4 i_hide
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+FOODTYPE=45 t_meat_raw
+TEVENTS=e_Level_up_NPC
+
+DESIRES=i_gold,c_LIZARDMAN
+AVERSIONS=e_carnivores3
+CATEGORY=Monsters
+SUBSECTION=Lizardmen
+DESCRIPTION=Lizardman
+
+ON=@Create
+	NPC=brain_monster
+	NAME=#NAMES_LIZARDMAN
+	STR={96 120}
+	DEX={86 105}
+	INT={86 110}
+	SetLizardman
+
+	PARRYING={55.0 75.0}
+	MagicResistance={35.0 60.0}
+	TACTICS={55.0 80.0}
+	WRESTLING={50.0 70.0}
+
+	FAME={1300 2000}
+	KARMA={-1000 -1999}
+
+ON=@NPCRestock
+     ITEM={ Treasure_backpack 1 Supply_backpack 1 Magic_Pouch 1 }
+
+[eof]

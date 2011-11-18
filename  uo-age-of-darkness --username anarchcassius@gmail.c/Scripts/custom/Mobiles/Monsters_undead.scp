@@ -1,0 +1,1319 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+//// NPC's UNDEAD ////
+
+
+[chardef 068]
+defname=c_dragon_skeleton
+name=skeleton dragon
+sound=snd_monster_dragon_skeleton
+icon=i_pet_dragon
+can=mt_walk|mt_run|mt_nonhum
+dam=14,16
+armor=50
+moverate=10
+resources=8 i_reag_bone
+foodtype=80 i_reag_bone
+ANIM=03F8C7F
+desires=t_reagent
+aversions=r_civilization
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=8
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=43
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=13
+TAG.MANUEVER2=7
+TAG.MANUEVER3=27
+
+category=AoD Monsters
+subsection=Undead
+description=Skeleton Dragon
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={190 225}
+     dex={85 110}
+     int={180 205}
+     TAG0.MODHITS = 32
+     TAG0.MODMANA = 32
+     TAG0.MODSTAM = 16
+
+     parrying={75.0 95.0}
+     magicresistance={98.4 99.7}
+     tactics={98.1 98.6}
+     wrestling={98.4 99.7}
+     evaluatingintel={68.4 79.7}
+     magery={98.4 99.7}
+     meditation={74.4 84.7}
+     necromancy={65.0 75.0}
+
+     EXP={ 260000 320000 } //Level 10
+
+     resfire=48
+     rescold=24
+     resenergy=24
+     respoison=100
+
+     fame={7000 8500}
+     karma={-7000 -7999}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_necro_user
+
+ON=@NpcRestock
+     item={ Metal_Treasure_Chest 2 Metal_Treasure_Chest_Brass 1}
+     ITEM={ RANDOM_JEWEL 1 0 1 },{1 4}
+     ITEM={ RANDOM_JEWEL 1 0 1 },{1 4}
+     ITEM={ RANDOM_JEWEL 1 0 1 },{1 4}
+     ITEM=i_copper_coin,{96 1032}
+     ITEM=i_silver_coin,{19 196}
+     ITEM=i_gold_coin,{1 16}
+     ITEM=i_platinum_coin,{1 7}
+
+
+[chardef 099]
+defname=c_ghoul
+name="ghoul"
+sound=snd_monster_zombie1
+icon=i_pet_ghoul_lbr
+can=mt_walk
+dam=9,12
+armor=18
+ANIM=078C7F
+moverate=0
+resources=2 i_reag_bone
+bloodcolor=colors_green
+TEVENTS=e_Level_up_NPC
+desires=t_coin, i_flesh_heart, i_flesh_liver, i_flesh_entrails, i_flesh_brain, i_flesh_torso, i_flesh_head, i_flesh_left_arm, i_flesh_right_arm, i_flesh_left_leg, i_flesh_right_leg,t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_ghoul
+foodtype=i_flesh_heart, i_flesh_liver, i_flesh_entrails, i_flesh_brain, i_flesh_torso, i_flesh_head, i_flesh_left_arm, i_flesh_right_arm, i_flesh_left_leg, i_flesh_right_leg
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=11
+TAG.MANUEVER2=3
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Ghoul
+
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={78 98}
+     dex={80 94}
+     int={38 60}
+     TAG0.MODHITS = 8
+
+     magicresistance={26.6 48.7}
+     parrying={60.0 70.0}
+     tactics={49.4 68.1}
+     wrestling={55.4 79.7}
+     hiding={59.0 73.0}
+     stealth={59.0 73.0}
+     anatomy={55.4 69.7}
+
+	givelang 1
+
+     rescold=16
+     resenergy=16
+     respoison=100
+
+     fame={500 1500}
+     karma={-1500 -2500}
+     EXP={ 1050 1950 } //Level 2
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 2 Undead_backpack 1 Treasure_Pouch 1 0 3}
+     ITEM={ random_body_parts 2 0 1 }
+
+[chardef 03]
+defname=c_zombie
+name="zombie"
+sound=snd_monster_zombie1
+icon=i_pet_zombie
+anim=078c7f
+can=mt_walk
+dam=6,9
+armor=11
+moverate=40
+foodtype=i_flesh_brain
+resources=2 i_reag_bone
+desires=i_flesh_brain,t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton
+TEVENTS=e_Level_up_NPC
+aversions=t_trap
+bloodcolor=colors_green
+tag.slots_needed=2
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=4
+TAG.MANUEVER2=3
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Zombie
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={67 88}
+     dex={34 48}
+     int={16 27}
+     TAG0.MODHITS = 8
+
+     parrying={22.0 34.0}
+     magicresistance={25.3 39.5}
+     tactics={37.4 49.9}
+     wrestling={49.3 62.1}
+
+     rescold=15
+     resenergy=15
+     respoison=100
+
+     fame={250 300}
+     karma={-1000 -1500}
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 2 Undead_backpack 1 0 3}
+
+[chardef 032]
+defname=c_skeleton
+name="skeleton"
+sound=snd_monster_skletn1
+icon=i_pet_skeleton
+anim=078c7f
+can=mt_walk|mt_usehands|mt_equip
+dam=5,8
+armor=9
+moverate=0
+resources=4 i_reag_bone
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll,c_zombie,c_skeleton
+bloodcolor=-1
+tag.slots_needed=2
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=5
+TAG.MANUEVER2=7
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Skeleton
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={51 66}
+     dex={56 73}
+     int={16 27}
+     TAG0.MODHITS = 8
+
+     parrying={45.0 55.0}
+     magicresistance={45.4 58.2}
+     tactics={45.1 59.2}
+     wrestling={49.4 57.5}
+     swordsmanship={45.4 54.5}
+     macefighting={45.4 54.5}
+
+     resfire=12
+     rescold=12
+     resenergy=12
+     respoison=100
+
+
+     fame={250 300}
+     karma={-1000 -1500}
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 3 Undead_backpack 2 0 3}
+     ITEM={ i_shield_wood 1 0 2 }
+     ITEM={ i_club 2 i_sword_long 3 i_sword_viking 2 i_mace 3 0 4 }
+
+[chardef 094]
+defname=c_skeleton_mage
+name="skeletal mage"
+icon=i_pet_skeleton_mage_lbr
+can=mt_walk|mt_usehands|mt_equip
+dam=5,8
+armor=9
+moverate=0
+resources=4 i_reag_bone
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton,t_reagent
+bloodcolor=-1
+ANIM=078C7F
+tag.slots_needed=3
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=5
+TAG.MANUEVER2=7
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Skeletal Mage
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={91 106}
+     dex={96 109}
+     int={150 175}
+     TAG0.MODHITS = 8
+
+     parrying={55.0 65.0}
+     magery={77.6 84.1}
+     magicresistance={69.6 84.0}
+     tactics={55.4 67.3}
+     wrestling={50.1 58.4}
+     evaluatingintel={77.6 84.1}
+     meditation={77.6 84.1}
+
+	givelang 1
+
+     fame={1250 1300}
+     karma={-2000 -2500}
+
+     resfire=12
+     rescold=12
+     resenergy=12
+     respoison=100
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 10
+     EVENTS=+e_intel_char_magery_user
+
+	EXP={ 2050 3950 } //Level 3
+
+ON=@NpcRestock
+     ITEM={ Magic_Bag 5 Magic_box 1 Undead_box 1 0 2 }
+     ITEM={ Undead_pouch 2 RANDOM_SCROLL 2 RANDOM_JEWELRY 1 0 2 }
+
+[chardef 093]
+defname=c_skeleton_knight
+name="skeletal knight"
+icon=i_pet_skeleton_knight_lbr
+can=mt_walk|mt_usehands|mt_equip
+dam=5,8
+armor=28
+moverate=0
+resources=4 i_reag_bone
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton
+bloodcolor=-1
+tag.slots_needed=3
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=5
+TAG.MANUEVER2=7
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Skeletal Knight
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={152 169}
+     dex={106 128}
+     int={36 58}
+     TAG0.MODHITS = 8
+
+     parrying={75.0 85.0}
+     magicresistance={56.4 68.8}
+     tactics={75.3 89.8}
+     wrestling={46.9 55.5}
+     archery={46.9 55.5}
+     swordsmanship={76.9 85.5}
+     anatomy={56.4 68.8}
+
+	givelang 1
+
+     fame={1250 1300}
+     karma={-2000 -2500}
+     EXP={ 2050 3950 } //Level 3
+
+     resfire=12
+     rescold=12
+     resenergy=12
+     respoison=100
+
+
+ON=@NpcRestock
+     ITEM=RANDOM_SHIELD
+     ITEM=RANDOM_SWORD 
+     ITEM=RANDOM_BOW
+     ITEM=i_arrow,{48 72}
+     ITEM={ Undead_backpack 2 Treasure_Bag 5 Treasure_box 1 Undead_box 1 0 2 }
+
+[chardef 01a]
+defname=c_spectre
+name="spectre"
+sound=snd_monster_ghost1
+icon=i_pet_ghoul
+anim=078c7f
+dam=7,9
+armor=28
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=c_spectre,t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll
+tag.slots_needed=3
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+description=Spectre
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     color=17969
+
+     str={77 97}
+     dex={76 93}
+     int={84 100}
+
+     tactics={55.2 69.6}
+     wrestling={61.3 68.8}
+     magery={49.0 62.0}
+     evaluatingintel={49.0 62.0}
+     meditation={57.6 64.1}
+     hiding={59.0 73.0}
+     stealth={59.0 73.0}
+
+	givelang 1
+
+     fame={1250 1300}
+     karma={-2000 -2500}
+     EXP={ 1050 1950 } //Level 2
+
+     resfire=16
+     rescold=16
+     resenergy=12
+     respoison=100
+
+     TAG.RANDCAST=30
+     TAG.QUICKCAST = 10
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+     ITEM={ Magic_bag 2 Undead_backpack 1 0 3}
+
+
+[chardef 09a]
+defname=c_mummy
+name="mummy"
+sound=snd_monster_zombie1
+icon=i_pet_mummy_lbr
+can=mt_walk
+dam=14,18
+armor=46
+ANIM=078C7F
+moverate=60
+bloodcolor=-1
+resources=2 i_reag_bone
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll,t_reagent
+aversions=r_civilization
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=38
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=9
+TAG.MANUEVER2=11
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=Undead
+description=Mummy
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={278 297}
+     dex={61 76}
+     int={38 50}
+     TAG0.MODHITS = 32
+     TAG0.MODSTAM = 16
+
+	givelang 1
+
+     parrying={20.0 60.0}
+     magicresistance={63.1 72.5}
+     tactics={65.8 78.9}
+     wrestling={73.1 82.5}
+     anatomy={55.3 76.6}
+
+     resenergy=16
+     rescold=16
+     respoison=100
+
+     EXP={ 16500 20500 } //Level 6
+     fame={3500 4400}
+     karma={-4000 -5000}
+
+ON=@NpcRestock
+     ITEM={ Coin_Box 3 Treasure_box 2 Wooden_Treasure_Chest 1 Undead_box 2 }
+     ITEM={ RANDOM_JEWELRY 3 RANDOM_SCROLL 2 0 2}
+     ITEM={ RANDOM_JEWELRY 3 RANDOM_SCROLL 2 0 2}
+
+// Add mummy rot disease
+
+[chardef 018]
+defname=c_lich
+name="lich"
+sound=snd_monster_liche1
+icon=i_pet_lich
+anim=07bc7f
+dam=9,13
+armor=35
+moverate=0
+bloodcolor=-1
+resources=2 i_reag_bone
+can=mt_walk|mt_usehands
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton,t_reagent
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=27
+TAG.MANUEVER2=9
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=Undead
+description=Lich
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+        str={91 116}
+        dex={76 93}
+        int={196 230}
+	TAG0.MODHITS = 16
+        TAG0.MODMANA = 32
+
+	givelang 1
+
+	parrying={75.0 85.0}
+	magery={84.5 99.9}
+	magicresistance={80.2 99.8}
+	tactics={70.2 89.8}
+	wrestling={55.0 65.0}
+	macefighting={55.0 65.0}
+	evaluatingintel=100.0
+	meditation={82.9 95.0}
+
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 25
+     TAG.SPELLPOWER = 25
+     EVENTS=+e_intel_char_magery_user
+
+     EXP={ 16500 20500 } //Level 6
+
+     resenergy=16
+     rescold=16
+     respoison=100
+
+     fame={4000 5000}
+     karma={-6000 -8000}
+
+ON=@NpcRestock
+     ITEM={ Magic_Crate_Medium 3 Magic_box 4 Wooden_Treasure_Chest 2 Undead_box 2 }
+     ITEM={ Undead_pouch 2 RANDOM_JEWELRY 3 RANDOM_SCROLL 2 }
+     ITEM={ RANDOM_JEWEL 2 RANDOM_SCROLL 2 }
+
+
+[chardef c_lich_form]
+id=c_lich
+name="lich"
+sound=snd_monster_liche1
+icon=i_pet_lich
+anim=07bc7f
+dam=6,8
+armor=18
+moverate=0
+bloodcolor=-1
+resources=2 i_reag_bone
+can=MT_EQUIP|mt_walk|mt_usehands
+TAG.MANUEVER1=27
+TAG.MANUEVER2=9
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=Special
+description=Lich Form
+
+[chardef 310]
+defname=c_banshee
+NAME=banshee
+SOUND=snd_monster_zombie1
+ICON=i_pet_wailingbanshee
+DAM=9,13
+moverate=0
+ARMOR=38
+bloodcolor=-1
+CAN=MT_WALK|MT_FLY|mt_passwalls
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll,c_elf_male,c_elf_female,c_man,c_woman
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=9
+TAG.MANUEVER3=27
+
+category=AoD Monsters
+subsection=Undead
+description=Banshee
+
+ON=@Create 
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+	FAME={2100 3000} 
+	KARMA={-5000 -6999} 
+
+	STR={126 147}
+	DEX={81 109}
+	INT={106 129}
+        TAG0.MODMANA = 16
+
+     resfire=16
+     resenergy=12
+     rescold=16
+     respoison=100
+
+	givelang 2
+
+	MAGICRESISTANCE={69.0 85.0}
+	TACTICS={45.0 65.0}
+	WRESTLING={54.0 70.0}
+	necromancy={53.0 69.0}
+	spiritspeak={63.0 79.0}
+	stealth={79.0 95.0}
+	hiding={79.0 95.0}
+
+	EXP={ 4050 5950 } //Level 4
+
+     TAG.RANDCAST=30
+     TAG.SPELLPOWER = 15
+     EVENTS=+e_intel_char_necro_user
+
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 1 Magic_Bag 1 Fae_pouch 2 0 1 }
+
+[chardef 309]
+defname=c_patchwork_skeleton
+NAME=patchwork skeleton
+SOUND=snd_monster_skletn1
+ICON=i_pet_patchwork_sklt
+DAM=5,7
+ARMOR=6
+moverate=20
+bloodcolor=-1
+resources=2 i_reag_bone
+CAN=MT_USEHANDS|MT_WALK
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=1
+Tag.BeastClass=Beast_Quick
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=5
+TAG.MANUEVER2=7
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Patchwork Skeleton
+
+ON=@Create 
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={41 56}
+     dex={46 63}
+     int={16 27}
+
+     parrying={25.0 30.0}
+     magicresistance={15.4 28.2}
+     tactics={30.1 44.2}
+     wrestling={49.4 57.5}
+
+     resfire=8
+     rescold=8
+     resenergy=8
+     respoison=100
+
+     fame={100 200}
+     karma=-1000
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 2 Undead_backpack 1 0 4}
+
+
+[chardef 319]
+defname=c_mound_maggots
+NAME=mound of maggots
+SOUND=snd_monster_slime1
+ICON=i_pet_mound_maggots
+DAM=9,13
+moverate=30
+bloodcolor=colors_green
+ARMOR=17
+CAN=MT_USEHANDS|MT_WALK|mt_nonhum
+desires=t_wand,t_food,t_gem,t_coin,t_potion,t_scroll
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=8
+TAG.MANUEVER2=9
+TAG.MANUEVER3=1
+
+
+category=AoD Monsters
+subsection=Undead
+description=Mound of Maggots
+
+ON=@Create 
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={91 116}
+     dex={46 63}
+     int={16 27}
+     TAG0.MODHITS = 16
+
+     parrying={45.0 55.0}
+     magicresistance={25.4 38.2}
+     tactics={45.1 59.2}
+     wrestling={49.4 57.5}
+     poisoning={35.4 48.2}
+
+     resenergy=12
+     rescold=12
+     respoison=100
+
+	EXP={ 2050 3950 } //Level 3
+     fame={200 300}
+     karma=-1000
+
+[chardef 305]
+defname=c_deformed_zombie
+NAME=deformed zombie
+SOUND=snd_monster_zombie1
+ICON=i_pet_gorefiend
+DAM=6,8
+ARMOR=7
+moverate=50
+resources=2 i_reag_bone
+CAN=MT_USEHANDS|MT_WALK|MT_RUN|mt_nonhum
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=1
+bloodcolor=colors_green
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=4
+TAG.MANUEVER2=3
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Deformed Zombie
+
+ON=@Create 
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={67 78}
+     dex={24 38}
+     int={16 17}
+
+     parrying={10.0 20.0}
+     magicresistance={13.3 27.5}
+     tactics={27.4 39.9}
+     wrestling={36.3 48.1}
+
+     rescold=10
+     resenergy=10
+     respoison=100
+
+     fame=200
+     karma=-1000
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 2 Undead_backpack 1 0 4}
+
+
+[chardef 09b]
+defname=c_zombie_lord
+name=zombie lord
+sound=snd_monster_zombie1
+icon=i_pet_rotting_corpse_lbr
+can=mt_walk
+dam=13,17
+armor=48
+moverate=40
+resources=2 i_reag_bone
+foodtype=20 t_meat_raw
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton,t_meat_raw
+aversions=t_trap
+tevents=e_undead
+bloodcolor=colors_green
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=7
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=42
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=4
+TAG.MANUEVER2=3
+TAG.MANUEVER3=9
+
+category=AoD Monsters
+subsection=Undead
+description=Zombie Lord
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={316 350}
+     dex={55 92}
+     int={75 83}
+     TAG0.MODHITS = 64
+
+     resfire=9
+     rescold=18
+     resenergy=18
+     respoison=100
+
+	givelang 1
+
+     parrying={99.1 100.0}
+     magicresistance={90.0 100.0}
+     tactics={99.1 100.0}
+     wrestling={94.1 99.9}
+     anatomy={90.0 100.0}
+
+     EXP={ 32500 40500 } //Level 7
+
+     fame={6000 9999}
+     karma={-4000 -5999}
+
+ON=@NpcRestock
+     ITEM={ Undead_Box 2 Treasure_box 2 Wooden_Treasure_Chest 1 }
+     ITEM={ RANDOM_JEWEL 3 Undead_backpack 2 }
+
+
+[chardef 0319]
+defname=c_skeletal_mount
+name="skeletal mount"
+sound=snd_animals_horse1
+icon=i_pet_mount_skeletal_lbr
+can=mt_walk|mt_run|mt_nonhum
+dam=8,10
+armor=18
+moverate=0
+resources=4 i_reag_bone
+TEVENTS=e_Level_up_NPC
+bloodcolor=colors_green
+desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll, c_zombie, c_skeleton
+aversions=r_civilization
+ANIM=0FFFFFFFF
+tag.slots_needed=3
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=44
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=1
+
+category=AoD Monsters
+subsection=Undead
+description=Skeletal Mount
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={105 126}
+     dex={85 105}
+     int={25 35}
+     TAG0.MODHITS = 16
+
+     rescold=15
+     resenergy=15
+     respoison=100
+
+     parrying={70.0 80.0}
+     magicresistance={60.0 80.0}
+     tactics={55.0 65.0}
+     wrestling={65.0 70.0}
+
+     karma={-5000 -5999}
+     fame={1999 2275}
+
+[chardef 259] 
+defname=c_interred_grizzle
+name=Interred Grizzle
+//SOUND=snd_monster_daemon1
+ICON=i_worldgem_bit
+RESLEVEL=5
+RESDISPDNHUE=33
+RESDISPDNID=c_man
+DAM=15,19
+ARMOR=46
+MOVERATE=30
+RESOURCES=2 i_reag_fertile_dirt, 2 i_reag_bone
+DESIRES=t_coin,t_gem,t_reagent
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_USEHANDS
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=7
+tag.override.range=2
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=38
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=9
+TAG.MANUEVER2=4
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=Undead
+DESCRIPTION=Interred Grizzle
+
+ON=@Create 
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+	FAME={3500 4500} 
+	KARMA={-5000 -6999} 
+
+	STR={187 213} 
+	INT={119 141}
+	DEX={85 106} 
+        TAG0.MODHITS = 64
+
+     resfire=18
+     resenergy=24
+     rescold=24
+     respoison=100
+
+
+     EXP={ 65000 81000 } //Level 8
+
+	ANATOMY={40.0 60.0}
+	PARRYING={60.0 70.0}
+ 	MAGICRESISTANCE={40.0 60.0}
+	NECROMANCY={55.0 75.0}
+	SPIRITSPEAK={40.0 65.0}
+	TACTICS={70.0 90.0}
+	WRESTLING={70.0 90.0}
+
+	TAG.RANDCAST=20
+	EVENTS=+e_intel_char_necro_user
+
+ON=@NpcRestock
+     ITEM={ Undead_box 3 Undead_backpack 2 Wooden_Treasure_Chest 1 }
+
+
+[CHARDEF 722]
+DEFNAME=c_undead_gargoyle
+NAME=undead gargoyle
+SOUND=snd_monster_gargoyle_undead
+DAM=9,13
+ARMOR=22
+CAN=mt_walk|mt_run|mt_equip|mt_usehands
+MOVERATE=0
+RESOURCES=2 i_reag_bone
+AVERSIONS=t_TRAP,t_eerie_stuff
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=50
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=4
+TAG.MANUEVER2=9
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+DESCRIPTION=Undead Gargoyle
+
+ON=@CREATE
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={95 112}
+     dex={73 91}
+     int={89 105}
+     TAG0.MODHITS = 8
+
+     magicresistance={66.7 79.4}
+     tactics={55.2 69.6}
+     wrestling={71.3 78.8}
+     magery={59.0 72.0}
+     evaluatingintel={67.6 74.1}
+     meditation={67.6 74.1}
+
+	givelang 1
+
+     fame={1850 2400}
+     karma={-2000 -2500}
+
+     EXP={ 2050 2950 } //Level 3
+
+     resfire=20
+     rescold=16
+     resenergy=16
+     respoison=100
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 10
+     EVENTS=+e_intel_char_magery_user
+
+ON=@NpcRestock
+     ITEM={ Undead_pouch 2 Magic_bag 2 Undead_backpack 1 0 2}
+
+
+[CHARDEF 251]
+Name=yao guai
+DEFNAME=c_yao_guai
+SOUND=snd_rav_lion
+RESDISPDNID=c_dog
+RESLEVEL=3
+RESDISPDNHUE=33
+ARMOR=24
+can=mt_walk|mt_run|mt_nonhum
+DAM=12,15
+ICON=i_pet_ravlion
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=4
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=40
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=9
+TAG.MANUEVER2=2
+TAG.MANUEVER3=3
+
+category=AoD Monsters
+subsection=Undead
+DESCRIPTION=Yao Guai
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+Str={175 190}
+Dex={135 165}
+Int={67 89}
+TAG0.MODHITS = 16
+
+MagicResistance={59.0 70.0}
+Tactics={60.0 76.0}
+Wrestling={80.0 93.0}
+Necromancy={61.0 77.0}
+Anatomy={78.0 90.0}
+Meditation={78.0 90.0}
+SpiritSpeak={78.0 90.0}
+
+Fame={3000 4500}
+Karma={-2000 -2500}
+EXP={ 8500 10500 } //Level 5
+
+TAG.RANDCAST=15
+EVENTS=+e_intel_char_necro_user
+
+rescold=14
+resenergy=14
+respoison=100
+
+
+[chardef 092]
+defname=c_shade
+name="shade"
+sound=snd_monster_shadow
+icon=i_pet_nameless_one_lbr
+dam=11,13
+armor=42
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+RESOURCES=
+FOODTYPE=
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_gem,t_coin,t_potion,t_scroll
+tag.slots_needed=6
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+ANIM=078C7F
+
+category=AoD Monsters
+subsection=Undead
+description=Shade
+
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={148 165}
+     dex={119 135}
+     int={139 156}
+     TAG0.MODHITS = 8
+     TAG0.MODMANA = 16
+
+     parrying={70.0 90.0}
+     evaluatingintel={55.0 78.0}
+     magery={98.0 100.0}
+     wrestling={70.0 90.0}
+     magicresistance={95.0 100.0}
+     meditation={75.0 100.0}
+     tactics={85.0 95.0}
+
+	givelang 1
+
+     fame={6250 8300}
+     karma={-5000 -7500}
+     EXP={ 32050 34950 } //Level 7
+
+     resfire=24
+     rescold=32
+     resenergy=12
+     respoison=100
+
+     TAG.RANDCAST = 35
+     TAG.QUICKCAST = 20
+     TAG.SPELLPOWER = 20
+     EVENTS=+e_intel_char_necro_user
+     EVENTS=+e_intel_char_chivalry_user
+
+
+[CHARDEF 830]
+DEFNAME=c_primeval_lich
+NAME=primeval lich
+sound=snd_monster_liche1
+DAM=1,6
+ARMOR=10
+CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
+MOVERATE=0
+RESOURCES=1 i_bird_raw, 30 i_feather
+FOODTYPE=30 t_crops, t_fruit, t_grain
+SHELTER=r_farm, r_forest
+tag.wrestlingspeed=40
+
+CATEGORY=New NPC's
+SUBSECTION=Wildlife
+DESCRIPTION=Turkey
+
+ON=@CREATE
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+FAME=45
+KARMA=0
+
+STR={30 45}
+DEX={38 53}
+INT={15 20}
+
+WRESTLING={15.0 35.0}
+TACTICS={20.0 40.0}
+MAGICRESISTANCE={0.0 10.0}
+HIDING={10.0 25.0}
+STEALTH={10.0 25.0}
+
+
+[chardef 02ec]
+defname=c_ghost
+name="ghost"
+sound=snd_monster_new_ghost
+icon=i_pet_ghoul
+anim=078c7f
+dam=9,12
+armor=34
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=c_ghost,t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll
+tag.slots_needed=4
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+description=Ghost
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={99 119}
+     dex={98 118}
+     int={74 95}
+
+     tactics={65.2 79.6}
+     wrestling={71.3 78.8}
+     magery={49.0 62.0}
+     meditation={57.6 64.1}
+     hiding={79.0 93.0}
+     stealth={79.0 93.0}
+
+
+	//extinguish light	
+
+	givelang 1
+
+     fame={2250 2300}
+     karma={-3000 -3500}
+     EXP={ 2050 2950 } //Level 3
+
+     resfire=18
+     rescold=18
+     resenergy=12
+     respoison=100
+
+     TAG.RANDCAST=25
+     EVENTS=+e_intel_char_magery_user
+
+
+ON=@NpcRestock
+     ITEM={ Magic_bag 2 Undead_backpack 1 0 3}
+
+
+
+[CHARDEF 740]
+DEFNAME=c_wraith
+NAME=wraith
+dam=10,13
+armor=38
+moverate=0
+can=mt_walk|mt_run|mt_ghost|mt_passwalls
+RESOURCES=
+FOODTYPE=
+bloodcolor=-1
+TEVENTS=e_Level_up_NPC
+desires=t_wand,t_gem,t_coin,t_potion,t_scroll
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+TEVENTS=e_combat_move_intel
+TAG.MANUEVER1=1
+TAG.MANUEVER2=27
+TAG.MANUEVER3=11
+
+category=AoD Monsters
+subsection=Undead
+description=Wraith
+
+on=@create
+     npc=brain_undead
+     SetUndead
+     nightsight=1
+
+     str={128 145}
+     dex={89 105}
+     int={139 156}
+
+     tactics={65.2 79.6}
+     wrestling={71.3 78.8}
+     chivalry={79.0 82.0}
+     necromancy={39.5 56.0}
+     spiritspeak={63.0 79.0}
+     hiding={79.0 81.0}
+     stealth={79.0 81.0}
+
+	givelang 1
+
+     fame={4250 5300}
+     karma={-2000 -6500}
+     EXP={ 8050 9950 } //Level 5
+
+     resfire=24
+     rescold=24
+     resenergy=12
+     respoison=100
+
+     TAG.RANDCAST = 35
+     TAG.QUICKCAST = 10
+     TAG.SPELLPOWER = 20
+     EVENTS=+e_intel_char_necro_user
+     EVENTS=+e_intel_char_chivalry_user
+
+
+[eof]

@@ -1,0 +1,2913 @@
+//
+//
+//
+//	Pitchers, bottles
+//	Implement cooking utensils 
+//
+
+[ITEMDEF 0fac]
+//fire pit
+DEFNAME=i_fire_pit
+TYPE=t_fire
+RESOURCES=1 i_KINDLING
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Campfires
+DESCRIPTION=Fire Pit
+
+ON=@Create
+	MOREZ=1
+
+[ITEMDEF 0de1]
+//Kindling
+DEFNAME=i_kindling
+TYPE=T_KINDLING
+RESOURCES=1 I_LOG
+SKILLMAKE=BOWCRAFT 0.0
+REPLICATE=1
+WEIGHT=1
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Campfires
+DESCRIPTION=Kindling
+DUPELIST=0de2
+
+[ITEMDEF 0de2]
+//kindling
+DUPEITEM=0de1
+
+[ITEMDEF 0de3]
+//campfire
+DEFNAME=i_campfire
+TYPE=T_CAMPFIRE
+RESOURCES=i_kindling
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Campfires
+DESCRIPTION=Campfire
+DUPELIST=0de4,0de5,0de6,0de7,0de8
+
+[typedef t_edible]
+
+ON=@DCLICK
+IF !(STRMATCH(*<TYPE>*,"<SRC.FOODTYPE>")) && !(STRMATCH(*<DEFNAME>*,"<SRC.FOODTYPE>"))
+	SRC.sysMessage You can't really consume this.
+	RETURN 1
+ENDIF
+//IF (<src.flags> & statf_war)
+//	SRC.sysMessage You can't consume that while fighting.
+//	RETURN 1
+//ENDIF
+IF (<SRC.FOOD> < <SRC.MAXFOOD>)
+	SRC.hits += <TAG0.HITS>
+	SRC.stamina += <TAG0.STAM>
+	SRC.mana += <TAG0.MANA>
+	IF (<SRC.mana> > <SRC.MAXmana>)
+		SRC.mana=<SRC.MAXmana>
+	ENDIF
+	IF (<SRC.hits> > <SRC.MAXhits>)
+		SRC.hits=<SRC.MAXhits>
+	ENDIF
+	IF (<SRC.stam> > <SRC.MAXstam>)
+		SRC.stam=<SRC.MAXstam>
+	ENDIF
+
+	IF !<SRC.RESTEST I_food_timer>
+	      SRC.newitem i_food_timer
+	      src.act.tag.hits=<TAG0.HITS>
+	      src.act.tag.stam=<TAG0.STAM>
+	      src.act.tag.mana=<TAG0.MANA>
+	      SRC.act.equip 
+	ELSE
+	      OBJ=<SRc.findid.i_food_timer>
+	      obj.tag0.hits += <TAG0.HITS>
+	      obj.tag0.stam += <TAG0.STAM>
+	      obj.tag0.mana += <TAG0.MANA>
+	ENDIF
+
+	IF !(<MOREM> == 0)
+		SRC.FOOD += <MOREM>
+	ELSE
+		SRC.FOOD += (<WEIGHT>/10)
+	ENDIF
+	OBJ = <UID>
+	IF  (<obj.amount> >= 2)
+		obj.amount -= 1
+		obj.dupe
+		new.amount = 1
+		iF (<obj.cont>)
+			NEW.CONT = <obj.cont>
+		ELSE
+			NEW.P = <obj.p>
+		ENDIF
+		obj.update
+		obj = <new>
+		obj.update
+	ENDIF
+	IF (<OBJ.TAG0.SERV> > 1)
+		OBJ.TAG.SERV -= 1
+		SRC.emote have some of a <obj.name>
+	ELSE
+		IF !(<OBJ.TYPE> == t_food_raw) && !(<OBJ.TYPE> == t_meat_raw) && !(<OBJ.TYPE> == t_fruit)
+			IF (<OBJ.TDATA1>)
+				SRC.NEWITEM (<OBJ.TDATA1>)
+				SRC.ACT.BOUNCE
+			ENDIF
+		ENDIF
+		obj.REMOVE
+		SRC.emote finish a <OBJ.name>
+	ENDIF
+	SRC.HUNGRY
+	RETURN 1
+ELSE
+	SRC.SYSMESSAGE You are simply too full to eat anymore!
+	RETURN 1
+ENDIF
+
+
+
+[itemdef i_food_timer]
+Id=i_memory
+name=Food
+TYPE=t_eq_script
+
+on=@create
+ATTR=attr_invis|attr_decay
+
+On=@Equip
+   link = <src.uid>
+   timer=2
+   return
+
+on=@timer
+IF (<LINK.MAXHITS> > <LINK.HITS>) && <TAG0.HITS>) 
+	LINK.HITS += 1
+	TAG0.HITS -= 1
+ENDIF
+IF (<LINK.MAXMANA> > <LINK.MANA>) && <TAG0.MANA>) 
+	LINK.MANA += 1
+	TAG0.MANA -= 1
+ENDIF
+IF (<LINK.MAXSTAM> > <LINK.STAM>) && <TAG0.STAM>) 
+	LINK.STAM += 1
+	TAG0.STAM -= 1
+ENDIF
+
+IF (!<TAG0.STAM> && !<TAG0.HITS> && !<TAG0.MANA>)
+	remove
+ELSE
+	timer=2
+ENDIF
+return 1
+
+[function f_scavenge]
+FORITEMS 3
+	IF (<TYPE>==T_CORPSE)
+		trigger=@cutoff
+	RETURN
+ENDFOR
+
+[function f_cutoff]
+if (<more1> == 0)
+  src.sysmessage="It has already been gutted."
+  return 1
+endif
+if <distance> > 4
+  src.sysmessage="You are too far away"
+  return 1
+else
+  local.ptr = 1
+  while <serv.chardef(<amount>).resources.<dlocal.ptr>.val>
+    for local.x 1 <serv.chardef(<amount>).resources.<dlocal.ptr>.val>
+      serv.newitem <serv.chardef(<amount>).resources.<dlocal.ptr>.key>
+	new.cont=<uid>
+	NEW.USEITEM
+    endfor
+    local.ptr += 1
+  endwhile
+  local.ptr=
+  local.x=
+  more1=0
+  return 1
+endif 
+
+// Simple meats
+
+[ITEMDEF 01607]
+//DEFNAME=i_CHICKEN_LEG
+DEFNAME=i_chicken_leg_raw
+TYPE=t_meat_raw
+TDATA1=i_chicken_leg
+TDATA3=20.0
+VALUE=9
+WEIGHT=1
+
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Chicken Leg
+
+[ITEMDEF 01608]
+//DEFNAME2=cooked_chick_leg
+DEFNAME=i_chicken_leg
+RESOURCES=I_CHICKEN_LEG_RAW
+WEIGHT=1
+VALUE=15
+TYPE=T_FOOD
+
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Chicken Leg (Cooked)
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=5
+
+
+[ITEMDEF 01609]
+// DEFNAME2=MUTTON_LEG
+DEFNAME=i_lamb_leg_raw
+//RESOURCES=BASE ITEMS THAT ARE RESOURCES DO NOT ALWAYS HAVE RESOURCES
+TYPE=T_meat_RAW
+TDATA1=i_lamb_leg
+TDATA3=35.0
+WEIGHT=2
+VALUE=32
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Lamb of Leg (Raw)
+
+[ITEMDEF 0160a]
+// DEFNAME2=COOKED_MUTTON
+DEFNAME=i_lamb_leg
+TYPE=T_FOOD
+RESOURCES=i_lamb_leg_raw
+WEIGHT=2
+VALUE=48
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Lamb of Leg (Cooked)
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.HITS=13
+TAG.STAM=4
+MOREM=8
+
+
+[ITEMDEF 0976]
+DEFNAME=i_bacon_slab
+TYPE=T_meat_RAW
+TDATA1=i_bacon_slice
+TDATA3=30.0
+RESOURCES=1 I_HAM, 1 I_BOARD
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Slab of Bacon
+DUPELIST=0977
+
+[ITEMDEF 0978]
+// DEFNAME2=BACON
+DEFNAME=i_bacon_slice
+TYPE=T_FOOD
+VALUE={2 4}
+WEIGHT=0.1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Slice of Bacon
+DUPELIST=0979
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=2
+AMOUNT=4
+TAG.HITS=3
+
+
+[ITEMDEF 09f1]
+// DEFNAME2=RAW_RIBS
+DEFNAME=i_ribs_raw
+TYPE=t_meat_raw
+TDATA1=i_ribs_cooked
+TDATA3=10.0
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Ribs (Raw)
+
+[ITEMDEF 09f2]
+// DEFNAME2=COOKED_RIBS
+DEFNAME=i_ribs_cooked
+RESOURCES=1 i_ribs_raw
+TYPE=T_FOOD
+VALUE=11
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Ribs (Cooked)
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=4
+
+
+[ITEMDEF i_steak_raw]
+ID=i_ribs_raw
+name=raw steak
+TYPE=t_meat_raw
+TDATA1=i_steak_cooked
+TDATA3=22.0
+VALUE=18
+WEIGHT=1.5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=steak (Raw)
+
+ON=@CREATE
+COLOR=0672
+
+[ITEMDEF i_steak_cooked]
+ID=i_ribs_cooked
+name=cooked steak
+RESOURCES=1 i_steak_raw
+TYPE=T_FOOD
+VALUE=27
+WEIGHT=1.5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=steak (Cooked)
+TEVENTS=T_edible
+
+ON=@CREATE
+COLOR=0735
+MOREM=4
+TAG.HITS=7
+
+
+[ITEMDEF 09b9]
+DEFNAME=i_bird_raw
+VALUE=21
+TYPE=T_meat_RAW
+TDATA1=i_bird_cooked
+TDATA3=23.0
+WEIGHT=4
+
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Raw Bird
+DUPELIST=09ba
+
+[ITEMDEF 09b7]
+//DEFNAME2=COOKED_BIRD
+DEFNAME=i_bird_cooked
+RESOURCES=1 I_BIRD_RAW
+TYPE=T_FOOD
+WEIGHT=4
+VALUE=32
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Cooked Bird
+DUPELIST=09b8
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=12
+TAG.HITS=15
+TAG.STAM=6
+
+
+[itemdef 01e92]
+defname=i_rabbit_skinned
+TYPE=t_meat_raw
+TDATA1=i_rabbit_cooked
+TDATA3=26.0
+value=14
+WEIGHT=3
+category=items - resources
+subsection=butcher
+description=skinned rabbit
+
+[itemdef i_rabbit_cooked]
+id=i_rabbit_skinned
+value=24
+RESOURCES=1 I_rabbit_skinned
+TYPE=T_FOOD
+NAME=cooked rabbit
+WEIGHT=3
+category=items - resources
+subsection=butcher
+description=cooked rabbit
+TEVENTS=T_edible
+
+ON=@CREATE
+COLOR=073d
+MOREM=10
+TAG.HITS=14
+TAG.STAM=4
+
+
+// 	Seafood
+
+[itemdef 01e15]
+//raw fish, cut open facing nw
+defname=i_fish_raw_whole
+value=1
+weight=1
+type=t_meat_raw
+tdata1=i_fish_cooked
+category=items - resources
+subsection=cook
+description=fish (raw & cut)
+dupelist=01e16
+
+[itemdef 01e17]
+//raw fish, cut open, minus head, facing nw
+defname=i_fish_raw
+value=1
+type=t_meat_raw
+tdata1=i_fish_cooked
+category=items - resources
+subsection=cook
+description=fish (raw, cut, & no head)
+dupelist=01e18
+
+
+[ITEMDEF 097a]
+// raw_fish
+DEFNAME=i_fish_cut_raw
+TYPE=T_meat_RAW
+TDATA1=i_fish_cut_cooked
+TDATA3=31.0
+VALUE=4
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fish Steak (Raw)
+
+[ITEMDEF 097b]
+// Cooked_fish
+DEFNAME=i_fish_cut_cooked
+TYPE=T_FOOD
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fish Steak (Cooked)
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=2
+TAG.MANA=1
+TAG.STAM=3
+
+
+// Pan Food
+
+[ITEMDEF 01ad3]
+DEFNAME=i_donuts
+RESOURCES=1 i_dough
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Donuts
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=2
+TAG.STAM=6
+TAG.MANA=3
+
+[ITEMDEF 09d8]
+DEFNAME=i_plate_food
+RESOURCES=1 i_ingot_iron, 1 T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+WEIGHT=2
+TYPE=T_FOOD
+value=50
+RESOURCES=1 i_plate, 1 t_meat_raw, 2 t_food
+SKILLMAKE=COOKING 35.0
+TEVENTS=T_edible
+TDATA1=i_plate
+
+ON=@CREATE
+MOREM=10
+TAG.HITS=8
+TAG.STAM=6
+
+[ITEMDEF 09b6]
+DEFNAME=i_eggs_fried
+RESOURCES=1 i_EGGS_FRESH
+SKILLMAKE=COOKING 50.0
+TYPE=T_FOOD
+VALUE=17
+WEIGHT=0.5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fried Eggs
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=3
+TAG.STAM=4
+
+
+[ITEMDEF 09c0]
+DEFNAME=i_sausages
+RESOURCES=1 I_reag_GARLIC, 1 I_HAM
+SKILLMAKE=COOKING 65.0
+TYPE=T_FOOD
+VALUE=23
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Sausages
+DUPELIST=09c1
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=9
+TAG.HITS=5
+TAG.STAM=3
+
+
+[itemdef 09bb]
+// defname2=roast_pig
+defname=i_pig_roast
+value=6
+type=t_food
+weight=40
+category=items - resources
+subsection=cook
+description=roast pig
+dupelist=09bc
+
+[ITEMDEF 01044]
+DEFNAME=i_spam
+RESOURCES=1 i_HAM
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Spam
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.HITS=2
+TAG.STAM=3
+
+[itemdef 09c9]
+defname=i_ham
+value=4
+type=t_food
+weight=1.5
+category=items - resources
+subsection=cook
+description=ham
+dupelist=09d3
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=2
+TAG.HITS=2
+TAG.STAM=3
+
+
+// 	Moulding Board
+
+[ITEMDEF 09e9]
+DEFNAME=i_cake
+TYPE=T_FOOD
+VALUE=44
+WEIGHT=3
+SKILLMAKE=COOKING 47.0
+RESOURCES=3 i_dough, 2 i_jar_honey, i_eggs_fresh, 2 i_butter
+TEVENTS=T_edible
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Cake
+
+ON=@CREATE
+MOREM=9
+TAG.HITS=6
+TAG.STAM=14
+TAG.MANA=6
+
+[ITEMDEF 09ea]
+DEFNAME=i_muffin
+RESOURCES=1 i_dough, i_eggs_fresh, i_butter
+SKILLMAKE=40.0 COOKING
+TYPE=T_FOOD
+VALUE=16
+WEIGHT=0.5
+TEVENTS=T_edible
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Muffin
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=2
+TAG.STAM=6
+TAG.MANA=3
+
+[ITEMDEF 0103b]
+// Has a bite ?
+DEFNAME=i_bread_loaf_bite
+TYPE=T_FOOD
+VALUE=20
+SKILLMAKE=15.0 COOKING
+RESOURCES=2 i_dough
+WEIGHT=1
+TEVENTS=T_edible
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Bread Loaf
+
+ON=@CREATE
+MOREM=5
+TAG.HITS=3
+TAG.STAM=5
+
+[ITEMDEF 0103c]
+DEFNAME=i_bread_loaf
+VALUE=20
+TYPE=T_FOOD
+SKILLMAKE=15.0 COOKING
+RESOURCES=2 i_dough
+WEIGHT=1
+TEVENTS=T_edible
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Bread Loaf
+
+ON=@CREATE
+MOREM=5
+TAG.HITS=3
+TAG.STAM=5
+
+[ITEMDEF 098c]
+DEFNAME=i_bread_french
+TYPE=T_FOOD
+VALUE=32
+WEIGHT=1
+SKILLMAKE=COOKING 25.0
+RESOURCES=2 i_dough, i_eggs_fresh
+TEVENTS=T_edible
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=French Bread
+
+ON=@CREATE
+MOREM=5
+TAG.HITS=4
+TAG.STAM=7
+
+[ITEMDEF 0103f]
+DEFNAME=i_cookie_mix
+TYPE=T_normal
+SKILLMAKE=COOKING 35.0
+RESOURCES=1 i_dough, 2 i_jar_honey, i_egg
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Cookie Mix
+
+[ITEMDEF 01040]
+DEFNAME=i_pizza
+RESOURCES=i_pizza_uncooked, i_cheese_wheel
+NAME=cheese pizza
+WEIGHT=2
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Pizza
+SKILLMAKE=COOKING 40.0
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=12
+TAG.HITS=6
+TAG.STAM=6
+TAG.MANA=4
+
+[ITEMDEF 01041]
+DEFNAME=i_pie_baked
+RESOURCES=i_pie_unbaked, i_ribs_raw
+SKILLMAKE=COOKING 65.0
+NAME=meat pie
+WEIGHT=2
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Baked Pie
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.MANA=3
+TAG.HITS=5
+
+[ITEMDEF 01042]
+DEFNAME=i_pie_unbaked
+TYPE=T_normal
+SKILLMAKE=COOKING 65.0
+RESOURCES=1 i_dough, i_butter
+NAME=pie shell
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Unbaked Pie
+
+[ITEMDEF 01083]
+DEFNAME=i_pizza_uncooked
+RESOURCES=1 i_dough
+SKILLMAKE=COOKING 40.0
+NAME=pizza shell
+TYPE=T_normal
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Uncooked Pizza
+
+[ITEMDEF 0160b]
+DEFNAME=i_pan_cookies
+RESOURCES=1 i_FLOUR_SACK
+WEIGHT=3
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Pan of Cookies
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=5
+TAG.MANA=4
+TAG.STAM=7
+
+[ITEMDEF 0160c]
+// DEFNAME2=Cookie_plate
+DEFNAME=i_plate_cookies
+RESOURCES=1 i_COOKIE_MIX, 1 i_PLATE, 1 i_WATER
+WEIGHT=3
+TYPE=T_FOOD
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=5
+TAG.MANA=4
+TAG.STAM=7
+
+
+[ITEMDEF 02be1]
+DEFNAME=i_gingerbread_man
+RESOURCES=1 i_COOKIE_MIX, 1 i_ginger
+WEIGHT=2
+TYPE=T_FOOD
+TEVENTS=T_edible
+DUPELIST=02be2
+
+ON=@CREATE
+MOREM=5
+TAG.MANA=7
+TAG.STAM=7
+
+[ITEMDEF 02be2]
+DUPEITEM=02be1
+
+
+//	Pot
+
+[itemdef i_eggs_boiled]
+id=09b5
+RESOURCES=i_eggs_fresh
+SKILLMAKE=COOKING 35.0
+value=23
+type=t_food
+weight=1
+TEVENTS=T_edible
+
+category=items - resources
+subsection=cook
+description=boiled eggs
+
+MOREM=4
+TAG.HITS=3
+TAG.MANA=2
+TAG.STAM=2
+
+
+[ITEMDEF 01604]
+DEFNAME=i_bowl_stew_lg
+//DEFNAME=i_bowl_wood_lg_STEW
+RESOURCES=1 i_bowl_wood_lg, 1 i_WATER, 1 i_FLOUR_SACK, 1 i_ribs_raw
+//guessvalue
+VALUE=6
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Stew
+TEVENTS=T_edible
+TDATA1=i_bowl_wood_lg
+
+ON=@CREATE
+TAG.STAM=2
+TAG.HITS=4
+
+[ITEMDEF 01606]
+// DEFNAME2=BOWL_TOMATO_SOUP
+DEFNAME=i_bowl_tomato_soup
+VALUE=8
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Tomato Soup
+TEVENTS=T_edible
+TDATA1=i_bowl_wood_lg
+
+ON=@CREATE
+TAG.MANA=2
+TAG.HITS=2
+TAG.STAM=3
+
+
+
+[ITEMDEF 015f9]
+//DEFNAME=i_BOWL_CARROTS
+DEFNAME=i_bowl_wood_carrots
+RESOURCES=1 i_bowl_wood, 1 i_fruit_carrot
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Carrots
+TEVENTS=T_edible
+TDATA1=i_bowl_wood
+
+ON=@CREATE
+TAG.MANA=2
+TAG.STAM=3
+
+
+[ITEMDEF 015fa]
+//DEFNAME=i_BOWL_CORN
+DEFNAME=i_bowl_wood_corn
+RESOURCES=1 i_bowl_wood, 1 i_fruit_corn
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Corn
+TEVENTS=T_edible
+TDATA1=i_bowl_wood
+
+ON=@CREATE
+TAG.HITS=2
+TAG.STAM=3
+
+[ITEMDEF 015fc]
+DEFNAME=i_bowl_wood_peas
+VALUE=8
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Peas
+TEVENTS=T_edible
+TDATA1=i_bowl_wood
+
+ON=@CREATE
+TAG.STAM=6
+
+[ITEMDEF 01602]
+DEFNAME=i_bowl_pewter_potatoes
+VALUE=8
+WEIGHT=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Potatoes
+TEVENTS=T_edible
+TDATA1=i_bowl_wood
+
+ON=@CREATE
+TAG.MANA=2
+TAG.HITS=3
+
+[ITEMDEF 015fe]
+DEFNAME=i_bowl_pewter_carrots
+RESOURCES=1 i_bowl_PEWTER, 3 i_fruit_carrot
+WEIGHT=1
+TEVENTS=T_edible
+TDATA1=i_bowl_pewter
+
+ON=@CREATE
+MOREM=2
+TAG.MANA=2
+TAG.STAM=3
+
+
+[ITEMDEF 015ff]
+DEFNAME=i_bowl_pewter_corn
+RESOURCES=1 i_bowl_pewter, 1 i_fruit_corn
+WEIGHT=1
+TEVENTS=T_edible
+TDATA1=i_bowl_pewter
+
+ON=@CREATE
+MOREM=2
+TAG.HITS=2
+TAG.STAM=3
+
+
+[ITEMDEF 01600]
+DEFNAME=i_bowl_pewter_lettuce
+RESOURCES=1 i_bowl_pewter, 1 i_fruit_lettuce
+WEIGHT=1
+TEVENTS=T_edible
+TDATA1=i_bowl_pewter
+
+ON=@CREATE
+MOREM=2
+TAG.HITS=1
+TAG.STAM=2
+TAG.MANA=1
+
+
+[ITEMDEF 01601]
+DEFNAME=i_bowl_pewter_peas
+RESOURCES=1 i_bowl_pewter
+WEIGHT=1
+TEVENTS=T_edible
+TDATA1=i_bowl_pewter
+
+ON=@CREATE
+MOREM=2
+TAG.HITS=2
+TAG.MANA=2
+
+
+
+
+[ITEMDEF 015fb]
+//DEFNAME=i_BOWL_LETTUCE
+DEFNAME=i_bowl_wood_lettuce
+RESOURCES=1 i_bowl_wood, 1 i_fruit_lettuce
+WEIGHT=1
+type=t_food
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Bowl of Lettuce
+TEVENTS=T_edible
+TDATA1=i_bowl_wood
+
+ON=@CREATE
+TAG.STAM=5
+
+[ITEMDEF 0993]
+DEFNAME=i_basket_fruit
+TYPE=T_FOOD
+VALUE=52
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fruit Basket
+SKILLMAKE=COOKING 45.0
+RESOURCES=1 i_basket, 5 t_fruit
+TEVENTS=T_edible
+TDATA1=i_basket
+
+ON=@CREATE
+MOREM=9
+TAG.HITS=5
+TAG.MANA=6
+TAG.STAM=10
+
+
+//	Aging Rack/Cheese bin/Buttern Churn
+
+[ITEMDEF 02fd6]
+DEFNAME=i_butter
+TYPE=T_FOOD
+NAME=butter
+VALUE=19
+WEIGHT=1
+SKILLMAKE=COOKING 40.0
+RESOURCES=1 i_pitcher_milk
+
+ON=@create
+color=08a5
+TAG.HITS=2
+TAG.STAM=3
+
+
+[ITEMDEF 097c]
+DEFNAME=i_cheese_wedge
+RESOURCES=1 i_pitcher_milk, 1 i_reag_fertile_DIRT
+SKILLMAKE=COOKING 75.0
+TYPE=T_FOOD
+VALUE=23
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Wedge of Cheese
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=4
+TAG.MANA=1
+
+[ITEMDEF 097e]
+// DEFNAME2=CHEESE
+DEFNAME=i_cheese_wheel
+RESOURCES=4 i_pitcher_milk, 1 i_reag_fertile_DIRT
+SKILLMAKE=COOKING 75.0
+TYPE=T_FOOD
+VALUE=68
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Wheel of Cheese
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=12
+TAG.HITS=16
+TAG.MANA=4
+
+[TYPEDEF t_cask]
+
+ON=@dclick
+src.sysmessage What do you wish to fill?
+TARGET
+return 1
+
+ON=@targon_item
+IF (<src.targ.type> == t_potion_empty)
+	NEWITEM <TDATA2>
+	IF (<src.targ.cont>)
+		NEW.CONT = <src.targ.cont>
+	ELSE
+		NEW.P = <src.targ.p>
+	ENDIF
+	TAG.SERV -= 1
+	IF  (<src.targ.amount> >= 2)
+		src.targ.amount -= 1
+		src.targ.update
+	ELSE
+		src.targ.remove
+	ENDIF
+	IF (<TAG.SERV> == 0)
+		NEWITEM <TDATA1>
+		src.sysmessage The <name> is now empty.
+		IF (<cont>)
+			NEW.CONT = <cont>
+		ELSE
+			NEW.P = <p>
+		ENDIF
+		remove
+	ENDIF
+	return 1
+ENDIF
+
+
+
+[ITEMDEF i_barrel_wine]
+ID=i_barrel
+NAME=barrel of wine
+RESOURCES=3 i_reag_fertile_DIRT, 12 i_fruit_grapes, 1 i_barrel
+SKILLMAKE=COOKING 71.0
+TDATA1=i_barrel
+TDATA2=i_bottle_wine
+TYPE=T_cask
+VALUE=113
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Wine
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_cider]
+ID=i_barrel
+NAME=barrel of cider
+RESOURCES=3 i_reag_fertile_DIRT, 12 i_fruit_apple, 1 i_barrel
+SKILLMAKE=COOKING 71.0
+TDATA1=i_barrel
+TDATA2=i_jug_cider
+TYPE=T_cask
+VALUE=113
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Cider
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_ale]
+ID=i_barrel
+NAME=barrel of ale
+RESOURCES=3 i_reag_fertile_DIRT, 12 i_wheat_sheaf, 1 i_barrel
+SKILLMAKE=COOKING 70.0
+TDATA1=i_barrel
+TDATA2=i_bottle_ale
+TYPE=T_cask
+VALUE=113
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Ale
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_liquor]
+ID=i_barrel
+NAME=barrel of liquor
+RESOURCES=3 i_reag_fertile_DIRT, 12 i_fruit_corn, 1 i_barrel
+SKILLMAKE=COOKING 70.0
+TDATA1=i_barrel
+TDATA2=i_bottle_liquor
+TYPE=T_cask
+VALUE=113
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Liqour
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_mead]
+ID=i_barrel
+NAME=barrel of mead
+RESOURCES=3 i_reag_fertile_DIRT, 12 i_jar_honey, 1 i_barrel
+SKILLMAKE=COOKING 72.0
+TDATA1=i_barrel
+TDATA2=i_bottle_mead
+TYPE=T_cask
+VALUE=173
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Mead
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_whiskey_wheat]
+ID=i_barrel
+NAME=barrel of scotch whiskey
+RESOURCES=3 i_reag_fertile_DIRT, 3 i_moss, 3 i_charcoal, 12 i_wheat_sheaf, 1 i_barrel
+SKILLMAKE=COOKING 76.0
+TDATA1=i_barrel
+TDATA2=i_bottle_whiskey_wheat
+TYPE=T_cask
+VALUE=286
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Scotch Whiskey
+
+ON=@CREATE
+TAG.SERV=12
+
+[ITEMDEF i_barrel_whiskey_corn]
+ID=i_barrel
+NAME=barrel of corn whiskey
+RESOURCES=3 i_reag_fertile_DIRT, 3 i_charcoal, 12 i_fruit_corn, 1 i_barrel
+SKILLMAKE=COOKING 74.0
+TDATA1=i_barrel
+TDATA2=i_bottle_whiskey_corn
+TYPE=T_cask
+VALUE=209
+WEIGHT=8.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Barrel of Corn Whiskey
+
+ON=@CREATE
+TAG.SERV=12
+
+
+[ITEMDEF i_keg_wine]
+ID=i_keg_wood
+NAME=keg of wine
+RESOURCES=2 i_reag_fertile_DIRT, 6 i_fruit_grapes, 1 i_keg_wood
+SKILLMAKE=COOKING 71.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_wine
+TYPE=T_cask
+VALUE=70
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Wine
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_cider]
+ID=i_keg_wood
+NAME=keg of cider
+RESOURCES=2 i_reag_fertile_DIRT, 6 i_fruit_apple, 1 i_keg_wood
+SKILLMAKE=COOKING 71.0
+TDATA1=i_keg_wood
+TDATA2=i_jug_cider
+TYPE=T_cask
+VALUE=70
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Cider
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_ale]
+ID=i_keg_wood
+NAME=keg of ale
+RESOURCES=2 i_reag_fertile_DIRT, 6 i_wheat_sheaf, 1 i_keg_wood
+SKILLMAKE=COOKING 70.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_ale
+TYPE=T_cask
+VALUE=70
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Ale
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_wood_liquor]
+ID=i_keg_wood
+NAME=keg of liquor
+RESOURCES=2 i_reag_fertile_DIRT, 6 i_fruit_corn, 1 i_keg_wood
+SKILLMAKE=COOKING 70.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_liquor
+TYPE=T_cask
+VALUE=70
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Liqour
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_wood_mead]
+ID=i_keg_wood
+NAME=keg of mead
+RESOURCES=2 i_reag_fertile_DIRT, 6 i_jar_honey, 1 i_keg_wood
+SKILLMAKE=COOKING 72.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_mead
+TYPE=T_cask
+VALUE=85
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Mead
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_wood_whiskey_wheat]
+ID=i_keg_wood
+NAME=keg of scotch whiskey
+RESOURCES=2 i_reag_fertile_DIRT, 2 i_moss, 2 i_charcoal, 6 i_wheat_sheaf, 1 i_keg_wood
+SKILLMAKE=COOKING 76.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_whiskey_wheat
+TYPE=T_cask
+VALUE=95
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Scotch Whiskey
+
+ON=@CREATE
+TAG.SERV=6
+
+[ITEMDEF i_keg_wood_whiskey_corn]
+ID=i_keg_wood
+NAME=keg of corn whiskey
+RESOURCES=2 i_reag_fertile_DIRT, 2 i_charcoal, 6 i_fruit_corn, 1 i_keg_wood
+SKILLMAKE=COOKING 74.0
+TDATA1=i_keg_wood
+TDATA2=i_bottle_whiskey_corn
+TYPE=T_cask
+VALUE=130
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg of Corn Whiskey
+
+ON=@CREATE
+TAG.SERV=6
+
+
+[ITEMDEF 09c7]
+DEFNAME=i_bottle_wine
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=14
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of Wine
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.MANA=6
+TAG.SERV=3
+
+[ITEMDEF 09c8]
+DEFNAME=i_jug_cider
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=14
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Jug of Cider
+DUPELIST=0
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.MANA=2
+TAG.HITS=2
+TAG.STAM=3
+TAG.SERV=3
+
+[ITEMDEF 099b]
+DEFNAME=i_bottle_liquor
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=14
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of Liquor
+DUPELIST=0
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.MANA=3
+TAG.STAM=4
+TAG.SERV=3
+
+[ITEMDEF 099f]
+DEFNAME=i_bottle_ale
+TYPE=T_BOOZE
+TDATA1=i_bottle_empty
+VALUE=14
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of Ale
+DUPELIST=0
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.STAM=8
+TAG.SERV=3
+
+[ITEMDEF i_bottle_whiskey_corn]
+NAME=bottle of corn whiskey
+ID=099f
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=19
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of corn whiskey
+TEVENTS=T_edible
+DUPELIST=0
+
+ON=@CREATE
+COLOR=05e8
+TAG.MANA=5
+TAG.STAM=4
+TAG.SERV=3
+
+[ITEMDEF i_bottle_whiskey_wheat]
+ID=099f
+NAME=bottle of scotch whiskey
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=26
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of Scotch Whiskey
+TEVENTS=T_edible
+DUPELIST=0
+
+ON=@CREATE
+COLOR=05ff
+TAG.MANA=6
+TAG.STAM=5
+TAG.SERV=3
+
+[ITEMDEF i_bottle_mead]
+ID=099b
+NAME=bottle of mead
+TDATA1=i_bottle_empty
+TYPE=T_BOOZE
+VALUE=17
+DUPELIST=0
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Bottle of Mead
+TEVENTS=T_edible
+
+ON=@CREATE
+COLOR=06b8
+TAG.MANA=4
+TAG.HITS=1
+TAG.STAM=4
+TAG.SERV=3
+
+
+
+
+[ITEMDEF 09ad]
+DEFNAME=i_pitcher_milk
+//? TYPE=T_CONTAINER
+TYPE=T_DRINK
+TDATA1=i_pitcher_glass
+FLIP=1
+VALUE=15
+RESOURCES=i_pitcher_glass
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Milk (Pitcher)
+DUPELIST=09f0
+TEVENTS=T_edible
+
+ON=@CREATE
+TAG.HITS=2
+TAG.STAM=5
+
+
+
+[ITEMDEF 09d6]
+DEFNAME=i_pitcher
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Pitcher
+SKILLMAKE=TINKERING 42.0,t_tinker_tools
+RESOURCES=3 i_ingot_iron
+
+[ITEMDEF 09d7]
+DEFNAME=i_plate
+RESOURCES=1 I_CLAY
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Plate
+
+[ITEMDEF 015fd]
+DEFNAME=i_bowl_pewter
+RESOURCES=1 i_ingot_iron
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pewter Bowl
+
+[ITEMDEF 01603]
+DEFNAME=i_bowl_pewter_lg
+RESOURCES=2 i_ingot_iron
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pewter Bowl (Lg.)
+
+[ITEMDEF 01605]
+DEFNAME=i_bowl_wood_lg
+RESOURCES=2 i_BOARD
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Wooden Bowl (Lg.)
+
+[ITEMDEF 09e0]
+DEFNAME=i_pot
+RESOURCES=3 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pot
+
+[ITEMDEF 09e1]
+DEFNAME=i_pot_2
+RESOURCES=3 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pot
+
+[ITEMDEF 09e3]
+//pot
+DEFNAME=i_pot_3
+RESOURCES=3 i_ingot_iron
+
+[ITEMDEF 09e4]
+//pot
+DEFNAME=i_pot_4
+RESOURCES=3 i_ingot_iron
+
+[ITEMDEF 09e5]
+//pot
+DEFNAME=i_pot_5
+RESOURCES=3 i_ingot_iron
+
+[ITEMDEF 09ed]
+DEFNAME=i_kettle
+RESOURCES=5 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Kettle
+
+[ITEMDEF 09e2]
+DEFNAME=i_frypan
+RESOURCES=3 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Frypan
+
+[ITEMDEF 09f3]
+DEFNAME=i_pan
+RESOURCES=3 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pan
+
+[ITEMDEF 0103e]
+DEFNAME=i_flour_sifter
+RESOURCES=1 i_ingot_iron
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Flour Sifter
+
+[ITEMDEF 010e8]
+DEFNAME=i_SPOON_WOOD_SMALL
+RESOURCES=1 i_BOARD
+WEIGHT=.1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Spoon (Wooden) (Small)
+
+[ITEMDEF 010e9]
+DEFNAME=i_SPOON_WOOD_LARGE
+RESOURCES=1 i_BOARD
+WEIGHT=.2
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Spoon (Wooden) (Large)
+
+[ITEMDEF 015f8]
+DEFNAME=i_bowl_wood
+RESOURCES=1 i_BOARD
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Wooden Bowl
+
+[ITEMDEF 014e9]
+DEFNAME=i_moulding_board
+FLIP=1
+RESOURCES=1 i_LOG, 1 i_BOARD
+WEIGHT=3
+TYPE=t_carpentry
+CATEGORY=Items by Professions
+SUBSECTION=Carpenter
+DESCRIPTION=Moulding Board
+DUPELIST=014ea
+TYPE=T_tray
+
+[ITEMDEF 014ea]
+//moulding board
+DUPEITEM=014e9
+
+
+
+
+[ITEMDEF 0ff8]
+//Pitcher of Water
+DEFNAME=i_pitcher_water
+RESOURCES=10 I_WATER, 1 i_pitcher_glass
+TYPE=T_DRINK
+TDATA1=i_pitcher_glass
+FLIP=1
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Barkeep
+DESCRIPTION=Pitcher of Water
+DUPELIST=0ff9,01f9d,01f9e
+
+[ITEMDEF 0ffa]
+//bucket of water
+DEFNAME=i_bucket_of_water
+RESOURCES=10 I_WATER, 1 I_BUCKET
+WEIGHT=4
+TYPE=T_DRINK
+TDATA1=I_BUCKET
+CATEGORY=Items by Professions
+SUBSECTION=Barkeep
+DESCRIPTION=Bucket of Water
+
+
+[ITEMDEF 01039]
+DEFNAME=i_flour_sack
+RESOURCES=4 i_wheat_sheaf, 1 i_CLOTH
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Sack of Flour
+DUPELIST=01045
+
+ON=@dclick
+	SRC.sysmessage What would you like to make dough with?
+	TARGET
+	return 1
+
+ON=@TARGON_ITEM
+	IF  (<src.targ.baseid> == i_pitcher_water)
+		src.targ.remove
+		newitem i_dough
+		new.amount=4
+		new.bounce
+		newitem i_pitcher_glass
+		new.bounce
+		remove
+	ELSEIF (<src.targ.baseid> == i_pitcher_milk)
+		src.targ.remove
+		newitem i_dough_milk
+		new.amount=4
+		new.bounce
+		newitem i_pitcher_glass
+		new.bounce
+		remove
+	ELSEIF (<src.targ.baseid> == i_jar_honey)
+		src.targ.remove
+		newitem i_dough_honey
+		new.amount=4
+		new.bounce
+		remove
+	ELSE
+		src.sysmessage You cannot make dough from that.
+	ENDIF
+return 1
+
+[ITEMDEF 0103a]
+DEFNAME=i_flour_sack_open
+DUPEITEM=01046
+NAME=sifted flour
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Open Sack of Flour
+
+ON=@dclick
+	SRC.sysmessage What would you like to make dough with?
+	TARGET
+	return 1
+
+ON=@TARGON_ITEM
+	IF  (<src.targ.baseid> == i_pitcher_water)
+		src.targ.remove
+		newitem i_dough
+		new.amount=5
+		new.bounce
+		newitem i_pitcher_glass
+		new.bounce
+		remove
+	ELSEIF (<src.targ.baseid> == i_pitcher_milk)
+		src.targ.remove
+		newitem i_dough_milk
+		new.amount=5
+		new.bounce
+		newitem i_pitcher_glass
+		new.bounce
+		remove
+	ELSEIF (<src.targ.baseid> == i_jar_honey)
+		src.targ.remove
+		newitem i_dough_honey
+		new.amount=5
+		new.bounce
+		remove
+	ELSE
+		src.sysmessage You cannot make dough from that.
+	ENDIF
+return 1
+
+[ITEMDEF 0103d]
+DEFNAME=i_dough
+TYPE=t_normal
+WEIGHT=1
+value=3
+
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Dough
+
+[ITEMDEF i_dough_honey]
+ID=i_dough
+NAME=honey dough
+value=13
+
+[ITEMDEF i_dough_dragon]
+ID=i_dough
+NAME=dragon-egg dough
+
+[ITEMDEF i_dough_milk]
+ID=i_dough
+NAME=milk dough
+value=9
+
+[ITEMDEF i_dough_magic]
+ID=i_dough
+NAME=magic dough
+
+
+
+[ITEMDEF 010e3]
+DEFNAME=i_bowl_dough
+RESOURCES=1 i_CLAY
+WEIGHT=.4
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Dough Bowl
+
+[ITEMDEF 0a1e]
+DEFNAME=i_flour_bowl
+RESOURCES=1 i_bowl_wood, 1 i_flour_sack
+TYPE=T_FOOD
+WEIGHT=4
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Bowl of Flour
+
+
+
+[ITEMDEF 09ec]
+// DEFNAME2=HONEY_OBJ
+DEFNAME=i_jar_honey
+TYPE=T_FOOD
+VALUE=10
+WEIGHT=0.5
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Jar of Honey
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=2
+TAG.MANA=4
+TAG.STAM=2
+
+
+[ITEMDEF 01e1c]
+DEFNAME=i_fish_cooked
+RESOURCES=1 I_fish_RAW
+//Fish (cooked) facing NW
+WEIGHT=1
+FLIP=1
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fish (Cooked)
+DUPELIST=01e1d
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=2
+TAG.MANA=2
+TAG.STAM=4
+
+
+[ITEMDEF 01e1d]
+//cooked fish facing NE
+DUPEITEM=01e1c
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Fish (Cooked)
+
+[ITEMDEF 01e1e]
+DEFNAME=i_fish_cooked_small
+//small cooked fish
+
+[ITEMDEF 01e1f]
+DEFNAME=i_ham_slices
+//sliced ham
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Ham (Sliced)
+
+
+
+//CAMPING FUSION
+
+[ITEMDEF 01e94]
+DEFNAME=i_CHICKEN_SPITTED
+RESOURCES=1 i_CHICKEN_PLUCKED, i_SPIT
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Chicken on a Spit
+
+[ITEMDEF 01e95]
+DEFNAME=i_RABBIT_SPITTED
+RESOURCES=1 i_RABBIT_SKINNED, i_SPIT
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Rabbit on a Spit
+
+[ITEMDEF 01e96]
+DEFNAME=i_spit
+RESOURCES=2 i_ingot_iron
+WEIGHT=3
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Spit
+
+[ITEMDEF 01e97]
+DEFNAME=i_CHICKEN_SPITTED_2
+RESOURCES=1 i_CHICKEN_PLUCKED, I_SPIT
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Chicken on a Spit
+
+[ITEMDEF 01e98]
+DEFNAME=i_RABBIT_SPITTED_2
+RESOURCES=1 i_RABBIT_SKINNED, I_SPIT
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Rabbit on a Spit
+
+[ITEMDEF 01e99]
+DEFNAME=i_spit_2
+RESOURCES=2 i_ingot_iron
+WEIGHT=3
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Spit
+
+
+[ITEMDEF 01f7d]
+DEFNAME=i_glass_of_cider
+WEIGHT=1
+TYPE=T_BOOZE
+TDATA1=i_glass
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass of Cider
+DUPELIST=01f7e,01f7f,01f80
+
+[ITEMDEF 01f81]
+DEFNAME=i_glass
+RESOURCES=4 I_SAND
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass
+DUPELIST=01f82,01f83,01f84
+
+[ITEMDEF 01f85]
+DEFNAME=i_glass_of_liquor
+WEIGHT=1
+TYPE=T_BOOZE
+TDATA1=i_glass
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass of Liquor
+DUPELIST=01f86,01f87,01f88
+
+[ITEMDEF 01f89]
+DEFNAME=i_glass_of_milk
+RESOURCES=I_GLASS
+WEIGHT=1
+TYPE=T_DRINK
+TDATA1=I_GLASS
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass of Milk
+DUPELIST=01f8a,01f8b,01f8c
+
+[ITEMDEF 01f8d]
+DEFNAME=i_glass_of_wine
+WEIGHT=1
+TYPE=T_BOOZE
+TDATA1=i_glass
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass of Wine
+DUPELIST=01f8e,01f8f,01f90
+
+[ITEMDEF 01f91]
+DEFNAME=i_glass_of_water
+RESOURCTDATA1=ES=1 I_WATER, I_GLASS
+WEIGHT=1
+TYPE=T_DRINK
+TDATA1=I_GLASS
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Glass of Water
+DUPELIST=01f92,01f93,01f94
+
+[ITEMDEF 01f95]
+//DEFNAME=ALE_PITCHER
+DEFNAME=i_pitcher_ale
+TYPE=T_BOOZE
+TDATA1=i_pitcher_glass
+FLIP=1
+RESOURCES=i_hay_sheaf, I_PITCHER_GLASS
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Pitcher of Ale
+DUPELIST=01f96
+//DEFNAME2=ALE_PITCHER_2
+
+ON=@DCLICK
+IF (<SRC.FOOD> < <SRC.MAXFOOD>) 
+SRC.stamina += 8
+ELSE
+SRC.SYSMESSAGE You are simply too full to eat anymore!
+
+
+[ITEMDEF 01f96]
+//pitcher of ale
+DUPEITEM=01f95
+
+[ITEMDEF 01f97]
+//DEFNAME2=CIDER_PITCHER_2
+DEFNAME=i_pitcher_cider
+TYPE=T_BOOZE
+TDATA1=i_pitcher_glass
+FLIP=1
+RESOURCES=i_fruit_apple, I_PITCHER_GLASS
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Pitcher of Cider
+DUPELIST=01f98
+
+[ITEMDEF 01f98]
+//pitcher of cider
+DUPEITEM=01f97
+
+[ITEMDEF 01f99]
+//Pitcher of Liquor
+DEFNAME=i_pitcher_liquor
+TYPE=T_BOOZE
+TDATA1=i_pitcher_glass
+RESOURCES=i_fruit_corn, I_PITCHER_GLASS
+WEIGHT=5
+FLIP=1
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Pitcher of Liquor
+DUPELIST=01f9a
+//DEFNAME2=LIQUOR_PITCHER_2
+
+ON=@DCLICK
+IF (<SRC.FOOD> < <SRC.MAXFOOD>) 
+SRC.mana += 3
+SRC.stamina += 4
+ELSE
+SRC.SYSMESSAGE You are simply too full to eat anymore!
+
+
+[ITEMDEF 01f9a]
+//pitcher of liquor
+DUPEITEM=01f99
+
+[ITEMDEF 01f9b]
+DEFNAME=i_pitcher_wine
+TYPE=T_BOOZE
+TDATA1=i_pitcher_glass
+RESOURCES=i_fruit_grapes, I_PITCHER_GLASS
+FLIP=1
+WEIGHT=5
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Pitcher of Wine
+DUPELIST=01f9c
+//DEFNAME2=WINE_PITCHER_2
+
+ON=@DCLICK
+IF (<SRC.FOOD> < <SRC.MAXFOOD>) 
+SRC.mana += 6
+ELSE
+SRC.SYSMESSAGE You are simply too full to eat anymore!
+
+
+
+[ITEMDEF i_green_cheese]
+ID=i_cheese_wheel
+NAME=green cheese 
+RESOURCES=5 i_pitcher_milk, 1 i_reag_fertile_DIRT
+VALUE={24 32}
+TYPE=T_FOOD
+
+ON=@Create
+COLOR=colors_green
+
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Green Cheese
+
+
+[ITEMDEF 01940]
+DEFNAME=i_KEG_WOOD
+TYPE=t_container
+TDATA2=03e
+FLIP=1
+RESOURCES=1 i_BARREL_TAP, 1 i_keg_small
+WEIGHT=5.0
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Keg
+DUPELIST=01ad6,01ad7
+
+
+[ITEMDEF 01043]
+DEFNAME=i_rolling_pin
+RESOURCES=1 i_BOARD, 1 i_ingot_iron
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Rolling Pin
+
+[ITEMDEF 097f]
+DEFNAME=i_fry_pan
+RESOURCES=1 i_ore_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Frypan
+
+[ITEMDEF 0991]
+DEFNAME=i_tray
+RESOURCES=3 i_ingot_iron
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Tray
+DUPELIST=0992
+TYPE=T_tray
+
+// Cooking section
+
+[TYPEDEF t_tray]
+
+ON=@Dclick
+	IF (<SRC.ISNEARTYPE t_fire 4>
+		src.dialog d_skillmenu_baking
+		Return 1
+	ELSEIF (<SRC.ISNEARTYPE t_campfire 4>
+		src.dialog d_skillmenu_baking
+		Return 1
+	ELSE
+		src.sysmessage You must be near a campfire or oven to use this item.
+		Return 1
+	ENDIF 
+
+	
+
+
+
+[itemdef 01e19]
+//fish head facing nw
+defname=i_fish_raw_head
+value=1
+weight=.1
+category=items - resources
+subsection=cook
+description=fish head
+dupelist=01e1a
+
+[itemdef 01e1b]
+//pile of fish heads
+defname=i_fish_raw_head_pile
+value=1
+weight=3
+type=t_food
+category=items - resources
+subsection=cook
+description=fish heads
+
+[itemdef 01e8a]
+defname=i_lard
+value=1
+category=items - resources
+subsection=butcher
+description=lard
+
+[itemdef 01e8b]
+defname=i_chicken_plucked
+value=3
+category=items - resources
+subsection=butcher
+description=plucked chicken
+
+[itemdef 01e83]
+defname=i_bird_dead
+value=3
+category=items - resources
+subsection=butcher
+description=bird
+
+[itemdef 01e84]
+defname=i_bird_dead_2
+value=3
+category=items - resources
+subsection=butcher
+description=bird
+
+[itemdef 01e85]
+defname=i_bird_dead_3
+value=3
+category=items - resources
+subsection=butcher
+description=bird
+
+[itemdef 01e86]
+defname=i_bird_dead_4
+value=3
+category=items - resources
+subsection=butcher
+description=bird
+
+[itemdef 01e87]
+defname=i_chicken_dead
+value=3
+category=items - resources
+subsection=butcher
+description=chicken
+
+[itemdef 01e88]
+defname=i_goat_skinned
+value=3
+category=items - resources
+subsection=butcher
+description=skinned goat
+
+[itemdef 01e89]
+defname=i_goat_skinned_2
+value=3
+category=items - resources
+subsection=butcher
+description=skinned goat
+
+[itemdef 01e8c]
+defname=i_pigs_feet
+value=3
+category=items - resources
+subsection=butcher
+description=pigs feet
+
+[itemdef 01e8d]
+defname=i_pigs_feet_2
+value=3
+category=items - resources
+subsection=butcher
+description=pigs feet
+
+[itemdef 01e8e]
+defname=i_pigs_head
+value=3
+category=items - resources
+subsection=butcher
+description=pigs head
+
+[itemdef 01e8f]
+defname=i_pigs_head_2
+value=3
+category=items - resources
+subsection=butcher
+description=pigs head
+
+[itemdef 01e90]
+defname=i_deer_skinned
+value=3
+category=items - resources
+subsection=butcher
+description=skinned deer
+
+[itemdef 01e91]
+defname=i_deer_skinned_2
+value=3
+category=items - resources
+subsection=butcher
+description=skinned deer
+
+
+
+[itemdef 09b5]
+defname=i_eggs_fresh
+value=13
+type=t_meat_raw
+tdata1=i_eggs_roasted
+TDATA3=30.0
+weight=1
+category=items - resources
+subsection=cook
+description=eggs
+
+[itemdef i_eggs_roasted]
+id=09b5
+name=roasted eggs
+RESOURCES=i_eggs_fresh
+SKILLMAKE=COOKING 30.0
+value=20
+type=t_food
+weight=1
+TEVENTS=T_edible
+
+category=items - resources
+subsection=cook
+description=roasted eggs
+
+MOREM=4
+TAG.HITS=3
+TAG.MANA=1
+TAG.STAM=1
+
+
+
+
+[ITEMDEF 0994]
+// DEFNAME2=pear
+DEFNAME=i_fruit_pear
+TYPE=T_FRUIT
+VALUE=5
+WEIGHT=0.5
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Pear
+DUPELIST=0172d
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.STAM=3
+
+[ITEMDEF 0171f]
+DEFNAME=i_fruit_banana
+VALUE=5
+WEIGHT=0.5
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Banana (Unpeeled)
+DUPELIST=01720
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=2
+TAG.STAM=3
+
+[ITEMDEF 01726]
+DEFNAME=i_fruit_coconut
+VALUE=10
+WEIGHT=1
+TYPE=T_FOOD
+WEIGHT=2
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Coconut
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=4
+TAG.HITS=1
+TAG.MANA=3
+TAG.STAM=3
+
+
+[ITEMDEF 01728]
+DEFNAME=i_fruit_lemon
+DEFNAME2=i_LEMON
+WEIGHT=0.5
+VALUE=5
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Lemon
+DEFNAME2=LEMON
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=1
+TAG.STAM=5
+
+[ITEMDEF 0172a]
+DEFNAME=i_fruit_lime
+WEIGHT=0.5
+VALUE=5
+TYPE=T_FOOD
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Lime
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=3
+TAG.STAM=1
+
+[ITEMDEF 01727]
+DEFNAME=i_fruit_dates
+VALUE=12
+WEIGHT=0.5
+TYPE=T_FRUIT
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Dates
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.MANA=4
+TAG.STAM=2
+
+[ITEMDEF 09d2]
+//peach
+defname=i_fruit_peach
+type=t_fruit
+VALUE=12
+WEIGHT=0.5
+DUPEITEM=0172c
+
+CATEGORY=Items by Professions
+SUBSECTION=Cook
+DESCRIPTION=Peach
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=5
+TAG.STAM=5
+
+[itemdef 09d0]
+defname=i_fruit_apple
+type=t_fruit
+VALUE=5
+WEIGHT=0.5
+category=items - resources
+subsection=cook
+description=apple
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.MANA=1
+TAG.STAM=1
+
+[itemdef 09d1]
+defname=i_fruit_grapes
+value=8
+type=t_fruit
+weight=0.5
+
+category=items - resources
+subsection=cook
+description=grape bunch
+dupelist=0d1a
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=4
+TAG.STAM=3
+
+[ITEMDEF 0c5c]
+//Watermelon
+DEFNAME=i_fruit_watermelon
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=18
+WEIGHT=2
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Watermelon
+DUPELIST=0c5d
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=9
+TAG.MANA=4
+TAG.STAM=6
+
+[ITEMDEF 0c64]
+//Gourd (yellow)
+//DEFNAME2=GOURD_1
+name
+DEFNAME=i_fruit_gourd1
+name=yellow gourd%s
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=5
+WEIGHT=0.5
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Gourd (Yellow)
+DUPELIST=0c65
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.MANA=1
+TAG.STAM=1
+
+[ITEMDEF 0c66]
+//green gourd
+//DEFNAME2=GOURD_2
+DEFNAME=i_fruit_gourd2
+name=green gourd%s
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=5
+WEIGHT=0.5
+DUPELIST=0c67
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Gourd (Green)
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.STAM=3
+
+
+[ITEMDEF 0c6a]
+//Pumpkin
+DEFNAME=i_fruit_pumpkin
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=18
+WEIGHT=2
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Pumpkin
+DUPELIST=0c6b,0c6c
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=9
+TAG.HITS=2
+TAG.MANA=2
+TAG.STAM=2
+
+[ITEMDEF 0c6d]
+//Onion
+// ONION_OBJ
+DEFNAME=i_fruit_onion
+RESOURCES=I_CROP_ONION
+TYPE=T_FRUIT
+TDATA1=i_crop_onion
+VALUE=5
+WEIGHT=0.4
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Onion
+DUPELIST=0c6e
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.STAM=2
+
+
+[ITEMDEF 0c70]
+// DEFANAME2=HEAD_OF_LETTUCE
+//Head of Lettuce
+DEFNAME=i_fruit_lettuce
+TYPE=T_FRUIT
+VALUE=5
+WEIGHT=0.4
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Lettuce
+DUPELIST=0c71
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=2
+TAG.STAM=5
+
+
+[ITEMDEF 0c72]
+//Squash
+DEFNAME=i_fruit_squash
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=5
+WEIGHT=0.5
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Squash
+DUPELIST=0c73
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.MANA=2
+
+
+[ITEMDEF 0c74]
+//Honeydew Melon
+// DEFNAME2=MELON
+DEFNAME=i_fruit_honeydewmelon
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=16
+WEIGHT=1
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Honeydew Melon
+DUPELIST=0c75
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=6
+TAG.MANA=6
+TAG.STAM=10
+
+
+[ITEMDEF 0c77]
+//Carrot
+DEFNAME=i_fruit_carrot
+RESOURCES=1 i_crop_carrot
+TYPE=T_FRUIT
+TDATA1=i_crop_carrot
+VALUE=8
+WEIGHT=0.5
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Carrot
+DUPELIST=0c78
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.HITS=1
+TAG.MANA=3
+TAG.STAM=2
+
+
+[ITEMDEF 0c79]
+//Cantaloupe
+DEFNAME=i_fruit_cantelope
+TYPE=T_FRUIT
+TDATA1=i_crop_vines1
+VALUE=16
+WEIGHT=1
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Cantaloupe
+DUPELIST=0c7a
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=6
+TAG.STAM=8
+TAG.MANA=5
+TAG.HITS=1
+
+[ITEMDEF 0c7b]
+//cabbage
+DEFNAME=i_fruit_cabbage
+TYPE=T_FRUIT
+WEIGHT=0.5
+VALUE=8
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DUPELIST=0c7c
+DESCRIPTION=Cabbage
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.STAM=6
+TAG.HITS=1
+
+[ITEMDEF 0d39]
+//turnip
+DEFNAME=i_fruit_turnip
+WEIGHT=0.5
+VALUE=8
+TYPE=T_FRUIT
+TDATA1=i_crop_turnip1
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Turnip
+DUPELIST=0d3a
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.MANA=2
+TAG.HITS=2
+
+[ITEMDEF 0c7f]
+//Ear of Corn
+// DEFNAME2=CORN
+DEFNAME=i_fruit_corn
+RESOURCES=I_CROP_CORN
+TYPE=T_FOOD
+VALUE=5
+WEIGHT=0.2
+CATEGORY=Vegetation
+SUBSECTION=Fruits and Vegetables
+DESCRIPTION=Ear of Corn
+DUPELIST=0c80,0c81,0c82
+TEVENTS=T_edible
+
+ON=@CREATE
+MOREM=3
+TAG.STAM=2
+TAG.HITS=2
+
+
+
+[itemdef 09cc]
+defname=i_fish_big_1
+value=12
+type=t_fish
+weight=1
+category=items - resources
+subsection=fisherman
+description=fish (whole)
+
+[itemdef 09cd]
+defname=i_fish_big_2
+value=12
+type=t_fish
+weight=1
+category=items - resources
+subsection=fisherman
+description=fish
+
+[itemdef 09ce]
+defname=i_fish_big_3
+value=12
+type=t_fish
+weight=1
+category=items - resources
+subsection=fisherman
+description=fish
+
+[itemdef 09cf]
+defname=i_fish_big_4
+value=12
+type=t_fish
+weight=1
+category=items - resources
+subsection=fisherman
+description=fish
+
+
+[ITEMDEF 02be3]
+DEFNAME=i_ginger
+WEIGHT=0.5
+VALUE=10
+TYPE=T_normal
+DUPELIST=02be4
+
+
+[itemdef i_deed_grainmill_w]
+id=i_deed
+type=t_script
+weight=100
+value=600
+name="deed for grainmill (W)"
+RESOURCES=1 i_crate_lg, 2 i_millstone, 10 i_board, 18 i_log, 2 i_nails
+SKILLMAKE=Tinkering 86.9
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=grainmill (w)
+
+on=@dclick
+  targetg="where should the grain mill be placed??"
+  return 1
+
+on=@targon_ground
+  serv.newitem 01920
+  new.p=<src.targp>
+  new.move w 1
+  new.attr 010
+  link=<new.uid>
+  serv.newitem 01922
+  new.p=<src.targp>
+  new.attr=010
+  new.link=<link>
+  link.link=<new.uid>
+  remove
+  return 1
+
+on=@targon_char
+  serv.newitem 01920
+  new.p=<src.targ.p>
+  new.move w 1
+  new.attr 010
+  link=<new.uid>
+  serv.newitem 01922
+  new.p=<src.targ.p>
+  new.attr=010
+  new.link=<link>
+  link.link=<new.uid>
+  remove
+  return 1
+
+on=@targon_item
+  serv.newitem 01920
+  new.p=<src.targ.p>
+  new.move w 1
+  new.attr 010
+  link=<new.uid>
+  serv.newitem 01922
+  new.p=<src.targ.p>
+  new.attr=010
+  new.link=<link>
+  link.link=<new.uid>
+  remove
+  return 1
+
+[ITEMDEF 01920]
+DEFNAME=i_flour_mill
+RESOURCES=1 i_deed_grainmill_w
+weight=100
+name="grainmill"
+flip=0
+dupelist=01921,01922,01925,01926,01927
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=grainmill (anim)
+
+on=@create
+  more1l={2000 2500}
+  more1h=<more1l>
+  morez=0
+
+on=@dclick
+  if (<distance> > 2) && !(<src.isgm>)
+    src.sysmessage="You are too far away."
+  elseif (<morez> != 0)
+    src.sysmessage="The mill is busy - wait until it's ready again."
+    timer=3
+    link.timer=3
+  elseif (<more1l> < 1) && !((<src.isgm>) || (<attr> & attr_owned))
+    src.sfx 0220
+    src.sysmessage="The mill is used up and disappears in a cloud of dust!"
+    serv.newitem i_debris
+    new.p=<p>
+    new.attr=attr_decay
+    new.timer=15
+    remove
+  else
+    targetg="What grain do you want to work on?"
+  endif
+  return 1
+
+on=@targon_item
+  if (<src.targ.topobj.uid> != <src.uid>)
+    src.sysmessage="You must have it with you."
+  elseif (<src.targ.baseid> == i_wheat_sheaf)
+    if (<src.restest 2 i_wheat_sheaf>)
+      src.consume 2 i_wheat_sheaf
+      morex=1    // Wheat
+      f_anim_muehle_w
+      if !((<src.isgm>) || (<attr> & attr_owned))
+        more1l -= 1
+      endif
+    else
+      src.sysmessage="It's too less - you need at least two bushels."
+    endif
+  elseif (<src.targ.baseid> == i_fruit_corn)
+    if (<src.restest 10 i_fruit_corn>)
+      src.consume 10 i_fruit_corn
+      morex=2    // corn
+      f_anim_muehle_w
+      if !((<src.isgm>) || (<attr> & attr_owned))
+        more1l -= 1
+      endif
+    else
+      src.sysmessage="It's too less - you need at least 10 corn cobs."
+    endif
+  else
+    src.sysmessage="You cannot use this with this mill."
+  endif
+  return 1
+
+on=@timer
+  if (<morez> == 1)
+    if (<dispid> == 01921)    // back part full
+      dispid=01925        // back part half full
+      // link.dispid  front part left unchanged at 01926 - full
+    elseif ((<dispid> == 01926) || (<dispid> == 01927))
+      // dispid front part left unchanged
+      link.dispid=01925        // back part half full
+    endif
+    link.sfx 05a9
+    link.sfx 05ab
+    morez=2
+    link.morez=2
+    timer=5
+  elseif (<morez> == 2)
+    if (<dispid> == 01925)    // back part half full
+      dispid=01920        // back part empty (i_flour_mill)
+      link.dispid=01922        // front part empty
+    elseif ((<dispid> == 01926) || (<dispid> == 01927))    // front part full voll (Anim)
+      dispid=01922        // front part empty
+      link.dispid=01920        // back part empty (i_flour_mill)
+    endif
+    morez=0
+    link.morez=0
+  endif
+  update
+  link.update
+  if (<morex> == 1)
+    serv.newitem i_flour_sack
+    new.p=<p>
+    new.move e 2
+  elseif (<morex> == 2)
+    serv.newitem i_flour_sack
+    new.p=<p>
+    new.move e 2
+  endif
+  morex=0
+  return 1
+
+[function f_anim_muehle_w]
+  if ((<dispid> == 01920) || (<dispid> == i_flour_mill))
+    dispid=01921
+    link.dispid=01926
+  else    // 01922
+    dispid=01926
+    link.dispid=01921
+  endif
+  link.sfx 05a9
+  link.sfx 05ab
+  morez=1
+  link.morez=1
+  update
+  link.update
+  timer=5
+
+[ITEMDEF 01922]
+//flour mill empty front part
+dupeitem=01920
+
+[ITEMDEF 01921]
+//flour mill full back part
+dupeitem=01920
+
+[ITEMDEF 01926]
+//flour mill full front part anim 1
+dupeitem=01920
+
+[ITEMDEF 01927]
+//flour mill full front part anim 2
+dupeitem=01920
+
+[ITEMDEF 01925]
+//flour mill back part half full
+dupeitem=01920
+
+[ITEMDEF 01923]
+//flour mill
+DESCRIPTION=unused
+
+[ITEMDEF 01924]
+// handle
+DESCRIPTION=unused

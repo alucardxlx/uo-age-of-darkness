@@ -1,0 +1,501 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2005
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE Created: Thursday, December 29th, 2005
+//
+// By Mordaunt
+//
+
+//More Elf Stuff
+
+[ITEMDEF 02DD3]
+DEFNAME=i_elven_alchemy_table_w
+NAME=elven alchemy table
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (w)
+DUPELIST=02DD4,03077,03078,03079,0307A
+
+[ITEMDEF 02DD4]
+DEFNAME=i_elven_alchemy_table_n
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (n)
+DUPEITEM=02DD3
+
+[ITEMDEF 003077]
+DEFNAME=i_elven_alchemy_table_W1
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (W)
+DUPEITEM=02DD3
+
+[ITEMDEF 03078]
+DEFNAME=i_elven_alchemy_table_W2
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (W)
+DUPEITEM=02DD3
+
+[ITEMDEF 03079]
+DEFNAME=i_elven_alchemy_table_n1
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (n)
+DUPEITEM=02DD3
+
+[ITEMDEF 0307A]
+DEFNAME=i_elven_alchemy_table_n2
+CATEGORY=Items by Professions (elf)
+SUBSECTION=alchemist
+DESCRIPTION=elven alchemy table (n)
+DUPEITEM=02DD3
+
+[ITEMDEF 02dd5]
+DEFNAME=i_elven_anviln
+NAME=elven anvil
+TYPE=T_ANVIL
+SKILLMAKE=BLACKSMITHING 30.0, TINKERING 56.0,t_tinker_tools
+RESOURCES=20 i_ingot_iron, 1 i_LOG
+FLIP=1
+WEIGHT=255
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Blacksmiths
+DESCRIPTION=Elven Anvil (N)
+DUPELIST=02dd6
+
+[ITEMDEF 02dd6]
+DEFNAME=i_elven_anvilw
+DUPEITEM=02dd5
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Blacksmiths
+DESCRIPTION=Elven Anvil (W)
+
+[ITEMDEF 02DD8]
+DEFNAME=i_elven_forge
+NAME=elven forge
+TYPE=T_FORGE
+RESOURCES=20 i_rock_plain, 30 i_KINDLING
+WEIGHT=500
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Blacksmiths
+DESCRIPTION=Elven Forge 
+
+[ITEMDEF 02DE3]
+DEFNAME=i_ornate_elven_chairw
+NAME=ornate elven chair
+TYPE=T_CHAIR
+FLIP=1
+RESOURCES=13 i_log
+SKILLMAKE=CARPENTRY 21.0, t_carpentry
+WEIGHT=3
+CATEGORY=Decoration - Furniture (elf)
+SUBSECTION=Chairs
+DESCRIPTION=Ornate Chair
+DUPELIST=02DE4,02DE5,02DE6
+
+[ITEMDEF 02DE4]
+DEFNAME=i_ornate_elven_chairn
+DUPEITEM=02DE3
+CATEGORY=Decoration - Furniture (elf)
+SUBSECTION=Chairs
+DESCRIPTION=Ornate Chair
+
+[ITEMDEF 02DE5]
+DEFNAME=i_ornate_elven_chaire
+DUPEITEM=02DE3
+CATEGORY=Decoration - Furniture (elf)
+SUBSECTION=Chairs
+DESCRIPTION=Ornate Chair
+
+[ITEMDEF 02DE6]
+DEFNAME=i_ornate_elven_chairs
+DUPEITEM=02DE3
+CATEGORY=Decoration - Furniture (elf)
+SUBSECTION=Chairs
+DESCRIPTION=Ornate Chair
+
+[ITEMDEF 02DD9]
+DEFNAME=i_eleven_spinning_wheeln
+NAME=elven spinning wheel
+TYPE=T_SPINWHEEL
+RESOURCES=20 i_BOARD, 1 i_ingot_iron
+SKILLMAKE=CARPENTRY 73.6, TAILORING 65.0, T_CARPENTRY
+WEIGHT=15
+DUPELIST=02DDA,02E3C,02E3D,02E3E,02EF
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (n)
+
+[ITEMDEF 02DDA]
+DEFNAME=i_eleven_spinning_wheelw
+DUPEITEM=02DD9
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (w)
+
+[ITEMDEF 02E3C]
+DEFNAME=i_eleven_spinning_wheelw1
+DUPEITEM=02DD9
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (w)
+
+[ITEMDEF 02E3D]
+DEFNAME=i_eleven_spinning_wheelw2
+DUPEITEM=02DD9
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (w)
+
+[ITEMDEF 02E3E]
+DEFNAME=i_eleven_spinning_wheeln1
+DUPEITEM=02DD9
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (w)
+
+[ITEMDEF 02E3F]
+DEFNAME=i_eleven_spinning_wheeln2
+DUPEITEM=02DD9
+
+CATEGORY=Items by Professions (elf)
+SUBSECTION=Tailor
+DESCRIPTION=Elven Spinning Wheel (w)
+
+[ITEMDEF 02DDB]
+DEFNAME=i_elven_stovew
+NAME=elven stove
+RESOURCES=20 i_ingot_iron, 300 i_rock_plain, 25 i_stone_marble
+TYPE=T_FIRE
+CATEGORY=Fireplaces, Chimneys & Ovens
+SUBSECTION=Elven
+DESCRIPTION=elven stove (w)
+DUPELIST=02DDC
+
+[ITEMDEF 02DDC]
+DEFNAME=i_elven_stoven
+DUPEITEM=02DDB
+CATEGORY=Fireplaces, Chimneys & Ovens
+SUBSECTION=Elven
+DESCRIPTION=elven stove (n)
+
+[ITEMDEF 02DDD]
+DEFNAME=i_elven_bookstandn
+NAME=elven bookstand
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven bookstand (n)
+DUPELIST=02DDE
+
+[ITEMDEF 02DDE]
+DEFNAME=i_elven_bookstandw
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven bookstand (w)
+DUPEITEM=02DDD
+
+[ITEMDEF 02DDF]
+DEFNAME=i_elven_loveseat_we
+NAME=elven loveseat
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven loveseat (we)
+DUPELIST=02DE0
+
+[ITEMDEF 02DE0]
+DEFNAME=i_elven_loveseat_we
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven loveseat (ns)
+DUPEITEM=02DDF
+
+[ITEMDEF 02DE1]
+DEFNAME=i_ornate_elven_table_we
+NAME=ornate elven table
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven table (we)
+DUPELIST=02DE2
+
+[ITEMDEF 02DE2]
+DEFNAME=i_ornate_elven_table_ns
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven table (ns)
+DUPEITEM=02DE1
+
+[ITEMDEF 02DE7]
+DEFNAME=i_fancy_elven_table_we
+NAME=fancy elven table
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=fancy elven table (we)
+DUPELIST=02DE8
+
+[ITEMDEF 02DE8]
+DEFNAME=i_fancy_elven_table_ns
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=fancy elven table (ns)
+DUPEITEM=02DE7
+
+[ITEMDEF 02DE9]
+DEFNAME=i_elven_storage_table_ns
+NAME=elven storage table
+TYPE=T_CONTAINER
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven storage table (ns)
+TDATA2=042
+DUPELIST=02DEA
+
+[ITEMDEF 02DEA]
+DEFNAME=i_elven_storage_table_we
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven storage table (we)
+DUPEITEM=02DE9
+
+[ITEMDEF 02DEB]
+DEFNAME=i_big_elven_chair_s
+NAME=big elven chair
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Big Elven Chair 
+DUPELIST=02DEC,02DED,02DEE
+
+[ITEMDEF 02DEC]
+DEFNAME=i_big_elven_chair_n
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Big Elven Chair 
+DUPEITEM=02DEB
+
+[ITEMDEF 02DED]
+DEFNAME=i_big_elven_chair_w
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Big Elven Chair 
+DUPEITEM=02DEB
+
+[ITEMDEF 02DEE]
+DEFNAME=i_big_elven_chair_e
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Big Elven Chair 
+DUPEITEM=02DEB
+
+[ITEMDEF 02DEF]
+DEFNAME=i_elven_bookshelf
+NAME=elven bookshelf
+TYPE=T_CONTAINER
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven bookshelf
+TDATA2=04d
+DUPELIST=02DF0
+
+[ITEMDEF 02DF0]
+DEFNAME=i_elven_bookshelf_w
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven bookshelf
+DUPEITEM=02DEF
+
+[ITEMDEF 02DF1]
+DEFNAME=i_ornate_elven_chest_w
+NAME=ornate elven chest
+TYPE=t_container
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven chest (w)
+TDATA2=042
+DUPELIST=02DF2
+
+[ITEMDEF 02DF2]
+DEFNAME=i_ornate_elven_chest_n
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven chest (n)
+DUPEITEM=02DF1
+
+[ITEMDEF 02DF3]
+DEFNAME=i_ornate_elven_chest_sm
+NAME=ornate elven chest
+TYPE=t_container
+FLIP=1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven chest (sm)
+TDATA2=042
+DUPELIST=02DF4
+
+[ITEMDEF 02DF4]
+DEFNAME=i_ornate_elven_chest
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=ornate elven chest (sm)
+DUPEITEM=02DF3
+
+[ITEMDEF 02DF5]
+DEFNAME=i_elven_reading_chair_w
+NAME=elven reading chair
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven reading chair
+DUPELIST=02DF6
+
+[ITEMDEF 02DF6]
+DEFNAME=i_elven_reading_chair_n
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=elven reading chair
+DUPEITEM=02DF5
+
+[ITEMDEF 0304C]
+DEFNAME=i_elven_bed
+NAME=elven bed
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPELIST=0304D,03050,03051,03052,03053,03054,03055,03056,03057,03058,03059
+
+[ITEMDEF 0304D]
+DEFNAME=i_elven_bed3
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03050]
+DEFNAME=i_elven_bed4
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03051]
+DEFNAME=i_elven_bed5
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03052]
+DEFNAME=i_elven_bed6
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03053]
+DEFNAME=i_elven_bed7
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03054]
+DEFNAME=i_elven_bed8
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03055]
+DEFNAME=i_elven_bed9
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03056]
+DEFNAME=i_elven_bed10
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03057]
+DEFNAME=i_elven_bed11
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03058]
+DEFNAME=i_elven_bed12
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03059]
+DEFNAME=i_elven_bed13
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Elven Bed
+DUPEITEM=0304C
+
+[ITEMDEF 03066]
+DEFNAME=i_display_case
+NAME=display case
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPELIST=03067,03068,03069,3036A,0306B
+
+[ITEMDEF 03067]
+DEFNAME=i_display_case1
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPEITEM=03066
+
+[ITEMDEF 03068]
+DEFNAME=i_display_case2
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPEITEM=03066
+
+[ITEMDEF 03069]
+DEFNAME=i_display_case3
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPEITEM=03066
+
+[ITEMDEF 0306A]
+DEFNAME=i_display_case4
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPEITEM=03066
+
+[ITEMDEF 0306B]
+DEFNAME=i_display_case5
+CATEGORY=New Items
+SUBSECTION=ML-Misc
+DESCRIPTION=Display Case
+DUPEITEM=03066

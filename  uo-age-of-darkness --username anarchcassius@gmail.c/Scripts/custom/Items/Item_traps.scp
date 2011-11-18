@@ -1,0 +1,426 @@
+[comment on this script...]
+made for Sphere.55R4.0.2 by Moe
+Edited for .56b by Anarch Cassius
+These are examples for traps, wich use my traps script.
+
+/////////////////////////////////////////////////////////////////////////
+
+[itemdef 0367a]
+DEFNAME=i_trapbox
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+[itemdef i_trap_explosion]
+id=i_trapbox
+weight=6
+resources=2 i_hinge, 1 i_springs, 2 i_potion_explosion, 4 i_ingot_iron
+skillmake=Tinkering 85.3
+type=t_trap_inactive
+name=explosion trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_explosion
+tag.flags=<eval (trap_selfdestruct|trap_reusable)>
+color=04eb
+
+[itemdef i_trap_explosion_armed]
+id=i_trapbox
+weight=6
+resources=2 i_hinge, 1 i_springs, 2 i_potion_explosion, 4 i_ingot_iron
+skillmake=Tinkering 85.3
+type=t_trap_inactive
+name=explosion trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_explosion
+tag.flags=<eval (trap_selfdestruct|trap_reusable)>
+color=04eb
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_explosion]
+serv.newitem i_fx_explosion_2
+new.p=<p>
+new.attr=012
+new.timer=2
+f_areadamage <eval {35 50}>,<eval 090>,2,<link.uid>
+sfx snd_spell_explosion
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+[itemdef i_trap_poisongas]
+id=i_trapbox
+weight=6
+resources=2 i_hinge, 1 i_wire_iron, 3 i_board, 2 i_potion_poison
+skillmake=Tinkering 72.3
+type=t_trap_inactive
+name=poison gas trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_poisongas
+tag.flags=<eval (trap_selfdestruct|trap_reusable)>
+color=04f8
+
+
+[itemdef i_trap_poisongas_armed]
+id=i_trapbox
+weight=6
+resources=2 i_hinge, 1 i_wire_iron, 3 i_board, 2 i_potion_poison
+skillmake=Tinkering 72.3
+type=t_trap_inactive
+name=poison gas trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_poisongas
+tag.flags=<eval (trap_selfdestruct|trap_reusable)>
+color=04f8
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_poisongas]
+serv.newitem i_trap_gas_3
+new.p=<p>
+new.z += 1
+new.attr=012
+new.timer=2
+forchars 2
+	New_Poison 2,<link.Uid>
+endfor
+sfx 554
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+[itemdef i_trap_spikes]
+id=i_trapbox
+weight=6
+resources=1 i_wire_iron, 3 i_ingot_iron, 3 i_springs
+skillmake=Tinkering 65.7
+type=t_trap_inactive
+name=spikes trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_spikes
+tag.flags=<eval (trap_reusable)>
+color=0967
+
+[itemdef i_trap_spikes_armed]
+id=i_trapbox
+weight=6
+resources=1 i_wire_iron, 3 i_ingot_iron, 3 i_springs
+skillmake=Tinkering 65.7
+type=t_trap_inactive
+name=spikes trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_spikes
+tag.flags=<eval (trap_reusable)>
+color=0967
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_spikes]
+serv.newitem { 0119b 1 11A1 1 }
+new.p=<p>
+new.attr=012
+new.timer=2
+f_areadamage <eval {15 25}>,<eval 0882>,,<link.uid>
+sfx 022e
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+[itemdef i_trap_sawblade]
+id=i_trapbox
+weight=6
+resources=2 i_wire_iron, 3 i_ingot_iron, 3 i_axel_and_gears, 2 i_springs
+skillmake=Tinkering 69.7
+type=t_trap_inactive
+name=sawblade trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_sawblade
+tag.flags=<eval (trap_reusable)>
+color=0967
+
+[itemdef i_trap_sawblade_armed]
+id=i_trapbox
+weight=6
+resources=2 i_wire_iron, 3 i_ingot_iron, 3 i_axel_and_gears, 2 i_springs
+skillmake=Tinkering 69.7
+type=t_trap_inactive
+name=sawblade trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_sawblade
+tag.flags=<eval (trap_reusable)>
+color=0967
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_sawblade]
+serv.newitem { 011ad 1 11b2 1 }
+new.p=<p>
+new.attr=012
+new.timer=2
+f_areadamage <eval {10 20}>,<eval 0482>,,<link.uid>
+SERV.NEWITEM i_bleed_timer
+NEW.LINK = <LINK.UID>
+SRC.EQUIP <NEW>
+sfx 022e
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+[itemdef i_trap_bolt]
+id=i_trapbox
+weight=6
+resources=2 i_wire_iron, 2 i_springs, 3 i_board, 5 i_xbolt
+skillmake=Tinkering 78.7
+type=t_trap_inactive
+name=bolt trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_bolt
+tag.ammo=i_xbolt
+tag.charges=5
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04de
+
+
+[itemdef i_trap_bolt_armed]
+id=i_trapbox
+weight=6
+resources=2 i_wire_iron, 2 i_spring, 3 i_board, 5 i_xbolt
+skillmake=Tinkering 78.7
+type=t_trap_inactive
+name=bolt trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_bolt
+tag.ammo=i_xbolt
+tag.charges=5
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04de
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_bolt]
+sfx 564
+src.f_areadamage <eval {16 22}>,0802,,<link.uid>
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+[itemdef i_trap_big_spike]
+id=i_trapbox
+weight=6
+resources=1 i_wire_iron, 4 i_ingot_iron, 4 i_springs
+skillmake=Tinkering 80.5
+type=t_trap_inactive
+name=big spike trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_big_spike
+tag.flags=<eval (trap_reusable)>
+color=0967
+
+[itemdef i_trap_big_spike_armed]
+id=i_trapbox
+weight=6
+resources=1 i_wire_iron, 4 i_ingot_iron, 4 i_springs
+skillmake=Tinkering 80.5
+type=t_trap_inactive
+name=big spike trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_scripted
+tag.effectScript=f_trap_big_spike
+tag.flags=<eval (trap_reusable)>
+color=0967
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+[function f_trap_big_spike]
+serv.newitem 01D99
+new.p=<p>
+new.attr=012
+new.timer=2
+f_areadamage <eval {28 36}>,<eval 0882>,,<link.uid>
+sfx 022e
+
+/////////////////////////////////////////////////////////////////////////
+
+
+[itemdef i_trap_spell_fire_field]
+id=0e62
+weight=6
+resources=4 i_ingot_silver, 1 i_scroll_fire_field
+skillmake=Tinkering 89.5
+type=t_trap_inactive
+name=fire field trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_fire_field
+tag.effect=580
+tag.ammo=i_scroll_fire_field
+tag.charges=1
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04eb
+
+[itemdef i_trap_spell_fire_field_armed]
+id=0e62
+weight=6
+resources=4 i_ingot_silver, 5 i_scroll_fire_field
+skillmake=Tinkering 89.5
+type=t_trap_inactive
+name=fire field trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_fire_field
+tag.effect=580
+tag.ammo=i_scroll_fire_field
+tag.charges=5
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04eb
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+[itemdef i_trap_spell_lightning]
+id=0e5c
+weight=6
+resources=4 i_ingot_silver, 1 i_scroll_lightning
+skillmake=Tinkering 89.5
+type=t_trap_inactive
+name=lightning trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_lightning
+tag.effect=580
+tag.ammo=i_scroll_lightning
+tag.charges=1
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04fe
+
+[itemdef i_trap_spell_lightning_armed]
+id=0e5c
+weight=6
+resources=4 i_ingot_silver, 5 i_scroll_lightning
+skillmake=Tinkering 89.5
+type=t_trap_inactive
+name=lightning trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_lightning
+tag.effect=580
+tag.ammo=i_scroll_lightning
+tag.charges=5
+tag.flags=<eval trap_persistent|trap_reusable>
+color=04fe
+tag.dungeontrap=1
+timer=1800
+f_trap_arm
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+[itemdef i_trap_spell_harm]
+id=0e5c
+weight=6
+resources=4 i_ingot_silver, 1 i_scroll_harm
+skillmake=Tinkering 45.5
+type=t_trap_inactive
+name=harm trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_harm
+tag.effect=400
+tag.ammo=i_scroll_harm
+tag.charges=1
+tag.flags=<eval trap_persistent|trap_reusable>
+color=0506
+
+[itemdef i_trap_spell_harm_armed]
+id=0e5c
+weight=6
+resources=4 i_ingot_silver, 5 i_scroll_harm
+skillmake=Tinkering 45.5
+type=t_trap_inactive
+name=harm trap
+
+on=@create
+events +t_script_trap
+tag.effectType=effect_spell
+tag.spell=s_harm
+tag.effect=400
+tag.ammo=i_scroll_harm
+tag.charges=5
+tag.flags=<eval trap_persistent|trap_reusable>
+tag.dungeontrap=1
+color=0506
+timer=1800
+f_trap_arm
+
+// paralyze, curse
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+
+[eof]
