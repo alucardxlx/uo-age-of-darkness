@@ -1,0 +1,120 @@
+// catch name on z coordinates
+// fixing the woodguy karma and elven npcs
+
+[CHARDEF c_mongbat_gold]
+ID=c_mongbat
+NAME=golden mongbat
+CAN=MT_WALK|MT_FLY|MT_RUN|MT_USEHANDS
+MOVERATE=100
+DAM=5,11
+ARMOR=15
+SOUND=snd_MONSTER_MNGBAT1
+ICON=i_pet_mongbat
+RESOURCES=3 i_ribs_raw, 6 i_hide, 2 i_reag_batwing //check normal mongbat hides
+FOODTYPE=9 t_meat_raw, t_fruit, t_food, t_booze
+AVERSIONS=r_civilization,c_h_healer,c_h_healer_f
+DESIRES=C_MONGBAT,c_mongbat_gold,t_corpse,i_gold,t_scroll,t_potion
+
+TAG.SLOTS=4
+tag.beastclass=beast_magic
+
+TEVENTS=//add carnivore event
+TSPEECH=spk_mongbat
+
+CATEGORY=Monsters
+SUBSECTION=Miscellaneous
+DESCRIPTION=Golden Mongbat
+
+ON=@Create
+	NPC=brain_animal
+	color=44
+
+	FAME={ 200 500 }
+	KARMA={ -1600 -2999 }
+
+	EXP={ 1600 5600 }
+
+	//ALIGNMENT=EVIL
+	OSTR={ 56 80 }
+	ODEX={ 61 80 }
+	OINT={ 46 70 }
+	MAXHITS=<ostr>
+	MAXSTAM=<odex>
+	MAXMANA=<oint>
+
+	givelang 2
+
+	tag.resfire=50
+	tag.poisonres=-25
+	
+	PARRYING={ 50.0 60.0 }
+	MAGICRESISTANCE={ 45.0 60.0 }
+	TACTICS={ 35.0 50.0 }
+	WRESTLING={ 20.0 35.0 }
+	MAGERY={ 40.0 65.0 }
+
+	TAMING=90.3
+
+ON=@NPCRestock
+	ITEM= { i_egg_mongbat_gold 1 0 2 },{ 1 2 }
+	ITEM= { random_LOWER_SCROLL 2 magic_pouch 1 0 1 }
+
+	ITEMNEWBIE=i_spellbook	// knows fire type spells.
+	ADDSPELL=s_magic_arrow
+	ADDSPELL=s_feeblemind
+	ADDSPELL=s_weaken
+	ADDSPELL=s_clumsy
+	ADDSPELL=s_fireball
+	ADDSPELL=s_poison
+	ADDSPELL=s_cure
+	ADDSPELL=s_heal
+
+ON=@NPCSeeNewPlayer
+//Won't attack evil characters.
+	IF (<src.karma> < -2000)
+		return 1
+	ENDIF
+	ATTACK
+
+
+
+//tip for drinks
+
+[SPEECH spk_mongbat]
+
+ON=*food*
+ON=*sushi*
+ON=*meat*
+ON=*vegetable*
+ON=*vegetables*
+	DORAND 2
+		SAY=We don't get much good food up here, give me some!
+		SAY=I like food.... got any?
+	ENDDO
+
+
+ON=banana
+	SAY=Ooh oh banana! 
+
+on=mongbat
+on=smart
+on=*talk*
+on=*talking*
+on=*speaks*
+on=*speaking*
+	DORAND 2
+		SAY=What! You've never seen a talking mongbat?
+		SAY=Of course I can talk! I'm smarter than the likes of you.
+	ENDDO
+
+
+on=*sake*
+on=*alcohol*
+on=*booze*
+on=*liquor*
+on=*wine*
+on=*ale*
+	DORAND 2
+		SAY=I do appreciate a stiff drink. Are you willing to share good sir?
+		SAY=Ooh ooh booze!
+	ENDDO

@@ -1,0 +1,1300 @@
+
+[defname stat_locks]
+lock_up 0
+lock_down 1
+lock_locked 2
+
+//// PC Only
+[EVENTS e_Level_up]
+
+on=@LogOut
+SRC.SYSMESSAGE Hi
+ARGN1=6000
+ARGN2=0
+IF (<SRC.TAG0.LOGOUT>)
+	ARGN1=<SRC.TAG.LOGOUT>
+ENDIF
+SRC.TAG.LOGOUT=0
+IF (<SRC.CURFOLLOWER> > 0)
+	FORCHARS 24
+		IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)  //add NOT summoned check
+			NEWITEM i_pet_logout_timer
+			trySRC <UID> NEW.EQUIP
+			NEW.TIMER <eval (<argn1>/10)-1>
+		ENDIF
+	ENDFOR
+ENDIF
+
+
+On=@Login
+LOCAL.SLOT=1
+LOCAL.FINDCHAR=1
+FORCHARS 24
+	IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)  //add NOT summoned check
+		IF <RESTEST i_pet_logout_timer>
+			CONSUME i_pet_logout_timer
+		ENDIF
+	ENDIF
+ENDFOR
+FORCONT <FINDLAYER.layer_bankbox>
+	IF (<TyPE>==t_figurine) && (<TAG0.LOGGED>==1) 
+		P = <SRC.P>
+		SRC.DCLICK <UID>
+	ENDIF
+ENDFOR	
+events +e_environmental
+events +e_general_mob
+f_statcheck
+f_LoginMessage
+IF !(<RESTEST 1 i_focus_timer>)
+	newitem i_focus_timer
+	new.equip 
+ELSE
+	consume 1 i_focus_timer
+	newitem i_focus_timer
+	new.equip 
+ENDIF
+RETURN
+
+ON=@ItemDropon_Item
+If <Act.Can>&0100
+	If <Act.Baseid>==<Argo.Baseid>
+		If <Argo.Cont.IsItem>
+			Argo.Cont.Trigger @DropOn_Self,<def.TAT_AS_ARGO>,<Act.Uid>
+		Endif
+	Endif
+Endif
+
+ON=@UserWarMode
+ ARGN2 = 1
+
+ON=@ItemSell
+IF (<ACT.TYPE> == t_container)
+ FORCONT <act.uid> 0	//Looking for ANY item in the container.
+  IF <IsItem>
+   SMSGL -1,500196	//You may not sell containers unless they are empty
+   RETURN 1		//Stop the sale.
+  ENDIF
+ ENDFOR
+ENDIF
+
+
+
+ON=@SPELLBOOK
+IF <SRC.TAG0.SPELLBOOK>
+	OBJ=<SRC.TAG.SPELLBOOK>
+	OBJ.USE
+ELSE
+	SRC.SYSMESSAGE Double click the desired spellbook to open it.
+ENDIF
+RETURN 1
+
+
+
+ON=@ContextMenuRequest
+IF (<ARGN> == 1)
+ARGN=2
+ELSE
+IF (<SRC> == <UID>)
+	SRC.AddContextEntry 300,6201
+	IF (!<TAG0.AUTORENEWINSURANCE>)
+		SRC.AddContextEntry 301,6200
+	ELSE
+	SRC.AddContextEntry 302,6202
+	ENDIF
+	SRC.AddContextEntry 450,1031
+ENDIF
+ENDIF
+
+ON=@ContextMenuSelect
+IF ((<ARGN> == 300) && !(<SRC.FLAGS>&STATF_DEAD))
+SRC.INSURE
+ELIF (<ARGN> == 301)
+SRC.SYSMESSAGELOC 023,1060881
+TAG.AUTORENEWINSURANCE=1
+ELIF (<ARGN> == 302)
+SRC.SYSMESSAGELOC 023,1061075
+SRC.TAG.AUTORENEWINSURANCE=
+ELIF (<ARGN> == 450)
+SRC.SYSMESSAGE Combat Manuevers and special abilities
+ENDIF
+
+
+ON=@StatChange
+IF (<TAG0.OVERRIDE.STATSUM>)
+LOCAL.STATSUM=<TAG0.OVERRIDE.STATSUM>
+ELSE
+LOCAL.STATSUM=<SERV.SKILLCLASS.0.STATSUM>
+ENDIF
+LOCAL.STATS=<EVAL <OSTR>+<ODEX>+<OINT>>
+IF (<LOCAL.STATS> == <LOCAL.STATSUM>)
+    IF (<STATLOCK[<ARGN1>]> == lock_locked)
+    RETURN 1
+    ENDIF
+    IF (<STATLOCK[<ARGN1>]> == lock_up)
+        FOR 0 2
+            IF (<LOCAL._FOR> != <ARGN1>)
+                IF (<STATLOCK[<dLOCAL._FOR>]> == lock_down)
+                    IF (<LOCAL._FOR> == 0)
+                        IF (<EVAL <OSTR>-1> > 0)
+                        OSTR -= 1
+                        RETURN 0
+                        ENDIF
+                    ELIF (<LOCAL._FOR> == 1)
+                        IF (<EVAL <OINT>-1> > 0)
+                        OINT -= 1
+                        RETURN 0
+                        ENDIF
+                    ELIF (<LOCAL._FOR> == 2)
+                        IF (<EVAL <ODEX>-1> > 0)
+                        ODEX -= 1
+                        RETURN 0
+                        ENDIF
+                    ENDIF
+                RETURN 1
+                ENDIF
+            ENDIF
+        ENDFOR    
+    RETURN 1
+    ENDIF
+ENDIF
+
+
+ON=@itemdclick
+if (<act.link>==<src.uid>)&&(<act.type>==t_corpse)
+  local.cycle=0
+  ref1=<act.findcont.<local.cycle>.uid>
+  for 0 <act.rescount>
+	if !(<ref1.attr> & attr_move_never)
+	    ref1.bounce
+	    //ref1.cont = <src.findlayer.21.uid>
+	    If (<ref1.tag0.contp>)
+	      ref1.contp=<ref1.tag0.contp>
+	      ref1.tag.contp=
+	    endif
+	else
+		local.cycle += 1
+	endif
+ 	ref1=<act.findcont.<local.cycle>.uid>
+  endfor
+  src.sysmessage You take back all your belongings.
+  src.findlayer.21.open
+endif
+
+
+ON=@USERVIRTUE
+dialog d_virtue_main
+return
+
+ON=@ITEMBUY
+IF (<ACT.TYPE> == T_FIGURINE)
+  if (<serv.chardef(<ACT.TDATA3>).TAG0.slots_needed>)
+    local.slots = <serv.chardef(<ACT.TDATA3>).tag.slots_needed>
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+(<local.slots>*<ARGN>)) > <SRC.MAXFOLLOWER>)
+	SRC.SYSMESSAGE You have too many followers.
+	SRC.NEWGOLD=<LOCAL.TOTALCOST>
+	RETURN 1
+ENDIF
+  SRC.CURFOLLOWER += (<local.slots>*<ARGN>)
+ENDIF
+return 
+
+on=@death
+Forcont <findlayer.21.uid> 0
+  tag.contp=<contp>
+endfor
+
+ON=@DeathCorpse
+LOCAL.EXPLOSS=4
+FOR <LEVEL>
+	LOCAL.EXPLOSS = (<LOCAL.EXPLOSS>*2)
+ENDFOR
+EXP -= <LOCAL.EXPLOSS>
+sysmessage You have lost <expeval <LOCAL.EXPLOSS>> experience.
+IF <ATTACKER> > 0
+	FOR x 0 <EVAL <ATTACKER>-1>
+		local.exp = ((rand(<EXP>/75) + rand(<EXP>/75)) / <ATTACKER>)
+		if (<local.exp> > 0) && !(<ATTACKER.<LOCAL.X>.uid>==<uid>)
+			uid.<ATTACKER.<LOCAL.X>.uid>.Trigger @ExpChange,<def.TAT_AS_ARGN>,<eval <local.exp>>,1,1
+		endif
+	ENDFOR
+ENDIF
+
+LOCAL.INSUREGOLDGIVE=0
+FORCONT <ARGO.UID> 9999
+IF (<ISEVENT.T_ITEM_INSURED>)
+EVENTS -T_ITEM_INSURED
+CONT=<SRC.FINDLAYER.21>
+IF (<SRC.TAG0.AUTORENEWINSURANCE>)
+SRC.TARGET_INSURE <UID>
+ENDIF
+LOCAL.INSUREGOLDGIVE += <EVAL ((<UID.VALUE>+<UID.TAG0.MODVALUE>)*<UID.AMOUNT>)/3>
+ENDIF
+ENDFOR
+REF22=<SRC.ATTACKER.LAST>
+IF (<REF22.FLAGS>&STATF_PET)
+REF22=<REF22.MEMORYFINDTYPE.memory_ipet.LINK>
+ENDIF
+IF ((<REF22.ISPLAYER>) && (<REF22> != <SRC>))
+IF (<LOCAL.INSUREGOLDGIVE>)
+REF22.GETCHANGE <LOCAL.INSUREGOLDGIVE> <SRC.ACT.FINDLAYER.29>
+REF22.SYSMESSAGE @04ac,3,1 You received <EVAL <LOCAL.INSUREGOLDGIVE>>c for insured items from <SRC.NAME>. The money was sent to your bank box.
+ENDIF
+ENDIF
+
+
+
+//// NPC Only
+[EVENTS e_Level_up_NPC]
+
+ON=@Destroy
+  if !(<ISEMPTY <TAG0.slots_needed>>)
+    local.slots = (<TAG0.slots_needed>)
+  else
+    local.slots = 1
+  endif
+  OBJ=<MEMORYFINDTYPE.MEMORY_IPET.link.uid>
+  OBJ.CURFOLLOWER -= <local.slots>
+
+
+ON=@Death
+  if !(<ISEMPTY <src.TAG0.slots_needed>>)
+    local.slots = (<src.TAG0.slots_needed>)
+  else
+    local.slots = 1
+  endif
+  OBJ=<SRC.MEMORYFINDTYPE.MEMORY_IPET.link.uid>
+  OBJ.CURFOLLOWER -= <local.slots>
+IF !(<TAG0.BOND> == 0)
+	    obj=<uid>
+	    obj.newnpc <obj.ID>
+	    var.newobj=<obj.act.uid>
+	    obj.act.ClearTags
+	    obj.act.f_empty 29
+	    obj.act.f_empty_memory_items
+            obj.act.brain=<obj.brain>
+            obj.f_dupeother
+	    obj.f_dupeskills
+	    if <obj.tagcount>
+		  obj.f_dupetags <eval (<obj.tagcount>-1)>
+	    endif
+	    obj.f_fill_memory_items
+	    obj=<var.newobj>
+	    obj.spelleffect s_shrink,1000
+          FORITEMS 10 //There is no built in refrence to shrunken pets, so find the darn thing
+	               IF (<TYPE>==t_figurine) && (<MORE2> == <OBJ>)
+	                   OBJ = <UID>
+	               ENDIF
+          ENDFOR
+	    obj.color=076c
+	    obj.tag.dead=1
+	    trysrc <tag.bond> obj.bounce
+ENDIF
+
+
+ON=@DeathCorpse
+IF <ATTACKER> > 0
+	FOR x 0 <EVAL <ATTACKER>-1>
+		local.exp = ((rand(<EXP>/30) + rand(<EXP>/30)) / <ATTACKER>)
+		if (<local.exp> > 0) && !(<ATTACKER.<LOCAL.X>.uid>==<uid>)
+			uid.<ATTACKER.<LOCAL.X>.uid>.Trigger @ExpChange,<def.TAT_AS_ARGN>,<eval <local.exp>>,1,1
+		endif
+	ENDFOR
+ENDIF
+IF (<BRAIN>==brain_Undead)
+	ARGO.TAG.UNDEAD=1
+ENDIF
+
+on=@PetDesert
+  if !(<ISEMPTY <TAG0.slots_needed>>)
+    local.slots = (<TAG0.slots_needed>)
+  else
+    local.slots = 1
+  endif
+  SRC.CURFOLLOWER -= <local.slots>
+    TAG0.BOND=
+return
+
+
+ON=@ContextMenuSelect
+OBJ=<SRC.UID>
+IF ((<ARGN> == 31))
+	GETMARKUP
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
+	SDIALOG D_BUY
+	FACE
+	RETURN 1
+ENDIF
+IF ((<ARGN> == 32) && (<src.tag.lang> != <tag.lang>))
+	GETMARKUP
+	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
+		RESTOCK 1
+	ENDIF
+	SDIALOG D_SELL
+	FACE
+	RETURN 1
+ENDIF
+
+ON=@Environchange
+f_statcheck
+events +e_general_mob
+
+
+
+//// All mobs
+[EVENTS e_general_mob]
+
+on=@ItemEquipTest
+IF <act.TAG0.Item.Gargoyle>
+	IF (<BODY> != c_gargoyle_male) && (<BODY> != c_garg_ghost_man)
+		RETURN 1
+	ENDIF
+ELSE
+	IF (<BODY> == c_gargoyle_male) || (<BODY> == c_garg_ghost_man)
+		RETURN 1
+	ENDIF
+ENDIF
+
+on=@callguards
+FORCHARS 64
+	IF (<NPC>==brain_guard)
+		P = <REF1.P>
+		ATTACK <REF1>
+		UPDATE
+		RETURN 1
+	ENDIF
+ENDFOR
+return 1
+
+ON=@MOUNT
+IF <ARGO.HITS> < <ARGO.MAXHITS>
+	SYSMESSAGE You cannot ride a damaged creature.
+	RETURN 1
+ENDIF
+
+
+ON=@HUNGER
+f_statcheck
+IF (<SRC.npc> == brain_vendor) || (<SRC.npc> == brain_banker) || (<SRC.npc> == brain_healer)
+		RETURN 1
+endif
+IF (<SRC.FOOD> < (<SRC.MAXFOOD>/10))
+	SRC.HITS -= (<SRC.MAXHITS>/3)
+	IF (<SRC.HITS> < 0)
+		SRC.HITS=0
+	ENDIF
+	SRC.STAM -= (<SRC.MAXSTAM>/3)
+	IF (<SRC.STAM> < 0)
+		SRC.STAM=0
+	ENDIF
+	SRC.MANA -= (<SRC.MAXMANA>/3)
+	IF (<SRC.MANA> < 0)
+		SRC.MANA=0
+	ENDIF
+	SRC.EMOTE weaken from starvation
+	RETURN 0
+ENDIF
+
+on=@GAIN
+f_statcheck
+return
+
+on=@EXPCHANGE
+EXP += <argn1>
+IF (<argn2>) && (<argn1>)
+	sysmessage You have gained <expeval <argn1>> experience.
+ENDIF
+
+on=@EXPLEVELCHANGE
+return 1
+
+on=@SKILLGAIN
+f_statcheck
+if (<ARGN2>==0)
+ARGN2=1000
+endif
+return
+
+
+ON=@HitTry
+FACE <SRC>
+Tag.Hittry=<Serv.Time>
+
+Argn1 = <CombatSys_HitSpeed>
+ActDiff = <CombatSys_HitChance>
+
+
+ON=@Hit
+FACE <SRC>
+Tag.Hit=<Serv.Time>
+ACTDIFF=0
+
+IF !<Weapon>
+ Skillgain Wrestling <Src.CombatSys_UsedSkill>
+ELIF <Weapon.tag0.mageweapon>
+ Skillgain <BestWeaponSkill 1> <Src.CombatSys_UsedSkill>
+ELIF <Weapon.tag0.UseBestWeaponSkill>
+ Skillgain <BestWeaponSkill> <Src.CombatSys_UsedSkill>
+ELSE
+ Skillgain <Weapon.Skill> <Src.CombatSys_UsedSkill>
+ENDIF
+Skillgain Tactics <Src.Tactics>+<Src.SkillMod Tactics>
+
+Argn1 = <CombatSys_DamageBonus>
+Argn1 += <CombatSys_AOS_Velocity>
+Argn1 += <f_combat_manuever_hit <Argn1>>
+IF <TAG0.Consecrate>
+	Argn2 = <f_Consecrate_weapon_check <Argn2>>
+Endif
+
+Local.FireDam = <CombatSys_FireDamageBonus>
+Local.ColdDam = <CombatSys_ColdDamageBonus>
+Local.PoisonDam = <CombatSys_PoisonDamageBonus>
+Local.EnergyDam = <CombatSys_EnergyDamageBonus>
+
+IF Rand(101) < <Weapon.Tag0.ChaosDamage>
+	Local.ChaosDam=<Argn1>
+	Argn1=0
+	DORAND 5
+		Argn1=<eval <Local.ChaosDam>>
+		Local.FireDam += <eval <Local.ChaosDam>>
+		Local.ColdDam += <eval <Local.ChaosDam>>
+		Local.PoisonDam += <eval <Local.ChaosDam>>
+		Local.EnergyDam += <eval <Local.ChaosDam>>
+	ENDDO
+ENDIF
+
+IF (<TAG0.BypassArmor>)
+TAG.BypassArmor=
+ELSE
+	
+//BlockChance
+IF (<CombatSys_BlockChance>)
+	CombatSys_Block 
+	Local.ShieldBlock=<QVAL <Src.Findlayer.2.Armor> ? <MulDiv <Src.Findlayer.2.Armor.High>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+	Local.ShieldBlock= <Eval ((Rand(<Local.ShieldBlock>))+(Rand(<Local.ShieldBlock>)))/2>
+	Argn1=<CombatSys_Max <Eval <Argn1> +- <Local.ShieldBlock>>, 0>
+	IF (<Local.FireDam> > 0)
+		Local.ShieldFireRes=<QVAL <Src.Findlayer.2.Tag0.FireRes> ? <MulDiv <Src.Findlayer.2.Tag0.FireRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.FireDam=<CombatSys_Max <Eval <Local.FireDam> +- <Local.ShieldFireRes>>, 0>
+	ENDIF
+	IF (<Local.ColdDam> > 0)
+		Local.ShieldColdRes=<QVAL <Src.Findlayer.2.Tag0.ColdRes> ? <MulDiv <Src.Findlayer.2.Tag0.ColdRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.ColdDam=<CombatSys_Max <Eval <Local.ColdDam> +- <Local.ShieldColdRes>>, 0>
+	ENDIF
+	IF (<Local.PoisonDam> > 0)
+		Local.ShieldPoisonRes=<QVAL <Src.Findlayer.2.Tag0.PoisonRes> ? <MulDiv <Src.Findlayer.2.Tag0.PoisonRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.PoisonDam=<CombatSys_Max <Eval <Local.PoisonDam> +- <Local.ShieldPoisonRes>>, 0>
+	ENDIF
+	IF (<Local.EnergyDam> > 0)
+		Local.ShieldEnergyRes=<QVAL <Src.Findlayer.2.Tag0.EnergyRes> ? <MulDiv <Src.Findlayer.2.Tag0.EnergyRes>,<MulDiv <Src.Findlayer.2.hits>,100,<Src.Findlayer.2.maxhits>>,100> : 0>
+		Local.EnergyDam=<CombatSys_Max <Eval <Local.EnergyDam> +- <Local.ShieldEnergyRes>>, 0>
+	ENDIF
+ENDIF
+IF (<CombatSys_BlockChance_Weapon>)
+	CombatSys_Block_Weapon
+	Local.WeaponBlock=<Qval <Src.Weapon> ? <eval {<Src.Weapon.GetDam>}> : <Eval {<serv.chardef.<src.id>.dam>}>>
+	Local.WeaponBlock=<Eval ((Rand(<Local.WeaponBlock>))+(Rand(<Local.WeaponBlock>)))/2>
+	Argn1=<CombatSys_Max <Eval <Argn1> +- <Local.WeaponBlock>>, 0>
+ENDIF
+
+
+Local.Location=<eval <Src.f_Get_Hit_Location>>
+Local.Armor = <Src.CombatSys_PhysicalResist <Local.Location>>
+Argn1 = <eval <Argn1>-<Local.Armor>>
+Argn1 = <CombatSys_Max <Argn1>,0>
+
+
+IF (<TAG0.PierceArmor>)
+Src.Damage_Loc_<eval <Local.Location>>
+Src.Damage_Loc_<eval <Local.Location>>
+Src.Damage_Loc_<eval <Local.Location>>
+TAG.PierceArmor=
+ENDIF
+
+ENDIF //End armor bypass block
+
+IF (<Local.FireDam> > 0)
+	Local.FireRes = <Src.CombatSys_FireResist <Local.Location>>
+	Local.FireDam = <eval <Local.FireDam>-<Local.FireRes>>
+	Local.FireDam = <CombatSys_Max <Local.FireDam>,0>
+ENDIF
+IF (<Local.ColdDam> > 0)
+	Local.ColdRes = <Src.CombatSys_ColdResist <Local.Location>>
+	Local.ColdDam = <eval <Local.ColdDam>-<Local.ColdRes>>
+	Local.ColdDam = <CombatSys_Max <Local.ColdDam>,0>
+ENDIF
+IF (<Local.PoisonDam> > 0)
+	Local.PoisonRes = <Src.CombatSys_PoisonResist <Local.Location>>
+	Local.PoisonDam = <eval <Local.PoisonDam>-<Local.PoisonRes>>
+	Local.PoisonDam = <CombatSys_Max <Local.PoisonDam>,0>
+ENDIF
+IF (<Local.EnergyDam> > 0)
+	Local.EnergyRes = <Src.CombatSys_EnergyResist <Local.Location>>
+	Local.EnergyDam = <eval <Local.EnergyDam>-<Local.EnergyRes>>
+	Local.EnergyDam = <CombatSys_Max <Local.EnergyDam>,0>
+ENDIF
+
+Weapon.Hits -= <QVAL <r15> ? 0 : 1>
+Weapon.Update
+Src.Damage_Loc_<eval <Local.Location>>
+
+Local.Dam=<eval <Argn1> + <Local.FireDam> + <Local.ColdDam> + <Local.PoisonDam> + <Local.EnergyDam>>
+ARGN2 = <ARGN2> | 01 //god
+Src.Damage <Local.Dam> <Argn2> <Uid>
+
+CombatSys_AOS_WeaponSpells
+CombatSys_AOS_WeaponLeech <Local.Dam>
+CombatSys_AOS_WepAttkDefMod
+CombatSys_AOS_AreaDamage
+CombatSys_AOS_PhysicalReflect <Argn1>,<Src.Uid>
+
+//damage
+If <Poisoning> && ((<NPC>==brain_animal) || (<NPC>==brain_monster))
+	Tag.Poisoning=<Poisoning>
+	Poisoning = 0
+Endif
+Src.Tag.Hit.Prevent = 1
+
+
+ON=@GetHit
+ACTDIFF=0
+If (<FLAGS>&statf_freeze) && !(<argn2>&dam_nounparalyze)
+     FLAGS = <FLAGS> ^ 04 //unparalyzed
+Endif
+If <Tag0.Hit.Prevent>
+	Tag.Hit.Prevent=
+	If <Src.Tag0.Poisoning>
+		Src.Poisoning=<Src.Tag0.Poisoning>
+	Endif
+	Return 1
+Endif
+If !(<argn2>&dam_god)
+	If (<argn2>&dam_general)
+		Local.Location=0
+	ELSE
+		Local.Location=<eval <Src.f_Get_Hit_Location>>
+	ENDIF
+	IF (<argn2>&dam_fire)
+		Local.FireRes = <CombatSys_FireResist <Local.Location>>
+		Argn1 = <eval <Argn1>-<Local.FireRes>>
+		Argn1 = <CombatSys_Max <Argn1>,0>
+	ELIF (<argn2>&dam_cold_new) || (<argn2>&dam_cold_old)
+		Local.ColdRes = <CombatSys_ColdResist <Local.Location>>
+		Argn1 = <eval <Argn1>-<Local.ColdRes>>
+		Argn1 = <CombatSys_Max <Argn1>,0>
+	ELIF (<argn2>&dam_poison)
+		Local.PoisonRes = <CombatSys_PoisonResist <Local.Location>>
+		Argn1 = <eval <Argn1>-<Local.PoisonRes>>
+		Argn1 = <CombatSys_Max <Argn1>,0>
+	ELIF (<argn2>&dam_lightning) || (<argn2>&dam_energy)
+		Local.EnergyRes = <CombatSys_EnergyResist <Local.Location>>
+		Argn1 = <eval <Argn1>-<Local.EnergyRes>>
+		Argn1 = <CombatSys_Max <Argn1>,0>
+	ELSE
+		Local.Armor = <CombatSys_PhysicalResist <Local.Location>>
+		Argn1 = <eval <Argn1>-<Local.Armor>>
+		Argn1 = <CombatSys_Max <Argn1>,0>
+	ENDIF
+	ARGN2=01
+	Damage_Loc_<eval <Local.Location>>
+	return
+ENDIF
+if <isevent.e_evil_omen>
+	Argn1 += <Argn1>
+	events -e_evil_omen
+endif
+
+
+ON=@HitMiss
+FACE <SRC>
+If ((<Weapon.Type>==t_weapon_bow) || (<Weapon.Type>==t_weapon_xbow)) && !<r3>
+	NEWITEM <QVAL <Weapon.TAG0.OVERRIDE.AMMOTYPE> ? <Weapon.TAG.OVERRIDE.AMMOTYPE> : <Weapon.tdata3>>
+	NEW.MOVENEAR <src>,<r3>
+	NEW.TIMER=<Serv.DecayTimer>
+	IF !(<new.CanSeeLOS>)
+		NEW.REMOVE
+	ENDIF
+	NEW.UPDATE
+ENDIF
+
+
+
+
+ON=@Block
+//Fires when you have blocked an attack.
+//Default = Shield Holder
+//Argo = Attacker
+Skillgain Parrying <Argo.CombatSys_UsedSkill>
+
+
+ON=@SpellCast 
+	IF (<SRC.TAG0.QUICKCAST>)
+		ARGN3 -= <EVAL (<ARGN3>*<SRC.TAG0.QUICKCAST>)/100> 
+	ENDIF
+
+ON=@SPELLEFFECT
+f_statcheck
+if (<ARGN> == 40) && !(<src.npc> == 0)
+	obj = <uid>
+	if !(<ISEMPTY <obj.TAG0.slots_needed>>)
+		local.slots = <obj.TAG0.slots_needed>
+	else
+		local.slots = 1
+	endif
+	IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>)
+		SRC.SYSMESSAGE You have too many followers.
+		HITS=0
+	ENDIF
+	SRC.CURFOLLOWER += <local.slots>
+endif
+IF (<ARGO.TYPE>==t_potion)
+	ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.ENHANCEPOT>)/100>
+ELSE
+	IF !(<ARGO.TYPE>==t_scroll) && !(<ARGO.TYPE>==t_wand)
+		IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
+			SKILLGAIN EVALUATINGINTEL <ARGN2>
+			ARGN2 += <EVAL ((<SRC.EVALUATINGINTEL>+<SRC.SKILLMOD EVALUATINGINTEL>)/5)>
+		ENDIF
+		IF (<SRC.TAG0.MAGICPOW>)
+			ARGN2 += <EVAL (<ARGN2>*<SRC.TAG0.MAGICPOW>>)/100>
+		ENDIF
+	ENDIF
+ENDIF
+IF (<SERV.SPELL(<ARGN1>).FLAGS> & SPELLFLAG_HARM)
+	SKILLGAIN MAGICRESISTANCE <ARGN2>
+	ARGN2 -= <Eval Rand(((<I.EVALUATINGINTEL>+<I.SKILLMOD EVALUATINGINTEL>)/5) + Rand(<I.MAGICRESISTANCE>+<I.skillmod MAGICRESISTANCE>)) >
+	IF (<ARGN2> < 1)
+		I.EMOTE resist the spell completely
+		RETURN 1
+	ENDIF
+ENDIF
+
+ON=@SpellSelect
+	IF (strmatch(*MAGERY*,<SERV.SPELL(<ARGN1>).SKILLREQ>))
+		IF (<SRC.FINDLAYER.1>)
+			IF !(<SRC.FINDLAYER.1.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.1.TAG0.SPELLCHANNEL>)
+				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
+				SRC.FINDLAYER.1.BOUNCE
+			ENDIF
+		ENDIF
+		IF (<SRC.FINDLAYER.2>)
+			IF !(<SRC.FINDLAYER.2.TYPE>==T_SPELLBOOK) && !(<SRC.FINDLAYER.2.TAG0.SPELLCHANNEL>)
+				SRC.SYSMESSAGE You cannot cast when holding things other than spellbooks and spell channeling items.
+				SRC.FINDLAYER.2.BOUNCE
+			ENDIF
+		ENDIF
+	ENDIF
+	IF !(<ARGN3>==2)
+		IF (<SRC.TAG0.REDUCEMANA>)
+			ARGN2 -= <EVAL (<ARGN2>*<SRC.TAG0.REDUCEMANA>)/100>  
+		ENDIF
+	ELSE
+		IF (<ARGO>==<uid>)
+			IF ((<R100>+1) > <SRC.TAG0.LRC>)
+			  SRC.CONSUME <SERV.SPELL.<ARGN1>.RESOURCES>
+			  SRC.MANA -= <ARGN2>
+			  RETURN 6
+			ELSE
+			  SRC.MANA -= <ARGN2>
+			  RETURN 6				
+			ENDIF
+		ENDIF
+	ENDIF
+	IF (<ARGO>==<uid>)
+		if  (<src.flags> & statf_freeze)
+		   src.sysmessage You can't cast spells while paralyzed.
+		   return 1
+		endif
+		SRC.TAG.CASTING=<SERV.SPELL(<ARGN1>).defname>
+		IF (<SRC.INBOOK>) || (<SRC.ISGM>)
+			ARGN1=1
+		ELSE
+			SRC.SYSMESSAGE The spell is not in your spellbook.
+			RETURN 1
+		ENDIF
+	ENDIF
+
+
+
+
+//// Functions
+
+[FUNCTION expeval]
+local.expmsg= a little
+IF ( <ARGV[0]> > 384)
+local.expmsg= a lot of
+ELSEIF ( <ARGV[0]> > 192)
+local.expmsg = a good amount of 
+ELSEIF ( <ARGV[0]> > 96)
+local.expmsg = some 
+ENDIF
+RETURN <local.expmsg>
+
+
+
+
+[FUNCTION f_statcheck]
+
+IF (<SRC.CURFOLLOWER> > <SRC.MAXFOLLOWER>)
+SRC.CURFOLLOWER=0
+ENDIF
+
+LOCAL.LEVELUP=0
+IF (<TAG0.NEXTLEVEL>==0)
+	TAG.NEXTLEVEL=500
+	LEVEL=0
+	LOCAL.LEVELUP=1
+ENDIF
+IF (<EXP> >= (<TAG0.NEXTLEVEL>)
+	WHILE (<EXP> >= (<TAG0.NEXTLEVEL>)
+		LEVEL = <LEVEL>+1
+		sysmessage You have gained a level.
+		TAG.NEXTLEVEL=<eval <TAG.NEXTLEVEL>*2>
+		LOCAL.LEVELUP=1
+	ENDWHILE
+ENDIF
+
+IF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Magic") 
+	SRC.TAG0.OVERRIDE.SKILLSUM=6000+(<SRC.LEVEL>*200))
+	SRC.TAG.OVERRIDE.STATSUM=350+(<SRC.LEVEL>*15))
+	SRC.TAG.OVERRIDE.STATCAP_0=175+(<SRC.LEVEL>*10))
+	SRC.TAG.OVERRIDE.STATCAP_1=200+(<SRC.LEVEL>*15))
+	SRC.TAG.OVERRIDE.STATCAP_2=100+(<SRC.LEVEL>*5))
+ELSEIF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Heavy")
+	SRC.TAG0.OVERRIDE.SKILLSUM=6000+(<SRC.LEVEL>*200))
+	SRC.TAG.OVERRIDE.STATSUM=350+(<SRC.LEVEL>*15))
+	SRC.TAG.OVERRIDE.STATCAP_0=250+(<SRC.LEVEL>*15))
+	SRC.TAG.OVERRIDE.STATCAP_1=75+(<SRC.LEVEL>*5))
+	SRC.TAG.OVERRIDE.STATCAP_2=150+(<SRC.LEVEL>*10))
+ELSEIF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Quick")
+	SRC.TAG0.OVERRIDE.SKILLSUM=6000+(<SRC.LEVEL>*200))
+	SRC.TAG.OVERRIDE.STATSUM=350+(<SRC.LEVEL>*15))
+	SRC.TAG.OVERRIDE.STATCAP_0=175+(<SRC.LEVEL>*10))
+	SRC.TAG.OVERRIDE.STATCAP_1=75+(<SRC.LEVEL>*5))
+	SRC.TAG.OVERRIDE.STATCAP_2=225+(<SRC.LEVEL>*15))
+ELSE
+	SRC.TAG0.OVERRIDE.STATCAP_0=(<SRC.SKILLCLASS.STR>+(<SRC.tag0.feat.strcap>*2))
+	SRC.TAG0.OVERRIDE.STATCAP_1=(<SRC.SKILLCLASS.INT>+(<SRC.tag0.feat.intcap>*2))
+	SRC.TAG0.OVERRIDE.STATCAP_2=(<SRC.SKILLCLASS.DEX>+(<SRC.tag0.feat.dexcap>*2))
+	SRC.TAG0.OVERRIDE.STATSUM = (<SRC.SKILLCLASS.STATSUM>+(<SRC.tag0.feat.statcap>*3))
+	SRC.TAG0.OVERRIDE.SKILLSUM = (<SRC.SKILLCLASS.SKILLSUM>+(<SRC.tag0.feat.skillcap>*100))
+	If (<SRC.BODY> == c_man) // most males are stronger and tougher
+		SRC.TAG0.OVERRIDE.STATCAP_0 += 4
+	ElseIf (<SRC.BODY> == c_woman) // most females are more agile and enduring
+		SRC.TAG0.OVERRIDE.STATCAP_2 += 4
+	ENDIF
+	IF STRMATCH("<SRC.TAG0.RACE>","Elf") 
+		SRC.TAG0.OVERRIDE.STATCAP_0 -= 10
+		SRC.TAG0.OVERRIDE.STATCAP_2 += 14
+	ELSEIF STRMATCH("<SRC.TAG0.RACE>","Orc") 
+		SRC.TAG0.OVERRIDE.STATCAP_0 += 14
+		SRC.TAG0.OVERRIDE.STATCAP_1 -= 10
+	ENDIF
+ENDIF
+IF !(<ISEMPTY <SRC.TAG.BEASTCLASS>>)
+	IF (<SRC.OSTR> > <SRC.TAG.OVERRIDE.STATCAP_0>)
+		SRC.OSTR = <SRC.TAG.OVERRIDE.STATCAP_0>
+	ENDIF
+	IF (<SRC.OINT> > <SRC.TAG.OVERRIDE.STATCAP_1>)
+		SRC.OINT = <SRC.TAG.OVERRIDE.STATCAP_1>
+	ENDIF
+	IF (<SRC.ODEX> > <SRC.TAG.OVERRIDE.STATCAP_2>)
+		SRC.ODEX = <SRC.TAG.OVERRIDE.STATCAP_2>
+	ENDIF
+	IF ((<SRC.ODEX>+<SRC.OSTR>+<SRC.OINT>) > <SRC.TAG0.OVERRIDE.STATSUM>)
+		WHILE ((<SRC.ODEX>+<SRC.OSTR>+<SRC.OINT>) > <SRC.TAG0.OVERRIDE.STATSUM>)
+			DORAND 3
+				SRC.OSTR -= 1
+				SRC.OINT -= 1
+				SRC.ODEX -= 1
+			ENDDO
+		ENDWHILE
+	ENDIF
+ENDIF
+
+//Calibrate base stats
+LOCAL.MAXSTAM=(<SRC.DEX>)
+LOCAL.MAXHITS=(<SRC.STR>)
+LOCAL.MAXMANA=(<SRC.INT>)
+SRC.MODMAXWEIGHT=(<SRC.tag0.feat.modmaxweight>*10)
+
+//Adjust for class/level
+IF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Heavy")
+LOCAL.MAXHITS += (<SRC.LEVEL>*8)
+ELSEIF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Quick")
+LOCAL.MAXHITS += (<SRC.LEVEL>*6)
+LOCAL.MAXSTAM += (<SRC.LEVEL>*2)
+ELSEIF STRMATCH("<SRC.TAG0.BEASTCLASS>","Beast_Magic")
+LOCAL.MAXHITS += (<SRC.LEVEL>*4)
+LOCAL.MAXMANA += (<SRC.LEVEL>*4)
+ELSEIF <SRC.SKILLCLASS>==Class_Druid
+LOCAL.MAXSTAM += (<SRC.LEVEL>*2)
+LOCAL.MAXMANA += (<SRC.LEVEL>*4)
+ELSEIF (<SRC.SKILLCLASS>==Class_Tinker) || (<SRC.SKILLCLASS>==Class_Artisan) 
+LOCAL.MAXHITS += (<SRC.LEVEL>*2)
+LOCAL.MAXSTAM += (<SRC.LEVEL>*4)
+ELSEIF (<SRC.SKILLCLASS>==Class_Laborer) 
+LOCAL.MAXHITS += (<SRC.LEVEL>*4)
+LOCAL.MAXSTAM += (<SRC.LEVEL>*2)
+ELSEIF (<SRC.SKILLCLASS>==Class_Paladin)
+LOCAL.MAXHITS += (<SRC.LEVEL>*4)
+LOCAL.MAXMANA += (<SRC.LEVEL>*2)
+ELSEIF (<SRC.SKILLCLASS>==Class_Shaman)
+LOCAL.MAXHITS += (<SRC.LEVEL>*2)
+LOCAL.MAXMANA += (<SRC.LEVEL>*4)
+ELSEIF (<SRC.SKILLCLASS>==Class_Ranger) || (<SRC.SKILLCLASS>==Class_Shepherd)  ||  (<SRC.SKILLCLASS>==Class_Hunter)
+LOCAL.MAXHITS += (<SRC.LEVEL>*2)
+LOCAL.MAXSTAM += (<SRC.LEVEL>*2)
+LOCAL.MAXMANA += (<SRC.LEVEL>*2)
+ELSEIF (<SRC.SKILLCLASS>==Class_Mage) || (<SRC.SKILLCLASS>==Class_Enchanter)
+LOCAL.MAXMANA += (<SRC.LEVEL>*6)
+ELSEIF (<SRC.SKILLCLASS>==Class_Bard) || (<SRC.SKILLCLASS>==Class_Minstrel)  || (<SRC.SKILLCLASS>==Class_Assassin) 
+LOCAL.MAXSTAM += (<SRC.LEVEL>*6)
+ELSE
+// (<SRC.SKILLCLASS>==Class_Fighter) || (<SRC.SKILLCLASS>==Class_Barbarian)
+LOCAL.MAXHITS += (<SRC.LEVEL>*6)
+ENDIF
+
+IF STRMATCH("<SRC.TAG0.RACE>","Human") 
+	SRC.MODMAXWEIGHT += 30
+	IF (<TAG0.MODHITS> == 0)
+		TAG0.MODHITS = 8
+	ENDIF
+ELSEIF STRMATCH("<SRC.TAG0.RACE>","Elf") 
+	IF (<TAG0.MODMANA> == 0)
+		TAG0.MODMANA = 8
+	ENDIF
+	TAG.NPCAI.Race=<EVAL racef_elf>
+ELSEIF STRMATCH("<SRC.TAG0.RACE>","Orc") 
+	IF (<TAG0.MODSTAM> == 0)
+		TAG0.MODSTAM = 8
+	ENDIF
+	TAG.NPCAI.Race=<EVAL racef_orc>
+ENDIF
+
+SRC.MAXSTAM=<LOCAL.MAXSTAM>+<SRC.TAG0.MODSTAM>+(<SRC.tag0.feat.stampoints>*2)
+SRC.MAXHITS=<LOCAL.MAXHITS>+<SRC.TAG0.MODHITS>+(<SRC.tag0.feat.hitspoints>*2)
+SRC.MAXMANA=<LOCAL.MAXMANA>+<SRC.TAG0.MODMANA>+(<SRC.tag0.feat.manapoints>*2)
+
+IF (<LOCAL.LEVELUP>)
+	SRC.STAM = <SRC.MAXSTAM>
+	SRC.HITS = <SRC.MAXHITS>
+	SRC.MANA = <SRC.MAXMANA>
+ENDIF
+
+RETURN 0
+
+
+
+[FUNCTION explevel] 
+src.sdialog d_charsheet
+
+[FUNCTION f_LoginMessage] 
+SRC.SYSMESSAGE @032 NEWS: Nothing new.
+RETURN
+
+
+
+[DIALOG d_charsheet]
+0,0
+page 0
+resizepic 4 2 9300 347 340
+button 287 305 2143 2142 1 0 0
+
+page 1
+dtext 34 14 0 <src.name>
+dtext 104 14 0 Gender
+dtext 184 14 0 <SRC.TAG.RACE>
+dtext 34 39 0  <SRC.SKILLCLASS.NAME>
+dtext 104 39 0 Level <eval <src.level>>
+dtext 184 39 0 Exp: <src.exp>/<eval <src.tag0.nextlevel>>
+f_statcheck
+f_featcheck
+
+gumppic 64 94 2091
+
+dtext 85 124 0 Strength Cap:
+dtext 220 124 0 <eval <SRC.TAG0.OVERRIDE.STATCAP_0>>
+
+dtext 85 154 0 Dexterity Cap:
+dtext 220 154 0 <eval <SRC.TAG0.OVERRIDE.STATCAP_2>>
+
+dtext 85 184 0 Intelligence Cap:
+dtext 220 184 0 <eval <SRC.TAG0.OVERRIDE.STATCAP_1>>
+
+dtext 85 215 0 Total Skill Cap:
+dtext 220 215 0 <fval <SRC.TAG0.OVERRIDE.SKILLSUM>>
+
+dtext 85 255 0 Tithing:
+dtext 220 255 0 <eval <SRC.TITHING>>
+
+button 180 310 5601 5605 0 2 0
+
+page 2
+
+button 140 310 5603 5607 0 1 0
+button 180 311 5601 5605 0 3 0
+dtext 120 5 0 Training Points
+dtext 30 30 0 Points Earned: <EVAL (<SRC.LEVEL>*5)>
+dtext 180 30 0 Points Spent: <EVAL <SRC.TAG0.FEATS>>
+
+dtext 58 53 0 +10.0 Maximum Total Skills: 2 points (<eval <SRC.tag0.feat.skillcap>>)
+button 38 54 2511 5605 1 0 1
+
+dtext 58 78 0 +3 Maximum Total Stats: 2 points (<eval <SRC.tag0.feat.statcap>>)
+button 38 79 2511 5605 1 0 2
+
+dtext 58 104 0 +2 Strength Cap: 1 point (<eval <SRC.tag0.feat.strcap>>)
+button 38 105 2511 5605 1 0 3
+
+dtext 58 130 0 +2 Dexterity Cap: 1 point (<eval <SRC.tag0.feat.dexcap>>)
+button 38 131 2511 5605 1 0 4
+
+dtext 58 155 0 +2 Intelligence Cap: 1 point (<eval <SRC.tag0.feat.intcap>>)
+button 38 156 2511 5605 1 0 5
+
+dtext 58 180 0 +2 Hit Points: 1 point (<eval <SRC.tag0.feat.hitspoints>>)
+button 38 181 2511 5605 1 0 6
+
+dtext 58 206 0 +2 Stamina: 1 point (<eval <SRC.tag0.feat.stampoints>>)
+button 38 207 2511 5605 1 0 7
+
+dtext 58 231 0 +2 Mana: 1 point (<eval <SRC.tag0.feat.manapoints>>)
+button 38 232 2511 5605 1 0 8
+ 
+dtext 58 256 0 +10 Stones Carry Weight: 1 point (<eval <SRC.tag0.feat.modmaxweight>>)
+button 38 257 2511 5605 1 0 9
+
+dtext 58 281 0 +1 Follower Capacity: 6 points (<eval <SRC.tag0.feat.maxfollower>>)
+button 38 282 2511 5605 1 0 10
+
+page 3
+button 180 311 5601 5605 1 0 0
+button 140 310 5603 5607 1 0 0
+dtext 100 5 0 Advanced Feats
+dtext 30 30 0 Feats Earned:
+dtext 180 30 0 Feats Spent:
+dtext 57 100 0 Additional Special Ability
+dtext 57 53 0 Skillcap Increase
+button 38 101 2511 5605 1 0 0
+button 38 54 2511 5605 1 0 0
+dtext 230 53 32 Required Level: 4
+dtext 230 100 32 Required Level: 4
+page 4
+dtext 126 11 0 Langauges
+Group 0
+radio 57 77 9791 9790 1 0
+radio 53 119 9791 9790 0 0
+radio 56 161 9791 9790 0 0
+radio 56 196 9791 9790 0 0
+radio 197 77 9791 9790 0 0
+radio 193 119 9791 9790 0 0
+radio 196 161 9791 9790 0 0
+radio 196 204 9791 9790 0 0
+dtext 87 82 48 English
+dtext 83 124 3 Japanesse
+dtext 86 166 17 Gargish
+dtext 86 209 33 Orcish
+dtext 227 82 48 English
+dtext 223 124 3 Japanesse
+dtext 226 166 17 Gargish
+dtext 226 209 33 Orcish
+
+[DIALOG d_charsheet text] // useless
+
+
+[DIALOG d_charsheet button]
+ON=0
+
+ON=1
+IF (<EVAL <SRC.TAG0.FEATS>+2> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.skillcap += 1
+SRC.SYSMESSAGE You have increased your total skill cap.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=2
+IF (<EVAL <SRC.TAG0.FEATS>+2> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.statcap += 1
+SRC.SYSMESSAGE You have increased your stat cap.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=3
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.strcap += 1
+SRC.SYSMESSAGE You have increased your strength cap.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=4
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.dexcap += 1
+SRC.SYSMESSAGE You have increased your dexterity cap.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=5
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.intcap += 1
+SRC.SYSMESSAGE You have increased your intelligece cap.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=6
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.hitspoints += 1
+SRC.SYSMESSAGE You have acquired bonus hit points.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=7
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.stampoints += 1
+SRC.SYSMESSAGE You have acquired bonus stamina points.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=8
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.manapoints += 1
+SRC.SYSMESSAGE You have acquired bonus mana points.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=9
+IF (<EVAL <SRC.TAG0.FEATS>+1> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.tag0.feat.modmaxweight += 1
+SRC.SYSMESSAGE You have acquired bonus carrying capacity.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+ON=10
+IF (<EVAL <SRC.TAG0.FEATS>+6> <= <EVAL (<SRC.LEVEL>*5)>)
+SRC.MAXFOLLOWER += 1
+SRC.tag0.feat.maxfollower += 1
+SRC.SYSMESSAGE You have acquired a bonus follower slot.
+ELSE
+SRC.SYSMESSAGE You do not have an availible feat to spend at this time.
+ENDIF
+SDIALOG d_charsheet 2
+
+
+[function f_featcheck]
+SRC.tag0.feats = ((<SRC.tag0.feat.maxfollower>*6)+<SRC.tag0.feat.modmaxweight>+<SRC.tag0.feat.manapoints>+<SRC.tag0.feat.stampoints>+<SRC.tag0.feat.hitspoints>+<SRC.tag0.feat.intcap>+<SRC.tag0.feat.dexcap>+<SRC.tag0.feat.strcap>+(<SRC.tag0.feat.skillcap>*2)+(<SRC.tag0.feat.statcap>*2))
+
+[function f_update_contp]
+Forcont <findlayer.21.uid> 0
+  If (<tag0.contp>)
+    contp=<tag0.contp>
+    tag.contp=
+  endif
+endfor
+src.findlayer.21.open
+
+//This is a command that makes an exact copy(s) of a character and places it next to the
+//person that issued the command. Everything documenten in taran's sphere compendium
+//should be copied with this exceptions.
+//
+//    1) When the brain of an npc is 0, (it is a player) the brain on the resulting
+//         npc will have a brain of 2 (brain_human) because npc's need to have a brain.
+//
+//Written by Kalizander, tested on version 55r402, 56b
+//
+//Make sure you don't copy skills that don't exist on your server, they are copied
+//at the bottom of this script 49 being necromancy, 50 focus, ... . Look in sphere_skills.scp
+//if you are not certain.
+
+[PLEVEL 4]
+DUPECHAR
+
+[FUNCTION DUPECHAR]
+sysmessage Which character would you like to dupe ?
+if <argn>
+    targetf f_dupechar <argn>    
+else
+    targetf f_dupechar 1
+endif
+return
+
+[FUNCTION f_dupechar] //obj is the origonal obj.act is the copy
+obj=<argo.uid>
+FOR index 1 <argn>
+    obj.newnpc <obj.ID>
+    obj.act.ClearTags
+    obj.act.f_empty 29
+    obj.act.f_empty_memory_items
+    obj.f_dupeother
+    obj.f_dupeskills
+    obj.f_fill 29
+    obj.f_fill_memory_items
+    if <obj.tagcount>
+  obj.f_dupetags <eval (<obj.tagcount>-1)>
+    endif
+
+    if !<obj.brain>
+  obj.act.brain=2
+    else
+      obj.act.brain=<obj.brain>
+    endif
+ENDFOR
+return
+
+[FUNCTION f_empty]
+FOR index 0 <argn>
+    IF <FINDLAYER.<local.index>>
+  TRY FINDLAYER.<local.index>.REMOVE
+    ENDIF
+ENDFOR
+return
+
+[FUNCTION f_empty_memory_items]
+FORCHARLAYER 30
+    remove
+ENDFOR
+return
+
+[FUNCTION f_fill]
+FOR index 0 <argn>
+    IF <obj.FINDLAYER.<local.index>>
+  serv.NEWDUPE <obj.FINDLAYER.<local.index>.uid>
+  new.timer=<obj.FINDLAYER.<local.index>.timer>
+  //new.cont=<src.act.uid>
+  //new.layer=<local.index>
+  obj.act.equip <new.uid>
+    ENDIF
+ENDFOR
+return
+
+[FUNCTION f_fill_memory_items]
+FORCHARLAYER 30
+    serv.NEWDUPE <uid>
+    new.timer=<timer>
+    obj.act.equip <new.uid>
+    src.sysmessage Copying a <name>
+ENDFOR
+return
+
+[FUNCTION f_dupetags]
+FOR index 0 <argn>
+    try obj.act.tag.<obj.tagat.<local.index>>
+ENDFOR
+return
+
+[FUNCTION f_dupeother]
+obj.act.str <obj.str>
+obj.act.int <obj.int>
+obj.act.dex <obj.dex>
+IF (<obj.hits> > 0)
+	obj.act.hits <obj.hits>
+ELSE
+	obj.act.hits 1
+ENDIF
+obj.act.mana <obj.mana>
+obj.act.stam <obj.stam>
+obj.act.act <obj.act.uid>
+obj.act.actarg1 <obj.actarg1>
+obj.act.actarg2 <obj.actarg2>
+obj.act.actarg3 <obj.actarg3>
+obj.act.body <obj.body>
+obj.act.events <obj.events>
+obj.act.fame <obj.fame>
+obj.act.flags <obj.flags>
+obj.act.font <obj.font>
+obj.act.home <obj.home>
+obj.act.karma <obj.karma>
+obj.act.exp <obj.exp>
+obj.act.level <obj.level>
+obj.act.obody <obj.obody>
+obj.act.oskin <obj.oskin>
+obj.act.title <obj.title>
+obj.act.color <obj.color>
+obj.act.name <obj.name>
+obj.act.modar <obj.modar>
+obj.act.modmaxweight <obj.modmaxweight>
+return
+
+[FUNCTION f_dupeskills]
+obj.act.0 <obj.0>
+obj.act.1 <obj.1>
+obj.act.2 <obj.2>
+obj.act.3 <obj.3>
+obj.act.4 <obj.4>
+obj.act.5 <obj.5>
+obj.act.6 <obj.6>
+obj.act.7 <obj.7>
+obj.act.8 <obj.8>
+obj.act.9 <obj.9>
+obj.act.10 <obj.10>
+obj.act.11 <obj.11>
+obj.act.12 <obj.12>
+obj.act.13 <obj.13>
+obj.act.14 <obj.14>
+obj.act.15 <obj.15>
+obj.act.16 <obj.16>
+obj.act.17 <obj.17>
+obj.act.18 <obj.18>
+obj.act.19 <obj.19>
+obj.act.20 <obj.20>
+obj.act.21 <obj.21>
+obj.act.22 <obj.22>
+obj.act.23 <obj.23>
+obj.act.24 <obj.24>
+obj.act.25 <obj.25>
+obj.act.26 <obj.26>
+obj.act.27 <obj.27>
+obj.act.28 <obj.28>
+obj.act.29 <obj.29>
+obj.act.30 <obj.30>
+obj.act.31 <obj.31>
+obj.act.32 <obj.32>
+obj.act.33 <obj.33>
+obj.act.34 <obj.34>
+obj.act.35 <obj.35>
+obj.act.36 <obj.36>
+obj.act.37 <obj.37>
+obj.act.38 <obj.38>
+obj.act.39 <obj.39>
+obj.act.40 <obj.40>
+obj.act.41 <obj.41>
+obj.act.42 <obj.42>
+obj.act.43 <obj.43>
+obj.act.44 <obj.44>
+obj.act.45 <obj.45>
+obj.act.46 <obj.46>
+obj.act.47 <obj.47>
+obj.act.48 <obj.48>
+obj.act.49 <obj.49>
+obj.act.50 <obj.50>
+obj.act.51 <obj.51>
+obj.act.52 <obj.52>
+obj.act.53 <obj.53>
+obj.act.54 <obj.54>
+return
+
+
+[eof]

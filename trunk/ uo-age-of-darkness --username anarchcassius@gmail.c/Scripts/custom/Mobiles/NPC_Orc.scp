@@ -1,0 +1,1588 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+
+//// NPC's ORC ////
+
+
+[TYPEDEF T_hair_dye]
+ON=@DCLICK
+IF (<SRC.FINDLAYER.11.BASEID>==i_head_orc)
+	SRC.SYSMESSAGE You have no hair to dye.
+	RETURN 1
+ENDIF
+
+[TYPEDEF T_SCISSORS]
+ON=@TARGON_CHAR
+IF (<ARGO.FINDLAYER.11.BASEID>==i_head_orc)
+	SRC.SYSMESSAGE They have no hair to cut.
+	RETURN 1
+ENDIF
+
+
+
+[DEFNAME COLOR_MONSTERS]
+colors_orc			{ { 347 349 } 3 { 447 449 } 3 { 547 549 } 3 { 637 639 } 3 { 642 643 } 2 {647 649} 3 {742 744} 3 {747 749} 3 {837 839} 3 }
+// 42?
+colors_goblin		{ {652 655} 4 {657 660} 4 {752 755} 4 {757 760} 4 }
+
+
+[ITEMDEF i_head_orc]
+ID=0141b
+TYPE=T_hair
+LAYER=layer_hair
+NAME=Orc Head
+CATEGORY=Provisions - Armor
+SUBSECTION=Masks
+DESCRIPTION=Orc Head
+
+ON=@Create
+	ATTR=attr_newbie|attr_move_never
+
+ON=@EQUIP
+COLOR=<SRC.COLOR>
+RETURN
+
+[CHARDEF 0b9]
+DEFNAME=c_orc_body
+NAME=orc
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+SOUND=snd_MONSTER_ORC1
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink,t_drink
+DAM=2,8
+
+[CHARDEF c_orc_male]
+ID=0190
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink,t_drink
+DAM=2,8
+ARMOR=4
+
+
+
+[CHARDEF c_orc_female]
+ID=0191
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+
+
+
+[CHARDEF c_orc_grunt]
+ID=0190
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+AVERSIONS=t_TRAP,t_eerie_stuff
+JOB=1
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+moverate=0
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	JOB=0
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={76 100}
+	dex={62 84}
+	int={16 37}
+
+	macefighting={55.0 65.0}
+	parrying={35.0 60.0}
+	magicresistance={14.7 21.5}
+	tactics={57.8 77.0}
+	wrestling={36.3 51.9} 
+	ninjitsu={55.0 65.0}
+
+	fame={1250 2499}
+	karma={-3250 -3499}
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 0 2}
+	ITEM={ i_shield_wood 1 0 2}
+	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 3 }
+	ITEM={ i_bone_leggings 1 i_leather_leggings 3 i_studded_leggings 2 0 3 }
+	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item={ i_club 3 i_mace 1 i_axe_battle 1 i_hatchet 2 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	ITEM={ i_fur_sarong 1 i_pants_short 1 }
+	COLOR=colors_brown
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc (male)
+
+[CHARDEF c_orc_grunt_f]
+ID=0191
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+
+moverate=0
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={76 100}
+	dex={62 84}
+	int={16 37}
+
+	macefighting={55.0 65.0}
+	parrying={35.0 60.0}
+	magicresistance={14.7 21.5}
+	tactics={57.8 77.0}
+	wrestling={36.3 51.9} 
+	ninjitsu={55.0 65.0}
+
+
+	fame={1250 2499}
+	karma={-3250 -3499}
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 0 2}
+	ITEM={ i_shield_wood 1 0 2}
+	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 3 }
+	ITEM={ i_bone_leggings 1 i_leather_leggings 3 i_studded_leggings 2 0 3 }
+	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item={ i_club 3 i_mace 1 i_axe_battle 1 i_hatchet 2 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	ITEM={ i_fur_sarong 1 i_pants_short 1 }
+	COLOR=colors_brown
+
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc (female)
+
+[CHARDEF c_orc_soldier]
+ID=0190
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+moverate=0
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={79 101}
+	dex={65 85}
+	int={18 37}
+
+	anatomy={25.0 50.0}
+	magicresistance={25.0 50.0}
+	tactics={67.8 87.0}
+	wrestling={46.3 61.9} 
+	bushido={65.0 75.0}
+
+	fame={1750 2999}
+	karma={-3250 -3499}
+	EXP={ 2050 2500 } //Level 3
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 0 2}
+	ITEM={ i_bone_chest 3 i_ringmail_tunic 3 i_studded_tunic 2 }
+	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_studded_leggings 2 }
+	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
+	item={ i_spear 4 i_pike 2 i_halberd 1 i_bardiche 1 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	ITEM={ i_fur_sarong 1 i_pants_short 1 }
+	COLOR=colors_yellow
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc (male)
+
+[CHARDEF c_orc_soldier_f]
+ID=0191
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+DAM=2,8
+ARMOR=4
+
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={79 101}
+	dex={65 85}
+	int={18 37}
+
+	anatomy={25.0 50.0}
+	magicresistance={25.0 50.0}
+	tactics={67.8 87.0}
+	wrestling={46.3 61.9} 
+	bushido={65.0 75.0}
+
+	fame={1750 2999}
+	karma={-3250 -3499}
+	EXP={ 2050 2500 } //Level 3
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 0 2}
+	ITEM={ i_bone_chest 3 i_ringmail_tunic 3 i_studded_tunic 2 }
+	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_studded_leggings 2 }
+	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
+	item={ i_spear 4 i_pike 2 i_halberd 1 i_bardiche 1 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	ITEM={ i_fur_sarong 1 i_pants_short 1 }
+	COLOR=colors_yellow
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc (female)
+
+
+[CHARDEF 01695]
+DEFNAME=c_orc_archer
+NAME="orc archer"
+ID=0190
+moverate=0
+SOUND=snd_MONSTER_ORC1
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={66 90}
+	dex={82 94}
+	int={16 37}
+
+	anatomy={66.3 71.9}
+	magicresistance={25.0 50.0}
+	tactics={66.3 81.9}
+	fencing={46.3 61.9}
+	macefighting={46.3 61.9}
+	archery={67.8 87.0}
+
+	peacemaking=24.1
+
+	fame={1250 2499}
+	karma={-3250 -3499}
+	EXP={ 1050 1500 } //Level 2
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 i_boots_fur 3 }
+	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item=i_ARROW,{35 55}
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	item={ i_club 1 i_dagger 1 }
+	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 4 }
+	ITEM={ i_armor_female_skirt 2 i_leather_leggings 1 }
+	item=i_shirt_plain
+	COLOR={ colors_brown 1 colors_yellow 2 }
+	item=i_bow
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Archer (male)
+
+
+
+[CHARDEF 01696]
+DEFNAME=c_orc_archer_f
+NAME="orc archer"
+ID=0191
+moverate=0
+SOUND=snd_MONSTER_ORC1
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_weapon_bow,t_weapon_xbow,t_weapon_arrow,t_weapon_bolt,t_potion
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={66 90}
+	dex={82 94}
+	int={16 37}
+
+	anatomy={66.3 71.9}
+	magicresistance={25.0 50.0}
+	tactics={66.3 81.9}
+	fencing={46.3 61.9}
+	macefighting={46.3 61.9}
+	archery={67.8 87.0}
+
+	peacemaking=24.1
+
+	fame={1250 2499}
+	karma={-3250 -3499}
+	EXP={ 1050 1500 } //Level 2
+
+
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 i_boots_fur 3 }
+	ITEM={ i_leather_gorget 2 i_studded_gorget 1 i_leather_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item=i_ARROW,{35 55}
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Filth_pouch 1 0 2 }
+	item={ i_club 1 i_dagger 1 }
+	ITEM={ i_bone_chest 1 i_leather_tunic 3 i_studded_tunic 2 0 4 }
+	ITEM={ i_armor_female_skirt 2 i_leather_leggings 1 }
+	item=i_shirt_plain
+	COLOR={ colors_brown 1 colors_yellow 2 }
+	item=i_bow
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Archer (female)
+
+[CHARDEF c_orc_mage]
+NAME="orc mage"
+DEFNAME=0190
+ID=0190
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_gem,t_armor_leather,t_food,t_gem,t_scroll,t_weapon_mace_staff,t_reagent,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+moverate=0
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={62 84}
+	dex={26 47}
+	int={76 100}
+
+	macefighting={55.0 65.0}
+	meditation={55.0 65.0}
+	parrying={35.0 60.0}
+	magicresistance={54.7 71.5}
+	tactics={55.0 65.0}
+	wrestling={55.0 65.0}
+	magery={76.3 88.9}
+
+	peacemaking=36.1
+
+	fame={3250 4499}
+	karma={-4250 -4499}
+	EXP={ 4050 5500 } //Level 4
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+	TAG.RANDCAST=15
+	EVENTS=+e_intel_char_magery_user
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_sandals 2 i_boots_fur 3 }
+	ITEM={ i_sash 2 i_fur_cape 2 0 3 }
+	COLOR=colors_all
+	ITEM={ i_armor_female_skirt 2 i_bone_leggings 1 }
+	ITEM={ i_bone_arms 1 0 1}
+	ITEM={ i_bone_chest 1 0 2}
+	item={ i_club 4 i_maul 2 i_scepter 2 i_axe_war 1 }
+	ITEM={ Magic_backpack 2 magic_bag 2 magic_pouch 1 }
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Mage (male)
+
+[CHARDEF c_orc_mage_f]
+DEFNAME=0191
+NAME="orc mage"
+ID=0191
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_gem,t_armor_leather,t_food,t_gem,t_scroll,t_weapon_mace_staff,t_reagent,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+DAM=2,8
+ARMOR=4
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+moverate=0
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=5
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={62 84}
+	dex={26 47}
+	int={76 100}
+
+	macefighting={55.0 65.0}
+	meditation={55.0 65.0}
+	parrying={35.0 60.0}
+	magicresistance={54.7 71.5}
+	tactics={55.0 65.0}
+	wrestling={55.0 65.0}
+	magery={76.3 88.9}
+
+	peacemaking=36.1
+
+	fame={3250 4499}
+	karma={-4250 -4499}
+	EXP={ 4050 5500 } //Level 4
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+	TAG.RANDCAST=15
+	EVENTS=+e_intel_char_magery_user
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_sandals 2 i_boots_fur 3 }
+	ITEM={ i_sash 2 i_fur_cape 2 0 3 }
+	COLOR=colors_all
+	ITEM={ i_armor_female_skirt 2 i_bone_leggings 1 }
+	ITEM={ i_bone_arms 1 0 1}
+	ITEM={ i_bone_chest 1 0 2}
+	item={ i_club 4 i_staff_gnarled 3 i_staff_quarter 2 i_scepter 2 i_axe_war 1 }
+	ITEM={ Magic_backpack 2 magic_bag 2 magic_pouch 1 }
+
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Mage (female)
+
+
+
+[CHARDEF 01691]
+DEFNAME=c_orc_captain
+ID=0190
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+ARMOR=4
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=7
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={96 120}
+	dex={62 84}
+	int={36 67}
+
+	EXP={ 8050 10500 } //Level 5
+
+	anatomy={66.3 71.9}
+	parrying={67.8 87.0}
+	magicresistance={54.7 71.5}
+	tactics={67.8 87.0}
+	wrestling={67.8 87.0}
+	swordsmanship={67.8 87.0}
+
+	fame={2250 3499}
+	karma={-3250 -3499}
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 i_boots_fur 3 }
+	ITEM={ i_bone_chest 3 i_ringmail_tunic 3 i_chainmail_tunic 2 }
+	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_chainmail_leggings 2 }
+	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item={ i_sword_broad 2 i_sword_long 3 i_sword_viking 1 }
+	item=i_cape
+	COLOR=colors_all
+	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
+	ITEM={ i_shield_round_metal 2 i_shield_kite_wood 1 i_shield_round_bronze 2 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Treasure_pouch 1 }
+
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Captain (male)
+
+
+
+[CHARDEF 01692]
+DEFNAME=c_orc_captain_f
+SOUND=snd_MONSTER_ORC1
+ID=0191
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+TSPEECH=spk_orc_prime
+TSPEECH=jobBrigand
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_combat_move_intel
+
+	CATEGORY=Orc
+	SUBSECTION=Warriors
+	DESCRIPTION=Orc Captain (female)
+
+ON=@Create
+	NAME=#NAMES_ORC
+	NPC=brain_human
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=7
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+	str={96 120}
+	dex={62 84}
+	int={36 67}
+
+	EXP={ 8050 10500 } //Level 5
+
+	anatomy={66.3 71.9}
+	parrying={67.8 87.0}
+	magicresistance={54.7 71.5}
+	tactics={67.8 87.0}
+	wrestling={67.8 87.0}
+	swordsmanship={67.8 87.0}
+
+	fame={2250 3499}
+	karma={-3250 -3499}
+
+	givelang 4
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+ON=@NPCRestock
+	ITEM={ i_boots_calf 3 i_boots_thigh 2 i_boots_fur 3 }
+	ITEM={ i_bone_chest 3 i_ringmail_tunic 3 i_chainmail_tunic 2 }
+	ITEM={ i_bone_leggings 2 i_ringmail_leggings 3 i_chainmail_leggings 2 }
+	ITEM={ i_platemail_gorget 2 i_studded_gorget 1 i_ringmail_gloves 2 i_bone_gloves 1 i_studded_gloves 1 0 3 }
+	item={ i_sword_broad 2 i_sword_long 3 i_sword_viking 1 }
+	item=i_cape
+	COLOR=colors_all
+	ITEM={ i_bone_arms 2 i_ringmail_sleeves 3 i_studded_sleeves 2 }
+	ITEM={ i_shield_round_metal 2 i_shield_kite_wood 1 i_shield_round_bronze 2 }
+	ITEM={ Supply_backpack 3 Treasure_backpack 1 Treasure_pouch 1 }
+
+
+[CHARDEF c_orc_cook]
+NAME="orc cook"
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+ID=0190
+moverate=0
+
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+COOKING={55.0 78.0}
+SWORDSMANSHIP={15.0 38.0}
+TASTEID={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=random_pants
+COLOR=colors_all
+ITEM=random_shoes
+COLOR=colors_neutral
+ITEM=i_apron_half
+ITEM=treasure_pouch
+ITEM={ random_food 1 random_meat 0 10}
+ITEM={ random_food 1 random_meat 0 10}
+
+//vendor items
+SELL=i_bread_loaf,{55 140}
+SELL=i_pie_baked,{2 24}
+SELL=i_muffin,{12 52}
+SELL=i_flour_sack,{30 105}
+SELL=i_jar_honey,{30 105}
+SELL=i_dough,{30 105}
+SELL=i_bacon_slice,{4 20}
+SELL=i_rabbit_skinned,{4 20}
+SELL=i_sausages,{4 20}
+SELL=i_chicken_leg,{4 20}
+SELL=i_bird_raw,{4 20}
+SELL=i_lamb_leg_raw,{4 20}
+SELL=i_ribs_raw,{4 20}
+SELL=i_knife_butcher,{4 20}
+SELL=i_cleaver_meat,{4 20}
+SELL=i_knife_skinning,{4 20}
+BUY=VENDOR_B_BAKER_TEMPLATE
+BUY=VENDOR_B_BUTCHER_TEMPLATE
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Cook (male)
+
+[CHARDEF c_orc_cook_f]
+NAME="orc cook"
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+ID=0191
+moverate=0
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+COOKING={55.0 78.0}
+SWORDSMANSHIP={15.0 38.0}
+TASTEID={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=random_pants
+COLOR=colors_all
+ITEM=random_shoes
+COLOR=colors_neutral
+ITEM=i_apron_half
+ITEM=treasure_pouch
+ITEM={ random_food 1 random_meat 0 10}
+ITEM={ random_food 1 random_meat 0 10}
+
+//vendor items
+SELL=i_bread_loaf,{55 140}
+SELL=i_pie_baked,{2 24}
+SELL=i_muffin,{12 52}
+SELL=i_flour_sack,{30 105}
+SELL=i_jar_honey,{30 105}
+SELL=i_dough,{30 105}
+SELL=i_bacon_slice,{4 20}
+SELL=i_rabbit_skinned,{4 20}
+SELL=i_sausages,{4 20}
+SELL=i_chicken_leg,{4 20}
+SELL=i_bird_raw,{4 20}
+SELL=i_lamb_leg_raw,{4 20}
+SELL=i_ribs_raw,{4 20}
+SELL=i_knife_butcher,{4 20}
+SELL=i_cleaver_meat,{4 20}
+SELL=i_knife_skinning,{4 20}
+BUY=VENDOR_B_BAKER_TEMPLATE
+BUY=VENDOR_B_BUTCHER_TEMPLATE
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Cook (female)
+
+[CHARDEF c_orc_furtrader]
+NAME="orc fur trader"
+ID=0190
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+SWORDSMANSHIP={15.0 38.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=i_fur_sarong
+ITEM=random_boots
+ITEM=i_knife_skinning
+ITEM=treasure_pouch
+
+SELL=VENDOR_S_FURTRADER
+BUY=VENDOR_B_FURTRADER
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Fur trader (male)
+
+[CHARDEF c_orc_furtrader_f]
+NAME="orc fur trader"
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+ID=0191
+moverate=0
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+SWORDSMANSHIP={15.0 38.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=i_fur_sarong
+ITEM=random_boots
+ITEM=i_knife_skinning
+ITEM=treasure_pouch
+
+SELL=VENDOR_S_FURTRADER
+BUY=VENDOR_B_FURTRADER
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Fur trader (female)
+
+[CHARDEF c_orc_healer]
+ID=0190
+NAME="orc healer"
+moverate=0
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Healer (male)
+
+TSPEECH=spk_orc_prime
+TSPEECH=spk_shopkeep
+TSPEECH=jobhealer
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+	NPC=BRAIN_healer
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+HEALING={55.0 78.0}
+SWORDSMANSHIP={15.0 38.0}
+ANATOMY={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_robe
+COLOR=colors_all
+ITEM=i_sandals
+ITEM=supply_backpack
+
+SELL=VENDOR_S_HEALER_SHOP
+BUY=VENDOR_B_HEALER_SHOP
+
+
+[CHARDEF c_orc_healer_f]
+ID=0191
+NAME="orc healer"
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+AVERSIONS=t_TRAP,t_eerie_stuff
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_FEMALE
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Healer (female)
+
+TSPEECH=spk_orc_prime
+TSPEECH=spk_shopkeep
+TSPEECH=jobhealer
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+	NPC=BRAIN_healer
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+HEALING={55.0 78.0}
+SWORDSMANSHIP={15.0 38.0}
+ANATOMY={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_robe
+COLOR=colors_all
+ITEM=i_sandals
+ITEM=supply_backpack
+
+SELL=VENDOR_S_HEALER_SHOP
+BUY=VENDOR_B_HEALER_SHOP
+
+
+
+[CHARDEF c_orc_blacksmith]
+NAME="orc blacksmith"
+ID=0190
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+BLACKSMITHING={52.0 73.0}
+MACEFIGHTING={25.0 58.0}
+ARMSLORE={40.0 60.0}
+TACTICS={25.0 48.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_apron_full
+COLOR=colors_all
+ITEM=random_pants
+COLOR=colors_all
+ITEM=random_boots
+ITEM=i_hammer_smith
+ITEM=supply_backpack
+
+SELL=VENDOR_S_ARMORER_SHIELDS
+SELL=VENDOR_S_ARMORER_RING
+SELL=VENDOR_S_WEAPONS_BLADED
+SELL=VENDOR_S_WEAPONS_BLUNT
+BUY=VENDOR_B_ARMORER_SHIELDS
+BUY=VENDOR_B_WEAPONS_BLADED
+BUY=VENDOR_B_WEAPONS_BLUNT
+BUY=VENDOR_B_ARMORER_CHAIN
+BUY=VENDOR_B_ARMORER_PLATE
+BUY=VENDOR_B_ARMORER_RING
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Blacksmith (male)
+
+
+[CHARDEF c_orc_provisioner]
+NAME="orc provisioner"
+ID=0190
+moverate=0
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+CARPENTRY={15.0 38.0}
+SWORDSMANSHIP={15.0 38.0}
+TINKERING={15.0 38.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=random_pants
+COLOR=colors_all
+ITEM=random_boots
+ITEM=supply_backpack
+
+SELL=VENDOR_S_PROVISIONER
+BUY=VENDOR_B_PROVISIONER
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Provisioner (male)
+
+
+[CHARDEF C_orc_BANKER]
+NAME=orc banker
+ID=0190
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+AVERSIONS=t_TRAP,t_eerie_stuff
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+DAM=2,8
+ARMOR=4
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbanker
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+	NPC=BRAIN_BANKER
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={71 85}
+DEX={66 80}
+INT={66 80}
+
+	givelang 4
+
+SWORDSMANSHIP={15.0 38.0}
+ITEMID={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_pants_long
+COLOR=colors_yellow
+ITEM=random_shoes
+COLOR=colors_neutral
+ITEM=treasure_backpack
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Banker (male)
+
+[CHARDEF c_orc_bowyer]
+NAME="orc bowyer"
+SOUND=snd_MONSTER_ORC1
+DESIRES=t_coin,t_armor,t_armor_leather,t_food,t_gem,t_weapon_sword,t_weapon_axe,t_weapon_mace_staff,t_shield,t_meat_raw,t_container,t_weapon_fence,t_potion
+foodtype=65 t_meat_raw,t_food,t_fruit,t_drink
+CAN=MT_WALK|MT_RUN|MT_EQUIP|MT_USEHANDS|MT_MALE
+DAM=2,8
+ARMOR=4
+ID=0190
+moverate=0
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_orc_prime
+TSPEECH=jobbaker
+TSPEECH=spk_shopkeep
+TSPEECH=spk_needs
+TSPEECH=spk_rehello
+TSPEECH=spk_orc_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+TEVENTS=e_Level_up_NPC
+
+ON=@Create
+NPC=BRAIN_VENDOR
+
+NEED=i_FLOUR_SACK
+	NAME=#NAMES_ORC
+	COLOR=colors_orc
+	TAG.NPCAI.Rank=-1
+	SetOrc
+	TAG.RACE=ORC
+	TAG.RESPOISON=10
+
+STR={44 58}
+DEX={33 47}
+INT={16 30}
+
+	givelang 4
+   TAG.LOCALCURRENCY=1
+   TAG.CURRENCY_1=1
+   TAG.CURRENCY_2=1
+   TAG.CURRENCY_3=1
+   TAG.CURRENCY_4=1
+
+BOWCRAFT={65.0 88.0}
+SWORDSMANSHIP={15.0 38.0}
+ARCHERY={50.0 70.0}
+TACTICS={15.0 38.0}
+
+	NEWITEM i_head_orc
+	EQUIP <NEW>
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_shirt_plain
+COLOR=colors_all
+ITEM=random_pants
+COLOR=colors_all
+ITEM=random_boots
+item=i_bow
+item=i_ARROW,{35 55}
+ITEM=supply_backpack
+
+SELL=VENDOR_S_BOWYER
+BUY=VENDOR_B_BOWYER
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen (Orc)
+DESCRIPTION=Bowyer (male)
+
+
+
+[eof]

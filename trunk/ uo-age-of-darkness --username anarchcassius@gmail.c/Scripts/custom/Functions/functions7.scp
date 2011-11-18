@@ -1,0 +1,256 @@
+[FUNCTION isamulti]
+IF ((<TYPE>==T_MULTI) || (<TYPE>==T_MULTI_CUSTOM))
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+////////////////////////////////
+
+[FUNCTION ANIMALTRANSFER]
+TARGETF TARGTRANSFER <ARGN>
+SYSMESSAGE @946,3,1 Who do you wish to transfer the animal to?
+SYSMESSAGE @036,3,1 NOTE: If you want to sell the animal it's highly recommended that you shrink it first and use the secure trade window!
+
+[FUNCTION TARGTRANSFER]
+IF (<ARGO.UID> == <UID>)
+SYSMESSAGE @946,3,1 You can't transfer this animal to yourself!
+ELIF (<ARGO.ISPLAYER>)
+REF33=<ARGS>
+	IF (<REF33.FLAGS>&STATF_CONJURED)
+	sysmessage @946,3,1 You can't transfer summoned pets!
+	ELIF ((<REF33.ISEVENT.e_bonded>) && (<REF33.FLAGS>&STATF_INVUL))
+	sysmessage @946,3,1 You can't transfer dead bonded animals!
+	ELIF ((<REF33.TAG0.FOLLOWERCONSUME>) && (<EVAL <ARGO.CURFOLLOWER>+<REF33.TAG0.FOLLOWERCONSUME>> > 5))
+	sysmessage @946,3,1 <ARGO.NAME> must release some pets before receiving this one.
+	argo.sysmessage @946,3,1 <NAME> tried to transfer you <REF33.NAME>, but you don't have enough follower slots free.
+	ELIF ((!<REF33.TAG0.FOLLOWERCONSUME>) && (<EVAL <ARGO.CURFOLLOWER>+1> > 5))
+	sysmessage @946,3,1 <ARGO.NAME> must release some pets before receiving this one.
+	argo.sysmessage @946,3,1 <NAME> tried to transfer you <REF33.NAME>, but you don't have enough follower slots free.
+	ELIF (<REF33.OWNER> != <UID>)
+	sysmessage @946,3,1 This pet does not belong to you!
+	ELSE
+	REF33.TRIGGER @PetDesert
+	REF33.RELEASE
+	ARGO.TAME <REF33>
+	ARGO.SYSMESSAGE @946,3,1 <NAME> transfered <REF33.NAME> to you.
+	SYSMESSAGE @946,3,1 Transfer succesful!
+	ENDIF
+ELSE
+SYSMESSAGE @946,3,1 You can only transfer to players!
+ENDIF
+
+/////////////////////////////
+
+[FUNCTION F_SAMEPARTY]
+IF (!(<ISINPARTY>))
+RETURN 0
+ENDIF
+RETURN <PARTY.ISSAMEPARTYOF <ARGN1>>
+
+/////////////////////
+
+[PLEVEL 1]
+FORUM
+
+[FUNCTION FORUM]
+weblink=forum.uobrasil.org/index.php?act=SC&c=18
+
+/////////////////////
+
+[FUNCTION DAMAGEARMOR]
+IF (<FINDLAYER.layer_pants>) || (<FINDLAYER.layer_helm>) || (<FINDLAYER.layer_gloves>) || (<FINDLAYER.layer_collar>) || (<FINDLAYER.layer_chest>) || (<FINDLAYER.layer_tunic>) || (<FINDLAYER.layer_arms>) || (<FINDLAYER.layer_legs>) || (<FINDLAYER.layer_hand2>)
+	WHILE (!(<REF1>)) && (<LOCAL._WHILE> < 120)
+		DORAND 9
+		LOCAL.LAYER=<DEF.layer_pants>
+		LOCAL.LAYER=<DEF.layer_helm>
+		LOCAL.LAYER=<DEF.layer_gloves>
+		LOCAL.LAYER=<DEF.layer_collar>
+		LOCAL.LAYER=<DEF.layer_chest>
+		LOCAL.LAYER=<DEF.layer_tunic>
+		LOCAL.LAYER=<DEF.layer_arms>
+		LOCAL.LAYER=<DEF.layer_legs>
+		LOCAL.LAYER=<DEF.layer_hand2>
+		ENDDO
+	REF1=<FINDLAYER.<LOCAL.LAYER>.UID>
+		IF (<REF1.UID>)
+			IF (<REF1.HITS>)
+			REF1.HITS --
+			ELSE
+			TRYSRC <UID> MESSAGE @,,2 1061121
+			REF1.MAXHITS --
+				IF (<REF1.MAXHITS> <= 0)
+				REF1.REMOVE
+				ENDIF
+			ENDIF
+			IF (<REF1.TAG0.SELFREPAIR>) && (!(<REF1.TAG0.JUSTREPAIRED>))
+				IF (<REF1.HITS> < <REF1.MAXHITS>)
+				REF1.HITS += <REF1.TAG0.SELFREPAIR>
+					IF (<REF1.HITS> > <REF1.MAXHITS>)
+					REF1.HITS=<REF1.MAXHITS>
+					ENDIF
+				REF1.TAG0.JUSTREPAIRED=1
+				REF1.TIMERF 60,TAG.JUSTREPAIRED=
+				ENDIF
+			ENDIF
+		REF1.RESENDTOOLTIP 1
+		RETURN 1
+		ENDIF
+	ENDWHILE
+ENDIF
+
+//////////////////////////////////
+
+[FUNCTION DUNGLOCATION]
+IF (<VAR0.DUNGLOCATION.TRIES> > 250) && (<ISITEM>)
+REMOVE
+RETURN 1
+ENDIF
+DORAND 6
+P=<eval {5313 5326}>,<eval {577 625}>
+P=<eval {5394 5592}>,<eval {1954 2028}>
+P=<eval {5388 5512}>,<eval {662 754}>
+P=<eval {5134 5163}>,<eval {798 870}>
+P=<eval {5914 5990}>,<eval {147 238}>
+P=<eval {5515 5621}>,<eval {15 119}>
+ENDDO
+LOCAL.TMP2=<NEW>
+LOCAL.TMP=<OBJ>
+SERV.NEWNPC C_ZOMBIE
+NEW.REMOVEFROMVIEW
+NEW.FLAGS |= STATF_INVISIBLE
+NEW.P=<P>
+NEW.FIX
+OBJ=<region.uid>
+IF (<obj.isamulti>)
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+VAR0.DUNGLOCATION.TRIES ++
+DUNGLOCATION
+RETURN 1
+ELIF (<region.flags>&region_flag_guarded) || (<region.flags>&region_flag_safe) || (<isneartype t_rock>) || (<isneartype t_tree>) || (<isneartype t_door>) || (<isneartype t_wall>) || (<isneartype t_water>) || (<isneartype t_multi 10>) || (<p.terrain>==0244)
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+VAR0.DUNGLOCATION.TRIES ++
+DUNGLOCATION
+RETURN 1
+ENDIF
+FIX
+VAR.DUNGLOCATION.TRIES=
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+
+[FUNCTION SANDLOCATION]
+DORAND 7
+P=<eval {1600 1645}>,<eval {3525 3565}>
+P=1970,<eval {2930 2946}>
+P=<eval {130 157}>,<eval {1459 1478}>
+P=1073,<eval {361 371}>
+P=<eval {1853 2028}>,<eval {809 914}>
+P=<eval {5300 5756}>,<eval {2532 2816}>
+P=<eval {1584 2384}>,<eval {1520 1796}>,0,3
+ENDDO
+LOCAL.TMP2=<NEW>
+LOCAL.TMP=<OBJ>
+SERV.NEWNPC C_ZOMBIE
+NEW.REMOVEFROMVIEW
+NEW.FLAGS |= STATF_INVISIBLE
+NEW.P=<P>
+NEW.FIX
+OBJ=<region.uid>
+IF (<obj.type>==t_multi)
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+SANDLOCATION
+RETURN 1
+ELIF (<region.flags>&region_flag_guarded) || (<region.flags>&region_flag_safe) || (<NEW.ISSTUCK>)
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+SANDLOCATION
+RETURN 1
+ENDIF
+FIX
+NEW.REMOVE
+NEW=<LOCAL.TMP2>
+OBJ=<LOCAL.TMP>
+
+[FUNCTION SNOWLOCATION]
+DORAND 3
+BEGIN
+IF !(<R2>)
+P=<EVAL {5129 5572}>,<EVAL {2317 2405}>
+ELSE
+P=<EVAL {5752 6122}>,<EVAL {2330 2456}>
+ENDIF
+FIX
+IF (<Z> >= 10)
+SNOWLOCATION
+RETURN 1
+ENDIF
+END
+P=<EVAL {3868 4206}>,<EVAL {181 751}>
+P=<EVAL {5673 5876}>,<EVAL {144 245}>
+ENDDO
+IF (<ISNEARTYPE T_ROCK>) || (<ISNEARTYPE T_WATER>) || (<ISNEARTYPE T_TREE 2>) || (<UID.<REGION.UID>.ISAMULTI>) || (<p.terrain>==0244)
+SNOWLOCATION
+RETURN 1
+ENDIF
+FIX
+
+//////////////////////////
+
+[FUNCTION music]
+IF (<ISCHAR>)
+	IF (0<ISPLAYER>) && (0<ISONLINE>)
+	SENDPACKET 06D W<HVAL <ARGN1>>
+	ENDIF
+ENDIF
+
+///////////////////////////
+
+[FUNCTION F_LIST_ALLPARTYMEMBERS]
+IF (<ISINPARTY>)
+	IF (<PARTY.MEMBERS> > 1)
+		FOR 0 <EVAL <PARTY.MEMBERS>-1>
+			IF (<LOCAL._FOR> >= 0)
+			LOCAL.PARTYMEMBERS .= <PARTY.MEMBER.<dLOCAL._FOR>.UID>;
+			ENDIF
+		ENDFOR
+	ENDIF
+ELSE
+RETURN
+ENDIF
+RETURN <LOCAL.PARTYMEMBERS>
+
+//////////////////////////
+
+[FUNCTION NEARMOUNTS]
+FORCHARS 0
+	IF !(<ISPLAYER>)
+		IF (<ISMYPET>)
+		RETURN <UID>
+		ENDIF
+	ENDIF
+ENDFOR
+
+/////////////////////////
+
+[FUNCTION GIVEITEMEVENT]
+IF (!(<ISTEVENT.<ARGS>>))
+EVENTS +<ARGS>
+ENDIF
+
+/////////////////////////
+
+[FUNCTION ISHUMAN]
+IF ((<BODY> == c_man) || (<BODY> == c_woman) || (<BODY> == c_elf_male) || (<BODY> == c_elf_female) || (<BODY> == c_man_gm)) && (!(<FLAGS>&statf_polymorph))
+RETURN 1
+ENDIF
+RETURN 0
+
+[EOF]

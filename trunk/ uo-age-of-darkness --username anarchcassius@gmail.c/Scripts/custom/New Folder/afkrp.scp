@@ -1,0 +1,258 @@
+/////////////////////////////////////////////////////////////////////////////////////
+// The "Roleplay" Anti Macro System v1.1 By Mordant (Volume 1)
+//
+// When it comes to Roleplay servers, having menus and such popping up to see if people
+// are AFK Macroing doesn't always fit with the feel of the game.
+// Hence, this script.
+//
+// Rather than doing that, I am simply making it that little bit harder for players
+// to AFK Macro... 
+// Of course you have to warn them of the possibilities of such events on your webpage
+// Otherwise people will just get pissed.
+//
+// Skills covered:	Mining
+// 			Lumberjacking
+//			Alchemy
+//			Fishing
+//			Tailoring
+//			Carpentry
+//			Blacksmithing
+//
+// I may add and release additions to this system as I think of them.
+// Sure it only covers 7 skills right now, but it's a tad more realistic for a RP server.
+//
+// Chances of all "misshaps" decrease as the players skill gets higher, obviously this
+// also increases the difficulty in gaining some skills too.
+//
+////////////////////////////////////////////////////////////////////////////////////////
+
+//Alchemy AFK:
+// The only warning in this even is the noise and the potion which changes color
+// There's no tell tale sysmessage, no countdown
+// But if you have that potion on or near you after 10 seconds, you are gonna have trouble.
+
+// Add to an all player event:
+
+ON=@SKILLMAKEITEM
+	IF (<ACT.TYPE>==t_potion)
+		LOCAL.alch=<eval <src.alchemy>>
+		serv.b <eval <local.alch>>
+			SERV.b <eval (RAND(<eval <LOCAL.ALCH>>))>
+		IF !(RAND(<eval <LOCAL.ALCH>>))
+			ACT.MOREY 10
+			ACT.TIMERF 3, f_unstable
+		ENDIF
+	ENDIF
+	RETURN 0
+
+[FUNCTION f_unstable]
+IF (<EVAL <MOREY>> > 0)
+	IF (<EVAL <MOREY>> == 9) || (<EVAL <MOREY>> == 5)
+	SOUND 021
+	ENDIF
+	COLOR {0781 07b0}
+	MOREY -= 1
+	TIMERF 1, f_unstable
+ELSE
+	FOROBJS 5
+		SOUND 011d
+		SPELLEFFECT s_explosion 200.0 
+		EFFECT 2,i_fx_explode,0,13,1
+	ENDFOR
+	REMOVE
+ENDIF
+
+///////////
+//Mining AFK:
+// Mining can be a tricky business, obviously Earth Elementals must come from somewhere
+// So why not the chance of digging one up?
+// If you can dig up Earth Elementals, why not "other" Elementals?
+// Notice how I used different numbers to prevent all 3 showing at once...
+// There's probably a better way, but this is an old script.
+
+//Add this to each [REGIONRESOURCE <oretype>] section
+ON=@RESOURCEFOUND
+IF (<eval RAND(400)> == 200)
+	SERV.NEWNPC c_elem_earth
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(600)> == 300)
+	SERV.NEWNPC granite_ele
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(650)> == 350) 
+	SERV.NEWNPC iron_ele
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ENDIF
+
+///////////
+//Lumberjacking AFK:
+// Pretty much the same as mining except this one runs on trees:
+
+//Either add this to sphere.region.scp or a new file that loads after it:
+
+[REGIONRESOURCE mr_tree]
+// lumberjacking default
+// t_tree
+skill=1.0,80.0
+amount=9,30
+REAP=i_log
+REGEN=60*60*3
+
+ON=@RESOURCEFOUND
+IF (<eval RAND(400)> == 200)
+	SERV.NEWNPC c_reaper
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(600)> == 300)
+	SERV.NEWNPC c_pixie
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(650)> == 350) 
+	SERV.NEWNPC c_ent
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ENDIF
+
+////////////
+//Fishing AFK:
+// Ya ditto for the previous 2, except it'll pull up beasties from the water, 
+// you "can" add your own, but make sure that the are also able to walk, otherwise they'll never
+// come on land
+// sphere.region.scp is the file for this one again, under every [REGIONRESOURCE mr_fish<x>]
+
+ON=@RESOURCEFOUND
+IF (<eval RAND(400)> == 200)
+	SERV.NEWNPC c_sea_serpent //<-- make one of these that can walk on land
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(600)> == 300)
+	SERV.NEWNPC c_slime
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ELIF (<eval RAND(650)> == 350) 
+	SERV.NEWNPC c_elem_water
+	NEW.UPDATEX
+	NEW.ANIM 12
+	NEW.ATTACK <SRC>
+ENDIF
+
+
+/////////////
+//Tailoring/Carpentry AFK:	(I bundled these 2 because they will work together)
+// This one works using an event under @skillmakeitem, much the same as alchemy
+// Basic premise behind this one is to have the player cut or stick themselves
+// which makes them bleed... (loose hits) if they do it too many times without healing
+// It's curtains! (Borrowed Admin Soulless' bleed function)
+
+ON=@SKILLMAKEITEM
+	IF (<ACT.TYPE>== t_clothing)
+		LOCAL.TAILOR=<eval <src.tailoring>>
+		IF !(RAND(<eval <LOCAL.TAILOR>>))
+			bleed {2 10}
+		ENDIF
+	ENDIF
+	
+ON=@SKILLSTART //different trigger for carp, because theres too many types to make
+	IF (<SRC.ACTION>==skill_carpentry>)
+		LOCAL.CARP = <eval <src.carpentry>>
+		IF !(RAND(<eval <LOCAL.CARP>>))
+			bleed {2 10}
+		ENDIF
+	ENDIF
+
+//Admin Soulless' bleed function		
+[function bleed]
+tag0.bleeding=<argn>
+bleeding
+
+[function bleeding]
+if <tag0.bleeding>
+	tag0.bleeding -= 1
+	damage <eval {1 10}>
+	make_blood
+	timerf 2,bleeding
+endif
+
+[function make_blood]
+for 3
+	serv.newitem { 0122b 1 0122c 1 0122d 1 0122e 1}
+	new.attr=attr_decay
+	new.timer=5
+	new.color=<bloodcolor>
+	new.p=<p>
+	dorand 8
+		new.p=<p>
+		new.move n
+		new.move ne
+		new.move e
+		new.move se
+		new.move s
+		new.move sw
+		new.move w
+		new.move nw
+	enddo
+endfor
+
+/////////
+//Blacksmithing AFK:
+// Going for a slightly different approach with this one..
+// Forges can be mighty dangerous places to work at, sparks flying everywhere...
+// This once again goes under the player on an event
+[events e_smith]
+ON=@SKILLSTART
+ 	IF (<SRC.ACTION>==skill_blacksmith)
+		LOCAL.SMITH= <eval <src.blacksmithing>>
+		IF !(RAND(<eval <LOCAL.SMITH>))
+			FORITEMS 5
+				IF (<TYPE>==t_forge)
+					f_forge_blowout
+				ENDIF
+			ENDFOR
+		ENDIF
+	ENDIF
+			
+[FUNCTION f_forge_blowout]
+FOROBJS 5
+	SPELLEFFECT=51 1000 
+	EFFECT=2,i_fire_column ,1,24,0
+END	
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+fire 
+
+[FUNCTION fire]
+SERV.NEWITEM=i_fire1
+NEW.P=<P>
+new.move <eval {-3 3}> <eval {-3 3}>
+NEW.TIMER={60 120}
+
+[ITEMDEF i_fire1]
+ID=i_fire
+TYPE=t_fire
+
+ON=@CREATE
+ATTR=04000
+
+ON=@TIMER
+REMOVE
+RETURN 1	
+

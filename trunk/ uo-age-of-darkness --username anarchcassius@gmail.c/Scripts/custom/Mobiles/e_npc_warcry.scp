@@ -1,0 +1,147 @@
+///Warcry.scp by Tattooed Corpse...These make it much more real imo :P
+
+[FUNCTION f_warcry]
+IF (RAND(10) > 1)
+	return 0
+ENDIF
+IF ( <TAG0.NPCAI.Race> == racef_undead )
+	DORAND 4
+	   EMOTE gaze hungrily
+	   SAY Brains...
+	   SAY Join me.
+	   SAY I am eternal.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_demon )
+	DORAND 6
+	   SAY Your world shall burn.
+	   SAY No mortal can defeat us.
+	   SAY Your flesh will sear.
+	   SAY Burn!
+	   SAY I shall claim your soul.
+	   SAY Pathetic wretches!
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_elf )
+	DORAND 5
+	   SAY No mercy!
+	   SAY I'm afraid you have to die now.
+	   SAY For the glory of our people!
+	   SAY Slay the defilers!
+	   SAY We shall not loose.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_pirate )
+	DORAND 7
+	   SAY It's looting time.
+	   SAY Your money AND your life!
+	   SAY Don't make this difficult.
+	   SAY I'll take your booty from your cold dead hands.
+	   EMOTE grin
+	   SAY Arrr!
+	   SAY Another day, another plundering.
+	ENDDO
+ELSE
+	DORAND 8
+	   SAY Death to the enemy!
+	   SAY Attack!
+	   SAY Die!
+	   SAY For glory!
+           SAY To arms!
+	   SAY Incoming!
+	   EMOTE scream in rage
+	   SAY Thy death will be swift!
+	ENDDO
+ENDIF
+
+[FUNCTION f_join]
+IF ( <TAG0.NPCAI.Race> == racef_undead )
+	DORAND 6
+	   EMOTE howl to allies
+	   EMOTE shriek with joy
+	   SAY Brains...
+	   SAY The Mountain King shall conquer.
+	   SAY The army of the dead grows.
+	   SAY I join the growing darkness.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_demon )
+	DORAND 5
+	   SAY I serve the Daemon Lord's army.
+	   SAY For the Lord of Flame!
+	   SAY The mortals shall suffer.
+	   SAY All shall burn before us.
+	   SAY The Abyss' army shall never fall.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_elf )
+	DORAND 5
+	   SAY Our people are forever.
+	   SAY I'm ready to defend our lands.
+	   SAY We will protect our people.
+	   SAY Ready to assist.
+	   SAY Your will is mine.
+	ENDDO
+ELIF ( <TAG0.NPCAI.Race> == racef_pirate )
+	DORAND 6
+	   SAY There better be something in this for me.
+	   SAY Count me in gang.
+	   SAY You look like the sort of leader I could respect.
+	   SAY Looking for some muscle?
+	   SAY I'll join your crew.
+	   SAY Yo ho yo ho, a pirate's life for me.
+	ENDDO
+ELSE
+	DORAND 8
+	   SAY Reporting for duty!
+	   SAY I will fight by your side!
+	   SAY There is strength in numbers..
+	   SAY Our forces grow!
+	   SAY Together we shall conquer!
+	   SAY Count me in, allies!
+	   SAY I shall aid thee.
+	   EMOTE hail allies
+	ENDDO
+ENDIF
+
+
+[FUNCTION f_leadershout]
+IF RAND(10)<=5
+ DORAND 11
+   SAY All troops attack!
+   SAY Over here quick!
+   SAY We shall wipe your kind from the planet!
+   EMOTE wave directions
+   SAY Smash them!
+   SAY To battle!
+   SAY Onward for our people!
+   EMOTE signal to allies
+   SAY Destroy them all!
+   SAY Do not hestitate.
+   EMOTE point to enemies
+  ENDDO
+ENDIF
+
+[FUNCTION f_deathtaunt]
+IF <NPC>==brain_undead)
+RETURN 0
+ENDIF
+//IF RAND(911)<=90
+DORAND 18
+   SAY See you in hell <SRC.NAME>!
+   EMOTE kick <SRC.NAME>'s corpse
+   SAY <SRC.NAME> was warned...
+   SAY Too bad you aren't the last, <SRC.NAME>.
+   SAY <SRC.NAME> was a worthy opponent.
+   EMOTE laugh
+   SAY <SRC.NAME> almost got me...
+   SAY <SRC.NAME> killed my friend a long time ago.
+   EMOTE spit on <SRC.NAME>'s body
+   SAY One more notch on my belt!
+   SAY I've taken better than you <SRC.NAME>.
+   SAY <SRC.NAME> got a few good hits in on me, I'm hurtin'...
+   SAY <SRC.NAME> isn't a problem anymore!
+   EMOTE grin at the bloody mess
+   SAY <SRC.NAME>'s race will be extinct soon.
+   SAY <SRC.NAME> was not worthy of our time.
+   EMOTE stomp on <SRC.NAME>'s body
+   EMOTE howl over the body of <SRC.NAME>.
+ENDDO
+ENDIF
+
+[eof]

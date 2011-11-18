@@ -1,0 +1,374 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2006
+// www.sphereserver.net
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+//Necromancer Items script, by Exer
+//from The Darkside Shards (www.tdsuo.com)
+//Necromancer Items script, by Exer
+//from The Darkside Shards (www.tdsuo.com)
+// FILE LAST UPDATED: Sunday, march 12th, 2006
+// By: Ghost of OSIR ////////
+
+//Sorcery
+
+[ITEMDEF i_scroll_warmth]
+ID=01f32
+RESOURCES=i_scroll_blank, i_reag_sulfur_ash,i_reag_obsidian
+SKILLMAKE=INSCRIPTION 30.0, NECROMANCY 20.0
+TYPE=T_SCROLL
+WEIGHT=0.5
+//CIRCLE=1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Scrolls - 1st Circle
+DESCRIPTION=Magic Arrow Scroll
+
+ON=@Create
+	ATTR=ATTR_MAGIC
+	MOREX=s_warmth
+	MOREY=30
+
+
+[spell 154]
+defname=s_warmth
+name=Warmth
+sound=1482
+runes=BF
+cast_time=1.0
+resources=i_reag_sulfur_ash,i_reag_obsidian
+rune_item=i_rune_warmth
+scroll_item=i_scroll_warmth
+flags=SPELLFLAG_TARG_CHAR | SPELLFLAG_FX_TARG | spellflag_good
+effect_id=i_fx_bless_effect
+effect=10,25
+duration=2*60,6*60
+manause=6
+skillreq=Necromancy 20.0
+INTERRUPT=100.0,30.0
+
+ON=@effect
+IF (<ARGO.TYPE>==t_potion)
+	obj=<src>
+ELSE
+	obj=<src.act>
+endif
+if <obj.findid.i_warmth_timer>
+	obj.rescold -= <obj.findid.i_warmth_timer.tag.rescold>
+	obj.findid.i_warmth_timer.remove
+endif
+local.lo=<strarg <serv.spell.<argn1>.effect>>
+local.hi=<streat <serv.spell.<argn1>.effect>>
+src.newitem i_warmth_timer
+new.tag.rescold = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
+local.lo=<eval <strarg <serv.spell.<argn1>.duration>>>
+local.hi=<eval <streat <serv.spell.<argn1>.duration>>>
+new.tag.timer = <local.lo>+(((<local.hi>-<local.lo>)*<argn2>)/1000)
+new.LINK=<obj>
+IF (<ARGO.TYPE>==t_potion)
+	new.layer=44
+endif
+trysrc <obj> new.equip
+
+
+[itemdef i_warmth_timer]
+ID=i_memory
+name=Warmth Timer
+TYPE=t_eq_script
+
+on=@create
+ATTR=attr_invis|attr_decay
+
+on=@equip
+link.rescold += <tag0.rescold>
+timer = <tag.timer>
+
+on=@timer
+link.rescold -= <tag0.rescold>
+remove
+return 1
+
+[spell 155]
+DEFNAME=s_detonation
+NAME=Detonation
+SOUND=snd_spell_explosion
+RUNES=VOF
+CAST_TIME=5.0
+RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_brimstone, i_reag_pig_iron
+RUNE_ITEM=
+SCROLL_ITEM=
+FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
+EFFECT_ID=0
+EFFECT=0
+DURATION=0
+MANAUSE=27
+SKILLREQ=Necromancy 75.0
+INTERRUPT=100.0,1.0
+
+ON=@Success
+serv.NEWITEM i_detonation
+NEW.p=<act.p>
+NEW.TIMER=1
+LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/90)+{15 20})
+FORCHARS 20
+	IF (<distance <new>> == 3)
+		damage (<local.damage>/4) 010 <SRC.UID>
+	ELIF  (<distance <new>> == 2)
+		damage (<local.damage>/3) 010 <SRC.UID>
+	ELIF  (<distance <new>> == 1)
+		damage (<local.damage>/2) 010 <SRC.UID>
+	ELIF (<distance <new>> == 0)
+		damage (<local.damage>) 010 <SRC.UID>
+	ENDIF
+ENDFOR
+
+[itemdef i_detonation]
+id=i_fx_explode
+
+on=@create
+color=0501
+
+on=@timer
+remove
+return
+
+[spell 156]
+DEFNAME=s_create_flame
+NAME=Create Flame
+SOUND=snd_spell_explosion
+RUNES=IFY
+CAST_TIME=4.0
+RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_obsidian
+RUNE_ITEM=
+SCROLL_ITEM=
+FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
+EFFECT_ID=0
+EFFECT=0
+DURATION=0
+MANAUSE=23
+SKILLREQ=Necromancy 65.0
+INTERRUPT=100.0,1.0
+
+ON=@Success
+serv.NEWITEM i_field_fire
+NEW.p=<act.p>
+NEW.link=<src.uid>
+NEW.TIMER=((<eval <argn2>+(<spiritspeak>/2)>/20)+{30 60})
+LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/100)+{13 18})
+act.damage (<local.damage>) 010 <SRC.UID>
+
+
+[spell 161]
+defname=s_summon_hellhound
+name=Summon Hellhound
+sound=
+runes=KFX
+cast_time=6.0
+resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone
+rune_item=
+scroll_item=
+flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
+effect_id=
+effect=
+duration=0.0
+manause=28
+skillreq=Necromancy 55.0
+interrupt=0.0
+
+
+ON=@success
+SRC.newnpc=c_hellhound
+obj = <new.uid>
+  if (<obj.TAG0.slots_needed>)
+    local.slots = <obj.TAG0.slots_needed>
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
+	SRC.SYSMESSAGE You have too many followers.
+	HITS=0
+ENDIF
+SRC.CURFOLLOWER += <local.slots>
+obj.p=<src.P>
+obj.FIX
+obj.tag.npcai.race=<src.tag0.npcai.race>
+obj.flags=00c000000
+newitem=i_memory
+new.COLOR=02
+new.CONT=<OBJ.UID>
+new.link=<SRC.uid>
+new.more2=<SRC.uid>
+new.timer=-1
+NEWITEM=i_rune_summon_creature
+new.LAYER=41
+new.TYPE=t_spell
+new.MORE2=1
+new.MOREP=40,816
+new.CONT=<OBJ.UID>
+new.LINK=<SRC.UID>
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>)/15>+{120 180}
+new.ATTR=attr_decay
+
+[spell 163]
+defname=s_summon_efreet
+name=Summon Efreet
+sound=
+runes=KFHX
+cast_time=7.0
+resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_brimstone,i_reag_obsidian
+rune_item=
+scroll_item=
+flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
+effect_id=
+effect=
+duration=0.0
+manause=38
+skillreq=Necromancy 65.0
+interrupt=0.0
+
+ON=@success
+SRC.newnpc=c_efreet
+obj = <new.uid>
+obj.p=<src.P>
+obj.FIX
+  if (<obj.TAG0.slots_needed>)
+    local.slots = <obj.TAG0.slots_needed>
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
+	//IF (<SRC.RESTEST i_reag_daemon_bone>)
+	//	SRC.SYSMESSAGE You cannot control the creature and it is summoned rogue.
+	//	SRC.CONSUME 1 i_reag_daemon_bone
+	//	RETURN
+	//ENDIF
+	SRC.SYSMESSAGE You have too many followers.
+	HITS=0
+ENDIF
+SRC.CURFOLLOWER += <local.slots>
+obj.tag.npcai.race=<src.tag0.npcai.race>
+obj.flags=00c000000
+newitem=i_memory
+new.COLOR=02
+new.CONT=<OBJ.UID>
+new.link=<SRC.uid>
+new.more2=<SRC.uid>
+new.timer=-1
+NEWITEM=i_rune_summon_creature
+new.LAYER=41
+new.TYPE=t_spell
+new.MORE2=1
+new.MOREP=40,816
+new.CONT=<OBJ.UID>
+new.LINK=<SRC.UID>
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/20>+{90 150}
+new.ATTR=attr_decay
+
+
+
+[spell 166]
+defname=s_summon_djinn
+name=Summon Djinn
+sound=
+runes=KFOX
+cast_time=8.0
+resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone,i_reag_obsidian
+rune_item=
+scroll_item=
+flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
+effect_id=
+effect=
+duration=0.0
+manause=44
+skillreq=Necromancy 75.0
+interrupt=0.0
+
+ON=@success
+SRC.newnpc=c_djinn
+obj = <new.uid>
+  if (<obj.TAG0.slots_needed>)
+    local.slots = <obj.TAG0.slots_needed>
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
+	SRC.SYSMESSAGE You have too many followers.
+	HITS=0
+ENDIF
+SRC.CURFOLLOWER += <local.slots>
+obj.p=<src.P>
+obj.FIX
+obj.tag.npcai.race=<src.tag0.npcai.race>
+obj.flags=00c000000
+newitem=i_memory
+new.COLOR=02
+new.CONT=<OBJ.UID>
+new.link=<SRC.uid>
+new.more2=<SRC.uid>
+new.timer=-1
+NEWITEM=i_rune_summon_creature
+new.LAYER=41
+new.TYPE=t_spell
+new.MORE2=1
+new.MOREP=40,816
+new.CONT=<OBJ.UID>
+new.LINK=<SRC.UID>
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/25>+{60 120}
+new.ATTR=attr_decay
+
+
+[spell 171]
+defname=s_summon_chaos_daemon
+name=Summon Chaos Daemon
+sound=
+runes=KRFX
+cast_time=10.0
+resources=i_reag_pumice,i_reag_sulfur_ash,i_reag_daemon_bone,i_reag_obsidian, i_reag_brimstone
+rune_item=
+scroll_item=
+flags=SPELLFLAG_TARG_XYZ | SPELLFLAG_SUMMON | SPELLFLAG_PLAYERONLY
+effect_id=
+effect=
+duration=0.0
+manause=52
+skillreq=Necromancy 90.0
+interrupt=0.0
+
+ON=@success
+SRC.newnpc=c_chaos_daemon
+obj = <new.uid>
+  if (<obj.TAG0.slots_needed>)
+    local.slots = <obj.TAG0.slots_needed>
+  else
+    local.slots = 1
+  endif
+IF ((<SRC.CURFOLLOWER>+<local.slots>) > <SRC.MAXFOLLOWER>) && !(<SRC.NPC>)
+	SRC.SYSMESSAGE You have too many followers.
+	HITS=0
+ENDIF
+SRC.CURFOLLOWER += <local.slots>
+obj.p=<src.P>
+obj.FIX
+obj.tag.npcai.race=<src.tag0.npcai.race>
+obj.flags=00c000000
+newitem=i_memory
+new.COLOR=02
+new.CONT=<OBJ.UID>
+new.link=<SRC.uid>
+new.more2=<SRC.uid>
+new.timer=-1
+NEWITEM=i_rune_summon_creature
+new.LAYER=41
+new.TYPE=t_spell
+new.MORE2=1
+new.MOREP=40,816
+new.CONT=<OBJ.UID>
+new.LINK=<SRC.UID>
+new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/30>+{30 90}
+new.ATTR=attr_decay
+
+
+[eof]

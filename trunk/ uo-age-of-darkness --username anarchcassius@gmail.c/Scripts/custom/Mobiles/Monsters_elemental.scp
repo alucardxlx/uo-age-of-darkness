@@ -1,0 +1,687 @@
+//****************************************************************************
+// SPHERE by : Menasoft ©1997-2002
+// www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//
+// DO NOT MAKE CHANGES TO DEFAULT SCRIPTS! MAKE YOUR ALTERATIONS IN CUSTOM FILES!
+//****************************************************************************
+// FILE LAST UPDATED: Saturday, January 4, 2003
+//
+VERSION=0.99w5
+
+[chardef 010]
+defname=c_elem_water
+name="water elemental"
+sound=snd_elementl_watrel1
+icon=i_pet_elem_water
+anim=079dff
+dam=7,8
+armor=36
+moverate=10
+resources=8 t_magic
+can=mt_walk|mt_swim|mt_run|mt_nonhum
+foodtype=t_water
+desires=t_water
+bloodcolor=colors_blue
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=45
+tag.colddamage=100
+TAG.MANUEVER1=1
+TAG.MANUEVER2=4
+TAG.MANUEVER3=3
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Elemental
+description=water elemental
+
+on=@create
+     npc=brain_monster
+
+     str={126 154}
+     dex={87 101}
+     int={152 184}
+     TAG0.MODHITS = 8
+
+     EXP={ 16500 20500 } //Level 6
+
+     anatomy={65.7 82.9}
+     parrying={76.3 88.6}
+     magery={78.3 89.6}
+     meditation={78.3 89.6}
+     magicresistance={78.3 89.6}
+     tactics={60.8 77.7}
+     wrestling={65.1 79.1}
+
+     fame={2500 4999}
+     karma={-2500 -4999}
+
+     rescold=100
+     respoison=25
+     resenergy=6
+     resfire=6
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 0f]
+defname=c_elem_fire
+name="fire elemental"
+sound=snd_elementl_firelem1
+icon=i_pet_elem_fire
+anim=079dff
+dam=7,8
+armor=36
+moverate=0
+resources=
+can=mt_walk|mt_fire_immune|mt_run|mt_nonhum
+foodtype=t_fire
+desires=t_lava
+bloodcolor=
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=45
+tag.firedamage=100
+TAG.MANUEVER1=1
+TAG.MANUEVER2=23
+TAG.MANUEVER3=9
+TEVENTS=e_combat_move_intel
+TEVENTS=e_fire_defense
+
+category=AoD Monsters
+subsection=Elemental
+description=fire elemental
+
+on=@create
+     npc=brain_monster
+     fame={2500 4999}
+     karma={-2500 -4999}
+     SetDemon
+
+     str={149 171}
+     dex={123 150}
+     int={101 119}
+     TAG0.MODHITS = 8
+
+     EXP={ 16500 20500 } //Level 6
+
+     anatomy={69.0 87.4}
+     parrying={50.0 70.0}
+     magery={67.0 77.4}
+     meditation={67.0 77.4}
+     magicresistance={79.7 94.8}
+     tactics={80.9 95.3}
+     wrestling={75.8 99.0}
+
+     respoison=25
+     resfire=100
+     resenergy=12
+
+     TAG.RANDCAST=25
+     TAG.QUICKCAST = 25
+     EVENTS=+e_intel_char_magery_user
+
+
+[chardef 0e]
+defname=c_elem_earth
+name="earth elemental"
+sound=snd_elementl_erthel1
+icon=i_pet_elem_earth
+anim=079c7f
+dam=11,16
+armor=42
+moverate=40
+resources=8 i_reag_fertile_dirt
+can=mt_walk|mt_ghost|mt_run|mt_nonhum
+foodtype=15 t_arock,t_coin,t_ore,t_ingot
+desires=r_mountains,r_caves,r_dungeon
+bloodcolor=colors_brown
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=43
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=6
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Elemental
+description=earth elemental
+
+on=@create
+     npc=brain_monster
+     SetUndead
+
+     str={241 264}
+     dex={76 94}
+     int={53 62}
+     TAG0.MODHITS = 16
+
+     EXP={ 16500 20500 } //Level 6
+
+     anatomy={65.7 82.9}
+     parrying={63.5 79.0}
+     focus={85.9 97.0}
+     magicresistance={85.9 97.0}
+     tactics={77.5 94.6}
+     wrestling={69.7 92.9}
+
+     resenergy=25
+     respoison=100
+     rescold=6
+     resfire=6
+
+     fame={2500 4999}
+     karma={-2500 -4999}
+
+
+[chardef 0d]
+defname=c_elem_air
+name="air elemental"
+sound=snd_elementl_airelem1
+icon=i_pet_elem_air
+anim=079dff
+dam=7,8
+armor=36
+moverate=0
+can=mt_walk|mt_fly|mt_nonhum
+desires=r_mountains
+bloodcolor=
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=45
+tag.energydamage=100
+TAG.MANUEVER1=1
+TAG.MANUEVER2=3
+TAG.MANUEVER3=13
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Elemental
+description=air elemental
+
+on=@create
+     npc=brain_monster
+
+     str={99 117}
+     dex={156 175}
+     int={132 151}
+     TAG0.MODHITS = 8
+
+     EXP={ 16500 20500 } //Level 6
+
+     anatomy={71.2 83.3}
+     evaluatingintel={62.5 78.8}
+     parrying={77.0 98.2}
+     magery={77.1 88.4}
+     meditation={77.1 88.4}
+     magicresistance={63.8 74.8}
+     tactics={62.5 78.8}
+     wrestling={66.9 82.0}
+
+     fame={2500 4999}
+     karma={-2500 -4999}
+
+     respoison=25
+     resenergy=100
+     rescold=6
+     resfire=6
+
+     TAG.RANDCAST=35
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 0a1]
+defname=c_elem_ice
+name="ice elemental"
+sound=snd_elementl_erthel1
+icon=i_pet_elem_ice_lbr
+dam=8,12
+armor=39
+moverate=50
+reslevel=3
+can=mt_walk|mt_run|mt_nonhum
+resources=8 t_magic
+desires=r_caves,r_mountains
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Magic
+tag.wrestlingspeed=43
+tag.colddamage=50
+TAG.MANUEVER1=3
+TAG.MANUEVER2=4
+TAG.MANUEVER3=6
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Elemental
+description=ice elemental - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={168 192}
+     dex={39 63}
+     int={172 191}
+     TAG0.MODHITS = 8
+
+     EXP={ 16500 20500 } //Level 6
+
+     anatomy={70.0 95.0}
+     parrying={70.0 95.0}
+     magicresistance={53.8 78.3}
+     tactics={76.2 98.2}
+     focus={31.8 47.7}
+     meditation={31.8 47.7}
+     wrestling={76.4 97.3}
+     magery={31.8 47.7}
+
+     respoison=25
+     rescold=100
+     resenergy=12
+
+     fame={3500 5999}
+     karma={-2500 -4999}
+
+
+     TAG.RANDCAST=25
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 0a3]
+defname=c_elem_snow
+name="snow elemental"
+sound=snd_elementl_airelem1
+icon=i_pet_elem_snow_lbr
+dam=7,8
+armor=36
+moverate=10
+can=mt_walk|mt_fly|mt_nonhum
+reslevel=3
+resources=8 t_magic
+desires=r_mountains
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=5
+Tag.BeastClass=Beast_Heavy
+tag.wrestlingspeed=45
+tag.colddamage=100
+TAG.MANUEVER1=1
+TAG.MANUEVER2=9
+TAG.MANUEVER3=13
+TEVENTS=e_combat_move_intel
+
+category=AoD Monsters
+subsection=Elemental
+description=snow elemental - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={157 187}
+     dex={147 172}
+     int={72 91}
+     TAG0.MODHITS = 8
+
+     respoison=25
+     rescold=100
+     resenergy=12
+
+     EXP={ 16500 20500 } //Level 6
+
+     parrying={65.0 75.0}
+     magicresistance={62.8 73.4}
+     tactics={85.9 98.9}
+     wrestling={82.0 97.8}
+     focus={65.0 75.0}
+     anatomy={85.9 98.9}
+
+     fame={3500 5999}
+     karma={-2500 -4999}
+
+
+[chardef 0a2]
+defname=c_elem_poison
+name="poison elemental"
+sound=snd_elementl_airelem1
+icon=i_pet_elem_poison_lbr
+anim=079dff
+dam=7,8
+armor=36
+moverate=0
+reslevel=3
+can=mt_walk|mt_fly|mt_nonhum
+desires=i_gold
+aversions=t_water,r_civilization
+bloodcolor=colors_white
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=45
+tag.poisondamage=100
+
+category=monsters
+subsection=elementals
+description=poison elemental - lbr
+
+on=@create
+     npc=brain_monster
+     
+     str={130 145}
+     dex={166 184}
+     int={122 131}
+     TAG0.MODHITS = 8
+
+     parrying={75.0 85.0}
+     magery={83.6 94.5}
+     magicresistance={92.4 100.0}
+     tactics={80.3 99.4}
+     wrestling={74.1 89.5}
+     meditation={87.0 100.0}
+     poisoning={90.3 100.0}
+
+     resenergy=25
+     respoison=100
+     rescold=12
+
+     fame={100 2000}
+     karma={-5000 -5999}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 09f]
+defname=c_elem_blood
+name="blood elemental"
+sound=snd_elementl_watrel1
+icon=i_pet_elem_blood_lbr
+dam=11,16
+armor=38
+moverate=10
+reslevel=3
+can=mt_walk|mt_run|mt_nonhum
+desires=r_dungeon
+TEVENTS=e_Level_up_NPC
+tag.wrestlingspeed=43
+
+category=monsters
+subsection=elementals
+description=blood elemental - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={527 615}
+     dex={67 85}
+     int={226 344}
+     TAG0.MODHITS = 8
+
+     parrying={85.0 95.0}
+     magery={87.5 99.4}
+     magicresistance={80.4 94.7}
+     tactics={80.5 99.4}
+     wrestling={82.2 99.4}
+     evaluatingintel={58.0 80.4}
+     meditation={22.1 61.7}
+
+     rescold=12
+     respoison=100
+     resfire=12
+
+     fame={1000 2000}
+     karma={-5000 -5999}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 20
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 09e]
+defname=c_elem_acid
+name="acid elemental"
+sound=snd_elementl_watrel1
+icon=i_pet_elem_acid_lbr
+anim=079dff
+can=mt_walk|mt_run|mt_nonhum
+dam=11,16
+armor=36
+moverate=10
+reslevel=4
+resources=8 t_magic
+desires=c_m_acid_elemental
+aversions=r_civilization
+tevents=e_monsters_all
+tevents=e_monsters_elementals
+TEVENTS=e_Level_up_NPC
+TEVENTS=e_acidic
+tag.wrestlingspeed=43
+
+category=monsters
+subsection=elementals
+description=acid elemental - lbr
+
+on=@create
+     npc=brain_monster
+
+     str={327 355}
+     dex={66 85}
+     int={271 295}
+     TAG0.MODHITS = 8
+
+     parrying={55.0 65.0}
+     magicresistance={60.0 75.0}
+     tactics={80.0 90.0}
+     wrestling={70.0 90.0}
+     anatomy={30.0 60.0}
+     magery={70.0 85.0}
+
+     rescold=12
+     respoison=100
+     resenergy=12
+     resfire=12    
+
+     fame={100 2000}
+     karma={-3000 -3999}
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 20
+     EVENTS=+e_intel_char_magery_user
+
+[chardef 300]
+defname=c_crystal_elemental
+NAME=Crystal Elemental
+SOUND=snd_monster_harpy1
+ICON=i_pet_crystalelemental
+DAM=19,27
+RESLEVEL=3
+ARMOR=20
+moverate=30
+CAN=MT_USEHANDS|MT_WALK|MT_RUN|mt_nonhum
+DESIRES=i_gold,e_notoriety,e_horses,c_man,c_woman,t_corpse
+CATEGORY=New Monsters
+SUBSECTION=AOS
+DESCRIPTION=Crystal Elemental
+tag.wrestlingspeed=44
+
+TEVENTS=e_Level_up_NPC
+
+ON=@Create 
+	NPC=brain_monster
+	FAME={100 3000} 
+	KARMA={-5000 -6999} 
+
+	STR={100 150}
+	INT=230
+	DEX={70 110} 
+
+     TAG0.MODHITS = 8
+
+	MAGICRESISTANCE={70.0 80.0}
+	TACTICS=70.0
+	WRESTLING=70.0
+	MAGERY=100.0
+
+     TAG.RANDCAST=40
+     TAG.QUICKCAST = 40
+     EVENTS=+e_intel_char_magery_user
+
+ON=@NpcRestock
+	ITEM=i_reag_nightshade,{3 7}
+	ITEM=i_gold,{195 245}
+	ITEM=random_jewel
+
+
+[chardef 0316]
+defname=c_sand_vortex
+name="sand vortex"
+sound=snd_elementl_airelem1
+icon=i_pet_sand_vortex_lbr
+can=mt_walk|mt_run
+dam=5,13
+armor=94
+moverate=0
+moverate=20
+desires=r_desert
+bloodcolor=colors_brown
+tag.wrestlingspeed=45
+
+category=AoD Monsters
+subsection=Elemental
+description=sand vortex
+
+on=@create
+     npc=brain_monster
+ 
+    str={96 120}
+     dex={172 193}
+     int={82 97}
+
+     parrying={75.0 105.0}
+     magicresistance={150.0 150.0}
+     tactics={70.0 70.0}
+     wrestling={82.0 82.0}
+
+     fame={1000 6000}
+     karma={-4000 -4999}
+
+
+[CHARDEF 023E]
+DEFNAME=c_blade_spirit
+NAME=blade spirits
+CAN=mt_walk|mt_fly|mt_run
+MOVERATE=0
+DAM=4,5
+ARMOR=35
+SOUND=snd_weapons_sword1
+ICON=i_fx_blade_spirit_1
+RESOURCES=
+FOODTYPE=
+DESIRES=
+AVERSIONS=
+TAG.POISONDAMAGE=20
+TAG.ENERGYDAMAGE=20
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=0
+Tag.BeastClass=Beast_Quick
+tag.wrestlingspeed=48
+TAG.MANUEVER1=13
+TAG.MANUEVER2=2
+TAG.MANUEVER3=23
+TEVENTS=e_combat_move_intel
+
+CATEGORY=Miscellaneous
+SUBSECTION=Summoned
+DESCRIPTION=Blade Spirits
+
+ON=@Create
+ NPC=brain_berserk
+ COLOR=0
+
+ FAME=0
+ KARMA=0
+
+ RESFIRE=40
+ RESCOLD=30
+ RESPOISON=100
+ RESENERGY=20
+
+ OSTR={ 125 125 }
+ ODEX={ 125 125 }
+ OINT={ 10 10 }
+ TAG0.MODHITS = 8
+ TAG0.MODSTAM = 32
+
+ WRESTLING={ 90.0 90.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 70.0 70.0 }
+ Anatomy={ 0.0 0.0 }
+
+[CHARDEF 023D]
+DEFNAME=c_energy_vortex
+NAME=energy vortex
+CAN=mt_walk|mt_fly|mt_run|mt_usehands	//removed mt_fire_immune
+MOVERATE=0
+DAM=8,10
+ARMOR=60
+SOUND=snd_elementl_airelem5
+ICON=i_fx_blade_spirit_1
+RESOURCES=
+FOODTYPE=
+DESIRES=
+AVERSIONS=
+BLOODCOLOR=colors_pink
+TAG.ENERGYDAMAGE=100
+TEVENTS=e_Level_up_NPC
+tag.slots_needed=0
+Tag.BeastClass=Beast_Quick
+tag.wrestlingspeed=48
+TAG.MANUEVER1=13
+TAG.MANUEVER2=11
+TAG.MANUEVER3=1
+TEVENTS=e_combat_move_intel
+RESLEVEL=1
+
+CATEGORY=Miscellaneous
+SUBSECTION=Summoned
+DESCRIPTION=Energy Vortex
+
+ON=@Create
+ NPC=brain_berserk
+ COLOR=0
+
+ IF (<R1,1000> == 1)
+  BODY=c_llama
+  COLOR=074
+ ENDIF
+
+ FAME=0
+ KARMA=0
+
+ RESFIRE=50
+ RESCOLD=50
+ RESPOISON=50
+ RESENERGY=90
+
+ OSTR={ 170 170 }
+ ODEX={ 170 170 }
+ OINT={ 10 10 }
+ TAG0.MODSTAM = 32
+
+ WRESTLING={ 120.0 120.0 }
+ TACTICS={ 100.0 100.0 }
+ MAGICRESISTANCE={ 100.0 100.0 }
+ ANATOMY={ 0.0 0.0 }
+
+ ITEMNEWBIE=i_light_source
+ ATTR=attr_magic|attr_newbie
+
+
+[eof]
