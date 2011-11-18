@@ -24,15 +24,15 @@ CAN=mt_walk|mt_run|mt_nonhum
 moverate=0
 RESOURCES=1 i_bird_raw, 30 i_feather
 FOODTYPE=30 t_crops, t_fruit, t_grain
-SHELTER=r_farm, r_forest
 tag.wrestlingspeed=40
 TAG.MANUEVER1=19
 TAG.MANUEVER2=2
 TAG.MANUEVER3=1
 
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
+
+category=AoD Animals
+subsection=Birds
+description=Turkey
 
 ON=@CREATE
 NPC=brain_animal
@@ -76,6 +76,11 @@ DESCRIPTION=Crane
 TAG.MANUEVER1=1
 TAG.MANUEVER2=2
 TAG.MANUEVER3=17
+
+
+category=AoD Animals
+subsection=Birds
+description=Crane
 
 on=@create
 	NPC=BRAIN_ANIMAL
@@ -192,7 +197,6 @@ RESOURCES=15 i_feather, 1 I_BIRD_RAW
 can=mt_walk|mt_fly|mt_nonhum|mt_hover
 foodtype=25 t_crops, t_grain
 desires=c_crow, t_crops, t_grain
-aversions=r_water, i_scarecrow
 TEVENTS=e_Level_up_NPC
 tag.wrestlingspeed=40
 Tag.BeastClass=Beast_Quick
@@ -279,7 +283,6 @@ RESOURCES=15 i_feather, 1 I_BIRD_RAW
 can=mt_walk|mt_fly|mt_nonhum|mt_hover
 foodtype=25 t_crops, t_grain
 desires=c_raven, t_crops, t_grain
-aversions=r_civilization, r_water, i_scarecrow
 TEVENTS=e_Level_up_NPC
 tag.wrestlingspeed=40
 Tag.BeastClass=Beast_Quick
@@ -365,7 +368,7 @@ dam=5,8
 armor=12
 moverate=0
 resources=30 i_feather, 1 i_bird_raw
-foodtype=25 t_fish, t_meat_raw, i_fish_steak_raw, i_fish_steak_cooked, i_fish_raw, i_fish_cooked
+foodtype=25 t_fish, t_meat_raw, i_fish_raw, i_fish_cooked
 aversions=r_civilization
 TEVENTS=e_Level_up_NPC
 tevents=e_carnivores

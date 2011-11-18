@@ -113,7 +113,7 @@ on=@create
      fame={100 1249}
 
 [CHARDEF 738]
-DEFNAME=c_ant_giant
+DEFNAME=c_ant_giant
 NAME=giant ant
 DAM=6,9
 ARMOR=13

@@ -3413,19 +3413,9 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=i_sandals
 	ITEM=supply_backpack
-	SELL=I_SCROLL_BLANK,{6 24}
-	SELL=i_pen_and_ink,{6 24}
-	SELL=i_BOOK_SM,{6 24}
-	SELL=i_BOOK_LG,{6 24}
-	SELL=i_deed_GUILDSTONE,{1 2}
-	BUY=I_SCROLL_BLANK,{6 24}
-	BUY=i_pen_and_ink,{6 24}
-	BUY=i_book_sm,{6 24}
-	BUY=i_book_lg,{6 24}
-	BUY=i_book_sm_pub,{6 24}
-	BUY=i_book_lg_pub,{6 24}
-	BUY=i_deed_GUILDSTONE,{1 2}
 
+	SELL=VENDOR_S_SCRIBE
+	BUY=VENDOR_B_SCRIBE
 
 [CHARDEF 0477]
 DEFNAME=C_H_SCRIBE_F
@@ -3477,18 +3467,8 @@ ON=@NPCRestock
 	COLOR=colors_neutral
 	ITEM=i_sandals
 	ITEM=supply_backpack
-	SELL=I_SCROLL_BLANK,{6 24}
-	SELL=i_pen_and_ink,{6 24}
-	SELL=i_BOOK_SM,{6 24}
-	SELL=i_BOOK_LG,{6 24}
-	SELL=i_deed_GUILDSTONE,{1 2}
-	BUY=I_SCROLL_BLANK,{6 24}
-	BUY=i_pen_and_ink,{6 24}
-	BUY=i_BOOK_SM,{6 24}
-	BUY=i_BOOK_LG,{6 24}
-	BUY=i_book_sm_pub,{6 24}
-	BUY=i_book_lg_pub,{6 24}
-	BUY=i_deed_GUILDSTONE,{1 2}
+	SELL=VENDOR_S_SCRIBE
+	BUY=VENDOR_B_SCRIBE
 
 
 [CHARDEF 0478]

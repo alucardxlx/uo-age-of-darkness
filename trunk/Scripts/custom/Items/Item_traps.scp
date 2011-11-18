@@ -202,7 +202,7 @@ sfx 022e
 [itemdef i_trap_bolt]
 id=i_trapbox
 weight=6
-resources=2 i_wire_iron, 2 i_spring, 3 i_board, 5 i_xbolt
+resources=2 i_wire_iron, 2 i_springs, 3 i_board, 5 i_xbolt
 skillmake=Tinkering 78.7
 type=t_trap_inactive
 name=bolt trap

@@ -40,6 +40,7 @@ TAG.MANUEVER1=27
 TAG.MANUEVER2=20
 TAG.MANUEVER3=13
 TEVENTS=e_combat_move_intel
+TEVENTS=e_fire_defense
 
 category=AoD Monsters
 subsection=Daemons
@@ -51,9 +52,9 @@ on=@create
      color=0489
      SetDemon
 
-     str={118 134}
+     str={138 154}
      dex={101 113}
-     int={157 175}
+     int={137 155}
      TAG0.MODHITS = 16
      TAG0.MODMANA = 16
 
@@ -137,8 +138,6 @@ on=@create
      tactics={61.2 74.0}
      wrestling={61.2 74.0}
      necromancy={86.7 95.6}
-     spiritspeak={46.7 55.6}
-
 
      fame={3100 5000}
      karma={-3000 -3999}
@@ -522,9 +521,9 @@ on=@create
      meditation={27.3 50.8}
      evaluatingintel={27.3 50.8}
      parrying={65.0 75.0}
-     anatomy={35.6 55.7}
+     anatomy={75.6 95.7}
      necromancy={35.6 55.7}
-     magery={96.9 99.1}
+     magery={76.9 79.1}
      magicresistance=100.0
      tactics={90.1 99.7}
      wrestling={91.2 99.7}
@@ -539,7 +538,7 @@ on=@create
      fame={4000 6000}
      karma={-5000 -5999}
 
-     TAG.RANDCAST=30
+     TAG.RANDCAST=20
      TAG.QUICKCAST = 15
      TAG.SPELLPOWER = 15
      EVENTS=+e_intel_char_magery_user
@@ -553,7 +552,7 @@ sound=snd_monster_daemon1
 icon=i_pet_daemon_gate_lbr
 can=mt_walk|mt_fly|mt_usehands
 dam=11,14
-armor=56
+armor=48
 moverate=20
 resources=4 i_ribs_raw, 6 i_reag_daemon_bone
 FOODTYPE=70 t_meat_raw, t_food, t_drink
@@ -582,9 +581,9 @@ on=@create
      npc=brain_monster
      SetDemon
 
-     str={257 270}
+     str={227 240}
      dex={81 91}
-     int={153 169}
+     int={203 199}
      TAG0.MODHITS = 128
      TAG0.MODMANA = 64
 
@@ -613,7 +612,7 @@ on=@create
 
      TAG.RANDCAST=30
      TAG.QUICKCAST = 20
-     TAG.SPELLPOWER = 25
+     TAG.SPELLPOWER = 30
      EVENTS=+e_intel_char_magery_user
      EVENTS=+e_intel_char_sorcery_user
 
@@ -792,9 +791,9 @@ on=@create
      name="#names_greater_daemon"
      SetDemon
 
-     str={247 260}
+     str={225 240}
      dex={81 91}
-     int={147 164}
+     int={167 184}
      TAG0.MODHITS = 32
      TAG0.MODMANA = 32
 
@@ -890,34 +889,66 @@ on=@create
 [CHARDEF 1069]
 DEFNAME=c_death_hound
 NAME=death hound
-DAM=1,6
-ARMOR=10
-CAN=mt_walk|mt_run|mt_nonhum|mt_equip|mt_usehands
-MOVERATE=2
-RESOURCES=1 i_bird_raw, 30 i_feather
-FOODTYPE=70 t_meat_raw, t_food, t_drink
-SHELTER=r_farm, r_forest
-tag.wrestlingspeed=40
+dam=11,14
+armor=48
+moverate=0
+can=mt_walk|mt_nonhum|mt_run
+TEVENTS=e_Level_up_NPC
+resources=6 i_ribs_raw, 6 i_reag_daemon_bone, 4 i_fur_dark
+foodtype=60 t_meat_raw
+desires=c_hellhound,c_daemon,c_balron
+tag.slots_needed=99
+Tag.BeastClass=Beast_Heavy
+tag.firedamage=50
+tag.poisondamage=50
+tag.wrestlingspeed=44
+tag.override.range=2
+TAG.MANUEVER1=6
+TAG.MANUEVER2=9
+TAG.MANUEVER3=11
+TEVENTS=e_combat_move_intel
+TEVENTS=e_undead_spawns
 
-CATEGORY=New NPC's
-SUBSECTION=Wildlife
-DESCRIPTION=Turkey
+category=AoD Monsters
+subsection=Daemons
+description=Death Hound
 
-ON=@CREATE
-NPC=brain_animal
+on=@create
+	nightsight=1
+     npc=brain_monster
+     SetDemon
 
-FAME=45
-KARMA=0
+        str={218 249}
+        dex={91 124}
+        int={126 148}
+	TAG0.MODHITS = 32
+	TAG0.MODHSTAM = 32
+	TAG0.MODMANA = 16
 
-STR={30 45}
-DEX={38 53}
-INT={15 20}
+	anatomy={60.0 72.0}
+	parrying={83.0 95.0}
+	magicresistance={80.9 93.5}
+	tactics={90.9 99.8}
+	wrestling={84.0 91.5}
+	magery={70.0 82.0}
+        necromancy={65.0 75.0}
+        meditation={27.3 50.8}
+        evaluatingintel={60.0 72.0}
 
-WRESTLING={15.0 35.0}
-TACTICS={20.0 40.0}
-MAGICRESISTANCE={0.0 10.0}
-HIDING={10.0 25.0}
-STEALTH={10.0 25.0}
+	resfire=60
+	resenergy=24
+	respoison=24
+	rescold=24
+
+	fame={10800 11800}
+	karma={-8000 -8999}
+
+     EXP={ 1100000 1350000 } //Level 12
+
+     TAG.RANDCAST=20
+     TAG.QUICKCAST = 20
+     EVENTS=+e_intel_char_magery_user
+     EVENTS=+e_intel_char_sorcery_user
 
 
 [CHARDEF 713]

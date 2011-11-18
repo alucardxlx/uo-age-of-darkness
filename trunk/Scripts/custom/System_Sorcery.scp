@@ -37,7 +37,7 @@ ON=@Create
 defname=s_warmth
 name=Warmth
 sound=1482
-runes=IF
+runes=BF
 cast_time=1.0
 resources=i_reag_sulfur_ash,i_reag_obsidian
 rune_item=i_rune_warmth
@@ -90,6 +90,75 @@ on=@timer
 link.rescold -= <tag0.rescold>
 remove
 return 1
+
+[spell 155]
+DEFNAME=s_detonation
+NAME=Detonation
+SOUND=snd_spell_explosion
+RUNES=VOF
+CAST_TIME=5.0
+RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_brimstone, i_reag_pig_iron
+RUNE_ITEM=
+SCROLL_ITEM=
+FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
+EFFECT_ID=0
+EFFECT=0
+DURATION=0
+MANAUSE=27
+SKILLREQ=Necromancy 75.0
+INTERRUPT=100.0,1.0
+
+ON=@Success
+serv.NEWITEM i_detonation
+NEW.p=<act.p>
+NEW.TIMER=1
+LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/90)+{15 20})
+FORCHARS 20
+	IF (<distance <new>> == 3)
+		damage (<local.damage>/4) 010 <SRC.UID>
+	ELIF  (<distance <new>> == 2)
+		damage (<local.damage>/3) 010 <SRC.UID>
+	ELIF  (<distance <new>> == 1)
+		damage (<local.damage>/2) 010 <SRC.UID>
+	ELIF (<distance <new>> == 0)
+		damage (<local.damage>) 010 <SRC.UID>
+	ENDIF
+ENDFOR
+
+[itemdef i_detonation]
+id=i_fx_explode
+
+on=@create
+color=0501
+
+on=@timer
+remove
+return
+
+[spell 156]
+DEFNAME=s_create_flame
+NAME=Create Flame
+SOUND=snd_spell_explosion
+RUNES=IFY
+CAST_TIME=4.0
+RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_obsidian
+RUNE_ITEM=
+SCROLL_ITEM=
+FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
+EFFECT_ID=0
+EFFECT=0
+DURATION=0
+MANAUSE=23
+SKILLREQ=Necromancy 65.0
+INTERRUPT=100.0,1.0
+
+ON=@Success
+serv.NEWITEM i_field_fire
+NEW.p=<act.p>
+NEW.link=<src.uid>
+NEW.TIMER=((<eval <argn2>+(<spiritspeak>/2)>/20)+{30 60})
+LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/100)+{13 18})
+act.damage (<local.damage>) 010 <SRC.UID>
 
 
 [spell 161]
@@ -198,50 +267,6 @@ new.LINK=<SRC.UID>
 new.TIMER=<eval ((<spiritspeak>/4)+<argn2>))/20>+{90 150}
 new.ATTR=attr_decay
 
-
-[spell 155]
-DEFNAME=s_detonation
-NAME=Detonation
-SOUND=snd_spell_explosion
-RUNES=VOF
-CAST_TIME=5.0
-RESOURCES=i_reag_pumice, i_reag_sulfur_ash, i_reag_brimstone, i_reag_pig_iron
-RUNE_ITEM=
-SCROLL_ITEM=
-FLAGS=SPELLFLAG_TARG_CHAR | SPELLFLAG_DIR_ANIM | SPELLFLAG_HARM | SPELLFLAG_FX_TARG| SPELLFLAG_RESIST
-EFFECT_ID=0
-EFFECT=0
-DURATION=0
-MANAUSE=27
-SKILLREQ=Necromancy 75.0
-INTERRUPT=100.0,1.0
-
-ON=@Success
-serv.NEWITEM i_detonation
-NEW.p=<act.p>
-NEW.TIMER=1
-LOCAL.DAMAGE=((<eval <argn2>+(<spiritspeak>/4)>/90)+{15 20})
-FORCHARS 20
-	IF (<distance <new>> == 3)
-		damage (<local.damage>/4) 010 <SRC.UID>
-	ELIF  (<distance <new>> == 2)
-		damage (<local.damage>/3) 010 <SRC.UID>
-	ELIF  (<distance <new>> == 1)
-		damage (<local.damage>/2) 010 <SRC.UID>
-	ELIF (<distance <new>> == 0)
-		damage (<local.damage>) 010 <SRC.UID>
-	ENDIF
-ENDFOR
-
-[itemdef i_detonation]
-id=i_fx_explode
-
-on=@create
-color=0501
-
-on=@timer
-remove
-return
 
 
 [spell 166]

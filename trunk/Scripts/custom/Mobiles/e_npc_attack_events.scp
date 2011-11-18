@@ -1213,6 +1213,9 @@ ENDIF
 	ELIF (<npccancast s_summon_hellhound>) && !(<R3>) && !(<FLAGS>&statf_conjured)
 		npccast s_summon_hellhound,<obj>
 		return 1
+	ELIF (<npccancast s_fire_bolt>)
+		npccast s_fire_bolt,<obj>
+		return 1
 	ENDIF
 return 0
 

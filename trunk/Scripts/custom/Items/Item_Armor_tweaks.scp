@@ -2756,6 +2756,11 @@ DUPELIST=04001
 SKILLMAKE=TAILORING 59.0, t_sewing_kit
 RESOURCES=20 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothes
 SUBSECTION=Stygian Abyss
@@ -2775,6 +2780,11 @@ DUPELIST=04003
 SKILLMAKE=TAILORING 59.0, t_sewing_kit
 RESOURCES=26 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothing
 SUBSECTION=Stygian Abyss
@@ -2794,6 +2804,11 @@ DUPELIST=0404
 SKILLMAKE=TAILORING 20.0, t_sewing_kit
 RESOURCES=8 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothing
 SUBSECTION=Stygian Abyss
@@ -2814,6 +2829,11 @@ DUPELIST=0406
 SKILLMAKE=TAILORING 25.0, t_sewing_kit
 RESOURCES=12 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothing
 SUBSECTION=Stygian Abyss
@@ -2833,6 +2853,11 @@ DUPELIST=0408
 SKILLMAKE=TAILORING 25.0, t_sewing_kit
 RESOURCES=15 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothing
 SUBSECTION=Stygian Abyss
@@ -2852,6 +2877,11 @@ DUPELIST=040A
 SKILLMAKE=TAILORING 16.0, t_sewing_kit
 RESOURCES=8 i_cloth
 TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+
+On=@Create
+Color=0
+Hitpoints=20
 
 CATEGORY=Provisions - Clothing
 SUBSECTION=Stygian Abyss
@@ -2859,6 +2889,645 @@ DESCRIPTION=Gargoyle Clothing Legs
 
 [ITEMDEF 040A]
 DUPEITEM=04066
+
+[Itemdef 045A4]
+Defname=i_gargish_cloth_wing_armor
+Name=gargish cloth wing armor
+type=t_clothing
+Layer=layer_cape
+Armor=5
+Weight=2.0
+ReqStr=0
+Tag.ReqStr=10
+Resources=12 i_cloth
+SkillMake=Tailoring 65.0, t_sewing_kit
+Dye=1
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=045A5
+
+Category=Provisions - Armor
+Subsection=Gargish Cloth Armor
+Description=Gargish Cloth Wing Armor
+
+On=@Create
+Color=0
+Hitpoints=20
+
+[Itemdef 045A5]
+//Cloth Wing Armor
+Dupeitem=045A4
+
+
+[Itemdef 00301]
+Defname=i_gargish_leather_arms_1
+Name=gargish leather arms
+Type=t_armor_leather
+Layer=layer_arms
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=8 i_hides_cut
+SkillMake=Tailoring 53.9, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04047
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Arms (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04047]
+//gargoyle leather arms
+DupeItem=00301
+
+
+[Itemdef 00302]
+Defname=i_gargish_leather_arms_2
+Name=gargish leather arms
+Type=t_armor_leather
+Layer=layer_arms
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=8 i_hides_cut
+SkillMake=Tailoring 53.9, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04048
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Arms (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04048]
+//gargoyle leather arms 2
+DupeItem=00302
+
+
+[Itemdef 00304]
+Defname=i_gargish_leather_chest_1
+Name=gargish leather chest
+Type=t_armor_leather
+Layer=layer_chest
+Armor=13
+Weight=5.0
+ReqStr=0
+tag.ReqStr=25
+Resources=8 i_hides_cut
+SkillMake=Tailoring 70.5, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0404A
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Chest (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0404A]
+//gargoyle leather chest 1
+DupeItem=00304
+
+
+[Itemdef 00303]
+Defname=i_gargish_leather_chest_2
+Name=gargish leather chest
+Type=t_armor_leather
+Layer=layer_chest
+Armor=13
+Weight=5.0
+ReqStr=0
+tag.ReqStr=25
+Resources=8 i_hides_cut
+SkillMake=Tailoring 70.5, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04049
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Chest (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04049]
+//gargoyle leather chest 2
+DupeItem=00303
+
+
+[Itemdef 00311]
+Defname=i_gargish_leather_kilt_1
+Name=gargish leather kilt
+Type=t_armor_leather
+Layer=layer_skirt
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=6 i_hides_cut
+SkillMake=Tailoring 58.0, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0404C
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Kilt (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0404C]
+//gargoyle leather kilt 1
+DupeItem=00311
+
+
+[Itemdef 00310]
+Defname=i_gargish_leather_kilt_2
+Name=gargish leather kilt
+Type=t_armor_leather
+Layer=layer_skirt
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=6 i_hides_cut
+SkillMake=Tailoring 58.0, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0404B
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Kilt (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0404B]
+//gargoyle leather kilt 2
+DupeItem=00310
+
+
+[Itemdef 00305]
+Defname=i_gargish_leather_leggings_1
+Name=gargish leather leggings
+Type=t_armor_leather
+Layer=layer_legs
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=10 i_hides_cut
+SkillMake=Tailoring 66.3, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0404D
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Leggings (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0404D]
+//gargoyle leather leggings 1
+DupeItem=00305
+
+
+[Itemdef 00306]
+Defname=i_gargish_leather_leggings_2
+Name=gargish leather leggings
+Type=t_armor_leather
+Layer=layer_legs
+Armor=13
+Weight=4.0
+ReqStr=0
+tag.ReqStr=25
+Resources=10 i_hides_cut
+SkillMake=Tailoring 66.3, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0404E
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Leggings (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0404E]
+//gargoyle leather leggings 2
+DupeItem=00306
+
+
+[Itemdef 041D8]
+Defname=i_gargish_leather_talons
+Name=gargish leather talons
+Type=t_armor_leather
+Layer=layer_shoes
+Armor=13
+Weight=2.0
+ReqStr=0
+tag.ReqStr=15
+Resources=6 i_hides_cut
+SkillMake=Tailoring 40.4, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=041D9
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+On=@Create
+Color=0
+Hitpoints=35
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Talons
+
+[Itemdef 041D9]
+//gargoyle leather talons
+DupeItem=041D8
+
+
+[Itemdef 0457E]
+Defname=i_gargish_leather_wing_armor
+Name=gargish leather wing armor
+Type=t_armor_leather
+Layer=layer_cape
+Armor=13
+Weight=3.0
+ReqStr=0
+tag.ReqStr=20
+Resources=12 i_hides_cut
+SkillMake=Tailoring 65.0, t_sewing_kit
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0457F
+TAG.RESFIRE=12
+TAG.RESCOLD=12
+TAG.RESENERGY=12
+
+On=@Create
+Color=0
+Hitpoints=35
+
+Category=Provisions - Armor
+Subsection=Gargish Leather Armor
+Description=Gargish Leather Wing Armor
+
+[Itemdef 0457F]
+//Leather Wing Armor
+DupeItem=0457E
+
+
+[Itemdef 00283]
+Defname=i_gargish_stone_arms_1
+Name=gargish stone arms
+type=t_armor
+Layer=layer_arms
+Armor=30
+Weight=15.0
+ReqStr=0
+tag.ReqStr=60
+Resources=8 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04057
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Arms (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04057]
+//gargoyle stone arms
+DupeItem=00283
+
+
+[Itemdef 00284]
+Defname=i_gargish_stone_arms_2
+Name=gargish stone arms
+type=t_armor
+Layer=layer_arms
+Armor=30
+Weight=15.0
+ReqStr=0
+tag.ReqStr=60
+Resources=8 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04058
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Arms (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04058]
+//gargoyle stone arms 2
+DupeItem=00284
+
+
+[Itemdef 00285]
+Defname=i_gargish_stone_chest_1
+Name=gargish stone chest
+type=t_armor
+Layer=layer_chest
+Armor=30
+Weight=23.0
+ReqStr=0
+tag.ReqStr=65
+Resources=12 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=04059
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Chest (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 04059]
+//gargoyle stone chest 1
+DupeItem=00285
+
+
+[Itemdef 00286]
+Defname=i_gargish_stone_chest_2
+Name=gargish stone chest
+type=t_armor
+Layer=layer_chest
+Armor=30
+Weight=23.0
+ReqStr=0
+tag.ReqStr=65
+Resources=12 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0405A
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Chest (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0405A]
+//gargoyle stone chest 2
+DupeItem=00286
+
+
+[Itemdef 00287]
+Defname=i_gargish_stone_kilt_1
+Name=gargish stone kilt
+type=t_armor
+Layer=layer_skirt
+Armor=30
+Weight=15.0
+ReqStr=0
+tag.ReqStr=60
+Resources=6 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0405B
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Kilt (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0405B]
+//gargoyle stone kilt 1
+DupeItem=00287
+
+
+[Itemdef 00288]
+Defname=i_gargish_stone_kilt_2
+Name=gargish stone kilt
+type=t_armor
+Layer=layer_skirt
+Armor=30
+Weight=15.0
+ReqStr=0
+tag.ReqStr=60
+Resources=6 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0405C
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Kilt (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0405C]
+//gargoyle stone kilt 2
+DupeItem=00288
+
+
+[Itemdef 00289]
+Defname=i_gargish_stone_leggings_1
+Name=gargish stone leggings
+type=t_armor
+Layer=layer_legs
+Armor=30
+Weight=20.0
+ReqStr=0
+tag.ReqStr=60
+Resources=10 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0405D
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Leggings (Type 1)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0405D]
+//gargoyle stone leggings 1
+DupeItem=00289
+
+
+[Itemdef 0028A]
+Defname=i_gargish_stone_leggings_2
+Name=gargish stone leggings
+type=t_armor
+Layer=layer_legs
+Armor=30
+Weight=20.0
+ReqStr=0
+tag.ReqStr=60
+Resources=10 i_granite
+SkillMake=Carpentry 100.0
+Flip=1
+TAG.Item.Gargoyle=1
+TEVENTS=T_PROPRIEDADES
+DupeList=0405E
+TAG.RESFIRE=8
+TAG.RESCOLD=8
+TAG.RESENERGY=16
+
+Category=Provisions - Armor
+Subsection=Gargish Stone Armor
+Description=Gargish Stone Leggings (Type 2)
+
+On=@Create
+Color=0
+Hitpoints=35
+
+[Itemdef 0405E]
+//gargoyle stone leggings 2
+DupeItem=0028A
+
+
+[Itemdef 042DE]
+//Note: These were undefined.
+Defname=i_gargish_platemail_talons
+Name=gargish platemail talons
+type=t_armor
+Layer=layer_shoes
+Armor=40
+Weight=9.0
+ReqStr=0
+tag.ReqStr=80
+Resources=12 i_ingot_iron
+SkillMake=Blacksmithing 40.0
+Flip=1
+TAG.Item.Gargoyle=1
+DupeList=042DF
+TEVENTS=T_PROPRIEDADES
+
+ON=@Create
+HITPOINTS=50
+
+Category=Provisions - Armor
+Subsection=Gargish Plate Armor
+Description=Gargish Plate Talons
+
+[Itemdef 042DF]
+//gargoyle platemail talons
+DupeItem=042DE
+
+[ITEMDEF 04056]
+DUPEITEM=030e
 
 [ITEMDEF 0308]
 DEFNAME=i_platemail_gargish_arms
@@ -2868,21 +3537,18 @@ RESOURCES=18 i_ingot_iron
 SKILLMAKE=Blacksmithing 66.3
 WEIGHT=5
 FLIP=1
-REQSTR=80
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=80
 DUPELIST=04050
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor
 DESCRIPTION=Gargish Platemail Arms
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04050]
 DUPEITEM=0308
@@ -2895,21 +3561,18 @@ RESOURCES=25 i_ingot_iron
 SKILLMAKE=Blacksmithing 75.0
 WEIGHT=10
 FLIP=1
-REQSTR=95
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=80
 DUPELIST=04051
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor
 DESCRIPTION=Gargish Platemail Chest
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04051]
 DUPEITEM=0309
@@ -2922,21 +3585,18 @@ RESOURCES=12 i_ingot_iron
 SKILLMAKE=Blacksmithing 58.9
 WEIGHT=5
 FLIP=1
-REQSTR=80
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=80
 DUPELIST=04053
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor
 DESCRIPTION=Gargish Platemail Kilt
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04053]
 DUPEITEM=030b
@@ -2949,21 +3609,18 @@ RESOURCES=20 i_ingot_iron
 SKILLMAKE=Blacksmithing 68.8
 WEIGHT=7
 FLIP=1
-REQSTR=90
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=90
 DUPELIST=04055
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor
 DESCRIPTION=Gargish Platemail Leggings
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04055]
 DUPEITEM=030d
@@ -2982,21 +3639,18 @@ RESOURCES=18 i_ingot_iron
 SKILLMAKE=Blacksmithing 66.3
 WEIGHT=5
 FLIP=1
-REQSTR=80
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=80
 DUPELIST=0404f
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor (Art 2)
 DESCRIPTION=Gargish Platemail Arms
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 0404f]
 DUPEITEM=0307
@@ -3009,21 +3663,18 @@ RESOURCES=25 i_ingot_iron
 SKILLMAKE=Blacksmithing 75.0
 WEIGHT=10
 FLIP=1
-REQSTR=95
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=95
 DUPELIST=04052
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor (Art 2)
 DESCRIPTION=Gargish Platemail Chest
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04052]
 DUPEITEM=030a
@@ -3036,21 +3687,18 @@ RESOURCES=12 i_ingot_iron
 SKILLMAKE=Blacksmithing 58.9
 WEIGHT=5
 FLIP=1
-REQSTR=80
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=80
 DUPELIST=04054
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor (Art 2)
 DESCRIPTION=Gargish Platemail Kilt
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04054]
 DUPEITEM=030c
@@ -3063,30 +3711,32 @@ RESOURCES=20 i_ingot_iron
 SKILLMAKE=Blacksmithing 68.8
 WEIGHT=7
 FLIP=1
-REQSTR=90
+ReqStr=0
+tag.ReqStr=90
 DUPELIST=04056
 CATEGORY=Provisions - Armor - Blacksmithing
 SUBSECTION=Platemail Gargish Armor (Art 2)
 DESCRIPTION=Gargish Platemail Leggings
 TAG.Item.Gargoyle=1
-TAG.Penalty.Meditation=1
-TAG.ResPhysical=8
-TAG.ResFire=6
-TAG.ResCold=5
-TAG.ResPoison=6
-TAG.ResEnergy=5
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04056]
 DUPEITEM=030e
+
 [ITEMDEF 04200]
 DEFNAME=i_shield_wooden_gargish
 TYPE=t_shield
 FLIP=1
 WEIGHT=5
-REQSTR=20
+REQSTR=0
+ARMOR=10
+TAG.RESCOLD=10
+TAG.RESFIRE=10
+TAG.RESENERGY=10
+TAG.REQSTR=20
 SKILLMAKE=Carpentry 52.6, t_carpentry
 RESOURCES=9 i_log
 DUPELIST=04207
@@ -3094,10 +3744,10 @@ CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Gargish Wooden Shield
 TAG.Item.Gargoyle=1
-TAG.ResEnergy=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=35
 
 [ITEMDEF 04207]
 DUPEITEM=04200
@@ -3106,19 +3756,21 @@ DUPEITEM=04200
 DEFNAME=i_shield_kite_gargish
 TYPE=t_shield
 FLIP=1
-WEIGHT=7
-REQSTR=45
+WEIGHT=6
+REQSTR=0
+ARMOR=22
+TAG.REQSTR=45
 SKILLMAKE=Blacksmithing 4.6
-RESOURCES=16 i_ingot_iron
+RESOURCES=12 i_ingot_iron
 DUPELIST=04206
 CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Gargish Kite Shield
 TAG.Item.Gargoyle=1
-TAG.ResEnergy=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04206]
 DUPEITEM=04201
@@ -3127,19 +3779,21 @@ DUPEITEM=04201
 DEFNAME=i_shield_plate_small
 TYPE=t_shield
 FLIP=1
-WEIGHT=6
-REQSTR=20
+WEIGHT=7
+REQSTR=0
+ARMOR=28
+TAG.REQSTR=65
 SKILLMAKE=Blacksmithing 0.0
-RESOURCES=12 i_ingot_iron
+RESOURCES=14 i_ingot_iron
 DUPELIST=0420a
 CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Small Plate Shield
 TAG.Item.Gargoyle=1
-TAG.ResCold=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 0420a]
 DUPEITEM=04202
@@ -3148,19 +3802,21 @@ DUPEITEM=04202
 DEFNAME=i_shield_plate_medium
 TYPE=t_shield
 FLIP=1
-WEIGHT=6
-REQSTR=45
+WEIGHT=7
+REQSTR=0
+ARMOR=32
+TAG.REQSTR=80
 SKILLMAKE=Blacksmithing 0.0
-RESOURCES=14 i_ingot_iron
+RESOURCES=16 i_ingot_iron
 DUPELIST=04209
 CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Medium Plate Shield
 TAG.Item.Gargoyle=1
-TAG.ResFire=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04209]
 DUPEITEM=04203
@@ -3170,7 +3826,9 @@ DEFNAME=i_shield_plate_large
 TYPE=t_shield
 FLIP=1
 WEIGHT=8
-REQSTR=90
+REQSTR=0
+ARMOR=40
+TAG.REQSTR=90
 SKILLMAKE=Blacksmithing 24.3
 RESOURCES=18 i_ingot_iron
 DUPELIST=04208
@@ -3178,10 +3836,10 @@ CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Large Plate Shield
 TAG.Item.Gargoyle=1
-TAG.ResFire=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04208]
 DUPEITEM=04204
@@ -3191,7 +3849,9 @@ DEFNAME=i_shield_chaos_gargish
 TYPE=t_shield
 FLIP=1
 WEIGHT=5
-REQSTR=95
+REQSTR=0
+ARMOR=42
+TAG.REQSTR=95
 SKILLMAKE=Blacksmithing 85.0
 RESOURCES=25 i_ingot_iron
 DUPELIST=04229
@@ -3199,10 +3859,10 @@ CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Gargish Chaos Shield
 TAG.Item.Gargoyle=1
-TAG.ResPhysical=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=50
 
 [ITEMDEF 04229]
 DUPEITEM=04228
@@ -3212,7 +3872,9 @@ DEFNAME=i_shield_order_gargish
 TYPE=t_shield
 FLIP=1
 WEIGHT=7
-REQSTR=95
+REQSTR=0
+ARMOR=42
+TAG.REQSTR=95
 SKILLMAKE=Blacksmithing 85.0
 RESOURCES=25 i_ingot_iron
 DUPELIST=0422b
@@ -3220,10 +3882,10 @@ CATEGORY=Provisions - Armor - Gargish
 SUBSECTION=Shields
 DESCRIPTION=Gargish Order Shield
 TAG.Item.Gargoyle=1
-TAG.ResPhysical=1
+TEVENTS=T_PROPRIEDADES
 
 ON=@Create
-HITPOINTS={50 60}
+HITPOINTS=55
 
 [ITEMDEF 0422b]
 DUPEITEM=0422a

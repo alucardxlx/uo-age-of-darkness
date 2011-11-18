@@ -32,6 +32,7 @@ scripts/items/profession/
 scripts/items/resources/
 scripts/skills/
 scripts/sphere_skills.scp
+scripts/custom/Items/
 scripts/custom/Items/Item_reagents.scp
 scripts/custom/System_alchemy_magic.scp
 scripts/custom/
@@ -41,7 +42,6 @@ scripts/custom/Functions/
 scripts/custom/Stones/
 scripts/custom/Skills/
 scripts/custom/Skillmenus/
-scripts/custom/Items/
 scripts/custom/houseinfo/
 scripts/custom/
 scripts/custom/items/Custom_potion_set.scp
@@ -53,7 +53,6 @@ scripts/custom/System_Combat.scp
 scripts/custom/System_Magic_Properties.scp
 scripts/custom/System_Followers.scp
 scripts/custom/System_Necromancy.scp
-scripts/custom/Custom_speech.scp
 
 
 scripts/Custom/Custom_defs.scp
@@ -76,6 +75,7 @@ scripts/sphere_menu.scp
 scripts/sphere_name.scp
 scripts/sphere_skillmenu.scp
 scripts/sphere_speech.scp
+scripts/custom/Custom_speech.scp
 //scripts/spells/
 scripts/sphere_newb.scp
 scripts/sphere_template.scp

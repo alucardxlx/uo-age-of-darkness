@@ -392,9 +392,6 @@ ADV_RATE=1.7,40.0,100.0
 VALUES=1,20,80
 
 ON=@Fail
-	SRC.MESSAGE You cook the food.
-
-ON=@Fail
 	SRC.MESSAGE You ruin the food.
 
 
