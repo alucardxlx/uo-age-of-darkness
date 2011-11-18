@@ -2568,18 +2568,9 @@ ITEM=i_sandals
 ITEM=backpack_poor
 ITEM=i_elven_specs//{i_elven_specs 1 0 8}
 
-SELL=I_SCROLL_BLANK,{6 24}
-SELL=i_pen_and_ink,{6 24}
-SELL=i_BOOK_SM,{6 24}
-SELL=i_BOOK_LG,{6 24}
-SELL=i_deed_GUILDSTONE,{1 2}
-BUY=I_SCROLL_BLANK,{6 24}
-BUY=i_pen_and_ink,{6 24}
-BUY=i_book_sm,{6 24}
-BUY=i_book_lg,{6 24}
-BUY=i_book_sm_pub,{6 24}
-BUY=i_book_lg_pub,{6 24}
-BUY=i_deed_GUILDSTONE,{1 2}
+SELL=VENDOR_S_SCRIBE
+BUY=VENDOR_B_SCRIBE
+
 
 CATEGORY=Civilized
 SUBSECTION=Tradesmen (Elven)
@@ -2636,19 +2627,9 @@ ITEM=i_sandals
 ITEM=backpack_poor
 ITEM={i_elven_specs 1 0 8}
 
-SELL=I_SCROLL_BLANK,{6 24}
-SELL=i_pen_and_ink,{6 24}
-SELL=i_BOOK_SM,{6 24}
-SELL=i_BOOK_LG,{6 24}
-SELL=i_deed_GUILDSTONE,{1 2}
 
-BUY=I_SCROLL_BLANK,{6 24}
-BUY=i_pen_and_ink,{6 24}
-BUY=i_BOOK_SM,{6 24}
-BUY=i_BOOK_LG,{6 24}
-BUY=i_book_sm_pub,{6 24}
-BUY=i_book_lg_pub,{6 24}
-BUY=i_deed_GUILDSTONE,{1 2}
+SELL=VENDOR_S_SCRIBE
+BUY=VENDOR_B_SCRIBE
 
 CATEGORY=Civilized
 SUBSECTION=Tradesmen (Elven)

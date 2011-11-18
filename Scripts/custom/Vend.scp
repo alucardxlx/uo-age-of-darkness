@@ -2241,5 +2241,41 @@ BUY=i_cotton,{2 24}
 BUY=i_FLAX_BUNDLE,{2 24}
 BUY=i_thread,{2 24}
 
+[TEMPLATE VENDOR_S_SCRIBE]
+CATEGORY=Vendor Templates
+SUBSECTION=Sell Templates
+DESCRIPTION=Scribe
+SELL=I_SCROLL_BLANK,{8 36}
+SELL=i_pen_and_ink,{6 24}
+SELL=i_BOOK_SM,{6 24}
+SELL=i_BOOK_LG,{6 24}
+SELL=i_deed_GUILDSTONE,{2 3}
+SELL=random_LANGBOOK
+SELL=random_LANGBOOK
+SELL=random_LANGBOOK
+
+[TEMPLATE VENDOR_B_SCRIBE]
+CATEGORY=Vendor Templates
+SUBSECTION=Buy Templates
+DESCRIPTION=Scribe
+BUY=I_SCROLL_BLANK,{6 24}
+BUY=i_pen_and_ink,{6 24}
+BUY=i_book_sm,{6 24}
+BUY=i_book_lg,{6 24}
+BUY=i_book_sm_pub,{6 24}
+BUY=i_book_lg_pub,{6 24}
+BUY=i_deed_GUILDSTONE,{1 2}
+BUY=i_langbook_eng_jap
+BUY=i_langbook_eng_orc
+BUY=i_langbook_eng_dmn
+BUY=i_langbook_orc_eng
+BUY=i_langbook_orc_ogr
+BUY=i_langbook_orc_dmn
+BUY=i_langbook_jap_gar
+BUY=i_langbook_elv_wsp
+BUY=i_langbook_elv_drc
+BUY=i_langbook_gar_drc
+BUY=i_langbook
+
 [EOF]
 
