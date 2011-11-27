@@ -1,4 +1,5 @@
 #summary Welcome to Age of Shadows
+<a href="index.htm">Back to UOAoD</a>
 = Introduction =
 
 Welcome to Age of Shadows, an Ultima Online emulated server.
