@@ -12,8 +12,12 @@ Khaos - Sphere Developer. SCP contributer. Shard co-owner, scripter, and world d
 == Admins/Developers ==
 Valios - Developer of VSCP. Scripting and world development.
 
-== Game Masters ==
+Jasper - Web designer. World development
 
+== Game Masters ==
+Anarch Cassius
+
+Jasper
 
 == Counsellors ==
 
