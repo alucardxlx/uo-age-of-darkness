@@ -1032,7 +1032,7 @@ SELL=i_drum,{4 34}
 SELL=i_tambourine,{4 34}
 SELL=i_lyre,{4 34}
 SELL=i_lute,{4 34}
-SELL=i_ARROW_FLETCHING,{4 12}
+SELL=i_fletching_tools,{4 12}
 
 [TEMPLATE VENDOR_B_TINKER]
 CATEGORY=Vendor Templates
@@ -1085,7 +1085,7 @@ BUY=i_plane_jointing,{4 34}
 BUY=i_pickaxe,{4 34}
 BUY=i_lockpick_set,{2 13}
 BUY=i_spyglass,{4 34}
-BUY=i_ARROW_FLETCHING,{4 12}
+BUY=i_fletching_tools,{4 12}
 
 
 [TEMPLATE VENDOR_S_HEALER_SHOP]
@@ -1627,7 +1627,7 @@ SELL=i_bow_composite,{4 12}
 SELL=i_arrow,{48 144}
 SELL=i_feather,{24 72}
 SELL=i_ARROW_SHAFT,{24 72}
-SELL=i_ARROW_FLETCHING,{4 12}
+SELL=i_fletching_tools,{4 12}
 
 
 [TEMPLATE VENDOR_S_BOWYER_ELF]
@@ -1639,7 +1639,7 @@ SELL=i_magical_shortbow,{4 12}
 SELL=i_arrow,{48 144}
 SELL=i_feather,{24 72}
 SELL=i_ARROW_SHAFT,{48 96}
-SELL=i_ARROW_FLETCHING,{4 12}
+SELL=i_fletching_tools,{4 12}
 
 [TEMPLATE VENDOR_B_BOWYER]
 CATEGORY=Vendor Templates
@@ -1656,7 +1656,7 @@ BUY=i_ARROW_SHAFT,{24 72}
 BUY=i_log,{24 72}
 BUY=i_elven_composite_longbow,{4 12}
 BUY=i_magical_shortbow,{4 12}
-BUY=i_ARROW_FLETCHING,{4 12}
+BUY=i_fletching_tools,{4 12}
 
 [TEMPLATE VENDOR_S_TRAINER]
 CATEGORY=Vendor Templates
@@ -2245,12 +2245,15 @@ BUY=i_thread,{2 24}
 CATEGORY=Vendor Templates
 SUBSECTION=Sell Templates
 DESCRIPTION=Scribe
-SELL=I_SCROLL_BLANK,{8 36}
+SELL=I_SCROLL_BLANK,{16 64}
 SELL=i_pen_and_ink,{6 24}
 SELL=i_BOOK_SM,{6 24}
 SELL=i_BOOK_LG,{6 24}
+BUY=i_book_sm_pub,{6 24}
+BUY=i_book_lg_pub,{6 24}
 SELL=i_deed_GUILDSTONE,{2 3}
-SELL=random_LANGBOOK
+SELL=random_LANGBOOK,{1 3}
+SELL=random_LANGBOOK,{1 3}
 SELL=random_LANGBOOK
 SELL=random_LANGBOOK
 

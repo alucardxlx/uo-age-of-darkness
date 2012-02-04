@@ -354,7 +354,7 @@ SKILLMAKE=TINKERING 35.0
 RESOURCES=4 i_ingot_iron
 
 ON=@CREATE
-	HITS=50
+	HITPOINTS=50
 
 ON=@DCLICK
 IF (<SRC.RESTEST 1 i_tinkering_craft>) || (<SRC.RESTEST 1 i_blacksmithing_craft>)
@@ -407,7 +407,7 @@ skmenu_tinkering_1_10 i_hammer
 skmenu_tinkering_1_11 i_scissors
 skmenu_tinkering_1_12 i_sewing_kit
 skmenu_tinkering_1_13 i_tinker_tools
-skmenu_tinkering_1_14 i_arrow_fletching
+skmenu_tinkering_1_14 i_fletching_tools
 skmenu_tinkering_1_15 i_tongs
 skmenu_tinkering_1_16 i_FISHING_POLE
 skmenu_tinkering_1_17 i_lockpick
@@ -541,10 +541,10 @@ IF (<MOREX>)
 	TIMER 1
 	RETURN 1
 ENDIF
-LOCAL.CHANCE=<CONT.f_skmenu_tinkering_successchance <TAG.ITEM>, <LINK.UID>>
+LOCAL.CHANCE=<CONT.f_skmenu_successchance <TAG.ITEM>, <LINK.UID>>
 IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 	SERV.NEWITEM <TAG.ITEM> 
-	LOCAL.EXCEP=<CONT.f_skmenu_tinkering_exceptionalchance <TAG.ITEM>, <LINK.UID>>
+	LOCAL.EXCEP=<CONT.f_skmenu_exceptionalchance <TAG.ITEM>, <LINK.UID>>
 	VAR.ARGN1=<LOCAL.EXCEP>
 	VAR.ARGN2=<MORE>
 	LINK.TRIGGER=@MakeItem

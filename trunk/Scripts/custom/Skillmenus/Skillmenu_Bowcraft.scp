@@ -97,21 +97,22 @@ IF (<SRC.TARG.TYPE>==T_weapon_xbow)
 	RETURN 1
 ENDIF
 
-[ITEMDEF 01022]
-DEFNAME=i_arrow_fletching
+[ITEMDEF i_fletching_tools]
+ID=i_arrow_fletching
 RESOURCES=4 i_FEATHER, 4 i_board
 SKILLMAKE=TINKERING 10.1
-TYPE=T_weapon_mace_pick
 VALUE=43
+FLIP=1
 WEIGHT=.1
-ATTR=04000
 CATEGORY=Items by Professions
 SUBSECTION=Archers/Bowyers
 DESCRIPTION=Arrow Fletching Equip
 DUPELIST=01023
+TEVENTS=T_PROPRIEDADES
 
 ON=@CREATE
-	HITPOINTS=50
+	TAG.HITS=50
+	TAG.MAXHITS=50
 
 ON=@DCLICK
 IF (<SRC.ACTION>!=-1) || (<SRC.CTAG0.CRAFTING>)
@@ -123,6 +124,12 @@ IF !(<f_skmenu_Bowcraft_cancraft>)
 ENDIF
 DIALOG d_skillmenu_bowcraft
 RETURN 1
+
+
+	
+on=@destroy
+
+serv.log I have been removed from the server.
 
 [DEFNAME def_skmenu_Bowcraft]
 skmenu_Bowcraft_flags 01|04 //01=markoption 02=resmelt 04=repair 08=enhance
@@ -168,7 +175,7 @@ skmenu_Bowcraft_3_2 i_xbolt
 
 [FUNCTION f_skmenu_Bowcraft_cancraft]
 //this must be edited out for different skillmenus (because, for example, bowcraft doesn't need anvil & forge)
-IF (<HITPOINTS><=0)
+IF (<TAG0.HITS><=0)
 	SRC.Ctag0.SKMENU_Bowcraft_NOTICE You have worn out your tool!
 	RETURN 0
 ELSEIF (<CONT.TOPOBJ.UID>!=<SRC.UID>)
@@ -249,7 +256,7 @@ ENDIF
 IF (<SERV.ITEMDEF.<TAG0.ITEM>.CAN>&CAN_I_REPLICATE)
 
 LOCAL.FIRSTFREE=0
-WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.HITS><=0)
+WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.TAG0.HITS><=0)
 	IF (<LOCAL.FIRSTFREE>==0)
 		LOCAL.FIRSTFREE=1
 	ELSE
@@ -352,8 +359,8 @@ WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.HI
 		ENDIF
 	ENDIF
 ENDWHILE
-LINK.HITS -= 1 //damage the tool
-IF (<LINK.HITS><=0)
+LINK.TAG0.HITS -= 1 //damage the tool
+IF (<LINK.TAG0.HITS><=0)
 	LINK.REMOVE
 	CONT.SYSMESSAGE You have worn out your tool!
 	CONT.SYSMESSAGE You have created as many of this item as your resources allow.
@@ -409,8 +416,8 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 	cont.sysmessage You have gained <var.expmsg> experience.
 	CONT.EXP += <eval <var.exp>>
 	NEW.RESENDTOOLTIP
-	LINK.HITS -= 1 //damage the tool
-	IF (<LINK.HITS><=0)
+	LINK.TAG0.HITS -= 1 //damage the tool
+	IF (<LINK.TAG0.HITS><=0)
 		LINK.REMOVE
 		CONT.SYSMESSAGE You have worn out your tool!
 		IF (<NEW.QUALITY>>200) && !(<CONT.Ctag0.SKMENU_bowcraft_MARKOPTION>)
@@ -435,8 +442,8 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		CONT.SKILLGAIN bowcraft <eval <SERV.ITEMDEF.<TAG.ITEM>.SKILLMAKE.0.VAL>>>
 	ENDIF
 ELSE
-	LINK.HITS -= 1
-	IF (<LINK.HITS><=0)
+	LINK.TAG0.HITS -= 1
+	IF (<LINK.TAG0.HITS><=0)
 		LINK.REMOVE
 		CONT.SYSMESSAGE You have worn out your tool!
 		CONT.SYSMESSAGE You failed to create the item, and some of your materials are lost.

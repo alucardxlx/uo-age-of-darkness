@@ -8,13 +8,14 @@ lock_locked 2
 [EVENTS e_Level_up]
 
 on=@LogOut
-SRC.SYSMESSAGE Hi
+//Use the players log out time if they have one, else use default
 ARGN1=6000
 ARGN2=0
 IF (<SRC.TAG0.LOGOUT>)
 	ARGN1=<SRC.TAG.LOGOUT>
 ENDIF
 SRC.TAG.LOGOUT=0
+//Find player's pets within 24 squares and put a log out timer on them.
 IF (<SRC.CURFOLLOWER> > 0)
 	FORCHARS 24
 		IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)  //add NOT summoned check
@@ -25,10 +26,17 @@ IF (<SRC.CURFOLLOWER> > 0)
 	ENDFOR
 ENDIF
 
+SRC.f_hurt
+ACT.f_hurt
+SRC.TARG.f_hurt
+
+[FUNCTION F_hurt]
+HITS -= 1
 
 On=@Login
 LOCAL.SLOT=1
 LOCAL.FINDCHAR=1
+// Search for any pets waiting to log out and stop the log out.
 FORCHARS 24
 	IF (<MEMORYFINDTYPE.MEMORY_IPET.link> == <src.uid>)  //add NOT summoned check
 		IF <RESTEST i_pet_logout_timer>
@@ -36,6 +44,7 @@ FORCHARS 24
 		ENDIF
 	ENDIF
 ENDFOR
+//Pull logged out pets from bankbox
 FORCONT <FINDLAYER.layer_bankbox>
 	IF (<TyPE>==t_figurine) && (<TAG0.LOGGED>==1) 
 		P = <SRC.P>
@@ -447,7 +456,9 @@ Skillgain Tactics <Src.Tactics>+<Src.SkillMod Tactics>
 
 Argn1 = <CombatSys_DamageBonus>
 Argn1 += <CombatSys_AOS_Velocity>
-Argn1 += <f_combat_manuever_hit <Argn1>>
+if <TAG0.WeaponSkillEnabled>
+	Argn1 += <f_combat_manuever_hit <Argn1>>
+endif
 IF <TAG0.Consecrate>
 	Argn2 = <f_Consecrate_weapon_check <Argn2>>
 Endif
