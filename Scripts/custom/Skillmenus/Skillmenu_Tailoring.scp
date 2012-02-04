@@ -237,7 +237,7 @@ DUPELIST=0175e,0175f,01760,01761,01762,01763,01764,01765
 [ITEMDEF 0f9d]
 //Sewing Kit
 DEFNAME=i_sewing_kit
-TYPE=T_weapon_mace_pick
+TYPE=T_TINKER_TOOLS
 RESOURCES=2 i_ingot_iron, 3 i_thread
 WEIGHT=2
 CATEGORY=Items by Professions
