@@ -354,7 +354,9 @@ SKILLMAKE=TINKERING 35.0
 RESOURCES=4 i_ingot_iron
 
 ON=@CREATE
-	HITPOINTS=50
+	TAG.TAG0.HITS=50
+	TAG.MAXTAG0.HITS=50
+
 
 ON=@DCLICK
 IF (<SRC.RESTEST 1 i_tinkering_craft>) || (<SRC.RESTEST 1 i_blacksmithing_craft>)
@@ -563,7 +565,12 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 			TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_tinkering_querymakersmark
 			LOCAL.NODIALOG=1
 		ENDIF
-		NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+		IF (<NEW.HITPOINTS>)
+			NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+		ELSEIF (<NEW.TAG0.HITS>)
+			NEW.TAG0.MAXHITS += <eval ((<new.TAG0.MAXHITS>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			NEW.TAG0.HITS = NEW.TAG0.MAXHITS
+		ENDIF
 		new.tag0.modvalue += <EVAL ((<CONT.ARMSLORE>+<cont.skillmod armslore>)*<NEW.VALUE>)/400>
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
 			new.modar += <eval ((<new.armor.hi>+<new.modar>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
@@ -585,8 +592,8 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 	cont.sysmessage You have gained <var.expmsg> experience.
 	CONT.EXP += <eval <var.exp>>
 	NEW.RESENDTOOLTIP
-	LINK.HITS -= 1 //damage the tool
-	IF (<LINK.HITS><=0)
+	LINK.TAG0.HITS -= 1 //damage the tool
+	IF (<LINK.TAG0.HITS><=0)
 		LINK.REMOVE
 		CONT.SYSMESSAGE You have worn out your tool!
 		IF (<NEW.QUALITY>>200) && !(<CONT.CTAG0.SKMENU_tinkering_MARKOPTION>)
@@ -611,8 +618,8 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 		CONT.SKILLGAIN tinkering <EVAL 10-(<LOCAL.CHANCE>/100)>
 	ENDIF
 ELSE
-	LINK.HITS -= 1
-	IF (<LINK.HITS><=0)
+	LINK.TAG0.HITS -= 1
+	IF (<LINK.TAG0.HITS><=0)
 		LINK.REMOVE
 		CONT.SYSMESSAGE You have worn out your tool!
 		CONT.SYSMESSAGE You failed to create the item, and some of your materials are lost.

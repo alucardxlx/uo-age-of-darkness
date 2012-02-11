@@ -1,28 +1,5 @@
 VERSION=0.99y6
 
-[ITEMDEF 026ce]
-DEFNAME=i_sword_paladin
-RESOURCES=20 i_ingot_iron
-TYPE=T_WEAPON_SWORD
-SKILL=Swordsmanship
-dam=17,21
-speed=20
-reqstr=95
-//RANGE=1,2
-twohands=y
-weight=13
-TEVENTS=T_PROPRIEDADES
-
-category=AoS Weapons
-SUBSECTION=Swords
-DESCRIPTION=Two-Handed Sword
-SKILLMAKE=BLACKSMITHING 89.8
-
-ON=@Create
-HITPOINTS=75
-
-
-
 //Monster weapons
 
 [itemdef 02554]
@@ -30,8 +7,6 @@ name="daemon sword"
 defname=i_sword_daemon
 type=t_weapon_sword
 dam=23,27
-Can_dye=0
-Can_repair=1
 reqstr=125
 twohands=y
 resources=20 i_ingot_shadow
@@ -84,7 +59,6 @@ category=weapons
 subsection=maces & hammers
 description=giant maul
 skillmake=blacksmithing 45.5
-resources2=17 i_ingot_iron
 
 on=@create
 MORE1H=90

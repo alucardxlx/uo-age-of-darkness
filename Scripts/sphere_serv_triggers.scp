@@ -76,6 +76,7 @@ serv.servip uoaod.servegame.com,2593
 
 [FUNCTION f_onserver_start]
 serv.servip uoaod.servegame.com,2593
+var.vendormaster = <SERV.RTICKS>
 
 [FUNCTION f_onserver_save_ok]
 serv.servip uoaod.servegame.com,2593

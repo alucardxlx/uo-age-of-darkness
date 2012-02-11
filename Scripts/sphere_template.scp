@@ -118,11 +118,6 @@ ITEM=i_scroll_rising_colossus
 
 //********************************
 
-[TEMPLATE random_necro_scroll]
-CATEGORY=Item Templates
-SUBSECTION=Random Scrolls
-DESCRIPTION=Necromancy
-ITEM={ i_scroll_animate_dead 1 i_scroll_blood_oath 1 i_scroll_corpse_skin 1 i_scroll_curse_weapon 1 i_scroll_evil_omen 1 i_scroll_horrific_beast 1 i_scroll_lich_transformation 1 i_scroll_mind_rot 1 i_scroll_pain_spike 1 i_scroll_poison_strike 1 i_scroll_strangle 1 i_scroll_summon_familiar 1 i_scroll_vampiric_embrace 1 i_scroll_vengeful_spirit 1 i_scroll_wither 1 i_scroll_wraith_form 1 }
 
 [TEMPLATE RANDOM_WAND_ONE]
 CATEGORY=Item Templates

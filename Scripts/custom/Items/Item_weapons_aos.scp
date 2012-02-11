@@ -98,7 +98,7 @@ ON=@CREATE
 HITPOINTS=50
 
 [ITEMDEF 026bd]
-DEFNAME=i_staff_bladed
+DEFNAME=i_bladed_staff
 NAME=bladed staff
 TYPE=t_weapon_sword
 DAM=14,16
@@ -158,7 +158,7 @@ ON=@CREATE
 HITPOINTS=50
 
 [ITEMDEF 026bf]
-DEFNAME=i_staff_bladed_double
+DEFNAME=i_double_bladed_staff
 NAME=Double Bladed Staff
 TYPE=t_weapon_fence
 SKILL=Bushido
@@ -242,7 +242,7 @@ ON=@CREATE
 HITPOINTS=50
 
 [ITEMDEF 026c2]
-DEFNAME=i_bow_composite
+DEFNAME=i_composite_bow
 NAME=Composite Bow
 DAM=13,17
 WEIGHT=5.5
@@ -272,7 +272,6 @@ ON=@CREATE
 HITPOINTS=35
 
 [ITEMDEF 026c3]
-DEFNAME=i_crossbow_repeating
 NAME=Repeating Crossbow
 DAM=8,12
 WEIGHT=8
@@ -302,7 +301,7 @@ ON=@CREATE
 HITPOINTS=35
 
 [ITEMDEF 026ce]
-DEFNAME=i_sword_paladin
+DEFNAME=i_paladin_sword
 NAME=Paladin Sword
 TYPE=t_weapon_sword
 SKILL=swordsmanship
@@ -328,5 +327,6 @@ DESCRIPTION=Paladin Sword
 
 ON=@CREATE
 HITPOINTS=50
+NAME=two-handed sword
 
 [EOF]

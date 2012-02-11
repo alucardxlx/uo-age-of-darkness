@@ -30,7 +30,7 @@ f_time_keeper
 speed 3 			// Time speed (1 - 60), 1 = real time 2=2x, 3=3x e.t.c. (60 = 1 game hr every RL minute)
 use_britannian_calendar	1 	// set to 1 to use "official" calendar (2 moon cycles) set to 0 runs 1 moon for all planes. (RL cycle)
 leap 0 				// set to 1 to allow leap year calculations in calendar
-tempaffect 1 			// set to 1 for extreme temperatures to affect your players
+tempaffect 0 			// set to 1 for extreme temperatures to affect your players
 fri13th 0 			// set to 1 to reverse a players luck on any fri 13th (Framework only)
 winterseason 3 			// 3 = winter (snow), but I think gfx look a bit naff at the merging on grass/roads e.t.c.., so I use 2 which is fall
 halloween 0 			// dead world on Oct 31st, set to 0 to de-activate
@@ -757,7 +757,7 @@ endif
 //Begin seasonal weather control
 if (<eval <var0.month>> > <eval (<ddef.months_per_year>-1)>)
 	if (<dlocal.weatherchance> < <ddef.weather_winter>)
-		if <def.storm_system>
+		if (<def.storm_system> == 1)
 			<QVAL (<dlocal.weatherchance> < <eval <ddef.weather_winter>/2>)? call f_storm <dlocal.temp>:call f_weather <dlocal.temp>>
 		else
 			call f_weather <dlocal.temp>
@@ -767,7 +767,7 @@ if (<eval <var0.month>> > <eval (<ddef.months_per_year>-1)>)
 	endif
 elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/3)*2)>)
 	if (<dlocal.weatherchance> < <ddef.weather_fall>)
-		if <def.storm_system>
+		if (<def.storm_system> == 1)
 			<QVAL (<dlocal.weatherchance> < <eval <ddef.weather_fall>/2>)? call f_storm <dlocal.temp>:call f_weather <dlocal.temp>>
 		else
 			call f_weather <dlocal.temp>
@@ -777,7 +777,7 @@ elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/3)*2)>)
 	endif
 elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/2)-1)>)
 	if (<dlocal.weatherchance> < <ddef.weather_summer>)
-		if <def.storm_system>
+		if (<def.storm_system> == 1)
 			<QVAL (<dlocal.weatherchance> < <eval <ddef.weather_summer>/2>)? call f_storm <dlocal.temp>:call f_weather <dlocal.temp>>
 		else
 			call f_weather <dlocal.temp>
@@ -787,7 +787,7 @@ elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/2)-1)>)
 	endif
 elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/4)-1)>)
 	if (<dlocal.weatherchance> < <ddef.weather_spring>)
-		if <def.storm_system>
+		if (<def.storm_system> == 1)
 			<QVAL (<dlocal.weatherchance> < <eval <ddef.weather_spring>/2>)? call f_storm <dlocal.temp>:call f_weather <dlocal.temp>>
 		else
 			call f_weather <dlocal.temp>
@@ -797,7 +797,7 @@ elif (<eval <var0.month>> > <eval ((<ddef.months_per_year>/4)-1)>)
 	endif
 else
 	if (<dlocal.weatherchance> < <ddef.weather_winter>)
-		if <def.storm_system>
+		if (<def.storm_system> == 1)
 			<QVAL (<dlocal.weatherchance> < <eval <ddef.weather_winter>/2>)? call f_storm <dlocal.temp>:call f_weather <dlocal.temp>>
 		else
 			call f_weather <dlocal.temp>
@@ -900,6 +900,8 @@ else
 		return 1
 	endif
 endif
+return 
+
 
 [FUNCTION f_storm]
 if (<eval <local.temp>> < 360)
@@ -1013,9 +1015,9 @@ say <var.phase2>
 
 
 [REGIONTYPE e_region_enviro]
-ON=@CliPeriodic
-	src.f_environ_calc
-	return
+//ON=@CliPeriodic
+//	src.f_environ_calc
+//	return
 
 [EVENTS e_environmental]
 ON=@Environchange 
@@ -1053,7 +1055,7 @@ ON=@Environchange
 		endif
 
 ON=@Login
-	if <def.tempaffect>
+	if (<def.tempaffect> == 1)
 		if !(<restest 1 i_tempaffect>)
 			serv.newitem i_tempaffect
 			new.equip

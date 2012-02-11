@@ -24,7 +24,7 @@ RETURN 1
 
 [TYPEDEF t_weapon_fence]
 ON=@TARGON_GROUND
-RETURN 1
+RETURN 0
 
 [ITEMDEF 0df0]
 //Black Staff
