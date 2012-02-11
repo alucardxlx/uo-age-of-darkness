@@ -244,7 +244,7 @@ description=shipwright (female)
 defname=c_j_fisher
 name="fisherman"
 id=c_man
-desires=i_gold,e_notoriety,r_water
+desires=i_gold,e_notoriety
 aversions=t_trap,t_eerie_stuff
 
 tspeech=spk_human_prime
@@ -303,7 +303,7 @@ description=fisherman (male)
 defname=c_j_fisher_f
 name="fisherwoman"
 id=c_woman
-desires=i_gold,e_notoriety,r_water
+desires=i_gold,e_notoriety
 aversions=t_trap,t_eerie_stuff
 
 tspeech=spk_human_prime

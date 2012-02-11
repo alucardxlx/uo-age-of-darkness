@@ -778,7 +778,6 @@ description=guildmaster merchant (female)
 defname=c_h_guild_ranger
 name="guildmaster ranger"
 id=c_man
-shelter=r_forests,r_house
 desires=i_gold,e_notoriety
 aversions=t_trap,t_eerie_stuff
 
@@ -847,7 +846,6 @@ description=guildmaster ranger (male)
 defname=c_h_guild_ranger_f
 name="guildmaster ranger"
 id=c_woman
-shelter=r_forests,r_house
 desires=i_gold,e_notoriety
 aversions=t_trap,t_eerie_stuff
 

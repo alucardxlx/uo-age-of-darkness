@@ -5210,7 +5210,7 @@ TEVENTS=e_Human_Greet
 TEVENTS=e_Human_Space
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Human_Environ
-TEVENTS=e_NPC_level_up
+TEVENTS=e_Level_up_NPC
 CATEGORY=Civilized
 SUBSECTION=Tradesmen
 DESCRIPTION=Healer (male)
@@ -5248,6 +5248,11 @@ ON=@NPCRestock
 	BUY=VENDOR_B_HEALER_SHOP
 
 
+ON=@NPCLookAtChar
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
+
 [CHARDEF 0517]
 DEFNAME=C_H_HEALER_F
 NAME=#NAMES_HUMANFEMALE the Healer
@@ -5267,7 +5272,7 @@ TEVENTS=e_Human_Greet
 TEVENTS=e_Human_Space
 TEVENTS=e_Human_Refuse
 TEVENTS=e_Human_Environ
-TEVENTS=e_NPC_level_up
+TEVENTS=e_Level_up_NPC
 CATEGORY=Civilized
 SUBSECTION=Tradesmen
 DESCRIPTION=Healer (female)
@@ -5301,6 +5306,12 @@ ON=@NPCRestock
 	ITEM=treasure_pouch
 	SELL=VENDOR_S_HEALER_SHOP
 	BUY=VENDOR_B_HEALER_SHOP
+
+
+ON=@NPCLookAtChar
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
 
 
 [CHARDEF 0518]
@@ -5360,6 +5371,12 @@ ON=@NPCRestock
 	ITEM=treasure_pouch
 
 
+ON=@NPCLookAtChar
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
+
+
 [CHARDEF 0519]
 DEFNAME=C_H_HEAL_WANDER_F
 NAME=#NAMES_HUMANFEMALE the Healer
@@ -5413,11 +5430,17 @@ ON=@NPCRestock
 	ITEM=i_sandals
 	ITEM=treasure_pouch
 
+
+ON=@NPCLookAtChar
+	if <src.flags> & statf_dead
+		src.resurrect
+	endif
+
 [CHARDEF 0522]
 DEFNAME=C_H_FISHER
 NAME=#NAMES_HUMANMALE the Fisherman
 ID=C_MAN
-DESIRES=i_gold,e_notoriety,r_water
+DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 TSPEECH=jobFisher
@@ -5474,7 +5497,7 @@ ON=@NPCRestock
 DEFNAME=C_H_FISHER_F
 NAME=#NAMES_HUMANFEMALE the Fisherwoman
 ID=C_WOMAN
-DESIRES=i_gold,e_notoriety,r_water
+DESIRES=i_gold,e_notoriety
 AVERSIONS=t_TRAP,t_eerie_stuff
 TSPEECH=spk_human_prime
 TSPEECH=jobFisher
@@ -5753,7 +5776,7 @@ ID=C_MAN
 HIREDAYWAGE=50
 DESIRES=i_gold,e_notoriety,t_SHIP,jobSailor
 AVERSIONS=t_TRAP,t_eerie_stuff
-//SHELTER=r_docks,r_water
+//SHELTER=r_docks
 TSPEECH=spk_human_prime
 TSPEECH=jobSailor
 TSPEECH=spk_rehello
@@ -5811,7 +5834,6 @@ ID=C_WOMAN
 HIREDAYWAGE=50
 DESIRES=i_gold,e_notoriety,t_SHIP,jobSailor
 AVERSIONS=t_TRAP,t_eerie_stuff
-//SHELTER=r_docks,r_water
 TSPEECH=spk_human_prime
 TSPEECH=jobSailor
 TSPEECH=spk_needs

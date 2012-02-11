@@ -819,7 +819,7 @@ name="arboreal mongbat"
 sound=snd_monster_mngbat1
 icon=i_pet_mongbat
 anim=03f8c7f
-dam=3,5
+dam=4,6
 armor=7
 moverate=0
 resources=2 i_ribs_raw, 2 i_hide, 2 i_reag_batwing
@@ -846,14 +846,14 @@ on=@create
      fame=100
      karma=0
 
-     str={13 17}
-     dex={26 37}
+     str={14 19}
+     dex={28 39}
      int={10 13}
 
      parrying={23.0 30.0}
      magicresistance={5.3 12.0}
-     tactics={11.6 19.2}
-     wrestling={10.4 18.6}
+     tactics={14.6 21.2}
+     wrestling={12.4 20.6}
 
      tag.taming=10.1
 
@@ -864,7 +864,7 @@ name="subterranean mongbat"
 sound=snd_monster_mngbat1
 icon=i_pet_mongbat
 anim=03f8c7f
-dam=3,5
+dam=4,6
 armor=7
 moverate=0
 resources=2 i_ribs_raw, 2 i_hide, 2 i_reag_batwing
@@ -892,8 +892,8 @@ on=@create
      karma=0
 	nightsight=1
 
-     str={23 27}
-     dex={36 47}
+     str={24 28}
+     dex={38 49}
      int={10 13}
 
      parrying={40.0 50.0}
