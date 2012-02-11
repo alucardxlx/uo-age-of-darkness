@@ -31,7 +31,7 @@ VERSION=0.56b
 [NEWBIE ANIMALLORE]
 // Animal Lore is best skill
 
-[NEWBIE NEWITEMID]
+[NEWBIE ITEMID]
 // NEWITEM Identification is best skill
 
 [NEWBIE ARMSLORE]
@@ -67,7 +67,7 @@ VERSION=0.56b
 [NEWBIE DetectingHidden]
 // Detecting Hidden is best skill
 
-[NEWBIE ENTICEMENT]
+[NEWBIE DISCORDANCE]
 // Enticement is best skill
 
 [NEWBIE EvaluatingIntel]

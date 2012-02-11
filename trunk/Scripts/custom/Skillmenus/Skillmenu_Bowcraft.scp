@@ -127,7 +127,7 @@ RETURN 1
 
 
 	
-on=@destroy
+on=@remove
 
 serv.log I have been removed from the server.
 
@@ -284,8 +284,13 @@ WHILE ((<CONT.RESTEST <TAG.RESOURCES>>) || (<LOCAL.FIRSTFREE>==0))//&& (<LINK.TA
 				TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_bowcraft_querymakersmark
 				LOCAL.NODIALOG=1
 			ENDIF
+			IF (<NEW.HITPOINTS>)
+				NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+			ELSEIF (<NEW.TAG0.HITS>)
+				NEW.TAG0.MAXHITS += <eval ((<new.TAG0.MAXHITS>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
+				NEW.TAG0.HITS = NEW.TAG0.MAXHITS
+			ENDIF
 			IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield) || (<NEW.TYPE>==t_clothing)
-				NEW.HITPOINTS += <EVAL (<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>)/50>+5
 				local.one = <eval (<new.armor.hi> * ((<CONT.ARMSLORE>+<CONT.SKILLMOD Armslore>) + 250))>
 				local.two = <eval (<local.one> / 5000)>
 				new.modar += <dlocal.two>

@@ -26,13 +26,6 @@ IF (<SRC.CURFOLLOWER> > 0)
 	ENDFOR
 ENDIF
 
-SRC.f_hurt
-ACT.f_hurt
-SRC.TARG.f_hurt
-
-[FUNCTION F_hurt]
-HITS -= 1
-
 On=@Login
 LOCAL.SLOT=1
 LOCAL.FINDCHAR=1
@@ -170,7 +163,7 @@ ENDIF
 
 
 ON=@itemdclick
-if (<act.link>==<src.uid>)&&(<act.type>==t_corpse)
+if (<act.link>==<src.uid>) && (<act.type>==t_corpse)
   local.cycle=0
   ref1=<act.findcont.<local.cycle>.uid>
   for 0 <act.rescount>
@@ -217,11 +210,14 @@ Forcont <findlayer.21.uid> 0
 endfor
 
 ON=@DeathCorpse
-LOCAL.EXPLOSS=4
+LOCAL.EXPLOSS=1
 FOR <LEVEL>
 	LOCAL.EXPLOSS = (<LOCAL.EXPLOSS>*2)
 ENDFOR
 EXP -= <LOCAL.EXPLOSS>
+IF (<EXP> < 0)
+	EXP=0
+ENDIF
 sysmessage You have lost <expeval <LOCAL.EXPLOSS>> experience.
 IF <ATTACKER> > 0
 	FOR x 0 <EVAL <ATTACKER>-1>
@@ -268,6 +264,8 @@ ON=@Destroy
   OBJ=<MEMORYFINDTYPE.MEMORY_IPET.link.uid>
   OBJ.CURFOLLOWER -= <local.slots>
 
+ON=@NPCRestock
+	TAG0.vendorrestockdate=0
 
 ON=@Death
   if !(<ISEMPTY <src.TAG0.slots_needed>>)
@@ -307,7 +305,7 @@ ENDIF
 ON=@DeathCorpse
 IF <ATTACKER> > 0
 	FOR x 0 <EVAL <ATTACKER>-1>
-		local.exp = ((rand(<EXP>/30) + rand(<EXP>/30)) / <ATTACKER>)
+		local.exp = ((rand(<EXP>/20) + rand(<EXP>/30)) / <ATTACKER>)
 		if (<local.exp> > 0) && !(<ATTACKER.<LOCAL.X>.uid>==<uid>)
 			uid.<ATTACKER.<LOCAL.X>.uid>.Trigger @ExpChange,<def.TAT_AS_ARGN>,<eval <local.exp>>,1,1
 		endif
@@ -332,18 +330,12 @@ ON=@ContextMenuSelect
 OBJ=<SRC.UID>
 IF ((<ARGN> == 31))
 	GETMARKUP
-	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
-		RESTOCK 1
-	ENDIF
-	SDIALOG D_BUY
+	buymenu
 	FACE
 	RETURN 1
 ENDIF
 IF ((<ARGN> == 32) && (<src.tag.lang> != <tag.lang>))
 	GETMARKUP
-	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
-		RESTOCK 1
-	ENDIF
 	SDIALOG D_SELL
 	FACE
 	RETURN 1
@@ -757,6 +749,12 @@ SRC.CURFOLLOWER=0
 ENDIF
 
 LOCAL.LEVELUP=0
+
+IF (<EXP> < 0)
+	EXP=0
+	LEVEL=0
+	TAG.NEXTLEVEL=500
+ENDIF
 IF (<TAG0.NEXTLEVEL>==0)
 	TAG.NEXTLEVEL=500
 	LEVEL=0

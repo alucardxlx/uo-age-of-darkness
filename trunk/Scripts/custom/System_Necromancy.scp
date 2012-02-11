@@ -23,6 +23,22 @@
 // become the property of Menasoft & Partners.
 //****************************************************************************
 
+[itemdef i_lich_fx]
+name=lich fx
+id=i_fire_column
+type=t_script
+
+on=@create
+color=001
+
+[itemdef i_beast_fx]
+defname=i_beast_fx
+name=beast fx
+id=i_fx_smoke
+
+on=@create
+color=colors_neutral
+
 
 [ITEMDEF 02260]
 DEFNAME=i_scroll_animate_dead
@@ -704,13 +720,6 @@ obj=<src>
 obj.findid.i_beast_form.remove
 
 
-[itemdef i_beast_fx]
-defname=i_beast_fx
-name=beast fx
-id=i_fx_smoke
-
-on=@create
-color=colors_neutral
 
 [spell 107]
 DEFNAME=s_lich_form
@@ -782,14 +791,6 @@ endif
 ON=@DeathCorpse
 obj=<src>
 obj.findid.i_lich_form.remove
-
-[itemdef i_lich_fx]
-name=lich fx
-id=i_fire_column
-type=t_script
-
-on=@create
-color=001
 
 
 

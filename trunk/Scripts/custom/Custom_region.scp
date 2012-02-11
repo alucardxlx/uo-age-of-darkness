@@ -62,7 +62,7 @@ value=3
 TYPE=T_LOG
 TDATA1=i_board
 WEIGHT=2
-SKILLMAKE=LUMBERJACKING 0.1
+SKILLMAKE=LUMBERJACKING 0.0
 
 on=@create
 color=color_o_birch
@@ -810,10 +810,10 @@ COLOR=color_o_aurichalcum
 
 [REGIONRESOURCE mr_iron]	// default mining result.
 // t_rock
-SKILL=1.0,100.0
+SKILL=0.0,100.0
 AMOUNT=9,30
 REAP=i_ore_iron
-reapamount=1,8
+reapamount=1,4
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_shadow]
@@ -821,7 +821,7 @@ REGEN=60*60*24
 SKILL=30.0,60.0
 AMOUNT=3,12
 REAP=i_ore_shadow
-reapamount=1,3
+reapamount=1,2
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_copper]
@@ -830,7 +830,7 @@ REGEN=60*60*24
 SKILL=1.0,30.0
 AMOUNT=6,18
 REAP=i_ore_copper
-reapamount=1,4
+reapamount=1,3
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_gold]
@@ -846,7 +846,7 @@ REGEN=60*60*24
 SKILL=30.0,60.0
 AMOUNT=3,10
 REAP=i_ore_rose
-reapamount=1,3
+reapamount=1,2
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_agapite]
@@ -894,7 +894,7 @@ REGEN=60*60*24
 SKILL=100.0,110.0
 AMOUNT=1,6
 REAP=i_ore_mytheril
-reapamount=1,2
+reapamount=1,1
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_blackrock]
@@ -902,7 +902,7 @@ REGEN=60*60*24
 SKILL=100.0,110.0
 AMOUNT=1,6
 REAP=i_ore_blackrock
-reapamount=1,2
+reapamount=1,1
 REGEN=60*60*24
 
 [REGIONRESOURCE mr_diamond]
@@ -1283,8 +1283,10 @@ endif
 
 [function f_findtree]
 for x 0 <eval <obj.p.statics>-1>
-	if (<obj.p.statics.<local.x>.type>==t_tree) && (<def.logs.<obj.p.statics.<local.x>.baseid>>)
-		var.tree=<obj.p.statics.<local.x>.baseid>
+	if (<obj.p.statics.<local.x>.type>==t_tree)
+		if (<def.logs.<obj.p.statics.<local.x>.baseid>>)
+			var.tree=<obj.p.statics.<local.x>.baseid>
+		endif
 	endif
 endfor
 
@@ -1383,7 +1385,7 @@ REGEN=60*60*24
 [REGIONTYPE r_default t_sand]
 // Default sand area resources
 RESOURCES=25.0 mr_nothing
-RESOURCES=50.0 mr_sand
+//RESOURCES=50.0 mr_sand
 
 [REGIONTYPE r_default_grass t_grass]
 // Default grass area resources

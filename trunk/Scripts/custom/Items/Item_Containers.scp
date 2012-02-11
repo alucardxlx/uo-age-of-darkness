@@ -20,7 +20,7 @@ if <src.isgm>
 endif
 If !<Local.Drop> 
 	If <Src.Findlayer.31.Uid>==<Argo.Uid>
-		If (<Contains>+1) > <GetItemLimit>
+		If (<Contains>) > <GetItemLimit>
 			ReturnToPack <Argo.Uid>,That container cannot hold any more items
 			Return 1
 		Elif ((<GetWeight>) + (<Argo.Weight>/10)) > <GetWeightLimit>
@@ -64,9 +64,9 @@ Endif
 
 [Function Contains]
 If <Type>==t_container
-Local.Items = <Rescount>
-Return <dLocal.Items>
-Endif
+	Local.Items = <COUNT>
+	Return <dLocal.Items>
+	Endif
 Return 0
 
 [Function GetWeight]

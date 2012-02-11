@@ -1,5 +1,5 @@
 //****************************************************************************
-//SPHERE by : Menasoft ©1997-2007
+//SPHERE by : Menasoft ©1997-2006
 //www.sphereserver.net
 // All SPHERE script files and formats are copyright Menasoft & Partners.
 // This file may be freely edited for personal use, but may not be distributed
@@ -14,39 +14,47 @@ VERSION=0.56b
 
 // In the process of moving this stuff to scripts.
 
-[SPEECH spk_player]
-// All players speech filtered through here.
-ON=home home home	//	Ghosts can go home.
-	if (<flags>&STATF_DEAD)
-		go <home>
-	endif
-
-ON=I must consider my sins
-
-ON=I resign from my guild
-
-ON=I resign from my town
-
-ON=Guard help *
-ON=Guards*
-ON=Help Guards*
-	// trying to call guards for help.
-
 [SPEECH spk_pet]
 // Pets that cannot talk
-ON=RELEASE
-if <def.scp.Followers> == 1
-src.curfollower -= <qval <tag0.control.slots> ? <tag0.control.slots> : 1>
-endif
 
 ON=TRANSFER
-if <def.scp.Followers> == 1
-	if <memoryfindtype.memory_ipet.link.uid> == <src.uid>
-	targetf f_transfer <uid>
-	src.sysmessage Transfer to who?
-	return 1
-	endif
-endif
+IF (<MEMORYFINDTYPE.02.LINK>==<SRC.UID>)
+SRC.CTAG.PETUID=<UID>
+TARGETF F_TRANSFER 
+SRC.SYSMESSAGE Transfer to who?
+RETURN 1
+ENDIF
+
+ON=RELEASE
+  if (<tag0.slots_needed>)
+    local.slots = (<tag.slots_needed>)
+  else
+    local.slots = 1
+  endif
+  SRC.CURFOLLOWER -= <local.slots>
+return 0
+
+
+ON=BOND
+IF <RESTEST 1 i_rune_summon_creature>
+	SRC.SYSMESSAGE You cannot bond to summoned creatures.
+	return
+ENDIF
+IF !(<FOOD> >= <MAXFOOD>)
+	SRC.SYSMESSAGE <name> is too hungry to bond with you now.
+	return
+ENDIF
+IF (<TAG0.BOND>) && (<TAG0.BOND>==<SRC.UID>)
+	SRC.SYSMESSAGE You are already bonded with <name>.
+	return
+ENDIF
+IF ((<SRC.EXP>+<SRC.FAME>+(<SRC.TAMING>*10)) >= (<EXP>+<FAME>+(<TAMING>*10)))
+	SRC.SYSMESSAGE You bond with <name>.
+	TAG.BOND=<SRC.UID>
+ELSE
+	SRC.SYSMESSAGE You have too much trouble commanding <name> to bond.
+	return
+ENDIF
 
 ON=ATTACK
 ON=COME
@@ -66,6 +74,48 @@ ON=SPEAK
 ON=STAY
 ON=STAY HERE
 ON=STOP
+IF (<F_PETCONTROL> <= <R100>)
+	LOCAL.STRESSFOOD = (<MAXFOOD>/20)
+	IF (<LOCAL.STRESSFOOD> < 1)
+		LOCAL.STRESSFOOD = 1
+	ENDIF
+	EMOTE look confused
+	IF ((<FOOD>-<LOCAL.STRESSFOOD>) > 0)
+		FOOD -= <LOCAL.STRESSFOOD>
+	ELSE
+		FOOD = 0
+	ENDIF
+	RETURN 1
+ENDIF
+
+//if not summoned
+//if pet control chance fails
+//penalize food by 5% (other unhapiness?)
+//cancel action
+//endif
+//endif
+
+[FUNCTION F_PETCONTROL]
+IF (!(<ARGN1>))
+	REF1=<SRC>
+ELSE
+	REF1=<ARGN1>
+ENDIF
+FLOAT.EFFECTIVETAMING=<FLOATVAL <REF1.TAMING>+<REF1.SKILLMOD TAMING>+((<REF1.ANIMALLORE>+<REF1.SKILLMOD ANIMALLORE>)/5)>
+IF (<TAG0.ALTCONTROL>)
+	FLOAT.ALTEFFECTIVETAMING=<FLOATVAL <REF1.<TAG0.ALTCONTROL>>+<REF1.SKILLMOD <TAG0.ALTCONTROL>>+((<REF1.ANIMALLORE>+<REF1.SKILLMOD ANIMALLORE>)/5)>
+	IF (<FLOAT.EFFECTIVETAMING> < <FLOAT.ALTEFFECTIVETAMING>)
+		FLOAT.EFFECTIVETAMING=<FLOAT.ALTEFFECTIVETAMING>
+	ENDIF
+ENDIF
+FLOAT.PETCONTROL=<FLOATVAL (70+((<FLOAT.EFFECTIVETAMING>-<TAG.TAMING>)*3)>
+IF (<FLOAT.PETCONTROL> < <FLOATVAL 10>)
+		FLOAT.PETCONTROL=<FLOATVAL 10>
+ELSEIF (<FEVAL <FLOAT.PETCONTROL>> > 100)
+		FLOAT.PETCONTROL=<FLOATVAL 100>
+ENDIF
+RETURN <FEVAL <FLOAT.PETCONTROL>>
+
 
 [SPEECH spk_hireling]
 // Pets that can talk.
@@ -101,5 +151,35 @@ ON=STOCK
 ON=STOP
 ON=SUIT UP
 ON=TRANSFER
+
+
+[SPEECH spk_player]
+// All players speech filtered through here.
+ON=home home home	//	Ghosts can go home.
+	if (<flags>&STATF_DEAD)
+		go <home>
+	endif
+
+
+ON=*
+if (<isplayerstr <args>>) || (<ispetstr <args>>) || (<ishiredstr <args>>)
+Return 0
+elseif !(<isbadstr <args>>)
+l <args>
+local.mylang=<lang>
+forchars <def.npc_lang_respdist>
+if (<npc>)&&(<lang> == <local.mylang>)
+hear <args>
+elseif (<npc>)
+//emote look confused.
+//tag0.lang=<local.mylang> //Learn language while phasing in
+face
+endif
+endfor
+endif
+return 1
+
+[EOF]
+
 
 [EOF]

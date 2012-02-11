@@ -289,12 +289,14 @@ If (<SRC.BODY> == c_elf_male) || (<SRC.BODY> == c_elf_female)
 ENDIF
 
 
+[function make_newbie_item]
+NEW.BOUNCE
+NEW.ATTR=04
 
 [function race_human]
 src.events +e_environmental
 SRC.MAXFOLLOWER=6
 SRC.EVENTS +e_Level_up
-SRC.EVENTS +e_tailoring_color
 SRC.EVENTS +e_WeaponSkills
 SRC.givelang 1 //This will give them the english language.
 SRC.TAG0.MODMAXWEIGHT += 25
@@ -323,7 +325,6 @@ RETURN 0
 src.events +e_environmental
 SRC.MAXFOLLOWER=6
 SRC.EVENTS +e_Level_up
-SRC.EVENTS +e_tailoring_color
 SRC.EVENTS +e_WeaponSkills
 SRC.givelang 2 //This will give them the elven language.
 SRC.givealtlang_1 1 //This will give them the english language.
@@ -360,7 +361,6 @@ return
 src.events +e_environmental
 SRC.MAXFOLLOWER=6
 SRC.EVENTS +e_Level_up
-SRC.EVENTS +e_tailoring_color
 SRC.EVENTS +e_WeaponSkills
 SRC.givelang 4 //This will give them the orcish language.
 SRC.str=(<SRc.str>+4) //orcs are strong
@@ -426,92 +426,65 @@ NEW.tag.spell_33 s_paralyze  //5th circle 33-40
 NEW.tag.spell_34 s_summon_creature
 NEW.BOUNCE
 NEWITEM=i_LEATHER_TUNIC
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM=i_LEATHER_LEGGINGS
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_LEATHER_SLEEVES
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_LEATHER_GORGET
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_LEATHER_GLOVES
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_LEATHER_CAP
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_cape
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=1153
 NEWITEM 01537 //kilt
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=1153
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_bow_composite
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_arrow,24
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_black_pearl,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_blood_moss,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_garlic,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_ginseng,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_nightshade,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_spider_silk,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_mandrake_root,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 SRC.GO 573 2146 0
 SRC.HOME=573 2146 0
 NEWITEM i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_boots_calf
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_dagger
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_candle
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_book_sm
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_copper_coin,100
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -551,49 +524,35 @@ NEW.tag.spell_33 s_magic_reflection  //5th circle 33-40
 NEW.tag.spell_34 s_mind_blast
 NEW.BOUNCE
 NEWITEM 01f03 //Robe
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=2
 NEWITEM 01718 //wizard's hat
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=2
 NEWITEM 0e89 //quarter staff
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_scroll_blank,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_potion_Mana,3
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_black_pearl,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_blood_moss,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_garlic,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_ginseng,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_nightshade,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_spider_silk,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_reag_mandrake_root,16
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 SRC.GO 4455 1086 0
 SRC.HOME=4455 1086 0SRC.NEW
 NEWITEM =i_shirt_plain
@@ -601,23 +560,17 @@ NEW.COLOR=colors_all
 NEW.BOUNCE
 NEWITEM i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_shoes_plain
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_dagger
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_candle
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_book_sm
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_copper_coin,100
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -637,58 +590,43 @@ NEWITEM i_spellbook_paladin
 NEW.ATTR=0024
 NEW.BOUNCE
 NEWITEM i_sash
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=14
 NEWITEM i_cape
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=14
 NEWITEM i_shield_kite_metal
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEW.COLOR=14
 NEWITEM i_sword_long
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_chainmail_coif
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_ringmail_TUNIC
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_bandage,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 SRC.TITHING=300
 SRC.GO 2017 2747 30
 SRC.HOME=2017 2747 30
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_boots_calf
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_dagger
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_candle
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_book_sm
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_copper_coin,100
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -709,54 +647,39 @@ NEW.BOUNCE
 NEW.COLOR=38
 NEW.ATTR=04
 NEWITEM i_chainmail_coif
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_STUDDED_TUNIC
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_STUDDED_LEGGINGS
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_STUDDED_SLEEVES
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_sTUDDED_GORGET
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_STUDDED_GLOVES
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM i_potion_Strength,3
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 SRC.GO 1367 3714 0
 SRC.HOME=1367 3714 0
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
-NEW.ATTR=04
+make_newbie_item
 race_human
 SRC.FIX
 MENU MENU_WEAPON
@@ -774,44 +697,44 @@ SRC.DetectingHidden += 20.0
 SRC.SKILLCLASS=Class_Tinker
 SRC.SYSMESSAGE Thou art now a Tinker!
 NEWITEM i_apron_full
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=44
 NEWITEM i_hammer_smith
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_saw
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_tinker_tools
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_shovel
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_hatchet
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ingot_iron,20
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_lockpick,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_board,20
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 2469 455 15
 SRC.HOME=2469 455 15
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -819,7 +742,7 @@ SRC.FIX
 SRC.MUSICIANSHIP += 25.0
 SRC.PROVOCATION += 25.0
 SRC.PEACEMAKING += 25.0
-SRC.ENTICEMENT += 25.0
+SRC.DISCORDANCE += 25.0
 SRC.MAGERY += 20.0
 SRC.STEALING += 20.0
 SRC.SNOOPING += 20.0
@@ -828,76 +751,76 @@ SRC.TACTICS += 20.0
 SRC.SKILLCLASS=Class_Bard
 SRC.SYSMESSAGE Thou art now a Bard!
 NEWITEM i_spellbook
-tag.spell_1 s_clumsy //1st circle 1-8
-tag.spell_2 s_weaken
-tag.spell_3 s_feeblemind
-tag.spell_4 s_heal
-tag.spell_5 s_reactive_armor
-tag.spell_6 s_night_sight
-tag.spell_9 s_protection //2nd circle 9-16
-tag.spell_10 s_magic_trap
-tag.spell_11 s_magic_untrap
-tag.spell_12 s_cunning
-tag.spell_13 s_agility
-tag.spell_17 s_magic_lock //3rd circle 17-24
-tag.spell_18 s_magic_unlock
-tag.spell_19 s_telekinesis
-tag.spell_20 s_poison
-tag.spell_25 s_archprotection  //4th circle 25-32
-tag.spell_26 s_curse
-tag.spell_27 s_greater_heal
-tag.spell_33 s_mind_blast  //5th circle 33-40
-tag.spell_34 s_paralyze
-SRC.ACT.ATTR=0024
 NEW.BOUNCE
+NEW.TAG.spell_1 s_clumsy //1st circle 1-8
+NEW.TAG.spell_2 s_weaken
+NEW.TAG.spell_3 s_feeblemind
+NEW.TAG.spell_4 s_heal
+NEW.TAG.spell_5 s_reactive_armor
+NEW.TAG.spell_6 s_night_sight
+NEW.TAG.spell_9 s_protection //2nd circle 9-16
+NEW.TAG.spell_10 s_magic_trap
+NEW.TAG.spell_11 s_magic_untrap
+NEW.TAG.spell_12 s_cunning
+NEW.TAG.spell_13 s_agility
+NEW.TAG.spell_17 s_magic_lock //3rd circle 17-24
+NEW.TAG.spell_18 s_unlock
+NEW.TAG.spell_19 s_telekinesis
+NEW.TAG.spell_20 s_poison
+NEW.TAG.spell_25 s_archprotection  //4th circle 25-32
+NEW.TAG.spell_26 s_curse
+NEW.TAG.spell_27 s_greater_heal
+NEW.TAG.spell_33 s_mind_blast  //5th circle 33-40
+NEW.TAG.spell_34 s_paralyze
+NEW.ATTR=0024
 NEWITEM i_tunic
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=52
 NEWITEM i_cape
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=52
 NEWITEM i_bow_composite
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_arrow,24
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,8
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 1454 1568 30
 SRC.HOME=1454 1568 30
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_human
 SRC.FIX
 MENU MENU_INSTRUMENT
@@ -916,75 +839,75 @@ SRC.SKILLCLASS=Class_Druid
 SRC.SYSMESSAGE Thou art now a Druid!
 NEWITEM i_spellbook
 itemnewbie=i_spellbook
-tag.spell_1 s_clumsy //1st circle 1-8
-tag.spell_2 s_weaken
-tag.spell_3 s_feeblemind
-tag.spell_4 s_heal
-tag.spell_5 s_create_food
-tag.spell_6 s_night_sight
-tag.spell_9 s_protection //2nd circle 9-16
-tag.spell_10 s_cure
-tag.spell_11 s_strength
-tag.spell_12 s_cunning
-tag.spell_13 s_agility
-tag.spell_17 s_bless //3rd circle 17-24
-tag.spell_18 s_poison
-tag.spell_19 s_teleport
-tag.spell_20 s_wall_of_stone
-tag.spell_25 s_archprotection  //4th circle 25-32
-tag.spell_27 s_archcure
-tag.spell_28 s_greater_heal
-tag.spell_33 s_poison_field  //5th circle 33-40
-tag.spell_34 s_summon_creature
+NEW.TAG.spell_1 s_clumsy //1st circle 1-8
+NEW.TAG.spell_2 s_weaken
+NEW.TAG.spell_3 s_feeblemind
+NEW.TAG.spell_4 s_heal
+NEW.TAG.spell_5 s_create_food
+NEW.TAG.spell_6 s_night_sight
+NEW.TAG.spell_9 s_protection //2nd circle 9-16
+NEW.TAG.spell_10 s_cure
+NEW.TAG.spell_11 s_strength
+NEW.TAG.spell_12 s_cunning
+NEW.TAG.spell_13 s_agility
+NEW.TAG.spell_17 s_bless //3rd circle 17-24
+NEW.TAG.spell_18 s_poison
+NEW.TAG.spell_19 s_teleport
+NEW.TAG.spell_20 s_wall_of_stone
+NEW.TAG.spell_25 s_archprotection  //4th circle 25-32
+NEW.TAG.spell_27 s_archcure
+NEW.TAG.spell_28 s_greater_heal
+NEW.TAG.spell_33 s_poison_field  //5th circle 33-40
+NEW.TAG.spell_34 s_summon_creature
 SRC.ACT.ATTR=0024
 NEW.BOUNCE
 NEWITEM i_robe
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=67
 NEWITEM i_staff_gnarled
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_BOTTLE_EMPTY,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_mortar_pestle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,16
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 634 851 0
 SRC.HOME=634 851 0
 NEWITEM =i_sandals
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -1000,41 +923,41 @@ SRC.TRACKING += 25.0
 SRC.SKILLCLASS=Class_Shepherd
 SRC.SYSMESSAGE Thou art now a Shepherd!
 NEWITEM i_robe
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=2306
 NEWITEM i_sewing_kit
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_cloth,20
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=2306
 NEWITEM i_shepherds_crook
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_scissors
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bandage,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 3670 2233 20
 SRC.HOME=3670 2233 20
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_human
 SRC.FIX
 
@@ -1044,22 +967,22 @@ Choose your instrument
 ON=0 Harp
 NEWITEM i_lyre
 
-NEW.BOUNCE
+make_newbie_item
 
 ON=0 Tamborine
 NEWITEM i_tambourine
 
-NEW.BOUNCE
+make_newbie_item
 
 ON=0 Lute
 NEWITEM i_lute
 
-NEW.BOUNCE
+make_newbie_item
 
 ON=0 Drum
 NEWITEM i_drum
 
-NEW.BOUNCE
+make_newbie_item
 
 [MENU MENU_WEAPON]
 Choose your weapon
@@ -1067,17 +990,17 @@ Choose your weapon
 ON=0 Broad Sword
 NEWITEM i_sword_broad
 
-NEW.BOUNCE
+make_newbie_item
 
 ON=0 Pitchfork
 NEWITEM i_pitchfork
 
-NEW.BOUNCE
+make_newbie_item
 
 ON=0 Club
 NEWITEM i_club
 
-NEW.BOUNCE
+make_newbie_item
 
 
 [function f_hunter]
@@ -1094,59 +1017,59 @@ SRC.SKILLCLASS=Class_Hunter
 SRC.SYSMESSAGE Thou art now a Hunter!
 //Spelweaving Book
 NEWITEM i_LEAF_TUNIC
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEAF_PANTS
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEAF_ARMS
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEAF_GORGET
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEAF_GLOVES
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_elven_boots
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_elven_composite_longbow
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_helm_raven
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_arrow,24
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,8
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 7057 383 0
 SRC.HOME=7057 383 0
 NEWITEM =i_elven_shirt
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM=02fc3
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_elf
 SRC.FIX
 
@@ -1161,54 +1084,75 @@ SRC.ALCHEMY += 25.0
 SRC.SPELLWEAVING += 25.0
 SRC.SKILLCLASS=Class_Enchanter
 SRC.SYSMESSAGE Thou art now an Enchanter!
+NEWITEM i_spellbook
+NEW.ATTR=0024
+NEW.tag.spell_1 s_clumsy //1st circle 1-8
+NEW.tag.spell_2 s_weaken
+NEW.tag.spell_3 s_feeblemind
+NEW.tag.spell_4 s_reactive_armor
+NEW.tag.spell_5 s_night_sight
+NEW.tag.spell_9 s_harm //2nd circle 9-16
+NEW.tag.spell_10 s_protection
+NEW.tag.spell_11 s_cunning
+NEW.tag.spell_12 s_agility
+NEW.tag.spell_13 s_strength
+NEW.tag.spell_17 s_magic_lock //3rd circle 17-24
+NEW.tag.spell_18 s_unlock
+NEW.tag.spell_19 s_poison
+NEW.tag.spell_25 s_archprotection  //4th circle 25-32
+NEW.tag.spell_26 s_fire_field
+NEW.tag.spell_27 s_mana_drain
+NEW.tag.spell_33 s_magic_reflection  //5th circle 33-40
+NEW.tag.spell_34 s_mind_blast
+NEW.BOUNCE
 NEWITEM i_elven_robe_female //Robe
-NEW.BOUNCE
+make_newbie_item
 NEWITEM 0e89 //quarter staff
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_scroll_blank,5
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Mana,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_BOTTLE_EMPTY,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_mortar_pestle
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 7057 383 0
 SRC.HOME=7057 383 0
 NEWITEM =i_elven_shirt
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM=02fc3
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_elf
 SRC.FIX
 
@@ -1225,47 +1169,47 @@ SRC.COOKING += 15.0
 SRC.SKILLCLASS=Class_Artisan
 SRC.SYSMESSAGE Thou art now an Artisan!
 NEWITEM i_elven_shirt
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=colors_all
 NEWITEM i_hammer_smith
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_saw
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_tinker_tools
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_shovel
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_hatchet
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ingot_iron,10
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_log,10
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_sewing_kit
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_cloth,10
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_dough_raw,5
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ribs_raw,5
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 7057 383 0
 SRC.HOME=7057 383 0
 NEWITEM=02fc3
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_elf
 SRC.FIX
 
@@ -1273,7 +1217,7 @@ SRC.FIX
 SRC.MUSICIANSHIP += 25.0
 SRC.PROVOCATION += 25.0
 SRC.PEACEMAKING += 25.0
-SRC.ENTICEMENT += 25.0
+SRC.DISCORDANCE += 25.0
 SRC.MAGERY += 20.0
 SRC.SPELLWEAVING += 20.0
 SRC.FENCING += 20.0
@@ -1281,49 +1225,72 @@ SRC.ITEMID += 20.0
 SRC.TACTICS += 20.0
 SRC.SKILLCLASS=Class_Minstrel
 SRC.SYSMESSAGE Thou art now a Minstrel!
-NEWITEM i_elven_shirt_dark
+NEWITEM i_spellbook
 NEW.BOUNCE
+NEW.TAG.spell_1 s_clumsy //1st circle 1-8
+NEW.TAG.spell_2 s_weaken
+NEW.TAG.spell_3 s_feeblemind
+NEW.TAG.spell_4 s_heal
+NEW.TAG.spell_5 s_reactive_armor
+NEW.TAG.spell_6 s_night_sight
+NEW.TAG.spell_9 s_protection //2nd circle 9-16
+NEW.TAG.spell_10 s_magic_trap
+NEW.TAG.spell_11 s_magic_untrap
+NEW.TAG.spell_12 s_cunning
+NEW.TAG.spell_13 s_agility
+NEW.TAG.spell_17 s_magic_lock //3rd circle 17-24
+NEW.TAG.spell_18 s_unlock
+NEW.TAG.spell_19 s_telekinesis
+NEW.TAG.spell_20 s_poison
+NEW.TAG.spell_25 s_archprotection  //4th circle 25-32
+NEW.TAG.spell_26 s_curse
+NEW.TAG.spell_27 s_greater_heal
+NEW.TAG.spell_33 s_mind_blast  //5th circle 33-40
+NEW.TAG.spell_34 s_paralyze
+NEW.ATTR=0024
+NEWITEM i_elven_shirt_dark
+make_newbie_item
 NEW.COLOR=colors_all
 NEWITEM i_cape
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=colors_all
 NEWITEM i_sword_Assassin_Spike
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,8
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 7057 383 0
 SRC.HOME=7057 383 0
 NEWITEM=02fc3
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_elf
 SRC.FIX
 MENU MENU_INSTRUMENT
@@ -1341,40 +1308,40 @@ SRC.PARRYING += 20.0
 SRC.SKILLCLASS=Class_Barbarian
 SRC.SYSMESSAGE Thou art now a Barbarian
 NEWITEM i_tunic
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=38
 NEWITEM i_STUDDED_TUNIC
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_STUDDED_LEGGINGS
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_STUDDED_SLEEVES
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_sTUDDED_GORGET
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_STUDDED_GLOVES
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ribs,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Strength,3
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 2170 1362 0
 SRC.HOME=2170 1362 0
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_orc
 SRC.FIX
 MENU MENU_WEAPON
@@ -1391,55 +1358,79 @@ SRC.MEDITATION += 25.0
 SRC.SPELLWEAVING += 20.0
 SRC.SKILLCLASS=Class_Shaman
 SRC.SYSMESSAGE Thou art now a Shaman
-NEWITEM i_robe
+NEWITEM i_spellbook
+itemnewbie=i_spellbook
+NEW.TAG.spell_1 s_clumsy //1st circle 1-8
+NEW.TAG.spell_2 s_weaken
+NEW.TAG.spell_3 s_feeblemind
+NEW.TAG.spell_4 s_heal
+NEW.TAG.spell_5 s_create_food
+NEW.TAG.spell_6 s_night_sight
+NEW.TAG.spell_9 s_protection //2nd circle 9-16
+NEW.TAG.spell_10 s_cure
+NEW.TAG.spell_11 s_strength
+NEW.TAG.spell_12 s_cunning
+NEW.TAG.spell_13 s_agility
+NEW.TAG.spell_17 s_bless //3rd circle 17-24
+NEW.TAG.spell_18 s_poison
+NEW.TAG.spell_19 s_teleport
+NEW.TAG.spell_20 s_wall_of_stone
+NEW.TAG.spell_25 s_archprotection  //4th circle 25-32
+NEW.TAG.spell_27 s_archcure
+NEW.TAG.spell_28 s_greater_heal
+NEW.TAG.spell_33 s_poison_field  //5th circle 33-40
+NEW.TAG.spell_34 s_summon_creature
+SRC.ACT.ATTR=0024
 NEW.BOUNCE
+NEWITEM i_robe
+make_newbie_item
 NEW.COLOR=67
 NEWITEM i_staff_gnarled
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ribs,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_Heal,3
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bandage,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_BOTTLE_EMPTY,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_mortar_pestle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_black_pearl,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_blood_moss,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_garlic,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_ginseng,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_nightshade,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_sulfur_ash,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_spider_silk,16
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_reag_mandrake_root,16
-NEW.BOUNCE
-SRC.GO 634 851 0
-SRC.HOME=634 851 0
+make_newbie_item
+SRC.GO 2170 1362 0
+SRC.HOME=2170 1362 0
 NEWITEM =i_sandals
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_orc
 SRC.FIX
 MENU MENU_WEAPON
@@ -1456,44 +1447,44 @@ SRC.DetectingHidden += 25.0
 SRC.SKILLCLASS=Class_Assassin
 SRC.SYSMESSAGE Thou art now a Assassin
 NEWITEM i_sash
-NEW.BOUNCE
+make_newbie_item
 NEW.COLOR=52
 NEWITEM i_LEATHER_TUNIC
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEATHER_LEGGINGS
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEATHER_SLEEVES
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEATHER_GORGET
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_LEATHER_GLOVES
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_assassin_spike
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ribs,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_lockpick,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_potion_poison,3
-NEW.BOUNCE
-SRC.GO 1454 1568 30
-SRC.HOME=1454 1568 30
+make_newbie_item
+SRC.GO 2170 1362 0
+SRC.HOME=2170 1362 0
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_orc
 SRC.FIX
 MENU MENU_WEAPON
@@ -1511,47 +1502,47 @@ SRC.COOKING += 20.0
 SRC.SKILLCLASS=Class_Laborer
 SRC.SYSMESSAGE Thou art now a Laborer
 NEWITEM i_hammer_smith
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_saw
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_tinker_tools
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_shovel
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_hatchet
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ingot_iron,10
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_log,10
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_sewing_kit
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_hide,8
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_dough_raw,5
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_ribs_raw,5
-NEW.BOUNCE
+make_newbie_item
 NEWITEM i_bread_loaf,8
-NEW.BOUNCE
+make_newbie_item
 SRC.GO 2170 1362 0
 SRC.HOME=2170 1362 0
 NEWITEM =i_shirt_plain
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_pants_long
 NEW.COLOR=colors_all
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_shoes_plain
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_dagger
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_candle
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_book_sm
-NEW.BOUNCE
+make_newbie_item
 NEWITEM =i_copper_coin,100
-NEW.BOUNCE
+make_newbie_item
 race_orc
 SRC.FIX
 MENU MENU_WEAPON
