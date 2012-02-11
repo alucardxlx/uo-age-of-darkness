@@ -693,7 +693,7 @@ NAME=walnut <NAME>
 COLOR=color_o_walnut
 HITPOINTS += <MulDiv <HITPOINTS>,20,100>
 IF (<TYPE>==t_weapon_bow) || (<TYPE>==t_weapon_xbow)
-	TAG.VELOCITY += 12
+	TAG0.VELOCITY += 12
 ELSEIF (<ISWEAPON>)
 	TAG0.SWINGINCREASE += 20
 ELSEIF (<ISARMOR>) || (<TYPE>==t_shield)

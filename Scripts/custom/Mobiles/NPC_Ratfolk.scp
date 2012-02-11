@@ -117,7 +117,6 @@ icon=i_pet_ratman_lbr
 DAM=8,11
 ARMOR=15
 MOVERATE=0
-resdispid=c_m_ratman_shaman
 reslevel=3
 resdisphue=
 resources=6 i_ribs_raw,2 i_fur_light

@@ -157,13 +157,13 @@ ON=@CREATE
 [chardef 090]
 defname=c_sea_horse
 name="sea horse"
-sound=snd_animal_sea_horse
+//sound=snd_animal_sea_horse
 icon=i_pet_horse_sea_lbr
 can=mt_swim|mt_nonhum
 dam=8,12
 armor=22
 moverate=0
-resources=6 i_fish_steak_raw
+resources=
 foodtype=t_fish
 desires=spk_human_prime, c_sea_horse, t_fish
 aversions=e_carnivores2

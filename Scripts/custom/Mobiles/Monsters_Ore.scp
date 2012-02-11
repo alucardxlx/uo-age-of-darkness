@@ -33,7 +33,7 @@ CAN=MT_WALK|MT_GHOST|mt_nonhum|mt_nonhum|mt_nonhum
 FOODTYPE=15 t_arock,t_coin,t_ore,t_ingot
 //SHELTER=r_mountains,r_caves,r_dungeon
 DESIRES=r_caves
-BLOODCOLOR=colors_o_rusty
+BLOODCOLOR=color_o_rusty
 tag.slots_needed=4
 Tag.BeastClass=Beast_HEAVY
 

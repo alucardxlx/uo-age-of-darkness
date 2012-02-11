@@ -14,6 +14,13 @@
 
 //*****************************************************************
 
+[FUNCTION isFactionEnemy]
+RETURN ( <hval <DEF.race.<TAG.NPCAI.Race>.Enemy>> & <<ARGN1>.TAG0.NPCAI.Race> ) 
+
+[FUNCTION isFactionAlly]
+RETURN ( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <<ARGN1>.TAG0.NPCAI.Race> ) 
+
+
 [EVENTS e_npc_wars]
 
 ON=@NPCLookAtChar
@@ -21,14 +28,15 @@ ON=@NPCLookAtChar
    RETURN
  ENDIF
 
- IF ( <hval <DEF.race.<TAG.NPCAI.Race>.Enemy>> & <SRC.TAG0.NPCAI.Race> ) //If my target's race is in my hates
+ IF ( <hval <DEF.race.<TAG.NPCAI.Race>.Enemy>> & <<ARGN1>.TAG0.NPCAI.Race> )  //If my target's race is in my hates
        IF ( <ISEVENT.e_squad_member> )
 	 	AlertSquad
        ENDIF
        ATTACK 
        f_warcry
        RETURN
- ELIF ( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> &<SRC.TAG0.NPCAI.Race> ) //If my target is a friendly
+
+ ELIF ( <hval <DEF.race.<TAG.NPCAI.Race>.Ally>> & <<ARGN1>.TAG0.NPCAI.Race> ) 
      IF (<SRC.FLAGS>&statf_war) && !(<npc> == brain_healer) //If ally is fighting
 	 If (<hval <DEF.race.<TAG.NPCAI.Race>.Ally>> &<SRC.ATTACKER.last.TAG0.NPCAI.Race>) || (<SRC.ATTACKER.last>==0) //and they have a valid target
 		return

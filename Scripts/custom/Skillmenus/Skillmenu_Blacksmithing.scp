@@ -416,13 +416,7 @@ IF (RAND(1000)<<LOCAL.CHANCE>) //success! we can create the item
 			TRYSRC <CONT.UID> NEW.DIALOG d_skillmenu_blacksmithing_querymakersmark
 			LOCAL.NODIALOG=1
 		ENDIF
-		IF (<NEW.HITPOINTS>)
-			NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
-		ELSEIF (<NEW.TAG0.HITS>)
-			NEW.TAG0.MAXHITS += <eval ((<new.TAG0.MAXHITS>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
-			NEW.TAG0.HITS = NEW.TAG0.MAXHITS
-		ENDIF
-
+		NEW.HITPOINTS += <eval ((<new.hitpoints>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>
 		new.tag0.modvalue += <EVAL ((<CONT.ARMSLORE>+<cont.skillmod armslore>)*<NEW.VALUE>)/400>
 		IF (<NEW.ISARMOR>) || (<NEW.TYPE>==t_shield)
 			new.modar += <eval ((<new.armor.hi>+<new.modar>) * (<cont.armslore>+<cont.skillmod armslore> + 250))/4000>

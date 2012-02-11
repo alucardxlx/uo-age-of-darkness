@@ -208,7 +208,7 @@ on=@create
 [CHARDEF 334]
 defname=c_gremlin
 NAME=gremlin
-sound=snd_monster_pixie1
+//sound=snd_monster_pixie1
 ICON=i_pet_gibberling
 DAM=4,7
 ARMOR=10

@@ -149,7 +149,7 @@ on=@create
      EXP={ 1050 1950 } //Level 2
 
 ON=@NpcRestock
-     ITEM={ Undead_pouch 2 Undead_backpack 1 Treasure_Pouch 1 0 3}
+     ITEM={ Undead_pouch 2 Undead_backpack 1 Treasure_Pouch 1 Necro_pouch 1 0 3}
      ITEM={ random_body_parts 2 0 1 }
 
 [chardef 03]
@@ -290,22 +290,22 @@ on=@create
      SetUndead
      nightsight=1
 
-     str={91 106}
+     str={81 96}
      dex={96 109}
      int={150 175}
      TAG0.MODHITS = 8
 
-     parrying={55.0 65.0}
-     magery={77.6 84.1}
-     magicresistance={69.6 84.0}
+     parrying={47.5 65.0}
+     magery={67.6 74.1}
+     magicresistance={59.6 84.0}
      tactics={55.4 67.3}
-     wrestling={50.1 58.4}
-     evaluatingintel={77.6 84.1}
-     meditation={77.6 84.1}
+     wrestling={40.1 58.4}
+     evaluatingintel={57.6 64.1}
+     meditation={67.6 84.1}
 
 	givelang 1
 
-     fame={1250 1300}
+     fame={1350 1600}
      karma={-2000 -2500}
 
      resfire=12
@@ -320,8 +320,8 @@ on=@create
 	EXP={ 2050 3950 } //Level 3
 
 ON=@NpcRestock
-     ITEM={ Magic_Bag 5 Magic_box 1 Undead_box 1 0 2 }
-     ITEM={ Undead_pouch 2 RANDOM_SCROLL 2 RANDOM_JEWELRY 1 0 2 }
+     ITEM={ Magic_Bag 5 Magic_box 1 Undead_box 1 Necro_bag 1 0 2 }
+     ITEM={ Necro_pouch 1 Undead_pouch 2 Magic_pouch 2 RANDOM_SCROLL 2 RANDOM_JEWELRY 1 0 2 }
 
 [chardef 093]
 defname=c_skeleton_knight
@@ -329,7 +329,7 @@ name="skeletal knight"
 icon=i_pet_skeleton_knight_lbr
 can=mt_walk|mt_usehands|mt_equip
 dam=5,8
-armor=28
+armor=18
 moverate=0
 resources=4 i_reag_bone
 TEVENTS=e_Level_up_NPC
@@ -351,18 +351,18 @@ on=@create
      SetUndead
      nightsight=1
 
-     str={152 169}
-     dex={106 128}
+     str={142 159}
+     dex={106 118}
      int={36 58}
      TAG0.MODHITS = 8
 
      parrying={75.0 85.0}
      magicresistance={56.4 68.8}
-     tactics={75.3 89.8}
-     wrestling={46.9 55.5}
-     archery={46.9 55.5}
-     swordsmanship={76.9 85.5}
-     anatomy={56.4 68.8}
+     tactics={65.3 89.8}
+     wrestling={43.9 59.5}
+     archery={42.9 58.5}
+     swordsmanship={66.9 85.5}
+     anatomy={46.4 68.8}
 
 	givelang 1
 
@@ -443,7 +443,8 @@ on=@create
 
 
 ON=@NpcRestock
-     ITEM={ Magic_bag 2 Undead_backpack 1 0 3}
+     ITEM={ Necro_bag 1 Magic_bag 2 Undead_backpack 1 0 2}
+     ITEM={ Magic_pouch 3 Necro_pouch 2 0 2}
 
 
 [chardef 09a]
@@ -455,7 +456,7 @@ can=mt_walk
 dam=14,18
 armor=46
 ANIM=078C7F
-moverate=60
+moverate=50
 bloodcolor=-1
 resources=2 i_reag_bone
 desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll,t_reagent
@@ -571,8 +572,8 @@ on=@create
 
 ON=@NpcRestock
      ITEM={ Magic_Crate_Medium 3 Magic_box 4 Wooden_Treasure_Chest 2 Undead_box 2 }
-     ITEM={ Undead_pouch 2 RANDOM_JEWELRY 3 RANDOM_SCROLL 2 }
-     ITEM={ RANDOM_JEWEL 2 RANDOM_SCROLL 2 }
+     ITEM={ Undead_pouch 2 RANDOM_JEWELRY 3 RANDOM_SCROLL 2 Necro_bag 2 0 2 }
+     ITEM={ RANDOM_JEWEL 2 RANDOM_SCROLL 2 0 2 }
 
 
 [chardef c_lich_form]
@@ -654,7 +655,8 @@ ON=@Create
 
 
 ON=@NpcRestock
-     ITEM={ Undead_pouch 1 Magic_Bag 1 Fae_pouch 2 0 1 }
+     ITEM={ Magic_Bag 1 Necro_bag 3 0 1 }
+     ITEM={ Undead_pouch 1 Necro_pouch 2 Fae_pouch 2 0 1 }
 
 [chardef 309]
 defname=c_patchwork_skeleton
@@ -1038,7 +1040,7 @@ ON=@CREATE
      EVENTS=+e_intel_char_magery_user
 
 ON=@NpcRestock
-     ITEM={ Undead_pouch 2 Magic_bag 2 Undead_backpack 1 0 2}
+     ITEM={ Undead_pouch 2 Magic_bag 2 Undead_backpack 1 Necro_pouch 1 0 2}
 
 
 [CHARDEF 251]
@@ -1158,6 +1160,10 @@ on=@create
      EVENTS=+e_intel_char_necro_user
      EVENTS=+e_intel_char_chivalry_user
 
+ON=@NpcRestock
+     ITEM={ Magic_Crate_Medium 3 Magic_box 4 Wooden_Treasure_Chest 2 Undead_box 2 }
+     ITEM={ Magic_bag 2 Undead_backpack 1 Necro_bag 1 0 1 }
+     ITEM={ Undead_pouch 2 Necro_pouch 1 0 1 }
 
 [CHARDEF 830]
 DEFNAME=c_primeval_lich
@@ -1315,5 +1321,9 @@ on=@create
      EVENTS=+e_intel_char_necro_user
      EVENTS=+e_intel_char_chivalry_user
 
+ON=@NpcRestock
+     ITEM={ Magic_Crate_Medium 3 Magic_box 4 Wooden_Treasure_Chest 2 Undead_box 2 0 2 }
+     ITEM={ Necro_bag 2 Undead_backpack 1 0 2 }
+     ITEM={ Necro_pouch 3 Filth_pouch 1 Undead_pouch 1 0 1 }
 
 [eof]
