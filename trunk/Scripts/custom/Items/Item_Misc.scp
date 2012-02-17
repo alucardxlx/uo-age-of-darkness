@@ -1,3 +1,16 @@
+
+[ITEMDEF i_key_inn]
+ID=i_key_iron
+NAME=inn key
+WEIGHT=0.1
+TYPE=T_normal
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Keys
+DESCRIPTION=Iron Key
+SKILLMAKE=TINKERING 30.0,t_tinker_tools
+
+
+
 [ITEMDEF 090D]
 DEFNAME=i_dungeon_fountain
 Name=strange fountain

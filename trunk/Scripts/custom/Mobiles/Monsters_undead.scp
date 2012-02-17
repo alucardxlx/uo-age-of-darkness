@@ -300,7 +300,7 @@ on=@create
      magicresistance={59.6 84.0}
      tactics={55.4 67.3}
      wrestling={40.1 58.4}
-     evaluatingintel={57.6 64.1}
+     evaluatingintel={47.6 64.1}
      meditation={67.6 84.1}
 
 	givelang 1
@@ -414,7 +414,7 @@ on=@create
 
      color=17969
 
-     str={77 97}
+     str={79 99}
      dex={76 93}
      int={84 100}
 
@@ -603,7 +603,7 @@ SOUND=snd_monster_zombie1
 ICON=i_pet_wailingbanshee
 DAM=9,13
 moverate=0
-ARMOR=38
+ARMOR=28
 bloodcolor=-1
 CAN=MT_WALK|MT_FLY|mt_passwalls
 desires=t_wand,t_corpse,t_gem,t_coin,t_potion,t_scroll,c_elf_male,c_elf_female,c_man,c_woman
@@ -627,7 +627,7 @@ ON=@Create
 	FAME={2100 3000} 
 	KARMA={-5000 -6999} 
 
-	STR={126 147}
+	STR={106 127}
 	DEX={81 109}
 	INT={106 129}
         TAG0.MODMANA = 16
@@ -641,9 +641,9 @@ ON=@Create
 
 	MAGICRESISTANCE={69.0 85.0}
 	TACTICS={45.0 65.0}
-	WRESTLING={54.0 70.0}
+	WRESTLING={54.0 60.0}
 	necromancy={53.0 69.0}
-	spiritspeak={63.0 79.0}
+	spiritspeak={43.0 59.0}
 	stealth={79.0 95.0}
 	hiding={79.0 95.0}
 

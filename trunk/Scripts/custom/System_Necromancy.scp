@@ -199,7 +199,7 @@ DESCRIPTION=Pain Spike
 DEFNAME=i_scroll_poison_strike
 TYPE=t_scroll
 WEIGHT=1
-RESOURCES=i_scroll_blank, i_reag_nox
+RESOURCES=i_scroll_blank, i_reag_blackmoor, i_reag_Executioners_cap
 SKILLMAKE=INSCRIPTION 60.0, NECROMANCY 50.0
 
 ON=@CREATE

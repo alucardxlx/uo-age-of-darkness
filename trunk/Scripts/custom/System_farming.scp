@@ -908,6 +908,9 @@ ELSE
 		ENDIF
 	endfor
 ENDIF
+IF (<SRC.TAG0.Plants> > (<SRC.HERDING>/10)+1)
+	SRC.MESSAGE You have too many plants right now to plant more.
+ENDIF
 if (<def0.farm_<tag0.plant>>!=0)  //if the seed is not a defined type (ie: you try making it a "wheet" seed)
  					//If this happens, it will return an error to the console, and complain 
  					//to the player. Error prevention=good
@@ -922,6 +925,7 @@ if (<def0.farm_<tag0.plant>>!=0)  //if the seed is not a defined type (ie: you t
 		return 1
 	endif
 	SRC.EMOTE "plant some <tag0.plant> seed"
+	SRC.TAG0.PLANTS += 1
 	SRC.BOW
 	SRC.NEWITEM i_farm_seeded
 	src.new.tag0.plant=<tag0.plant>
@@ -1009,6 +1013,7 @@ IF (<MORE2><1)		//if it is ready to mature
 ENDIF
  IF (<MORE2>>((<def.farm_<tag0.plant>_grow_time>*2)) //if it hasn't been watered in some time it should die
 	EMOTE "die"
+	LINK.TAG0.PLANTS -= 1
 	REMOVE
  ENDIF
  TIMER=60*60
@@ -1061,6 +1066,7 @@ ENDIF
 
 IF (<MORE2>>((<def.farm_<tag0.plant>_grow_time>*2)) //if it hasn't been watered in some time it should die
 	EMOTE "die"
+	SRC.TAG0.PLANTS += 1
 	REMOVE
 ENDIF
 PESTCHECK
@@ -1152,6 +1158,7 @@ farmtimer
 
  IF (<MORE2>>((<def.farm_<tag0.plant>_grow_time>*3)) //if it hasn't been watered in a very long time it should die
 	EMOTE "die"
+	LINK.TAG0.PLANTS -= 1
 	REMOVE
  ENDIF
  PESTCHECK
@@ -1187,6 +1194,7 @@ ON=@TIMER
  farmtimer
  IF (<MORE2>>((<def.farm_<tag0.plant>_grow_time>*4)) //if it hasn't been watered in a very long time it should die
 	EMOTE "die"
+	LINK.TAG0.PLANTS -= 1
 	REMOVE
  ENDIF
  PESTCHECK
@@ -1454,6 +1462,7 @@ elseif (<def0.farm_<tag0.plant>_seasondif_<sector.season>>==1)
 
 elseif (<def0.farm_<tag0.plant>_seasondif_<sector.season>>==3)
 	EMOTE "die"
+	LINK.TAG0.PLANTS -= 1
 	REMOVE
 endif
 
@@ -1732,6 +1741,7 @@ ONBUTTON=1110
 		remove
 	ELIF (<eval farm_<tag0.plant>_type>==1)
 		SRC.NEWSEED "<tag0.plant>"
+		SRC.TAG0.PLANTS -= 1
 		remove
 	endif
 	src.sfx 013a

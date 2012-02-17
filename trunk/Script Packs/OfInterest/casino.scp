@@ -1,0 +1,428 @@
+//
+//Claw machine, like you see at the carnival. This item is a lever, so the 
+//rest of the box for the machine should be created separately (and does
+//nothing). 
+[FUNCTION CMPRIZE]
+IF !(0<SRC.TAG.CMPRIZE>)
+DORAND 9
+NEWITEM i_fortune_cookie
+NEWITEM i_personalized_robe
+NEWITEM t_es_rare_pillows
+NEWITEM i_elven_wine
+NEWITEM i_silver_cannonballs
+NEWITEM i_muffin_trio
+NEWITEM t_es_randomcurrency,8
+NEWITEM i_ice_pop
+NEWITEM t_rares_candies
+ENDDO
+ENDIF
+SRC.ACT.BOUNCE
+
+[ITEMDEF i_game_token]
+DEFNAME i_token_game
+NAME Token
+ID i_fruit_apple
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Tokens
+
+ON=@CREATE
+COLOR 00b56
+
+ON=@DCLICK
+SAY This is a game Token, usable at fine casinos and arcades everywhere. Its mystical funcion is unclear, though some suspect that the Games are actally a race of slow-moving, Token-eating monsters. 
+RETURN 1
+
+//
+//Token Machine, sells tokens and buys them back. 
+[ITEMDEF i_token_machine]
+DEFNAME i_token_seller
+ID 077
+NAME Game Token Machine
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Token Machine
+
+ON=@CLICK
+SAY To buy or sell tokens, access this machine. 
+SAY Tokens are worth 10 GP each.
+
+ON=@DCLICK
+SRC.DIALOG d_token_machine
+RETURN 1
+
+
+
+//
+[ITEMDEF i_claw_machine]
+DEFNAME i_machine_claw
+NAME Claw Machine
+ID 01095
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Claw Machine
+
+ON=@CLICK
+SAY Two tokens per play.
+RETURN 0
+
+ON=@DCLICK
+IF !(0<VAR.CLAWMACHINE>)
+  IF <SRC.RESTEST 2 i_game_token>
+    SRC.SYSMESSAGE You enter into a test of skill with the machine, trying to get a good prize.
+    SRC.CONSUME 2 i_game_token
+    MORE1={ 1 20 }
+    IF <MORE1> <= 19
+      SAY The claw dropped the prize before it was released. 
+      RETURN 1
+    ELIF <MORE1> == 20
+      SAY You got a prize!
+      SRC.CMPRIZE
+      VAR.CLAWMACHINE=1
+      TIMER=2
+      RETURN 1
+    ENDIF
+  ELSE
+    SAY You need two tokens to play. Buy tokens at the token machine.
+  ENDIF
+ELSE
+  SAY Machine in Use.
+ENDIF
+RETURN 1
+
+ON=@TIMER
+TIMER=-1
+VAR.CLAWMACHINE=
+RETURN 1
+
+//
+//Slot Machine - note that this is a switch. You need to put down
+//i_slot_box in front of it. Nudge the switch up 5 to make it look right.
+[ITEMDEF i_slot_machine_1]
+DEFNAME i_onearm_bandit_1
+NAME Slot Machine
+ID 01091
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=One Token Slot Machine
+
+ON=@CREATE
+MORE2=50
+MORE1=0
+
+ON=@CLICK
+SAY One token per play. Current jackpot is <EVAL <MORE2>> tokens. 
+RETURN 0
+
+ON=@DCLICK
+IF <SRC.RESTEST i_game_token>
+  MORE1={ 1 200 }
+  SRC.CONSUME i_game_token
+  IF <MORE1> == 200
+    SRC.NEWITEM i_game_token
+    SRC.ACT.AMOUNT <MORE2>
+    SRC.ACT.BOUNCE
+    SAY Ding Ding Ding! You won the jackpot!
+    SRC.SYSMESSAGE JACKPOT!!
+    MORE2=50
+    RETURN 1
+  ELIF <MORE1> >= 195
+    SRC.NEWITEM i_game_token 
+    SRC.ACT.AMOUNT 10
+    SRC.ACT.BOUNCE
+    SAY Ding Ding! You won 10 tokens!
+    MORE2=<MORE2> + (-10)
+  ELSE 
+    SAY Ding! You lost. 
+    MORE2=<MORE2> + 1
+  ENDIF
+ELSE
+  SAY You need one token to play. Buy tokens at the token machine.
+ENDIF
+RETURN 1
+
+//
+//This machine has a higher payout, lower chances, and 5 token fee. 
+[ITEMDEF i_slot_machine_2]
+DEFNAME i_onearm_bandit_2
+NAME Slot Machine
+ID 01091
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Five Token Slot Machine
+
+ON=@CREATE
+MORE2=100
+MORE1=0
+
+ON=@CLICK
+SAY Five tokens per play. Current jackpot is <EVAL <MORE2>> tokens. 
+RETURN 0
+
+ON=@DCLICK
+IF <SRC.RESTEST 5 i_game_token>
+  MORE1={ 1 200 }
+  SRC.CONSUME 5 i_game_token
+  IF <MORE1>==200
+    SRC.NEWITEM i_game_token
+    SRC.ACT.AMOUNT <MORE2>
+    SRC.ACT.BOUNCE
+    SAY Ding Ding Ding! You won the jackpot!
+    SRC.SYSMESSAGE JACKPOT!!
+    MORE2=100
+    RETURN 1
+  ELIF <MORE1> >= 195
+    SRC.NEWITEM i_game_token 
+    SRC.ACT.AMOUNT 10
+    SRC.ACT.BOUNCE
+    SAY Ding Ding! You won 10 tokens!
+    MORE2=<MORE2> + (-10)
+  ELSE 
+    SAY Ding! You lost. 
+    MORE2=<MORE2> + 5
+  ENDIF
+ELSE
+  SAY You need five tokens to play. Buy tokens at the token machine.
+ENDIF
+RETURN 1
+
+//
+//This machine has the highest payout, lowest chances, and 10 token fee. 
+[ITEMDEF i_slot_machine_3
+DEFNAME i_onearm_bandit_3
+NAME Slot Machine
+ID 01091
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Ten Token Slot Machine
+
+ON=@CREATE
+MORE2=250
+MORE1=0
+
+ON=@CLICK
+SAY Ten tokens per play. Current jackpot is <EVAL <MORE2>> tokens. 
+RETURN 0
+
+ON=@DCLICK
+IF <SRC.RESTEST 10 i_game_token>
+  MORE1={ 1 500 }
+  SRC.CONSUME 10 i_game_token
+  IF <MORE1> == 500
+    SRC.NEWITEM i_game_token
+    SRC.ACT.AMOUNT <MORE2>
+    SRC.ACT.BOUNCE
+    SAY Ding Ding Ding! You won the jackpot!
+    SRC.SYSMESSAGE JACKPOT!!
+    MORE2=250
+    RETURN 1
+  ELIF <MORE1> >= 490
+    SRC.NEWITEM i_game_token 
+    SRC.ACT.AMOUNT 10
+    SRC.ACT.BOUNCE
+    SAY Ding Ding! You won 10 tokens!
+    MORE2=<MORE2> + (-10)
+  ELSE 
+    SAY Ding! You lost. 
+    MORE2=<MORE2> + 10
+  ENDIF
+ELSE
+  SAY You need ten tokens to play. Buy tokens at the token machine.
+ENDIF
+RETURN 1
+
+//Slot post.
+//Goes with the slot machine script, if someone clicks it they will know
+//to use the switch instead.
+[ITEMDEF i_slot_box]
+DEFNAME i_box_slot
+NAME Slot Machine
+TYPE t_normal
+ID 01da
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Slot Machine Post
+
+ON=@CREATE 
+COLOR 008fd
+
+ON=@DCLICK
+SRC.MESSAGE Maybe I should pull on that lever ...
+RETURN 1
+
+//
+//
+[DIALOG d_token_machine] 
+0,0 
+page 0 
+resizepic 0 0 2520 280 200 
+page 1 
+text 37 10 1152 0
+text 30 50 1152 1
+text 130 70 1152 3
+text 125 100 1152 4
+text 120 130 1152 5
+text 150 50 1152 2 
+button 60 70 4006 4007 1 0 2000 
+button 60 100 4006 4007 1 0 2001 
+button 60 130 4006 4007 1 0 2002
+button 180 70 4015 4016 1 0 2003   
+button 180 100 4015 4016 1 0 2004 
+button 180 130 4015 4016 1 0 2005
+
+[DIALOG d_token_machine TEXT] 
+Tokens are worth 10gp each.
+Buy Tokens
+Sell Tokens
+1
+10
+100
+
+[DIALOG d_token_machine BUTTON] 
+ONBUTTON=2000 
+IF <SRC.RESTEST 10 i_gold>
+  SRC.CONSUME 10 i_gold
+  SRC.NEWITEM i_game_token
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You buy a single token. Big spender!
+ELSE
+  SRC.SYSMESSAGE You don't have enough money on you. We don't take credit.
+ENDIF
+RETURN 0
+
+ONBUTTON=2001 
+IF <SRC.RESTEST 100 i_gold>
+  SRC.CONSUME 100 i_gold
+  NEWITEM i_game_token
+  SRC.ACT.AMOUNT 10
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You buy 10 tokens. Night out on the town eh?
+ELSE
+  SRC.SYSMESSAGE You don't have enough money on you. We don't take credit.
+ENDIF
+RETURN 0
+
+ONBUTTON=2002 
+IF <SRC.RESTEST 1000 i_gold>
+  SRC.CONSUME 1000 i_gold
+  NEWITEM i_game_token
+  SRC.ACT.AMOUNT 100
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You buy 100 tokens. That should last you about a minute.
+ELSE
+  SRC.SYSMESSAGE You don't have enough money on you. We don't take credit.
+ENDIF
+RETURN 0
+
+ONBUTTON=2003 
+IF <SRC.RESTEST i_game_token>
+  SRC.CONSUME i_game_token
+  NEWITEM i_gold
+  SRC.ACT.AMOUNT 10
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You cash in 1 token. Bad luck today?
+ELSE
+  SRC.SYSMESSAGE You don't have that many tokens.
+ENDIF
+RETURN 0
+
+ONBUTTON=2004 
+IF <SRC.RESTEST 10 i_game_token>
+  SRC.CONSUME 10 i_game_token
+  NEWITEM i_gold
+  SRC.ACT.AMOUNT 100
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You cash in 10 tokens. Quitting while you're broke?
+ELSE
+  SRC.SYSMESSAGE You don't have that many tokens.
+ENDIF
+RETURN 0
+
+ONBUTTON=2005 
+IF <SRC.RESTEST 100 i_game_token>
+  SRC.CONSUME 100 i_game_token
+  NEWITEM i_gold
+  SRC.ACT.AMOUNT 1000
+  SRC.ACT.BOUNCE
+  SRC.SYSMESSAGE You cash in 100 tokens. Don't let the door hit you on the way out. 
+ELSE
+  SRC.SYSMESSAGE You don't have that many tokens.
+ENDIF
+RETURN 0
+
+[ITEMDEF i_strength_tester]
+DEFNAME i_strength_tester
+NAME Strength Tester
+ID i_decorative_armor
+TYPE t_normal
+VALUE=1
+
+CATEGORY=ES Custom
+SUBSECTION=Carnival
+DESCRIPTION=Strength Tester
+
+ON=@CREATE
+MORE1=0
+
+ON=@DCLICK
+IF <MORE1> == 0
+  IF <SRC.STR> <= 10
+    SAY Are you ready yet? I'm waiting ...
+    RETURN 1
+  ELIF <SRC.STR> <= 30
+    SAY Weakling!
+    RETURN 1
+  ELIF <SRC.STR> <= 60
+    SAY Eh, just about average.
+    RETURN 1
+  ELIF <SRC.STR> <= 90
+    SAY Hey, not so rough!
+    RETURN 1
+  ELIF <SRC.STR> <= 120
+    SAY OUCH!
+    RETURN 1
+  ELIF <SRC.STR> <= 150
+    EMOTE whimper
+    RETURN 1
+  ELIF <SRC.STR> <= 199
+    EMOTE crack
+    RETURN 1
+  ELIF <SRC.STR> > 199
+    EMOTE break
+    MORE1=1
+    TIMER 10
+    LINK=<SRC.UID>
+    RETURN 1
+  ENDIF
+ELSE
+  SAY This machine has been broken by <LINK.NAME>. It will be repaired shortly. 
+ENDIF
+RETURN 1
+
+ON=@TIMER
+MORE1=0
+TIMER=-1
+RETURN 1
+  
+
+
+[EOF]

@@ -15,6 +15,12 @@ IF (<SRC.TAG0.LOGOUT>)
 	ARGN1=<SRC.TAG.LOGOUT>
 ENDIF
 SRC.TAG.LOGOUT=0
+IF (<SRC.REGION.FLAGS>&region_flag_insta_logout) || (<SRC.ROOM.FLAGS>&region_flag_insta_logout)
+	IF (<SRC.RESTEST 1 i_key_inn>)
+		SRC.CONSUME 1 i_key_inn
+		ARGN1=1
+	ENDIF
+ENDIF
 //Find player's pets within 24 squares and put a log out timer on them.
 IF (<SRC.CURFOLLOWER> > 0)
 	FORCHARS 24
@@ -334,7 +340,7 @@ IF ((<ARGN> == 31))
 	FACE
 	RETURN 1
 ENDIF
-IF ((<ARGN> == 32) && (<src.tag.lang> != <tag.lang>))
+IF ((<ARGN> == 32) && (<src.tag0.lang> != <tag0.lang>))
 	GETMARKUP
 	SDIALOG D_SELL
 	FACE

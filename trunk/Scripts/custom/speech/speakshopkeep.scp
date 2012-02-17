@@ -192,11 +192,10 @@ ON=*wares*
 			ENDIF
 		ENDIF
 	ENDIF
-	GETMARKUP
 	IF (<FINDLAYER(layer_vendor_stock).COUNT> < 1)
 		RESTOCK 1
 	ENDIF
-	SDIALOG D_BUY
+	buymenu
 	FACE
 
 

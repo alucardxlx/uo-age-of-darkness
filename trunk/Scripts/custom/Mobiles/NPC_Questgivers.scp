@@ -25,7 +25,7 @@ ENDDO
 
 
 [function f_addquest_general]
-DORAND 23 //add a kill quest
+DORAND 24 //add a kill quest
 	ADDQUEST 19
 	ADDQUEST 20
 	ADDQUEST 22
@@ -46,6 +46,7 @@ DORAND 23 //add a kill quest
 	ADDQUEST 58
 	ADDQUEST 59
 	ADDQUEST 77
+	ADDQUEST 78
 	ADDQUEST 80
 	ADDQUEST 82
 	ADDQUEST 85
@@ -77,11 +78,12 @@ DORAND 14 //add an elven quest
 ENDDO
 
 [function f_addquest_noble]
-DORAND 4 //add a noble quest
+DORAND 5 //add a noble quest
 	ADDQUEST 1
 	ADDQUEST 116
 	f_addchain_noble
 	f_addchain_noble
+	f_addquest_general
 ENDDO
 
 [function f_addchain_noble]
@@ -95,11 +97,26 @@ ELIF (<LOCAL.RANDOM>==1)
 ENDIF
 
 [function f_addquest_peasant]
-DORAND 2 //add a peasant quest
+DORAND 6 //add a peasant quest	
+	f_addquest_general
+	ADDQUEST 46
 	ADDQUEST 112
+	ADDQUEST 113
 	ADDQUEST 114
+	ADDQUEST 124
 ENDDO
 
+[function f_addchain_peasant]
+LOCAL.RANDOM = <r2>
+IF (<LOCAL.RANDOM>==0)
+	ADDQUEST 47
+	ADDQUEST 48
+	ADDQUEST 49
+ELIF (<LOCAL.RANDOM>==1)
+	ADDQUEST 47
+	ADDQUEST 48
+	ADDQUEST 49
+ENDIF
 
 [chardef 0452]
 defname=c_h_mayor
