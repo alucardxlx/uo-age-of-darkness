@@ -1,4 +1,34 @@
 
+[SPAWN SPAWN_Fae]
+CATEGORY=Spawn Groups
+SUBSECTION=Animals
+DESCRIPTION=Faerie Creatures
+ID=c_dragon_faerie
+ID=c_gremlin 5
+ID=c_faerie 2
+ID=c_Sprite 2
+ID=c_cu_sidhe
+ID=c_wisp 2
+ID=c_Satyr
+ID=c_centaur
+ID=c_Dryad
+ID=c_unicorn
+
+[SPAWN SPAWN_Fae_dark]
+CATEGORY=Spawn Groups
+SUBSECTION=Animals
+DESCRIPTION=Dark Faerie Creatures
+ID=c_dragon_faerie
+ID=c_gremlin 5
+ID=c_faerie 2
+ID=c_Sprite 2
+ID=c_cu_sidhe
+ID=c_wisp 2
+ID=c_bleak_unicorn
+ID=c_dark_dryad
+ID=c_wisp_shadow
+ID=c_nightmare
+
 [SPAWN 08001]
 DEFNAME=SPAWN_Undead_Weak
 CATEGORY=AoD Spawn Groups
@@ -24,7 +54,7 @@ ID=c_skeletal_mount
 ID=c_undead_gargoyle 2
 ID=c_ghost 2
 ID=c_yao_guai
-ID=c_banshee
+ID=c_banshee 3
 
 [SPAWN 08003]
 DEFNAME=SPAWN_Undead_Strong
@@ -131,20 +161,25 @@ CATEGORY=Spawn Groups
 SUBSECTION=Animals
 DESCRIPTION=Forest Animals
 ID=c_brown_bear
-ID=c_black_bear
+ID=c_black_bear 2
 ID=c_grizzly_bear
+ID=c_great_hart
+ID=c_hind 2
+ID=c_timber_wolf 2
+ID=c_gray_wolf
+ID=c_white_wolf
 ID=c_cougar
-ID=c_snake 2
+ID=c_snake 3
 ID=c_snake_giant
-ID=c_eagle
-ID=c_pig_big 2
-ID=c_GOAT 2
-ID=c_ferret 2
-ID=c_rat 2
+ID=c_eagle 2
+ID=c_pig_big 3
+ID=c_GOAT 3
+ID=c_ferret 4
+ID=c_rat 3
 ID=c_turkey 2
-ID=c_squirrel 2
-ID=c_rabbit 3
-ID=c_songbird 3
+ID=c_squirrel 3
+ID=c_rabbit 4
+ID=c_songbird 4
 ID=c_raven 2
 ID=c_spider_giant
 
@@ -220,8 +255,10 @@ ID=C_OGRE 3
 ID=c_ETTIN 1
 ID=c_troll 4
 ID=c_harpy 3
-ID=c_headless 10
+ID=c_headless 8
+ID=c_corpser 3
 ID=c_reaper
+ID=c_gremlin 5
 ID=c_WISP 5
 
 [SPAWN 08017]
@@ -245,7 +282,11 @@ ID=C_SILVER_SERPENT 2
 ID=c_corpser 2
 ID=c_SLIME 3
 ID=c_headless 4
+ID=c_gremlin 5
 ID=c_harpy 
+ID=c_acid_slug 2
+ID=c_rotworm 2
+ID=c_bloodworm
 
 [SPAWN 08035]
 DEFNAME=SPAWN_Goblins
@@ -315,7 +356,11 @@ ID=c_troll 3
 ID=c_gazer
 ID=c_gazer_larva 3
 ID=c_harpy 2
+ID=c_gremlin 5
+ID=c_corpser 3
 ID=c_acid_slug 2
+ID=c_rotworm 2
+ID=c_bloodworm
 
 
 [SPAWN SPAWN_MagicMonsters]

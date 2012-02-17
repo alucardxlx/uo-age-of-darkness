@@ -235,8 +235,8 @@ ON=@Create
 	nightsight=1
 
 	FAME={10 100} 
-	KARMA={-100 -599} 
-	COLOR= 08000|{04f7 04f8}
+	KARMA={-1100 -1599} 
+	COLOR={04f7 04f8}
 
 	STR={38 59}
 	INT={11 24}

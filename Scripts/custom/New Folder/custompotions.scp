@@ -1,0 +1,264 @@
+//Custom Potions
+//
+//
+[ITEMDEF i_ES_potion_Clever]
+ID=i_bottle_WHITE
+NAME=Potion of Mental Prowess
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=2 i_reag_fertile_dirt, i_bottle_EMPTY
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Cleverness
+
+ON=@Create
+MORE1=s_Cunning
+MORE2=70.0
+
+//
+[ITEMDEF i_ES_potion_Clever_Great]
+ID=i_bottle_WHITE
+NAME=Potion of Mental Superiority
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=4 i_reag_fertile_dirt, i_bottle_EMPTY
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Great Cleverness
+
+ON=@Create
+MORE1=s_Cunning
+MORE2=100.0
+
+//
+[ITEMDEF i_ES_potion_steelskin]
+DEFNAME i_steelskin_potion
+ID=i_vial_empty
+NAME=Delila's Ironguard
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=i_ingot_iron, 6 i_reag_serpent_scale, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Steelskin
+
+ON=@Create
+MORE1=s_Steel skin
+MORE2=100.0
+
+//
+[ITEMDEF i_ES_potion_pebbleskin]
+DEFNAME i_pebbleskin_potion
+ID=i_bottle
+NAME=Potion of Pebbleskin
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=10 i_reag_pumice, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Pebbleskin
+
+ON=@Create
+MORE1=s_Stone skin
+MORE2=100.0
+
+
+//
+[ITEMDEF i_ES_potion_invis]
+DEFNAME i_invis_potion
+ID=i_bottle_6
+NAME=Hadrian's Invisibility Tonic
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=3 i_reag_volcanic_ash, 3 i_reag_executioners_cap, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Invisibility
+
+ON=@Create
+MORE1=s_invisibility
+MORE2=100.0
+//
+//
+[ITEMDEF i_ES_potion_sustenance]
+DEFNAME i_sustenance_potion
+ID=i_bottle_2
+NAME=Elixir of Sustenance
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=i_bread_loaf, 3 i_reag_blackmoor, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Sustenance
+
+ON=@Create
+MORE1=s_sustenance
+MORE2=100.0
+
+//
+[ITEMDEF i_ES_potion_mana]
+DEFNAME i_mana_potion
+ID=i_flask_small_green
+NAME=Spirit Restoration Draught
+TYPE=T_POTION
+TDATA1=i_bottle_empty
+RESOURCES=9 i_gem_emerald, 10 i_reag_eye_of_newt, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+ON=@DCLICK
+SRC.ACT.BOUNCE
+SRC.MANA=<SRC.INT>
+SOUND 0031
+SRC.CONSUME i_potion_mana
+RETURN 1
+
+[ITEMDEF i_ES_potion_shrink]
+DEFNAME=i_shrink_potion
+ID=i_bottle_7
+NAME=Shrink Potion
+VALUE=100
+TYPE=t_normal
+TDATA1=i_bottle_empty
+RESOURCES=10 i_reag_batwing, i_bottle_EMPTY
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Shrink
+
+ON=@DROPON_CHAR
+SAY Double click the potion to shrink a pet
+
+ON=@DCLICK
+IF <CONT.UID>!=<SRC.FINDLAYER(21).UID>
+SRC.MESSAGE The potion is not at hand!
+RETURN 1
+ENDIF
+IF <AMOUNT>>1
+SRC.MESSAGE You have to seperate this from the stack to use it
+RETURN 1
+ENDIF
+
+TARGET What do you want to shrink? Make sure it is a pet.
+return 1
+
+ON=@TARGON_ITEM
+SRC.SYSMESSAGE Items can not be shrunk!
+return 1
+
+ON=@TARGON_CHAR
+IF (<SRC.TARG.BODY>==c_man) || (<SRC.TARG.BODY>==c_woman) || (<SRC.TARG.NPC>==0)
+src.sysmessage You can not shrink a human!
+return 1
+elseif <src.targ.flags>&statf_conjured
+src.sysmessage You cannot shrink summoned pets!
+return 1
+elseif <src.targ.flags>&statf_war
+src.sysmessage Your pet is too angry to shrink.
+return 1
+elseif <src.targ.ismypet>
+src.targ.shrink
+src.sysmessage Your pet, <src.targ.name>, has been shrunk.
+remove
+return 0
+else
+src.sysmessage <src.targ.name>, This is not your pet
+return 1
+endif
+
+//
+[ITEMDEF i_ES_potion_skindye]
+DEFNAME i_skindye_potion
+ID=i_spittoon
+NAME=Skin Dyes
+TYPE=T_potion
+RESOURCES=10 i_gem_diamond, i_reag_dead_wood, i_reag_blood_moss, i_bottle_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Skin Dye
+
+ON=@DCLICK
+SRC.COLOR {02 00422}
+RETURN 0
+
+//
+[ITEMDEF i_ES_potion_escape]
+DEFNAME i_escape_potion
+ID=i_jar_full
+NAME=Eldred's Swift Retreat
+TYPE=T_normal
+RESOURCES=2 i_gem_star_sapphire, 2 i_reag_volcanic_ash, i_reag_black_pearl, i_bottle_empty, i_rune_marker
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Escape
+
+ON=@DCLICK
+SRC.ACT.BOUNCE
+SRC.GO 1423 1697 6 0
+SOUND 0031
+SRC.CONSUME i_potion_escape
+RETURN 1
+
+//
+[ITEMDEF i_ES_potion_magicreflect]
+DEFNAME i_magicreflect_potion
+ID=i_flask1_blue
+NAME=Alomar's Effacious Magic Ward
+TYPE=T_potion
+RESOURCES=2 i_gem_citrine, 2 i_reag_blackmoor, i_reag_dragon_blood, i_flask1_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Magic Reflect
+
+ON=@Create
+MORE1=s_MAGIC_REFLECTION
+MORE2=100.0
+
+//
+[ITEMDEF i_ES_potion_heroism]
+DEFNAME i_heroism_potion
+ID=i_beaker1_green
+NAME=Elixir of Heroism
+TYPE=T_normal
+RESOURCES=5 i_gem_sapphire, 4 i_reag_bone, 4 i_reag_daemon_bone, i_flask1_empty
+SKILLMAKE=ALCHEMY 100.0
+
+CATEGORY=ES Custom
+SUBSECTION=Potions
+DESCRIPTION=Potion of Heroism
+
+ON=@DCLICK
+SRC.ACT.BOUNCE
+SRC.HITS=<SRC.HITS>+10
+SOUND 0031
+SRC.CONSUME i_potion_heroism
+RETURN 1
+
+
+
+
+
+
+
+
+
+
+[EOF]

@@ -1,0 +1,611 @@
+//
+//Done by Dan.
+//These are events meant to be placed on monsters as ON=@HIT scripts with a random chance. This way people
+//don't get lycanthropy from a single wayward hit.
+//
+
+//
+//Lycanthropy is a curse that turns the victim into a wolf. Lycanthropy is
+//transmittable by bite or claw from the transformed victim. It can be cured by Wolfsbane Powder.
+//
+[CHARDEF c_m_lycanthrope_werewolf]
+NAME=Werewolf
+ID=c_wolf
+SOUND=snd_ANIMALS_WOLF1
+ICON=i_pet_wolf_gray
+
+DAM=3,30
+ARMOR=40
+RESOURCES=i_werewolf_saliva
+
+CAN=MT_WALK|MT_USEHANDS|MT_RUN
+FOODTYPE=15 t_meat_raw
+SHELTER=r_forests,r_caves,r_mountains
+DESIRES=c_wolf
+AVERSIONS=r_civilization
+DESCRIPTION=Werewolf
+SUBSECTION=Monsters
+CATEGORY=Dan Custom
+
+ON=@Create
+COLOR=colors_gray
+STR=150
+DEX=150
+INT=50
+
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+WRESTLING=100.0
+
+NPC=brain_berserk
+
+FAME=150
+KARMA=-1000
+
+ON=@HIT
+SRC.EVENTS +e_dan_lycanthropy
+SRC.TAG.LYCANTHROPY=1
+SRC.EMOTE contracted lycanthropy!
+RETURN 0
+
+[ITEMDEF i_werewolf_saliva]
+ID i_jar_half_full
+VALUE 5
+TYPE t_drink
+NAME Werewolf Saliva
+WEIGHT 1
+
+ON=@DCLICK
+SRC.EVENTS +e_dan_lycanthropy
+SRC.TAG.LYCANTHROPY=1
+SRC.EMOTE contracted lycanthropy!
+RETURN 0
+
+//
+//
+[EVENTS e_dan_lycanthropy]
+ON=@ITEMDCLICK
+SRC.BODY=c_m_lycanthrope_werewolf
+SRC.COLOR=00
+SRC.EMOTE turn into a wolf!
+SRC.SAY OOoOOOOoO!
+
+//
+//
+//Vampirism causes fatal sunlight allergy and dependance on blood, but blood provides healing.
+//Cured by Holy Water.
+//
+[CHARDEF c_h_vampiric_man]
+NAME=#NAMES_HUMANMALE
+ID=C_MAN
+ARMOR 60
+DAM 3,30
+
+TSPEECH=spk_human_prime
+TSPEECH=spk_needs
+TSPEECH=spk_human_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+
+CATEGORY=Dan Custom
+SUBSECTION=Monsters
+DESCRIPTION=Vampire Man
+
+ON=@Create
+NPC=brain_undead
+COLOR=00
+
+STR=150
+DEX=150
+INT=150
+
+FENCING=100.0
+PARRYING=100.0
+SWORDSMANSHIP=100.0
+WRESTLING=100.0
+MACEFIGHTING=100.0
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+
+ITEMNEWBIE=random_male_hair
+COLOR=00
+ITEMNEWBIE=random_facial_hair
+COLOR=match_hair
+
+ITEMNEWBIE=i_shirt_fancy
+COLOR=colors_red
+ITEMNEWBIE=random_pants
+COLOR=colors_all
+ITEMNEWBIE=i_boots_calf
+COLOR=colors_neutral
+
+ON=@HIT
+IF (0<SRC.TAG.VAMPIRISM>)
+  RETURN 0
+ELSE
+  SRC.EVENTS +e_dan_vampirism
+  SRC.NEWITEM i_dan_vampirism_mem
+  SRC.ACT.EQUIP
+  SRC.TAG.VAMPIRISM=1
+  SRC.EMOTE contracted vampirism!
+ENDIF
+RETURN 0
+
+[CHARDEF c_h_vampiric_woman]
+NAME=#NAMES_HUMANFEMALE
+ID=C_WOMAN
+ARMOR 60
+DAM 3,30
+
+TSPEECH=spk_human_prime
+TSPEECH=spk_needs
+TSPEECH=spk_human_default
+
+TEVENTS=e_Human_HearUnk
+TEVENTS=e_Human_ConvInit
+TEVENTS=e_Human_Needs
+TEVENTS=e_Human_Greet
+TEVENTS=e_Human_Space
+TEVENTS=e_Human_Refuse
+TEVENTS=e_Human_Environ
+
+CATEGORY=Dan Custom
+SUBSECTION=Monsters
+DESCRIPTION=Vampire Woman
+
+ON=@Create
+NPC=brain_undead
+COLOR=00
+
+STR=150
+DEX=150
+INT=150
+
+FENCING=100.0
+PARRYING=100.0
+SWORDSMANSHIP=100.0
+WRESTLING=100.0
+MACEFIGHTING=100.0
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+
+ITEMNEWBIE=random_female_hair
+COLOR=00
+
+ITEMNEWBIE=i_dress_full
+COLOR=colors_red
+ITEMNEWBIE=i_boots_calf
+COLOR=colors_neutral
+
+ON=@HIT
+IF (0<SRC.TAG.VAMPIRISM>)
+  RETURN 0
+ELSE
+  SRC.EVENTS +e_dan_vampirism
+  SRC.NEWITEM i_dan_vampirism_mem
+  SRC.ACT.EQUIP
+  SRC.TAG.VAMPIRISM=1
+  SRC.EMOTE contracted vampirism!
+ENDIF
+RETURN 0
+
+[ITEMDEF i_vampire_blood]
+ID i_jar_half_full
+VALUE 5
+TYPE t_drink
+NAME Vampire Blood
+WEIGHT 1
+
+ON=@CREATE
+COLOR=32
+
+ON=@DCLICK
+IF (0<SRC.TAG.VAMPIRISM>)
+  SRC.SAY You are already a vampire.
+  RETURN 0
+ELSE
+  SRC.EVENTS +e_dan_vampirism
+  SRC.NEWITEM i_dan_vampirism_mem
+  SRC.ACT.EQUIP
+  SRC.TAG.VAMPIRISM=1
+  SRC.EMOTE contracted vampirism!
+RETURN 0
+
+//
+//
+//
+[ITEMDEF i_dan_vampirism_mem]
+ID i_memory
+NAME Vampirism
+TYPE t_eq_script
+VALUE 1
+WEIGHT 0.1
+
+ON=@CREATE
+ATTR=00082
+
+ON=@EQUIP
+LINK=<SRC.UID>
+TIMER=6
+
+ON=@TIMER
+IF (0<SECTOR.LIGHT> < 5)
+  IF (0<LINK.MANA> > 1)
+    LINK.MANA=<LINK.MANA> + (-1)
+  ELSE
+    LINK.MANA=0
+  ENDIF
+//
+  IF (0<LINK.STAMINA> >1)
+    LINK.STAMINA=<LINK.STAMINA> + (-1)
+  ELSE
+    LINK.STAMINA=0
+  ENDIF
+//
+LINK.DAMAGE 1
+ENDIF
+//
+TIMER=6
+RETURN 1
+
+[EVENTS e_dan_vampirism]
+ON=@ITEMDCLICK
+IF (0<SRC.ACT.TYPE> == t_corpse)
+  SRC.HITS=<SRC.HITS>+1
+  SRC.EMOTE drink the blood
+  SOUND 0030
+  RETURN 1
+ENDIF
+SRC.COLOR=00
+RETURN 0
+
+//
+//Mage Rot is a parasitic infection that damages the victim's intelligence. It can be cured with
+//Scaleweed extract.
+//
+[EVENTS e_dan_magerot]
+ON=@CLICK
+IF !(0<SRC.TAG.MAGEROT>)
+  IF (0<SRC.CANSEELOS>)
+    DORAND 15
+    BEGIN
+      SRC.EVENTS +e_dan_magerot
+      SRC.TAG.MAGEROT=1
+      SRC.NEWITEM i_dan_magerot_mem
+      SRC.ACT.EQUIP
+      SRC.ACT.TIMER 3
+      SRC.SAY ouch
+    END
+    ENDDO
+    RETURN 0
+  ENDIF
+ENDIF
+RETURN 0
+
+[ITEMDEF i_dan_magerot_mem]
+TYPE t_eq_script
+ID i_memory
+VALUE 1
+WEIGHT 0.1
+NAME Mage Rot
+
+ON=@CREATE
+ATTR=08090
+
+ON=@EQUIP
+LINK=<SRC.UID>
+TIMER 3
+RETURN 0
+
+ON=@TIMER
+IF (0<LINK.TAG.MAGEROT>)
+  LINK.MANA=<LINK.MANA>+(-1)
+  TIMER=3
+  LINK.SAY timer went off
+ELSE
+  REMOVE
+ENDIF
+RETURN 1
+
+//
+//
+//
+//
+//Yellow Tick Fever is a virus that causes gradual HP loss. It can be cured with
+//Dragon Dung powder.
+//
+[EVENTS e_dan_disease_ytf]
+ON=@CLICK
+IF !(0<SRC.TAG.DISEASE_YTF>)
+  IF (0<SRC.CANSEELOS>)
+    DORAND 15
+    BEGIN
+      SRC.EVENTS +e_dan_disease_ytf
+      SRC.TAG.DISEASE_YTF=1
+      SRC.NEWITEM i_dan_disease_ytf_mem
+      SRC.ACT.LINK=<SRC.UID>
+      SRC.ACT.EQUIP
+      SRC.ACT.TIMER 3
+    END
+    ENDDO
+  ENDIF
+  RETURN 0
+ENDIF
+
+[EVENTS e_dan_disease_ytf_aspergillis]
+ON=@HIT
+IF !(0<SRC.TAG.DISEASE_YTF>)
+  IF (0<SRC.CANSEELOS>)
+    DORAND 15
+    BEGIN
+      SRC.EVENTS +e_dan_disease_ytf
+      SRC.TAG.DISEASE_YTF=1
+      SRC.NEWITEM i_dan_disease_ytf_mem
+      SRC.ACT.LINK=<SRC.UID>
+      SRC.ACT.EQUIP
+      SRC.ACT.TIMER 3
+    END
+    ENDDO
+  ENDIF
+  RETURN 0
+ENDIF
+
+[ITEMDEF i_dan_disease_ytf_mem]
+TYPE t_eq_script
+ID i_memory
+VALUE 1
+WEIGHT 0.1
+NAME Yellow Tick Fever
+
+ON=@CREATE
+ATTR=08090
+
+ON=@EQUIP
+TIMER 3
+
+ON=@TIMER
+IF (0<LINK.TAG.DISEASE_YTF>)
+  LINK.DAMAGE 1
+  LINK.STAMINA=(<LINK.STAMINA>+(-1))
+  TIMER=3
+ELSE
+  REMOVE
+ENDIF
+RETURN 1
+
+//
+//
+//Black Wasting is a bacterial infection that causes gradual HP/Stamina/Mana loss. It can be cured with
+//Yew Sap Drink.
+//
+[EVENTS e_dan_disease_black_wasting]
+ON=@HIT
+IF (0<SRC.CANSEELOS>)
+  DORAND 15
+  BEGIN
+    SRC.EVENTS +e_dan_disease_black_wasting
+    SRC.TAG.DISEASE_BW=1
+    SRC.NEWITEM i_dan_disease_bw_mem
+    SRC.ACT.LINK=<SRC.UID>
+    SRC.ACT.EQUIP
+    SRC.ACT.TIMER=3
+  END
+  ENDDO
+ENDIF
+RETURN 0
+
+[ITEMDEF i_dan_disease_bw_mem]
+TYPE t_eq_script
+ID i_gold
+VALUE 1
+WEIGHT 0.1
+NAME Black Wasting
+
+ON=@CREATE
+ATTR=08090
+
+ON=@EQUIP
+TIMER 3
+
+ON=@TIMER
+IF (0<LINK.TAG.DISEASE_BW>)
+  LINK.DAMAGE 1
+  LINK.STAMINA=(<LINK.STAMINA>+(-1))
+  LINK.MANA=(<LINK.MANA>+(-1))
+  TIMER=5
+  IF (<EVAL RAND(10)>==1)
+    DORAND 5
+      LINK.EMOTE lose a shred of skin
+      LINK.EMOTE lose a patch of hair
+      LINK.EMOTE scratch at a weeping sore
+      LINK.EMOTE hack up some bloody phlegm
+      LINK.EMOTE blink hazily and wobble for a moment
+    ENDDO
+  ENDIF
+ELSE
+  REMOVE
+ENDIF
+RETURN 1
+
+
+//
+//Cures for the above diseases
+//
+
+//
+//Lycanthropy is a curse that turns the victim into a wolf during the full moon. Lycanthropy is
+//transmittable by bite or claw from the transformed victim. It can be cured by Wolfsbane Powder.
+//
+[ITEMDEF i_wolfsbane_powder]
+ID i_bag
+TYPE t_drink
+RESOURCES i_werewolf_saliva,i_bag
+WEIGHT 2
+SKILLMAKE Alchemy 90.0
+NAME Wolfsbane Powder
+
+ON=@CREATE
+COLOR=00656
+
+ON=@DCLICK
+IF (0<SRC.TAG.LYCANTHROPY>)
+  SRC.TAG.LYCANTHROPY=
+  SRC.EVENTS -e_dan_lycanthropy
+  SRC.EMOTE cured of lycanthropy!
+  SRC.BODY=<SRC.OBODY>
+  SRC.COLOR=<SRC.OSKIN>
+ELSE
+  SRC.TAG.LYCANTHROPY=1
+  SRC.EVENTS +e_dan_lycanthropy
+  SRC.EMOTE contracted lycanthropy!
+ENDIF
+RETURN 0
+
+
+//
+//Vampirism causes fatal sunlight allergy and dependance on blood, but blood provides healing.
+//Cured by Holy Water.
+//
+[ITEMDEF i_holy_water]
+ID i_vial_empty
+TYPE t_drink
+RESOURCES i_bottle_empty,i_pitcher_water
+WEIGHT 2
+SKILLMAKE Alchemy 100.0
+NAME Holy Water
+
+ON=@DCLICK
+IF (0<SRC.TAG.VAMPIRISM>)
+  SRC.TAG.VAMPIRISM=
+  SRC.EVENTS -e_dan_vampirism
+  SRC.EMOTE cured of vampirism!
+  SRC.COLOR=<SRC.OSKIN>
+  SRC.CONSUME 100 i_dan_vampirism_mem
+ELSE
+  SRC.EMOTE didn't have vampirism
+ENDIF
+RETURN 0
+
+
+//
+//Mage Rot is a parasitic infection that damages the victim's intelligence. It can be cured with
+//Scaleweed extract.
+//
+[ITEMDEF i_scaleweed_extract]
+ID i_bottle_2
+TYPE t_drink
+RESOURCES i_bottle_empty,i_reag_serpent_scale,i_reag_fertile_dirt
+WEIGHT 2
+SKILLMAKE Alchemy 100.0
+NAME Scaleweed Extract
+
+ON=@DCLICK
+IF (0<SRC.TAG.MAGEROT>)
+  SRC.TAG.MAGEROT=
+  SRC.EVENTS -e_dan_magerot
+  SRC.EMOTE cured of mage rot!
+  SRC.CONSUME 100 i_dan_magerot_mem
+ELSE
+  SRC.EMOTE didn't have mage rot
+ENDIF
+RETURN 0
+
+//
+//Yellow Tick Fever is a virus that causes gradual HP loss. It can be cured with
+//Dragon Dung powder.
+//
+[ITEMDEF i_dragon_dung_powder]
+ID i_bag
+TYPE t_drink
+RESOURCES i_bag,i_dragon_dung
+WEIGHT 2
+SKILLMAKE Alchemy 100.0
+NAME Dragon Dung Powder
+
+ON=@CREATE
+COLOR 0057b
+
+ON=@DCLICK
+IF (0<SRC.TAG.DISEASE_YTF>)
+  SRC.TAG.DISEASE_YTF=
+  SRC.EVENTS -e_dan_disease_ytf
+  SRC.EMOTE cured of yellow tick fever!
+  SRC.CONSUME 100 i_dan_disease_ytf_mem
+ELSE
+  SRC.EMOTE didn't have yellow tick fever
+ENDIF
+RETURN 0
+
+[ITEMDEF i_dragon_dung]
+ID i_horse_dung
+NAME Dragon Dung
+VALUE 1
+TYPE t_normal
+WEIGHT 20
+
+//
+//
+//Black Wasting is a bacterial infection that causes gradual HP/Stamina/Mana loss. It can be cured with
+//Yew Sap Tonic.
+//
+[ITEMDEF i_yew_sap_tonic]
+ID i_flask_1_orange
+TYPE t_drink
+RESOURCES i_bottle_empty,i_log
+WEIGHT 2
+SKILLMAKE Alchemy 100.0
+NAME Yew Sap Tonic
+
+ON=@CREATE
+COLOR 0057b
+
+ON=@DCLICK
+IF (0<SRC.TAG.DISEASE_BW>)
+  SRC.CONSUME 10 i_dan_disease_bw_mem
+  IF !(0<SRC.RESTEST i_dan_disease_bw_mem>)
+    SRC.TAG.DISEASE_BW=
+    SRC.EVENTS -e_dan_disease_black_wasting
+    SRC.EMOTE cured of black wasting!
+  ELSE
+    SRC.EMOTE partially cured of black wasting
+ELSE
+  SRC.EMOTE didn't have black wasting
+ENDIF
+RETURN 0
+
+
+//
+//Checks for disease
+//
+[ITEMDEF i_disease_tester]
+ID i_tongs
+NAME Plague Tester
+TYPE t_normal
+VALUE 100
+WEIGHT 10
+
+ON=@DCLICK
+IF (0<SRC.TAG.LYCANTHROPY>)
+  SRC.EMOTE has Lycanthropy
+ENDIF
+IF (0<SRC.TAG.VAMPIRISM>)
+  SRC.EMOTE has Vampirism
+ENDIF
+IF (0<SRC.TAG.MAGEROT>)
+  SRC.EMOTE has Mage Rot
+ENDIF
+IF (0<SRC.TAG.DISEASE_YTF>)
+  SRC.EMOTE has Yellow Tick Fever
+ENDIF
+SRC.EMOTE touched the Plague Tester
+RETURN 1
+
+
+
+[EOF]

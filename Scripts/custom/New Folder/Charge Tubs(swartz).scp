@@ -1,0 +1,63 @@
+//Swartz Made THis//
+[itemdef Dye_charge_Empty]
+id=i_tub_empty
+weight=10
+type=t_container
+on=@create
+name=Empty Dye Tub 
+
+CATEGORY=Event Reward (swartz)
+SUBSECTION=tubs
+DESCRIPTION=Empty tub
+
+
+[itemdef Dye_charge]
+id=i_dye_tub
+weight=10
+
+on=@create
+name=Dye Tub
+MORE=20
+MORE2=20
+
+on=@CLICK
+NAME=Dye Tub <EVAL <MORE1>> Charges
+
+on=@dclick
+	NAME=Dye Tub <EVAL <MORE1>> Charges
+	if (<MORE1> == 0)
+		SRC.sysmessage No charges left!
+		VAR.OLDCONTAINER=<SRC.ACT.CONT>
+		VAR.OLDPOSITION=<SRC.ACT.P>
+		REMOVE
+		src.newitem Dye_charge_Empty
+		src.act.cont = <VAR.OLDCONTAINER>
+		src.act.p = <VAR.OLDPOSITION>
+		return 1
+	ENDIF
+
+ON=@TARGON_ITEM
+	IF <SRC.TARG.TYPE> == t_clothing
+		MORE1=<EVAL (<MORE1>-1)>
+		NAME=Dye Tub <EVAL <MORE1>> Charges
+		RETURN 0
+	ELSE
+		SRC.SYSMESSAGE Use this tub on clothing.
+		RETURN 1
+	ENDIF
+		
+
+ON=@TARGON_CHAR
+	SRC.SYSMESSAGE Use this tub on clothing.
+	RETURN 1
+
+
+CATEGORY=Event Reward (swartz)
+SUBSECTION=tubs
+DESCRIPTION=Tub 20 charges
+
+[function dyetubcharges]
+SRC.NEWITEM dye_charge
+SRC.ACT.MORE1 = <ARGN>
+SRC.ACT.BOUNCE
+

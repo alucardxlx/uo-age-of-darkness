@@ -1,0 +1,362 @@
+//Cooking and food related items. 
+//
+//
+[ITEMDEF=i_cucumber]
+DEFNAME=i_cucumber
+ID=i_fruit_banana
+NAME=Cucumber
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=0003f
+
+//
+[ITEMDEF=i_pickle]
+DEFNAME=i_pickle
+ID=i_fruit_banana
+NAME=Pickle
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=00174
+
+//
+[ITEMDEF=i_tomato]
+DEFNAME=i_tomato
+ID=i_fruit_apple
+NAME=Tomato
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=0008a
+
+//
+[ITEMDEF=i_olive]
+DEFNAME=i_olive
+ID=i_fruit_hops
+NAME=Olives
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=00001
+
+//
+[ITEMDEF=i_pepper]
+DEFNAME=i_pepper
+ID=i_fruit_banana
+NAME=Pepper
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=0008a
+
+//
+[ITEMDEF=i_lardball]
+DEFNAME=i_lardball
+ID=i_fruit_coconut
+NAME=Ball of Lard
+TYPE=t_normal
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=00093
+
+ON=@DCLICK
+    SRC.SAY=Ugh, a greasy ball of lard. I should use this to cook with ...
+RETURN=1
+
+//
+[ITEMDEF=i_sugar]
+DEFNAME=i_sugar
+ID=i_flour_sack
+NAME=Sack of Sugar
+TYPE=t_normal
+WEIGHT=1
+VALUE=3
+
+ON=@DCLICK
+    SRC.SAY=Mmm, fine grained sugar. This would be good to cook with ...
+RETURN=1
+
+//
+[ITEMDEF=i_orange]
+DEFNAME=i_orange
+ID=i_fruit_apple
+NAME=Orange
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=0002b
+
+//
+[ITEMDEF=i_potato]
+DEFNAME=i_potato
+ID=0f57
+NAME=Potato
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+ON=@CREATE
+COLOR=00735
+
+//
+[ITEMDEF=i_beans]
+DEFNAME=i_beans
+ID=i_bowl_wood_carrots
+NAME=Bowl of Beans
+TYPE=t_food
+WEIGHT=1
+VALUE=3
+
+//
+[ITEMDEF i_rice_sack]
+DEFNAME=i_sack_rice
+NAME=sack of rice
+ID=i_flour_sack
+TYPE=t_normal
+WEIGHT 10
+VALUE 3
+
+//
+[ITEMDEF i_smoked_ham]
+NAME Smoked Ham
+ID i_ham
+TYPE t_food
+WEIGHT 1
+VALUE 10
+
+//
+[ITEMDEF i_smoked_sausage]
+NAME Smoked Sausage
+ID i_sausages
+TYPE t_food
+WEIGHT 1
+VALUE 10
+
+//
+[ITEMDEF i_pie_crust]
+NAME Pie Crust
+ID i_plate
+TYPE t_normal
+WEIGHT 1
+RESOURCES i_jar_honey,i_flour_bowl, i_pitcher_milk
+
+ON=@CREATE
+COLOR 0071e
+
+//
+[ITEMDEF i_newflour_sack]
+NAME Flour Sack
+ID i_flour_sack
+TYPE t_normal
+WEIGHT 30
+VALUE 10
+
+ON=@CREATE
+MORE1=10
+
+ON=@CLICK
+SAY <EVAL(<MORE1>)> of 10 Bowls
+
+ON=@DCLICK
+IF <SRC.ACT.MORE1>>0
+  SRC.ACT.BOUNCE
+  SRC.ACT.MORE1=<SRC.ACT.MORE1>+(-1)
+  SRC.NEWITEM i_flour_bowl
+  SRC.ACT.BOUNCE
+  RETURN 1
+ELSE
+  SRC.MESSAGE This sack is empty. You tear it up for a little extra cloth.
+  SRC.NEWITEM i_cloth
+  SRC.ACT.AMOUNT 2
+  SRC.ACT.BOUNCE
+  SRC.CONSUME i_newflour_sack
+  RETURN 1
+ENDIF
+
+//
+[ITEMDEF i_pie_apple]
+NAME Apple Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_apple
+
+//
+[ITEMDEF i_pie_peach]
+NAME Peach Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_peach
+
+//
+[ITEMDEF i_pie_beef]
+NAME Beef Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_ribs_cooked
+
+//
+[ITEMDEF i_pie_poultry]
+NAME Poultry Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_bird_cooked
+
+//
+[ITEMDEF i_pie_fish]
+NAME Fish Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fish_cut_cooked
+
+//
+[ITEMDEF i_pie_pumpkin]
+NAME Pumpkin Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_pumpkin
+
+//
+[ITEMDEF i_pie_coconut]
+NAME Coconut Cream Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_coconut
+
+//
+[ITEMDEF i_pie_banana]
+NAME Banana Cream Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_banana
+
+//
+[ITEMDEF i_pie_lemon]
+NAME Lemon Cream Pie
+ID i_pie_baked
+TYPE t_food
+WEIGHT 1
+RESOURCES i_pie_crust,5 i_fruit_lemon
+
+//
+[ITEMDEF i_cake_batter]
+NAME Cake Batter
+ID i_cookie_mix
+TYPE t_normal
+WEIGHT 1
+RESOURCES 3 i_sweet_dough,i_eggs_fresh,i_pitcher_milk
+
+//
+[ITEMDEF i_sweet_dough]
+NAME Sweet Dough
+ID i_dough
+TYPE t_normal
+WEIGHT 1
+RESOURCES i_dough,i_jar_honey,01f9d
+
+ON=@CREATE
+COLOR 005e7
+
+//
+[ITEMDEF i_sweet_bread]
+NAME Sweet Bread
+ID i_bread_loaf
+TYPE t_food
+WEIGHT 1
+RESOURCES i_sweet_dough
+
+ON=@CREATE
+COLOR 005e7
+
+//
+[ITEMDEF i_cake_carrot]
+NAME Carrot Cake
+ID i_cake
+TYPE t_food
+WEIGHT 1
+RESOURCES i_cake_batter,5 i_fruit_carrot
+
+ON=@CREATE
+COLOR 00090
+
+//
+[ITEMDEF i_cake_coconut]
+NAME Coconut Cake
+ID i_cake
+TYPE t_food
+WEIGHT 1
+RESOURCES i_cake_batter,5 i_fruit_coconut
+
+ON=@CREATE
+COLOR 009f4
+
+//
+[ITEMDEF i_cake_birthday]
+NAME Birthday Cake
+ID i_cake
+TYPE t_food
+WEIGHT 1
+RESOURCES i_cake_batter,i_candle
+
+ON=@CREATE
+COLOR 00939
+
+ON=@DCLICK
+IF <NAME> == Fresh Birthday Cake
+  NAME=Lit Birthday Cake
+  RETURN 1
+ELIF <NAME> == Lit Birthday Cake
+  NAME=<SRC.NAME>'s Birthday Cake
+  SAY <SRC.NAME> blew out all the candles!
+  RETURN 1
+ENDIF
+RETURN 0
+
+//
+//
+//
+[TEMPLATE t_es_newfoods]
+CATEGORY=Item Templates
+SUBSECTION=New Foods
+DESCRIPTION=Random of All Types
+ITEM={ i_cucumber 1 i_pickle 1 i_tomato 1 i_olive 1 i_pepper 1 i_lardball 1 i_sugar 1 i_orange 1 i_potato 1 i_beans 1 i_rice_sack 1 i_smoked_ham 1 i_smoked_sausage 1 t_es_newpies 1 t_es_newcakes 1 }
+
+[TEMPLATE t_es_newpies]
+CATEGORY=Item Templates
+SUBSECTION=New Foods
+DESCRIPTION=Random of New Pies
+ITEM={ i_pie_lemon 1 i_pie_coconut 1 i_pie_banana 1 i_pie_pumpkin 1 i_pie_fish 1 i_pie_poultry 1 i_pie_beef 1 i_pie_apple 1 i_pie_peach 1 } 
+
+[TEMPLATE t_es_newcakes]
+CATEGORY=Item Templates
+SUBSECTION=New Foods
+DESCRIPTION=Random of New Cakes
+ITEM={ i_cake_carrot 1 i_cake_coconut 1 i_cake_birthday 1 }
+
+
+
+
+
+[EOF]

@@ -72,13 +72,17 @@ f_onserver_blockip
 [FUNCTION f_onserver_blockip]
 
 [FUNCTION f_onaccount_login]
-serv.servip uoaod.servegame.com,2593
+serv.servip 70.36.227.35,2593
 
 [FUNCTION f_onserver_start]
-serv.servip uoaod.servegame.com,2593
+serv.servip 70.36.227.35,2593
 var.vendormaster = <SERV.RTICKS>
 
 [FUNCTION f_onserver_save_ok]
-serv.servip uoaod.servegame.com,2593
+serv.servip 70.36.227.35,2593
+
+
+[FUNCTION f_onserver_timer]
+f_time_keeper
 
 [EOF]

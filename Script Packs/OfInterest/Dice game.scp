@@ -1,0 +1,533 @@
+[DIALOG d_dice_game] 
+0,0 
+page 0 
+resizepic 0 0 3000 263 260
+page 1 
+text 20 20 1153 1 
+text 140 60 1152 2 
+text 140 90 1152 3
+text 140 120 1152 4
+text 140 150 1152 5
+button 100 50  4037 4036 1 0 4008
+button 100 80  4037 4036 1 0 4009
+button 100 110  4037 4036 1 0 4010
+button 70 200  1022 1021 0 2 4011
+button 100 140 4037 4036 1 0 4013
+page 2
+text 5 20 1152 6 
+text 5 45 1152 7 
+text 5 75 1152 8
+text 5 95 1152 9
+text 5 115 1152 10
+button 95 175  1235 1236 0 1 4012 
+
+[DIALOG d_dice_game TEXT] 
+<VAR.BLANKLINE> 
+How much would you like to bet?
+1gp 
+5gp
+10gp
+100gp
+The object of Lucky 5's is to roll
+two 5's.if you roll two 5's you get
+tripple what you bet back!If you get
+one lucky 5 and another number,
+You win double your bet!
+
+[DIALOG d_dice_game BUTTON] 
+ONBUTTON=4008 
+IF <SRC.RESTEST i_gold>
+  NEWITEM i_rock_plain
+  SRC.BOUNCE
+  SRC.ACT.MORE1={ 1 50 }
+  SRC.CONSUME i_gold
+  IF <SRC.ACT.MORE1>==50
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 3
+    SRC.ACT.BOUNCE
+    SRC.EMOTE Roll a 5,5
+    SRC.SYSMESSAGE You got the Lucky 5's!!!
+    SRC.CONSUME i_rock_plain
+    RETURN 1
+ ELIF <MORE1>>=40
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 2
+    SRC.ACT.BOUNCE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    MORE1={1 4}
+    SRC.EMOTE roll a 5,<EVAL(<MORE1>)>
+    SRC.SYSMESSAGE You got 1 Lucky 5!!
+    SRC.CONSUME 2 i_rock_plain
+  ELSE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    SRC.ACT.MORE1={1 6}
+    IF <SRC.ACT.MORE1>==5
+      SRC.ACT.MORE1={1 4}
+    ENDIF
+    SRC.ACT.MORE2={1 6}
+    IF <SRC.ACT.MORE2>==5
+      SRC.ACT.MORE2={1 4}
+    ENDIF
+    SRC.EMOTE roll a <EVAL(<SRC.ACT.MORE1>)>, <EVAL(<SRC.ACT.MORE2>)>
+    SRC.CONSUME 2 i_rock_plain
+  ENDIF
+ELSE
+SRC.SAY Blast, I don't have  enough money to make this bet!
+SRC.CONSUME i_rock_plain
+ENDIF
+RETURN 1
+
+ONBUTTON=4009 
+IF <SRC.RESTEST 5 i_gold>
+  NEWITEM i_rock_plain
+  SRC.BOUNCE
+  SRC.ACT.MORE1={ 1 85 }
+  SRC.CONSUME 5 i_gold
+  IF <SRC.ACT.MORE1>==85
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 15
+    SRC.ACT.BOUNCE
+    SRC.EMOTE Roll a 5,5
+    SRC.SYSMESSAGE You got the Lucky 5's!!!
+    SRC.CONSUME i_rock_plain
+    RETURN 1
+ ELIF <MORE1>>=75
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 10
+    SRC.ACT.BOUNCE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    MORE1={1 4}
+    SRC.EMOTE roll a 5,<EVAL(<MORE1>)>
+    SRC.SYSMESSAGE You got 1 Lucky 5!!
+    SRC.CONSUME 2 i_rock_plain
+  ELSE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    SRC.ACT.MORE1={1 6}
+    IF <SRC.ACT.MORE1>==5
+      SRC.ACT.MORE1={1 4}
+    ENDIF
+    SRC.ACT.MORE2={1 6}
+    IF <SRC.ACT.MORE2>==5
+      SRC.ACT.MORE2={1 4}
+    ENDIF
+    SRC.EMOTE roll a <EVAL(<SRC.ACT.MORE1>)>, <EVAL(<SRC.ACT.MORE2>)>
+    SRC.CONSUME 2 i_rock_plain
+  ENDIF
+ELSE
+SRC.SAY Blast, I don't have  enough money to make this bet!
+SRC.CONSUME i_rock_plain
+ENDIF
+RETURN 1
+
+ONBUTTON=4010 
+IF <SRC.RESTEST 10 i_gold>
+  NEWITEM i_rock_plain
+  SRC.BOUNCE
+  SRC.ACT.MORE1={ 1 125 }
+  SRC.CONSUME 10 i_gold
+  IF <SRC.ACT.MORE1>==125
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 30
+    SRC.ACT.BOUNCE
+    SRC.EMOTE Roll a 5,5
+    SRC.SYSMESSAGE You got the Lucky 5's!!!
+    SRC.CONSUME i_rock_plain
+    RETURN 1
+ ELIF <MORE1>>=115
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 20
+    SRC.ACT.BOUNCE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    MORE1={1 4}
+    SRC.EMOTE roll a 5,<EVAL(<MORE1>)>
+    SRC.SYSMESSAGE You got 1 Lucky 5!!
+    SRC.CONSUME 2 i_rock_plain
+  ELSE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    SRC.ACT.MORE1={1 6}
+    IF <SRC.ACT.MORE1>==5
+      SRC.ACT.MORE1={1 4}
+    ENDIF
+    SRC.ACT.MORE2={1 6}
+    IF <SRC.ACT.MORE2>==5
+      SRC.ACT.MORE2={1 4}
+    ENDIF
+    SRC.EMOTE roll a <EVAL(<SRC.ACT.MORE1>)>, <EVAL(<SRC.ACT.MORE2>)>
+    SRC.CONSUME 2 i_rock_plain
+  ENDIF
+ELSE
+SRC.SAY Blast, I don't have  enough money to make this bet!
+SRC.CONSUME i_rock_plain
+ENDIF
+RETURN 1
+
+ONBUTTON=4013
+IF <SRC.RESTEST 100 i_gold>
+  NEWITEM i_rock_plain
+  SRC.BOUNCE
+  SRC.ACT.MORE1={ 1 180 }
+  SRC.CONSUME 100 i_gold
+  IF <SRC.ACT.MORE1>==180
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 300
+    SRC.ACT.BOUNCE
+    SRC.EMOTE Roll a 5,5
+    SRC.SYSMESSAGE You got the Lucky 5's!!!
+    SRC.CONSUME i_rock_plain
+    RETURN 1
+ ELIF <MORE1>>=170
+    NEWITEM i_gold
+    SRC.ACT.AMOUNT 200
+    SRC.ACT.BOUNCE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    MORE1={1 4}
+    SRC.EMOTE roll a 5,<EVAL(<MORE1>)>
+    SRC.SYSMESSAGE You got 1 Lucky 5!!
+    SRC.CONSUME 2 i_rock_plain
+  ELSE
+    NEWITEM i_rock_plain
+    SRC.BOUNCE
+    SRC.ACT.MORE1={1 6}
+    IF <SRC.ACT.MORE1>==5
+      SRC.ACT.MORE1={1 4}
+    ENDIF
+    SRC.ACT.MORE2={1 6}
+    IF <SRC.ACT.MORE2>==5
+      SRC.ACT.MORE2={1 4}
+    ENDIF
+    SRC.EMOTE roll a <EVAL(<SRC.ACT.MORE1>)>, <EVAL(<SRC.ACT.MORE2>)>
+    SRC.CONSUME 2 i_rock_plain
+  ENDIF
+ELSE
+SRC.SAY Blast, I don't have  enough money to make this bet!
+SRC.CONSUME i_rock_plain
+ENDIF
+RETURN 1
+
+ONBUTTON=4011
+SRC.ACT .dialog d_info_dice
+
+ONBUTTON=4012 
+SRC.ACT .dialog d_dice_game
+
+[ITEMDEF i_dice_game]
+DEFNAME=i_dice_game
+NAME=Lucky 5's 
+ID=I_dice_cup
+RESOURCES=1000 i_glass,1 i_dirt
+WEIGHT=50
+TYPE=T_normal
+VALUE=5500
+
+ON=@Create
+COLOR=0077d
+
+ON=@DCLICK
+SRC.dialog d_dice_game
+RETURN=1
+
+
+////////////////////////////9/11 scripts/////////////////////////
+
+[ITEMDEF i_memorial_flowers]
+ID i_flower_redpoppies
+NAME Memorial Flowers
+TYPE t_normal
+
+ON=@CREATE
+ATTR=attr_never_move|attr_static|attr_decay
+TIMER=5
+RETURN 1
+
+ON=@TIMER
+TIMER=-1
+LINK.TAG.MEMORIALFLOWERS=
+REMOVE
+RETURN 1
+
+[ITEMDEF i_memorial_candle]
+ID i_candle_short
+NAME Memorial Candle
+TYPE t_normal
+
+ON=@DCLICK
+IF !(0<SRC.TAG.MEMORIALFLOWERS>)
+  SRC.TAG.MEMORIALFLOWERS=1
+  SRC.NEWITEM i_memorial_flowers
+  SRC.ACT.P=<SRC.P>
+  SRC.ACT.LINK=<SRC.UID>
+  RETURN 1
+ELSE
+  SRC.MESSAGE You already have some flowers.
+ENDIF
+
+/////////////////////OTHERS/////////////////////////////////
+// k this is a milk machine lol it was just a test gump but hey! everyone needs
+// there milk =)
+
+[DIALOG d_tester_cow] 
+0,0 
+page 0 
+resizepic 0 0 2600 300 175
+page 1 
+text 40 20 1153 1 
+text 40 40 1153 2
+text 70 75 1152 3 
+text 70 105 1152 4 
+button 20 75  2074 2075 1 0 4006
+button 20 105  2074 2075 1 0 4007
+
+[DIALOG d_tester_cow TEXT] 
+<VAR.BLANKLINE> 
+What type of milk would you
+like to buy for 15gp?
+Chocolate 
+White
+
+[DIALOG d_tester_cow BUTTON] 
+ONBUTTON=4006 
+IF <SRC.RESTEST 15 i_gold>
+    SRC.NEWITEM={i_cm_drink}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=15 i_gold
+    SRC.MESSAGE Thank you for purchasing my milk
+ELSE
+    MESSAGE You lack 15 Gold to pay for the milk.
+ENDIF
+ONBUTTON=4007 
+IF <SRC.RESTEST 15 i_gold>
+    SRC.NEWITEM={i_rm_drink}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=15 i_gold
+    SRC.MESSAGE Thank you for purchasing my milk
+ELSE
+    MESSAGE You lack 15 Gold to pay for the milk.
+ENDIF
+
+[ITEMDEF i_cm_drink]
+DEFNAME=i_cm_drink
+NAME=Chocolate Milk 
+ID=I_glass
+RESOURCES=1 i_glass,1 i_dirt
+WEIGHT=3
+TYPE=T_drink
+VALUE=15
+
+ON=@Create
+COLOR=00a70
+RETURN=1
+
+[ITEMDEF i_rm_drink]
+DEFNAME=i_rm_drink
+NAME=White Milk 
+ID=I_glass
+RESOURCES=1 i_glass,1 i_dirt
+WEIGHT=3
+TYPE=T_drink
+VALUE=15
+
+ON=@Create
+COLOR=00a8e
+RETURN=1
+
+[ITEMDEF i_milk_machine]
+DEFNAME=i_Milk_Machine
+NAME=Milk Machine 
+ID=I_pet_cow
+RESOURCES=1000 i_glass,1 i_dirt
+WEIGHT=3
+TYPE=T_normal
+VALUE=1500
+
+ON=@Create
+COLOR=00a8e
+
+ON=@DCLICK
+SRC.dialog d_tester_cow
+RETURN=1
+
+// pop and pop machines
+// this one was just for fun when i was learning to script but then i changed it
+// from automatic to  gump so its cool.
+
+[ITEMDEF i_Pop_machine]
+DEFNAME=i_pop_machine
+NAME=Pop Machine
+ID=I_grave_stone_4
+RESOURCES=1008 i_sugar
+WEIGHT=5000
+TYPE=T_normal
+VALUE=55000
+
+ON=@Create
+COLOR=00a7a
+
+ON=@DCLICK
+SRC.dialog d_pop_machine
+
+RETURN=1
+
+[DIALOG d_Pop_machine] 
+0,0 
+page 0 
+resizepic 0 0 83 300 200 
+page 1 
+text 100 25 1152 1 
+text 100 65 1152 2 
+text 100 105 1152 3
+text 100 145 1152 4
+button 20 20  1270 1269 1 0 4002 
+button 20 60  1270 1269 1 0 4003
+button 20 100  1270 1269 1 0 4004
+button 20 140  1270 1269 1 0 4005
+
+[DIALOG d_Pop_machine TEXT] 
+<VAR.BLANKLINE> 
+Pepsi (5gp)
+Coke (5gp)
+Sprite (5gp)
+Mountain Dew (5gp) 
+
+[DIALOG d_Pop_machine BUTTON] 
+ONBUTTON=4002
+IF <SRC.RESTEST 5 i_gold>
+    SRC.NEWITEM={i_pepsi}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=5 i_gold
+    SRC.MESSAGE That will be 5 Gold for the fine Pepsi, Thank Thee.
+    SOUND 0F7
+ELSE
+    MESSAGE You lack 5 Gold to pay for the Pepsi, try Coke cheap ass.
+ENDIF
+RETURN 1 
+ONBUTTON=4003
+IF <SRC.RESTEST 5 i_gold>
+    SRC.NEWITEM={i_coke}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=5 i_gold
+    SRC.MESSAGE That will be 5 gold for the nasty Coke.
+    SOUND 0F7
+ELSE
+    MESSAGE You lack 5 gold to pay for the Coke.
+ENDIF
+RETURN 1
+ONBUTTON=4004
+IF <SRC.RESTEST 5 i_gold>
+    SRC.NEWITEM={i_sprite}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=5 i_gold
+    SRC.MESSAGE That will be 5 gold for the sprite.
+    SOUND 0F7
+ELSE
+    MESSAGE You lack 5 gold to pay for the sprite.
+ENDIF
+RETURN 1
+ONBUTTON=4005
+IF <SRC.RESTEST 5 i_gold>
+    SRC.NEWITEM={i_dew}
+    SRC.ACT.BOUNCE // put it in your pack.
+    SRC.CONSUME=5 i_gold
+    SRC.MESSAGE That will be 5 gold for the Mountain Dew.
+    SOUND 0F7
+ELSE
+    MESSAGE You lack 5 gold to pay for the Mountain Dew.
+ENDIF
+RETURN 1
+
+[ITEMDEF i_sprite]
+DEFNAME=i_sprite
+NAME=Sprite
+ID=I_bottle
+RESOURCES=3 i_sugar, 10 I_lemon
+WEIGHT=1
+TYPE=T_normal
+VALUE=10
+
+ON=@Create
+COLOR=00b61
+
+ON=@DCLICK
+IF  <SRC.RESTEST i_sprite>
+    SRC.SAY=You drink down the sprite....Obey your thirst.
+    SOUND=0030
+    SRC.CONSUME=i_sprite
+ELSE
+    SRC.MESSAGE=This needs to be in your backpack for you to drink it. 
+ENDIF
+
+RETURN=1
+
+[ITEMDEF i_pepsi]
+DEFNAME=i_pepsi
+NAME=Pepsi
+ID=I_bottle
+RESOURCES=8 i_sugar
+WEIGHT=1
+TYPE=T_normal
+VALUE=15
+
+ON=@Create
+COLOR=00956
+
+ON=@DCLICK
+IF  <SRC.RESTEST i_pepsi>
+    SRC.SAY=Aah, a refreshing beverage!
+    SOUND=0030
+    SRC.CONSUME=i_pepsi
+ELSE
+    SRC.MESSAGE=This needs to be in your backpack for you to drink it. 
+ENDIF
+RETURN=1
+
+[ITEMDEF i_coke]
+DEFNAME=i_cokei
+NAME=Coke
+ID=I_bottle
+RESOURCES=8 i_dirt
+WEIGHT=1
+TYPE=T_normal
+VALUE=7
+
+ON=@Create
+COLOR=0b79
+
+ON=@DCLICK
+IF  <SRC.RESTEST i_coke>
+    SRC.SAY=Ugh! you manage to drink the foul beverage!
+    SOUND=0030
+    SRC.CONSUME=i_coke
+ELSE
+    SRC.MESSAGE=This needs to be in your backpack for you to drink it. 
+ENDIF
+
+RETURN=1
+
+[ITEMDEF i_dew]
+DEFNAME=i_dew
+NAME=Mountain Dew
+ID=I_bottle
+RESOURCES=3 i_sugar, 10 I_lemon
+WEIGHT=1
+TYPE=T_normal
+VALUE=15
+
+ON=@Create
+COLOR=00787
+
+ON=@DCLICK
+IF  <SRC.RESTEST i_dew>
+    SRC.SAY=You drink down the Mountain Dew.....didnt you hear the rumor about Mountain Dew and your sperm count?
+    SOUND=0030
+    SRC.CONSUME=i_dew
+ELSE
+    SRC.MESSAGE=This needs to be in your backpack for you to drink it. 
+ENDIF
+
+RETURN=1
